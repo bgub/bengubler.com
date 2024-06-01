@@ -1,0 +1,79 @@
+---
+title: Introducing Eta v3
+description: The next version of Eta, an embedded JS template engine, brings API and documentation improvements.
+date: "2023-06-22"
+---
+
+## Background
+
+Today, Eta is my most popular and widely used open-source project. But when I first published it 3 years ago, it wasn't one of my primary focuses. In fact, I created Eta as a slimmed-down variation of [Squirrelly](https://squirrelly.js.org), a more complex template engine with features like helpers and filters.
+
+As time passed, I realized that for most projects, an embedded template engine was actually a better fit than something more complex. Projects which needed complex or client-side HTML processing typically used a framework like React or Vue. Eta's performance and low bundle size, meanwhile, made it a great fit for projects which needed fast processing, low memory usage, or to handle non-XML languages.
+
+At the same time, Eta had become increasingly popular thanks to its speed, Deno support, and syntactic advantages over EJS. Given those factors, I decided to make Eta my main focus. I spent time writing tutorials, fixing issues, and polishing documentation.
+
+After several years and some time spent away from programming as a missionary, I finally had time to work on Eta again. I decided to make some big changes to the project, including the build system, API, and documentation.
+
+## Build System Updates
+
+Despite Eta's advantages and features, it had some big problems. One such problem was the build system. Complex and unwieldy, it was difficult to maintain and update. I dealt with complex configuration files and the necessity of transpiling a version specifically for Deno.
+
+Changes in version 3:
+
+- Using [microbundle](https://github.com/developit/microbundle) to bundle the library helped me avoid the need for complex configuration files.
+- Using GitHub Actions to run tests and collect coverage allowed me to consolidate the services I used.
+- By setting `allowImportingTsExtensions: true` in `tsconfig.json`, I was able to avoid using [Denoify](https://github.com/garronej/denoify) for a separate Deno build.
+
+## API Changes
+
+Another problem was the API. Simple methods like `eta.render()` had many function overloads, making types difficult to infer and usage unintuitive. A custom configuration object could be passed in when calling user-exposed functions like `render`, `parse`, and `compile`. In practice, that meant the user-provided configuration had to be merged with the default configuration every time any of those functions was called.
+
+Changes in version 3:
+
+- There's only one export, a named class called `Eta`. This class has a single constructor, which processes a configuration object and generates template caches at instantiation time.
+- The `render()` and `renderAsync()` functions now have a single function signature.
+  - In Eta v2, `render()` and `renderAsync()` could be used to render either named templates or template strings. Eta v3 introduces two new functions to render template strings: `renderString()` and `renderStringAsync()`.
+- The `readFile()` and `resolvePath()` functions, which Eta uses internally, can be overridden as class methods by the user.
+- Internal variables and methods inside each compiled template are stored in the `__eta` object, rather than across several variables including `__res`.
+- Rather than allowing users to specify one `root` directory and multiple `views` directories, users may just specify a single `views` directory. This directory is used as the root directory for all template resolution. All template files must be inside this directory or a subdirectory of it, improving template security and reducing expensive file-lookup operations.
+
+## Developer Experience Changes
+
+One of the biggest changes in Eta v3 was the addition of detailed runtime errors (inspired by EJS). Consider a template like the following, which will throw because of an undefined variable:
+
+```eta
+Template header
+<%= undefinedVariable %>
+Lorem Ipsum
+```
+
+Eta v2 would throw an error with some generic info, but it wasn't incredibly helpful. In contrast, Eta v3 throws a detailed error with the template name, line number, and error message:
+
+```
+EtaError [ReferenceError]: .../my-dir/templates/runtime-error.eta:2
+    1| Template header
+ >> 2| <%= undefinedVariable %>
+    3| Lorem Ipsum
+
+undefinedVariable is not defined
+```
+
+## Documentation Changes
+
+The documentation for Eta v2 was extensive but very difficult to navigate. Information about the project was split over 40+ (!) documentation pages, found in multiple folders spread across 3 different website sections.
+
+The documentation for Eta v3 takes up 9 pages, all found in the same part of the website ([eta.js.org](https://eta.js.org)). Topics like template syntax and API overview are covered in a single page, rather than being split across multiple pages.
+
+## The Future of Eta
+
+I'm proud of the changes included in Eta v3, and of the project as a whole. Much thanks to those who contributed to the project through PRs, issues, and suggestions. Additional thanks to projects like [ejs](https://github.com/mde/ejs), from which Eta continues to draw inspiration.
+
+I see Eta as mostly feature-complete at this point, though I'll continue to fix bugs and add some small features. I'd encourage current users of the library to upgrade to v3, and I hope new users will find Eta to be a great fit for their projects.
+
+## Links
+
+- [Eta on GitHub](https://github.com/eta-dev/eta)
+- [Eta on npm](https://www.npmjs.com/package/eta)
+- [Eta website and docs](https://eta.js.org)
+
+_If you liked the article, don't forget to share it and follow me at [@nebrelbug](https://twitter.com/nebrelbug) on Twitter._

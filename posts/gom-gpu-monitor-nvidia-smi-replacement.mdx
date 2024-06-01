@@ -1,0 +1,33 @@
+---
+title: An nvidia-smi Replacement for Monitoring GPU Usage across Containers
+description: I published `gom`, a CLI tool for monitoring GPU usage across Docker containers.
+date: "2023-10-16"
+---
+
+## TL;DR
+
+`gom` stands for GPU Output Monitor. It's a pip package that provides a CLI for monitoring GPU usage. Think of it as `nvidia-smi`, but faster and more minimalist. And it has a bonus feature: **in environments where Docker containers are using GPUs, it will break down usage by container**! (Don't worry, it also works in environments without Docker and even inside Docker containers.)
+
+_I owe my colleague [Vin](https://howe.vin/) credit for inspiring this project. He used GPT-4 to create an initial prototype in Bash, but I had to rewrite from scratch due to bugs and performance issues._
+
+## Instructions
+
+1. Run `pip3 install gom`
+2. Depending on your CUDA version, install the correct version of `pynvml`
+3. Run `gom show` (to show usage once) or `gom watch` (to monitor usage, updated roughly every second)
+
+## Comparing `gom` and `nvidia-smi`
+
+I think the results speak for themselves :). This first screenshot is the result of running `gom watch`. You can see that four different Docker containers, `r0`, `r1`, `r2`, and `r3`, are each using a GPU quite heavily. There's also slight usage of all GPUs that's not coming from any container.
+
+![output of running `gom watch` command](/blog-images/gom-watch.png)
+
+This second screenshot is the result of running `nvidia-smi`. It's complex and unnecessarily verbose. In more space than `gom`, it only manages to show information for 8 GPUs!
+
+![output of running `nvidia-smi` command](/blog-images/nvidia-smi.png)
+
+## Conclusion
+
+I created `gom` because I wanted to monitor GPU usage across different Docker containers. I use it frequently when doing ML tasks because it's fast and the output fits on a small terminal. Hopefully it's helpful for you. If you have suggestions, feel free to open an issue at the [GitHub repo](https://github.com/nebrelbug/gom).
+
+_If you liked the article, don't forget to share it and follow me at [@nebrelbug](https://twitter.com/nebrelbug) on Twitter._

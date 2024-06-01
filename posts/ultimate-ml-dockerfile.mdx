@@ -1,0 +1,185 @@
+---
+title: Setting Up Docker for Machine Learning
+description: The Dockerfile I use to set up my machine learning environment.
+date: "2023-09-08T21:00:00+0000"
+---
+
+This post is mainly meant for coworkers, but it might be useful for others as well. I'll be sharing the Dockerfile that I use to set up my machine learning environment. It's based on the `huggingface/transformers-pytorch-gpu` image, but I've added a few things (Infiniband support, upgraded Pip packages, a utility to show GPU status, etc.) to make it a bit more useful for me.
+
+## Setup
+
+Place all of the below files in a new directory. Feel free to add or remove anything you want — I'll likely update this post as I make changes to my setup.
+
+After you've created the files, you can build the image with:
+
+```bash
+cd /path/to/directory
+docker build -t <image-name> .
+```
+
+## Files
+
+### `Dockerfile`
+
+```dockerfile
+FROM huggingface/transformers-pytorch-gpu
+
+# Install Infiniband drivers
+RUN apt-get install -y libibverbs-dev librdmacm-dev libibumad-dev ibutils
+
+#####################
+# GH CLI & STARSHIP #
+#####################
+
+# Prep apt for GitHub CLI
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN apt-get install -y curl apt-utils
+
+# GitHub CLI
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && apt-get update \
+    && apt-get install gh -y
+
+RUN apt-get upgrade -y
+
+# Starship Prompt
+RUN curl -sS https://starship.rs/install.sh -o starship-install.sh
+RUN sh starship-install.sh --yes
+RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
+
+# Starship Config
+COPY starship.toml /root/.config/starship.toml
+
+#####################
+# PYTHON PACKAGES   #
+#####################
+
+# Disable the "running pip as the 'root' user can..." warning
+ENV PIP_ROOT_USER_ACTION=ignore
+
+# Upgrade pip
+RUN pip3 install --upgrade pip
+
+# Upgrade important packages
+RUN pip3 install --upgrade torch torchvision torchaudio
+RUN pip3 install --upgrade transformers accelerate xformers deepspeed
+
+# Other useful machine learning packages
+RUN pip3 install --upgrade fire tqdm openai numpy rouge_score wandb ipython emoji tokenizers evaluate matplotlib seaborn lm-eval jupyter nltk tiktoken aiolimiter swifter pytorch-lightning lightning sentencepiece jsonargparse[signatures] bitsandbytes datasets zstandard rich
+
+#####################
+# ALIASES           #
+#####################
+
+# show-gpus, watch-gpus
+COPY show_gpus.py /root/show_gpus.py
+RUN echo 'alias show-gpus="python3 /root/show_gpus.py"' >> ~/.bashrc
+RUN echo 'alias watch-gpus="watch -c python3 /root/show_gpus.py"' >> ~/.bashrc
+```
+
+### `starship.toml`
+
+```toml
+[character]
+success_symbol = '[λ](bold green) '
+error_symbol = '[λ](bold red) '
+
+[aws]
+disabled = true
+```
+
+### `show_gpus.py`
+
+```python
+import subprocess
+from tabulate import tabulate
+
+
+def get_gpu_info():
+    gpu_info = []
+    command = "nvidia-smi --query-gpu=index,uuid,memory.total,memory.used --format=csv,noheader"
+    output = subprocess.check_output(command, shell=True).decode().strip()
+    lines = output.split("\n")
+    for line in lines:
+        values = line.split(", ")
+        index = int(values[0])
+        uuid = values[1]
+        total_memory = values[2]
+        used_memory = values[3]
+        gpu_info.append(
+            {
+                "index": index,
+                "uuid": uuid,
+                "total_memory": total_memory,
+                "used_memory": used_memory,
+            }
+        )
+
+    return gpu_info
+
+class bcolors:
+    GREEN = "\033[32m"
+    ORANGE = "\033[33m"
+    RED = "\033[31m"
+    ENDC = "\033[0m"
+
+
+def colorize(num):
+    res = "{0:.0%}".format(num)
+    if num == 0:
+        return res
+    elif num < 0.25:
+        return bcolors.GREEN + res + bcolors.ENDC
+    elif num < 0.5:
+        return bcolors.ORANGE + res + bcolors.ENDC
+    else:
+        return bcolors.RED + res + bcolors.ENDC
+
+
+def truncate_string(string, length):
+    if len(string) <= length:
+        return string
+    else:
+        truncated = string[: length - 3] + "..."
+        return truncated
+
+
+def main():
+    gpu_info = get_gpu_info()
+
+    headers = ["GPUs"]
+
+    max_gpu_index_len = len(str(max([gpu["index"] for gpu in gpu_info])))
+
+    table = [
+        [
+            "gpu "
+            + str(gpu["index"])
+            + " " * (max_gpu_index_len - len(str(gpu["index"])))
+            + " - "
+            + colorize(
+                float(gpu["used_memory"].split()[0])
+                / float(gpu["total_memory"].split()[0])
+            )
+        ]
+        for gpu in gpu_info
+    ]
+
+    print(
+        tabulate(
+            table,
+            headers,
+            tablefmt="mixed_outline",
+            stralign="center",
+            colalign=("left",),
+        )
+    )
+
+
+if __name__ == "__main__":
+    main()
+```
+
+_If you liked the article, don't forget to share it and follow me at [@nebrelbug](https://twitter.com/nebrelbug) on Twitter._

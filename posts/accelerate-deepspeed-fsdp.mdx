@@ -1,0 +1,44 @@
+---
+title: Accelerate vs. DeepSpeed vs. FSDP
+description: Which one should you use for distributed training?
+date: "2023-08-29"
+---
+
+## Introduction
+
+There are many different libraries and strategies for distributed training. In this article, we'll look at three of the most popular: [Accelerate](https://huggingface.co/docs/accelerate/index), [DeepSpeed](https://www.deepspeed.ai/), and [FSDP](https://engineering.fb.com/2021/07/15/open-source/fsdp/). We'll discuss the differences between them, and when you might want to use one over the other.
+
+## Accelerate
+
+[Accelerate](https://huggingface.co/docs/accelerate/index) is a popular library developed and maintained by HuggingFace. You can think of it as a wrapper around `torch.distributed`. Essentially, it allows you to simply run training or [inference](./multi-gpu-inference-with-accelerate) across multiple GPUs or nodes.
+
+In its most basic form, you use Accelerate to initialize a PyTorch model on each GPU. By simply making a few modifications to your training loop, Accelerate will handle data parallelism for you.
+
+If your model is too large to fit on any one GPU, you can use Accelerate to split the model across multiple GPUs by passing `device_map="auto"` into the transformers `from_pretrained` method. Be warned — you can only use `device_map="auto"` if you're running with `num_processes=1`, because you're only initializing one model.
+
+If you need more sophisticated model sharding ("sharding" refers to splitting a model across devices) you can use DeepSpeed or FSDP alongside Accelerate
+
+## DeepSpeed
+
+[DeepSpeed](https://www.deepspeed.ai/) offers the Zero Redundancy Optimizer (ZeRO). It's called "Zero Redundancy" because it allows you to partition a model across multiple GPUs without having to replicate the model's parameters across each GPU. This is a huge benefit, because it allows you to train models that are larger than the memory of any one GPU.
+
+There are three stages of ZeRO:
+
+- **ZeRO Stage 1** partitions optimizer states
+- **ZeRO Stage 2** also partitions gradients
+- **ZeRO Stage 3** also partitions parameters
+
+If you're still running into memory issues, DeepSpeed allows you to offload the optimizer state, gradients, and some model weights to CPU memory or NVMe storage. This is called "**ZeRO-Infinity**," and — though significantly slower than training without offload — allows for training truly huge models.
+
+## FSDP
+
+[FSDP](https://engineering.fb.com/2021/07/15/open-source/fsdp/) stands for "Fully Sharded Data Parallel." It was originally developed by Facebook AI Research and released in the Fairscale library, but upstream support was [added natively to PyTorch](https://pytorch.org/blog/introducing-pytorch-fully-sharded-data-parallel-api/) in PyTorch version 1.11.
+
+It does essentially the same thing as DeepSpeed ZeRO — manage sharding of optimizer states, gradients, and model parameters. It also supports CPU offload. One helpful feature is that it can serve as a drop-in replacement for DistributedDataParallel.
+
+## Summary
+
+- Accelerate is a wrapper around `torch.distributed` that allows you to easily run training or inference across multiple GPUs or nodes. It can also be used for simple model partitioning, and works well with both DeepSpeed and FSDP for more advanced use cases.
+- DeepSpeed and FSDP are two different implementations of the same idea: sharding model parameters, gradients, and optimizer states across multiple GPUs. They both support CPU offload and can be used in conjunction with Accelerate.
+
+_If you liked this article, don't forget to share it and follow me at [@nebrelbug](https://twitter.com/nebrelbug) on Twitter._

@@ -26,7 +26,7 @@ const navLinks = [
     activePattern: /^\/projects/,
     icon: LayoutPanelLeftIcon,
   },
-  { name: "Blog", href: "/posts", activePattern: /^\/posts/, icon: RssIcon },
+  { name: "Posts", href: "/posts", activePattern: /^\/posts/, icon: RssIcon },
 ];
 
 export function Nav() {
@@ -36,7 +36,7 @@ export function Nav() {
   console.log(pathname);
 
   return (
-    <div className="flex items-center m-4">
+    <div className="flex items-center p-4 max-h-screen sm:sticky top-0">
       <div className="h-full w-full min-w-64 flex flex-col p-4 border rounded-xl shadow bg-card">
         {/* max-h-[64rem] */}
         <div className="flex flex-row sm:flex-col items-center sm:items-start">

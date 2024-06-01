@@ -73,17 +73,25 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Added by me */
+
+  html {
+    margin-left: calc(100vw - 100%);
+  }
+
+  :root {
+    --background: 0 0% 99%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+  }
 }
 
 @layer utilities {
   .dropdown-content-width-full {
     width: var(--radix-dropdown-menu-trigger-width);
     max-height: var(--radix-dropdown-menu-content-available-height);
-  }
-}
-
-@layer base {
-  :root {
-    --background: 0 0% 99%;
   }
 }

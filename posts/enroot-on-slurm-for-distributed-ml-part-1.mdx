@@ -1,0 +1,56 @@
+---
+title: "Enroot on Slurm for Distributed ML: Part 1"
+description: How to use Enroot on Slurm for containerized multi-node training.
+date: "2023-09-08T22:00:00+0000"
+---
+
+_This is part 1 of a 2-part series. [Part 2](./enroot-on-slurm-for-distributed-ml-part-2) is available here._
+
+In the lab where I work, we have access to a High Performance Computing (HPC) environment that uses the [Slurm Workload Manager](https://slurm.schedmd.com/documentation.html). Our HPC runs RHEL (Red Hat Enterprise Linux) 7, and individual users have significantly restricted permissions. We don't have `sudo` access and can't access the internet from the compute nodes.
+
+In fact, the process of loading packages and updating drivers from inside a compute node is so difficult that it makes distributed training using modern software incredibly complicated. Luckily, there's a solution: containerization.
+
+We'll use Docker to build an image on our local machine that contains all of the packages we need. Then we can transfer that image to the HPC, and use it to run our training script.
+
+## Step 1: Build a Docker Image Locally
+
+I already wrote about [the Docker setup I use for machine learning](./ultimate-ml-dockerfile), so I won't repeat myself here. The important thing is that you have a tagged Docker image with the packages you need to run your training script. Mine uses Ubuntu 20.04 and CUDA 11.8.
+
+## Step 2: Squash and Transfer the Image
+
+Install [Enroot](https://github.com/NVIDIA/enroot), then run the following command to turn your Docker image into a squashfs file:
+
+```bash
+enroot import dockerd://<image-name>
+```
+
+This will create a file called `<image-name>.sqsh` in your current directory. Transfer this file to the HPC using `scp`.
+
+## Step 3: Load the Image on the HPC
+
+Enter a compute node using `salloc --nodes=1 --gpus=8 --qos=<qos> --mem=2000G --time=72:00:00 --ntasks=1 --cpus-per-task=128`.
+
+First we need to load the Enroot module:
+
+```bash
+module load jq zstd pigz parallel libnvidia-container enroot
+```
+
+On the HPC, create the image using the following command:
+
+```bash
+enroot create --name image-name /path/to/image-name.sqsh
+```
+
+Then run it:
+
+```bash
+enroot start --mount /local/file/path:/image/file/path \
+             --rw image-name bash
+```
+
+This will open up an interactive shell inside the container. Don't forget the `--rw` flag, which makes the root filesystem writable. You can add as many `--mount` flags as you need to mount files and directories from the host machine.
+
+If you want to pass through environment variables, you can use the `--env` flag along with the name of the environment variable on the host machine. For example, `--env SLURM_NODEID` will pass through the `SLURM_NODEID` environment variable.
+
+_If you liked the article, don't forget to share it and follow me at [@nebrelbug](https://twitter.com/nebrelbug) on Twitter._

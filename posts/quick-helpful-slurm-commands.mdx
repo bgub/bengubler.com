@@ -1,0 +1,72 @@
+---
+title: Quick & Helpful Slurm Commands
+description: A quick guide to using Slurm for distributed machine learning.
+date: "2023-09-08"
+---
+
+In the lab I work in, we have access to a High Performance Computing (HPC) environment that uses the [Slurm Workload Manager](https://slurm.schedmd.com/documentation.html).
+
+I've been using it for a while now, and I've found a few commands that I use all the time. I thought I'd share them here in case they're useful to anyone else.
+
+## Checking job status
+
+```bash
+# View all jobs
+squeue
+# Check the status of just your jobs
+squeue -u <username>
+# Check the status of jobs with a specific QOS
+squeue -q <QOS>
+```
+
+## Cancelling jobs
+
+```bash
+# Cancel a specific job
+scancel <job_id>
+# Cancel all your jobs
+scancel -u <username>
+```
+
+## Requesting a node interactively
+
+```bash
+# Requesting a single node (this will open it up interactively in your terminal)
+# When you exit the terminal, the node will be reallocated
+salloc --nodes=1 --gpus=8 --qos=<QOS> --mem=2000G --time=72:00:00 --ntasks=1 --cpus-per-task=128
+```
+
+## Submitting a job
+
+What if all of your compute nodes are allocated, or you don't want your job to exit as soon as your terminal connection is closed? In that case, you can use `sbatch` to submit a job to the queue. It will automatically run as soon as it can allocate the resources.
+
+This will take slightly more setup. Assume that the job we actually want to run is contained in `myjob.sh`. In order to submit that script as a job, we'll first create a Bash script that will be run by Slurm. Let's call it `run.sh`:
+
+```bash
+#!/bin/bash
+#SBATCH -J "JOBNAME"
+#SBATCH --nodes=1
+#SBATCH --gpus-per-node=8
+#SBATCH --cpus-per-task=128
+#SBATCH --mem=2000G
+#SBATCH --time=72:00:00
+#SBATCH --qos=<QOS>
+
+srun --nodes=1 myjob.sh
+```
+
+Note that we're using the `#SBATCH` processing directive to pass in the parameters that we would have passed to `salloc` before. We're also using `srun` to run our actual job; it will handle running the script across multiple nodes, if we so desire.
+
+Finally, to launch our script, we'll run:
+
+```bash
+sbatch run.sh
+```
+
+## Conclusion
+
+That's it! I hope this was helpful. If you have any questions, you can ask ChatGPT or Bard (they'll give either incredibly helpful or completely incorrect answers, but it's worth a shot!)
+
+You can also look through the [Slurm documentation](https://slurm.schedmd.com/documentation.html) or the [Leo's notes](https://leo.leung.xyz/wiki/Slurm) page on Slurm for more information.
+
+_If you liked the article, don't forget to share it and follow me at [@nebrelbug](https://twitter.com/nebrelbug) on Twitter._

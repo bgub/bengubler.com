@@ -1,0 +1,256 @@
+---
+title: Rebuilding Alpaca with the Hugging Face Trainer Class
+description: Fine-tuning Llama-2-7B using the Alpaca dataset and Hugging Face Trainer
+date: "2023-11-07"
+---
+
+## Table of Contents
+
+## Introduction
+
+In March of this year (2023), a lab at Stanford released a small project that quickly became massively influential — [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html). The authors used `text-davinci-003` (an InstructGPT model from OpenAI) to generate a dataset with 52K examples of prompts and responses, then fine-tuned Llama-7B using those prompt and response pairs.
+
+The result was surprisingly good — Alpaca was able to interact with users similarly to OpenAI's InstructGPT models, despite being inexpensive to train and not using a human-created training dataset. In this blog post, we'll write code to train our own model from scratch using the Alpaca dataset.
+
+_The code in this blog post is based on that in the [Alpaca repo](https://github.com/tatsu-lab/stanford_alpaca), though my hope is that it should be simpler and more intuitive. All credit should go to the original authors of the paper._
+
+## Setup
+
+You'll need to install `torch`, `transformers`, `datasets`, and `accelerate`. `wandb` is great if you want to track training loss over time. And, of course, you'll need some good GPUs if you want your model to train quickly.
+
+Start out by creating one main folder, `alpaca-repro`, with two subfolders: one called `trainer`, where your training code will go, and one called `finetunes`, where we'll save your fine-tuned model.
+
+## Step 1: Loading and Processing the Data
+
+Put all of the code in this section into `trainer/get_data.py`.
+
+We'll begin by loading the [Alpaca data](https://huggingface.co/datasets/tatsu-lab/alpaca) from the Hugging Face hub. Each question/prompt pair in the dataset needs to be converted into a single string that we can train the model on, but we actually generate one extra string: `source`, which we use further down to ignore labels so our model doesn't train on instructions.
+
+```python
+from datasets import load_dataset
+
+original_dataset = load_dataset("tatsu-lab/alpaca")["train"]
+
+template_no_context = """Below is an instruction that describes a task. \
+Write a response that appropriately completes the request.
+
+### Instruction:
+{instruction}
+
+### Response:
+"""
+
+template_context = """Below is an instruction that describes a task. \
+Write a response that appropriately completes the request.
+
+### Instruction:
+{instruction}
+
+### Input:
+{input}
+
+### Response:
+"""
+
+def data_to_string(data):
+
+    instruction = data["instruction"]
+    context = data["input"]
+    response = data["output"]
+
+    template = template_context if len(context) > 0 else template_no_context
+    source = template.format(instruction=instruction, input=context)
+
+    return {
+        "source": source,
+        "text": source + response,
+    }
+
+
+dataset = original_dataset.map(
+    data_to_string
+).remove_columns(['instruction', 'input', 'output'])
+```
+
+Here we split the data so we can use 10% for evaluation and tests later on.
+
+```python
+processed_dataset = dataset.train_test_split(test_size=0.1)
+
+train_dataset = processed_dataset["train"]
+eval_dataset = processed_dataset["test"]
+```
+
+Finally, we define a data collator to be used by our training loop. Remember that each `text` string is just made up of the `source` plus the response. So we tokenize the `source` string to figure out how many labels in the `text` string to ignore.
+
+```python
+IGNORE_TOKEN = -100
+
+def data_collator(features, tokenizer):
+    sources = [feature["source"] for feature in features]
+    targets = [feature["text"] for feature in features]
+
+    source_tokens = tokenizer(
+        sources,
+        return_tensors="pt",
+        padding='longest',
+        max_length=None,
+    )
+
+    target_tokens = tokenizer(
+        targets,
+        return_tensors="pt",
+        padding='longest',
+        max_length=None,
+    )
+
+    labels = target_tokens["input_ids"].clone()
+
+    for i in range(len(labels)):
+        source_len = source_tokens["attention_mask"][i].sum()
+
+        labels[i, :source_len] = IGNORE_TOKEN
+
+    res = {
+        "input_ids": target_tokens["input_ids"],
+        "attention_mask": target_tokens["attention_mask"],
+        "labels": labels,
+    }
+
+    return res
+```
+
+## Step 2: Writing our Training Loop
+
+Put all of the code in this section into `trainer/loop.py`.
+
+This code is fairly self-explanatory, so I've just annotated it with comments.
+
+```python
+from transformers import LlamaForCausalLM, LlamaTokenizer, Trainer, TrainingArguments
+from accelerate import Accelerator
+from get_data import train_dataset, eval_dataset, data_collator
+
+accelerator = Accelerator()
+
+MODEL_PATH = "meta-llama/Llama-2-7b-hf" # path to Llama on Hugging Face Hub
+OUTPUT_DIR = "../finetunes/alpaca-7b" # where to save the fine-tuned model
+
+tokenizer = LlamaTokenizer.from_pretrained(MODEL_PATH, legacy=False)
+tokenizer.pad_token = tokenizer.eos_token
+tokenizer.padding_side = "right" # not set by default, strangely
+
+model = LlamaForCausalLM.from_pretrained(
+    MODEL_PATH, device_map="auto"
+)
+
+training_args = TrainingArguments(
+    output_dir='checkpoints', # where Trainer will save model checkpoints
+    num_train_epochs=1, # start with a low number of epochs for testing
+    learning_rate=2e-5,
+    logging_steps=10,
+    per_device_train_batch_size=8,
+    remove_unused_columns=False,
+    save_steps=1000,
+    save_total_limit=1,
+    report_to="wandb",
+)
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
+    tokenizer=tokenizer,
+    data_collator=lambda x: data_collator(x, tokenizer),
+)
+
+trainer.train()
+trainer.evaluate()
+
+model.save_pretrained(OUTPUT_DIR)
+tokenizer.save_pretrained(OUTPUT_DIR)
+```
+
+## Step 3: Running our Training Loop
+
+Create `trainer/accelerate_config.yaml`, and paste in the following configuration:
+
+```yaml
+compute_environment: LOCAL_MACHINE
+deepspeed_config: {}
+distributed_type: "NO"
+downcast_bf16: "no"
+machine_rank: 0
+main_process_ip: null
+main_process_port: null
+main_training_function: main
+mixed_precision: "no"
+num_machines: 1
+num_processes: 1
+use_cpu: false
+```
+
+Then `cd` into `./trainer` and run:
+
+```bash
+accelerate launch --config_file accelerate_config.yaml loop.py
+```
+
+Saving the model and weights might take a while, so be patient!
+
+## Step 4: Testing our Fine-Tuned Model!
+
+I wrote a simple script to load up our fine-tuned model and interact with it! It doesn't support conversations with context, but it's a great way to see how the model is working.
+
+Create a new file called `alpaca-repro/model_test.py`, then run `python3 model_test.py`.
+
+```python
+from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+
+template = """Below is an instruction that describes a task. \
+Write a response that appropriately completes the request.
+
+### Instruction:
+{instruction}
+
+### Response:
+"""
+
+model_path = "./finetunes/alpaca-7b"
+
+tokenizer = AutoTokenizer.from_pretrained(model_path, legacy=False)
+tokenizer.pad_token = tokenizer.eos_token
+tokenizer.padding_side = "right"
+
+model = AutoModelForCausalLM.from_pretrained(
+    model_path, device_map="auto", local_files_only=True
+)
+
+pipe = pipeline(
+    "text-generation",
+    model=model,
+    tokenizer=tokenizer,
+    return_full_text=False,
+    do_sample=True,
+    temperature=0.9,
+    max_new_tokens=200,
+)
+
+def prompt_model():
+    prompt = input("Enter your question: ")
+    prompt = template.format(instruction=prompt)
+    answer = pipe(prompt)
+    print(answer[0]["generated_text"])
+
+while True:
+    prompt_model()
+```
+
+## Conclusion
+
+I hope this article was helpful and informative! My plan is to follow it up in a few days with an explanation of how to use FSDP with the Hugging Face Trainer.
+
+If you got mixed up along the way, here's a Gist with the final project code: https://gist.github.com/nebrelbug/1da2c0064d53decf197a304267799708
+
+_If you liked this article, don't forget to share it and follow me at [@nebrelbug](https://twitter.com/nebrelbug) on Twitter._

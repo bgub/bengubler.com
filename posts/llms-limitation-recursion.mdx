@@ -1,0 +1,27 @@
+---
+title: LLMs Will Never Be Able to Do Math
+description: Since contemporary LLM architectures lack recursion, they're fundamentally incapable of doing some math operations.
+date: "2023-08-23"
+---
+
+## The Problem
+
+LLMs have tremendous potential in many areas, but most contemporary models have one inherent limitation: they're solely feed-forward in structure. This means that data flows linearly from input to output, with no recursion or backtracking. This enables incredibly fast and efficient training using gradient descent and back-propagation. Computations can be done in parallel using matrix multiplication.
+
+Unfortunately, their lack of recursion makes some types of mathematical operations impossible. Consider exponentiation. ChatGPT can handle simple exponent problems, but when asked what X^Y is for high values of X or Y, it becomes inaccurate.
+
+Though exponential operations can be broken down into a linear sequence, it's impossible for a finite, feed-forward neural net to handle any possible recursive operation (i.e., X^Y with any possible value for Y). The amount of recursion an LLM can "simulate" is limited by the number of its parameters and layers.
+
+## Summary
+
+Lack of recursion is an inherent design limitation in current GPT-style LLMs which prevents them from being able to perform complicated math operations. The fact is, though, that doesn't matter in most use cases for LLMs! They're still powerful and helpful in a wide variety of circumstances.
+
+## Fun Stuff
+
+There's still a lot of work to be done in understanding the behavior of trained large language models. Here's something fascinating I found while writing this article:
+
+When I asked ChatGPT what 7^15 equals, it gave the answer **170,859,375**. The correct answer is **4,747,561,509,943**.
+
+Though the answer is obviously incorrect, **170,859,375** has a unique property: it factors into **(3^7)\*(5^7)**. The model seems to have converted **A^(B\*C)** into **(B^A)\*(C^A)** under the hood. I'd be interested to learn why this happens!
+
+_If you liked the article, don't forget to share it and follow me at [@nebrelbug](https://twitter.com/nebrelbug) on Twitter._

@@ -1,0 +1,121 @@
+---
+title: "Enroot on Slurm for Distributed ML: Part 2"
+description: How to use Enroot on Slurm for containerized multi-node training.
+date: "2023-09-11"
+---
+
+_This is part 2 of a 2-part series. [Part 1](./enroot-on-slurm-for-distributed-ml-part-1) is available here._
+
+In [part 1](./enroot-on-slurm-for-distributed-ml-part-1), we covered how to use Enroot on Slurm for containerized _single-node_ training using `salloc`. In this post, we'll cover how to use Enroot on Slurm for containerized _multi-node_ training, and transition to using `sbatch`.
+
+## Step 1: Slurm Launch Script
+
+We'll end up creating several Bash files, all of which should be in the same directory as your training script. The first will be a Slurm launch file that we'll run with `sbatch`. This file will contain the same commands we ran with `salloc` in [part 1](../enroot-on-slurm-for-distributed-ml-part-1), but declared using `#SBATCH` processing directives.
+
+`launch.sh`
+
+```bash
+#!/bin/bash
+#SBATCH -J "JOBNAME"
+#SBATCH --nodes=2
+#SBATCH --gpus-per-node=8
+#SBATCH --cpus-per-task=128
+#SBATCH --mem=2000G
+#SBATCH --time=72:00:00
+#SBATCH --qos=<qos>
+
+export CUR_DIR=$(pwd)
+srun --nodes=2 stage1.sh
+```
+
+Note that we create a variable `CUR_DIR` to store the current working directory (the directory where the `sbatch` command was run). I use this variable to share the location of my training directory between scripts, so I don't have to hard-code paths. But it's not required.
+
+Slurm will automatically pass local environment variables through to the `srun` command, which will run the `stage1.sh` script on each node.
+
+## Step 2. Enroot Launch Script
+
+Next, we'll create a script that will be run on each node. This script will be responsible for launching the container and running the training script. We'll call this script `stage1.sh`.
+
+`stage1.sh`
+
+```bash
+#!/bin/bash
+
+module load jq zstd pigz parallel libnvidia-container enroot
+
+export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1) # get the IP address of the first node in the list
+export MASTER_PORT=6000 # set the port to use for communication between nodes
+
+enroot create --name image-name /path/to/image-name.sqsh
+
+enroot start --env SLURM_NODEID \
+             --env MASTER_ADDR \
+             --env MASTER_PORT \
+             --env SLURM_JOB_NAME \
+             --env CUR_DIR \
+             --mount /local/file/path:/image/file/path \
+             --rw image-name \
+             bash ${CUR_DIR}/stage2.sh
+```
+
+Note that we pass several important environment variables provided by Slurm, along with `CUR_DIR`, into the container. The `MASTER_ADDR` and `MASTER_PORT` variables are used by PyTorch's distributed training backend to coordinate communication between nodes.
+
+We also mount a local file path into the container (make sure it contains your training script!).
+
+## Step 3. Training Script
+
+Finally, we'll create a training script that will be run inside the container. We'll call this script `stage2.sh`.
+
+`stage2.sh`
+
+```bash
+#!/bin/bash
+
+export NCCL_DEBUG=INFO # if you want to see NCCL logs
+export NODE_RANK=$SLURM_NODEID # set the node rank to the node ID (0, 1, 2, etc.)
+echo NODE_RANK: $NODE_RANK # print the node rank for debugging purposes
+
+# Run training script
+# NOTE: modify as desired if you're not using accelerate
+
+accelerate launch --config_file ./accelerate_config.yaml --main_process_ip=$MASTER_ADDR --main_process_port=$MASTER_PORT --machine_rank $NODE_RANK ${CUR_DIR}/loop.py
+```
+
+Here I've used [accelerate](https://huggingface.co/docs/accelerate) as a launcher for my distributed training script, but you can use whatever launcher you want. Just make sure you pass relevant environment variables through!
+
+For the sake of completeness, here's my `accelerate_config.yaml` file. It utilizes FSDP (Fully Sharded Data Parallel) to split model parameters and gradients across processes. This is a great way to train large models that won't fit on just one GPU.
+
+```yaml
+compute_environment: LOCAL_MACHINE
+deepspeed_config: {}
+distributed_type: FSDP
+downcast_bf16: "no"
+fsdp_config:
+  fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
+  fsdp_backward_prefetch_policy: BACKWARD_PRE
+  fsdp_offload_params: false
+  fsdp_sharding_strategy: 1
+  fsdp_state_dict_type: FULL_STATE_DICT
+  fsdp_transformer_layer_cls_to_wrap: LlamaDecoderLayer
+main_training_function: main
+mixed_precision: "no"
+num_machines: 2
+num_processes: 16 # 8 GPUs per node * 2 nodes = 16 processes
+use_cpu: false
+```
+
+## Step 4. Submit the Job
+
+Now that we've created all the necessary scripts, we can submit the job to Slurm using `sbatch`! From the directory containing the scripts, run:
+
+```bash
+sbatch launch.sh
+```
+
+Your job will be submitted to Slurm and run as soon as resources are available. Output logs will be stored at `slurm-<jobid>.out` in the current directory.
+
+## Conclusion
+
+I hope this was helpful! There are many parts involved in getting distributed training working, but it's not too difficult once you get over the initial learning curve.
+
+_If you liked the article, don't forget to share it and follow me at [@nebrelbug](https://twitter.com/nebrelbug) on Twitter._
