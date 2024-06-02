@@ -33,8 +33,6 @@ export function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  console.log(pathname);
-
   return (
     <div className="flex items-center p-4 max-h-screen sm:sticky top-0">
       <div className="h-full w-full min-w-64 flex flex-col p-4 border rounded-xl shadow bg-card">

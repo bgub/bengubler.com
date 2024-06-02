@@ -1,16 +1,32 @@
 import { allPosts } from "content-collections";
+import { Link } from "next-view-transitions";
 
 export default function Posts() {
   return (
-    <ul>
-      {allPosts.map((post) => (
-        <li key={post._meta.path}>
-          <a href={`/posts/${post._meta.path}`}>
-            <h3>{post.title}</h3>
-            <p>{post.summary}</p>
-          </a>
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1 className="text-4xl lg:text-5xl font-bold py-8">Posts</h1>
+
+      <ul>
+        {allPosts.map((post) => (
+          <li key={post._meta.path}>
+            <Link href={`/posts/${post._meta.path}`}>
+              <h3>
+                <span
+                  style={{
+                    viewTransitionName: getPostClassName(post._meta.path),
+                  }}
+                >
+                  {post.title}
+                </span>
+              </h3>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
+}
+
+export function getPostClassName(slug: string) {
+  return "post-title-" + slug.replace(/[^\w\S]/gi, "").replace(/\s/g, "-");
 }

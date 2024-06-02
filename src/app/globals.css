@@ -76,8 +76,11 @@
 
   /* Added by me */
 
-  html {
-    margin-left: calc(100vw - 100%);
+  /* Make the layout stable to scrollbar appearance */
+  @media screen(xl) {
+    html {
+      margin-left: calc(100vw - 100%);
+    }
   }
 
   :root {
@@ -94,4 +97,30 @@
     width: var(--radix-dropdown-menu-trigger-width);
     max-height: var(--radix-dropdown-menu-content-available-height);
   }
+}
+
+/* TODO rehype-pretty */
+
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  /* Other styling */
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+
+code[data-line-numbers-max-digits="2"] > [data-line]::before {
+  width: 2rem;
+}
+
+code[data-line-numbers-max-digits="3"] > [data-line]::before {
+  width: 3rem;
 }
