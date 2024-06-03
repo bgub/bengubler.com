@@ -35,9 +35,14 @@ export function Nav() {
 
   return (
     <div className="flex items-center p-4 max-h-screen sm:sticky top-0">
-      <div className="h-full w-full min-w-64 flex flex-col p-4 border rounded-xl shadow bg-card">
+      <div
+        className={cn(
+          "h-full w-full min-w-64 flex flex-col sm:py-4"
+          // "border rounded-xl shadow bg-card"
+        )}
+      >
         {/* max-h-[64rem] */}
-        <div className="flex flex-row sm:flex-col items-center sm:items-start">
+        <div className="flex flex-row sm:flex-col items-center sm:items-start sm:ml-2 sm:mb-4">
           <Image
             src="/bengubler.jpg"
             alt="Ben Gubler"
@@ -75,13 +80,16 @@ export function Nav() {
               variant="ghost"
               className={cn(
                 "justify-start px-4",
-                link.activePattern.test(pathname) && "bg-accent"
+                link.activePattern.test(pathname) && "bg-accent",
+                "text-lg font-semibold"
               )}
               size="lg"
               key={link.name}
             >
               <Link href={link.href}>
-                {link.icon && <link.icon className="mr-2 h-5 w-5" />}
+                {link.icon && (
+                  <link.icon className="mr-2 h-5 w-5" strokeWidth={2} />
+                )}
                 {link.name}
               </Link>
             </Button>
