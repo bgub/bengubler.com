@@ -78,7 +78,7 @@ with accelerator.split_between_processes(data,) as prompts:
 
 Finally, all that remains is to launch Accelerate using the Accelerate CLI:
 
-```
+```bash
 accelerate launch --num_processes=4 script.py
 ```
 
@@ -86,7 +86,7 @@ When we run the above code, 4 copies of the model are loaded across available GP
 
 The output of the above code (after logs from loading the models) should look like this:
 
-```
+```text
 Process 1 - a bathtub with a shower head a bathtub with a shower head bathtub with shower head and handheld
 Process 0 - a dog's life, a dog's life, a dog's life, a dog's life, a dog's life
 Process 1 - a bird in the hand is worth two in the bush.\na bird in the hand is worth two in the bush.\na bird in

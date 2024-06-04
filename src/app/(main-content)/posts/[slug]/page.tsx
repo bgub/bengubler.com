@@ -2,6 +2,7 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 
+import { mdxComponents } from "@/components/mdx/mdx-components";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,7 +13,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Link } from "next-view-transitions";
 import { getPostClassName } from "../page";
-import { mdxComponents } from "./mdx-components";
 
 export default function Post({
   params: { slug },

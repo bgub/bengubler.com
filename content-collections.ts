@@ -9,11 +9,12 @@ import remarkCapitalizeHeadings from "remark-capitalize-headings";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkToc from "remark-toc";
-import { getHighlighter } from "shiki";
 
-import fs from "fs";
-
-// import { postProcess, preProcess } from "@/lib/rehype-pre-raw";
+import {
+  rehypePostprocessPrettyCode,
+  rehypePreprocessPrettyCode,
+  rehypePrettyCodeOptions,
+} from "@/components/mdx/rehype-pretty-code";
 
 const posts = defineCollection({
   name: "posts",
@@ -37,24 +38,9 @@ const posts = defineCollection({
         rehypeSlug,
         rehypeAutolinkHeadings,
         rehypeMathJax,
-        [
-          rehypePrettyCode,
-          {
-            getHighlighter: (options: any) =>
-              getHighlighter({
-                ...options,
-                langs: [
-                  async () =>
-                    JSON.parse(
-                      fs.readFileSync(
-                        "./src/lib/syntax_highlighting/eta.json",
-                        "utf-8"
-                      )
-                    ),
-                ],
-              }),
-          },
-        ],
+        rehypePreprocessPrettyCode,
+        [rehypePrettyCode, rehypePrettyCodeOptions],
+        rehypePostprocessPrettyCode,
       ],
     });
     return {

@@ -41,7 +41,7 @@ Changes in version 3:
 
 One of the biggest changes in Eta v3 was the addition of detailed runtime errors (inspired by EJS). Consider a template like the following, which will throw because of an undefined variable:
 
-```eta
+```eta title="example.eta"
 Template header
 <%= undefinedVariable %>
 Lorem Ipsum
@@ -49,7 +49,7 @@ Lorem Ipsum
 
 Eta v2 would throw an error with some generic info, but it wasn't incredibly helpful. In contrast, Eta v3 throws a detailed error with the template name, line number, and error message:
 
-```
+```text
 EtaError [ReferenceError]: .../my-dir/templates/runtime-error.eta:2
     1| Template header
  >> 2| <%= undefinedVariable %>

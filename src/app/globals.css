@@ -85,10 +85,13 @@
 
   :root {
     --background: 0 0% 99%;
+    --accent: 210 40% 94.1%;
   }
 
+  /* resetting styles for dark mode */
   .dark {
     --background: 222.2 84% 4.9%;
+    --accent: 217.2 32.6% 17.5%;
   }
 }
 

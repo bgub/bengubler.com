@@ -40,12 +40,12 @@ const randomColors = [
 function Post({ post, i }: { post: (typeof allPosts)[number]; i: number }) {
   return (
     <Link href={`/posts/${post._meta.path}`}>
-      <Card className="hover:shadow-lg h-full">
+      <Card className="hover:shadow-lg h-full border-2 border-black">
         <AspectRatio ratio={2 / 1}>
           <CardHeader
             className={cn(
               "h-full items-center justify-center p-6",
-              "border-b bg-gradient-to-br dark:bg-opacity-50 rounded-t-xl rounded-b-none",
+              "border-b border-black bg-gradient-to-br dark:bg-opacity-50 rounded-t-xl rounded-b-none",
               randomColors[i % randomColors.length]
             )}
           >
