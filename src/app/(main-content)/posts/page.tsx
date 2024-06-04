@@ -25,8 +25,8 @@ export default function Posts() {
   );
 }
 
-export function getPostClassName(slug: string) {
-  return "post-title-" + slug.replace(/[^\w\S]/gi, "").replace(/\s/g, "-");
+export function getTransitionName(slug: string, prefix: string) {
+  return prefix + slug.replace(/[^\w\S]/gi, "").replace(/\s/g, "-");
 }
 
 const randomColors = [
@@ -52,7 +52,10 @@ function Post({ post, i }: { post: (typeof allPosts)[number]; i: number }) {
             <CardTitle>
               <span
                 style={{
-                  viewTransitionName: getPostClassName(post._meta.path),
+                  viewTransitionName: getTransitionName(
+                    post._meta.path,
+                    "post-title-"
+                  ),
                 }}
                 className="text-2xl font-bold"
               >
@@ -62,8 +65,19 @@ function Post({ post, i }: { post: (typeof allPosts)[number]; i: number }) {
           </CardHeader>
         </AspectRatio>
 
-        <CardContent className="grow p-6">
-          <CardDescription>{post.title}</CardDescription>
+        <CardContent className="grow p-4">
+          <CardDescription className="text-primary">
+            <span
+              style={{
+                viewTransitionName: getTransitionName(
+                  post._meta.path,
+                  "post-description-"
+                ),
+              }}
+            >
+              {post.description}
+            </span>
+          </CardDescription>
         </CardContent>
       </Card>
     </Link>

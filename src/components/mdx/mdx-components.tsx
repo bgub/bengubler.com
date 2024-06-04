@@ -21,7 +21,6 @@ const mdxComponents: MDXComponents = {
       </div>
     );
   },
-  // pre: ({ children, ...props }) => <CodeBlock {...props}>{children}</CodeBlock>,
   Image: (props: ImageProps) => <NextImage {...props} />,
 };
 

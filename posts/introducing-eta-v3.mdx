@@ -4,9 +4,7 @@ description: The next version of Eta, an embedded JS template engine, brings API
 date: "2023-06-22"
 ---
 
-## Contents
-
-### Background
+## Background
 
 Today, Eta is my most popular and widely used open-source project. But when I first published it 3 years ago, it wasn't one of my primary focuses. In fact, I created Eta as a slimmed-down variation of [Squirrelly](https://squirrelly.js.org), a more complex template engine with features like helpers and filters.
 
@@ -43,7 +41,7 @@ Changes in version 3:
 
 One of the biggest changes in Eta v3 was the addition of detailed runtime errors (inspired by EJS). Consider a template like the following, which will throw because of an undefined variable:
 
-```eta title="example.eta"
+```eta
 Template header
 <%= undefinedVariable %>
 Lorem Ipsum

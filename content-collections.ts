@@ -6,6 +6,7 @@ import rehypeMathJax from "rehype-mathjax";
 // TODO: rehype Katex
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
+import { remark } from "remark";
 import remarkCapitalizeHeadings from "remark-capitalize-headings";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -15,7 +16,7 @@ import {
   rehypePreprocessPrettyCode,
   rehypePrettyCodeOptions,
 } from "@/components/mdx/rehype-pretty-code";
-import { getHeadings } from "@/components/mdx/remark-toc";
+import { TOCNode, tocPlugin } from "@/components/mdx/remark-toc";
 
 const posts = defineCollection({
   name: "posts",
@@ -45,21 +46,26 @@ const posts = defineCollection({
       ],
     });
 
-    const tocMarkdown = await getHeadings(document.content);
+    const tocRoot = (
+      await remark()
+        .use(remarkCapitalizeHeadings, {
+          replaceHeadingRegExp: capitalizationOptions,
+        })
+        .use(tocPlugin)
+        .process(document.content)
+    ).data.toc as TOCNode;
 
-    const tocMdx = await compileMDX(context, {
-      content: tocMarkdown,
-      _meta: document._meta,
-    });
+    const toc = tocRoot;
 
     return {
       ...document,
       mdx,
-      tocMdx,
+      toc,
     };
   },
 });
 
 export default defineConfig({
+  // ts:ignore
   collections: [posts],
 });
