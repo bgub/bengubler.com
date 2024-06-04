@@ -2,9 +2,11 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 
+import { Comments } from "@/components/Comments";
 import { mdxComponents } from "@/components/mdx/mdx-components";
 import { TOCNode } from "@/components/mdx/remark-toc";
 import { TOCLink } from "@/components/mdx/TOCLink";
+import { Social } from "@/components/Social";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -65,14 +67,23 @@ export default function Post({
         </span>
       </p>
       <div className="flex flex-row min-w-0">
-        <div className="prose dark:prose-invert min-w-0 max-w-none pt-4 pr-4">
-          <MDXContent code={post.mdx} components={mdxComponents} />
+        <div>
+          <div className="prose dark:prose-invert min-w-0 max-w-none pt-4 pr-4">
+            <MDXContent code={post.mdx} components={mdxComponents} />
+          </div>
+          <Comments />
         </div>
+
         {/* Table of contents, only shown on lg+ screens */}
         <div className="hidden lg:flex flex-col min-w-64 max-h-screen sticky top-0 p-4">
           <div className="w-full border-l">
             <TOC tree={post.toc} />
           </div>
+          {/* Share buttons: TODO show on mobile */}
+          <Social
+            title={post.title + "\n--\n" + post.description}
+            className="py-8"
+          />
         </div>
       </div>
     </div>

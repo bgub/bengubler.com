@@ -1,11 +1,6 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "./project-list";
@@ -35,8 +30,8 @@ function Project({
 }) {
   return (
     <Link href={project.href} target="_blank">
-      <Card className="hover:shadow-lg h-full">
-        <CardHeader className="p-0 border-b">
+      <Card className="hover:shadow-lg h-full border-2 border-black">
+        <CardHeader className="p-0 border-b border-black bg-black rounded-t-lg">
           <AspectRatio ratio={16 / 9}>
             <Image
               src={"/project-images/" + project.image || ""}
@@ -44,11 +39,13 @@ function Project({
               fill
               className="object-cover rounded-t-xl rounded-b-none"
             />
+            <div className="absolute bottom-2 left-2 right-2 px-2 rounded-sm text-sm opacity-70 bg-black text-white truncate">
+              {project.href}
+            </div>
           </AspectRatio>
         </CardHeader>
-        <CardContent className="grow p-6">
-          <CardTitle>{project.title}</CardTitle>
-          <CardDescription className="truncate">{project.href}</CardDescription>
+        <CardContent className="grow p-4">
+          <CardTitle className="mb-4">{project.title}</CardTitle>
           <p>{project.description}</p>
         </CardContent>
       </Card>

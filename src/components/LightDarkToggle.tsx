@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 
@@ -11,11 +10,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ComputerIcon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ComputerIcon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function LightDarkToggle({ className }: { className?: string }) {
-  const { setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  // useEffect only runs on the client, so now we can safely show the UI
+  // this lets us avoid the hydration mismatch error
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <DropdownMenu>
@@ -27,7 +38,7 @@ export function LightDarkToggle({ className }: { className?: string }) {
         >
           <SunIcon className="mr-2 h-4 w-4 dark:hidden" />
           <MoonIcon className="mr-2 h-4 w-4 hidden dark:block" />
-          Change Theme
+          {theme === "system" ? "System" : theme === "light" ? "Light" : "Dark"}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="dropdown-content-width-full">
