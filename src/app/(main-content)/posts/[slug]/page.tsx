@@ -3,6 +3,7 @@ import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 
 import { mdxComponents } from "@/components/mdx/mdx-components";
+import { tocComponents } from "@/components/mdx/toc-components";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -48,12 +49,12 @@ export default function Post({
         </span>
       </h1>
       <div className="flex flex-row min-w-0">
-        <div className="prose dark:prose-invert min-w-0 max-w-none pt-4">
+        <div className="prose dark:prose-invert min-w-0 max-w-none pt-4 pr-4">
           <MDXContent code={post.mdx} components={mdxComponents} />
         </div>
-        {/* Table of contents, only shown on xl+ screens */}
-        <div className="hidden xl:flex items-center p-4 max-h-screen sticky top-0">
-          <div className="h-full w-full min-w-64 flex flex-col p-4 border rounded-xl shadow bg-card"></div>
+        {/* Table of contents, only shown on lg+ screens */}
+        <div className="hidden lg:flex flex-col min-w-64 max-h-screen sticky top-0 p-4">
+          <MDXContent code={post.tocMdx} components={tocComponents} />
         </div>
       </div>
     </div>

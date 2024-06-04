@@ -37,7 +37,7 @@ export function Nav() {
     <div className="flex items-center p-4 max-h-screen sm:sticky top-0">
       <div
         className={cn(
-          "h-full w-full min-w-48 lg:min-w-64 flex flex-col sm:py-4"
+          "h-full w-full min-w-48 xl:min-w-64 flex flex-col sm:py-4"
           // "border rounded-xl shadow bg-card"
         )}
       >
