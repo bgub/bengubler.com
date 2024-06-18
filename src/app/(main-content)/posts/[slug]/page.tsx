@@ -67,7 +67,7 @@ export default function Post({
         </span>
       </p>
       <div className="flex flex-row min-w-0">
-        <div>
+        <div className="w-full">
           <div className="prose dark:prose-invert min-w-0 max-w-none pt-4 pr-4">
             <MDXContent code={post.mdx} components={mdxComponents} />
           </div>

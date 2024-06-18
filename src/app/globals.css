@@ -102,6 +102,16 @@
   }
 }
 
+/* disable view transitions with prefers-reduced-motion */
+
+@media (prefers-reduced-motion) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 /* TODO rehype-pretty */
 
 code[data-line-numbers] {

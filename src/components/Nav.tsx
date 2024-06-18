@@ -1,15 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { LightDarkToggle } from "@/components/LightDarkToggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
   HomeIcon,
-  LayoutPanelLeftIcon,
+  LanguagesIcon,
   MenuIcon,
+  NotebookIcon,
+  PresentationIcon,
   RssIcon,
+  SendIcon,
   UserIcon,
   XIcon,
 } from "lucide-react";
@@ -17,21 +20,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const Hr = ({ key }: { key: number }) => (
+  <hr key={key} className="w-full border" />
+);
+
 const navLinks = [
   { name: "Home", href: "/", activePattern: /^\/$/, icon: HomeIcon },
   { name: "About", href: "/about", activePattern: /^\/about/, icon: UserIcon },
   {
+    name: "Contact",
+    href: "/contact",
+    activePattern: /^\/contact/,
+    icon: SendIcon,
+  },
+  {
     name: "Projects",
     href: "/projects",
     activePattern: /^\/projects/,
-    icon: LayoutPanelLeftIcon,
+    icon: PresentationIcon,
   },
+  Hr,
   { name: "Posts", href: "/posts", activePattern: /^\/posts/, icon: RssIcon },
+  {
+    name: "Microblog",
+    href: "/microblog",
+    activePattern: /^\/microblog/,
+    icon: NotebookIcon,
+  },
+  Hr,
+  {
+    name: "Language Learning",
+    href: "/language-learning",
+    activePattern: /^\/language-learning/,
+    icon: LanguagesIcon,
+  },
 ];
 
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <div className="flex items-center p-4 max-h-screen sm:sticky top-0">
@@ -74,26 +105,32 @@ export function Nav() {
             !isOpen && "hidden sm:flex"
           )}
         >
-          {navLinks.map((link, i) => (
-            <Button
-              asChild
-              variant="ghost"
-              className={cn(
-                "justify-start px-4",
-                link.activePattern.test(pathname) && "bg-accent",
-                "text-lg font-semibold"
-              )}
-              size="lg"
-              key={link.name}
-            >
-              <Link href={link.href}>
-                {link.icon && (
-                  <link.icon className="mr-2 h-5 w-5" strokeWidth={2} />
+          {navLinks.map((navItem, i) => {
+            if (typeof navItem === "function") {
+              return navItem({ key: i });
+            }
+
+            return (
+              <Button
+                asChild
+                variant="ghost"
+                className={cn(
+                  "justify-start px-4",
+                  navItem.activePattern.test(pathname) && "bg-accent",
+                  "text-lg font-semibold"
                 )}
-                {link.name}
-              </Link>
-            </Button>
-          ))}
+                size="lg"
+                key={navItem.name}
+              >
+                <Link href={navItem.href}>
+                  {navItem.icon && (
+                    <navItem.icon className="mr-2 h-5 w-5" strokeWidth={2} />
+                  )}
+                  {navItem.name}
+                </Link>
+              </Button>
+            );
+          })}
         </nav>
         <LightDarkToggle className={cn(!isOpen && "hidden sm:flex")} />
       </div>

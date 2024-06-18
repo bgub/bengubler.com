@@ -3,7 +3,6 @@ import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeMathJax from "rehype-mathjax";
-// TODO: rehype Katex
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { remark } from "remark";
@@ -18,6 +17,14 @@ import {
 } from "@/components/mdx/rehype-pretty-code";
 import { TOCNode, tocPlugin } from "@/components/mdx/remark-toc";
 
+const tags = [
+  "machine-learning",
+  "language-learning",
+  "typescript",
+  "nextjs",
+  "tailwind",
+];
+
 const posts = defineCollection({
   name: "posts",
   directory: "posts",
@@ -25,6 +32,8 @@ const posts = defineCollection({
   schema: (z) => ({
     title: z.string(),
     description: z.string(),
+    archived: z.string().optional(),
+    // TODO add date & updated
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
@@ -66,6 +75,6 @@ const posts = defineCollection({
 });
 
 export default defineConfig({
-  // ts:ignore
+  // @ts-ignore (it doesn't think the TOC is serializable)
   collections: [posts],
 });

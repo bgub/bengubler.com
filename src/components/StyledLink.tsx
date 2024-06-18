@@ -15,7 +15,7 @@ export function StyledLink({
   return (
     <Link
       className={cn(
-        "font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white hover:font-bold",
+        "font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white",
         className
       )}
       title={label}
