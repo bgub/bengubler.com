@@ -10,7 +10,7 @@ export type PostOverview = Omit<
   date: string;
 };
 
-export function getPosts(limit = 3): PostOverview[] {
+export function getPosts(limit: false | number = false): PostOverview[] {
   const processedLocalPosts = localPosts.map(
     ({ title, description, date, _meta: { path } }) => ({
       title,
@@ -24,8 +24,12 @@ export function getPosts(limit = 3): PostOverview[] {
     .sort((a, b) => b.date.getTime() - a.date.getTime())
     .map((post) => ({
       ...post,
-      date: post.date.toDateString(),
+      date: post.date.toLocaleDateString(),
     }));
+
+  if (limit !== false) {
+    return allPosts.slice(0, limit);
+  }
 
   return allPosts;
 }

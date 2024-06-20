@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <h1 className="text-4xl lg:text-5xl font-bold py-8">About Me</h1>
-      <div className="text-lg">
+      <div className="text-lg prose text-foreground">
         <p>
           My name's Ben, but you might know me by my GitHub username,{" "}
           <StyledLink href="https://github.com/nebrelbug">
@@ -12,13 +12,11 @@ export default function Home() {
           </StyledLink>
           .
         </p>
-        <br />
         <p>
           I study machine learning and (human) languages. In my free time, I
           like to build websites and open-source libraries. I'll probably post
           about all of the above from time to time.
         </p>
-        <br />
         <p>
           I'm currently a student at Brigham Young University in Provo, where
           I'm pursuing a major in ACME (Applied and Computational Mathematics)
@@ -27,9 +25,8 @@ export default function Home() {
           applications of artificial intelligence and Natural Language
           Processing.
         </p>
-        <br />
         <p className="font-bold">Fun facts about me:</p>
-        <ul className="list-disc list-outside ml-7">
+        <ul>
           <li>
             I'm passionate about language learning — I speak English, Czech, and
             Slovak, and am currently learning Russian and Arabic.

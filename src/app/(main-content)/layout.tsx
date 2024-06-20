@@ -8,7 +8,9 @@ export default function MainContentLayout({
   return (
     <div className="flex flex-col sm:flex-row lg:container min-h-screen">
       <Nav />
-      <div className="flex flex-col p-4 min-w-0">{children}</div>
+      <div className="flex flex-col p-4 min-w-0">
+        <div className="">{children}</div>
+      </div>
     </div>
   );
 }

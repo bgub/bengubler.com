@@ -71,7 +71,7 @@ export default function Post({
         </span>
       </p>
       <div className="flex flex-row min-w-0 pt-4">
-        <div className="w-full">
+        <div className="min-w-0">
           <div className="prose dark:prose-invert min-w-0 max-w-none pt-4 pr-4">
             <MDXContent code={post.mdx} components={mdxComponents} />
             <p className="italic">
@@ -86,8 +86,8 @@ export default function Post({
           <Comments />
         </div>
 
-        {/* Table of contents, only shown on lg+ screens */}
-        <div className="hidden lg:flex flex-col min-w-64 max-h-screen sticky top-0 p-4">
+        {/* Table of contents, only shown on xl+ screens */}
+        <div className="hidden xl:flex flex-col min-w-64 max-h-screen sticky top-0 p-4">
           <div className="w-full border-l">
             <TOC tree={JSON.parse(post.toc)} />
           </div>

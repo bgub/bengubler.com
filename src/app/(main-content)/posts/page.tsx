@@ -18,7 +18,7 @@ export default function Posts() {
     <>
       <h1 className="text-4xl lg:text-5xl font-bold py-8">Posts</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4 mb-8">
         {allPosts.map((post, i) => (
           <Post key={post.url} i={i} post={post} />
         ))}
