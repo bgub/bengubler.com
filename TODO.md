@@ -1,1 +1,2 @@
 - Standardize card font sizes
+- Change MDX to use styled link

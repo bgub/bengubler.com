@@ -29,12 +29,12 @@ const myTools = [
 export default function Home() {
   return (
     <>
-      <h1 className="text-4xl lg:text-5xl font-bold py-8">Language Learning</h1>
-      <h2 className="text-2xl font-bold">My Tools</h2>
-      <p className="text-lg text-muted-foreground py-2">
+      <h1 className="mt-8">Language Learning</h1>
+      <h2>My Tools</h2>
+      <p className="text-lg text-muted-foreground">
         Here are some tools I've built to help with language learning.
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {myTools.map((tool) => (
           <Tool key={tool.title} tool={tool} />
         ))}
@@ -48,6 +48,7 @@ function Tool({ tool }: { tool: (typeof myTools)[number] }) {
     <Link
       href={tool.href}
       target={tool.href.startsWith("http") ? "_blank" : "_self"}
+      className="not-prose"
     >
       <Card className="hover:shadow-lg h-full border-2 border-black">
         <CardHeader className="p-0 border-b border-black bg-black rounded-t-lg">

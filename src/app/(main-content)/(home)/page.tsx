@@ -3,7 +3,7 @@ import { StyledLink } from "@/components/StyledLink";
 export default function Home() {
   return (
     <>
-      <div className="text-lg prose dark:prose-invert max-w-none text-foreground">
+      <div>
         <h1 className="mt-8">Hello! Ahoj! Привет! مرحبا! 👋</h1>
         <p>
           My name's Ben, but you might know me by my GitHub username,{" "}

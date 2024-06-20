@@ -29,7 +29,7 @@ export default function Post({
 
   return (
     <div className="min-w-0">
-      <Breadcrumb>
+      <Breadcrumb className="not-prose">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
@@ -43,10 +43,10 @@ export default function Post({
         </BreadcrumbList>
       </Breadcrumb>
       {/* TODO add updated time */}
-      <p className="text-muted-foreground pt-4">
+      <p className="text-muted-foreground mt-4 not-prose">
         Published {post.date.toLocaleDateString()}
       </p>
-      <h1 className="text-4xl lg:text-5xl font-bold pt-4">
+      <h1 className="mt-4">
         <span
           style={{
             viewTransitionName: getTransitionName(
@@ -58,7 +58,7 @@ export default function Post({
           {post.title}
         </span>
       </h1>
-      <p className="text-lg text-muted-foreground pt-8">
+      <p className="text-lg text-muted-foreground">
         <span
           style={{
             viewTransitionName: getTransitionName(
@@ -72,7 +72,7 @@ export default function Post({
       </p>
       <div className="flex flex-row min-w-0 pt-4">
         <div className="min-w-0">
-          <div className="prose dark:prose-invert min-w-0 max-w-none pt-4 pr-4">
+          <div className="min-w-0 max-w-none pt-4 pr-4 -mt-12">
             <MDXContent code={post.mdx} components={mdxComponents} />
             <p className="italic">
               If you liked this article, don't forget to share it and follow me
@@ -81,13 +81,13 @@ export default function Post({
           </div>
           <Social
             title={post.title + "\n--\n" + post.description}
-            className="py-8"
+            className="my-8"
           />
           <Comments />
         </div>
 
         {/* Table of contents, only shown on xl+ screens */}
-        <div className="hidden xl:flex flex-col min-w-64 max-h-screen sticky top-0 p-4">
+        <div className="hidden xl:flex flex-col min-w-64 max-h-screen sticky top-0 p-4 not-prose">
           <div className="w-full border-l">
             <TOC tree={JSON.parse(post.toc)} />
           </div>

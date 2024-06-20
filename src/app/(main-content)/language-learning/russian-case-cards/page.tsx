@@ -19,7 +19,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <Breadcrumb>
+      <Breadcrumb className="not-prose">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
@@ -32,13 +32,10 @@ export default function Home() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <h1 className="text-4xl lg:text-5xl font-bold py-8">{metadata.title}</h1>
-      <p className="text-lg text-muted-foreground pb-4">
-        {metadata.description}
-      </p>
-      <Social title={metadata.title} />
+      <h1 className="mt-4">{metadata.title}</h1>
+      <p className="text-lg text-muted-foreground">{metadata.description}</p>
 
-      <div className="prose dark:prose-invert min-w-0 max-w-none pt-4 pr-4">
+      <div className="">
         <p>
           I spent many hours creating this! Print it out and you&apos;ll
           memorize the Russian declension patterns in no time.
@@ -70,6 +67,7 @@ export default function Home() {
           type="application/pdf"
         ></embed>
 
+        <Social title={metadata.title} className="my-8" />
         <Comments />
       </div>
     </>

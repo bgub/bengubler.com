@@ -6,7 +6,7 @@ export const projects = [
         title: "Eta",
         href: "https://eta.js.org",
         description:
-          "A super-fast embedded JS template engine that supports Deno. I'm hoping to release a new version soon!",
+          "A super-fast embedded JS template engine that supports Deno.",
         image: "eta.png",
       },
       {
@@ -20,7 +20,7 @@ export const projects = [
         title: "GOM",
         href: "https://pypi.org/project/gom/",
         description:
-          "Pip package with CLI tool to monitor GPU usage across Docker containers. A minimalistic alternative to 'nvidia-smi'. Stands for 'GPU Output Monitor'.",
+          "Pip package with CLI tool to monitor GPU usage across Docker containers. A minimalistic alternative to 'nvidia-smi'.",
         image: "gom.png",
       },
     ],
