@@ -1,0 +1,1 @@
+- Standardize card font sizes

@@ -46,7 +46,7 @@ function Project({
         </CardHeader>
         <CardContent className="grow p-4">
           <CardTitle className="mb-4">{project.title}</CardTitle>
-          <p>{project.description}</p>
+          <p className="text-sm">{project.description}</p>
         </CardContent>
       </Card>
     </Link>

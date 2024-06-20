@@ -2,23 +2,25 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import {
   Card,
   CardContent,
-  CardDescription,
+  CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Link } from "next-view-transitions";
 
+import { getPosts, PostOverview } from "@/lib/get-posts";
 import { cn } from "@/lib/utils";
-import { allPosts } from "content-collections";
+import { ExternalLinkIcon } from "lucide-react";
 
 export default function Posts() {
+  const allPosts = getPosts();
+
   return (
     <>
       <h1 className="text-4xl lg:text-5xl font-bold py-8">Posts</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-8">
         {allPosts.map((post, i) => (
-          <Post key={post._meta.path} i={i} post={post} />
+          <Post key={post.url} i={i} post={post} />
         ))}
       </div>
     </>
@@ -26,7 +28,7 @@ export default function Posts() {
 }
 
 export function getTransitionName(slug: string, prefix: string) {
-  return prefix + slug.replace(/[^\w\S]/gi, "").replace(/\s/g, "-");
+  return prefix + slug.replace(/[^\w\s\-\/]/gi, "").replace(/[\s\/]/g, "-");
 }
 
 const randomColors = [
@@ -37,11 +39,11 @@ const randomColors = [
   "from-pink-200 to-blue-200 dark:from-pink-800 dark:to-blue-800",
 ];
 
-function Post({ post, i }: { post: (typeof allPosts)[number]; i: number }) {
+function Post({ post, i }: { post: PostOverview; i: number }) {
   return (
-    <Link href={`/posts/${post._meta.path}`}>
-      <Card className="hover:shadow-lg h-full border-2 border-black dark:border-gray-500">
-        <AspectRatio ratio={2 / 1}>
+    <Link href={post.url}>
+      <Card className="flex flex-col hover:shadow-lg h-full border-2 border-black dark:border-gray-500">
+        <AspectRatio ratio={3 / 2}>
           <CardHeader
             className={cn(
               "h-full items-center justify-center p-6",
@@ -50,36 +52,46 @@ function Post({ post, i }: { post: (typeof allPosts)[number]; i: number }) {
               randomColors[i % randomColors.length]
             )}
           >
-            <CardTitle>
-              <span
-                style={{
-                  viewTransitionName: getTransitionName(
-                    post._meta.path,
-                    "post-title-"
-                  ),
-                }}
-                className="text-2xl font-bold"
-              >
-                {post.title}
-              </span>
-            </CardTitle>
+            <div className="flex flex-col justify-between h-full w-full">
+              <p className="text-xl xs:text-2xl md:text-xl xl:text-2xl font-bold">
+                <span
+                  style={{
+                    viewTransitionName: getTransitionName(
+                      post.url,
+                      "post-title-"
+                    ),
+                  }}
+                >
+                  {post.title}
+                </span>
+                {!post.url.startsWith("/posts/") && (
+                  <span>
+                    <ExternalLinkIcon className="inline-block size-4 xs:size-5 md:size-4 xl:size-5 ml-1" />
+                  </span>
+                )}
+              </p>
+              <p className="text-lg text-muted-foreground">
+                <span>{post.date}</span>
+              </p>
+            </div>
           </CardHeader>
         </AspectRatio>
 
-        <CardContent className="grow p-4">
-          <CardDescription className="text-primary">
+        <CardContent className="p-4 h-full">
+          <p className="text-sm text-primary">
             <span
               style={{
                 viewTransitionName: getTransitionName(
-                  post._meta.path,
+                  post.url,
                   "post-description-"
                 ),
               }}
             >
               {post.description}
             </span>
-          </CardDescription>
+          </p>
         </CardContent>
+        <CardFooter className="px-4">tags</CardFooter>
       </Card>
     </Link>
   );

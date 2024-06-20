@@ -42,11 +42,15 @@ export default function Post({
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <h1 className="text-4xl lg:text-5xl font-bold py-8">
+      {/* TODO add updated time */}
+      <p className="text-muted-foreground pt-4">
+        Published {post.date.toLocaleDateString()}
+      </p>
+      <h1 className="text-4xl lg:text-5xl font-bold pt-4">
         <span
           style={{
             viewTransitionName: getTransitionName(
-              post._meta.path,
+              `/posts/${post._meta.path}`,
               "post-title-"
             ),
           }}
@@ -54,11 +58,11 @@ export default function Post({
           {post.title}
         </span>
       </h1>
-      <p className="text-lg text-muted-foreground pb-4">
+      <p className="text-lg text-muted-foreground pt-8">
         <span
           style={{
             viewTransitionName: getTransitionName(
-              post._meta.path,
+              `/posts/${post._meta.path}`,
               "post-description-"
             ),
           }}
@@ -66,24 +70,27 @@ export default function Post({
           {post.description}
         </span>
       </p>
-      <div className="flex flex-row min-w-0">
+      <div className="flex flex-row min-w-0 pt-4">
         <div className="w-full">
           <div className="prose dark:prose-invert min-w-0 max-w-none pt-4 pr-4">
             <MDXContent code={post.mdx} components={mdxComponents} />
+            <p className="italic">
+              If you liked this article, don't forget to share it and follow me
+              at <a href="https://x.com/nebrelbug">@nebrelbug</a> on X!
+            </p>
           </div>
+          <Social
+            title={post.title + "\n--\n" + post.description}
+            className="py-8"
+          />
           <Comments />
         </div>
 
         {/* Table of contents, only shown on lg+ screens */}
         <div className="hidden lg:flex flex-col min-w-64 max-h-screen sticky top-0 p-4">
           <div className="w-full border-l">
-            <TOC tree={post.toc} />
+            <TOC tree={JSON.parse(post.toc)} />
           </div>
-          {/* Share buttons: TODO show on mobile */}
-          <Social
-            title={post.title + "\n--\n" + post.description}
-            className="py-8"
-          />
         </div>
       </div>
     </div>

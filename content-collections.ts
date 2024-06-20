@@ -32,6 +32,7 @@ const posts = defineCollection({
   schema: (z) => ({
     title: z.string(),
     description: z.string(),
+    date: z.string().pipe(z.coerce.date()),
     archived: z.string().optional(),
     // TODO add date & updated
   }),
@@ -64,17 +65,14 @@ const posts = defineCollection({
         .process(document.content)
     ).data.toc as TOCNode;
 
-    const toc = tocRoot;
-
     return {
       ...document,
       mdx,
-      toc,
+      toc: JSON.stringify(tocRoot),
     };
   },
 });
 
 export default defineConfig({
-  // @ts-ignore (it doesn't think the TOC is serializable)
   collections: [posts],
 });
