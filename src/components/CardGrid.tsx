@@ -95,7 +95,9 @@ export function PostCard({ post, i }: { post: PostOverview; i: number }) {
             {!post.url.startsWith("/posts/") && " ↗"}
           </p>
           <p className="text-sm @[300px]:text-lg @[340px]:text-xl @[400px]:text-2xl text-muted-foreground">
-            <span>{post.date}</span>
+            <span style={getTransitionStyle(post.url, "post-date-")}>
+              {post.date}
+            </span>
           </p>
         </div>
       }

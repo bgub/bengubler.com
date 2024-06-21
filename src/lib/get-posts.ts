@@ -10,7 +10,10 @@ export type PostOverview = Omit<
   date: string;
 };
 
-export function getPosts(limit: false | number = false): PostOverview[] {
+export function getPosts(
+  limit: false | number = false,
+  localOnly: boolean = false
+): PostOverview[] {
   const processedLocalPosts = localPosts.map(
     ({ title, description, date, _meta: { path } }) => ({
       title,
@@ -20,7 +23,9 @@ export function getPosts(limit: false | number = false): PostOverview[] {
     })
   );
 
-  const allPosts = [...externalPosts, ...processedLocalPosts]
+  const allPosts = (
+    localOnly ? processedLocalPosts : [...externalPosts, ...processedLocalPosts]
+  )
     .sort((a, b) => b.date.getTime() - a.date.getTime())
     .map((post) => ({
       ...post,

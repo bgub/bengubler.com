@@ -45,7 +45,12 @@ export default function Post({
       </Breadcrumb>
       {/* TODO add updated time */}
       <p className="text-muted-foreground mt-4 not-prose">
-        Published {post.date.toLocaleDateString()}
+        Published{" "}
+        <span
+          style={getTransitionStyle(`/posts/${post._meta.path}`, "post-date-")}
+        >
+          {post.date.toLocaleDateString()}
+        </span>
       </p>
       <h1 className="mt-4">
         <span

@@ -9,15 +9,15 @@ import {
   HomeIcon,
   LanguagesIcon,
   MenuIcon,
-  NotebookIcon,
   PresentationIcon,
   RssIcon,
   SendIcon,
   UserIcon,
   XIcon,
 } from "lucide-react";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 
 const Hr = ({ key }: { key: number }) => (
@@ -33,20 +33,22 @@ const navLinks = [
     activePattern: /^\/contact/,
     icon: SendIcon,
   },
+
+  Hr,
   {
     name: "Projects",
     href: "/projects",
     activePattern: /^\/projects/,
     icon: PresentationIcon,
   },
-  Hr,
   { name: "Posts", href: "/posts", activePattern: /^\/posts/, icon: RssIcon },
-  {
-    name: "Microblog",
-    href: "/microblog",
-    activePattern: /^\/microblog/,
-    icon: NotebookIcon,
-  },
+  // TODO add some day
+  // {
+  //   name: "Microblog",
+  //   href: "/microblog",
+  //   activePattern: /^\/microblog/,
+  //   icon: NotebookIcon,
+  // },
   Hr,
   {
     name: "Language Learning",
@@ -74,17 +76,23 @@ export function Nav() {
       >
         {/* max-h-[64rem] */}
         <div className="flex flex-row sm:flex-col items-center sm:items-start sm:ml-2 sm:mb-4">
-          <Image
-            src="/bengubler.jpg"
-            alt="Ben Gubler"
-            width={80}
-            height={80}
-            className="rounded-full mr-4 w-12 h-12 sm:w-20 sm:h-20"
-          />
-          <div className="flex flex-col justify-center sm:mt-2">
-            <p className="text-lg font-semibold">Ben Gubler</p>
-            <p className="text-sm text-muted-foreground">@nebrelbug</p>
-          </div>
+          <Link href="/">
+            <Image
+              src="/bengubler.jpg"
+              alt="Ben Gubler"
+              width={80}
+              height={80}
+              className="rounded-full mr-4 w-12 h-12 sm:w-20 sm:h-20"
+            />
+          </Link>
+
+          <Link href="/">
+            <div className="flex flex-col justify-center sm:mt-2">
+              <p className="text-lg font-semibold">Ben Gubler</p>
+              <p className="text-sm text-muted-foreground">@nebrelbug</p>
+            </div>
+          </Link>
+
           <Button
             variant="outline"
             size="icon"
