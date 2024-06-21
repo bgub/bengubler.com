@@ -1,5 +1,33 @@
 import { CardGrid, ProjectCard } from "@/components/CardGrid";
 
+export const metadata = {
+  title: "Language Learning",
+  description: "Tools for learning languages.",
+};
+
+export default function Home() {
+  return (
+    <>
+      <h1 className="mt-8">{metadata.title}</h1>
+      <h2>My Tools</h2>
+      <p className="text-lg text-muted-foreground">
+        Here are some tools I've built to help with language learning.
+      </p>
+      <CardGrid>
+        {myTools.map((tool) => (
+          <ProjectCard
+            key={tool.title}
+            project={{
+              ...tool,
+              image: "/language-learning-images/" + tool.image,
+            }}
+          />
+        ))}
+      </CardGrid>
+    </>
+  );
+}
+
 const myTools = [
   {
     title: "Decline App",
@@ -21,26 +49,3 @@ const myTools = [
     image: "czech-cases.png",
   },
 ];
-
-export default function Home() {
-  return (
-    <>
-      <h1 className="mt-8">Language Learning</h1>
-      <h2>My Tools</h2>
-      <p className="text-lg text-muted-foreground">
-        Here are some tools I've built to help with language learning.
-      </p>
-      <CardGrid>
-        {myTools.map((tool) => (
-          <ProjectCard
-            key={tool.title}
-            project={{
-              ...tool,
-              image: "/language-learning-images/" + tool.image,
-            }}
-          />
-        ))}
-      </CardGrid>
-    </>
-  );
-}

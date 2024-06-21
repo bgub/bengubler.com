@@ -1,5 +1,10 @@
 import { StyledLink } from "@/components/StyledLink";
 
+export const metadata = {
+  title: "Contact",
+  description: "Get in touch with Ben Gubler.",
+};
+
 export default function Home() {
   return (
     <>

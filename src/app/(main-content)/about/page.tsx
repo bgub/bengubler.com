@@ -1,9 +1,14 @@
 import { StyledLink } from "@/components/StyledLink";
 
+export const metadata = {
+  title: "About Me",
+  description: "Learn more about Ben Gubler",
+};
+
 export default function Home() {
   return (
     <>
-      <h1 className="mt-8">About Me</h1>
+      <h1 className="mt-8">{metadata.title}</h1>
       <p>
         My name's Ben, but you might know me by my GitHub username,{" "}
         <StyledLink href="https://github.com/nebrelbug">@nebrelbug</StyledLink>.

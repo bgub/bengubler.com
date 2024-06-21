@@ -13,6 +13,7 @@ import {
   RssIcon,
   SendIcon,
   UserIcon,
+  WrenchIcon,
   XIcon,
 } from "lucide-react";
 import { Link } from "next-view-transitions";
@@ -32,6 +33,13 @@ const navLinks = [
     href: "/contact",
     activePattern: /^\/contact/,
     icon: SendIcon,
+  },
+  Hr,
+  {
+    name: "My Stack",
+    href: "/my-stack",
+    activePattern: /^\/my-stack/,
+    icon: WrenchIcon,
   },
 
   Hr,

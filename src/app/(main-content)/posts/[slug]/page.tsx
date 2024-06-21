@@ -18,6 +18,54 @@ import {
 import { Link } from "next-view-transitions";
 
 import { getTransitionStyle } from "@/lib/utils";
+import { ResolvingMetadata } from "next";
+
+export async function generateMetadata(
+  {
+    params: { slug },
+  }: {
+    params: {
+      slug: string;
+    };
+  },
+  parent: ResolvingMetadata
+) {
+  // Find the post for the current page.
+  const post = allPosts.find((post) => post._meta.path === slug);
+
+  if (!post) notFound();
+
+  const { title, description } = post;
+
+  const previousOG = (await parent).openGraph;
+  const previousTwitter = (await parent).twitter;
+
+  return {
+    title: title,
+    description: description || "Post by Ben Gubler",
+    openGraph: {
+      ...previousOG,
+      title: title,
+      description: description,
+      images: [
+        {
+          url: `https://bengubler.com/api/og?title=${encodeURIComponent(
+            title
+          )}&description=${encodeURIComponent(description)}`,
+          width: 1200,
+          height: 630,
+          alt: "",
+        },
+      ],
+    },
+    twitter: {
+      ...previousTwitter,
+      title: title,
+      description: description,
+      card: "summary_large_image",
+    },
+  };
+}
 
 export default function Post({
   params: { slug },
