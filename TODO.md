@@ -1,2 +1,0 @@
-- Change MDX to use styled link
-- Add individual metadata

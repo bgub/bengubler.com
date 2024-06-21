@@ -16,8 +16,9 @@ import {
   WrenchIcon,
   XIcon,
 } from "lucide-react";
-import { Link } from "next-view-transitions";
+
 import Image from "next/image";
+import Link from "next/link";
 
 import { usePathname } from "next/navigation";
 

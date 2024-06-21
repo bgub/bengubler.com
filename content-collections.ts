@@ -34,7 +34,7 @@ const posts = defineCollection({
     description: z.string(),
     date: z.string().pipe(z.coerce.date()),
     archived: z.string().optional(),
-    // TODO add date & updated
+    // TODO add tags, updated, actually archive old posts
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
