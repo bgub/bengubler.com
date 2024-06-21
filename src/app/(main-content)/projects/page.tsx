@@ -1,8 +1,4 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-import Image from "next/image";
-import Link from "next/link";
+import { CardGrid, ProjectCard } from "@/components/CardGrid";
 import { projects } from "./project-list";
 
 export default function Home() {
@@ -12,43 +8,19 @@ export default function Home() {
       {projects.map((group) => (
         <div key={group.category}>
           <h2>{group.category}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <CardGrid>
             {group.items.map((project) => (
-              <Project key={project.title} project={project} />
+              <ProjectCard
+                key={project.title}
+                project={{
+                  ...project,
+                  image: "/project-images/" + project.image,
+                }}
+              />
             ))}
-          </div>
+          </CardGrid>
         </div>
       ))}
     </>
-  );
-}
-
-function Project({
-  project,
-}: {
-  project: (typeof projects)[number]["items"][number];
-}) {
-  return (
-    <Link href={project.href} target="_blank" className="not-prose">
-      <Card className="hover:shadow-lg h-full border-2 border-black">
-        <CardHeader className="p-0 border-b border-black bg-black rounded-t-lg">
-          <AspectRatio ratio={16 / 9}>
-            <Image
-              src={"/project-images/" + project.image || ""}
-              alt={project.title}
-              fill
-              className="object-cover rounded-t-xl rounded-b-none"
-            />
-            <div className="absolute bottom-2 left-2 right-2 px-2 rounded-sm text-sm opacity-70 bg-black text-white truncate">
-              {project.href}
-            </div>
-          </AspectRatio>
-        </CardHeader>
-        <CardContent className="grow p-4">
-          <CardTitle className="mb-4">{project.title}</CardTitle>
-          <p>{project.description}</p>
-        </CardContent>
-      </Card>
-    </Link>
   );
 }

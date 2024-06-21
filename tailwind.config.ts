@@ -15,14 +15,9 @@ const config = {
       padding: "2rem",
     },
     extend: {
-      screens: {
-        xs: "475px",
-      },
       container: {
         screens: {
-          lg: "1024px",
-          xl: "1280px",
-          "2xl": "1400px",
+          "2xl": "1400px", // for the "container" class
         },
       },
       colors: {

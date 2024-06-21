@@ -16,7 +16,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Link } from "next-view-transitions";
-import { getTransitionName } from "../page";
+
+import { getTransitionStyle } from "@/lib/utils";
 
 export default function Post({
   params: { slug },
@@ -48,24 +49,17 @@ export default function Post({
       </p>
       <h1 className="mt-4">
         <span
-          style={{
-            viewTransitionName: getTransitionName(
-              `/posts/${post._meta.path}`,
-              "post-title-"
-            ),
-          }}
+          style={getTransitionStyle(`/posts/${post._meta.path}`, "post-title-")}
         >
           {post.title}
         </span>
       </h1>
       <p className="text-lg text-muted-foreground">
         <span
-          style={{
-            viewTransitionName: getTransitionName(
-              `/posts/${post._meta.path}`,
-              "post-description-"
-            ),
-          }}
+          style={getTransitionStyle(
+            `/posts/${post._meta.path}`,
+            "post-description-"
+          )}
         >
           {post.description}
         </span>
