@@ -11,7 +11,7 @@ export default function Home() {
       <h1 className="mt-8">{metadata.title}</h1>
       <h2>My Tools</h2>
       <p className="text-lg text-muted-foreground">
-        Here are some tools I've built to help with language learning.
+        Here are some tools I&apos;ve built to help with language learning.
       </p>
       <CardGrid>
         {myTools.map((tool) => (

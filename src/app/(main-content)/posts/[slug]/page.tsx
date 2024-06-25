@@ -145,8 +145,9 @@ export default function Post({
           <div className={cn("min-w-0 max-w-none pt-4 pr-4 *:first:mt-0")}>
             <MDXContent code={post.mdx} components={mdxComponents} />
             <p className="italic">
-              If you liked this article, don't forget to share it and follow me
-              at <a href="https://x.com/nebrelbug">@nebrelbug</a> on X!
+              If you liked this article, don&apos;t forget to share it and
+              follow me at <a href="https://x.com/nebrelbug">@nebrelbug</a> on
+              X!
             </p>
           </div>
           <Social
