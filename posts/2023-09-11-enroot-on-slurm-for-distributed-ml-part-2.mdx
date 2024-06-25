@@ -5,6 +5,8 @@ date: "2023-09-11"
 tags: [ml/ai]
 ---
 
+_UPDATE 2024: I no longer recommend this method and have experienced several issues with it. Instead, I recommend using [Pyxis](https://github.com/NVIDIA/pyxis), a tool developed by NVIDIA that simplifies the process of running containers on HPC systems_._
+
 _This is part 2 of a 2-part series. [Part 1](./enroot-on-slurm-for-distributed-ml-part-1) is available here._
 
 In [part 1](./enroot-on-slurm-for-distributed-ml-part-1), we covered how to use Enroot on Slurm for containerized _single-node_ training using `salloc`. In this post, we'll cover how to use Enroot on Slurm for containerized _multi-node_ training, and transition to using `sbatch`.

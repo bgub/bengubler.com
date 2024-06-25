@@ -35,7 +35,7 @@ const posts = defineCollection({
     description: z.string(),
     date: z.string().pipe(z.coerce.date()),
     lastUpdated: z.string().pipe(z.coerce.date()).optional(),
-    archived: z.string().optional(), // a description of why it's archived
+    archived: z.boolean().default(false),
     tags: z.array(z.enum(tags)).default([]),
     // TODO add tags, updated, actually archive old posts
   }),

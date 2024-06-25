@@ -14,12 +14,21 @@ export function getPosts({
   localOnly?: boolean;
 } = {}): PostOverview[] {
   const processedLocalPosts = localPosts.map(
-    ({ title, description, date, tags, content, _meta: { path } }) => ({
+    ({
       title,
       description,
       date,
       tags,
       content,
+      archived,
+      _meta: { path },
+    }) => ({
+      title,
+      description,
+      date,
+      tags,
+      content,
+      archived,
       url: `/posts/${path}`,
     })
   );
@@ -43,6 +52,7 @@ const externalPosts = [
     tags: ["typescript", "open-source"],
     content: "Read the full article on Dev.to.",
     url: "https://dev.to/nebrelbug/adding-deno-support-to-the-eta-template-engine-28n7",
+    archived: false,
   },
   {
     title: "I built a JS template engine 3x faster than EJS",
@@ -51,6 +61,7 @@ const externalPosts = [
     tags: ["typescript", "open-source"],
     content: "Read the full article on Dev.to.",
     url: "https://dev.to/nebrelbug/i-built-a-js-template-engine-3x-faster-than-ejs-lj8",
+    archived: false,
   },
   {
     title: "TensorFlow.js: An intro and analysis with use cases",
@@ -59,6 +70,7 @@ const externalPosts = [
     tags: ["ml/ai"],
     content: "Read the full article on LogRocket.",
     url: "https://blog.logrocket.com/tensorflow-js-an-intro-and-analysis-with-use-cases-8e1f9a973183/",
+    archived: true,
   },
   {
     title:
@@ -68,5 +80,6 @@ const externalPosts = [
     tags: ["typescript", "open-source"],
     content: "Read the full article on HackerNoon.",
     url: "https://hackernoon.com/introducing-squirrelly-a-fast-lightweight-and-simple-js-template-engine-70a873d765c9",
+    archived: true,
   },
 ];

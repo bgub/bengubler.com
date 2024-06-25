@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Link } from "next-view-transitions";
 
-import { InlineTagButton } from "@/components/TagButton";
+import { PostTagButton } from "@/components/TagButton";
 import { baseUrl } from "@/lib/config";
 import { cn, getTransitionStyle } from "@/lib/utils";
 import { ResolvingMetadata } from "next";
@@ -107,6 +107,11 @@ export default function Post({
         >
           {post.date.toLocaleDateString()}
         </span>
+        {post.lastUpdated && (
+          <>
+            , last updated <span>{post.lastUpdated.toLocaleDateString()}</span>
+          </>
+        )}
       </p>
       <h1 className="mt-4">
         <span
@@ -114,6 +119,9 @@ export default function Post({
         >
           {post.title}
         </span>
+        {post.archived && (
+          <span className="text-muted-foreground"> (archived)</span>
+        )}
       </h1>
       <p className="text-lg text-muted-foreground">
         <span
@@ -128,7 +136,7 @@ export default function Post({
       {post.tags.length > 0 && (
         <div className="flex flex-row flex-wrap mt-4 gap-2">
           {post.tags.map((tag) => (
-            <InlineTagButton key={tag} name={tag} />
+            <PostTagButton key={tag} name={tag} />
           ))}
         </div>
       )}

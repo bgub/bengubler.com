@@ -1,6 +1,3 @@
 - Rename the comments discussions on Giscus
-- Post tags
-- Add archived feature, last modified feature
-- Archive old posts
 - Remove redirects after a few months
 - RSS feed + tags

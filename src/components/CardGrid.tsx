@@ -1,10 +1,17 @@
 import { cn, getTransitionStyle } from "@/lib/utils";
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { PostOverview } from "@/lib/get-posts";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
+import { CardTag } from "./TagButton";
 
 type Item = {
   title: string;
@@ -27,10 +34,12 @@ function CardBase({
   href,
   header,
   content,
+  footer,
 }: {
   href: string;
   header: React.ReactNode;
   content: React.ReactNode;
+  footer?: React.ReactNode;
 }) {
   return (
     <Link
@@ -38,11 +47,14 @@ function CardBase({
       target={href.startsWith("http") ? "_blank" : "_self"}
       className="not-prose"
     >
-      <Card className="hover:shadow-lg h-full border-2 border-black dark:border-gray-500">
+      <Card className="flex flex-col flex-grow hover:shadow-lg h-full border-2 border-black dark:border-gray-500">
         <CardHeader className="p-0">
           <AspectRatio ratio={16 / 9}>{header}</AspectRatio>
         </CardHeader>
         <CardContent className="p-4">{content}</CardContent>
+        {footer && (
+          <CardFooter className="px-4 pb-4 grow items-end">{footer}</CardFooter>
+        )}
       </Card>
     </Link>
   );
@@ -107,6 +119,13 @@ export function PostCard({ post, i }: { post: PostOverview; i: number }) {
             {post.description}
           </span>
         </p>
+      }
+      footer={
+        <div className="align-bottom flex flex-row flex-wrap gap-2">
+          {post.tags.map((tag) => (
+            <CardTag key={tag} name={tag} />
+          ))}
+        </div>
       }
     />
   );

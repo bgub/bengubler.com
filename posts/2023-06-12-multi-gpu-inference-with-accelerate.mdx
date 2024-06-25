@@ -2,8 +2,12 @@
 title: Multi-GPU Inference with Accelerate
 description: Run inference faster by passing prompts to multiple GPUs in parallel.
 date: "2023-06-12"
+lastUpdated: "2024-06-24"
 tags: [ml/ai]
+archived: true
 ---
+
+_UPDATE 2024: The information in this post may be dated or inaccurate. As Alex Salinas pointed out in the comments below, this code should likely be using torchpippy instead of using split_between_processes._
 
 Historically, more attention has been paid to distributed training than to distributed inference. After all, training is more computationally expensive. Larger and more complex LLMs, however, can take a long time to perform text completion tasks. Whether for research or in production, it's valuable to parallelize inference in order to maximize performance.
 

@@ -47,6 +47,9 @@ export default function Posts({
     return activeTags.some((tag) => post.tags.includes(tag));
   });
 
+  const archivedPosts = posts.filter((post) => post.archived);
+  const nonArchivedPosts = posts.filter((post) => !post.archived);
+
   return (
     <>
       <h1 className="mt-8">{metadata.title}</h1>
@@ -58,10 +61,21 @@ export default function Posts({
       </div>
 
       <CardGrid>
-        {posts.map((post, i) => (
+        {nonArchivedPosts.map((post, i) => (
           <PostCard key={post.url} post={post} i={i} />
         ))}
       </CardGrid>
+
+      {archivedPosts.length > 0 && (
+        <>
+          <h2>Archived Posts</h2>
+          <CardGrid>
+            {archivedPosts.map((post, i) => (
+              <PostCard key={post.url} post={post} i={i} />
+            ))}
+          </CardGrid>
+        </>
+      )}
     </>
   );
 }
