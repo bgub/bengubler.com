@@ -1,3 +1,6 @@
 - Rename the comments discussions on Giscus
-- Remove redirects after a few months
 - RSS feed + tags
+
+## Future
+
+- Remove redirects after a few months
