@@ -1,10 +1,11 @@
+import { baseUrl } from "@/lib/config";
 import { getPosts } from "@/lib/get-posts";
 
 export default function sitemap() {
-  const allPosts = getPosts(false, true);
+  const allPosts = getPosts({ localOnly: true });
 
   const postLinks = allPosts.map((post) => ({
-    url: `https://bengubler.com${post.url}`,
+    url: `${baseUrl}${post.url}`,
     lastModified: post.date,
   }));
 
@@ -19,7 +20,7 @@ export default function sitemap() {
     "/language-learning/russian-case-cards",
     "/language-learning/czech-case-cards",
   ].map((url) => ({
-    url: `https://bengubler.com${url}`,
+    url: `${baseUrl}${url}`,
     lastModified: new Date(), // current time
   }));
 

@@ -2,6 +2,7 @@
 title: Setting Up Docker for Machine Learning
 description: The Dockerfile I use to set up my machine learning environment.
 date: "2023-09-08T21:00:00+0000"
+tags: [ml/ai]
 ---
 
 This post is mainly meant for coworkers, but it might be useful for others as well. I'll be sharing the Dockerfile that I use to set up my machine learning environment. It's based on the `huggingface/transformers-pytorch-gpu` image, but I've added a few things (Infiniband support, upgraded Pip packages, a utility to show GPU status, etc.) to make it a bit more useful for me.

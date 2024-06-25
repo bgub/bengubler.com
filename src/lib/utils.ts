@@ -14,3 +14,10 @@ export function getTransitionStyle(slug: string, prefix: string = "") {
     viewTransitionName: getTransitionName(slug, prefix),
   };
 }
+
+export function createQueryString(name: string, value: string) {
+  const params = new URLSearchParams();
+  params.set(name, value);
+
+  return params.toString();
+}

@@ -3,7 +3,10 @@ import { StyledLink } from "@/components/StyledLink";
 import { getPosts } from "@/lib/get-posts";
 
 export default function Home() {
-  const allPosts = getPosts(5);
+  const allPosts = getPosts({
+    limit: 5,
+    localOnly: true,
+  });
 
   return (
     <>

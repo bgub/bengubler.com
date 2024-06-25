@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
+import { baseUrl } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import {
   FacebookIcon,
@@ -60,7 +61,7 @@ export function Social({
 }) {
   const pathname = usePathname();
 
-  const url = `https://bengubler.com${pathname}`;
+  const url = `${baseUrl}${pathname}`;
 
   return (
     <div className={cn("flex flex-row justify-center", className)}>

@@ -17,7 +17,9 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Link } from "next-view-transitions";
 
-import { getTransitionStyle } from "@/lib/utils";
+import { InlineTagButton } from "@/components/TagButton";
+import { baseUrl } from "@/lib/config";
+import { cn, getTransitionStyle } from "@/lib/utils";
 import { ResolvingMetadata } from "next";
 
 export async function generateMetadata(
@@ -49,7 +51,7 @@ export async function generateMetadata(
       description: description,
       images: [
         {
-          url: `https://bengubler.com/api/og?title=${encodeURIComponent(
+          url: `${baseUrl}/api/og?title=${encodeURIComponent(
             title
           )}&description=${encodeURIComponent(description)}`,
           width: 1200,
@@ -65,6 +67,12 @@ export async function generateMetadata(
       card: "summary_large_image",
     },
   };
+}
+
+export function generateStaticParams() {
+  return allPosts.map((post) => ({
+    slug: post._meta.path,
+  }));
 }
 
 export default function Post({
@@ -117,9 +125,16 @@ export default function Post({
           {post.description}
         </span>
       </p>
+      {post.tags.length > 0 && (
+        <div className="flex flex-row flex-wrap mt-4 gap-2">
+          {post.tags.map((tag) => (
+            <InlineTagButton key={tag} name={tag} />
+          ))}
+        </div>
+      )}
       <div className="flex flex-row min-w-0 pt-4">
         <div className="min-w-0">
-          <div className="min-w-0 max-w-none pt-4 pr-4 -mt-12">
+          <div className={cn("min-w-0 max-w-none pt-4 pr-4 *:first:mt-0")}>
             <MDXContent code={post.mdx} components={mdxComponents} />
             <p className="italic">
               If you liked this article, don't forget to share it and follow me

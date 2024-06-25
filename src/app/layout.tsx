@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { baseUrl } from "@/lib/config";
 import type { Metadata } from "next";
 import { ViewTransitions } from "next-view-transitions";
 import { Inter } from "next/font/google";
@@ -12,20 +13,20 @@ export const metadata: Metadata = {
     template: "%s | Ben Gubler",
     default: "Ben Gubler",
   },
-  metadataBase: new URL("https://www.bengubler.com"),
+  metadataBase: new URL(baseUrl),
   description:
     "Ben Gubler is a computer scientist, open-source maintainer, and aspiring polyglot",
   openGraph: {
     title: "Ben Gubler",
     description:
       "Ben Gubler is a computer scientist, open-source maintainer, and aspiring polyglot",
-    url: "https://bengubler.com",
+    url: baseUrl,
     siteName: "Ben Gubler",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://bengubler.com/api/og",
+        url: `${baseUrl}/api/og`,
         width: 1200,
         height: 630,
         alt: "",

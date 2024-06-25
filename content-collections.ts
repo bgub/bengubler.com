@@ -17,12 +17,13 @@ import {
 } from "@/components/mdx/rehype-pretty-code";
 import { TOCNode, tocPlugin } from "@/components/mdx/remark-toc";
 
-const tags = [
-  "machine-learning",
+let tags: [string, ...string[]] = [
+  "ml/ai",
   "language-learning",
   "typescript",
   "nextjs",
   "tailwind",
+  "open-source",
 ];
 
 const posts = defineCollection({
@@ -33,7 +34,9 @@ const posts = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.string().pipe(z.coerce.date()),
-    archived: z.string().optional(),
+    lastUpdated: z.string().pipe(z.coerce.date()).optional(),
+    archived: z.string().optional(), // a description of why it's archived
+    tags: z.array(z.enum(tags)).default([]),
     // TODO add tags, updated, actually archive old posts
   }),
   transform: async (document, context) => {
