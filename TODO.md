@@ -1,4 +1,3 @@
-- Rename the comments discussions on Giscus
 - RSS feed + tags
 
 ## Future

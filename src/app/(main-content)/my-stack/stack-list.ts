@@ -9,8 +9,8 @@ export const stack = [
           "I couldn't function effectively without my trusty todo list!",
       },
       {
-        name: "Obsidian",
-        link: "https://obsidian.md/",
+        name: "Notion",
+        link: "https://www.notion.so/",
         description: "Second brain & knowledge base.",
       },
       {
@@ -72,17 +72,17 @@ export const stack = [
       {
         name: "JavaScript / Node.js",
         link: "https://nodejs.org/en",
-        description: "Fun to program in, but I prefer TypeScript",
+        description: "Fun to program in, but I prefer TypeScript.",
       },
       {
         name: "Typescript",
         link: "https://www.typescriptlang.org/",
-        description: "Makes writing JavaScript not scary",
+        description: "Makes writing JavaScript not scary!",
       },
       {
         name: "Python",
         link: "https://www.python.org/",
-        description: "Fantastic for AI/ML work",
+        description: "Fantastic for AI/ML work.",
       },
       {
         name: "Rust",
@@ -98,18 +98,24 @@ export const stack = [
       {
         name: "React",
         link: "https://react.dev",
-        description: "By far my favorite framework for building websites",
+        description: "By far my favorite tool for building websites.",
       },
       {
         name: "Next.js",
         link: "https://nextjs.org/",
-        description: "Solid ecosystem, great performance",
+        description: "Solid ecosystem, great performance.",
       },
       {
         name: "Tailwind",
         link: "https://tailwindcss.com/",
         description:
-          "Literally so much better than writing CSS by hand in separate files",
+          "Literally so much better than writing CSS by hand in separate files.",
+      },
+      {
+        name: "shadcn/ui",
+        link: "https://ui.shadcn.com/",
+        description:
+          "My go-to for building UI components. Love how they're accessible + customizable!",
       },
     ],
   },
@@ -119,17 +125,17 @@ export const stack = [
       {
         name: "Vercel",
         link: "https://vercel.com/",
-        description: "Fantastic solution for hosting web apps",
+        description: "Fantastic solution for hosting web apps.",
       },
       {
         name: "GitHub Actions",
         link: "https://github.com/features/actions",
-        description: "CI/CD built in to GitHub",
+        description: "CI/CD built in to GitHub.",
       },
       {
-        name: "Fathom Analytics",
-        link: "https://usefathom.com/ref/QKJTBM", // TODO: update to personal link instead of TinyLingo
-        description: "Like Google Analytics, but private and minimalist",
+        name: "Umami Analytics",
+        link: "https://umami.is/",
+        description: "Like Google Analytics. I self-host my own instance!",
       },
     ],
   },
