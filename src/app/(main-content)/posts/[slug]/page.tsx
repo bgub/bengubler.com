@@ -99,71 +99,79 @@ export default function Post({
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      {/* TODO add updated time */}
-      <p className="text-muted-foreground mt-4 not-prose">
-        Published{" "}
-        <span
-          style={getTransitionStyle(`/posts/${post._meta.path}`, "post-date-")}
-        >
-          {post.date.toLocaleDateString()}
-        </span>
-        {post.lastUpdated && (
-          <>
-            , last updated <span>{post.lastUpdated.toLocaleDateString()}</span>
-          </>
-        )}
-      </p>
-      <h1 className="mt-4">
-        <span
-          style={getTransitionStyle(`/posts/${post._meta.path}`, "post-title-")}
-        >
-          {post.title}
-        </span>
-        {post.archived && (
-          <span className="text-muted-foreground"> (archived)</span>
-        )}
-      </h1>
-      <p className="text-lg text-muted-foreground">
-        <span
-          style={getTransitionStyle(
-            `/posts/${post._meta.path}`,
-            "post-description-"
+      <article>
+        <p className="text-muted-foreground mt-4 not-prose">
+          Published{" "}
+          <span
+            style={getTransitionStyle(
+              `/posts/${post._meta.path}`,
+              "post-date-"
+            )}
+          >
+            {post.date.toLocaleDateString()}
+          </span>
+          {post.lastUpdated && (
+            <>
+              , last updated{" "}
+              <span>{post.lastUpdated.toLocaleDateString()}</span>
+            </>
           )}
-        >
-          {post.description}
-        </span>
-      </p>
-      {post.tags.length > 0 && (
-        <div className="flex flex-row flex-wrap mt-4 gap-2">
-          {post.tags.map((tag) => (
-            <PostTagButton key={tag} name={tag} />
-          ))}
-        </div>
-      )}
-      <div className="flex flex-row min-w-0 pt-4">
-        <div className="min-w-0">
-          <div className={cn("min-w-0 max-w-none pt-4 pr-4 *:first:mt-0")}>
-            <MDXContent code={post.mdx} components={mdxComponents} />
-            <p className="italic">
-              If you liked this article, don&apos;t forget to share it and
-              follow me at <a href="https://x.com/nebrelbug">@nebrelbug</a> on
-              X!
-            </p>
+        </p>
+        <h1 className="mt-4">
+          <span
+            style={getTransitionStyle(
+              `/posts/${post._meta.path}`,
+              "post-title-"
+            )}
+          >
+            {post.title}
+          </span>
+          {post.archived && (
+            <span className="text-muted-foreground"> (archived)</span>
+          )}
+        </h1>
+        <p className="text-lg text-muted-foreground">
+          <span
+            style={getTransitionStyle(
+              `/posts/${post._meta.path}`,
+              "post-description-"
+            )}
+          >
+            {post.description}
+          </span>
+        </p>
+        {post.tags.length > 0 && (
+          <div className="flex flex-row flex-wrap mt-4 gap-2">
+            {post.tags.map((tag) => (
+              <PostTagButton key={tag} name={tag} />
+            ))}
           </div>
-          <Social
-            title={post.title + "\n--\n" + post.description}
-            className="my-8"
-          />
-          <Comments />
-        </div>
+        )}
+        <div className="flex flex-row min-w-0 pt-4">
+          <div className="min-w-0">
+            <div className={cn("min-w-0 max-w-none pt-4 pr-4 *:first:mt-0")}>
+              <MDXContent code={post.mdx} components={mdxComponents} />
+              <p className="italic">
+                If you liked this article, don&apos;t forget to share it and
+                follow me at <a href="https://x.com/nebrelbug">@nebrelbug</a> on
+                X!
+              </p>
+            </div>
+            <Social
+              title={post.title + "\n--\n" + post.description}
+              className="my-8"
+            />
+            <Comments />
+          </div>
 
-        {/* Table of contents, only shown on xl+ screens */}
-        <div className="hidden xl:flex flex-col min-w-64 max-h-screen sticky top-0 p-4 not-prose">
-          <div className="w-full border-l">
-            <TOC tree={JSON.parse(post.toc)} />
-          </div>
+          {/* Table of contents, only shown on xl+ screens */}
+          <aside className="hidden xl:flex flex-col min-w-64 max-h-screen sticky top-0 p-4 not-prose">
+            <div className="w-full border-l">
+              <TOC tree={JSON.parse(post.toc)} />
+            </div>
+          </aside>
         </div>
-      </div>
+      </article>
     </div>
   );
 }

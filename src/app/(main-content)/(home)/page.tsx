@@ -26,7 +26,7 @@ export default function Home() {
         </p>
         <p>
           Feel free to take a look at my{" "}
-          <StyledLink href="/ben-gubler-resume.pdf">resume</StyledLink>, some of
+          <StyledLink href="/ben-gubler-resume.pdf">resumé</StyledLink>, some of
           the <StyledLink href="/projects">projects</StyledLink> I&apos;ve
           worked on, or the{" "}
           <StyledLink href="/language-learning">
