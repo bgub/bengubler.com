@@ -37,8 +37,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ) {
   // Find the post for the current page.
-  // We generate .slug in content-collections processing
-  console.log(allPosts);
+  // (["slug"] is generated in the content-collections processing)
   const post = allPosts.find((post) => post.slug === slug);
 
   if (!post) notFound();

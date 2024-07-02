@@ -12,7 +12,7 @@ import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { CardTag } from "./TagButton";
 
-import type { PostOverview } from "@/lib/get-content";
+import type { ContentOverview } from "@/lib/get-content";
 
 type Item = {
   title: string;
@@ -88,7 +88,7 @@ export function ProjectCard({ project }: { project: Item }) {
   );
 }
 
-export function PostCard({ post, i }: { post: PostOverview; i: number }) {
+export function PostCard({ post, i }: { post: ContentOverview; i: number }) {
   return (
     <CardBase
       href={post.url}

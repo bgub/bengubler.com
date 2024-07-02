@@ -1,5 +1,4 @@
 import { MDXContent } from "@content-collections/mdx/react";
-import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 
 import { Comments } from "@/components/Comments";
@@ -19,8 +18,11 @@ import { Link } from "next-view-transitions";
 
 import { PostTagButton } from "@/components/TagButton";
 import { baseUrl } from "@/lib/config";
+import { getContent } from "@/lib/get-content";
 import { cn, getTransitionStyle } from "@/lib/utils";
 import { ResolvingMetadata } from "next";
+
+const allMicroblogs = getContent({ type: "microblog" });
 
 export async function generateMetadata(
   {
@@ -33,7 +35,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ) {
   // Find the post for the current page.
-  const post = allPosts.find((post) => post._meta.path === slug);
+  const post = allMicroblogs.find((post) => post.slug === slug);
 
   if (!post) notFound();
 
@@ -70,9 +72,7 @@ export async function generateMetadata(
 }
 
 export function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post._meta.path,
-  }));
+  return allMicroblogs;
 }
 
 export default function Post({
@@ -80,7 +80,7 @@ export default function Post({
 }: {
   params: { slug: string };
 }) {
-  const post = allPosts.find((post) => post._meta.path === slug);
+  const post = allMicroblogs.find((post) => post._meta.path === slug);
 
   if (!post) return notFound();
 
