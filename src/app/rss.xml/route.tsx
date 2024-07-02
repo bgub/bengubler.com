@@ -71,11 +71,18 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
   const searchParams = new URL(req.url).searchParams;
   const type = searchParams.get("type");
-  const tags = searchParams.getAll("tags");
+  const tags = searchParams.getAll("tag");
 
   const feed = createFeed(ReactDOMServer.renderToString, { type, tags });
 
-  return new NextResponse(feed, {
+  // insert XML stylesheet string
+
+  const updatedFeed = feed.replace(
+    '<?xml version="1.0" encoding="utf-8"?>',
+    '<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/rss.xsl"?>'
+  );
+
+  return new NextResponse(updatedFeed, {
     status: 200,
     headers: {
       "Content-Type": "application/xml",

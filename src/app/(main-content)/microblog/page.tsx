@@ -1,5 +1,6 @@
 import { CardTag, TagButton } from "@/components/TagButton";
 import { mdxComponents } from "@/components/mdx/mdx-components";
+import { Button } from "@/components/ui/button";
 import {
   Pagination,
   PaginationContent,
@@ -8,7 +9,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import type { Content } from "@/lib/get-content";
 import { getContent, getTags } from "@/lib/get-content";
 import {
   buildSearchParams,
@@ -16,8 +16,11 @@ import {
   modifySearchParams,
 } from "@/lib/utils";
 import { MDXContent } from "@content-collections/mdx/react";
+import { RssIcon } from "lucide-react";
 import { Link } from "next-view-transitions";
 import { Fragment } from "react";
+
+import type { Content } from "@/lib/get-content";
 
 export const metadata = {
   title: "Microblog",
@@ -59,7 +62,18 @@ export default function Posts({
 
   return (
     <>
-      <h1 className="mt-8">{metadata.title}</h1>
+      <h1 className="mt-8">
+        {metadata.title}
+        <Button size="icon" variant="ghost" className="ml-2" asChild>
+          <Link
+            href={`/rss.xml?${modifySearchParams(params, {
+              type: "microblog",
+            }).toString()}`}
+          >
+            <RssIcon className="inline-block" />
+          </Link>
+        </Button>
+      </h1>
 
       <div className="flex flex-wrap items-start leading-8 gap-4 mb-12">
         {tags.map((tag) => (

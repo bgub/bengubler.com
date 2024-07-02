@@ -2,7 +2,10 @@ import { getContentOverviews, getTags } from "@/lib/get-content";
 
 import { CardGrid, PostCard } from "@/components/CardGrid";
 import { TagButton } from "@/components/TagButton";
-import { buildSearchParams } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { buildSearchParams, modifySearchParams } from "@/lib/utils";
+import { RssIcon } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
   title: "Posts",
@@ -30,7 +33,18 @@ export default function Posts({
 
   return (
     <>
-      <h1 className="mt-8">{metadata.title}</h1>
+      <h1 className="mt-8">
+        {metadata.title}
+        <Button size="icon" variant="ghost" className="ml-2" asChild>
+          <Link
+            href={`/rss.xml?${modifySearchParams(params, {
+              type: "posts",
+            }).toString()}`}
+          >
+            <RssIcon className="inline-block" />
+          </Link>
+        </Button>
+      </h1>
 
       <div className="flex flex-wrap items-start leading-8 gap-4 mb-12">
         {tags.map((tag) => (
