@@ -2,7 +2,7 @@ import { baseUrl } from "@/lib/config";
 import { getContent } from "@/lib/get-content";
 
 export default function sitemap() {
-  const allContent = getContent();
+  const allContent = getContent(); // local-only
 
   const contentLinks = allContent.map((post) => ({
     url: `${baseUrl}/${post.url}`,
