@@ -9,6 +9,7 @@ import {
   HomeIcon,
   LanguagesIcon,
   MenuIcon,
+  NotebookIcon,
   PresentationIcon,
   RssIcon,
   SendIcon,
@@ -51,13 +52,12 @@ const navLinks = [
     icon: PresentationIcon,
   },
   { name: "Posts", href: "/posts", activePattern: /^\/posts/, icon: RssIcon },
-  // TODO add some day
-  // {
-  //   name: "Microblog",
-  //   href: "/microblog",
-  //   activePattern: /^\/microblog/,
-  //   icon: NotebookIcon,
-  // },
+  {
+    name: "Microblog",
+    href: "/microblog",
+    activePattern: /^\/microblog/,
+    icon: NotebookIcon,
+  },
   Hr,
   {
     name: "Language Learning",

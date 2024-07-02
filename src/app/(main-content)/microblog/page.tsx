@@ -1,12 +1,17 @@
-import { getContentOverviews, getTags } from "@/lib/get-content";
+import { getContent } from "@/lib/get-content";
 
 import { CardGrid, PostCard } from "@/components/CardGrid";
 import { TagButton } from "@/components/TagButton";
 
 export const metadata = {
-  title: "Posts",
+  title: "Microblog",
   description:
-    "Some of my thoughts on programming, language learning, and more.",
+    "Short-form thoughts about programming, language learning, and more.",
+};
+
+type Tag = {
+  tag: string;
+  count: number;
 };
 
 export default function Posts({
@@ -20,11 +25,28 @@ export default function Posts({
       : searchParams.tag
     : [];
 
-  const posts = getContentOverviews({
-    tags: activeTags,
-  });
+  const allPosts = getContent({ type: "microblog" });
 
-  const tags = getTags({});
+  // TODO simplify
+  const tags: Tag[] = allPosts.reduce((acc, post) => {
+    post.tags.forEach((tag) => {
+      const existingTag = acc.find((t) => t.tag === tag);
+
+      if (existingTag) {
+        existingTag.count++;
+      } else {
+        acc.push({ tag, count: 1 });
+      }
+    });
+
+    return acc;
+  }, [] as Tag[]);
+
+  const posts = allPosts.filter((post) => {
+    if (activeTags.length === 0) return true;
+
+    return activeTags.some((tag) => post.tags.includes(tag));
+  });
 
   const archivedPosts = posts.filter((post) => post.archived);
   const nonArchivedPosts = posts.filter((post) => !post.archived);

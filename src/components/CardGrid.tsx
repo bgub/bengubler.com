@@ -8,10 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { PostOverview } from "@/lib/get-posts";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { CardTag } from "./TagButton";
+
+import type { PostOverview } from "@/lib/get-content";
 
 type Item = {
   title: string;
@@ -104,7 +105,7 @@ export function PostCard({ post, i }: { post: PostOverview; i: number }) {
             <span style={getTransitionStyle(post.url, "post-title-")}>
               {post.title}
             </span>
-            {!post.url.startsWith("/posts/") && " ↗"}
+            {!post.url.startsWith("posts/") && " ↗"}
           </p>
           <p className="text-sm @[300px]:text-lg @[340px]:text-xl @[400px]:text-2xl text-muted-foreground">
             <span style={getTransitionStyle(post.url, "post-date-")}>

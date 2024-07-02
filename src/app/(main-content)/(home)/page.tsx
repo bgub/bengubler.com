@@ -1,9 +1,9 @@
 import { CardGrid, PostCard } from "@/components/CardGrid";
 import { StyledLink } from "@/components/StyledLink";
-import { getPosts } from "@/lib/get-posts";
+import { getContentOverviews } from "@/lib/get-content";
 
 export default function Home() {
-  const allPosts = getPosts({
+  const allPosts = getContentOverviews({
     limit: 5,
     localOnly: true,
   });

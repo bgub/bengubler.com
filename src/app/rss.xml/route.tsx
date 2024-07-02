@@ -2,9 +2,11 @@ import { Feed } from "feed";
 
 import { baseUrl } from "@/lib/config";
 
+import { getContent } from "@/lib/get-content";
 import { MDXContent } from "@content-collections/mdx/react";
-import { allPosts } from "content-collections";
 import { NextRequest, NextResponse } from "next/server";
+
+const allContent = getContent();
 
 const createFeed = (renderToString: Function) => {
   const feed = new Feed({
@@ -20,22 +22,13 @@ const createFeed = (renderToString: Function) => {
     },
   });
 
-  const posts = allPosts
-    .sort((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    })
-    .map((post) => ({
-      ...post,
-      url: `/posts/${post._meta.path}`,
-    }));
-
-  for (const post of posts) {
+  for (const post of allContent) {
     const html = renderToString(<MDXContent code={post.mdx} />);
 
     feed.addItem({
       title: post.title,
-      id: `${baseUrl}${post.url}`,
-      link: `${baseUrl}${post.url}?utm_campaign=feed&utm_source=rss2`,
+      id: `${baseUrl}/${post.url}`,
+      link: `${baseUrl}/${post.url}?utm_campaign=feed&utm_source=rss2`,
       description: post.description,
       content: html,
       date: post.date,

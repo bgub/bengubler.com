@@ -26,10 +26,10 @@ let tags: [string, ...string[]] = [
   "open-source",
 ];
 
-const posts = defineCollection({
-  name: "posts",
-  directory: "posts",
-  include: "*.mdx",
+const content = defineCollection({
+  name: "content",
+  directory: "content",
+  include: "{microblog,posts}/*.mdx",
   schema: (z) => ({
     title: z.string(),
     description: z.string(),
@@ -37,7 +37,6 @@ const posts = defineCollection({
     lastUpdated: z.string().pipe(z.coerce.date()).optional(),
     archived: z.boolean().default(false),
     tags: z.array(z.enum(tags)).default([]),
-    // TODO add tags, updated, actually archive old posts
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
@@ -72,10 +71,13 @@ const posts = defineCollection({
       ...document,
       mdx,
       toc: JSON.stringify(tocRoot),
+      type: document._meta.path.startsWith("microblog/") ? "microblog" : "post",
+      url: document._meta.path,
+      slug: document._meta.path.replace(/^(microblog|posts)\//, ""),
     };
   },
 });
 
 export default defineConfig({
-  collections: [posts],
+  collections: [content],
 });

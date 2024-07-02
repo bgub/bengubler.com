@@ -1,4 +1,5 @@
 import { MDXContent } from "@content-collections/mdx/react";
+import { allPosts } from "content-collections";
 import { notFound } from "next/navigation";
 
 import { Comments } from "@/components/Comments";
@@ -18,13 +19,8 @@ import { Link } from "next-view-transitions";
 
 import { PostTagButton } from "@/components/TagButton";
 import { baseUrl } from "@/lib/config";
-import { getContent } from "@/lib/get-content";
 import { cn, getTransitionStyle } from "@/lib/utils";
 import { ResolvingMetadata } from "next";
-
-const allPosts = getContent({
-  type: "post",
-});
 
 export async function generateMetadata(
   {
@@ -37,9 +33,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ) {
   // Find the post for the current page.
-  // We generate .slug in content-collections processing
-  console.log(allPosts);
-  const post = allPosts.find((post) => post.slug === slug);
+  const post = allPosts.find((post) => post._meta.path === slug);
 
   if (!post) notFound();
 
@@ -76,7 +70,9 @@ export async function generateMetadata(
 }
 
 export function generateStaticParams() {
-  return allPosts;
+  return allPosts.map((post) => ({
+    slug: post._meta.path,
+  }));
 }
 
 export default function Post({
@@ -84,7 +80,7 @@ export default function Post({
 }: {
   params: { slug: string };
 }) {
-  const post = allPosts.find((post) => post.slug === slug);
+  const post = allPosts.find((post) => post._meta.path === slug);
 
   if (!post) return notFound();
 
@@ -106,7 +102,12 @@ export default function Post({
       <article>
         <p className="text-muted-foreground mt-4 not-prose">
           Published{" "}
-          <span style={getTransitionStyle(post.url, "post-date-")}>
+          <span
+            style={getTransitionStyle(
+              `/posts/${post._meta.path}`,
+              "post-date-"
+            )}
+          >
             {post.date.toLocaleDateString()}
           </span>
           {post.lastUpdated && (
@@ -117,7 +118,12 @@ export default function Post({
           )}
         </p>
         <h1 className="mt-4">
-          <span style={getTransitionStyle(post.url, "post-title-")}>
+          <span
+            style={getTransitionStyle(
+              `/posts/${post._meta.path}`,
+              "post-title-"
+            )}
+          >
             {post.title}
           </span>
           {post.archived && (
@@ -125,7 +131,12 @@ export default function Post({
           )}
         </h1>
         <p className="text-lg text-muted-foreground">
-          <span style={getTransitionStyle(post.url, "post-description-")}>
+          <span
+            style={getTransitionStyle(
+              `/posts/${post._meta.path}`,
+              "post-description-"
+            )}
+          >
             {post.description}
           </span>
         </p>

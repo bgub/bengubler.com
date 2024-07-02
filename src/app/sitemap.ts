@@ -1,11 +1,11 @@
 import { baseUrl } from "@/lib/config";
-import { getPosts } from "@/lib/get-posts";
+import { getContent } from "@/lib/get-content";
 
 export default function sitemap() {
-  const allPosts = getPosts({ localOnly: true });
+  const allContent = getContent();
 
-  const postLinks = allPosts.map((post) => ({
-    url: `${baseUrl}${post.url}`,
+  const contentLinks = allContent.map((post) => ({
+    url: `${baseUrl}/${post.url}`,
     lastModified: post.date,
   }));
 
@@ -24,5 +24,5 @@ export default function sitemap() {
     lastModified: new Date(), // current time
   }));
 
-  return [...pageLinks, ...postLinks];
+  return [...pageLinks, ...contentLinks];
 }
