@@ -40,12 +40,11 @@ export const metadata: Metadata = {
     siteId: "1249828411041701888",
   },
   icons: {
-    shortcut: "https://maxleiter.com/favicons/favicon.ico",
+    shortcut: "https://bengubler.com/icon.png",
   },
   alternates: {
     types: {
-      // TODO
-      // "application/rss+xml": "https://maxleiter.com/feed.xml",
+      "application/rss+xml": "https://bengubler.com/rss.xml",
     },
   },
 };

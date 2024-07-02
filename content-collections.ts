@@ -71,7 +71,9 @@ const content = defineCollection({
       ...document,
       mdx,
       toc: JSON.stringify(tocRoot),
-      type: document._meta.path.startsWith("microblog/") ? "microblog" : "post",
+      type: document._meta.path.startsWith("microblog/")
+        ? "microblog"
+        : "posts",
       url: document._meta.path,
       slug: document._meta.path.replace(/^(microblog|posts)\//, ""),
     };

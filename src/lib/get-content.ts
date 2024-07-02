@@ -1,14 +1,14 @@
 import { allContents } from "content-collections";
 
-type Post = (typeof allContents)[number];
+export type Content = (typeof allContents)[number];
 
 export function getContent({
-  type = "post",
+  type = "posts",
   tags = [],
 }: {
-  type?: "post" | "microblog";
+  type?: "posts" | "microblog";
   tags?: string[];
-} = {}): Post[] {
+} = {}): Content[] {
   return allContents
     .filter((post) => post.type === type)
     .filter(
@@ -21,12 +21,12 @@ export type ContentOverview = (typeof externalPosts)[number];
 
 export function getContentOverviews({
   tags = [],
-  type = "post",
+  type = "posts",
   limit = false,
   localOnly = false,
 }: {
   tags?: string[];
-  type?: "post" | "microblog";
+  type?: "posts" | "microblog";
   limit?: false | number;
   localOnly?: boolean;
 } = {}): ContentOverview[] {
@@ -49,11 +49,14 @@ export type Tag = {
 };
 
 export function getTags({
-  type = "post",
+  type = "posts",
 }: {
-  type?: "post" | "microblog";
+  type?: "posts" | "microblog";
 }): Tag[] {
-  const posts = getContentOverviews({ type });
+  const posts = getContentOverviews({
+    type,
+    localOnly: type === "microblog" ? true : false,
+  });
 
   return posts.reduce((acc, post) => {
     post.tags.forEach((tag) => {

@@ -23,7 +23,7 @@ import { cn, getTransitionStyle } from "@/lib/utils";
 import { ResolvingMetadata } from "next";
 
 const allPosts = getContent({
-  type: "post",
+  type: "posts",
 });
 
 export async function generateMetadata(
@@ -105,7 +105,7 @@ export default function Post({
       <article>
         <p className="text-muted-foreground mt-4 not-prose">
           Published{" "}
-          <span style={getTransitionStyle(post.url, "post-date-")}>
+          <span style={getTransitionStyle(post.url, "date-")}>
             {post.date.toLocaleDateString()}
           </span>
           {post.lastUpdated && (
@@ -116,7 +116,7 @@ export default function Post({
           )}
         </p>
         <h1 className="mt-4">
-          <span style={getTransitionStyle(post.url, "post-title-")}>
+          <span style={getTransitionStyle(post.url, "title-")}>
             {post.title}
           </span>
           {post.archived && (
@@ -124,7 +124,7 @@ export default function Post({
           )}
         </h1>
         <p className="text-lg text-muted-foreground">
-          <span style={getTransitionStyle(post.url, "post-description-")}>
+          <span style={getTransitionStyle(post.url, "description-")}>
             {post.description}
           </span>
         </p>

@@ -1,21 +1,27 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { buttonVariants } from "./ui/button";
 
-import { cn, createQueryString } from "@/lib/utils";
+import { cn, modifySearchParams } from "@/lib/utils";
 import Link from "next/link";
 
 export function TagButton({ name, count }: { name: string; count: number }) {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   const isActive = searchParams.get("tag") === name;
 
-  const newQuery = isActive ? "" : createQueryString("tag", name);
+  let newQuery = new URLSearchParams(searchParams);
+  if (isActive) {
+    newQuery.delete("tag");
+  } else {
+    newQuery.set("tag", name);
+  }
 
   return (
     <Link
-      href={`/posts?${newQuery}`}
+      href={`${pathname}?${newQuery.toString()}`}
       className={cn(
         buttonVariants({
           variant: isActive ? "default" : "secondary",
@@ -30,9 +36,13 @@ export function TagButton({ name, count }: { name: string; count: number }) {
 }
 
 export function PostTagButton({ name }: { name: string }) {
+  const blankParams = new URLSearchParams();
+
   return (
     <Link
-      href={`/posts?${createQueryString("tag", name)}`}
+      href={`/posts?${modifySearchParams(blankParams, {
+        tag: name,
+      })}`}
       className={cn(
         buttonVariants({ variant: "secondary", size: "sm" }),
         "border-2 h-7 no-underline"

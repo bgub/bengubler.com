@@ -102,13 +102,13 @@ export function PostCard({ post, i }: { post: ContentOverview; i: number }) {
           )}
         >
           <p className="text-sm @[250px]:text-lg @[320px]:text-xl @[400px]:text-2xl font-semibold max-h-full">
-            <span style={getTransitionStyle(post.url, "post-title-")}>
+            <span style={getTransitionStyle(post.url, "title-")}>
               {post.title}
             </span>
             {!post.url.startsWith("posts/") && " ↗"}
           </p>
           <p className="text-sm @[300px]:text-lg @[340px]:text-xl @[400px]:text-2xl text-muted-foreground">
-            <span style={getTransitionStyle(post.url, "post-date-")}>
+            <span style={getTransitionStyle(post.url, "date-")}>
               {post.date.toLocaleDateString()}
             </span>
           </p>
@@ -116,7 +116,7 @@ export function PostCard({ post, i }: { post: ContentOverview; i: number }) {
       }
       content={
         <p className="text-primary">
-          <span style={getTransitionStyle(post.url, "post-description-")}>
+          <span style={getTransitionStyle(post.url, "description-")}>
             {post.description}
           </span>
         </p>

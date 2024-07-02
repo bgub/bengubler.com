@@ -1,7 +1,23 @@
-import { getContent } from "@/lib/get-content";
-
-import { CardGrid, PostCard } from "@/components/CardGrid";
-import { TagButton } from "@/components/TagButton";
+import { CardTag, TagButton } from "@/components/TagButton";
+import { mdxComponents } from "@/components/mdx/mdx-components";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import type { Content } from "@/lib/get-content";
+import { getContent, getTags } from "@/lib/get-content";
+import {
+  buildSearchParams,
+  getTransitionStyle,
+  modifySearchParams,
+} from "@/lib/utils";
+import { MDXContent } from "@content-collections/mdx/react";
+import { Link } from "next-view-transitions";
+import { Fragment } from "react";
 
 export const metadata = {
   title: "Microblog",
@@ -9,47 +25,37 @@ export const metadata = {
     "Short-form thoughts about programming, language learning, and more.",
 };
 
-type Tag = {
-  tag: string;
-  count: number;
-};
-
 export default function Posts({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const activeTags = searchParams.tag
-    ? typeof searchParams.tag === "string"
-      ? [searchParams.tag]
-      : searchParams.tag
-    : [];
+  const params = buildSearchParams(searchParams);
 
-  const allPosts = getContent({ type: "microblog" });
+  const tagsParam = params.getAll("tag");
+  const pageParam = params.get("page");
 
-  // TODO simplify
-  const tags: Tag[] = allPosts.reduce((acc, post) => {
-    post.tags.forEach((tag) => {
-      const existingTag = acc.find((t) => t.tag === tag);
+  const pageNumber =
+    pageParam && typeof pageParam === "string" ? parseInt(pageParam) : 1;
+  const itemsPerPage = 5;
 
-      if (existingTag) {
-        existingTag.count++;
-      } else {
-        acc.push({ tag, count: 1 });
-      }
-    });
+  const posts = getContent({ type: "microblog", tags: tagsParam });
+  const tags = getTags({ type: "microblog" });
 
-    return acc;
-  }, [] as Tag[]);
-
-  const posts = allPosts.filter((post) => {
-    if (activeTags.length === 0) return true;
-
-    return activeTags.some((tag) => post.tags.includes(tag));
-  });
-
-  const archivedPosts = posts.filter((post) => post.archived);
   const nonArchivedPosts = posts.filter((post) => !post.archived);
+
+  const totalPages = Math.ceil(nonArchivedPosts.length / itemsPerPage);
+  const startIndex = (pageNumber - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentPagePosts = nonArchivedPosts.slice(startIndex, endIndex);
+
+  const pageNumbersToShow = Array.from(
+    { length: totalPages },
+    (_, i) => i + 1
+  ).filter(
+    (page) =>
+      page === 1 || page === totalPages || Math.abs(page - pageNumber) <= 1
+  );
 
   return (
     <>
@@ -61,22 +67,99 @@ export default function Posts({
         ))}
       </div>
 
-      <CardGrid>
-        {nonArchivedPosts.map((post, i) => (
-          <PostCard key={post.url} post={post} i={i} />
-        ))}
-      </CardGrid>
+      {currentPagePosts.map((post) => (
+        <PostPreview key={post.url} post={post} />
+      ))}
+      <hr className="my-10" />
 
-      {archivedPosts.length > 0 && (
-        <>
-          <h2>Archived Posts</h2>
-          <CardGrid>
-            {archivedPosts.map((post, i) => (
-              <PostCard key={post.url} post={post} i={i} />
-            ))}
-          </CardGrid>
-        </>
-      )}
+      <Pagination className="not-prose">
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              href={
+                pageNumber > 1
+                  ? `?${modifySearchParams(params, {
+                      page: (pageNumber - 1).toString(),
+                    })}`
+                  : "#"
+              }
+              className={
+                pageNumber <= 1 ? "pointer-events-none opacity-50" : ""
+              }
+              aria-disabled={pageNumber <= 1}
+            />
+          </PaginationItem>
+          {pageNumbersToShow.map((page, i) => (
+            <Fragment key={page}>
+              {i > 0 && page - pageNumbersToShow[i - 1] > 1 && (
+                <PaginationItem>
+                  <PaginationLink
+                    href="#"
+                    className="pointer-events-none"
+                    aria-disabled={true}
+                  >
+                    ...
+                  </PaginationLink>
+                </PaginationItem>
+              )}
+              <PaginationItem>
+                <PaginationLink
+                  href={`?${modifySearchParams(params, {
+                    page: page.toString(),
+                  })}`}
+                  isActive={page === pageNumber}
+                >
+                  {page}
+                </PaginationLink>
+              </PaginationItem>
+            </Fragment>
+          ))}
+          <PaginationItem>
+            <PaginationNext
+              href={
+                pageNumber < totalPages
+                  ? `?${modifySearchParams(params, {
+                      page: (pageNumber + 1).toString(),
+                    })}`
+                  : "#"
+              }
+              className={
+                pageNumber >= totalPages ? "pointer-events-none opacity-50" : ""
+              }
+              aria-disabled={pageNumber >= totalPages}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </>
+  );
+}
+
+function PostPreview({ post }: { post: Content }) {
+  return (
+    <>
+      <hr className="mb-4" />
+
+      <p className="text-sm text-muted-foreground">
+        <span style={getTransitionStyle(post.url, "date-")}>
+          {post.date.toLocaleDateString()}
+        </span>
+      </p>
+
+      <Link href={post.url}>
+        <p className="text-xl font-semibold mt-2 mb-2">
+          <span style={getTransitionStyle(post.url, "title-")}>
+            {post.title}
+          </span>
+        </p>
+      </Link>
+
+      <div className="align-bottom flex flex-row flex-wrap gap-2">
+        {post.tags.map((tag) => (
+          <CardTag key={tag} name={tag} />
+        ))}
+      </div>
+      <MDXContent code={post.mdx} components={mdxComponents} />
     </>
   );
 }

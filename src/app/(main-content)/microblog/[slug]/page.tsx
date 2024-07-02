@@ -1,3 +1,10 @@
+// This page is identical to /posts/[slug]/page.tsx except for the following changes:
+// - Getting posts from 'microblog' instead of 'posts'
+// - Metadata stuff
+// - The breadcrumb link
+// - No TOC
+// - No animation for description
+
 import { MDXContent } from "@content-collections/mdx/react";
 import { notFound } from "next/navigation";
 
@@ -22,7 +29,9 @@ import { getContent } from "@/lib/get-content";
 import { cn, getTransitionStyle } from "@/lib/utils";
 import { ResolvingMetadata } from "next";
 
-const allMicroblogs = getContent({ type: "microblog" });
+const allPosts = getContent({
+  type: "microblog",
+});
 
 export async function generateMetadata(
   {
@@ -35,7 +44,8 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ) {
   // Find the post for the current page.
-  const post = allMicroblogs.find((post) => post.slug === slug);
+  // (["slug"] is generated in the content-collections processing)
+  const post = allPosts.find((post) => post.slug === slug);
 
   if (!post) notFound();
 
@@ -46,7 +56,7 @@ export async function generateMetadata(
 
   return {
     title: title,
-    description: description || "Post by Ben Gubler",
+    description: description || "Microblog by Ben Gubler",
     openGraph: {
       ...previousOG,
       title: title,
@@ -72,7 +82,7 @@ export async function generateMetadata(
 }
 
 export function generateStaticParams() {
-  return allMicroblogs;
+  return allPosts;
 }
 
 export default function Post({
@@ -80,7 +90,7 @@ export default function Post({
 }: {
   params: { slug: string };
 }) {
-  const post = allMicroblogs.find((post) => post._meta.path === slug);
+  const post = allPosts.find((post) => post.slug === slug);
 
   if (!post) return notFound();
 
@@ -90,7 +100,7 @@ export default function Post({
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="/posts">Posts</Link>
+              <Link href="/microblog">Microblog</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
@@ -102,12 +112,7 @@ export default function Post({
       <article>
         <p className="text-muted-foreground mt-4 not-prose">
           Published{" "}
-          <span
-            style={getTransitionStyle(
-              `/posts/${post._meta.path}`,
-              "post-date-"
-            )}
-          >
+          <span style={getTransitionStyle(post.url, "date-")}>
             {post.date.toLocaleDateString()}
           </span>
           {post.lastUpdated && (
@@ -118,28 +123,14 @@ export default function Post({
           )}
         </p>
         <h1 className="mt-4">
-          <span
-            style={getTransitionStyle(
-              `/posts/${post._meta.path}`,
-              "post-title-"
-            )}
-          >
+          <span style={getTransitionStyle(post.url, "title-")}>
             {post.title}
           </span>
           {post.archived && (
             <span className="text-muted-foreground"> (archived)</span>
           )}
         </h1>
-        <p className="text-lg text-muted-foreground">
-          <span
-            style={getTransitionStyle(
-              `/posts/${post._meta.path}`,
-              "post-description-"
-            )}
-          >
-            {post.description}
-          </span>
-        </p>
+        <p className="text-lg text-muted-foreground">{post.description}</p>
         {post.tags.length > 0 && (
           <div className="flex flex-row flex-wrap mt-4 gap-2">
             {post.tags.map((tag) => (
@@ -163,13 +154,6 @@ export default function Post({
             />
             <Comments />
           </div>
-
-          {/* Table of contents, only shown on xl+ screens */}
-          <aside className="hidden xl:flex flex-col min-w-64 max-h-screen sticky top-0 p-4 not-prose">
-            <div className="w-full border-l">
-              <TOC tree={JSON.parse(post.toc)} />
-            </div>
-          </aside>
         </div>
       </article>
     </div>

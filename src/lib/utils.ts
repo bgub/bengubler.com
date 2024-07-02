@@ -15,9 +15,37 @@ export function getTransitionStyle(slug: string, prefix: string = "") {
   };
 }
 
-export function createQueryString(name: string, value: string) {
+export type RouterSearchParams = {
+  [key: string]: string | string[] | undefined;
+};
+
+export function buildSearchParams(searchParams: RouterSearchParams) {
   const params = new URLSearchParams();
-  params.set(name, value);
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (value) {
+      if (Array.isArray(value)) {
+        value.forEach((v) => params.append(key, v));
+      } else {
+        params.set(key, value);
+      }
+    }
+  });
+
+  return params;
+}
+
+export function modifySearchParams(
+  searchParams: URLSearchParams,
+  newParams: { [key: string]: string | string[] }
+) {
+  const params = new URLSearchParams(searchParams.toString());
+  Object.entries(newParams).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach((v) => params.append(key, v));
+    } else {
+      params.set(key, value);
+    }
+  });
 
   return params.toString();
 }

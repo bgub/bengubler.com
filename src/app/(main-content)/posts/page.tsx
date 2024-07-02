@@ -2,6 +2,7 @@ import { getContentOverviews, getTags } from "@/lib/get-content";
 
 import { CardGrid, PostCard } from "@/components/CardGrid";
 import { TagButton } from "@/components/TagButton";
+import { buildSearchParams } from "@/lib/utils";
 
 export const metadata = {
   title: "Posts",
@@ -14,11 +15,9 @@ export default function Posts({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const activeTags = searchParams.tag
-    ? typeof searchParams.tag === "string"
-      ? [searchParams.tag]
-      : searchParams.tag
-    : [];
+  const params = buildSearchParams(searchParams);
+
+  const activeTags = params.getAll("tag");
 
   const posts = getContentOverviews({
     tags: activeTags,
