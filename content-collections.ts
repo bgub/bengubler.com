@@ -22,6 +22,7 @@ let tags: [string, ...string[]] = [
   "language-learning",
   "python",
   "writing",
+  "random",
   "typescript",
   "nextjs",
   "tailwind",
