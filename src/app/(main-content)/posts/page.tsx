@@ -13,7 +13,7 @@ export const metadata = {
     "Some of my thoughts on programming, language learning, and more.",
 };
 
-export default function Posts({
+export default async function Posts({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -22,11 +22,11 @@ export default function Posts({
 
   const activeTags = params.getAll("tag");
 
-  const posts = getContentOverviews({
+  const posts = await getContentOverviews({
     tags: activeTags,
   });
 
-  const tags = getTags({});
+  const tags = await getTags({});
 
   const archivedPosts = posts.filter((post) => post.archived);
   const nonArchivedPosts = posts.filter((post) => !post.archived);

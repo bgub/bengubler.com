@@ -29,10 +29,6 @@ import { getContent } from "@/lib/get-content";
 import { cn, getTransitionStyle } from "@/lib/utils";
 import { ResolvingMetadata } from "next";
 
-const allPosts = getContent({
-  type: "microblog",
-});
-
 export async function generateMetadata(
   {
     params: { slug },
@@ -43,6 +39,10 @@ export async function generateMetadata(
   },
   parent: ResolvingMetadata
 ) {
+  const allPosts = await getContent({
+    type: "microblog",
+  });
+
   // Find the post for the current page.
   // (["slug"] is generated in the content-collections processing)
   const post = allPosts.find((post) => post.slug === slug);
@@ -81,15 +81,21 @@ export async function generateMetadata(
   };
 }
 
-export function generateStaticParams() {
-  return allPosts;
+export async function generateStaticParams() {
+  return await getContent({
+    type: "microblog",
+  });
 }
 
-export default function Post({
+export default async function Post({
   params: { slug },
 }: {
   params: { slug: string };
 }) {
+  const allPosts = await getContent({
+    type: "microblog",
+  });
+
   const post = allPosts.find((post) => post.slug === slug);
 
   if (!post) return notFound();

@@ -2,8 +2,8 @@ import { CardGrid, PostCard } from "@/components/CardGrid";
 import { StyledLink } from "@/components/StyledLink";
 import { getContentOverviews } from "@/lib/get-content";
 
-export default function Home() {
-  const allPosts = getContentOverviews({
+export default async function Home() {
+  const allPosts = await getContentOverviews({
     limit: 5,
     localOnly: true,
   });

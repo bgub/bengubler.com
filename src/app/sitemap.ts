@@ -1,8 +1,8 @@
 import { baseUrl } from "@/lib/config";
 import { getContent } from "@/lib/get-content";
 
-export default function sitemap() {
-  const allContent = getContent(); // local-only
+export default async function sitemap() {
+  const allContent = await getContent(); // local-only
 
   const contentLinks = allContent.map((post) => ({
     url: `${baseUrl}/${post.url}`,

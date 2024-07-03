@@ -22,10 +22,6 @@ import { getContent } from "@/lib/get-content";
 import { cn, getTransitionStyle } from "@/lib/utils";
 import { ResolvingMetadata } from "next";
 
-const allPosts = getContent({
-  type: "posts",
-});
-
 export async function generateMetadata(
   {
     params: { slug },
@@ -36,6 +32,10 @@ export async function generateMetadata(
   },
   parent: ResolvingMetadata
 ) {
+  const allPosts = await getContent({
+    type: "posts",
+  });
+
   // Find the post for the current page.
   // (["slug"] is generated in the content-collections processing)
   const post = allPosts.find((post) => post.slug === slug);
@@ -74,15 +74,21 @@ export async function generateMetadata(
   };
 }
 
-export function generateStaticParams() {
-  return allPosts;
+export async function generateStaticParams() {
+  return await getContent({
+    type: "posts",
+  });
 }
 
-export default function Post({
+export default async function Post({
   params: { slug },
 }: {
   params: { slug: string };
 }) {
+  const allPosts = await getContent({
+    type: "posts",
+  });
+
   const post = allPosts.find((post) => post.slug === slug);
 
   if (!post) return notFound();

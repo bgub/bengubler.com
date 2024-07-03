@@ -6,7 +6,7 @@ import { getContent } from "@/lib/get-content";
 import { MDXContent } from "@content-collections/mdx/react";
 import { NextRequest, NextResponse } from "next/server";
 
-const createFeed = (
+const createFeed = async (
   renderToString: Function,
   {
     type,
@@ -29,12 +29,12 @@ const createFeed = (
     },
   });
 
-  const posts = getContent({
+  const posts = await getContent({
     type: "posts",
     tags,
   });
 
-  const microblog = getContent({
+  const microblog = await getContent({
     type: "microblog",
     tags,
   });
@@ -73,7 +73,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   const type = searchParams.get("type");
   const tags = searchParams.getAll("tag");
 
-  const feed = createFeed(ReactDOMServer.renderToString, { type, tags });
+  const feed = await createFeed(ReactDOMServer.renderToString, { type, tags });
 
   // insert XML stylesheet string
 

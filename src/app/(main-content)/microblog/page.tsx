@@ -28,7 +28,7 @@ export const metadata = {
     "Short-form thoughts about programming, language learning, and more.",
 };
 
-export default function Posts({
+export default async function Posts({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -42,8 +42,8 @@ export default function Posts({
     pageParam && typeof pageParam === "string" ? parseInt(pageParam) : 1;
   const itemsPerPage = 5;
 
-  const posts = getContent({ type: "microblog", tags: tagsParam });
-  const tags = getTags({ type: "microblog" });
+  const posts = await getContent({ type: "microblog", tags: tagsParam });
+  const tags = await getTags({ type: "microblog" });
 
   const nonArchivedPosts = posts.filter((post) => !post.archived);
 

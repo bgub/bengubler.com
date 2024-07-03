@@ -1,14 +1,15 @@
 import { allContents } from "content-collections";
+import { cache } from "react";
 
 export type Content = (typeof allContents)[number];
 
-export function getContent({
+async function _getContent({
   type = "posts",
   tags = [],
 }: {
   type?: "posts" | "microblog";
   tags?: string[];
-} = {}): Content[] {
+} = {}): Promise<Content[]> {
   return allContents
     .filter((post) => post.type === type)
     .filter(
@@ -17,9 +18,11 @@ export function getContent({
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 }
 
+export const getContent = cache(_getContent);
+
 export type ContentOverview = (typeof externalPosts)[number];
 
-export function getContentOverviews({
+async function _getContentOverviews({
   tags = [],
   type = "posts",
   limit = false,
@@ -29,8 +32,8 @@ export function getContentOverviews({
   type?: "posts" | "microblog";
   limit?: false | number;
   localOnly?: boolean;
-} = {}): ContentOverview[] {
-  const localPosts = getContent({ tags, type });
+} = {}): Promise<ContentOverview[]> {
+  const localPosts = await getContent({ tags, type });
 
   const allPosts = (
     localOnly ? localPosts : [...localPosts, ...externalPosts]
@@ -43,17 +46,19 @@ export function getContentOverviews({
   return allPosts;
 }
 
+export const getContentOverviews = cache(_getContentOverviews);
+
 export type Tag = {
   tag: string;
   count: number;
 };
 
-export function getTags({
+async function _getTags({
   type = "posts",
 }: {
   type?: "posts" | "microblog";
-}): Tag[] {
-  const posts = getContentOverviews({
+}): Promise<Tag[]> {
+  const posts = await getContentOverviews({
     type,
     localOnly: type === "microblog" ? true : false,
   });
@@ -72,6 +77,8 @@ export function getTags({
     return acc;
   }, [] as Tag[]);
 }
+
+export const getTags = cache(_getTags);
 
 const externalPosts = [
   {
