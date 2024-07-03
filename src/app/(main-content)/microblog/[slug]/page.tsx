@@ -139,14 +139,9 @@ export default function Post({
           </div>
         )}
         <div className="flex flex-row min-w-0 pt-4">
-          <div className="min-w-0">
+          <div className="min-w-0 w-full">
             <div className={cn("min-w-0 max-w-none pt-4 pr-4 *:first:mt-0")}>
               <MDXContent code={post.mdx} components={mdxComponents} />
-              <p className="italic">
-                If you liked this article, don&apos;t forget to share it and
-                follow me at <a href="https://x.com/nebrelbug">@nebrelbug</a> on
-                X!
-              </p>
             </div>
             <Social
               title={post.title + "\n--\n" + post.description}
@@ -154,6 +149,13 @@ export default function Post({
             />
             <Comments />
           </div>
+
+          {/* Table of contents, only shown on xl+ screens */}
+          <aside className="hidden xl:flex flex-col min-w-64 max-h-screen sticky top-0 p-4 not-prose">
+            <div className="w-full border-l">
+              <TOC tree={JSON.parse(post.toc)} />
+            </div>
+          </aside>
         </div>
       </article>
     </div>

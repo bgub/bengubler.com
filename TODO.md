@@ -1,4 +1,4 @@
-- Add tags to RSS feed
+- Add archived page to microblog
 - Add information about subscribing w/ RSS feed
 - Update OG images
 - Write some cool posts!

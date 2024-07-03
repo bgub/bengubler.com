@@ -136,7 +136,7 @@ export default function Post({
           </div>
         )}
         <div className="flex flex-row min-w-0 pt-4">
-          <div className="min-w-0">
+          <div className="min-w-0 w-full">
             <div className={cn("min-w-0 max-w-none pt-4 pr-4 *:first:mt-0")}>
               <MDXContent code={post.mdx} components={mdxComponents} />
               <p className="italic">

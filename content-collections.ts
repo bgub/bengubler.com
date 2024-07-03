@@ -20,6 +20,7 @@ import { TOCNode, tocPlugin } from "@/components/mdx/remark-toc";
 let tags: [string, ...string[]] = [
   "ml/ai",
   "language-learning",
+  "writing",
   "typescript",
   "nextjs",
   "tailwind",
