@@ -62,7 +62,6 @@ export function Social({ title, className }: SocialProps) {
   const currentUrl = `https://bengubler.com${pathname}`;
   const encodedTitle = encodeURIComponent(title);
   const encodedUrl = encodeURIComponent(currentUrl);
-  const isMobileOnly = className?.includes("mobile-only");
 
   const shares = [
     {
@@ -95,27 +94,6 @@ export function Social({ title, className }: SocialProps) {
       textColor: "text-white",
     },
   ];
-
-  if (isMobileOnly) {
-    // Mobile-only version: just icons, no title
-    return (
-      <div className="flex gap-3 justify-center">
-        {shares.map((share) => (
-          <a
-            key={share.name}
-            href={share.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-md ${share.bgColor} ${share.textColor}`}
-            title={`Share on ${share.name}`}
-            aria-label={`Share on ${share.name}`}
-          >
-            <share.icon className="h-4 w-4" />
-          </a>
-        ))}
-      </div>
-    );
-  }
 
   return (
     <div className={cn("space-y-4", className)}>
