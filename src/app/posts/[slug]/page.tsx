@@ -1,4 +1,5 @@
 import { Comments } from "@/components/comments";
+import { FloatingELI5 } from "@/components/floating-eli5";
 import { mdxComponents } from "@/components/mdx-components";
 import { TOCNode } from "@/components/mdx/remark-toc";
 import { RawMarkdown } from "@/components/raw-markdown";
@@ -236,6 +237,9 @@ export default async function PostPage({
           </div>
         </aside>
       </div>
+
+      {/* Floating ELI5 Button */}
+      <FloatingELI5 content={post.content} title={post.title} />
     </div>
   );
 }
