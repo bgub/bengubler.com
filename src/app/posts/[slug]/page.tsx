@@ -1,6 +1,7 @@
 import { Comments } from "@/components/comments";
 import { mdxComponents } from "@/components/mdx-components";
 import { TOCNode } from "@/components/mdx/remark-toc";
+import { RawMarkdown } from "@/components/raw-markdown";
 import { Social } from "@/components/social";
 import { Badge } from "@/components/ui/badge";
 import { Typography } from "@/components/ui/typography";
@@ -186,15 +187,15 @@ export default async function PostPage({
         </div>
       </header>
 
-      {/* Mobile TOC and Social - Show before content on mobile */}
+      {/* Mobile TOC and Raw Markdown - Show before content on mobile */}
       <div className="lg:hidden space-y-4">
         {hasTOC && (
           <div className="bg-card border rounded-lg p-4">
             <ClientTOC tree={toc} />
           </div>
         )}
-        <div className="flex justify-center py-4">
-          <Social title={post.title} className="mobile-only" />
+        <div className="bg-card border rounded-lg p-4">
+          <RawMarkdown slug={post.slug} content={post.content} />
         </div>
       </div>
 
@@ -205,13 +206,20 @@ export default async function PostPage({
             <MDXContent code={post.mdx} components={mdxComponents} />
           </Typography>
 
+          {/* Mobile Social - Show after content on mobile */}
+          <div className="lg:hidden mt-8">
+            <div className="bg-card border rounded-lg p-4">
+              <Social title={post.title} />
+            </div>
+          </div>
+
           {/* Comments */}
           <div className="mt-12 pt-8 border-t">
             <Comments />
           </div>
         </main>
 
-        {/* Desktop TOC and Social - Show on desktop only */}
+        {/* Desktop TOC, Social, and Raw Markdown - Show on desktop only */}
         <aside className="hidden lg:block">
           <div className="sticky top-24 space-y-6">
             {hasTOC && (
@@ -221,6 +229,9 @@ export default async function PostPage({
             )}
             <div className="bg-card border rounded-lg p-4">
               <Social title={post.title} />
+            </div>
+            <div className="bg-card border rounded-lg p-4">
+              <RawMarkdown slug={post.slug} content={post.content} />
             </div>
           </div>
         </aside>
