@@ -97,6 +97,7 @@ export default async function PostPage({
 
   const colors = getPostColors(post.slug);
   const toc: TOCNode = JSON.parse(post.toc);
+  const hasTOC = toc.children.length > 0;
 
   // Format date to match post cards
   const formattedDate = post.date.toLocaleDateString("en-US", {
@@ -187,9 +188,11 @@ export default async function PostPage({
 
       {/* Mobile TOC and Social - Show before content on mobile */}
       <div className="lg:hidden space-y-4">
-        <div className="bg-card border rounded-lg p-4">
-          <ClientTOC tree={toc} />
-        </div>
+        {hasTOC && (
+          <div className="bg-card border rounded-lg p-4">
+            <ClientTOC tree={toc} />
+          </div>
+        )}
         <div className="flex justify-center py-4">
           <Social title={post.title} className="mobile-only" />
         </div>
@@ -211,9 +214,11 @@ export default async function PostPage({
         {/* Desktop TOC and Social - Show on desktop only */}
         <aside className="hidden lg:block">
           <div className="sticky top-24 space-y-6">
-            <div className="bg-card border rounded-lg p-4">
-              <ClientTOC tree={toc} />
-            </div>
+            {hasTOC && (
+              <div className="bg-card border rounded-lg p-4">
+                <ClientTOC tree={toc} />
+              </div>
+            )}
             <div className="bg-card border rounded-lg p-4">
               <Social title={post.title} />
             </div>

@@ -36,11 +36,7 @@ export function ClientTOC({ tree }: ClientTOCProps) {
   }, []);
 
   if (!tree.children.length) {
-    return (
-      <div className="text-sm text-muted-foreground">
-        No table of contents available
-      </div>
-    );
+    return null;
   }
 
   return (
