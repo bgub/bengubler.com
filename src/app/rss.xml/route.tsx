@@ -1,9 +1,10 @@
+import { getBaseUrl } from "@/lib/utils";
 import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
 import { Feed } from "feed";
 import { NextRequest, NextResponse } from "next/server";
 
-const baseUrl = "https://bengubler.com";
+const baseUrl = getBaseUrl();
 
 const createFeed = async (renderToString: Function) => {
   const feed = new Feed({

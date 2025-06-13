@@ -59,9 +59,7 @@ const HackerNewsIcon = ({ className }: { className?: string }) => (
 
 export function Social({ title, className }: SocialProps) {
   const pathname = usePathname();
-  const currentUrl = `${
-    process.env.NEXT_PUBLIC_SITE_URL || "https://bengubler.com"
-  }${pathname}`;
+  const currentUrl = `https://bengubler.com${pathname}`;
   const encodedTitle = encodeURIComponent(title);
   const encodedUrl = encodeURIComponent(currentUrl);
   const isMobileOnly = className?.includes("mobile-only");

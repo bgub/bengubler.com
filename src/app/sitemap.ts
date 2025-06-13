@@ -1,6 +1,7 @@
+import { getBaseUrl } from "@/lib/utils";
 import { allPosts } from "content-collections";
 
-const baseUrl = "https://bengubler.com";
+const baseUrl = getBaseUrl();
 
 export default async function sitemap() {
   // Content links from non-archived posts only
@@ -17,10 +18,13 @@ export default async function sitemap() {
   const pageLinks = [
     "",
     "/about",
+    "/about/my-stack",
     "/contact",
     "/projects",
     "/posts",
     "/language-learning",
+    "/language-learning/czech-declensions",
+    "/language-learning/russian-declensions",
   ].map((url) => ({
     url: `${baseUrl}${url}`,
     lastModified: new Date(),
