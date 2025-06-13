@@ -1,15 +1,50 @@
-pre:has(code[data-theme*=" "]),
-code[data-theme*=" "],
-code[data-theme*=" "] span {
+pre:has(code[data-theme]),
+code[data-theme],
+code[data-theme] span {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg);
 }
 
 .dark {
-  pre:has(code[data-theme*=" "]),
-  code[data-theme*=" "],
-  code[data-theme*=" "] span {
+  pre:has(code[data-theme]),
+  code[data-theme],
+  code[data-theme] span {
     color: var(--shiki-dark);
     background-color: var(--shiki-dark-bg);
   }
+}
+
+/* Fix header margins and ensure proper code styling in headers */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-left: 0 !important;
+}
+
+/* Remove gap from header flex containers to prevent left margin */
+.prose h1 > span,
+.prose h2 > span,
+.prose h3 > span,
+.prose h4 > span,
+.prose h5 > span,
+.prose h6 > span {
+  gap: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Ensure code in headers is properly sized and can wrap */
+.prose h1 code,
+.prose h2 code,
+.prose h3 code,
+.prose h4 code,
+.prose h5 code,
+.prose h6 code {
+  font-size: 0.9em;
+  padding: 0.1em 0.3em;
+  word-break: break-word;
+  white-space: normal;
+  hyphens: auto;
 }

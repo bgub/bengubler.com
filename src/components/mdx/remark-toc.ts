@@ -1,3 +1,4 @@
+import GithubSlugger from "github-slugger";
 import { Plugin, Transformer } from "unified";
 import { Node } from "unist";
 import { visit } from "unist-util-visit";
@@ -8,14 +9,13 @@ interface HeadingNode extends Node {
   children: { value: string }[];
 }
 
-export interface TOCNode extends Node {
+export interface TOCNode {
+  type?: string;
   depth?: number;
   title?: string;
   id?: string;
   children: TOCNode[];
 }
-
-import GithubSlugger from "github-slugger";
 
 // Helper function to extract text from a node and its children
 const extractText = (node: Node): string => {

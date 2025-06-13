@@ -1,86 +1,126 @@
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { baseUrl } from "@/lib/config";
+import { MobileNav } from "@/components/mobile-nav";
+import { Sidebar } from "@/components/sidebar";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { ViewTransitions } from "next-view-transitions";
-import { Inter } from "next/font/google";
-import Script from "next/script";
+import { Geist_Mono, Inter } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
+import type React from "react";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Ben Gubler",
     default: "Ben Gubler",
+    template: "%s - Ben Gubler",
   },
-  metadataBase: new URL(baseUrl),
   description:
-    "Ben Gubler is a computer scientist, open-source maintainer, and aspiring polyglot",
+    "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU. Thoughts on web development, AI, and building things that matter.",
+  keywords: [
+    "Ben Gubler",
+    "web developer",
+    "Vercel",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "AI",
+    "machine learning",
+    "BYU",
+  ],
+  authors: [{ name: "Ben Gubler", url: "https://bengubler.com" }],
+  creator: "Ben Gubler",
+  publisher: "Ben Gubler",
+  metadataBase: new URL("https://bengubler.com"),
   openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://bengubler.com",
     title: "Ben Gubler",
     description:
-      "Ben Gubler is a computer scientist, open-source maintainer, and aspiring polyglot",
-    url: baseUrl,
+      "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU.",
     siteName: "Ben Gubler",
-    locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: `${baseUrl}/api/og`,
-        width: 1200,
-        height: 630,
-        alt: "",
-      },
-    ],
   },
   twitter: {
-    title: "Ben Gubler",
     card: "summary_large_image",
+    title: "Ben Gubler",
+    description:
+      "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU.",
     creator: "@nebrelbug",
-    siteId: "1249828411041701888",
   },
-  icons: {
-    shortcut: "https://bengubler.com/icon.png",
-  },
-  alternates: {
-    types: {
-      "application/rss+xml": "https://bengubler.com/rss.xml",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
 
-export const viewport = {
-  // these are the HEX versions of the colors in @/globals.css
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fcfcfc" },
-    { media: "(prefers-color-scheme: dark)", color: "#020817" },
-  ],
-};
-
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
-        <body className={inter.className}>
+        <body className={`${inter.className} ${geistMono.variable}`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            {/* Outermost wrapper for max-width and centering */}
+            <div className="w-full max-w-screen-xl mx-auto bg-background">
+              <div className="flex min-h-screen">
+                {/* Desktop Sidebar */}
+                <Sidebar />
+
+                {/* Main Content Area */}
+                <div className="flex-1 md:ml-64 flex flex-col">
+                  {/* Mobile Header */}
+                  <header className="sticky top-0 z-40 md:hidden border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                    <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+                      <Link href="/" className="flex items-center space-x-3">
+                        <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-border/20">
+                          <Image
+                            src="/bengubler.jpg"
+                            alt="Ben Gubler"
+                            width={32}
+                            height={32}
+                            className="object-cover"
+                          />
+                        </div>
+                        <span className="text-lg font-semibold">
+                          Ben Gubler
+                        </span>
+                      </Link>
+                      <MobileNav />
+                    </div>
+                  </header>
+                  {/* Page Content Wrapper */}
+                  <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                    <div className="mb-16">{children}</div>
+                  </main>
+                </div>
+              </div>
+            </div>
           </ThemeProvider>
-          {process.env.NODE_ENV === "production" && (
-            <Script
-              async
-              src="https://umami.bengubler.com/script.js"
-              data-website-id="498eb52a-3a81-433c-9813-8d45f976cce7"
-            />
-          )}
+          <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </ViewTransitions>

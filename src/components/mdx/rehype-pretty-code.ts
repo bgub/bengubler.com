@@ -1,5 +1,3 @@
-import fs from "fs";
-import { getHighlighter } from "shiki";
 import { visit } from "unist-util-visit";
 
 export const rehypePreprocessPrettyCode = () => (tree: any) => {
@@ -15,20 +13,11 @@ export const rehypePreprocessPrettyCode = () => (tree: any) => {
 };
 
 export const rehypePrettyCodeOptions = {
-  getHighlighter: (options: any) =>
-    getHighlighter({
-      ...options,
-      langs: [
-        async () =>
-          JSON.parse(
-            fs.readFileSync("./src/lib/syntax_highlighting/eta.json", "utf-8")
-          ),
-      ],
-    }),
   theme: {
     dark: "github-dark-dimmed",
     light: "github-light",
   },
+  keepBackground: false,
 };
 
 export const rehypePostprocessPrettyCode = () => (tree: any) => {

@@ -1,28 +1,32 @@
-import { baseUrl } from "@/lib/config";
-import { getContent } from "@/lib/get-content";
+import { allPosts } from "content-collections";
+
+const baseUrl = "https://bengubler.com";
 
 export default async function sitemap() {
-  const allContent = await getContent(); // local-only
+  // Content links from non-archived posts only
+  const postLinks = allPosts
+    .filter((post) => !post.archived)
+    .map((post) => ({
+      url: `${baseUrl}/posts/${post.slug}`,
+      lastModified: post.lastUpdated || post.date,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
 
-  const contentLinks = allContent.map((post) => ({
-    url: `${baseUrl}/${post.url}`,
-    lastModified: post.date,
-  }));
-
+  // Static page links
   const pageLinks = [
     "",
     "/about",
     "/contact",
-    "/my-stack",
     "/projects",
     "/posts",
     "/language-learning",
-    "/language-learning/russian-case-cards",
-    "/language-learning/czech-case-cards",
   ].map((url) => ({
     url: `${baseUrl}${url}`,
-    lastModified: new Date(), // current time
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: url === "" ? 1.0 : 0.6,
   }));
 
-  return [...pageLinks, ...contentLinks];
+  return [...pageLinks, ...postLinks];
 }

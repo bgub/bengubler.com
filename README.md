@@ -2,30 +2,21 @@
 
 Welcome to my personal website!
 
-I built it using some fun tools like
+**Built with:**
 
-- Next.js
-- shadcn UI
-- Giscus
-- Tailwind
-- Content Collections
+- https://v0.dev (UI design)
+- Next.js 15 + React 19
+- Tailwind CSS v4
+- TypeScript
+- Content Collections + MDX
+- shadcn/ui + Radix UI
+- Turbopack dev builds
 
-etc.
+**Features:**
 
-I also added some neat features like
-
-- Automatic dark mode
-- Mobile-first design
-- Accessibility support
+- Dark mode
 - View transitions
-- CSS container queries
-
-Feel free to borrow + use my code, just credit me in a comment or something.
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-```
+- Giscus comments
+- RSS feeds
+- Reading time + auto TOC
+- Syntax highlighting (Shiki)
