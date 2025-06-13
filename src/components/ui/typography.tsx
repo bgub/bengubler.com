@@ -28,15 +28,8 @@ export function Typography({ children, className }: TypographyProps) {
         "[&_ol]:my-6 [&_ol]:ml-6 [&_ol]:list-decimal [&_ol_li]:mt-2",
         // Blockquotes
         "[&_blockquote]:mt-6 [&_blockquote]:border-l-2 [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-muted-foreground",
-        // Inline code - base ShadCN styling with better spacing
-        "[&_code]:relative [&_code]:rounded [&_code]:bg-muted [&_code]:px-[0.4rem] [&_code]:py-[0.3rem] [&_code]:font-mono [&_code]:font-semibold [&_code]:mx-1",
-        // Header-specific code sizing (match actual header text sizes)
-        "[&_h1_code]:text-4xl [&_h1_code]:lg:text-5xl [&_h1_code]:px-2 [&_h1_code]:py-1",
-        "[&_h2_code]:text-3xl [&_h2_code]:px-2 [&_h2_code]:py-1",
-        "[&_h3_code]:text-2xl [&_h3_code]:px-2 [&_h3_code]:py-1",
-        "[&_h4_code]:text-xl [&_h4_code]:px-1.5 [&_h4_code]:py-0.5",
-        "[&_h5_code]:text-lg [&_h5_code]:px-1.5 [&_h5_code]:py-0.5",
-        "[&_h6_code]:text-base [&_h6_code]:px-1 [&_h6_code]:py-0.5",
+        // Inline code - compact vertical padding
+        "[&_code]:relative [&_code]:rounded [&_code]:bg-muted [&_code]:px-[0.3rem] [&_code]:py-[0.1rem] [&_code]:font-mono [&_code]:font-semibold",
         // Code blocks with better spacing
         "[&_pre]:relative [&_pre]:mt-6 [&_pre]:mb-6 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:bg-muted [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:border",
         "[&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:font-normal [&_pre_code]:text-sm",
