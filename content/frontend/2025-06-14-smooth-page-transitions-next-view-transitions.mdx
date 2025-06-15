@@ -1,0 +1,250 @@
+---
+title: "Smooth Page Transitions in Next.js with next-view-transitions"
+description: "Add smooth page transitions to Next.js using the View Transitions API."
+date: "2025-06-14"
+tags: [nextjs, react, ui/ux]
+---
+
+## TL;DR
+
+The [`next-view-transitions`](https://github.com/shuding/next-view-transitions) package brings smooth page transitions to Next.js. We'll build a simple blog and add smooth element transitions using `viewTransitionName` properties to make titles and dates morph between pages.
+
+## Setup
+
+```bash
+pnpx create-next-app@latest my-smooth-blog
+cd my-smooth-blog
+pnpm install next-view-transitions
+```
+
+Choose TypeScript, Tailwind CSS, and App Router.
+
+Add shadcn/ui:
+
+```bash
+pnpx shadcn@latest init
+pnpx shadcn@latest add card badge
+```
+
+## Mock Data
+
+Create `lib/posts.ts`:
+
+```typescript
+export interface Post {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  content: string;
+}
+
+export const posts: Post[] = [
+  {
+    id: 1,
+    slug: "getting-started-nextjs",
+    title: "Getting Started with Next.js",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
+    date: "2024-12-01",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+  },
+  {
+    id: 2,
+    slug: "react-best-practices",
+    title: "React Best Practices",
+    description:
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+    date: "2024-12-05",
+    content:
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+  },
+  {
+    id: 3,
+    slug: "tailwind-tips",
+    title: "Tailwind CSS Tips and Tricks",
+    description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    date: "2024-12-10",
+    content:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.",
+  },
+];
+```
+
+## Posts Listing
+
+Replace `app/page.tsx`:
+
+```tsx
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { posts } from "@/lib/posts";
+import Link from "next/link";
+
+export default function PostsPage() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-8">My Blog</h1>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <Link key={post.id} href={`/posts/${post.slug}`}>
+            <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+              <CardHeader>
+                <CardTitle className="line-clamp-2">{post.title}</CardTitle>
+                <CardDescription>{post.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Badge variant="secondary">{post.date}</Badge>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+## Individual Post Pages
+
+Create `app/posts/[slug]/page.tsx`:
+
+```tsx
+import { posts } from "@/lib/posts";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+interface PostPageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export default async function PostPage({ params }: PostPageProps) {
+  const { slug } = await params;
+  const post = posts.find((p) => p.slug === slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <Link
+        href="/"
+        className="text-blue-600 hover:underline mb-4 inline-block"
+      >
+        ← Back to posts
+      </Link>
+
+      <article className="max-w-3xl">
+        <header className="mb-8">
+          <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+          <div className="flex items-center gap-4">
+            <Badge>{post.date}</Badge>
+          </div>
+        </header>
+
+        <div className="prose prose-lg">
+          <p>{post.content}</p>
+        </div>
+      </article>
+    </div>
+  );
+}
+
+export function generateStaticParams() {
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+```
+
+You now have a working blog with normal page navigation.
+
+## Add View Transitions
+
+Wrap your app in `app/layout.tsx`:
+
+```tsx
+import { ViewTransitions } from "next-view-transitions";
+import "./globals.css";
+import type { ReactNode } from "react";
+
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <ViewTransitions>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </ViewTransitions>
+  );
+}
+```
+
+Replace all `next/link` imports with the transition-enabled version:
+
+```tsx
+// Instead of:
+import Link from "next/link";
+
+// Use:
+import { Link } from "next-view-transitions";
+```
+
+At this point, navigation looks identical to before. The package doesn't add any transitions by default.
+
+## The Magic: Shared Element Transitions
+
+Add `viewTransitionName` properties to elements that should morph between pages:
+
+```tsx
+// In your posts listing (app/page.tsx):
+<CardTitle
+  className="line-clamp-2"
+  style={{ viewTransitionName: `title-${post.slug}` }}
+>
+  {post.title}
+</CardTitle>
+
+<Badge
+  variant="secondary"
+  style={{ viewTransitionName: `date-${post.slug}` }}
+>
+  {post.date}
+</Badge>
+```
+
+```tsx
+// In your individual post page (app/posts/[slug]/page.tsx):
+<h1
+  className="text-4xl font-bold mb-4"
+  style={{ viewTransitionName: `title-${post.slug}` }}
+>
+  {post.title}
+</h1>
+
+<Badge
+  style={{ viewTransitionName: `date-${post.slug}` }}
+>
+  {post.date}
+</Badge>
+```
+
+Now the title and date smoothly morph from the card to the post page. **This is the only way to actually see transitions** - matching `viewTransitionName` values between pages.
+
+## Done
+
+These transitions provide visual continuity, make the app feel more responsive, and help users maintain context. The View Transitions API is supported in Chrome, Edge, and Opera, with graceful fallback to normal navigation in other browsers.
