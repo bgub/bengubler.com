@@ -2,14 +2,16 @@
 title: "Adding .md URLs for Raw Markdown Content in Next.js"
 description: "How to add .md URLs to your Next.js blog to serve raw markdown content, inspired by Vercel's docs."
 date: "2025-06-14"
-tags: [nextjs, content-collections, middleware]
+tags: [nextjs]
 ---
+
+> **Update**: After publishing this post, [Guillermo Rauch](https://twitter.com/rauchg) (CEO of Vercel) suggested using Next.js rewrites instead of middleware for this use case. I've updated the implementation below - it's simpler and more performant! 🚀
 
 ## TL;DR
 
 Inspired by Vercel's docs, we'll add the ability to append `.md` to any blog post URL to get the raw markdown content. So `/posts/my-post` becomes `/posts/my-post.md` for the raw source. I recently added this feature to my own blog - it's perfect for sharing code examples or letting people see how you wrote something.
 
-Next.js middleware makes this surprisingly easy to implement cleanly.
+Next.js [rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) make this surprisingly easy to implement cleanly.
 
 <Tweet id="1930689104800518392" />
 
@@ -218,33 +220,31 @@ export function generateStaticParams() {
 }
 ```
 
-## The Magic: Middleware
+## The Magic: Rewrites
 
-This is where Next.js middleware shines - we can elegantly handle URL rewriting with just a few lines of code.
+This is where Next.js rewrites shine - we can elegantly handle URL rewriting with just a few lines of configuration.
 
-Create `src/middleware.ts` (or `middleware.ts` in root if not using src/):
+Update `next.config.js` to add the rewrite rule:
 
-```typescript
-import { NextRequest, NextResponse } from "next/server";
+```javascript
+const { withContentCollections } = require("@content-collections/next");
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const postMdMatch = pathname.match(/^\/posts\/([^\/]+)\.md$/);
-
-  if (postMdMatch) {
-    const slug = postMdMatch[1];
-    return NextResponse.rewrite(new URL(`/api/posts/${slug}/raw`, request.url));
-  }
-
-  return NextResponse.next();
-}
-
-export const config = {
-  matcher: "/posts/:path*.md",
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/posts/:slug.md",
+        destination: "/api/posts/:slug/raw",
+      },
+    ];
+  },
 };
+
+module.exports = withContentCollections(nextConfig);
 ```
 
-The middleware intercepts requests ending in `.md`, extracts the slug, and internally rewrites them to our API route. The user sees `/posts/hello-world.md` in their browser, but Next.js serves it from `/api/posts/hello-world/raw`.
+The rewrite rule automatically maps any request matching `/posts/:slug.md` to `/api/posts/:slug/raw`. The `:slug` parameter is captured from the source URL and passed to the destination. The user sees `/posts/hello-world.md` in their browser, but Next.js serves it from `/api/posts/hello-world/raw`.
 
 ## API Route for Raw Content
 
@@ -287,4 +287,4 @@ Start your dev server and test both URLs:
 
 The cache headers ensure the raw markdown is cached for an hour, reducing server load for popular posts. In production, you might want to add a "View raw" button to your posts (like I did on my own blog) rather than just showing the link in the post listing.
 
-This feature is perfect for sharing examples, debugging content, or letting others study your markdown formatting. Next.js middleware makes the implementation clean and performant - no complex routing logic needed.
+This feature is perfect for sharing examples, debugging content, or letting others study your markdown formatting. And Next.js rewrites make the implementation clean and performant - no complex routing logic needed.
