@@ -1,0 +1,290 @@
+---
+title: "Adding .md URLs for Raw Markdown Content in Next.js"
+description: "How to add .md URLs to your Next.js blog to serve raw markdown content, inspired by Vercel's docs."
+date: "2025-06-14"
+tags: [nextjs, content-collections, middleware]
+---
+
+## TL;DR
+
+Inspired by Vercel's docs, we'll add the ability to append `.md` to any blog post URL to get the raw markdown content. So `/posts/my-post` becomes `/posts/my-post.md` for the raw source. I recently added this feature to my own blog - it's perfect for sharing code examples or letting people see how you wrote something.
+
+Next.js middleware makes this surprisingly easy to implement cleanly.
+
+<Tweet id="1930689104800518392" />
+
+## Setup
+
+```bash
+pnpx create-next-app@latest raw-markdown-blog
+cd raw-markdown-blog
+pnpm install @content-collections/core @content-collections/mdx @content-collections/next zod
+```
+
+Choose TypeScript, Tailwind CSS, and App Router.
+
+Add `.content-collections` to your `.gitignore`:
+
+```
+.content-collections
+```
+
+## Content Collections Setup
+
+[Content Collections](https://www.content-collections.dev/) is an excellent library for managing content in Next.js - it's type-safe, fast, and has great DX.
+
+Create `content-collections.ts` in your project root (not in src/):
+
+```typescript
+import { defineCollection, defineConfig } from "@content-collections/core";
+import { compileMDX } from "@content-collections/mdx";
+import { z } from "zod";
+
+const posts = defineCollection({
+  name: "posts",
+  directory: "content",
+  include: "**/*.mdx",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.string().pipe(z.coerce.date()),
+  }),
+  transform: async (document, context) => {
+    const mdx = await compileMDX(context, document);
+    const slug = document._meta.path.replace(/\.mdx$/, "");
+
+    return {
+      ...document,
+      mdx,
+      slug,
+      url: `/posts/${slug}`,
+    };
+  },
+});
+
+export default defineConfig({
+  collections: [posts],
+});
+```
+
+Update `next.config.js`:
+
+```javascript
+const { withContentCollections } = require("@content-collections/next");
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // your existing config...
+};
+
+module.exports = withContentCollections(nextConfig);
+```
+
+Update `tsconfig.json` paths:
+
+```json
+{
+  "compilerOptions": {
+    // ... other options
+    "paths": {
+      "@/*": ["./src/*"],
+      "content-collections": ["./.content-collections/generated"]
+    }
+  }
+}
+```
+
+## Sample Content
+
+Create the `content/` directory in your project root and add `content/hello-world.mdx`:
+
+````markdown
+---
+title: "Hello World"
+description: "My first blog post with raw markdown support."
+date: "2024-12-20"
+---
+
+## Welcome
+
+This is my first blog post! Here's some **bold text** and a code block:
+
+```javascript
+console.log("Hello, world!");
+```
+
+Pretty cool, right?
+````
+
+## Posts Pages
+
+Replace `app/page.tsx`:
+
+```tsx
+import { allPosts } from "content-collections";
+import Link from "next/link";
+
+export default function Home() {
+  const sortedPosts = allPosts.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  return (
+    <div className="max-w-2xl mx-auto p-8">
+      <h1 className="text-3xl font-bold mb-8">My Blog</h1>
+      <div className="space-y-6">
+        {sortedPosts.map((post) => (
+          <article key={post.slug} className="border-b pb-4">
+            <Link
+              href={post.url}
+              className="text-xl font-semibold hover:text-blue-600"
+            >
+              {post.title}
+            </Link>
+            <p className="text-gray-600 mt-2">{post.description}</p>
+            <time className="text-sm text-gray-500">
+              {post.date.toLocaleDateString()}
+            </time>
+            <div className="mt-2 text-sm">
+              <Link
+                href={`${post.url}.md`}
+                className="text-blue-500 hover:underline"
+              >
+                View raw markdown
+              </Link>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+Create `app/posts/[slug]/page.tsx`:
+
+```tsx
+import { allPosts } from "content-collections";
+import { MDXContent } from "@content-collections/mdx/react";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = allPosts.find((p) => p.slug === slug);
+
+  if (!post) notFound();
+
+  return (
+    <div className="max-w-2xl mx-auto p-8">
+      <Link
+        href="/"
+        className="text-blue-600 hover:underline mb-4 inline-block"
+      >
+        ← Back to posts
+      </Link>
+
+      <article>
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
+          <p className="text-gray-600 mb-2">{post.description}</p>
+          <time className="text-sm text-gray-500">
+            {post.date.toLocaleDateString()}
+          </time>
+          <div className="mt-4">
+            <Link
+              href={`${post.url}.md`}
+              className="text-blue-500 hover:underline text-sm"
+            >
+              View raw markdown
+            </Link>
+          </div>
+        </header>
+
+        <div className="prose prose-lg max-w-none">
+          <MDXContent code={post.mdx} />
+        </div>
+      </article>
+    </div>
+  );
+}
+
+export function generateStaticParams() {
+  return allPosts.map((post) => ({ slug: post.slug }));
+}
+```
+
+## The Magic: Middleware
+
+This is where Next.js middleware shines - we can elegantly handle URL rewriting with just a few lines of code.
+
+Create `src/middleware.ts` (or `middleware.ts` in root if not using src/):
+
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const postMdMatch = pathname.match(/^\/posts\/([^\/]+)\.md$/);
+
+  if (postMdMatch) {
+    const slug = postMdMatch[1];
+    return NextResponse.rewrite(new URL(`/api/posts/${slug}/raw`, request.url));
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: "/posts/:path*.md",
+};
+```
+
+The middleware intercepts requests ending in `.md`, extracts the slug, and internally rewrites them to our API route. The user sees `/posts/hello-world.md` in their browser, but Next.js serves it from `/api/posts/hello-world/raw`.
+
+## API Route for Raw Content
+
+Create `app/api/posts/[slug]/raw/route.ts`:
+
+```typescript
+import { allPosts } from "content-collections";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;
+  const post = allPosts.find((p) => p.slug === slug);
+
+  if (!post) {
+    return new NextResponse("Post not found", { status: 404 });
+  }
+
+  return new NextResponse(post.content, {
+    headers: {
+      "Content-Type": "text/markdown; charset=utf-8",
+      "Cache-Control": "public, max-age=3600", // Cache for 1 hour
+    },
+  });
+}
+
+export function generateStaticParams() {
+  return allPosts.map((post) => ({ slug: post.slug }));
+}
+```
+
+## Done
+
+Start your dev server and test both URLs:
+
+- `/posts/hello-world` - Rendered MDX with styling and components
+- `/posts/hello-world.md` - Raw markdown source
+
+The cache headers ensure the raw markdown is cached for an hour, reducing server load for popular posts. In production, you might want to add a "View raw" button to your posts (like I did on my own blog) rather than just showing the link in the post listing.
+
+This feature is perfect for sharing examples, debugging content, or letting others study your markdown formatting. Next.js middleware makes the implementation clean and performant - no complex routing logic needed.
