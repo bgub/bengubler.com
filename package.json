@@ -25,6 +25,7 @@
     "next-view-transitions": "^0.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-tweet": "^3.2.2",
     "rehype-pretty-code": "^0.14.1",
     "remark-capitalize-headings": "^2.0.1",
     "shiki": "^3.6.0",

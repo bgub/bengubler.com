@@ -2,6 +2,7 @@ import { LinkIcon } from "lucide-react";
 import { Link } from "next-view-transitions";
 import NextImage, { ImageProps } from "next/image";
 import { ReactNode, createElement } from "react";
+import { Tweet, TweetProps } from "react-tweet";
 
 import { CopyButton } from "./mdx/copy-button";
 import "./mdx/mdx-styles.css";
@@ -111,6 +112,9 @@ const mdxComponents = {
 
   // Override Image component to use Next.js Image
   Image: (props: ImageProps) => <NextImage {...props} />,
+
+  // Override Tweet component to use the react-tweet component
+  Tweet: (props: TweetProps) => <Tweet {...props} />,
 };
 
 export { mdxComponents };
