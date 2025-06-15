@@ -8,12 +8,11 @@ export function cn(...inputs: ClassValue[]) {
 export const getBaseUrl = () => {
   if (process.env.NODE_ENV === "development") {
     return "http://localhost:3000";
+  } else if (process.env.NEXT_PUBLIC_URL) {
+    // set in vercel project settings
+    return process.env.NEXT_PUBLIC_URL;
   }
 
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-
-  // Fallback in case VERCEL_URL isn't set for some reason
-  return "https://bengubler.com";
+  // Fallback in case NEXT_PUBLIC_URL isn't set for some reason
+  return "https://www.bengubler.com";
 };
