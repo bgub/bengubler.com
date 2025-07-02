@@ -32,10 +32,19 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
     };
   });
 
-  // Get all unique tags
-  const allTags = Array.from(
-    new Set(allPosts.flatMap((post) => post.tags))
-  ).sort();
+  // Get all unique tags sorted by frequency
+  const tagCounts = allPosts
+    .flatMap((post) => post.tags)
+    .reduce((counts, tag) => {
+      counts[tag] = (counts[tag] || 0) + 1;
+      return counts;
+    }, {} as Record<string, number>);
+
+  const allTags = Object.keys(tagCounts).sort((a, b) => {
+    // Sort by frequency (descending), then alphabetically for ties
+    const countDiff = tagCounts[b] - tagCounts[a];
+    return countDiff !== 0 ? countDiff : a.localeCompare(b);
+  });
 
   // Filter posts by tag and archived status
   const filteredPosts = postsWithColors.filter((post) => {
@@ -93,7 +102,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
                   : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground border border-border"
               }`}
             >
-              #{tag.toLowerCase()}
+              #{tag.toLowerCase()} ({tagCounts[tag]})
             </Link>
           ))}
         </div>

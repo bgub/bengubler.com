@@ -11,6 +11,7 @@ const speciallyCapitalizedTitles = [
   "gom",
   "nvidia-smi",
   "TL;DR",
+  "LLM",
 ];
 
 let capitalizationOptions: Record<string, string> = {};
