@@ -1,0 +1,56 @@
+---
+title: "Nix macOS Starter: Declarative Development Setup with Mise"
+description: "Starter Nix config for macOS using nix-darwin, home-manager, and mise."
+date: "2025-07-08"
+tags: [open-source]
+---
+
+I decided to learn Nix on Saturday. After hours of work, I came up with this configuration. Shoutout to my friend [Ethan Niser](https://github.com/ethanniser) who gave me the idea and whose config I started out with.
+
+Setting up a new Mac for development is painful. You install Homebrew, Node via nvm, Python via pyenv, configure your shell, install GUI apps individually, and hope you remember everything when switching machines.
+
+Nix makes your entire system configuration declarative and reproducible, but most configurations online are too complex for beginners or assume Linux knowledge.
+
+[nix-macos-starter](https://github.com/nebrelbug/nix-macos-starter) is a beginner-friendly Nix configuration that includes development tools (mise for runtime management, CLI tools, formatters), GUI applications via Homebrew, and system configuration with sensible defaults.
+
+Replace a few placeholders, run one command, and you have a fully configured development environment.
+
+## Installation
+
+1. **Install Nix** using the [Determinate Systems installer](https://docs.determinate.systems/#products). Download the graphical installer for macOS and restart your terminal after installation.
+
+2. **Install Homebrew** from [brew.sh](https://brew.sh) for GUI applications.
+
+3. **Clone and configure**:
+
+   ```bash
+   git clone https://github.com/nebrelbug/nix-macos-starter ~/.config/nix
+   cd ~/.config/nix
+   ```
+
+4. **For Intel Macs**: Change `"aarch64-darwin"` to `"x86_64-darwin"` in `flake.nix` line 28.
+
+5. **Replace placeholders** in these files:
+
+   - `modules/git.nix`: `YOUR_NAME`, `YOUR_EMAIL`, `YOUR_USERNAME`
+   - `modules/home-manager.nix`: `YOUR_USERNAME`
+   - `platforms/darwin.nix`: `YOUR_USERNAME` (appears 3 times)
+   - `hosts/my-macbook/configuration.nix`: `YOUR_USERNAME`
+
+6. **Build and switch**:
+   ```bash
+   darwin-rebuild switch --flake .#my-macbook
+   ```
+
+After initial setup, use the `nix-switch` alias to rebuild your configuration.
+
+## Customization
+
+- **Add CLI tools**: Edit the `packages` array in `modules/home-manager.nix`
+- **Add GUI apps**: Edit the `casks` array in `modules/homebrew-common.nix`
+- **Add development tools**: Add `${pkgs.mise}/bin/mise use --global tool@version` to the activation script in `modules/home-manager.nix`
+- **Host-specific config**: Use `hosts/my-macbook/configuration.nix` for machine-specific packages and settings
+
+---
+
+**Repository**: [github.com/nebrelbug/nix-macos-starter](https://github.com/nebrelbug/nix-macos-starter)
