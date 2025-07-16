@@ -31,7 +31,7 @@ const projectsData = [
         tech: ["Next.js", "React", "TypeScript"],
         links: {
           demo: "https://decline.vercel.app/",
-          github: "https://github.com/nebrelbug/declension-practice",
+          github: "https://github.com/bgub/declension-practice",
         },
         image: "decline.png",
       },
@@ -43,7 +43,7 @@ const projectsData = [
         tech: ["Python", "Docker", "CLI"],
         links: {
           demo: "https://pypi.org/project/gom/",
-          github: "https://github.com/nebrelbug/gom",
+          github: "https://github.com/bgub/gom",
         },
         image: "gom.png",
       },
@@ -59,7 +59,7 @@ const projectsData = [
           "An npm package for converting CLI commands between npm, Yarn, and pnpm.",
         tech: ["JavaScript", "Node.js", "CLI"],
         links: {
-          github: "https://github.com/nebrelbug/npm-to-yarn",
+          github: "https://github.com/bgub/npm-to-yarn",
         },
         image: "npm-to-yarn.png",
       },

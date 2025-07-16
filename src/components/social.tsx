@@ -66,7 +66,7 @@ export function Social({ title, className }: SocialProps) {
   const shares = [
     {
       name: "X (Twitter)",
-      url: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+      url: `https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
       icon: XIcon,
       bgColor:
         "bg-black hover:bg-black/90 dark:bg-white dark:hover:bg-white/90",

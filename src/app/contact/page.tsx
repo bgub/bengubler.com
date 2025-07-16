@@ -17,8 +17,8 @@ export default function ContactPage() {
     },
     {
       name: "X (Twitter)",
-      value: "@nebrelbug",
-      href: "https://x.com/nebrelbug",
+      value: "@bgub",
+      href: "https://x.com/bgub_",
       description: "Follow me for quick updates and tech discussions",
     },
     {
@@ -29,8 +29,8 @@ export default function ContactPage() {
     },
     {
       name: "GitHub",
-      value: "nebrelbug",
-      href: "https://github.com/nebrelbug",
+      value: "bgub",
+      href: "https://github.com/bgub",
       description: "Check out my open source projects and contributions",
     },
   ];

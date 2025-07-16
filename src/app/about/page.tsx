@@ -23,12 +23,12 @@ export default function AboutPage() {
         <p>
           My name's Ben, but you might know me by my GitHub username,{" "}
           <Link
-            href="https://github.com/nebrelbug"
+            href="https://github.com/bgub"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium text-foreground hover:underline"
           >
-            @nebrelbug
+            @bgub
           </Link>
           .
         </p>

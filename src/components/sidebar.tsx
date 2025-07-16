@@ -59,7 +59,7 @@ export function Sidebar() {
                 Ben Gubler
               </h2>
               <p className="text-sm text-muted-foreground group-hover:text-muted-foreground/80 transition-colors">
-                @nebrelbug
+                @bgub
               </p>
             </div>
           </Link>

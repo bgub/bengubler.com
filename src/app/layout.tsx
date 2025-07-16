@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Ben Gubler",
     description:
       "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU.",
-    creator: "@nebrelbug",
+    creator: "@bgub_",
   },
   robots: {
     index: true,

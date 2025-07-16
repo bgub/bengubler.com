@@ -39,7 +39,7 @@ export default function HomePage() {
                 Currently interning @ Vercel
               </Badge>
               <Link
-                href="https://github.com/nebrelbug"
+                href="https://github.com/bgub"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -48,7 +48,7 @@ export default function HomePage() {
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link
-                href="https://twitter.com/nebrelbug"
+                href="https://x.com/bgub_"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -62,12 +62,12 @@ export default function HomePage() {
             <p className="text-lg text-muted-foreground leading-relaxed">
               I'm Ben (or on GitHub,{" "}
               <Link
-                href="https://github.com/nebrelbug"
+                href="https://github.com/bgub"
                 className="text-foreground hover:underline font-medium"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                @nebrelbug
+                @bgub
               </Link>
               ).
             </p>
