@@ -17,14 +17,14 @@ export default function ContactPage() {
     },
     {
       name: "X (Twitter)",
-      value: "@bgub",
+      value: "@bgub_",
       href: "https://x.com/bgub_",
       description: "Follow me for quick updates and tech discussions",
     },
     {
       name: "LinkedIn",
       value: "Ben Gubler",
-      href: "https://linkedin.com/in/bengubler",
+      href: "https://www.linkedin.com/in/ben-gubler/",
       description: "Professional network and career-related discussions",
     },
     {
