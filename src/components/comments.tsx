@@ -1,7 +1,9 @@
 "use client";
 
-import Giscus from "@giscus/react";
+import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
+
+const Giscus = dynamic(() => import("@giscus/react"), { ssr: false });
 
 export function Comments() {
   const { resolvedTheme } = useTheme(); // "dark" | "light"

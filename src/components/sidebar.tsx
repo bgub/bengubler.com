@@ -48,10 +48,11 @@ export function Sidebar() {
             <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-border/20 group-hover:ring-border/40 transition-all">
               <Image
                 src="/bengubler.jpg"
-                alt="Ben Gubler"
+                alt="Profile photo"
                 width={48}
                 height={48}
                 className="object-cover"
+                priority
               />
             </div>
             <div className="space-y-1 min-w-0 flex-1">

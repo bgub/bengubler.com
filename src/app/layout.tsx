@@ -98,10 +98,11 @@ export default function RootLayout({
                         <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-border/20">
                           <Image
                             src="/bengubler.jpg"
-                            alt="Ben Gubler"
+                            alt="Profile photo"
                             width={32}
                             height={32}
                             className="object-cover"
+                            priority
                           />
                         </div>
                         <span className="text-lg font-semibold">
