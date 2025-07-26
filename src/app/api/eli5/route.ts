@@ -1,4 +1,3 @@
-import { gateway } from "@vercel/ai-sdk-gateway";
 import { streamText } from "ai";
 import { NextRequest } from "next/server";
 
@@ -10,39 +9,36 @@ export async function POST(request: NextRequest) {
       return new Response("Content is required", { status: 400 });
     }
 
-    // Create the ELI5 system prompt
-    const systemPrompt = `You are an expert at explaining complex topics in simple terms. 
+    // Simplified ELI5 system prompt
+    const systemPrompt = `You are an expert at explaining complex topics in simple, fun terms.
 
-Your task is to explain the following blog post content as if you're talking to a 5-year-old. Use:
-- Simple words and short sentences
-- Fun analogies and comparisons
-- Enthusiasm and encouragement
-- Break complex ideas into smaller pieces
-- Use examples they can relate to
+Explain the following blog post as if you're talking to a 5-year-old child:
+- Use simple words and short sentences
+- Include fun analogies and comparisons they can relate to
+- Be enthusiastic and encouraging
+- Break complex ideas into bite-sized pieces
+- Make it engaging but accurate
 
-Keep it engaging but accurate. Don't oversimplify to the point of being wrong.
-
-Blog post title: "${title}"
-Blog post content: ${content}`;
+Title: "${title}"`;
 
     const result = streamText({
-      model: gateway("groq/llama-3-8b-instruct"),
+      model: "meta/llama-3-8b",
       messages: [
         { role: "system", content: systemPrompt },
         {
-          role: "user",
-          content: "Please explain this blog post like I'm 5 years old!",
+          role: "user", 
+          content: `Please explain this blog post in simple terms:\n\n${content}`
         },
       ],
+      temperature: 0.7,
     });
 
-    return result.toTextStreamResponse({
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-      },
-    });
+    return result.toTextStreamResponse();
   } catch (error) {
     console.error("ELI5 API Error:", error);
-    return new Response("Internal Server Error", { status: 500 });
+    return new Response(
+      "Sorry, I couldn't explain this right now. Please try again!", 
+      { status: 500 }
+    );
   }
 }
