@@ -80,7 +80,7 @@ export default function HomePage() {
             <p className="text-lg text-muted-foreground leading-relaxed">
               Feel free to take a look at my{" "}
               <Link
-                href="/resume"
+                href="/ben-gubler-resume.pdf"
                 className="text-foreground hover:underline font-medium"
               >
                 résumé

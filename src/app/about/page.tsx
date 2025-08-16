@@ -38,6 +38,40 @@ export default function AboutPage() {
           about all of the above from time to time.
         </p>
         <p>
+          Check out{" "}
+          <Link
+            href="/about/my-stack"
+            className="font-medium text-foreground hover:underline"
+          >
+            my stack
+          </Link>{" "}
+          of technologies and tools I use, browse my{" "}
+          <Link
+            href="/about/favorites"
+            className="font-medium text-foreground hover:underline"
+          >
+            favorites
+          </Link>{" "}
+          including books and movies I love, or see what I've{" "}
+          <Link
+            href="/recommended"
+            className="font-medium text-foreground hover:underline"
+          >
+            recommended
+          </Link>{" "}
+          for courses, papers, and learning resources. For my professional
+          background, you can view my{" "}
+          <Link
+            href="/ben-gubler-resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-foreground hover:underline"
+          >
+            résumé
+          </Link>
+          .
+        </p>
+        <p>
           I'm currently a student at Brigham Young University in Provo, where
           I'm pursuing a major in ACME (Applied and Computational Mathematics)
           and a minor in Arabic. I'm also a research assistant in the PCCL

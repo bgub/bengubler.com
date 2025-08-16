@@ -1,40 +1,10 @@
 "use client";
 
 import { ThemeToggle } from "@/components/theme-toggle";
-import {
-  Code,
-  FileText,
-  FolderOpen,
-  Home,
-  Languages,
-  Mail,
-  User,
-} from "lucide-react";
+import { navigation } from "@/lib/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const navigation = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "About", href: "/about", icon: User },
-  {
-    name: "My Stack",
-    href: "/about/my-stack",
-    icon: Code,
-    isSubItem: true,
-    parent: "About",
-  },
-  { name: "Projects", href: "/projects", icon: FolderOpen },
-  {
-    name: "Language Learning",
-    href: "/language-learning",
-    icon: Languages,
-    isSubItem: true,
-    parent: "Projects",
-  },
-  { name: "Posts", href: "/posts", icon: FileText },
-  { name: "Contact", href: "/contact", icon: Mail },
-];
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -84,7 +54,7 @@ export function Sidebar() {
                     )}
                     <Link
                       href={item.href}
-                      className={`group flex gap-x-3 rounded-md p-2 text-sm font-medium leading-6 transition-all duration-200 ${
+                      className={`group flex items-center gap-x-3 rounded-md p-2 text-sm font-medium leading-6 transition-all duration-200 ${
                         item.isSubItem ? "ml-6" : ""
                       } ${
                         isActive
