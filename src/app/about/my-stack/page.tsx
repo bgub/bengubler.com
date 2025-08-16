@@ -1,158 +1,90 @@
-import { getColorByIndex } from "@/lib/colors";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-type StackItem = {
+type FavoriteItem = {
   name: string;
-  description: string;
   link?: string;
 };
 
-type StackSection = {
+type FavoriteSubsection = {
+  title: string;
+  items: FavoriteItem[];
+};
+
+type FavoriteSection = {
   category: string;
-  items: StackItem[];
+  subsections: FavoriteSubsection[];
 };
 
 export const metadata: Metadata = {
   title: "My Stack - Ben Gubler",
   description:
-    "Tools, technologies, and platforms that Ben Gubler uses for productivity, language learning, and development.",
+    "Technologies, apps, and tools that Ben Gubler uses for development and productivity.",
 };
 
-const stack: StackSection[] = [
+const stack: FavoriteSection[] = [
   {
-    category: "Productivity",
-    items: [
+    category: "Hardware",
+    subsections: [
       {
-        name: "Todoist",
-        link: "https://todoist.com",
-        description:
-          "I couldn't function effectively without my trusty todo list!",
+        title: "Computers",
+        items: [
+          { name: "MacBook Pro (work)" },
+          { name: "Dell XPS 15 (personal)" },
+        ],
       },
       {
-        name: "Notion",
-        link: "https://notion.so",
-        description: "Second brain & knowledge base.",
-      },
-      {
-        name: "Google Calendar",
-        link: "https://calendar.google.com",
-        description: "Boring, but effective.",
-      },
-      {
-        name: "Monarch Money",
-        link: "https://monarchmoney.com",
-        description:
-          "I switched from Mint to Monarch and have been enjoying it so far.",
+        title: "Peripherals",
+        items: [
+          { name: "NuPhy Air75 V3 Keyboard" },
+          { name: "MX Master 3S Mouse" },
+        ],
       },
     ],
   },
   {
-    category: "Language Learning",
-    items: [
+    category: "Software",
+    subsections: [
       {
-        name: "Anki",
-        link: "https://apps.ankiweb.net",
-        description:
-          "A flashcard app that uses spaced repetition. I use it to practice vocab.",
+        title: "Operating Systems",
+        items: [{ name: "macOS" }, { name: "Fedora Linux" }],
       },
       {
-        name: "Pimsleur",
-        link: "https://pimsleur.com",
-        description:
-          "My favorite way to start learning a language. It's based on listening and repetition, so it's great for improving your accent.",
+        title: "Desktop & Terminal",
+        items: [
+          { name: "GNOME Desktop" },
+          { name: "Cosmic Desktop (occasionally)" },
+          { name: "Alacritty" },
+        ],
       },
       {
-        name: "Glossika",
-        link: "https://glossika.com",
-        description:
-          "A great way to practice speaking. It's based on listening and repeating sentences and has lots of language pairings (e.g. Czech to Russian).",
-      },
-      {
-        name: "Mango",
-        link: "https://mangolanguages.com",
-        description:
-          "Solid alternative to Duolingo. If you have a public library membership, it may be free for you.",
-      },
-      {
-        name: "DeepL Translator",
-        link: "https://deepl.com",
-        description: "Like Google Translate, but more natural translations.",
-      },
-      {
-        name: "Glosbe Dictionary",
-        link: "https://glosbe.com",
-        description:
-          "Dictionary with tons of languages and example sentences sourced from the web.",
+        title: "Development",
+        items: [{ name: "Zed w/ Vim keybindings" }, { name: "Zen Browser" }],
       },
     ],
   },
   {
-    category: "Tech — Languages",
-    items: [
+    category: "Apps",
+    subsections: [
       {
-        name: "JavaScript / Node.js",
-        description: "Fun to program in, but I prefer TypeScript.",
+        title: "Language Learning",
+        items: [
+          { name: "Anki", link: "https://apps.ankiweb.net" },
+          { name: "Readlang", link: "https://readlang.com" },
+          { name: "Pimsleur", link: "https://pimsleur.com" },
+          { name: "Beelinguapp", link: "https://beelinguapp.com" },
+          { name: "my own tools", link: "/language-learning" },
+        ],
       },
       {
-        name: "TypeScript",
-        description: "Makes writing JavaScript not scary!",
-      },
-      {
-        name: "Python",
-        description: "Fantastic for AI/ML work.",
-      },
-      {
-        name: "Rust",
-        description:
-          "For writing low-level code with a modern build system, great syntax, and no segfaults :)",
-      },
-    ],
-  },
-  {
-    category: "Tech — Libraries",
-    items: [
-      {
-        name: "React",
-        link: "https://react.dev",
-        description: "By far my favorite tool for building websites.",
-      },
-      {
-        name: "Next.js",
-        link: "https://nextjs.org",
-        description: "Solid ecosystem, great performance.",
-      },
-      {
-        name: "Tailwind",
-        link: "https://tailwindcss.com",
-        description:
-          "Literally so much better than writing CSS by hand in separate files.",
-      },
-      {
-        name: "shadcn/ui",
-        link: "https://ui.shadcn.com",
-        description:
-          "My go-to for building UI components. Love how they're accessible + customizable!",
-      },
-    ],
-  },
-  {
-    category: "Tech — Platforms",
-    items: [
-      {
-        name: "Vercel",
-        link: "https://vercel.com",
-        description: "Fantastic solution for hosting web apps.",
-      },
-      {
-        name: "GitHub Actions",
-        link: "https://github.com/features/actions",
-        description: "CI/CD built in to GitHub.",
-      },
-      {
-        name: "Umami Analytics",
-        link: "https://umami.is",
-        description: "Like Google Analytics. I self-host my own instance!",
+        title: "Productivity & Life",
+        items: [
+          { name: "Todoist" },
+          { name: "Obsidian" },
+          { name: "Monarch Money", link: "https://monarchmoney.com" },
+          { name: "Wispr Flow" },
+          { name: "Day One Journal" },
+        ],
       },
     ],
   },
@@ -165,46 +97,47 @@ export default function MyStackPage() {
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           My Stack
         </h1>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          Technologies, apps, and tools I use for development and productivity.
+        </p>
       </header>
 
-      {stack.map((section, index) => {
-        const colors = getColorByIndex(index);
-        return (
-          <section key={section.category} className="space-y-6">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              {section.category}
-            </h2>
-            <div
-              className={`${colors.bg} ${colors.border} border rounded-lg p-6 shadow-sm transition-all duration-300 hover:shadow-lg`}
-            >
-              <ul className="space-y-4">
-                {section.items.map((item) => (
-                  <li
-                    key={item.name}
-                    className="text-lg text-muted-foreground leading-relaxed"
-                  >
-                    {item.link ? (
-                      <Link
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-medium text-foreground hover:underline"
-                      >
-                        {item.name}
-                      </Link>
-                    ) : (
-                      <span className="font-medium text-foreground">
-                        {item.name}
-                      </span>
-                    )}{" "}
-                    — {item.description}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        );
-      })}
+      {stack.map((section) => (
+        <section key={section.category} className="space-y-3">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            {section.category}
+          </h2>
+          <div className="space-y-2">
+            {section.subsections.map((subsection) => (
+              <div key={subsection.title} className="space-y-1">
+                <p className="text-muted-foreground leading-relaxed">
+                  <span className="font-bold text-foreground">
+                    {subsection.title}
+                  </span>
+                  :{" "}
+                  {subsection.items.map((item, index) => (
+                    <span key={item.name}>
+                      {item.link ? (
+                        <Link
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:no-underline"
+                        >
+                          {item.name}
+                        </Link>
+                      ) : (
+                        item.name
+                      )}
+                      {index < subsection.items.length - 1 && ", "}
+                    </span>
+                  ))}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   );
 }

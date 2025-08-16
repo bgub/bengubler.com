@@ -2,42 +2,11 @@
 
 import { MobileThemeToggle } from "@/components/mobile-theme-toggle";
 import { Button } from "@/components/ui/button";
-import {
-  Code,
-  FileText,
-  FolderOpen,
-  Home,
-  Languages,
-  Mail,
-  Menu,
-  User,
-  X,
-} from "lucide-react";
+import { navigation } from "@/lib/navigation";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-
-const navigation = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "About", href: "/about", icon: User },
-  {
-    name: "My Stack",
-    href: "/about/my-stack",
-    icon: Code,
-    isSubItem: true,
-    parent: "About",
-  },
-  { name: "Projects", href: "/projects", icon: FolderOpen },
-  {
-    name: "Language Learning",
-    href: "/language-learning",
-    icon: Languages,
-    isSubItem: true,
-    parent: "Projects",
-  },
-  { name: "Posts", href: "/posts", icon: FileText },
-  { name: "Contact", href: "/contact", icon: Mail },
-];
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
