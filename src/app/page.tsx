@@ -1,8 +1,8 @@
 import { PostCard } from "@/components/post-card";
-import { ProjectCard } from "@/components/project-card";
+import { ProjectList } from "@/components/project-list";
 import { Badge } from "@/components/ui/badge";
 import { getPostColors } from "@/lib/colors";
-import { featuredProjects } from "@/lib/projects";
+import { projectsData } from "@/lib/projects";
 import { allPosts } from "content-collections";
 import { ArrowRight, Github, Twitter } from "lucide-react";
 import Link from "next/link";
@@ -24,6 +24,11 @@ export default function HomePage() {
       borderColor: colors.border,
     };
   });
+
+  // Get featured projects from the new data structure
+  const featuredProjects =
+    projectsData.find((section) => section.category === "Featured")?.projects ||
+    [];
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -60,57 +65,62 @@ export default function HomePage() {
           </div>
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm Ben (or on GitHub,{" "}
+              I'm Ben — a student at BYU studying Applied Math and Arabic. I
+              build open-source libraries, web applications, and AI tools.
+              Currently interning at Vercel.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Check out my{" "}
               <Link
-                href="https://github.com/bgub"
+                href="/projects"
                 className="text-foreground hover:underline font-medium"
-                target="_blank"
-                rel="noopener noreferrer"
               >
-                @bgub
+                projects
               </Link>
-              ).
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I study AI and (human) languages. In my free time, I like to build
-              websites and open-source libraries. I'm currently studying ACME
-              (Applied and Computational Mathematics) and Arabic at BYU, while
-              interning at Vercel building the future of the web.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Feel free to take a look at my{" "}
+              , read my{" "}
+              <Link
+                href="/posts"
+                className="text-foreground hover:underline font-medium"
+              >
+                writing
+              </Link>
+              , or view my{" "}
               <Link
                 href="/ben-gubler-resume.pdf"
                 className="text-foreground hover:underline font-medium"
               >
                 résumé
               </Link>
-              , some of the{" "}
-              <Link
-                href="/projects"
-                className="text-foreground hover:underline font-medium"
-              >
-                projects
-              </Link>{" "}
-              I've worked on, or the{" "}
-              <Link
-                href="/language-learning"
-                className="text-foreground hover:underline font-medium"
-              >
-                language learning materials
-              </Link>{" "}
-              I've created. Otherwise you can check out some of my recent blog
-              posts below!
+              .
             </p>
           </div>
         </div>
       </section>
 
+      {/* Featured Projects Section */}
+      <section>
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Projects
+            </h2>
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
+            >
+              View all
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+          <ProjectList projects={featuredProjects} />
+        </div>
+      </section>
+
       {/* Recent Posts Section */}
       <section>
-        <div className="space-y-4 mb-6 md:mb-8">
+        <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               Recent Posts
             </h2>
             {allPosts.length > 3 && (
@@ -123,43 +133,12 @@ export default function HomePage() {
               </Link>
             )}
           </div>
-          <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Thoughts on web development, AI, and building things that matter.
-          </p>
-        </div>
-        <div className="@container">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {recentPosts.map((post: Post) => (
-              <PostCard key={post.slug} post={post} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Projects Section */}
-      <section>
-        <div className="space-y-4 mb-6 md:mb-8">
-          <div className="flex items-center justify-between">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Featured Projects
-            </h2>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
-            >
-              View all
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </div>
-          <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            A selection of recent work and experiments.
-          </p>
-        </div>
-        <div className="@container">
-          <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
+          <div className="@container">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {recentPosts.map((post: Post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
