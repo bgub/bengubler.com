@@ -10,6 +10,14 @@ export const metadata: Metadata = {
 
 const languageTools = [
   {
+    id: "tinylingo",
+    title: "TinyLingo",
+    description:
+      "AI-powered website to learn languages with personalized lessons and interactive practice sessions.",
+    href: "https://tinylingo.com/",
+    isExternal: true,
+  },
+  {
     id: "decline-app",
     title: "Decline App",
     description:
@@ -43,8 +51,7 @@ export default function LanguageLearningPage() {
           Language Learning
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-          Tools and resources I've built to help with language learning,
-          particularly focused on Slavic languages.
+          Tools and resources I've built to help with language learning.
         </p>
       </header>
 
