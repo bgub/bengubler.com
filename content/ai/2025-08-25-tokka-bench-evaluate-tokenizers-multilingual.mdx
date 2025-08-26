@@ -50,7 +50,7 @@ Let’s take an example: Khmer. Since Khmer has fewer online resources, less of 
 
 The semantic implications are even more severe. Khmer tokens, because there are fewer, are more likely to represent letters or consonant pairs rather than whole semantic units. This means that models can't "store" concepts, attributes, definitions, and other semantic knowledge in embedding vectors quite as easily for underrepresented languages.
 
-There's a vibrant open-source community making fine-tunes of OSS foundation models for smaller languages. If your tokenizer doesn't handle foreign languages well, fine-tuning will be more difficult and probably require extending the tokenizer with custom tokens. On the other hand, introducing "partially-trained" tokens (tokens that won't show up in the pretraining data) can confuse the LLM and even allow for "token attacks" as referenced in Karpathy's tweet.
+There's a vibrant open-source community making fine-tunes of OSS foundation models for smaller languages. If your tokenizer doesn't handle foreign languages well, fine-tuning will be more difficult and probably require extending the tokenizer with custom tokens. On the other hand, introducing "partially-trained" tokens (tokens that won't show up in the pretraining data) can confuse the LLM and even allow for "[token attacks](https://x.com/karpathy/status/1789590397749957117)."
 
 ## How Tokenization Affects Inference
 
