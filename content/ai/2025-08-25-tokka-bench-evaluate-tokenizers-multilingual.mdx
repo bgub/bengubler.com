@@ -86,7 +86,7 @@ This allows you to easily select combinations of languages and tokenizers to com
 
 **Vocabulary metrics**: For analyzing tokenizer vocabularies themselves, I sample 10,000 tokens randomly from each tokenizer's vocabulary and analyze their decoded properties.
 
-**Language unit definitions**: Different languages structure information differently, so I define "units" for fertility and continuation metrics as follows:
+**Language unit definitions**: Different languages structure information differently, so I define "units" for fertility and splitting metrics as follows:
 
 - **Whitespace languages**: tokens per word (space-separated units)
 - **Character-based languages** (e.g., Chinese, Japanese, Thai): tokens per character (excluding whitespace)
@@ -147,7 +147,7 @@ In Mandarin, Kimi K2 has the lowest continued word rate! Only 4% of tokens are c
 
 ![Graph of subword fertility in multiple languages](/blog-images/tokka-bench-subword-fertility.png)
 
-In Mandarin, Kimi K2 has the lowest subword fertility! The fertility is below 1, meaning on average each token represents more than 1 word.
+In Mandarin, Kimi K2 has the lowest subword fertility! The fertility is below 1, meaning on average each token represents more than 1 character.
 
 ## Vocabulary Metrics (Aggregated Across All Languages)
 
@@ -165,7 +165,7 @@ Calculated by sampling tokens from the tokenizer’s vocabulary, then decoding t
 
 Finally, let's examine something interesting I noticed with programming languages (we’ll switch from GPT-2 to gpt-oss here):
 
-![CleanShot 2025-08-20 at 22.49.30@2x.png](/blog-images/tokka-bench-coding-efficiency.png)
+![Graph of bytes-per-token in various programming languages](/blog-images/tokka-bench-coding-efficiency.png)
 
 There's dramatically less variation in efficiency across programming languages — Kimi K2, Llama 3, and GPT-OSS have almost identical bytes-per-token performance in each programming language!
 
@@ -183,7 +183,7 @@ If you're from an AI lab with a proprietary model but feel comfortable sharing y
 
 - [Vin Howe](https://howe.vin/), [Sachin Raja](https://x.com/s4chinraja), and [Jacob Holloway](https://www.linkedin.com/in/jhollowayj/) reviewed my post and provided useful feedback
 - Judit Ács was the first person (as far as I can tell) to introduce subword fertility and proportion of continuation word pieces as standard tokenization metrics in [this blog post](https://juditacs.github.io/2019/02/19/bert-tokenization-stats.html)
-- Rust et. al expanded on these ideas in an [ACL paper](https://aclanthology.org/2021.acl-long.243.pdf)
+- Rust et. al expanded on these ideas in an [ACL paper](https://aclanthology.org/2021.acl-long.243.pdf) that was incredibly helpful
 
 ## Future Research Ideas
 
