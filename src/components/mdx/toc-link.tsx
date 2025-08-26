@@ -25,18 +25,57 @@ export function TOCLink({ node, activeSection }: TOCLinkProps) {
     }
   };
 
+  const getHeadingStyles = (depth: number) => {
+    switch (depth) {
+      case 1:
+        return {
+          padding: "pl-0",
+          text: "text-base font-semibold",
+        };
+      case 2:
+        return {
+          padding: "pl-0",
+          text: "text-sm font-medium",
+        };
+      case 3:
+        return {
+          padding: "pl-4",
+          text: "text-sm",
+        };
+      case 4:
+        return {
+          padding: "pl-8",
+          text: "text-xs",
+        };
+      case 5:
+        return {
+          padding: "pl-12",
+          text: "text-xs opacity-80",
+        };
+      case 6:
+        return {
+          padding: "pl-16",
+          text: "text-xs opacity-60",
+        };
+      default:
+        return {
+          padding: "pl-0",
+          text: "text-sm",
+        };
+    }
+  };
+
+  const styles = getHeadingStyles(node.depth || 2);
+
   return (
     <a
       href={`#${node.id}`}
       onClick={handleClick}
       className={cn(
-        "block py-1 text-sm transition-colors hover:text-foreground",
+        "block py-1 transition-colors hover:text-foreground leading-relaxed",
         isActive ? "text-foreground font-medium" : "text-muted-foreground",
-        node.depth === 2 && "pl-0",
-        node.depth === 3 && "pl-4",
-        node.depth === 4 && "pl-8",
-        node.depth === 5 && "pl-12",
-        node.depth === 6 && "pl-16"
+        styles.padding,
+        styles.text
       )}
     >
       {node.title}

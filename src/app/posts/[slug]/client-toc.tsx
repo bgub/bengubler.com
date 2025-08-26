@@ -39,27 +39,30 @@ export function ClientTOC({ tree }: ClientTOCProps) {
     return null;
   }
 
+  // Recursive component to render TOC nodes at any depth
+  const renderTOCNodes = (nodes: TOCNode[]) => {
+    return (
+      <ul className="space-y-1">
+        {nodes.map((node) => (
+          <li key={node.id}>
+            <TOCLink node={node} activeSection={activeSection} />
+            {node.children.length > 0 && (
+              <div className="mt-1">
+                {renderTOCNodes(node.children)}
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
     <div className="space-y-2">
       <h3 className="font-semibold text-sm text-foreground">
         Table of Contents
       </h3>
-      <ul className="space-y-1">
-        {tree.children.map((node) => (
-          <li key={node.id}>
-            <TOCLink node={node} activeSection={activeSection} />
-            {node.children.length > 0 && (
-              <ul className="ml-4 space-y-1">
-                {node.children.map((childNode) => (
-                  <li key={childNode.id}>
-                    <TOCLink node={childNode} activeSection={activeSection} />
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
+      {renderTOCNodes(tree.children)}
     </div>
   );
 }
