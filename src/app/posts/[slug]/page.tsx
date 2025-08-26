@@ -9,7 +9,7 @@ import { Typography } from "@/components/ui/typography";
 import { getPostColors } from "@/lib/colors";
 import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
 

@@ -36,6 +36,7 @@ export const tocPlugin: Plugin = (): Transformer => {
     };
 
     const slugger = new GithubSlugger();
+    const stack: TOCNode[] = [toc]; // Stack to track the hierarchy
 
     visit(tree, "heading", (node: HeadingNode) => {
       const { depth } = node;
@@ -49,16 +50,17 @@ export const tocPlugin: Plugin = (): Transformer => {
         children: [],
       };
 
-      if (depth === 1) {
-        toc.children.push(newItem);
-      } else {
-        let parent = findParent(toc, depth - 1);
-        if (parent) {
-          parent.children.push(newItem);
-        } else {
-          toc.children.push(newItem); // Fallback in case no parent is found
-        }
+      // Pop from stack until we find the appropriate parent level
+      while (stack.length > 1 && stack[stack.length - 1].depth! >= depth) {
+        stack.pop();
       }
+
+      // Add to the current parent (last item in stack)
+      const parent = stack[stack.length - 1];
+      parent.children.push(newItem);
+      
+      // Push this item to the stack for potential children
+      stack.push(newItem);
     });
 
     // Attach the TOC to the file's data property
@@ -66,16 +68,4 @@ export const tocPlugin: Plugin = (): Transformer => {
   };
 };
 
-function findParent(node: TOCNode, depth: number): TOCNode | null {
-  if (node.depth === depth) {
-    return node;
-  }
-  for (let child of node.children) {
-    const found = findParent(child, depth);
-    if (found) {
-      return found;
-    }
-  }
 
-  return null;
-}
