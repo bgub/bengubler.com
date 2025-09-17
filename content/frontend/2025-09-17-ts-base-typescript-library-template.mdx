@@ -1,0 +1,167 @@
+---
+title: "Introducing ts-base: A Modern TypeScript Library Template"
+description: ""
+date: "2025-09-17T12:30:00-06:00"
+tags: [frontend, open-source]
+---
+
+Eight years ago, I released my first open-source TypeScript library — [Squirrelly](https://github.com/squirrellyjs/squirrelly) — which contained two files, `package.json` and `index.js`. Five years ago, I released [Eta](https://github.com/bgub/eta) with many more features including testing, linting, bundling, and CI/CD.
+
+I thought was a pretty solid development setup, but times change and the JavaScript ecosystem moves fast. New tools have emerged, best practices have evolved, and the complexity of properly publishing an npm package has somehow gotten both easier _and_ more overwhelming at the same time.
+
+Just look at the `package.json` "exports" field evolution if you want a headache. Or try figuring out the right combination of TypeScript configs, bundlers, and CI workflows to publish a library that works seamlessly across Node, Deno, Bun, and browsers. It's surprisingly tricky to get right.
+
+That's why I built [**ts-base**](https://github.com/bgub/ts-base) — a modern TypeScript library starter template that handles all of this complexity for you. It's opinionated, battle-tested, and designed to work out-of-the-box with every major JavaScript runtime.
+
+## What is ts-base?
+
+ts-base is a TypeScript library template that embraces modern tooling and automated workflows. Instead of starting from scratch or copying outdated boilerplate, you get a complete development environment that includes linting, testing, building, releasing, and publishing — all pre-configured and ready to go.
+
+The template is built around three core principles:
+
+- **Multi-runtime first**: Works seamlessly across Node, Deno, Bun, and browsers
+- **Automation over configuration**: Minimal setup, maximum automation
+- **Modern tooling**: ESM-only, latest TypeScript, and carefully chosen dependencies
+
+## Multi-Runtime Architecture
+
+The heart of ts-base is its runtime-agnostic design. Instead of trying to make one file work everywhere (and dealing with compatibility headaches), the template uses a clean separation:
+
+```typescript
+// src/internal.ts - Core logic, no runtime-specific APIs
+export function add(a: number, b: number): number {
+  return a + b;
+}
+
+export function greet(name: string, options = {}): string {
+  const base = `Hello, ${name}`;
+  return options.shout ? `${base.toUpperCase()}!` : `${base}.`;
+}
+```
+
+```typescript
+// src/index.ts - Node/Bun adapter
+export { add, greet } from "./internal";
+import { randomBytes } from "node:crypto";
+
+export function getSecureRandomId(): string {
+  const timePart = Date.now().toString(36);
+  const bytes = randomBytes(12).toString("base64url");
+  return `${timePart}-${bytes}`;
+}
+```
+
+```typescript
+// src/browser.ts - Browser adapter
+export { add, greet } from "./internal";
+
+export function getSecureRandomId(): string {
+  const timePart = Date.now().toString(36);
+  const array = new Uint8Array(12);
+  crypto.getRandomValues(array);
+  const rand = btoa(String.fromCharCode(...array))
+    .replaceAll("+", "-")
+    .replaceAll("/", "_")
+    .replaceAll("=", "");
+  return `${timePart}-${rand}`;
+}
+```
+
+This gives you clean imports for every runtime:
+
+```typescript
+// Node/Bun
+import { add, getSecureRandomId } from "@your-package/ts-base";
+
+// Browser (via bundler)
+import { add, getSecureRandomId } from "@your-package/ts-base/browser";
+
+// Deno (direct TypeScript imports)
+import {
+  add,
+  greet,
+} from "https://jsr.io/@bgub/ts-base/<version>/src/index.ts";
+```
+
+The build system uses [tsdown](https://tsdown.dev/) to create two optimized bundles: one for Node environments and a separate minified bundle for browsers, both with sourcemaps.
+
+## Developer Experience
+
+ts-base consolidates your tooling around a few excellent choices:
+
+**Biome** replaces both ESLint and Prettier with a single, fast tool. No more configuration conflicts or plugin incompatibilities — just consistent formatting and linting that works out of the box.
+
+**Vitest** provides lightning-fast testing with built-in coverage reporting and customizable thresholds. Tests run in parallel, support TypeScript natively, and include helpful features like mocking and snapshots.
+
+**Size Limit** monitors your bundle size automatically. It runs in CI and comments on pull requests when your changes would increase the bundle size, helping you catch bloat before it ships.
+
+The TypeScript configuration is optimized for modern bundlers with settings like `moduleResolution: "bundler"` and `allowImportingTsExtensions: true` that work great with tools like Vite, Rollup, and esbuild.
+
+## Automated CI/CD Pipeline
+
+One of ts-base's biggest strengths is its complete CI/CD setup. Every aspect of code quality and publishing is automated:
+
+**Quality Gates**: Every pull request triggers linting, type checking, testing, and coverage reporting. The CI uploads coverage to Codecov and comments on PRs with size impact reports.
+
+![Screenshot of CI/CD run](/blog-images/ci-run-screenshot.png)
+
+**Release Management**: Instead of complex semantic-release configurations, ts-base uses Google's Release Please. When commits land on main, Release Please automatically opens a "Release PR" that updates version numbers, generates changelogs, and creates release tags.
+
+**Automated Publishing**: When you merge the Release PR, GitHub Actions automatically builds and publishes your package to both npm and JSR with full OIDC provenance and security attestation.
+
+**Conventional Commits**: PR titles are automatically linted to follow conventional commit format, ensuring consistent changelog generation.
+
+## Why This Approach Works Better
+
+Most TypeScript library templates I've seen are either too minimal (leaving you to figure out CI, publishing, and multi-runtime support) or overcomplicated with dozens of dependencies. I've seen templates with packages like `@commitlint/cli`, `@commitlint/config-conventional`, `@semantic-release/changelog`, `@semantic-release/git`, `@semantic-release/github`, `@semantic-release/npm`, and more just for CI publishing!
+
+ts-base takes a different approach with just 8 total dev dependencies. By choosing Release Please over semantic-release, Biome over ESLint+Prettier, and Vitest over Jest, you get a simpler dependency graph that's easier to maintain and less likely to break.
+
+The automation philosophy means less configuration and fewer places for things to go wrong. Release Please handles version bumping, changelog generation, and release creation in one tool. The GitHub Actions workflows handle everything else.
+
+## The Magic of Release Please
+
+![Screenshot of release-please PR](/blog-images/release-please-pr.png)
+
+Release Please deserves special attention because it transforms how you think about releases. Instead of manually bumping versions or configuring complex semantic-release pipelines, Release Please works like this:
+
+1. You merge commits to `main` using conventional commit messages
+2. Release Please automatically opens/updates a "Release PR" with version bumps and changelog entries
+3. When you're ready to release, simply merge the Release PR
+4. GitHub Actions automatically publishes to npm and JSR
+
+The system supports pre-releases too. If you release an alpha or beta version, it automatically publishes under the "next" tag on npm. You can override version bumps using `Release-As: 2.0.0` in commit messages, and you can maintain multiple release branches (like `2.x` and `3.x`) that each get their own Release PRs.
+
+## Getting Started
+
+Setting up ts-base is straightforward:
+
+1. **Clone and customize**: Clone the repository, remove the `.git` folder, and update `package.json`, `jsr.json`, and `.release-please-manifest.json` with your package details.
+
+2. **Claim your package**: Set the version to `0.0.0` in all config files, then run `npm publish` locally to claim your package name on npm.
+
+3. **Configure publishing**: In npm, set your package to require 2FA for authorization only (not publishing), then add your GitHub workflow as a trusted publisher. On JSR, create your package and add the repository as a trusted source.
+
+![Screenshot of npm publishing settings](/blog-images/npm-trusted-publisher.png)
+
+4. **Set up GitHub**: Push to GitHub, add `CODECOV_TOKEN` as a repository secret, and configure branch protection rules.
+
+5. **Start developing**: Add your code to `src/`, write tests, and push commits. Release Please will handle the rest.
+
+I recommend configuring GitHub to only allow squash merging and using "pull request title and commit details" as the default commit message. This keeps your commit history clean and ensures conventional commit compliance.
+
+## Best Practices & Tips
+
+**Repository Settings**: Enable branch protection on `main` with required status checks. Disable merge commits to keep history linear.
+
+**Entry Points**: Use the main export (`@your-package`) for Node/Bun, the browser export (`@your-package/browser`) for bundled browser code, and direct TypeScript imports for Deno.
+
+**Customization**: If you don't need separate Node/browser builds, delete the unused configuration. The template is designed to be trimmed down to your specific needs.
+
+**Testing Strategy**: The template includes examples of testing both shared and platform-specific code, including mocking browser APIs in the Node test environment.
+
+## Wrapping Up
+
+Publishing a TypeScript library shouldn't require a PhD in tooling configuration. ts-base gives you a modern, opinionated foundation that handles the complexity so you can focus on building great software.
+
+The template represents eight years of lessons learned from maintaining open source projects. Ready to try it out? Check out the [ts-base repository](https://github.com/bgub/ts-base) and start building your next library.
