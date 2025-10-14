@@ -3,6 +3,7 @@ import { Link } from "next-view-transitions";
 import NextImage, { ImageProps } from "next/image";
 import { ReactNode, createElement } from "react";
 import { Tweet, TweetProps } from "react-tweet";
+import { msg, useMessages } from "gt-next";
 
 import { CopyButton } from "./mdx/copy-button";
 import "./mdx/mdx-styles.css";
@@ -24,9 +25,12 @@ interface HeaderProps {
   [key: string]: any;
 }
 
+const LINK_TO_SECTION_LABEL = msg("Link to section");
+
 // Header component with link icon that allows text wrapping
 const createHeaderComponent = (tagName: string) => {
   return ({ id, children, ...props }: HeaderProps) => {
+    const m = useMessages();
     return createElement(
       tagName,
       {
@@ -42,7 +46,7 @@ const createHeaderComponent = (tagName: string) => {
             href: `#${id}`,
             className:
               "opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground ml-2 inline-block align-baseline",
-            "aria-label": `Link to section`,
+            "aria-label": m(LINK_TO_SECTION_LABEL),
           },
           createElement(LinkIcon, { className: "h-4 w-4 flex-shrink-0" })
         )

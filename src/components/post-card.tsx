@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { getPostColors } from "@/lib/post-colors";
 import { allPosts } from "content-collections";
 import { Link } from "next-view-transitions";
+import { T, DateTime, Var } from "gt-next";
 
 type Post = (typeof allPosts)[0] & {
   color?: string;
@@ -22,13 +23,6 @@ function getTransitionStyle(slug: string, prefix: string = "") {
 }
 
 export function PostCard({ post }: PostCardProps) {
-  // Format date to readable string
-  const formattedDate = post.date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-
   // Use passed colors or fallback to generated colors
   const fallbackColors = getPostColors(post.title);
   const bgColor = post.color || fallbackColors.bg;
@@ -46,10 +40,10 @@ export function PostCard({ post }: PostCardProps) {
               dateTime={post.date.toISOString()}
               style={getTransitionStyle(post.url, "date-")}
             >
-              {formattedDate}
+              <DateTime>{post.date}</DateTime>
             </time>
             <span style={getTransitionStyle(post.url, "reading-time-")}>
-              {(post as any).readingTime || "5 min read"}
+              {(post as any).readingTime || <T>5 min read</T>}
             </span>
           </div>
           <h3

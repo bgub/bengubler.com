@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { msg, T, useMessages } from "gt-next";
+import { getGT } from "gt-next/server";
 
 type RecommendationItem = {
   name: string;
@@ -16,149 +18,153 @@ type RecommendationSection = {
   subsections: RecommendationSubsection[];
 };
 
-export const metadata: Metadata = {
-  title: "Recommended - Ben Gubler",
-  description:
-    "A curated collection of useful links and resources that Ben Gubler has found valuable.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const gt = await getGT();
+  return {
+    title: gt("Recommended - Ben Gubler"),
+    description: gt(
+      "A curated collection of useful links and resources that Ben Gubler has found valuable."
+    ),
+  };
+}
 
 const recommendations: RecommendationSection[] = [
   {
-    category: "Computer Science",
+    category: msg("Computer Science"),
     subsections: [
       {
-        title: "OS Development & Systems Programming",
+        title: msg("OS Development & Systems Programming"),
         items: [
-          { name: "Writing an OS in Rust", url: "https://os.phil-opp.com/" },
+          { name: msg("Writing an OS in Rust"), url: "https://os.phil-opp.com/" },
           {
-            name: "Linux From Scratch",
+            name: msg("Linux From Scratch"),
             url: "https://www.linuxfromscratch.org/",
           },
           {
-            name: "Nand to Tetris",
+            name: msg("Nand to Tetris"),
             url: "https://www.coursera.org/learn/build-a-computer",
           },
         ],
       },
       {
-        title: "Programming Language Development & Algebraic Effects",
+        title: msg("Programming Language Development & Algebraic Effects"),
         items: [
           {
-            name: "Writing An Interpreter In Go",
+            name: msg("Writing An Interpreter In Go"),
             url: "https://interpreterbook.com/",
           },
           {
-            name: "Algebraic Effects for the Rest of Us",
+            name: msg("Algebraic Effects for the Rest of Us"),
             url: "https://overreacted.io/algebraic-effects-for-the-rest-of-us/",
           },
-          { name: "Effekt", url: "https://effekt-lang.org/" },
+          { name: msg("Effekt"), url: "https://effekt-lang.org/" },
         ],
       },
       {
-        title: "Learning Languages",
+        title: msg("Learning Languages"),
         items: [
           {
-            name: "CodeCrafters: Build Your Own X in Rust",
+            name: msg("CodeCrafters: Build Your Own X in Rust"),
             url: "https://app.codecrafters.io/tracks/rust",
           },
           {
-            name: "hecto: Build Your Own Text Editor in Rust",
+            name: msg("hecto: Build Your Own Text Editor in Rust"),
             url: "https://philippflenker.com/hecto/",
           },
           {
-            name: "OCaml Programming: CS 3110",
+            name: msg("OCaml Programming: CS 3110"),
             url: "https://cs3110.github.io/textbook/cover.html",
           },
-          { name: "SQLBolt", url: "https://sqlbolt.com/" },
+          { name: msg("SQLBolt"), url: "https://sqlbolt.com/" },
           {
-            name: "Learn X in Y Minutes",
+            name: msg("Learn X in Y Minutes"),
             url: "https://learnxinyminutes.com/",
           },
         ],
       },
       {
-        title: "Security",
+        title: msg("Security"),
         items: [
           {
-            name: "OverTheWire Wargames",
+            name: msg("OverTheWire Wargames"),
             url: "https://overthewire.org/wargames/",
           },
         ],
       },
       {
-        title: "Other",
+        title: msg("Other"),
         items: [
-          { name: "Redox OS", url: "https://www.redox-os.org/" },
-          { name: "Omarchy", url: "https://omarchy.org/" },
+          { name: msg("Redox OS"), url: "https://www.redox-os.org/" },
+          { name: msg("Omarchy"), url: "https://omarchy.org/" },
           {
-            name: "Cosmic Desktop Environment",
+            name: msg("Cosmic Desktop Environment"),
             url: "https://system76.com/cosmic/",
           },
-          { name: "Textual", url: "https://www.textualize.io/" },
+          { name: msg("Textual"), url: "https://www.textualize.io/" },
         ],
       },
     ],
   },
   {
-    category: "Artificial Intelligence",
+    category: msg("Artificial Intelligence"),
     subsections: [
       {
-        title: "Learning the Basics",
+        title: msg("Learning the Basics"),
         items: [
           {
-            name: "Neural Networks: Zero to Hero",
+            name: msg("Neural Networks: Zero to Hero"),
             url: "https://karpathy.ai/zero-to-hero.html",
           },
           {
-            name: "From GPT-2 to GPT-OSS",
+            name: msg("From GPT-2 to GPT-OSS"),
             url: "https://magazine.sebastianraschka.com/p/from-gpt-2-to-gpt-oss-analyzing-the",
           },
         ],
       },
       {
-        title: "GPU & High-Performance Programming",
+        title: msg("GPU & High-Performance Programming"),
         items: [
           {
-            name: "GPU and Tensor Puzzles",
+            name: msg("GPU and Tensor Puzzles"),
             url: "https://github.com/srush/gpu-puzzles",
           },
-          { name: "LeetCode for GPUs", url: "https://leetgpu.com/" },
+          { name: msg("LeetCode for GPUs"), url: "https://leetgpu.com/" },
           {
-            name: "Your First WebGPU App",
+            name: msg("Your First WebGPU App"),
             url: "https://codelabs.developers.google.com/your-first-webgpu-app",
           },
         ],
       },
       {
-        title: "Interpretability",
+        title: msg("Interpretability"),
         items: [
           {
-            name: "Transformer Circuits",
+            name: msg("Transformer Circuits"),
             url: "https://transformer-circuits.pub/2023/monosemantic-features/index.html",
           },
           {
-            name: "Scaling Monosemanticity",
+            name: msg("Scaling Monosemanticity"),
             url: "https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html",
           },
           {
-            name: "How does a blind model see the earth?",
+            name: msg("How does a blind model see the earth?"),
             url: "https://outsidetext.substack.com/p/how-does-a-blind-model-see-the-earth",
           },
         ],
       },
       {
-        title: "Specialized Topics & Applications",
+        title: msg("Specialized Topics & Applications"),
         items: [
           {
-            name: "Train a Reasoning Model with GRPO",
+            name: msg("Train a Reasoning Model with GRPO"),
             url: "https://docs.unsloth.ai/basics/reasoning-grpo-and-rl/tutorial-train-your-own-reasoning-model-with-grpo",
           },
           {
-            name: "Simple GRPO Implementation",
+            name: msg("Simple GRPO Implementation"),
             url: "https://github.com/lsdefine/simple_GRPO",
           },
           {
-            name: "COMET Framework",
+            name: msg("COMET Framework"),
             url: "https://unbabel.github.io/COMET/html/installation.html",
           },
         ],
@@ -166,22 +172,22 @@ const recommendations: RecommendationSection[] = [
     ],
   },
   {
-    category: "Mathematics & Formal Methods",
+    category: msg("Mathematics & Formal Methods"),
     subsections: [
       {
-        title: "Learning Resources",
+        title: msg("Learning Resources"),
         items: [
           {
-            name: "An Infinitely Large Napkin",
+            name: msg("An Infinitely Large Napkin"),
             url: "https://web.evanchen.cc/napkin.html",
           },
         ],
       },
       {
-        title: "Theorem Proving",
+        title: msg("Theorem Proving"),
         items: [
           {
-            name: "The Natural Number Game",
+            name: msg("The Natural Number Game"),
             url: "https://adam.math.hhu.de/#/g/leanprover-community/nng4",
           },
         ],
@@ -189,36 +195,36 @@ const recommendations: RecommendationSection[] = [
     ],
   },
   {
-    category: "Linguistics",
+    category: msg("Linguistics"),
     subsections: [
       {
-        title: "Conlang Design",
+        title: msg("Conlang Design"),
         items: [
           {
-            name: "The Language Construction Kit",
+            name: msg("The Language Construction Kit"),
             url: "https://www.zompist.com/",
           },
         ],
       },
       {
-        title: "Toki Pona",
+        title: msg("Toki Pona"),
         items: [
           {
-            name: "Toki Pona in 18 Minutes",
+            name: msg("Toki Pona in 18 Minutes"),
             url: "https://www.youtube.com/watch?v=5phj5Ae80h8",
           },
           {
-            name: "Pepper & Carrot in Toki Pona",
+            name: msg("Pepper & Carrot in Toki Pona"),
             url: "https://peppercarrot.com/tp/",
           },
         ],
       },
       {
-        title: "Other",
+        title: msg("Other"),
         items: [
-          { name: "Shavian School", url: "https://shavian.school" },
+          { name: msg("Shavian School"), url: "https://shavian.school" },
           {
-            name: "Greek New Testament Study Edition",
+            name: msg("Greek New Testament Study Edition"),
             url: "https://bencrowder.net/greek-new-testament-study-edition/",
           },
         ],
@@ -226,13 +232,13 @@ const recommendations: RecommendationSection[] = [
     ],
   },
   {
-    category: "Miscellaneous",
+    category: msg("Miscellaneous"),
     subsections: [
       {
-        title: "Fun & Interesting",
+        title: msg("Fun & Interesting"),
         items: [
           {
-            name: "The Divergent Association Task",
+            name: msg("The Divergent Association Task"),
             url: "https://www.datcreativity.com/",
           },
         ],
@@ -242,40 +248,45 @@ const recommendations: RecommendationSection[] = [
 ];
 
 export default function RecommendedPage() {
+  const m = useMessages();
   return (
     <div className="space-y-12">
       <header className="space-y-4">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-          Recommended
-        </h1>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          A curated collection of useful links and resources I've found
-          valuable.
-        </p>
+        <T>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            Recommended
+          </h1>
+        </T>
+        <T>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            A curated collection of useful links and resources I've found
+            valuable.
+          </p>
+        </T>
       </header>
 
       {recommendations.map((section) => (
-        <section key={section.category} className="space-y-3">
+        <section key={m(section.category)} className="space-y-3">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            {section.category}
+            {m(section.category)}
           </h2>
           <div className="space-y-2">
             {section.subsections.map((subsection) => (
-              <div key={subsection.title} className="space-y-1">
+              <div key={m(subsection.title)} className="space-y-1">
                 <p className="text-muted-foreground leading-relaxed">
                   <span className="font-bold text-foreground">
-                    {subsection.title}
+                    {m(subsection.title)}
                   </span>
                   :{" "}
                   {subsection.items.map((item, index) => (
-                    <span key={item.name}>
+                    <span key={m(item.name)}>
                       <Link
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="underline hover:no-underline"
                       >
-                        {item.name}
+                        {m(item.name)}
                       </Link>
                       {index < subsection.items.length - 1 && ", "}
                     </span>

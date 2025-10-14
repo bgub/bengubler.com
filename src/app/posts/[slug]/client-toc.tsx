@@ -2,6 +2,7 @@
 
 import { TOCNode } from "@/components/mdx/remark-toc";
 import { TOCLink } from "@/components/mdx/toc-link";
+import { T } from "gt-next";
 import { useEffect, useState } from "react";
 
 interface ClientTOCProps {
@@ -59,9 +60,11 @@ export function ClientTOC({ tree }: ClientTOCProps) {
 
   return (
     <div className="space-y-2">
-      <h3 className="font-semibold text-sm text-foreground">
-        Table of Contents
-      </h3>
+      <T>
+        <h3 className="font-semibold text-sm text-foreground">
+          Table of Contents
+        </h3>
+      </T>
       {renderTOCNodes(tree.children)}
     </div>
   );
