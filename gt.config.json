@@ -11,6 +11,12 @@
   "files": {
     "gt": {
       "output": "public/_gt/[locale].json"
+    },
+    "mdx": {
+      "include": [
+        "content/**/*.mdx"
+      ],
+      "output": "content/[locale]/[path]"
     }
   },
   "framework": "next-app",

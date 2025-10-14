@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "translate": "gtx-cli translate",
+    "build": "pnpm translate && next build --turbopack",
     "start": "next start",
     "lint": "next lint"
   },
@@ -56,6 +57,7 @@
     "tw-animate-css": "^1.3.6",
     "typescript": "^5.8.3",
     "unified": "^11.0.5",
+    "gtx-cli": "^2.3.9",
     "unist-util-visit": "^5.0.0",
     "vfile": "^6.0.3",
     "zod": "^4.0.10"

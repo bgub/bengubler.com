@@ -60,12 +60,15 @@ const posts = defineCollection({
     // Calculate reading time
     const readingTimeStats = readingTime(document.content);
 
-    // Generate clean slug without folder prefixes (posts/, microblog/, etc.)
+    // Determine locale from path: allow locale segment like `content/ar/...`
+    const pathSegments = document._meta.path.split("/");
+    const allowedLocales = new Set(["en", "ar", "ru", "cs", "sk"]);
+    const firstSegment = pathSegments[0] || "";
+    const locale = allowedLocales.has(firstSegment) ? firstSegment : "en";
+
+    // Generate clean slug without folder prefixes
     const fileName =
-      document._meta.path
-        .split("/")
-        .pop()
-        ?.replace(/\.mdx$/, "") || "";
+      pathSegments[pathSegments.length - 1]?.replace(/\.mdx$/, "") || "";
 
     return {
       ...document,
@@ -74,10 +77,14 @@ const posts = defineCollection({
       readingTime: readingTimeStats.text,
       slug: fileName,
       url: `/posts/${fileName}`,
-      // Keep folder info for potential categorization
-      folder: document._meta.path.includes("/")
-        ? document._meta.path.split("/")[0]
-        : null,
+      // Keep folder info for potential categorization; skip leading locale segment
+      folder:
+        pathSegments.length > 0
+          ? allowedLocales.has(firstSegment)
+            ? pathSegments[1] || null
+            : pathSegments[0] || null
+          : null,
+      locale,
     };
   },
 });

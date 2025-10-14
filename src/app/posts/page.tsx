@@ -3,7 +3,7 @@ import { getPostColors } from "@/lib/colors";
 import { allPosts } from "content-collections";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getGT } from "gt-next/server";
+import { getGT, getLocale } from "gt-next/server";
 import { T, Var } from "gt-next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -20,13 +20,36 @@ interface PostsPageProps {
 
 export default async function PostsPage({ searchParams }: PostsPageProps) {
   const { tag: selectedTag } = await searchParams;
+  const locale = await getLocale();
 
-  // Get all posts sorted by date
-  const sortedPosts = allPosts.sort(
+  // Deduplicate by slug, preferring current locale over English fallback
+  const slugToPost = new Map<string, (typeof allPosts)[number]>();
+  for (const post of allPosts) {
+    const existing = slugToPost.get(post.slug);
+    const postLocale = (post as any).locale || "en";
+    if (!existing) {
+      slugToPost.set(post.slug, post);
+    } else {
+      const existingLocale = (existing as any).locale || "en";
+      // Prefer exact locale match; otherwise keep existing
+      if (postLocale === locale && existingLocale !== locale) {
+        slugToPost.set(post.slug, post);
+      }
+    }
+  }
+
+  // Select only posts matching the locale or fallback
+  const selectedPosts = Array.from(slugToPost.values()).filter((p) => {
+    const postLocale = (p as any).locale || "en";
+    return postLocale === locale || postLocale === "en";
+  });
+
+  // Sort by date (newest first)
+  const sortedPosts = selectedPosts.sort(
     (a, b) => b.date.getTime() - a.date.getTime()
   );
 
-  // Add consistent colors based on date-determined index
+  // Add consistent colors
   const postsWithColors = sortedPosts.map((post) => {
     const colors = getPostColors(post.slug);
     return {
@@ -36,8 +59,8 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
     };
   });
 
-  // Get all unique tags sorted by frequency
-  const tagCounts = allPosts
+  // Tags from the selected set
+  const tagCounts = selectedPosts
     .flatMap((post) => post.tags)
     .reduce((counts, tag) => {
       counts[tag] = (counts[tag] || 0) + 1;
@@ -45,7 +68,6 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
     }, {} as Record<string, number>);
 
   const allTags = Object.keys(tagCounts).sort((a, b) => {
-    // Sort by frequency (descending), then alphabetically for ties
     const countDiff = tagCounts[b] - tagCounts[a];
     return countDiff !== 0 ? countDiff : a.localeCompare(b);
   });
