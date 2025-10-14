@@ -9,6 +9,7 @@ import {
   Star,
   User,
 } from "lucide-react";
+import { msg } from "gt-next";
 
 export type NavigationItem = {
   name: string;
@@ -19,31 +20,31 @@ export type NavigationItem = {
 };
 
 export const navigation: NavigationItem[] = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "About", href: "/about", icon: User },
+  { name: msg("Home"), href: "/", icon: Home },
+  { name: msg("About"), href: "/about", icon: User },
   {
-    name: "My Stack",
+    name: msg("My Stack"),
     href: "/about/my-stack",
     icon: Code,
     isSubItem: true,
     parent: "About",
   },
   {
-    name: "Favorites",
+    name: msg("Favorites"),
     href: "/about/favorites",
     icon: Star,
     isSubItem: true,
     parent: "About",
   },
-  { name: "Projects", href: "/projects", icon: FolderOpen },
+  { name: msg("Projects"), href: "/projects", icon: FolderOpen },
   {
-    name: "Language Learning",
+    name: msg("Language Learning"),
     href: "/language-learning",
     icon: Languages,
     isSubItem: true,
     parent: "Projects",
   },
-  { name: "Posts", href: "/posts", icon: FileText },
-  { name: "Recommended", href: "/recommended", icon: Link2 },
-  { name: "Contact", href: "/contact", icon: Mail },
+  { name: msg("Posts"), href: "/posts", icon: FileText },
+  { name: msg("Recommended"), href: "/recommended", icon: Link2 },
+  { name: msg("Contact"), href: "/contact", icon: Mail },
 ];

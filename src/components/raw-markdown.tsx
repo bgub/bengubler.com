@@ -2,6 +2,7 @@
 
 import { Check, Copy, ExternalLink } from "lucide-react";
 import { useState } from "react";
+import { T, Branch } from "gt-next";
 
 interface RawMarkdownProps {
   slug: string;
@@ -23,34 +24,44 @@ export function RawMarkdown({ slug, content }: RawMarkdownProps) {
 
   return (
     <div className="space-y-3">
-      <h3 className="font-semibold text-sm text-foreground">
-        View Raw (for LLMs)
-      </h3>
+      <T>
+        <h3 className="font-semibold text-sm text-foreground">
+          View Raw (for LLMs)
+        </h3>
+      </T>
       <div className="space-y-2">
-        <a
-          href={`/posts/${slug}.md`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-        >
-          <ExternalLink className="h-4 w-4" />
-          View raw markdown
-        </a>
+        <T>
+          <a
+            href={`/posts/${slug}.md`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ExternalLink className="h-4 w-4" />
+            View raw markdown
+          </a>
+        </T>
         <button
           onClick={copyToClipboard}
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors w-full justify-start"
         >
-          {copied ? (
-            <>
-              <Check className="h-4 w-4 text-green-500" />
-              Copied!
-            </>
-          ) : (
-            <>
-              <Copy className="h-4 w-4" />
-              Copy raw content
-            </>
-          )}
+          <T>
+            <Branch
+              branch={copied.toString()}
+              true={
+                <>
+                  <Check className="h-4 w-4 text-green-500" />
+                  Copied!
+                </>
+              }
+              false={
+                <>
+                  <Copy className="h-4 w-4" />
+                  Copy raw content
+                </>
+              }
+            />
+          </T>
         </button>
       </div>
     </div>

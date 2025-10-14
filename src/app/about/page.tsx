@@ -1,12 +1,19 @@
 import { getColorByIndex } from "@/lib/colors";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { T } from "gt-next";
+import { getGT } from "gt-next/server";
 
-export const metadata: Metadata = {
-  title: "About Ben Gubler",
-  description:
-    "Learn more about Ben Gubler, his studies in AI, languages, and his work as a web developer.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const gt = await getGT();
+
+  return {
+    title: gt("About Ben Gubler"),
+    description: gt(
+      "Learn more about Ben Gubler, his studies in AI, languages, and his work as a web developer."
+    ),
+  };
+}
 
 export default function AboutPage() {
   const colors = getColorByIndex(0); // Use first color for consistency
@@ -14,91 +21,105 @@ export default function AboutPage() {
   return (
     <div className="space-y-10">
       <header className="space-y-4">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-          About Me
-        </h1>
+        <T>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            About Me
+          </h1>
+        </T>
       </header>
 
       <section className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-        <p>
-          My name's Ben, but you might know me by my GitHub username,{" "}
-          <Link
-            href="https://github.com/bgub"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-foreground hover:underline"
-          >
-            @bgub
-          </Link>
-          .
-        </p>
-        <p>
-          I study machine learning and (human) languages. In my free time, I
-          like to build websites and open-source libraries. I'll probably post
-          about all of the above from time to time.
-        </p>
-        <p>
-          Check out{" "}
-          <Link
-            href="/about/my-stack"
-            className="font-medium text-foreground hover:underline"
-          >
-            my stack
-          </Link>{" "}
-          of technologies and tools I use, browse my{" "}
-          <Link
-            href="/about/favorites"
-            className="font-medium text-foreground hover:underline"
-          >
-            favorites
-          </Link>{" "}
-          including books and movies I love, or see what I've{" "}
-          <Link
-            href="/recommended"
-            className="font-medium text-foreground hover:underline"
-          >
-            recommended
-          </Link>{" "}
-          for courses, papers, and learning resources. For my professional
-          background, you can view my{" "}
-          <Link
-            href="/ben-gubler-resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-foreground hover:underline"
-          >
-            résumé
-          </Link>
-          .
-        </p>
-        <p>
-          I'm currently a student at Brigham Young University in Provo, where
-          I'm pursuing a major in ACME (Applied and Computational Mathematics)
-          and a minor in Arabic. I'm also a research assistant in the PCCL
-          (Perception, Control, and Cognition Lab) at BYU, where I study novel
-          applications of artificial intelligence and Natural Language
-          Processing.
-        </p>
+        <T>
+          <p>
+            My name's Ben, but you might know me by my GitHub username,{" "}
+            <Link
+              href="https://github.com/bgub"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground hover:underline"
+            >
+              @bgub
+            </Link>
+            .
+          </p>
+        </T>
+        <T>
+          <p>
+            I study machine learning and (human) languages. In my free time, I
+            like to build websites and open-source libraries. I'll probably post
+            about all of the above from time to time.
+          </p>
+        </T>
+        <T>
+          <p>
+            Check out{" "}
+            <Link
+              href="/about/my-stack"
+              className="font-medium text-foreground hover:underline"
+            >
+              my stack
+            </Link>{" "}
+            of technologies and tools I use, browse my{" "}
+            <Link
+              href="/about/favorites"
+              className="font-medium text-foreground hover:underline"
+            >
+              favorites
+            </Link>{" "}
+            including books and movies I love, or see what I've{" "}
+            <Link
+              href="/recommended"
+              className="font-medium text-foreground hover:underline"
+            >
+              recommended
+            </Link>{" "}
+            for courses, papers, and learning resources. For my professional
+            background, you can view my{" "}
+            <Link
+              href="/ben-gubler-resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-foreground hover:underline"
+            >
+              résumé
+            </Link>
+            .
+          </p>
+        </T>
+        <T>
+          <p>
+            I'm currently a student at Brigham Young University in Provo, where
+            I'm pursuing a major in ACME (Applied and Computational Mathematics)
+            and a minor in Arabic. I'm also a research assistant in the PCCL
+            (Perception, Control, and Cognition Lab) at BYU, where I study novel
+            applications of artificial intelligence and Natural Language
+            Processing.
+          </p>
+        </T>
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-          Fun Facts
-        </h2>
+        <T>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            Fun Facts
+          </h2>
+        </T>
         <div
           className={`${colors.bg} ${colors.border} border rounded-lg p-6 shadow-sm transition-all duration-300 hover:shadow-lg`}
         >
-          <ul className="list-disc space-y-3 pl-5 text-lg text-muted-foreground leading-relaxed">
-            <li>
-              I'm passionate about language learning — I speak English, Czech,
-              and Slovak, and am currently learning Russian and Arabic.
-            </li>
-            <li>
-              I love spending time in the outdoors! Backpacking, fishing, and
-              mountain biking are some of my favorite hobbies.
-            </li>
-            <li>I enjoy great literature, both contemporary and classic!</li>
-          </ul>
+          <T>
+            <ul className="list-disc space-y-3 pl-5 text-lg text-muted-foreground leading-relaxed">
+              <li>
+                I'm passionate about language learning — I speak English, Czech,
+                and Slovak, and am currently learning Russian and Arabic.
+              </li>
+              <li>
+                I love spending time in the outdoors! Backpacking, fishing, and
+                mountain biking are some of my favorite hobbies.
+              </li>
+              <li>I enjoy great literature, both contemporary and classic!</li>
+            </ul>
+          </T>
         </div>
       </section>
     </div>
