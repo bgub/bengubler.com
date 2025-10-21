@@ -1,15 +1,16 @@
 import { allPosts } from "content-collections";
 import { NextRequest, NextResponse } from "next/server";
-import { getGT } from "gt-next/server";
+import { getGT, getLocale } from "gt-next/server";
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
+  const locale = (await getLocale()) || "en";
 
   // Find the post
-  const post = allPosts.find((p) => p.slug === slug);
+  const post = allPosts.find((p) => p.slug === slug && (p as any).locale === locale);
 
   if (!post) {
     const gt = await getGT();
@@ -28,7 +29,12 @@ export async function GET(
 
 // Generate static params for all posts to enable static generation
 export function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post.slug,
-  }));
+  const seen = new Set<string>();
+  return allPosts
+    .filter((post) => {
+      if (seen.has(post.slug)) return false;
+      seen.add(post.slug);
+      return true;
+    })
+    .map((post) => ({ slug: post.slug }));
 }

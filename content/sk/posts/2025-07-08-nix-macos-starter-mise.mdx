@@ -1,0 +1,56 @@
+---
+title: "Nix macOS Starter: Deklaratívne vývojové prostredie s Mise"
+description: "Štartovacia Nix konfigurácia pre macOS s nix-darwin, home-manager a mise."
+date: "2025-07-08"
+tags: [open-source]
+---
+
+V sobotu som sa rozhodol naučiť Nix. Po hodinách práce som pripravil túto konfiguráciu. Vďaka patrí môjmu kamarátovi [Ethanovi Niserovi](https://github.com/ethanniser), ktorý ma inšpiroval a s ktorého konfiguráciou som začínal.
+
+Nastavovanie nového Macu na vývoj je utrpenie. Nainštaluješ Homebrew, Node cez nvm, Python cez pyenv, nakonfiguruješ shell, GUI aplikácie inštaluješ po jednej a dúfaš, že si pri výmene stroja na nič nezabudol.
+
+Nix robí celú konfiguráciu tvojho systému deklaratívnou a reprodukovateľnou, no väčšina konfigurácií online je pre začiatočníkov príliš zložitá alebo predpokladá znalosti Linuxu.
+
+[nix-macos-starter](https://github.com/bgub/nix-macos-starter) je začiatočníkom priateľská Nix konfigurácia, ktorá obsahuje vývojové nástroje (mise na správu runtime, CLI nástroje, formátovače), GUI aplikácie cez Homebrew a systémovú konfiguráciu s rozumnými predvolenými nastaveniami.
+
+Vymeň pár zástupných hodnôt, spusti jeden príkaz a máš plne nakonfigurované vývojové prostredie.
+
+## Inštalácia
+
+1. **Nainštalujte Nix** pomocou [inštalátora od Determinate Systems](https://docs.determinate.systems/#products). Stiahnite si grafický inštalátor pre macOS a po inštalácii reštartujte terminál.
+
+2. **Nainštalujte Homebrew** z [brew.sh](https://brew.sh) na inštaláciu GUI aplikácií.
+
+3. **Klonujte a nastavte**:
+
+   ```bash
+   git clone https://github.com/bgub/nix-macos-starter ~/.config/nix
+   cd ~/.config/nix
+   ```
+
+4. **Pre Intel Macy**: Zmeňte „aarch64-darwin“ na „x86_64-darwin“ v `flake.nix` na riadku 28.
+
+5. **Nahraďte zástupné hodnoty** v týchto súboroch:
+
+   - `modules/git.nix`: `YOUR_NAME`, `YOUR_EMAIL`, `YOUR_USERNAME`
+   - `modules/home-manager.nix`: `YOUR_USERNAME`
+   - `platforms/darwin.nix`: `YOUR_USERNAME` (vyskytuje sa trikrát)
+   - `hosts/my-macbook/configuration.nix`: `YOUR_USERNAME`
+
+6. **Zostavte a prepnite**:
+   ```bash
+   darwin-rebuild switch --flake .#my-macbook
+   ```
+
+Po úvodnom nastavení používajte alias `nix-switch` na znovupostavenie vašej konfigurácie.
+
+## Prispôsobenie
+
+- **Pridanie nástrojov CLI**: Upravte pole `packages` v `modules/home-manager.nix`
+- **Pridanie GUI aplikácií**: Upravte pole `casks` v `modules/homebrew-common.nix`
+- **Pridanie vývojárskych nástrojov**: Pridajte `${pkgs.mise}/bin/mise use --global tool@version` do aktivačného skriptu v `modules/home-manager.nix`
+- **Konfigurácia špecifická pre konkrétny počítač**: Použite `hosts/my-macbook/configuration.nix` pre balíky a nastavenia viazané na daný stroj
+
+---
+
+**Repozitár**: [github.com/bgub/nix-macos-starter](https://github.com/bgub/nix-macos-starter)

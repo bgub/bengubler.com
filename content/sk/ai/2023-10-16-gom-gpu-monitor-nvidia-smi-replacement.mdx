@@ -1,0 +1,32 @@
+---
+title: "Predstavujem GOM: monitorovanie GPU naprieč kontajnermi"
+description: Zverejnil som `gom`, CLI nástroj na monitorovanie využitia GPU v Dockerových kontajneroch.
+date: "2023-10-16"
+tags: [ml/ai, open-source]
+---
+
+## TL;DR
+
+`gom` je skratka pre GPU Output Monitor. Je to pip balík, ktorý poskytuje CLI na monitorovanie využitia GPU. Predstavte si ho ako `nvidia-smi`, len rýchlejší a minimalistickejší. A má aj bonusovú funkciu: **v prostrediach, kde Docker kontajnery používajú GPU, rozdelí využitie podľa kontajnera**! (Nebojte sa, funguje aj v prostrediach bez Dockeru a dokonca aj vo vnútri Docker kontajnerov.)
+
+_Kredit za inšpiráciu k tomuto projektu patrí môjmu kolegovi [Vin](https://howe.vin/). Pomocou GPT-4 vytvoril počiatočný prototyp v Bashi, ale pre chyby a problémy s výkonom som ho musel od základov prepísať._
+
+## Pokyny
+
+1. Spustite `pip3 install gom`
+2. Podľa vašej verzie CUDA nainštalujte správnu verziu balíka `pynvml`
+3. Spustite `gom show` (na jednorazové zobrazenie využitia) alebo `gom watch` (na priebežné monitorovanie využitia, aktualizované približne každú sekundu)
+
+## Porovnanie `gom` a `nvidia-smi`
+
+Myslím, že výsledky hovoria samy za seba :). Tento prvý snímok obrazovky je výsledkom spustenia `gom watch`. Vidno, že štyri rôzne Docker kontajnery — `r0`, `r1`, `r2` a `r3` — výrazne zaťažujú GPU. Je tu aj mierne využitie všetkých GPU, ktoré nepochádza z nijakého kontajnera.
+
+![výstup príkazu `gom watch`](/blog-images/gom-watch.png)
+
+Tento druhý snímok obrazovky je výsledkom spustenia `nvidia-smi`. Je neprehľadný a zbytočne ukecaný. Na väčšej ploche než `gom` dokáže zobraziť informácie len pre 8 GPU!
+
+![výstup príkazu `nvidia-smi`](/blog-images/nvidia-smi.png)
+
+## Záver
+
+Vytvoril som `gom`, pretože som chcel sledovať využitie GPU v rôznych Docker kontajneroch. Často ho používam pri úlohách z oblasti ML, pretože je rýchly a výstup sa zmestí aj na malý terminál. Dúfam, že bude užitočný aj pre vás. Ak máte návrhy, pokojne otvorte issue v [repozitári na GitHube](https://github.com/bgub/gom).

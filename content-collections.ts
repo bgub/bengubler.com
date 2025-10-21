@@ -60,12 +60,12 @@ const posts = defineCollection({
     // Calculate reading time
     const readingTimeStats = readingTime(document.content);
 
-    // Generate clean slug without folder prefixes (posts/, microblog/, etc.)
+    // Generate clean slug without folder prefixes
     const fileName =
-      document._meta.path
-        .split("/")
-        .pop()
-        ?.replace(/\.mdx$/, "") || "";
+      document._meta.path.split("/").pop()?.replace(/\.mdx$/, "") || "";
+
+    // Derive locale and top-level folder from path: <locale>/<folder>/...
+    const [locale, folder] = document._meta.path.split("/");
 
     return {
       ...document,
@@ -74,10 +74,8 @@ const posts = defineCollection({
       readingTime: readingTimeStats.text,
       slug: fileName,
       url: `/posts/${fileName}`,
-      // Keep folder info for potential categorization
-      folder: document._meta.path.includes("/")
-        ? document._meta.path.split("/")[0]
-        : null,
+      locale,
+      folder,
     };
   },
 });

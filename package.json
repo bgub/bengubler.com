@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "pnpm translate && next build --turbopack",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "translate": "gtx-cli translate"
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
@@ -44,6 +45,7 @@
     "@types/react-dom": "^19.1.6",
     "@types/unist": "^3.0.3",
     "github-slugger": "^2.0.0",
+    "gtx-cli": "^2.4.0",
     "mdast-util-to-string": "^4.0.0",
     "mdx-bundler": "^10.1.1",
     "reading-time": "^1.5.0",

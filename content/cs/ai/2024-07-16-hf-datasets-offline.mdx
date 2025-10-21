@@ -1,0 +1,25 @@
+---
+title: "Používání datasetů HuggingFace offline"
+description: Jak uložit dataset HuggingFace na disk a používat ho offline
+date: "2024-07-16"
+tags: [ml/ai]
+---
+
+Je to celkem jednoduché, ale velmi užitečné, pokud spouštíte úlohy na výpočetním uzlu bez přístupu k internetu.
+
+Na přihlašovacím uzlu nebo na jiném stroji s přístupem k internetu spusťte následující kód v Pythonu:
+
+```python
+import datasets
+
+x = datasets.load_dataset("my_dataset")
+
+x.save_to_disk("./my_dataset_local")
+```
+
+Pak v případě potřeby zkopírujte soubory na stroj, na kterém běží váš úkol. Teď už je z toho offline stroje načtení datasetu snadné!
+
+```python
+y = datasets.load_from_disk("./hellaswag_local")
+y # DatasetDict({...})
+```

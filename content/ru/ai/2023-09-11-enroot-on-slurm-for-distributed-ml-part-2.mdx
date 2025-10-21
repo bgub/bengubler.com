@@ -1,0 +1,126 @@
+---
+title: "Enroot в Slurm для распределённого ML: часть 2"
+description: Как использовать Enroot в Slurm для контейнеризованного обучения на нескольких узлах.
+date: "2023-09-11"
+tags: [ml/ai]
+---
+
+_ОБНОВЛЕНИЕ 2024: Я больше не рекомендую этот метод и столкнулся с рядом проблем при его использовании. Вместо этого советую использовать [Pyxis](https://github.com/NVIDIA/pyxis) — инструмент от NVIDIA, который упрощает запуск контейнеров на HPC‑системах._
+
+_Это вторая часть из двух. [Часть 1](./enroot-on-slurm-for-distributed-ml-part-1) доступна здесь._
+
+В [части 1](./enroot-on-slurm-for-distributed-ml-part-1) мы разобрали, как использовать Enroot в Slurm для контейнеризованного обучения на _одном узле_ с помощью `salloc`. В этом посте рассмотрим, как использовать Enroot в Slurm для контейнеризованного обучения на _нескольких узлах_ и перейдём к `sbatch`.
+
+## Шаг 1: Скрипт запуска Slurm
+
+В итоге мы создадим несколько Bash-файлов, и все они должны находиться в том же каталоге, что и ваш скрипт обучения. Первый — это скрипт запуска Slurm, который мы будем отправлять с помощью `sbatch`. В нем будут те же команды, что мы выполняли через `salloc` в [части 1](../enroot-on-slurm-for-distributed-ml-part-1), но заданные с использованием директив `#SBATCH`.
+
+`launch.sh`
+
+```bash
+#!/bin/bash
+#SBATCH -J "ИМЯ_ЗАДАЧИ"
+#SBATCH --nodes=2
+#SBATCH --gpus-per-node=8
+#SBATCH --cpus-per-task=128
+#SBATCH --mem=2000G
+#SBATCH --time=72:00:00
+#SBATCH --qos=<qos>
+
+export CUR_DIR=$(pwd)
+srun --nodes=2 stage1.sh
+```
+
+Обратите внимание, что мы создаём переменную `CUR_DIR` для хранения текущего рабочего каталога (каталога, в котором была запущена команда `sbatch`). Я использую эту переменную, чтобы передавать путь к своему каталогу с обучением между скриптами и не жёстко прописывать пути. Но это не обязательно.
+
+Slurm автоматически передаст локальные переменные окружения в команду `srun`, которая запустит скрипт `stage1.sh` на каждом узле.
+
+
+## Шаг 2. Скрипт запуска Enroot
+
+Далее мы создадим скрипт, который будет выполняться на каждом узле. Он будет отвечать за запуск контейнера и запуск обучающего скрипта. Мы назовём этот скрипт `stage1.sh`.
+
+`stage1.sh`
+
+```bash
+#!/bin/bash
+
+module load jq zstd pigz parallel libnvidia-container enroot
+
+export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1) # получить IP-адрес первого узла в списке
+export MASTER_PORT=6000 # задать порт для связи между узлами
+
+enroot create --name image-name /path/to/image-name.sqsh
+
+enroot start --env SLURM_NODEID \
+             --env MASTER_ADDR \
+             --env MASTER_PORT \
+             --env SLURM_JOB_NAME \
+             --env CUR_DIR \
+             --mount /local/file/path:/image/file/path \
+             --rw image-name \
+             bash ${CUR_DIR}/stage2.sh
+```
+
+Обратите внимание, что мы передаем в контейнер несколько важных переменных окружения, предоставляемых Slurm, вместе с `CUR_DIR`. Переменные `MASTER_ADDR` и `MASTER_PORT` используются распределенным бэкендом обучения PyTorch для координации обмена между узлами.
+
+Мы также монтируем в контейнер локальный путь к файлу (убедитесь, что он содержит ваш обучающий скрипт!).
+
+
+## Шаг 3. Скрипт обучения
+
+Наконец, мы создадим обучающий скрипт, который будет запускаться внутри контейнера. Назовём его `stage2.sh`.
+
+`stage2.sh`
+
+```bash
+#!/bin/bash
+
+export NCCL_DEBUG=INFO # если хотите видеть логи NCCL
+export NODE_RANK=$SLURM_NODEID # устанавливаем ранг узла равным ID узла (0, 1, 2, и т.д.)
+echo NODE_RANK: $NODE_RANK # выводим ранг узла для отладки
+
+# Запускаем скрипт обучения
+# ПРИМЕЧАНИЕ: измените при необходимости, если не используете accelerate
+
+accelerate launch --config_file ./accelerate_config.yaml --main_process_ip=$MASTER_ADDR --main_process_port=$MASTER_PORT --machine_rank $NODE_RANK ${CUR_DIR}/loop.py
+```
+
+Здесь я использовал [accelerate](https://huggingface.co/docs/accelerate) как лаунчер для скрипта распределённого обучения, но вы можете использовать любой другой. Просто убедитесь, что пробрасываете нужные переменные окружения!
+
+Для полноты картины — мой файл `accelerate_config.yaml`. В нём используется FSDP (Fully Sharded Data Parallel) для распределения параметров модели и градиентов между процессами. Это отличный способ обучать большие модели, которые не помещаются на одной видеокарте.
+
+```yaml
+compute_environment: LOCAL_MACHINE
+deepspeed_config: {}
+distributed_type: FSDP
+downcast_bf16: "no"
+fsdp_config:
+  fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
+  fsdp_backward_prefetch_policy: BACKWARD_PRE
+  fsdp_offload_params: false
+  fsdp_sharding_strategy: 1
+  fsdp_state_dict_type: FULL_STATE_DICT
+  fsdp_transformer_layer_cls_to_wrap: LlamaDecoderLayer
+main_training_function: main
+mixed_precision: "no"
+num_machines: 2
+num_processes: 16 # 8 GPU на узел * 2 узла = 16 процессов
+use_cpu: false
+```
+
+
+## Шаг 4. Отправка задания
+
+Теперь, когда мы создали все необходимые скрипты, можно отправить задание в Slurm с помощью `sbatch`! В каталоге со скриптами выполните:
+
+```bash
+sbatch launch.sh
+```
+
+Ваша задача будет отправлена в Slurm и запущена, как только освободятся ресурсы. Журналы вывода будут сохранены в файле `slurm-<jobid>.out` в текущем каталоге.
+
+
+## Заключение
+
+Надеюсь, это было полезно! В настройке распределённого обучения много составляющих, но как только преодолеешь начальный порог, всё оказывается не так уж сложно.

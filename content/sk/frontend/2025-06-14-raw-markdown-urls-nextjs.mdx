@@ -1,0 +1,296 @@
+---
+title: "Pridanie .md URL pre surový markdownový obsah v Next.js"
+description: "Ako pridať .md URL na svoj blog v Next.js na poskytovanie surového markdownového obsahu, inšpirované dokumentáciou od Vercel."
+date: "2025-06-14"
+tags: [frontend]
+---
+
+> **Aktualizácia**: Po zverejnení tohto článku [Guillermo Rauch](https://twitter.com/rauchg) (CEO Vercelu) navrhol pre tento prípad použiť rewrites v Next.js namiesto middleware. Implementáciu nižšie som aktualizoval – je jednoduchšia a výkonnejšia! 🚀
+
+## V skratke
+
+Inšpirovaní dokumentáciou od Vercelu pridáme možnosť pripojiť k URL akejkoľvek blogovej stránky príponu `.md`, aby ste získali surový obsah v Markdowne. Teda `/posts/my-post` sa zmení na `/posts/my-post.md` pre surový zdroj. Nedávno som túto funkciu pridal na svoj blog – je ideálna na zdieľanie ukážok kódu alebo na to, aby ľudia videli, ako ste niečo napísali.
+
+Next.js [rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) to prekvapivo jednoducho a elegantne umožňujú.
+
+<Tweet id="1930689104800518392" />
+
+## Nastavenie
+
+```bash
+pnpx create-next-app@latest raw-markdown-blog
+cd raw-markdown-blog
+pnpm install @content-collections/core @content-collections/mdx @content-collections/next zod
+```
+
+Vyberte TypeScript, Tailwind CSS a App Router.
+
+Pridajte `.content-collections` do svojho `.gitignore`:
+
+```
+.content-collections
+```
+
+
+## Nastavenie Content Collections
+
+[Content Collections](https://www.content-collections.dev/) je výborná knižnica na správu obsahu v Next.js — je typovo bezpečná, rýchla a ponúka skvelý DX.
+
+Vytvorte `content-collections.ts` v koreňovom adresári projektu (nie v `src/`):
+
+```typescript
+import { defineCollection, defineConfig } from "@content-collections/core";
+import { compileMDX } from "@content-collections/mdx";
+import { z } from "zod";
+
+const posts = defineCollection({
+  name: "posts",
+  directory: "content",
+  include: "**/*.mdx",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.string().pipe(z.coerce.date()),
+  }),
+  transform: async (document, context) => {
+    const mdx = await compileMDX(context, document);
+    const slug = document._meta.path.replace(/\.mdx$/, "");
+
+    return {
+      ...document,
+      mdx,
+      slug,
+      url: `/posts/${slug}`,
+    };
+  },
+});
+
+export default defineConfig({
+  collections: [posts],
+});
+```
+
+Aktualizujte súbor `next.config.js`:
+
+```javascript
+const { withContentCollections } = require("@content-collections/next");
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // vaša existujúca konfigurácia...
+};
+
+module.exports = withContentCollections(nextConfig);
+```
+
+Aktualizujte cesty v súbore `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    // ... ďalšie možnosti
+    "paths": {
+      "@/*": ["./src/*"],
+      "content-collections": ["./.content-collections/generated"]
+    }
+  }
+}
+```
+
+
+## Ukážkový obsah
+
+V koreňovom priečinku projektu vytvorte adresár `content/` a pridajte `content/hello-world.mdx`:
+
+````markdown
+---
+title: "Ahoj svet"
+description: "Môj prvý blogový príspevok s podporou raw markdown."
+date: "2024-12-20"
+---
+
+## Vitajte
+
+Toto je môj prvý blogový príspevok! Tu je nejaký **tučný text** a blok kódu:
+
+```javascript
+console.log("Ahoj, svet!");
+```
+
+Celkom fajn, nie?
+````
+
+
+## Stránky s príspevkami
+
+Nahraďte `app/page.tsx`:
+
+```tsx
+import { allPosts } from "content-collections";
+import Link from "next/link";
+
+export default function Home() {
+  const sortedPosts = allPosts.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  return (
+    <div className="max-w-2xl mx-auto p-8">
+      <h1 className="text-3xl font-bold mb-8">Môj blog</h1>
+      <div className="space-y-6">
+        {sortedPosts.map((post) => (
+          <article key={post.slug} className="border-b pb-4">
+            <Link
+              href={post.url}
+              className="text-xl font-semibold hover:text-blue-600"
+            >
+              {post.title}
+            </Link>
+            <p className="text-gray-600 mt-2">{post.description}</p>
+            <time className="text-sm text-gray-500">
+              {post.date.toLocaleDateString()}
+            </time>
+            <div className="mt-2 text-sm">
+              <Link
+                href={`${post.url}.md`}
+                className="text-blue-500 hover:underline"
+              >
+                Zobraziť zdrojový markdown
+              </Link>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+Vytvorte súbor `app/posts/[slug]/page.tsx`:
+
+```tsx
+import { allPosts } from "content-collections";
+import { MDXContent } from "@content-collections/mdx/react";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = allPosts.find((p) => p.slug === slug);
+
+  if (!post) notFound();
+
+  return (
+    <div className="max-w-2xl mx-auto p-8">
+      <Link
+        href="/"
+        className="text-blue-600 hover:underline mb-4 inline-block"
+      >
+        ← Späť na príspevky
+      </Link>
+
+      <article>
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
+          <p className="text-gray-600 mb-2">{post.description}</p>
+          <time className="text-sm text-gray-500">
+            {post.date.toLocaleDateString()}
+          </time>
+          <div className="mt-4">
+            <Link
+              href={`${post.url}.md`}
+              className="text-blue-500 hover:underline text-sm"
+            >
+              Zobraziť zdrojový markdown
+            </Link>
+          </div>
+        </header>
+
+        <div className="prose prose-lg max-w-none">
+          <MDXContent code={post.mdx} />
+        </div>
+      </article>
+    </div>
+  );
+}
+
+export function generateStaticParams() {
+  return allPosts.map((post) => ({ slug: post.slug }));
+}
+```
+
+
+## Kúzlo: prepisy
+
+Tu sa prejaví sila prepísaní v Next.js – prepisovanie URL vieme elegantne pokryť len pár riadkami konfigurácie.
+
+Aktualizujte `next.config.js` a pridajte pravidlo prepisu:
+
+```javascript
+const { withContentCollections } = require("@content-collections/next");
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/posts/:slug.md",
+        destination: "/api/posts/:slug/raw",
+      },
+    ];
+  },
+};
+
+module.exports = withContentCollections(nextConfig);
+```
+
+Pravidlo prepisu automaticky mapuje každú požiadavku zodpovedajúcu `/posts/:slug.md` na `/api/posts/:slug/raw`. Parameter `:slug` sa zachytí zo zdrojovej adresy URL a odošle sa na cieľ. Používateľ vidí v prehliadači `/posts/hello-world.md`, ale Next.js ju obsluhuje z `/api/posts/hello-world/raw`.
+
+
+## Trasa API pre neformátovaný obsah
+
+Vytvorte `app/api/posts/[slug]/raw/route.ts`:
+
+```typescript
+import { allPosts } from "content-collections";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;
+  const post = allPosts.find((p) => p.slug === slug);
+
+  if (!post) {
+    return new NextResponse("Príspevok nenájdený", { status: 404 });
+  }
+
+  return new NextResponse(post.content, {
+    headers: {
+      "Content-Type": "text/markdown; charset=utf-8",
+      "Cache-Control": "public, max-age=3600", // Cache na 1 hodinu
+    },
+  });
+}
+
+export function generateStaticParams() {
+  return allPosts.map((post) => ({ slug: post.slug }));
+}
+```
+
+
+## Hotovo
+
+Spustite svoj dev server a otestujte obe adresy URL:
+
+- `/posts/hello-world` - Vykreslené MDX so štýlmi a komponentmi
+- `/posts/hello-world.md` - Surový zdrojový markdown
+
+Hlavičky cache zabezpečia, že surový markdown sa bude hodinu ukladať do vyrovnávacej pamäte, čo znižuje záťaž servera pri populárnych príspevkoch. V produkcii možno budete chcieť pridať k príspevkom tlačidlo „Zobraziť raw“ (ako som to spravil na svojom blogu) namiesto toho, aby ste v zozname príspevkov zobrazovali len odkaz.
+
+Táto funkcionalita je ideálna na zdieľanie príkladov, ladenie obsahu alebo na to, aby si ostatní mohli študovať vaše markdownové formátovanie. A prepísania v Next.js robia implementáciu čistú a výkonnú – nie je potrebná žiadna zložitá logika smerovania.

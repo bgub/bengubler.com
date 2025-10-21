@@ -1,0 +1,29 @@
+---
+title: Velké jazykové modely nikdy nebudou umět (složitou) matematiku
+description: Protože současným architekturám velkých jazykových modelů chybí rekurze, jsou v zásadě neschopné provádět některé matematické operace.
+date: "2023-08-23"
+lastUpdated: "2024-06-24"
+tags: [ml/ai]
+---
+
+_AKTUALIZACE 2024: Pro upřesnění, tento příspěvek se týká matematických operací, které ze své podstaty vyžadují více rekurzivních kroků, jako je umocňování. Jak [ukázal zajímavý výzkum](https://arxiv.org/abs/2405.17399v1), transformery se s určitými úpravami dokážou docela dobře naučit základní aritmetiku. Přidání „scratchpadu“ může dále zlepšit výkon modelu a může být dobrým způsobem, jak obejít problémy zmíněné v tomto článku._
+
+## Problém
+
+Velké jazykové modely mají obrovský potenciál v mnoha oblastech, ale většina dnešních modelů má jednu vrozenou limitaci: jsou čistě feed-forwardové. To znamená, že data plynou lineárně od vstupu k výstupu, bez rekurze či zpětného větvení. To umožňuje neuvěřitelně rychlý a efektivní trénink pomocí gradientního sestupu a zpětného šíření chyby. Výpočty lze provádět paralelně pomocí maticového násobení.
+
+Bohužel absence rekurze znemožňuje některé typy matematických operací. Vezměme si umocňování. ChatGPT zvládá jednoduché příklady na mocniny, ale když se zeptáte, kolik je X^Y pro vysoké hodnoty X nebo Y, začne být nepřesný.
+
+Ačkoli lze exponenciální operace rozložit na lineární sekvenci, pro konečnou feed-forward neuronovou síť je nemožné zvládnout libovolnou rekurzivní operaci (tj. X^Y pro libovolnou možnou hodnotu Y). Míra rekurze, kterou může velký jazykový model „simulovat“, je omezena počtem jeho parametrů a vrstev.
+
+## Shrnutí
+
+Chybějící rekurze je dané konstrukční omezení současných velkých jazykových modelů ve stylu GPT, které jim brání provádět složité matematické operace. Faktem ale je, že ve většině případů použití velkých jazykových modelů to vůbec nevadí! Stále jsou výkonné a užitečné v široké škále situací.
+
+## Zábavné věci
+
+Na pochopení chování natrénovaných velkých jazykových modelů je pořád spousta práce. Tady je něco fascinujícího, na co jsem narazil při psaní tohoto článku:
+
+Když jsem se ChatGPT zeptal, kolik je 7^15, odpovědělo **170,859,375**. Správná odpověď je **4,747,561,509,943**.
+
+Ačkoli je odpověď zjevně nesprávná, **170,859,375** má zajímavou vlastnost: rozkládá se na **(3^7)\*(5^7)**. Zdá se, že model si „pod kapotou“ převedl **A^(B\*C)** na **(B^A)\*(C^A)**. Zajímalo by mě, proč k tomu dochází!

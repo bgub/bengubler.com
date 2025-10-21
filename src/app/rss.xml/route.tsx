@@ -3,17 +3,19 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
 import { Feed } from "feed";
 import { NextRequest, NextResponse } from "next/server";
+import { getLocale } from "gt-next/server";
 
 const baseUrl = getBaseUrl();
 
 const createFeed = async (renderToString: Function) => {
+  const locale = (await getLocale()) || "en";
   const feed = new Feed({
     title: "Ben Gubler",
     description:
       "Ben Gubler's personal website. Thoughts on web development, AI, and building things that matter.",
     id: baseUrl,
     link: baseUrl,
-    language: "en",
+    language: locale,
     favicon: `${baseUrl}/icon.png`,
     copyright: `Copyright ${new Date().getFullYear()} Ben Gubler`,
     author: {
@@ -27,8 +29,9 @@ const createFeed = async (renderToString: Function) => {
     generator: "Next.js",
   });
 
-  // Get all published posts, sorted by date
+  // Get all published posts for current locale, sorted by date
   const posts = allPosts
+    .filter((post) => (post as any).locale === locale)
     .filter((post) => !post.archived)
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 

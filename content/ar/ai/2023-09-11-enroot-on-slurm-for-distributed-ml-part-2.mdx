@@ -1,0 +1,126 @@
+---
+title: "Enroot على Slurm للتعلّم الآلي الموزّع: الجزء 2"
+description: كيفية استخدام Enroot على Slurm لتدريب متعدد العقد ضمن حاويات.
+date: "2023-09-11"
+tags: [ml/ai]
+---
+
+_تحديث 2024: لم أعد أوصي بهذه الطريقة وقد واجهتُ عدة مشكلات معها. بدلًا من ذلك، أوصي باستخدام [Pyxis](https://github.com/NVIDIA/pyxis)، وهي أداة طوّرتها NVIDIA لتبسيط تشغيل الحاويات على أنظمة الحوسبة عالية الأداء (HPC)._ 
+
+_هذا هو الجزء الثاني من سلسلة مؤلّفة من جزأين. [الجزء الأول](./enroot-on-slurm-for-distributed-ml-part-1) متاح هنا._
+
+في [الجزء الأول](./enroot-on-slurm-for-distributed-ml-part-1)، تناولنا كيفية استخدام Enroot على Slurm لتدريب _عقدة واحدة_ ضمن حاوية باستخدام `salloc`. في هذا المقال، سنستعرض كيفية استخدام Enroot على Slurm للتدريب _متعدد العقد_ ضمن حاويات، والانتقال إلى استخدام `sbatch`.
+
+## الخطوة 1: سكربت إطلاق Slurm
+
+سننشئ عدة ملفات Bash، ويجب أن تكون جميعها في نفس الدليل الذي يحتوي على سكربت التدريب الخاص بك. سيكون الأول ملف إطلاق Slurm سنشغّله باستخدام `sbatch`. سيحتوي هذا الملف على نفس الأوامر التي شغّلناها باستخدام `salloc` في [الجزء 1](../enroot-on-slurm-for-distributed-ml-part-1)، لكن مُصرَّحًا عنها باستخدام توجيهات المعالجة `#SBATCH`.
+
+`launch.sh`
+
+```bash
+#!/bin/bash
+#SBATCH -J "اسم_المهمة"
+#SBATCH --nodes=2
+#SBATCH --gpus-per-node=8
+#SBATCH --cpus-per-task=128
+#SBATCH --mem=2000G
+#SBATCH --time=72:00:00
+#SBATCH --qos=<مستوى_الخدمة>
+
+export CUR_DIR=$(pwd)
+srun --nodes=2 stage1.sh
+```
+
+لاحظ أننا ننشئ متغيرًا باسم `CUR_DIR` لتخزين دليل العمل الحالي (الدليل الذي شُغّل منه أمر `sbatch`). أستخدم هذا المتغير لمشاركة موقع دليل التدريب بين السكربتات، كي لا أضطر إلى ترميز المسارات يدويًا. لكنه غير مطلوب.
+
+سيقوم Slurm تلقائيًا بتمرير متغيرات البيئة المحلية إلى أمر `srun`، والذي سيشغّل السكربت `stage1.sh` على كل عقدة.
+
+
+## الخطوة 2. سكربت تشغيل Enroot
+
+بعد ذلك سننشئ سكربت يُشغَّل على كل عقدة. سيكون هذا السكربت مسؤولًا عن تشغيل الحاوية وتشغيل سكربت التدريب. سنسمي هذا السكربت `stage1.sh`.
+
+`stage1.sh`
+
+```bash
+#!/bin/bash
+
+module load jq zstd pigz parallel libnvidia-container enroot
+
+export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1) # الحصول على عنوان IP للعقدة الأولى في القائمة
+export MASTER_PORT=6000 # تعيين المنفذ المستخدم للاتصال بين العقد
+
+enroot create --name image-name /path/to/image-name.sqsh
+
+enroot start --env SLURM_NODEID \
+             --env MASTER_ADDR \
+             --env MASTER_PORT \
+             --env SLURM_JOB_NAME \
+             --env CUR_DIR \
+             --mount /local/file/path:/image/file/path \
+             --rw image-name \
+             bash ${CUR_DIR}/stage2.sh
+```
+
+لاحظ أننا نمرّر عدة متغيرات بيئية مهمة يوفرها Slurm، مع `CUR_DIR`، إلى الحاوية. تُستخدم المتغيرات `MASTER_ADDR` و`MASTER_PORT` بواسطة واجهة التدريب الموزّع في PyTorch لتنسيق الاتصال بين العُقَد.
+
+نقوم أيضًا بضمّ مسار ملف محلي داخل الحاوية (تأكد من أنه يحتوي على برنامج/سكريبت التدريب الخاص بك!).
+
+
+## الخطوة 3. نصّ التدريب
+
+أخيرًا سننشئ نصًا (سكربت) للتدريب سيتم تشغيله داخل الحاوية. سنسمّي هذا النص `stage2.sh`.
+
+`stage2.sh`
+
+```bash
+#!/bin/bash
+
+export NCCL_DEBUG=INFO # إذا كنت تريد رؤية سجلات NCCL
+export NODE_RANK=$SLURM_NODEID # تعيين رتبة العقدة إلى معرف العقدة (0، 1، 2، إلخ.)
+echo NODE_RANK: $NODE_RANK # طباعة رتبة العقدة لأغراض التصحيح
+
+# تشغيل سكريبت التدريب
+# ملاحظة: عدّل حسب الحاجة إذا كنت لا تستخدم accelerate
+
+accelerate launch --config_file ./accelerate_config.yaml --main_process_ip=$MASTER_ADDR --main_process_port=$MASTER_PORT --machine_rank $NODE_RANK ${CUR_DIR}/loop.py
+```
+
+هنا استخدمت [accelerate](https://huggingface.co/docs/accelerate) كمُشغِّل لسكريبت التدريب الموزّع الخاص بي، لكن يمكنك استخدام أي مُشغِّل تفضّله. فقط تأكّد من تمرير متغيّرات البيئة ذات الصلة!
+
+لإتمام الصورة، إليك ملفّي `accelerate_config.yaml`. إنه يستخدم FSDP (التوازي بالتمزيق الكامل للبيانات) لتجزئة معاملات النموذج والتدرّجات عبر العمليات. هذه طريقة ممتازة لتدريب النماذج الكبيرة التي لا تتّسع على وحدة GPU واحدة.
+
+```yaml
+compute_environment: LOCAL_MACHINE
+deepspeed_config: {}
+distributed_type: FSDP
+downcast_bf16: "no"
+fsdp_config:
+  fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
+  fsdp_backward_prefetch_policy: BACKWARD_PRE
+  fsdp_offload_params: false
+  fsdp_sharding_strategy: 1
+  fsdp_state_dict_type: FULL_STATE_DICT
+  fsdp_transformer_layer_cls_to_wrap: LlamaDecoderLayer
+main_training_function: main
+mixed_precision: "no"
+num_machines: 2
+num_processes: 16 # 8 وحدات معالجة رسومات لكل عقدة * 2 عقدة = 16 عملية
+use_cpu: false
+```
+
+
+## الخطوة 4. إرسال المهمة
+
+الآن بعد أن أنشأنا جميع السكربتات اللازمة، يمكننا إرسال المهمة إلى Slurm باستخدام `sbatch`! من الدليل الذي يحتوي على السكربتات، نفّذ:
+
+```bash
+sbatch launch.sh
+```
+
+سيتم إرسال مهمتك إلى Slurm وتشغيلها فور توفر الموارد. ستُحفَظ سجلات الإخراج في `slurm-<jobid>.out` ضمن الدليل الحالي.
+
+
+## الخلاصة
+
+آمل أن يكون هذا مفيدًا! هناك الكثير من العناصر المتداخلة لجعل التدريب الموزع يعمل، لكنه ليس صعبًا جدًا بمجرد تجاوز منحنى التعلّم الأولي.
