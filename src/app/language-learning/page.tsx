@@ -1,58 +1,74 @@
 import { getColorByIndex } from "@/lib/colors";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getGT } from "gt-next/server";
+import { msg, useMessages } from "gt-next";
+import { T } from "gt-next";
 
-export const metadata: Metadata = {
-  title: "Language Learning - Ben Gubler",
-  description:
-    "Tools and resources for learning languages, including declension practice apps and more.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const gt = await getGT();
+  return {
+    title: gt("Language Learning - Ben Gubler"),
+    description: gt(
+      "Tools and resources for learning languages, including declension practice apps and more."
+    ),
+  };
+}
 
 const languageTools = [
   {
     id: "tinylingo",
-    title: "TinyLingo",
-    description:
-      "AI-powered website to learn languages with personalized lessons and interactive practice sessions.",
+    title: msg("TinyLingo"),
+    description: msg(
+      "AI-powered website to learn languages with personalized lessons and interactive practice sessions."
+    ),
     href: "https://tinylingo.com/",
     isExternal: true,
   },
   {
     id: "decline-app",
-    title: "Decline App",
-    description:
-      "A comprehensive website for practicing Czech, Slovak, and Russian noun declensions with interactive exercises.",
+    title: msg("Decline App"),
+    description: msg(
+      "A comprehensive website for practicing Czech, Slovak, and Russian noun declensions with interactive exercises."
+    ),
     href: "https://decline.vercel.app/",
     isExternal: true,
   },
   {
     id: "czech-case-cards",
-    title: "Czech Case Cards",
-    description:
-      "Printable case cards for memorizing Czech noun declension patterns quickly and effectively.",
+    title: msg("Czech Case Cards"),
+    description: msg(
+      "Printable case cards for memorizing Czech noun declension patterns quickly and effectively."
+    ),
     href: "/language-learning/czech-declensions",
     isExternal: false,
   },
   {
     id: "russian-case-cards",
-    title: "Russian Case Cards",
-    description:
-      "Printable case cards for memorizing Russian noun declension patterns quickly and effectively.",
+    title: msg("Russian Case Cards"),
+    description: msg(
+      "Printable case cards for memorizing Russian noun declension patterns quickly and effectively."
+    ),
     href: "/language-learning/russian-declensions",
     isExternal: false,
   },
 ];
 
 export default function LanguageLearningPage() {
+  const m = useMessages();
   return (
     <div className="space-y-12">
       <header className="space-y-4">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-          Language Learning
-        </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-          Tools and resources I've built to help with language learning.
-        </p>
+        <T>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            Language Learning
+          </h1>
+        </T>
+        <T>
+          <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            Tools and resources I've built to help with language learning.
+          </p>
+        </T>
       </header>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -69,7 +85,7 @@ export default function LanguageLearningPage() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-foreground group-hover:text-foreground/90 transition-colors">
-                    {tool.title}
+                    {m(tool.title)}
                   </h3>
                   <svg
                     className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors"
@@ -90,7 +106,7 @@ export default function LanguageLearningPage() {
                   </svg>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  {tool.description}
+                  {m(tool.description)}
                 </p>
               </div>
             </Link>

@@ -10,79 +10,87 @@ import Image from "next/image";
 import Link from "next/link";
 import type React from "react";
 import "./globals.css";
+import { getLocale, getGT } from "gt-next/server";
+import { GTProvider } from "gt-next";
 
 const inter = Inter({ subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "Ben Gubler",
-    template: "%s - Ben Gubler",
-  },
-  description:
-    "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU. Thoughts on web development, AI, and building things that matter.",
-  keywords: [
+export async function generateMetadata(): Promise<Metadata> {
+  const gt = await getGT();
+
+  return {
+    title: {
+      default: "Ben Gubler",
+      template: "%s - Ben Gubler"
+    },
+    description:
+    gt("Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU. Thoughts on web development, AI, and building things that matter."),
+    keywords: [
     "Ben Gubler",
-    "web developer",
+    gt("web developer"),
     "Vercel",
     "Next.js",
     "React",
     "TypeScript",
     "AI",
-    "machine learning",
-    "BYU",
-  ],
-  authors: [{ name: "Ben Gubler", url: "https://bengubler.com" }],
-  creator: "Ben Gubler",
-  publisher: "Ben Gubler",
-  metadataBase: new URL("https://bengubler.com"),
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://bengubler.com",
-    title: "Ben Gubler",
-    description:
-      "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU.",
-    siteName: "Ben Gubler",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Ben Gubler",
-    description:
-      "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU.",
-    creator: "@bgub_",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    gt("machine learning"),
+    "BYU"],
+
+    authors: [{ name: "Ben Gubler", url: "https://bengubler.com" }],
+    creator: "Ben Gubler",
+    publisher: "Ben Gubler",
+    metadataBase: new URL("https://bengubler.com"),
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: "https://bengubler.com",
+      title: "Ben Gubler",
+      description:
+      gt("Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU."),
+      siteName: "Ben Gubler"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Ben Gubler",
+      description:
+      gt("Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU."),
+      creator: "@bgub_"
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-};
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1
+      }
+    }
+  };
+}
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({
+  children
+
+
+}: {children: React.ReactNode;}) {
+  const gt = await getGT();
+
   return (
-    <ViewTransitions>
-      <html lang="en" suppressHydrationWarning>
-        <body className={`${inter.className} ${geistMono.variable}`}>
+  <ViewTransitions>
+      <html suppressHydrationWarning lang={await getLocale()}>
+        <body className={`${inter.className} ${geistMono.variable}`}><GTProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
-            disableTransitionOnChange
-          >
+            disableTransitionOnChange>
+
             {/* Outermost wrapper for max-width and centering */}
             <div className="w-full max-w-screen-xl mx-auto bg-background">
               <div className="flex min-h-screen">
@@ -98,12 +106,12 @@ export default function RootLayout({
                         <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-border/20">
                           <Image
                             src="/bengubler.jpg"
-                            alt="Profile photo"
+                            alt={gt("Profile photo")}
                             width={32}
                             height={32}
                             className="object-cover"
-                            priority
-                          />
+                            priority />
+
                         </div>
                         <span className="text-lg font-semibold">
                           Ben Gubler
@@ -122,7 +130,7 @@ export default function RootLayout({
           </ThemeProvider>
           <Analytics />
           <SpeedInsights />
-        </body>
+        </GTProvider></body>
       </html>
     </ViewTransitions>
   );

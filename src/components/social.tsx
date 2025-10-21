@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Share } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { T, useGT } from "gt-next";
 
 interface SocialProps {
   title: string;
@@ -58,6 +59,7 @@ const HackerNewsIcon = ({ className }: { className?: string }) => (
 );
 
 export function Social({ title, className }: SocialProps) {
+  const gt = useGT();
   const pathname = usePathname();
   const currentUrl = `https://bengubler.com${pathname}`;
   const encodedTitle = encodeURIComponent(title);
@@ -65,7 +67,7 @@ export function Social({ title, className }: SocialProps) {
 
   const shares = [
     {
-      name: "X (Twitter)",
+      name: gt("X (Twitter)"),
       url: `https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
       icon: XIcon,
       bgColor:
@@ -73,21 +75,21 @@ export function Social({ title, className }: SocialProps) {
       textColor: "text-white dark:text-black",
     },
     {
-      name: "LinkedIn",
+      name: gt("LinkedIn"),
       url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
       icon: LinkedInIcon,
       bgColor: "bg-[#0077b5] hover:bg-[#0077b5]/90",
       textColor: "text-white",
     },
     {
-      name: "Reddit",
+      name: gt("Reddit"),
       url: `https://reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`,
       icon: RedditIcon,
       bgColor: "bg-[#ff4500] hover:bg-[#ff4500]/90",
       textColor: "text-white",
     },
     {
-      name: "Hacker News",
+      name: gt("Hacker News"),
       url: `https://news.ycombinator.com/submitlink?u=${encodedUrl}&t=${encodedTitle}`,
       icon: HackerNewsIcon,
       bgColor: "bg-[#ff6600] hover:bg-[#ff6600]/90",
@@ -99,9 +101,11 @@ export function Social({ title, className }: SocialProps) {
     <div className={cn("space-y-4", className)}>
       <div className="flex items-center gap-2">
         <Share className="h-4 w-4 text-muted-foreground" />
-        <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">
-          Share this post
-        </h3>
+        <T>
+          <h3 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+            Share this post
+          </h3>
+        </T>
       </div>
       <div className="flex gap-3 justify-center">
         {shares.map((share) => (
@@ -111,8 +115,8 @@ export function Social({ title, className }: SocialProps) {
             target="_blank"
             rel="noopener noreferrer"
             className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-md ${share.bgColor} ${share.textColor}`}
-            title={`Share on ${share.name}`}
-            aria-label={`Share on ${share.name}`}
+            title={gt("Share on {name}", { name: share.name })}
+            aria-label={gt("Share on {name}", { name: share.name })}
           >
             <share.icon className="h-4 w-4" />
           </a>
