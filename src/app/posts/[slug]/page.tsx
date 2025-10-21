@@ -12,6 +12,8 @@ import { allPosts } from "content-collections";
 import type { Metadata } from "next/types";
 import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
+import { getGT } from "gt-next/server";
+import { T, DateTime } from "gt-next";
 
 import { ClientTOC } from "./client-toc";
 
@@ -30,10 +32,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = allPosts.find((p) => p.slug === slug);
+  const gt = await getGT();
 
   if (!post) {
     return {
-      title: "Post Not Found",
+      title: gt("Post Not Found"),
     };
   }
 
@@ -92,6 +95,7 @@ export default async function PostPage({
 }) {
   const { slug } = await params;
   const post = allPosts.find((p) => p.slug === slug);
+  const gt = await getGT();
 
   if (!post) {
     notFound();
@@ -101,13 +105,6 @@ export default async function PostPage({
   const toc: TOCNode = JSON.parse(post.toc);
   const hasTOC = toc.children.length > 0;
 
-  // Format date to match post cards
-  const formattedDate = post.date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-
   return (
     <div className="space-y-8">
       <header className="space-y-4">
@@ -116,7 +113,7 @@ export default async function PostPage({
             href="/posts"
             className="hover:text-foreground transition-colors"
           >
-            Posts
+            <T>Posts</T>
           </Link>
           <span className="mx-2">›</span>
           <span>{post.title}</span>
@@ -133,22 +130,19 @@ export default async function PostPage({
                 dateTime={post.date.toISOString()}
                 style={getTransitionStyle(post.url, "date-")}
               >
-                {formattedDate}
+                <DateTime>{post.date}</DateTime>
               </time>
               <span>•</span>
               <span style={getTransitionStyle(post.url, "reading-time-")}>
-                {(post as any).readingTime || "5 min read"}
+                {(post as any).readingTime || gt("5 min read")}
               </span>
               {post.lastUpdated && (
                 <>
                   <span>•</span>
                   <span>
-                    Updated{" "}
-                    {post.lastUpdated.toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
+                    <T>
+                      Updated <DateTime>{post.lastUpdated}</DateTime>
+                    </T>
                   </span>
                 </>
               )}
@@ -159,7 +153,10 @@ export default async function PostPage({
             >
               {post.title}
               {post.archived && (
-                <span className="text-muted-foreground"> (archived)</span>
+                <span className="text-muted-foreground">
+                  {" "}
+                  <T>(archived)</T>
+                </span>
               )}
             </h1>
           </div>

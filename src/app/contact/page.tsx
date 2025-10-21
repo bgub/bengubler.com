@@ -1,37 +1,45 @@
 import { getColorByIndex } from "@/lib/colors";
 import type { Metadata } from "next";
+import { getGT } from "gt-next/server";
+import { useGT } from "gt-next";
+import { T } from "gt-next";
 
-export const metadata: Metadata = {
-  title: "Contact - Ben Gubler",
-  description:
-    "Get in touch with me for collaborations, questions, or just to say hello.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const gt = await getGT();
+  return {
+    title: gt("Contact - Ben Gubler"),
+    description: gt(
+      "Get in touch with me for collaborations, questions, or just to say hello."
+    ),
+  };
+}
 
 export default function ContactPage() {
+  const gt = useGT();
   const contactMethods = [
     {
-      name: "Email",
+      name: gt("Email"),
       value: "hello [at] bengubler [dot] com",
       href: null,
-      description: "Best for business inquiries and longer conversations",
+      description: gt("Best for business inquiries and longer conversations"),
     },
     {
-      name: "X (Twitter)",
+      name: gt("X (Twitter)"),
       value: "@bgub_",
       href: "https://x.com/bgub_",
-      description: "Follow me for quick updates and tech discussions",
+      description: gt("Follow me for quick updates and tech discussions"),
     },
     {
-      name: "LinkedIn",
+      name: gt("LinkedIn"),
       value: "Ben Gubler",
       href: "https://www.linkedin.com/in/ben-gubler/",
-      description: "Professional network and career-related discussions",
+      description: gt("Professional network and career-related discussions"),
     },
     {
-      name: "GitHub",
+      name: gt("GitHub"),
       value: "bgub",
       href: "https://github.com/bgub",
-      description: "Check out my open source projects and contributions",
+      description: gt("Check out my open source projects and contributions"),
     },
   ];
 
@@ -39,14 +47,18 @@ export default function ContactPage() {
     <div className="space-y-12">
       {/* Header */}
       <header className="space-y-4">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-          Contact
-        </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-          I'm always interested in connecting with fellow developers, discussing
-          new ideas, or exploring potential collaborations. Feel free to reach
-          out!
-        </p>
+        <T>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            Contact
+          </h1>
+        </T>
+        <T>
+          <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            I'm always interested in connecting with fellow developers, discussing
+            new ideas, or exploring potential collaborations. Feel free to reach
+            out!
+          </p>
+        </T>
       </header>
 
       {/* Contact Methods */}
