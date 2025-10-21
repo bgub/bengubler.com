@@ -1,0 +1,168 @@
+---
+title: "Představuji ts-base: Moderní šablonu knihovny pro TypeScript"
+description: "Postaveno s tsdown, Vitest, release-please a Biome."
+date: "2025-09-17T12:30:00-06:00"
+tags: [frontend, open-source]
+---
+
+Před osmi lety jsem vydal svou první open‑source knihovnu v TypeScriptu — [Squirrelly](https://github.com/squirrellyjs/squirrelly) — která obsahovala dva soubory: `package.json` a `index.js`. Před pěti lety jsem vydal [Eta](https://github.com/bgub/eta) s mnohem více funkcemi, včetně testování, lintování, bundlování a CI/CD.
+
+Myslel jsem, že je to docela solidní vývojové nastavení, ale časy se mění a ekosystém JavaScriptu se vyvíjí rychle. Objevily se nové nástroje, osvědčené postupy se posunuly a složitost správného vydávání balíčků na npm se nějak zároveň zjednodušila a zároveň stala ještě zahlcující.
+
+Stačí se podívat na vývoj pole "exports" v `package.json`, pokud chcete bolest hlavy. Nebo zkuste vymyslet správnou kombinaci konfigurace TypeScriptu, bundlerů a CI workflow, abyste publikovali knihovnu, která bez problémů funguje napříč Node, Deno, Bunem a v prohlížečích. Překvapivě je těžké to trefit správně.
+
+Proto jsem vytvořil [**ts-base**](https://github.com/bgub/ts-base) — moderní startovací šablonu pro knihovny v TypeScriptu, která za vás řeší veškerou tuto složitost. Je názorová, prověřená praxí a navržená tak, aby fungovala hned po vybalení ve všech hlavních JavaScriptových runtimech.
+
+## Co je ts-base?
+
+ts-base je šablona knihovny pro TypeScript, která využívá moderní nástroje a automatizované workflow. Místo abyste začínali od nuly nebo kopírovali zastaralý boilerplate, získáte kompletní vývojové prostředí zahrnující lintování, testování, build, release a publikování — vše předem nakonfigurované a připravené k použití.
+
+Šablona stojí na třech klíčových principech:
+
+- **Multi-runtime na prvním místě**: Bezproblémově funguje v Node, Deno, Bun i v prohlížečích
+- **Automatizace před konfigurací**: Minimální nastavení, maximální automatizace
+- **Moderní nástroje**: Pouze ESM, nejnovější TypeScript a pečlivě zvolené závislosti
+
+## Architektura pro více běhových prostředí
+
+Srdcem ts-base je jeho na běhovém prostředí nezávislý návrh. Namísto snahy přimět jeden soubor fungovat všude (a řešit bolesti s kompatibilitou) šablona sází na čisté oddělení:
+
+```typescript
+// src/internal.ts - Základní logika, žádná runtime-specifická API
+export function add(a: number, b: number): number {
+  return a + b;
+}
+
+export function greet(name: string, options = {}): string {
+  const base = `Ahoj, ${name}`;
+  return options.shout ? `${base.toUpperCase()}!` : `${base}.`;
+}
+```
+
+```typescript
+// src/index.ts - Node/Bun adaptér
+export { add, greet } from "./internal";
+import { randomBytes } from "node:crypto";
+
+export function getSecureRandomId(): string {
+  const timePart = Date.now().toString(36);
+  const bytes = randomBytes(12).toString("base64url");
+  return `${timePart}-${bytes}`;
+}
+```
+
+```typescript
+// src/browser.ts - Adaptér pro prohlížeč
+export { add, greet } from "./internal";
+
+export function getSecureRandomId(): string {
+  const timePart = Date.now().toString(36);
+  const array = new Uint8Array(12);
+  crypto.getRandomValues(array);
+  const rand = btoa(String.fromCharCode(...array))
+    .replaceAll("+", "-")
+    .replaceAll("/", "_")
+    .replaceAll("=", "");
+  return `${timePart}-${rand}`;
+}
+```
+
+Tím získáte čisté importy pro každé běhové prostředí:
+
+```typescript
+// Node/Bun
+import { add, getSecureRandomId } from "@your-package/ts-base";
+
+// Prohlížeč (přes bundler)
+import { add, getSecureRandomId } from "@your-package/ts-base/browser";
+
+// Deno (přímé TypeScript importy)
+import {
+  add,
+  greet,
+} from "https://jsr.io/@bgub/ts-base/<version>/src/index.ts";
+```
+
+Systém sestavení používá [tsdown](https://tsdown.dev/) k vytvoření dvou optimalizovaných balíčků: jednoho pro prostředí Node a druhého, minifikovaného, pro prohlížeče; oba s mapami zdrojového kódu.
+
+
+## Developer Experience
+
+ts-base sjednocuje vaše nástroje kolem několika skvělých voleb:
+
+**Biome** nahrazuje jak ESLint, tak Prettier jediným, rychlým nástrojem. Už žádné konflikty v konfiguraci ani nekompatibilní pluginy — jen konzistentní formátování a lint, který funguje hned po vybalení.
+
+**Vitest** přináší bleskově rychlé testování s vestavěným reportem pokrytí a nastavitelnými prahy. Testy běží paralelně, nativně podporují TypeScript a nabízejí užitečné funkce jako mocking a snapshoty.
+
+**Size Limit** automaticky hlídá velikost bundlu. Běží v CI a komentuje pull requesty, když by vaše změny velikost zvýšily, takže pomáhá zachytit nárůst dřív, než se dostane do produkce.
+
+Konfigurace TypeScriptu je vyladěná pro moderní bundlery s nastaveními jako `moduleResolution: "bundler"` a `allowImportingTsExtensions: true`, která skvěle fungují s nástroji jako Vite, Rollup a esbuild.
+
+## Automatizovaná CI/CD pipeline
+
+Jednou z největších předností ts-base je jeho kompletní CI/CD nastavení. Každý aspekt kvality kódu a publikování je automatizovaný:
+
+**Kontrolní brány kvality**: Každý pull request spustí lintování, kontrolu typů, testy a report pokrytí. CI nahrává pokrytí do Codecov a komentuje PR zprávami o dopadu na velikost.
+
+![Screenshot of CI/CD run](/blog-images/ci-run-screenshot.png)
+
+**Správa vydání**: Místo složitých konfigurací semantic-release používá ts-base nástroj Release Please od Googlu. Když se commity dostanou do větve main, Release Please automaticky otevře „Release PR“, který aktualizuje čísla verzí, generuje changelogy a vytváří tagy vydání.
+
+**Automatizované publikování**: Po sloučení Release PR GitHub Actions automaticky sestaví a publikuje váš balíček jak na npm, tak na JSR s plnou OIDC provázaností původu a bezpečnostní atestací.
+
+**Conventional Commits**: Názvy PR se automaticky kontrolují linterem podle formátu conventional commits, což zajišťuje konzistentní generování changelogů.
+
+## Proč tento přístup funguje lépe
+
+Většina šablon knihoven pro TypeScript, které jsem viděl, je buď příliš minimalistická (nechá vás na pospas CI, publikování a podpoře více runtime prostředí), nebo zbytečně složitá s desítkami závislostí. Viděl jsem šablony s balíčky jako `@commitlint/cli`, `@commitlint/config-conventional`, `@semantic-release/changelog`, `@semantic-release/git`, `@semantic-release/github`, `@semantic-release/npm` a dalšími jen kvůli publikování přes CI!
+
+ts-base volí jiný přístup s pouhými 8 dev závislostmi celkem. Když zvolíte Release Please místo semantic-release, Biome místo ESLint+Prettier a Vitest místo Jest, získáte jednodušší graf závislostí, který se snáze udržuje a je méně náchylný k rozbití.
+
+Filozofie automatizace znamená méně konfigurace a méně míst, kde se může něco pokazit. Release Please v jednom nástroji řeší navyšování verzí, generování changelogu a vytváření vydání. Workflow GitHub Actions se postará o všechno ostatní.
+
+## Kouzlo Release Please
+
+![Screenshot of release-please PR](/blog-images/release-please-pr.png)
+
+Release Please si zaslouží zvláštní pozornost, protože mění způsob, jak přemýšlíte o releasování. Místo ručního zvyšování verzí nebo nastavování složitých pipeline semantic-release funguje Release Please takto:
+
+1. Sloučíte commity do `main` s konvenčními commit zprávami
+2. Release Please automaticky otevře/aktualizuje „Release PR“ s navýšením verze a položkami changelogu
+3. Až budete připraveni releasnout, jednoduše sloučte Release PR
+4. GitHub Actions automaticky publikuje na npm a JSR
+
+Systém podporuje i pre-release verze. Pokud vydáte alfa nebo beta verzi, automaticky se zveřejní pod tagem „next“ na npm. Navýšení verze můžete přepsat pomocí `Release-As: 2.0.0` v commit zprávách a můžete udržovat více release větví (např. `2.x` a `3.x`), z nichž každá má svůj vlastní Release PR.
+
+## Začínáme
+
+Nastavení ts-base je snadné:
+
+1. **Klonujte a přizpůsobte**: Naklonujte repozitář, odstraňte složku `.git` a aktualizujte `package.json`, `jsr.json` a `.release-please-manifest.json` podle údajů o vašem balíčku.
+
+2. **Zarezervujte si název balíčku**: Nastavte verzi na `0.0.0` ve všech konfiguračních souborech a poté lokálně spusťte `npm publish`, abyste si na npm nárokovali název balíčku.
+
+3. **Nastavte publikování**: V npm nastavte, aby váš balíček vyžadoval 2FA pouze pro autorizaci (ne pro publikování), poté přidejte GitHub workflow jako důvěryhodného publishera. Na JSR vytvořte balíček a přidejte repozitář jako důvěryhodný zdroj.
+
+![Screenshot nastavení publikování na npm](/blog-images/npm-trusted-publisher.png)
+
+4. **Nastavte GitHub**: Pushněte na GitHub, přidejte `CODECOV_TOKEN` jako tajný klíč repozitáře a nakonfigurujte pravidla ochrany větví.
+
+5. **Začněte vyvíjet**: Přidejte kód do `src/`, napište testy a pushněte commity. Release Please se postará o zbytek.
+
+Doporučuji nastavit GitHub tak, aby povoloval pouze squash merging a používal „pull request title and commit details“ jako výchozí zprávu commitu. Udržíte tak čistou historii commitů a zajistíte soulad s konvenčními commity.
+
+## Osvědčené postupy a tipy
+
+**Nastavení repozitáře**: Zapněte ochranu větve `main` s povinnými kontrolami stavu. Vypněte merge commity, aby historie zůstala lineární.
+
+**Vstupní body**: Použijte hlavní export (`@your-package`) pro Node/Bun, export pro prohlížeč (`@your-package/browser`) pro bundlovaný kód do prohlížeče a přímé importy TypeScriptu pro Deno.
+
+**Přizpůsobení**: Pokud nepotřebujete samostatné buildy pro Node/prohlížeč, odstraňte nepoužívanou konfiguraci. Šablonu lze zúžit přesně podle vašich potřeb.
+
+**Strategie testování**: Šablona obsahuje příklady testování sdíleného i platformově specifického kódu, včetně mockování prohlížečových API v testovacím prostředí Node.
+
+## Shrnutí
+
+Publikování knihovny v TypeScriptu by nemělo vyžadovat doktorát z nastavování nástrojů. ts-base vám poskytne moderní, názorově vyhraněný základ, který se postará o veškerou složitost, abyste se mohli soustředit na tvorbu skvělého softwaru.
+
+Tato šablona vychází z osmi let zkušeností s údržbou open‑source projektů. Připraveni to vyzkoušet? Mrkněte na [repozitář ts-base](https://github.com/bgub/ts-base) a začněte vytvářet svou další knihovnu.

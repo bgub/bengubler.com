@@ -1,0 +1,79 @@
+---
+title: Predstavujeme Eta v3
+description: Nová verzia Ety, vloženého šablónovacieho enginu pre JS, prináša vylepšenia API a dokumentácie.
+date: "2023-06-22"
+tags: [open-source]
+---
+
+## Pozadie
+
+Dnes je Eta mojím najobľúbenejším a najpoužívanejším open-source projektom. Keď som ju však pred 3 rokmi prvýkrát zverejnil, nebola jednou z mojich hlavných priorít. V skutočnosti som vytvoril Etu ako odľahčenú verziu [Squirrelly](https://squirrelly.js.org), zložitejšieho šablónovacieho enginu s funkciami ako helpers a filters.
+
+Postupom času som si uvedomil, že pre väčšinu projektov je vložený šablónovací engine lepšou voľbou než niečo zložitejšie. Projekty, ktoré potrebovali komplexné alebo klientské spracovanie HTML, zvyčajne siahali po frameworku ako React alebo Vue. Výkon Ety a malá veľkosť balíka ju medzitým robili skvelou voľbou pre projekty, ktoré potrebovali rýchle spracovanie, nízku spotrebu pamäte alebo prácu s jazykmi, ktoré nie sú XML.
+
+Zároveň sa Eta stávala čoraz populárnejšou vďaka svojej rýchlosti, podpore Dena a syntaktickým výhodám oproti EJS. Vzhľadom na tieto faktory som sa rozhodol urobiť z Ety svoju hlavnú prioritu. Venoval som čas písaniu tutoriálov, opravovaniu chýb a vyladeniu dokumentácie.
+
+Po niekoľkých rokoch a určitej pauze od programovania kvôli misii som sa konečne mohol k Ete vrátiť. Rozhodol som sa urobiť v projekte veľké zmeny, vrátane build systému, API a dokumentácie.
+
+## Aktualizácie build systému
+
+Napriek výhodám a funkciám mal Eta aj veľké problémy. Jedným z nich bol build systém. Bol komplexný a neobratný, ťažko sa udržiaval a aktualizoval. Musel som pracovať s komplikovanými konfiguračnými súbormi a potrebou transpilovať verziu špecificky pre Deno.
+
+Zmeny vo verzii 3:
+
+- Použitie [microbundle](https://github.com/developit/microbundle) na balenie knižnice mi pomohlo vyhnúť sa potrebe zložitých konfiguračných súborov.
+- Použitie GitHub Actions na spúšťanie testov a zber coverage mi umožnilo zjednotiť používané služby.
+- Nastavením `allowImportingTsExtensions: true` v `tsconfig.json` som sa dokázal vyhnúť používaniu [Denoify](https://github.com/garronej/denoify) na samostatný build pre Deno.
+
+## Zmeny v API
+
+Ďalším problémom bolo API. Jednoduché metódy ako `eta.render()` mali mnoho pretížení, čo sťažovalo inferenciu typov a robilo používanie neintuitívnym. Pri volaní funkcií sprístupnených používateľom, ako sú `render`, `parse` a `compile`, bolo možné odovzdať vlastný konfiguračný objekt. V praxi to znamenalo, že používateľská konfigurácia sa musela pri každom volaní ktorejkoľvek z týchto funkcií zlúčiť s predvolenou konfiguráciou.
+
+Zmeny vo verzii 3:
+
+- Existuje len jeden export: pomenovaná trieda `Eta`. Táto trieda má jediný konštruktor, ktorý spracuje konfiguračný objekt a pri inštanciácii vygeneruje cache šablón.
+- Funkcie `render()` a `renderAsync()` majú teraz jediný podpis.
+  - V Eta v2 sa `render()` a `renderAsync()` dali použiť na renderovanie buď pomenovaných šablón, alebo reťazcov šablón. Eta v3 zavádza dve nové funkcie na renderovanie reťazcov: `renderString()` a `renderStringAsync()`.
+- Funkcie `readFile()` a `resolvePath()`, ktoré Eta používa interne, môže používateľ prepísať ako metódy triedy.
+- Interné premenné a metódy v každej skompilovanej šablóne sa ukladajú v objekte `__eta` namiesto rozptýlenia medzi viaceré premenné vrátane `__res`.
+- Namiesto špecifikovania jedného adresára `root` a viacerých adresárov `views` môžu používatelia zadať iba jeden adresár `views`. Tento adresár slúži ako koreňový adresár pre celé rozlišovanie šablón. Všetky súbory šablón musia byť v tomto adresári alebo v jeho podadresári, čo zlepšuje bezpečnosť šablón a znižuje nákladné operácie vyhľadávania súborov.
+
+## Zmeny v oblasti vývojárskeho zážitku
+
+Jednou z najväčších zmien v Eta v3 bolo pridanie podrobných chýb počas behu (inšpirované EJS). Pozrite si nasledujúcu šablónu, ktorá vyhodí chybu kvôli nedefinovanej premennej:
+
+```eta
+Hlavička šablóny
+<%= undefinedVariable %>
+Lorem Ipsum
+```
+
+Eta v2 vyhadzovala chybu s nejakými všeobecnými informáciami, ktoré však veľmi nepomohli. Oproti tomu Eta v3 vypíše podrobnú chybu s názvom šablóny, číslom riadku a chybovým hlásením:
+
+```text
+EtaError [ReferenceError]: .../my-dir/templates/runtime-error.eta:2
+    1| Hlavička šablóny
+ >> 2| <%= undefinedVariable %>
+    3| Lorem Ipsum
+
+undefinedVariable nie je definovaná
+```
+
+
+## Zmeny v dokumentácii
+
+Dokumentácia k Eta v2 bola rozsiahla, no veľmi ťažko sa v nej dalo orientovať. Informácie o projekte boli rozdelené na viac než 40 (!) stránok, roztrúsených vo viacerých priečinkoch naprieč tromi rôznymi sekciami webu.
+
+Dokumentácia k Eta v3 má 9 stránok, všetky v tej istej časti webu ([eta.js.org](https://eta.js.org)). Témy ako syntax šablón a prehľad API sú na jednej stránke, namiesto toho, aby boli rozdelené medzi viaceré stránky.
+
+## Budúcnosť Ety
+
+Som hrdý na zmeny v Ete v3 aj na projekt ako celok. Veľká vďaka patrí všetkým, ktorí prispeli cez PR, issues a návrhy. Osobitná vďaka patrí aj projektom ako [ejs](https://github.com/mde/ejs), z ktorých Eta naďalej čerpá inšpiráciu.
+
+Momentálne považujem Etu za väčšinovo funkčne hotovú, no budem naďalej opravovať chyby a pridávať menšie funkcie. Aktuálnym používateľom knižnice odporúčam prejsť na v3 a dúfam, že noví používatelia zistia, že Eta je skvelou voľbou pre ich projekty.
+
+## Odkazy
+
+- [Eta na GitHube](https://github.com/eta-dev/eta)
+- [Eta na npm](https://www.npmjs.com/package/eta)
+- [Web Eta a dokumentácia](https://eta.js.org)

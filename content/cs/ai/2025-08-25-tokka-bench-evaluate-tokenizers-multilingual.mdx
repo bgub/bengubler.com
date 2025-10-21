@@ -1,0 +1,195 @@
+---
+title: "Představuji tokka-bench"
+description: "Komplexní rámec pro vyhodnocování a porovnávání tokenizerů napříč přirozenými i programovacími jazyky."
+date: "2025-08-25"
+tags: [ml/ai, linguistics, open-source]
+---
+
+(Spěcháte? Navštivte [tokka-bench.streamlit.app](https://tokka-bench.streamlit.app/))
+
+![Screenshot of tokka-bench graph](/blog-images/tokka-bench-hero.png)
+
+Před několika měsíci jsem ve volném čase začal pracovat na novém projektu — předtrénování malého vícejazyčného velkého jazykového modelu. Jak už to u výprav bývá, i ta moje se stočila jinam a začal jsem se velmi zajímat o jeden konkrétní aspekt trénování modelů: tokenizaci.
+
+Dnes se chci podělit o rámec pro vyhodnocování tokenizerů a zároveň vysvětlit, jak nám tokenizéry mohou pomoci pochopit:
+
+- Na jakých datových zdrojích mohl být daný model natrénovaný
+- Proč některé velké jazykové modely (zejména proprietární modely jako ChatGPT, Claude a Gemini) podávají v mnohojazyčných úlohách výrazně lepší výkon než jiné
+- Proč mají Claude, Gemini a GPT‑4o a novější uzavřené tokenizéry
+- Proč jsou některé open‑source modely vhodnější než jiné pro fine‑tuning
+
+## Technické zázemí
+
+### Kódování písma a gramatika
+
+Pochopení tokenizace začíná pochopením toho, jak je text kódován na úrovni bajtů. Všechny jazyky se kódují v UTF-8, ale různá písma vyžadují výrazně odlišný počet bajtů k vyjádření stejného významu. Angličtina má v průměru něco málo přes 1 bajt na znak, takže je mimořádně kompaktní. Arabština potřebuje 2+ bajty na znak, zatímco čínština může vyžadovat 3+ bajty na znak, aby byla správně zakódována.
+
+Kromě efektivity kódování mají jazyky zásadní gramatické rozdíly, které ovlivňují, jak jsou informace vtěsnány do slov. Syntetické jazyky vkládají mnoho syntaktických informací do jednotlivých slov. Například mluvím česky a výraz „vzali se“ by se v angličtině přeložil jako „they married each other“. Tato gramatická hutnost ztěžuje srovnávání efektivity kódování.
+
+### Tokenizace
+
+Velké jazykové modely nepracují přímo s bajty — pracují s „tokeny“, tedy symboly odpovídajícími skupinám bajtů. Většina moderních tokenizérů používá Byte Pair Encoding (BPE): vychází z jednotlivých bajtů a opakovaným slučováním nejčastějších dvojic buduje slovník podslohových jednotek.
+
+Existují i alternativní přístupy, například [Byte Latent Transformer](https://ai.meta.com/research/publications/byte-latent-transformer-patches-scale-better-than-tokens/), ale v produkčních systémech se zatím širšího nasazení nedočkaly.
+
+Technických rozhodnutí při návrhu tokenizéru je mnoho a mají zásadní dopady:
+
+- Přidáváte úvodní mezery? (Aby se „hello“ v „hello world“ a „ hello world“ tokenizovalo stejně?)
+- Zakazujete slučování bajtů přes hranice bílých znaků? A co přes hranice různých písem?
+- Použijete neznámý (UNK) token, nebo při výskytu mimo slovník přejdete na bajty?
+
+Snad vám to pomůže pochopit Karpathyho klasický [příspěvek o tokenizaci](https://x.com/karpathy/status/1759996551378940395):
+
+![Citát od Karpathyho: „Tokenizace stojí v jádru mnoha podivností velkých jazykových modelů...“](https://pbs.twimg.com/media/GGzDbMRasAAZf_D?format=png&name=medium)
+
+## Jak tokenizace ovlivňuje předtrénování
+
+Vztah mezi tokenizéry a předtrénovacími daty vytváří složitou síť efektů, které zásadně formují schopnosti modelu. Tokenizéry se často trénují na stejných předtrénovacích datech LLM, v němž budou použity, ale různé jazyky mají ve slovníku tokenizéru odlišnou úroveň „pokrytí“.
+
+Vezměme si příklad: khmérštinu. Protože má khmérština méně online zdrojů, menší část slovníku tokenizéru bude odpovídat dekódování do khmérštiny než do angličtiny. Tento rozdíl v pokrytí znamená, že zakódování stejného počtu slov v khmérštině bude vyžadovat mnohem více tokenů než v angličtině. A tady nastává problém: předtrénování často používá poměrné rozdělení jazyků podle počtu tokenů. To znamená, že můžete trénovat na 10 milionech tokenů anglického textu a 1 milionu tokenů khmérštiny v domnění, že dosáhnete poměru obsahu 10:1. Ve skutečnosti však khmérský text představuje mnohem méně než 10 % slov ve srovnání s anglickým textem!
+
+Sémantické důsledky jsou ještě závažnější. Tokeny pro khmérštinu, protože jich je méně, spíše odpovídají písmenům nebo párům souhlásek než celým sémantickým jednotkám. To znamená, že modely nemohou pro nedostatečně zastoupené jazyky tak snadno „ukládat“ koncepty, atributy, definice a další sémantické znalosti do embeddingových vektorů.
+
+Existuje živá open‑source komunita, která dělá fine‑tuny OSS foundation modelů pro menší jazyky. Pokud váš tokenizér nezvládá dobře cizí jazyky, bude fine‑tunování obtížnější a pravděpodobně si vyžádá rozšíření tokenizéru o vlastní tokeny. Na druhou stranu zavádění „částečně natrénovaných“ tokenů (tokenů, které se v předtrénovacích datech nevyskytují) může LLM mást a dokonce umožnit „[token attacks](https://x.com/karpathy/status/1789590397749957117)“.
+
+## Jak tokenizace ovlivňuje inferenci
+
+Nerovnosti v tokenizaci, které vznikají během předtrénování, nadále působí problémy při inferenci. Texty v málo zastoupených jazycích (jazycích s malým množstvím online zdrojů) vyžadují k reprezentaci výrazně více tokenů, což způsobuje několik navazujících potíží:
+
+**Zhoršení výkonu**: Nižší propustnost se stává zásadním problémem, když každá věta potřebuje k reprezentaci 2–3× více tokenů. Uživatelé dostávají pomalejší odpovědi a provoz chatů stojí poskytovatele více peněz.
+
+**Omezení kontextu**: Delší sekvence rychleji zaplní kontextové okno a schopnost modelu „držet nit“ se zhoršuje, protože má problém udržet soudržné porozumění napříč nafouknutými sekvencemi tokenů.
+
+**Kvalita generování**: Volba tokenů při generování může zavádět chyby. Více tokenů na slovo znamená více „příležitostí něco pokazit“ u každého slova, což může vést k kumulativnímu driftu, kdy drobné chyby ve výběru tokenů přerůstají ve větší sémantická selhání.
+
+## Vyhodnocování tokenizérů pomocí tokka-bench
+
+Vytvořil jsem nástroj pro snadné zkoumání výkonu tokenizérů napříč 100 přirozenými jazyky a 20 programovacími jazyky. Začal jsem vyhodnocením 7 tokenizérů: Gemma 3, GPT-2, GPT-4, gpt-oss, Kimi K2, Llama 3 a Qwen 3.
+
+Projekt má několik částí určených pro různé scénáře:
+
+**Open-source repozitář**: Můžete si ho naklonovat a spouštět benchmarky lokálně. [https://github.com/bgub/tokka-bench](https://github.com/bgub/tokka-bench)
+
+**Živý dashboard**: Kromě kódu pro spouštění benchmarků jsem připravil i živý dashboard! [https://tokka-bench.streamlit.app/](https://tokka-bench.streamlit.app/)
+
+Umožňuje snadno vybírat kombinace jazyků a tokenizérů k porovnání a přepínat mezi různými metrikami, abyste lépe pochopili mnohovrstevnatou povahu výkonu tokenizérů.
+
+### Datasety a metodologie
+
+**Datasety**: Pro vyhodnocení používám tři vysoce kvalitní datasety, které pokrývají různé domény textu:
+
+- [FineWeb](https://huggingface.co/datasets/HuggingFaceFW/fineweb) pro anglický obsah
+- [FineWeb 2](https://huggingface.co/datasets/HuggingFaceFW/fineweb-2) pro další přirozené jazyky
+- [StarCoder](https://huggingface.co/datasets/bigcode/starcoderdata) pro programovací jazyky
+
+**Metriky po jazycích**: Z každého datasetu odebírám vzorek 2 MB textu a tokenizuji jej, abych spočítal jazykově specifické metriky výkonu. Tento přístup má důležité omezení: kvůli rozdílům v kódování UTF-8 představují 2 MB naprosto odlišné množství sémantického obsahu napříč jazyky. Lepší přístup by mohl spočívat ve výpočtu globální „škálovací konstanty“ na základě ekvivalentního sémantického obsahu — například použitím paralelních překladů k normalizaci podle velikosti v bajtech Harryho Pottera v angličtině, vydělené sémantickými jednotkami. V současné podobě je třeba mezijazyková srovnání vykládat opatrně a spolehlivější je porovnávat různé tokenizéry v rámci téhož jazyka.
+
+**Metriky slovníku**: Pro analýzu samotných slovníků tokenizérů náhodně vybírám 10 000 tokenů ze slovníku každého tokenizéru a zkoumám jejich dekódované vlastnosti.
+
+**Definice jazykových jednotek**: Různé jazyky strukturují informace odlišně, proto pro metriky fertility a dělení definuji „jednotky“ následovně:
+
+- **Jazyky s mezerami**: tokeny na slovo (jednotky oddělené mezerou)
+- **Jazyky založené na znacích** (např. čínština, japonština, thajština): tokeny na znak (bez mezer)
+- **Jazyky založené na slabikách** (např. tibetština): tokeny na slabiku (jednotky oddělené tsheg, s nouzovými/fallback metodami)
+
+## Metriky a výsledky podle jazyků
+
+Pojďme porovnat GPT-2, Llamu 3 a Kimi K2 na podmnožině populárních jazyků a ukázat tak, jaké vhledy může tokka-bench odhalit. Tyto tři jsem vybral, aby bylo vidět, jak se přístupy k tokenizaci v čase vyvíjely.
+
+Kontext k jednotlivým modelům:
+
+- GPT-2 má velikost slovníku ~50K a vyšla v únoru 2019
+- Llama 3 má velikost slovníku ~128K a vyšla v dubnu 2024
+- Kimi K2 má velikost slovníku ~164K a vyšla v červenci 2025
+
+### Efektivita (bajty na token)
+
+**`bytes_per_token`**: Průměrný počet bajtů UTF-8 na token (total_bytes / total_tokens). Vyšší hodnoty znamenají efektivnější kompresi textu do tokenů.
+
+![Graf bajtů na token v několika jazycích](/blog-images/tokka-bench-efficiency.png)
+
+Rozdíly v efektivitě odhalují priority při trénování a složení dat. Jazyky s vyšším poměrem bajtů na token jsou komprimovány účinněji, což může naznačovat buď lepší alokaci slovníku, nebo více tréninkových dat pro učení slovníku.
+
+**Důležité omezení**: Tato metrika nebere v úvahu rozdíly kódování UTF-8 napříč písmy. Například hindština dosahuje uměle vysoké efektivity už jen proto, že každý znak vyžaduje 3 bajty kódování — přidělení pouhých 50 tokenů k reprezentaci každého znaku v hindské abecedě by vedlo k efektivitě 3 bajty/token. Mnoho znaků v hindštině je však tvořeno kombinacemi souhlásek s vokalickými znaménky nebo shluky souhlásek, takže přidávání tokenů pro tyto kombinace (reprezentující 6–9 bajtů každý) může nafouknout metriky efektivity, a přesto poskytovat slabé sémantické pokrytí. To neodráží skutečnou sémantickou efektivitu. Tato metrika funguje nejlépe pro porovnávání různých tokenizérů v rámci stejného jazyka, nikoli pro srovnávání efektivity napříč různými písmy.
+
+### Pokrytí (unikátní tokeny)
+
+**`unique_tokens`**: Počet jedinečných ID tokenů použitých při kódování ukázkového textu v každém jazyce. Vyšší hodnoty naznačují lepší pokrytí písma/písem daného jazyka s menší potřebou byte fallbacku na jednotlivé znaky.
+
+![Graph of unique tokens in multiple languages](/blog-images/tokka-bench-coverage.png)
+
+Obecně považuji pokrytí za nejpřesnější ukazatel jazykového složení tréninkových dat. Podívejte se, o kolik vyšší je pokrytí čínského písma u Kimi K2 než u ostatních tokenizerů! Přesně to bychom čekali, protože jde o čínský LLM se slovníkem speciálně vyladěným pro čínštinu.
+
+Hierarchie pokrytí odhaluje jasné priority tréninku:
+
+- Čínština má v Kimi K2 výjimečné pokrytí
+- Angličtina má zdaleka nejlepší pokrytí písma napříč všemi modely, s výjimkou druhého místa v Kimi K2
+- Latinské jazyky (zejména románské) si vedou dobře
+- Následují další jazyky s latinkou
+- Korejština, japonština a ruština vykazují střední pokrytí
+- Hindština, perština a khmer výrazně zaostávají
+
+**Poznámka ke srovnávání napříč jazyky**: Protože se pokrytí počítá na pevných 2MB ukázkách textu, různé jazyky vyžadují odlišný počet bajtů UTF-8 k vyjádření srovnatelného významu, což ztěžuje přímé porovnání. Principiálnější přístup by počítal pokrytí jako procento vůči normalizovanému základu—prozatím je ale tato metrika nejspolehlivější pro porovnávání různých tokenizerů v rámci téhož jazyka, nikoli napříč různými písmy.
+
+### Míra štěpení slov
+
+**`word_split_pct`**: Procento jednotek, které se rozdělí na více než jeden token. Jednotky jsou definovány podle jazyka (slova u jazyků s oddělováním mezerami, znaky u jazyků založených na znacích, slabiky u jazyků založených na slabikách). Nižší hodnoty obecně znamenají lepší sladění s přirozenými hranicemi jednotek.
+
+![Graf procenta štěpení slov v různých jazycích](/blog-images/tokka-bench-word-splitting.png)
+
+V mandarínštině má Kimi K2 nejnižší míru pokračování slova! Pouze 4 % tokenů navazuje na předchozí část slova.
+
+*Upozornění: mějte na paměti, že u jazyků založených na znacích, jako je mandarínština, tato metrika ve skutečnosti měří po znacích, nikoli po slovech. Slova v mandarínštině mohou mít jeden znak nebo více — většina má ve skutečnosti dva znaky — ale to je výpočetně složité rychle určit v benchmarku.*
+
+### Plodnost subwordů
+
+**`subword_fertility`**: Počet tokenů na jednotku, přičemž jednotky jsou definovány podle jazykové struktury (viz metodika výše). Nižší hodnoty jsou lepší — čím blíže k 1, tím méně částí na sémantickou jednotku.
+
+![Graf plodnosti subwordů v různých jazycích](/blog-images/tokka-bench-subword-fertility.png)
+
+V mandarínštině má Kimi K2 nejnižší plodnost subwordů! Hodnota je pod 1, což znamená, že každý token průměrně pokrývá více než 1 znak.
+
+## Metriky slovní zásoby (agregované napříč všemi jazyky)
+
+Vypočteno vzorkováním tokenů ze slovníku tokenizéru a jejich následným dekódováním:
+
+**`tokens_starting_with_space_pct`**: Podíl tokenů, které se dekódují s počáteční mezerou. To odhaluje jak konstrukci tokenizéru (kolik slovní zásoby je vyhrazeno začátkům slov vs. pokračováním), tak charakteristiky trénovacích dat (jazyky bez mezer mezi slovy přirozeně vykazují nižší procenta).
+
+**`tokens_with_whitespace_in_middle_pct`**: Podíl tokenů, jejichž dekódovaný text obsahuje mezeru mimo začátek. Signalizuje víceslovné nebo na mezery bohaté tokeny, které překračují přirozené hranice.
+
+**`tokens_with_script_overlap_pct`**: Podíl tokenů obsahujících znaky z více rodin písem Unicode. Vyšší hodnoty mohou ukazovat na smíšená písma nebo bytové tokeny, které nerespektují hranice písem.
+
+**`tokens_with_{script}_unicode_pct`**: Rozložení napříč písmy (např. latinka, cyrilice, čínské, japonské, korejské, arabské, dévanágarí, thajské, hebrejské, řecké, čísla, interpunkce, symboly). Ukazuje, která písma tokeny tokenizéru ve skutečnosti v praxi pokrývají.
+
+## Bonus sekce: programovací jazyky
+
+Na závěr se podívejme na něco zajímavého, čeho jsem si všiml u programovacích jazyků (tady přepneme z GPT-2 na gpt-oss):
+
+![Graf počtu bajtů na token v různých programovacích jazycích](/blog-images/tokka-bench-coding-efficiency.png)
+
+Napříč programovacími jazyky je výrazně menší rozptyl efektivity — Kimi K2, Llama 3 a GPT-OSS mají v každém jazyce téměř totožný počet bajtů na token!
+
+Nejsem si úplně jistý, proč k této konvergenci dochází, ale přijde mi to fascinující. Může to naznačovat sdílené datasety používané všemi třemi modely, nebo podobné zastoupení různých programovacích jazyků na GitHubu a v dalších běžných tréninkových zdrojích.
+
+## Závěr
+
+Doufám, že pro vás bude tokka-bench stejně užitečný a přínosný jako pro mě! Můžou se v něm skrývat nějaké chyby — hodně jsem testoval, ale nástroji by výrazně prospělo mnohem důkladnější komunitní testování napříč různými jazyky a use-casy.
+
+Prosím, pomozte tím, že přispějete! Ať už půjde o hlášení chyb, nové metriky, další tokenizéry nebo širší pokrytí jazyků, zapojení komunity z tohoto nástroje udělá mnohem cennější projekt.
+
+Pokud jste z AI laboratoře s proprietárním modelem a jste ochotni pro informační účely sdílet metriky vašeho tokenizéru, ozvěte se mi! Komunita by nesmírně získala, kdyby pochopila, jak špičkové systémy zvládají vícejazyčnou tokenizaci.
+
+## Poděkování a odkazy
+
+- [Vin Howe](https://howe.vin/), [Sachin Raja](https://x.com/s4chinraja) a [Jacob Holloway](https://www.linkedin.com/in/jhollowayj/) zrecenzovali můj příspěvek a poskytli cennou zpětnou vazbu
+- [Harsha Vardhan Khurdula](https://www.linkedin.com/in/harsha-vardhan-khurdula-99b400183/) mi pomohl shromáždit relevantní výzkum a systematicky promyslet metriky
+- Judit Ács byla (pokud mohu soudit) první, kdo představil(a) subword fertility a podíl pokračovacích word pieces jako standardní metriky tokenizace v [tomto blogovém příspěvku](https://juditacs.github.io/2019/02/19/bert-tokenization-stats.html)
+- Rust et al. tyto myšlenky dále rozpracovali v [článku na ACL](https://aclanthology.org/2021.acl-long.243.pdf), který byl nesmírně přínosný
+
+## Nápady na budoucí výzkum
+
+**Korelace výkonu**: Co je důležitější pro následný vícejazyčný výkon: efektivita tokenizace, nebo pokrytí slovníku? Souvislost není na první pohled zřejmá a pravděpodobně se liší podle typu úlohy.
+
+**Kompromisy při optimalizaci**: Nakolik lze zlepšit pokrytí při zachování efektivity? Existuje Pareto čelní hranice, kterou můžeme matematicky popsat?
+
+**Prediktivní síla**: Lze ze samotných metrik tokenizéru předpovědět schopnosti vícejazyčných modelů? Pokud ano, mohlo by to poskytnout rychlý způsob, jak odhadnout potenciál modelu před nákladnými evaluačními běhy.

@@ -1,0 +1,89 @@
+---
+title: Настройка Docker для задач машинного обучения
+description: Dockerfile, который я использую для развёртывания своей среды для машинного обучения.
+date: "2023-09-08"
+lastUpdated: "2024-06-24"
+tags: [ml/ai]
+---
+
+_UPDATE 2024: Я обновил этот пост на базе образа `nvcr.io/nvidia/pytorch`, который сейчас всегда использую благодаря отличной поддержке NVIDIA + NCCL + Infiniband. Я также упростил файл и настроил его на использование `gom` для мониторинга GPU._
+
+Этот пост в первую очередь предназначен для коллег, но может быть полезен и другим. Я поделюсь Dockerfile, который использую для настройки своей ML‑среды. Он основан на образе NVIDIA `pytorch`, но я добавил несколько полезных вещей (обновлённые пакеты pip, GitHub CLI, подсказка Starship, [мониторинг GPU](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement) и т. д.).
+
+## Настройка
+
+Скопируйте и вставьте приведённый ниже `Dockerfile` в новый каталог. Смело добавляйте или удаляйте всё, что сочтёте нужным — я, скорее всего, буду обновлять этот пост по мере изменений в своей конфигурации.
+
+```dockerfile
+# Базовый образ с Ubuntu 22.04, Python 3.10, CUDA 12.4
+FROM nvcr.io/nvidia/pytorch:24.04-py3
+
+#####################
+# ПАКЕТЫ PYTHON     #
+#####################
+
+# Отключить предупреждение "running pip as the 'root' user can..."
+ENV PIP_ROOT_USER_ACTION=ignore
+
+# Обновить pip
+RUN pip3 install --upgrade pip
+
+# Обновить и установить полезные пакеты для машинного обучения
+RUN pip3 install --upgrade transformers accelerate deepspeed fire tqdm openai numpy rouge_score wandb ipython emoji tokenizers evaluate matplotlib seaborn lm-eval jupyter nltk tiktoken aiolimiter swifter pytorch-lightning lightning sentencepiece jsonargparse[signatures] bitsandbytes datasets zstandard rich transformer_lens librosa soundfile gom git+https://github.com/stanfordnlp/pyvene.git git+https://github.com/stanfordnlp/pyreft.git
+
+# Установить TorchAudio nightly
+RUN pip3 install --no-deps torchaudio
+
+# Исправить некорректный пакет Docker pip, чтобы GOM работал
+RUN mv /usr/local/lib/python3.10/dist-packages/docker /usr/local/lib/python3.10/dist-packages/docker_old
+
+#####################
+# GH CLI & STARSHIP #
+#####################
+
+# GitHub CLI
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && apt-get update \
+    && apt-get install gh -y
+
+RUN apt-get upgrade -y
+
+# Starship Prompt
+RUN curl -sS https://starship.rs/install.sh -o starship-install.sh 
+RUN sh -posix starship-install.sh --yes
+RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
+
+# Конфигурация Starship
+RUN echo $'[character]\n\
+    success_symbol = "[λ](bold green) "\n\
+    error_symbol = "[λ](bold red) "\n\
+    \n\
+    [aws]\n\
+    disabled = true' > /root/.config/starship.toml
+```
+
+
+## Сборка образа
+
+После создания файлов вы можете собрать образ с помощью:
+
+```bash
+cd /путь/к/директории
+docker build -t ИМЯ_ВАШЕГО_ОБРАЗА .
+```
+
+
+## Запуск образа
+
+Вы можете запустить образ командой:
+
+```bash
+docker run -d --rm -it \
+    --gpus all \
+    --name ИМЯ_ВАШЕГО_КОНТЕЙНЕРА \
+    --mount type=bind,source=ВАШ_ДОМАШНИЙ_КАТАЛОГ,target=ВАШ_ДОМАШНИЙ_КАТАЛОГ \
+    -w ВАШ_ДОМАШНИЙ_КАТАЛОГ \
+    ИМЯ_ВАШЕГО_ОБРАЗА:latest
+```

@@ -1,0 +1,29 @@
+---
+title: Jak mít Radix Dropdown stejně široký jako jeho spouštěč
+description: Jak zařídit, aby obsah dropdownu v Radixu nebo shadcn měl stejnou šířku jako jeho spouštěč.
+date: "2024-07-02"
+tags: [frontend]
+---
+
+Můj web používá [shadcn Dropdown Menu](https://ui.shadcn.com/docs/components/dropdown-menu) (postavené na `DropdownMenuPrimitive` z Radixu) k tomu, aby si uživatelé mohli změnit aktuální motiv webu.
+
+Ve výchozím nastavení nemá obsah dropdownu stejnou šířku jako jeho spouštěč. To mě štvalo, takže jsem chvíli hledal řešení. Nakonec jsem našel odpověď [v dokumentaci Radixu](https://www.radix-ui.com/primitives/docs/components/dropdown-menu#constrain-the-contentsub-content-size)!
+
+Vložte následující kód do svého CSS souboru (pokud nepoužíváte Tailwind, můžete odstranit obal `@layer utilities`):
+
+```css
+@layer utilities {
+  .dropdown-content-width-full {
+    width: var(--radix-dropdown-menu-trigger-width);
+    max-height: var(--radix-dropdown-menu-content-available-height);
+  }
+}
+```
+
+Teď upravte svůj `<DropdownMenuComponent>` tak, aby vypadal takto:
+
+```jsx
+<DropdownMenuContent align="end" className="dropdown-content-width-full">
+```
+
+Voilà! Obsah a spouštěč mají stejnou šířku. Není zač.

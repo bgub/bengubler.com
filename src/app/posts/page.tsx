@@ -3,7 +3,7 @@ import { getPostColors } from "@/lib/colors";
 import { allPosts } from "content-collections";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getGT } from "gt-next/server";
+import { getGT, getLocale } from "gt-next/server";
 import { T, Var } from "gt-next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -20,9 +20,13 @@ interface PostsPageProps {
 
 export default async function PostsPage({ searchParams }: PostsPageProps) {
   const { tag: selectedTag } = await searchParams;
+  const locale = (await getLocale()) || "en";
+
+  // Filter to current locale
+  const localePosts = allPosts.filter((p) => (p as any).locale === locale);
 
   // Get all posts sorted by date
-  const sortedPosts = allPosts.sort(
+  const sortedPosts = localePosts.sort(
     (a, b) => b.date.getTime() - a.date.getTime()
   );
 
@@ -37,7 +41,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
   });
 
   // Get all unique tags sorted by frequency
-  const tagCounts = allPosts
+  const tagCounts = localePosts
     .flatMap((post) => post.tags)
     .reduce((counts, tag) => {
       counts[tag] = (counts[tag] || 0) + 1;

@@ -12,16 +12,21 @@ import { allPosts } from "content-collections";
 import type { Metadata } from "next/types";
 import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
-import { getGT } from "gt-next/server";
+import { getGT, getLocale } from "gt-next/server";
 import { T, DateTime } from "gt-next";
 
 import { ClientTOC } from "./client-toc";
 
-// Generate static params for all posts
+// Generate static params with unique slugs (dedup across locales)
 export function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post.slug,
-  }));
+  const seen = new Set<string>();
+  return allPosts
+    .filter((post) => {
+      if (seen.has(post.slug)) return false;
+      seen.add(post.slug);
+      return true;
+    })
+    .map((post) => ({ slug: post.slug }));
 }
 
 // Generate metadata for each post
@@ -31,7 +36,8 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = allPosts.find((p) => p.slug === slug);
+  const locale = (await getLocale()) || "en";
+  const post = allPosts.find((p) => p.slug === slug && (p as any).locale === locale);
   const gt = await getGT();
 
   if (!post) {
@@ -94,7 +100,8 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = allPosts.find((p) => p.slug === slug);
+  const locale = (await getLocale()) || "en";
+  const post = allPosts.find((p) => p.slug === slug && (p as any).locale === locale);
   const gt = await getGT();
 
   if (!post) {

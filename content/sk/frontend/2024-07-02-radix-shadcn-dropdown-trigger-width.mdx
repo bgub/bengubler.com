@@ -1,0 +1,29 @@
+---
+title: Nastavenie rozbaľovacieho menu Radix na rovnakú šírku ako jeho spúšťač
+description: Ako dosiahnuť, aby obsah rozbaľovacieho menu Radix alebo shadcn zodpovedal šírke spúšťača.
+date: "2024-07-02"
+tags: [frontend]
+---
+
+Na mojom webe používam [shadcn Dropdown Menu](https://ui.shadcn.com/docs/components/dropdown-menu) (postavené na `DropdownMenuPrimitive` z Radixu), aby si používatelia mohli meniť aktuálnu tému webu.
+
+V predvolenom nastavení nemá obsah rozbaľovacieho komponentu rovnakú šírku ako jeho spúšťač. To ma štvalo, takže som chvíľu hľadal riešenie. Nakoniec som našiel odpoveď [v dokumentácii Radixu](https://www.radix-ui.com/primitives/docs/components/dropdown-menu#constrain-the-contentsub-content-size)!
+
+Vložte nasledujúci kód do svojho súboru CSS (ak nepoužívate Tailwind, môžete odstrániť obal `@layer utilities`):
+
+```css
+@layer utilities {
+  .dropdown-content-width-full {
+    width: var(--radix-dropdown-menu-trigger-width);
+    max-height: var(--radix-dropdown-menu-content-available-height);
+  }
+}
+```
+
+Teraz upravte svoj `<DropdownMenuComponent>`, aby vyzeral takto:
+
+```jsx
+<DropdownMenuContent align="end" className="dropdown-content-width-full">
+```
+
+Voilá! Obsah a spúšťač majú rovnakú šírku. Rado sa stalo.

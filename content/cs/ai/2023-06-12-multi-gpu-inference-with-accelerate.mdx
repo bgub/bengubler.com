@@ -1,0 +1,110 @@
+---
+title: Inferování na více GPU s Accelerate
+description: Zrychlete inferenci předáváním promptů na více GPU paralelně.
+date: "2023-06-12"
+lastUpdated: "2024-06-24"
+tags: [ml/ai]
+archived: true
+---
+
+*AKTUALIZACE 2024: Informace v tomto příspěvku mohou být zastaralé nebo nepřesné. Jak upozornil Alex Salinas v komentářích níže, tento kód by měl pravděpodobně používat torchpippy místo split&#95;between&#95;processes.*
+
+Historicky se věnovalo více pozornosti distribuovanému učení než distribuované inferenci. Koneckonců učení je výpočetně náročnější. Větší a složitější velké jazykové modely však mohou potřebovat dlouhý čas na dokončení úloh doplňování textu. Ať už pro výzkum nebo v produkci, vyplatí se inferenci paralelizovat, aby se maximalizoval výkon.
+
+Je důležité rozlišovat mezi rozdělením vah jednoho modelu napříč více GPU a rozdělením promptů či vstupů napříč více modely. To první je relativně jednoduché, zatímco to druhé (na které se zaměřím) je o něco složitější.
+
+Před týdnem vyšla ve verzi 0.20.0 [HuggingFace Accelerate](https://huggingface.co/docs/accelerate/index) s funkcí, která výrazně zjednodušuje inferenci na více GPU: `Accelerator.split_between_processes()`. Je postavená na `torch.distributed`, ale používá se mnohem jednodušeji.
+
+Podívejme se, jak můžeme tuto novou funkci použít s LLaMA. Kód předpokládá, že jste uložili váhy LLaMA ve formátu [Hugging Face Transformers](https://huggingface.co/docs/transformers/main/model_doc/llama).
+
+Nejprve naimportujte potřebné moduly a inicializujte tokenizer a model.
+
+```python
+from transformers import LlamaForCausalLM, LlamaTokenizer
+from accelerate import Accelerator
+
+accelerator = Accelerator()
+
+MODEL_PATH = "cesta-k-llama-modelu"
+
+tokenizer = LlamaTokenizer.from_pretrained(MODEL_PATH)
+
+model = LlamaForCausalLM.from_pretrained(MODEL_PATH, device_map="auto")
+```
+
+Všimněte si, že předáváme `device_map="auto"`. To umožňuje Accelerate rovnoměrně rozložit váhy modelu mezi dostupné GPU.
+
+Kdybychom chtěli, mohli bychom spustit `model.to(accelerator.device)`. Tím by se model přesunul na konkrétní GPU. `accelerator.device` bude pro každý proces běžící paralelně jiný, takže můžete mít model načtený na GPU 0, další na GPU 1 atd. V tomto případě však zůstaneme u `device_map="auto"`. To nám umožní používat větší modely, než by se vešly na jedno GPU.
+
+Teď napíšeme kód pro inferenci!
+
+```python
+
+data = [
+    "pes",
+    "kočka",
+    "hraboš",
+    "netopýr",
+    "pták",
+    "ryba",
+    "kůň",
+    "kráva",
+    "ovce",
+    "koza",
+    "prase",
+    "slepice",
+]
+
+# Accelerator automaticky rozdělí tato data mezi všechny běžící procesy.
+# Výše uvedené pole má 12 položek. Takže pokud bychom měli 4 procesy, každý proces
+# by dostal přiřazeny 3 řetězce jako prompty.
+
+with accelerator.split_between_processes(data,) as prompts:
+    for prompt in prompts:
+
+        # přesunout tensor na GPU, protože musí být na CUDA
+        inputs = tokenizer(prompt, return_tensors="pt").to(accelerator.device)
+
+        # inference
+        generate_ids = model.generate(**inputs, max_length=30)
+
+        # dekódování
+        result = tokenizer.batch_decode(
+            generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False
+        )[0]
+
+        # vypsat číslo procesu a výsledek inference
+        print(
+            f"Process {accelerator.process_index} - "
+            + result.replace("\n", "\\n")
+        )
+
+```
+
+Nakonec už zbývá jen spustit Accelerate pomocí rozhraní příkazové řádky Accelerate:
+
+```bash
+accelerate launch --num_processes=4 script.py
+```
+
+Když spustíme výše uvedený kód, 4 kopie modelu se načtou na dostupných GPU. Naše výzvy jsou rovnoměrně rozdělené mezi 4 modely, což výrazně zlepšuje výkon.
+
+Výstup výše uvedeného kódu (po záznamech z načítání modelů) by měl vypadat takto:
+
+
+```text
+Proces 1 - vana se sprchou vana se sprchou vana se sprchou a ruční sprchou
+Proces 0 - psí život, psí život, psí život, psí život, psí život
+Proces 1 - lepší vrabec v hrsti než holub na střeše.\nlepší vrabec v hrsti než holub na střeše.\nlepší vrabec v
+Proces 2 - kůň, kůň, mé království za koně!\nkůň, kůň, mé království za koně!\nkůň,
+Proces 3 - koza, ovce, kráva, prase, pes, kočka, kůň, slepice, ka
+Proces 0 - katastrofická událost, která navždy změní svět.\nSvět je v sevření globální pandemie.\n
+Proces 1 - rybářský výlet na Bahamy.\nNejsem si jistý, jestli se mi podaří tam dostat.\n
+Proces 2 - můj kolega je velkým fanouškem tohoto pořadu a snaží se mě přesvědčit, abych se na to podíval. Já
+Proces 3 - pokladnička prasátko, pokladnička prasátko, pokladnička prasátko, pokladnička prasátko, pokladnička prasátko
+Proces 0 - hraboš, myš, rejsek, křeček, pískomil, morče, králík,
+Proces 2 - ovce, koza, beran, býček, beránek, hrdlička, a
+Proces 3 - slepice v každém hrnci, auto v každé garáži, dům na každém dvorku, práce pro každého muže, vysoká škola
+```
+
+Doufám, že to bylo užitečné! Pokud vás to zajímá, můžete se o Accelerate a distribuovaném inferencování dozvědět víc v dokumentaci k Accelerate [zde](https://huggingface.co/docs/accelerate/usage_guides/distributed_inference).

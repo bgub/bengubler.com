@@ -1,0 +1,29 @@
+---
+title: جعل قائمة Radix المنسدلة بنفس عرض عنصر تشغيلها
+description: كيفية جعل محتوى القائمة المنسدلة في Radix أو shadcn يطابق عرض عنصر التشغيل.
+date: "2024-07-02"
+tags: [frontend]
+---
+
+موقعي يستخدم [shadcn Dropdown Menu](https://ui.shadcn.com/docs/components/dropdown-menu) (المبنية على `DropdownMenuPrimitive` من Radix) للسماح للمستخدمين بتغيير سمة الموقع الحالية.
+
+افتراضيًا، لا يكون محتوى المكوّن المنسدل بنفس عرض عنصر التشغيل. كان ذلك يزعجني، فقضيت بعض الوقت أبحث عن حل. أخيرًا، وجدت الإجابة [في وثائق Radix](https://www.radix-ui.com/primitives/docs/components/dropdown-menu#constrain-the-contentsub-content-size)!
+
+ضع الكود أدناه في ملف CSS الخاص بك (يمكنك إزالة الغلاف `@layer utilities` إذا لم تكن تستخدم Tailwind):
+
+```css
+@layer utilities {
+  .dropdown-content-width-full {
+    width: var(--radix-dropdown-menu-trigger-width);
+    max-height: var(--radix-dropdown-menu-content-available-height);
+  }
+}
+```
+
+الآن، عدِّل مكوّن `<DropdownMenuComponent>` ليبدو بهذا الشكل:
+
+```jsx
+<DropdownMenuContent align="end" className="dropdown-content-width-full">
+```
+
+ها قد تم! المحتوى والمُشغِّل لهما العرض نفسه. على الرحب والسعة.

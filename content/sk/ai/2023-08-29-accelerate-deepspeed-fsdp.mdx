@@ -1,0 +1,43 @@
+---
+title: Accelerate vs. DeepSpeed vs. FSDP
+description: Ktorý z nich použiť na distribuované trénovanie?
+date: "2023-08-29"
+tags: [ml/ai]
+---
+
+## Úvod
+
+Existuje mnoho rôznych knižníc a stratégií na distribuované tréningy. V tomto článku sa pozrieme na tri z najpopulárnejších: [Accelerate](https://huggingface.co/docs/accelerate/index), [DeepSpeed](https://www.deepspeed.ai/) a [FSDP](https://engineering.fb.com/2021/07/15/open-source/fsdp/). Preberieme, čím sa líšia a kedy sa oplatí použiť jednu namiesto druhej.
+
+## Accelerate
+
+[Accelerate](https://huggingface.co/docs/accelerate/index) je obľúbená knižnica, ktorú vyvíja a udržiava HuggingFace. Môžete si ju predstaviť ako nadstavbu nad `torch.distributed`. V zásade umožňuje jednoducho spúšťať trénovanie alebo [inferenciu](./multi-gpu-inference-with-accelerate) naprieč viacerými GPU alebo uzlami.
+
+V najzákladnejšej podobe použijete Accelerate na inicializáciu PyTorch modelu na každom GPU. Po niekoľkých jednoduchých úpravách vášho tréningového cyklu Accelerate za vás zabezpečí paralelizmus nad dátami.
+
+Ak je váš model príliš veľký na to, aby sa zmestil na jedno GPU, môžete Accelerate použiť na rozdelenie modelu medzi viaceré GPU tým, že do metódy `from_pretrained` v transformers zadáte `device_map="auto"`. Pozor — `device_map="auto"` môžete použiť iba vtedy, ak bežíte s `num_processes=1`, pretože inicializujete len jeden model.
+
+Ak potrebujete sofistikovanejšie rozdelenie modelu („sharding“ označuje rozdelenie modelu medzi zariadenia), môžete použiť DeepSpeed alebo FSDP spolu s Accelerate
+
+## DeepSpeed
+
+[DeepSpeed](https://www.deepspeed.ai/) ponúka Zero Redundancy Optimizer (ZeRO). Nazýva sa „Zero Redundancy“, pretože umožňuje rozdelenie modelu naprieč viacerými GPU bez nutnosti replikovať parametre modelu na každej GPU. To je obrovská výhoda, keďže umožňuje trénovať modely väčšie, než je pamäť ktorejkoľvek jednej GPU.
+
+Existujú tri fázy ZeRO:
+
+- **ZeRO Stage 1** rozdeľuje stavy optimalizátora
+- **ZeRO Stage 2** navyše rozdeľuje gradienty
+- **ZeRO Stage 3** navyše rozdeľuje parametre
+
+Ak stále narážate na problémy s pamäťou, DeepSpeed umožňuje odkladať (offloadovať) stav optimalizátora, gradienty a niektoré váhy modelu do pamäte CPU alebo úložiska NVMe. Tento režim sa nazýva „**ZeRO-Infinity**“ a — hoci je výrazne pomalší než trénovanie bez offloadu — umožňuje trénovať naozaj veľmi veľké modely.
+
+## FSDP
+
+[FSDP](https://engineering.fb.com/2021/07/15/open-source/fsdp/) znamená „Fully Sharded Data Parallel“. Pôvodne ho vyvinul Facebook AI Research a uverejnil v knižnici Fairscale, no neskôr bola podpora [pridaná priamo do PyTorch](https://pytorch.org/blog/introducing-pytorch-fully-sharded-data-parallel-api/) vo verzii PyTorch 1.11.
+
+V zásade robí to isté ako DeepSpeed ZeRO — spravuje rozdelenie (sharding) stavov optimalizátora, gradientov a parametrov modelu. Podporuje aj offload na CPU. Jednou užitočnou vlastnosťou je, že môže slúžiť ako drop-in náhrada za DistributedDataParallel.
+
+## Zhrnutie
+
+- Accelerate je nadstavba nad `torch.distributed`, ktorá vám umožní jednoducho spúšťať trénovanie alebo inferenciu na viacerých GPU či uzloch. Dá sa použiť aj na jednoduchú dekompozíciu (delenie) modelu a dobre spolupracuje s DeepSpeed aj FSDP pri pokročilejších scenároch.
+- DeepSpeed a FSDP sú dve rôzne implementácie tej istej myšlienky: shardovania (rozkladania) parametrov modelu, gradientov a stavov optimalizátora naprieč viacerými GPU. Obe podporujú offload na CPU a dajú sa používať v kombinácii s Accelerate.

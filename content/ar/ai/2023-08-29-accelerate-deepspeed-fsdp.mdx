@@ -1,0 +1,43 @@
+---
+title: Accelerate أم DeepSpeed أم FSDP
+description: أيّها ينبغي استخدامه للتدريب الموزّع؟
+date: "2023-08-29"
+tags: [ml/ai]
+---
+
+## المقدمة
+
+هناك العديد من المكتبات والاستراتيجيات لتدريب النماذج بشكل موزّع. في هذه المقالة سنستعرض ثلاثًا من أشهرها: [Accelerate](https://huggingface.co/docs/accelerate/index)، [DeepSpeed](https://www.deepspeed.ai/)، و[FSDP](https://engineering.fb.com/2021/07/15/open-source/fsdp/). سنناقش الفروق بينها ومتى قد تفضّل استخدام إحداها على الأخرى.
+
+## Accelerate
+
+[Accelerate](https://huggingface.co/docs/accelerate/index) هي مكتبة شائعة طوّرتها وتُشرف عليها HuggingFace. يمكنك التفكير فيها كغلاف لـ `torch.distributed`. باختصار، تتيح لك ببساطة تشغيل التدريب أو [الاستدلال](./multi-gpu-inference-with-accelerate) عبر عدة وحدات GPU أو عدة عُقد.
+
+بأبسط صورة، تستخدم Accelerate لتهيئة نموذج PyTorch على كل GPU. وبإجراء بعض التعديلات البسيطة على حلقة التدريب لديك، ستتولى Accelerate التعامل مع توازي البيانات نيابةً عنك.
+
+إذا كان نموذجك كبيرًا جدًا بحيث لا يتسع على أي GPU بمفرده، فيمكنك استخدام Accelerate لتقسيم النموذج عبر عدة وحدات GPU بتمرير `device_map="auto"` إلى دالة `from_pretrained` في transformers. تنبيه — يمكنك استخدام `device_map="auto"` فقط إذا كنت تعمل مع `num_processes=1`، لأنك تهيّئ نموذجًا واحدًا فقط.
+
+إذا كنت بحاجة إلى تقسيم أكثر تطوّرًا للنموذج ("sharding" يُشير إلى تقسيم النموذج عبر الأجهزة) فيمكنك استخدام DeepSpeed أو FSDP جنبًا إلى جنب مع Accelerate
+
+## DeepSpeed
+
+يقدّم [DeepSpeed](https://www.deepspeed.ai/) مُحسّن Zero Redundancy Optimizer (ZeRO). سُمّي "انعدام التكرار" لأنه يتيح تقسيم النموذج عبر عدة وحدات GPU من دون الحاجة إلى تكرار معاملات النموذج على كل وحدة. هذه فائدة كبيرة، لأنها تمكّنك من تدريب نماذج تتجاوز سعة ذاكرة أي GPU منفردة.
+
+هناك ثلاث مراحل لـ ZeRO:
+
+- **ZeRO المرحلة 1** يقسّم حالات المُحسّن
+- **ZeRO المرحلة 2** يقسّم أيضًا التدرّجات
+- **ZeRO المرحلة 3** يقسّم أيضًا المعاملات
+
+إذا كنت لا تزال تواجه مشكلات في الذاكرة، يتيح لك DeepSpeed ترحيل حالة المُحسّن والتدرّجات وبعض أوزان النموذج إلى ذاكرة CPU أو تخزين NVMe. يُطلق على ذلك "**ZeRO-Infinity**"، وعلى الرغم من أنه أبطأ بشكل ملحوظ من التدريب من دون ترحيل، فإنه يتيح تدريب نماذج ضخمة بالفعل.
+
+## FSDP
+
+[FSDP](https://engineering.fb.com/2021/07/15/open-source/fsdp/) هو اختصار لعبارة "Fully Sharded Data Parallel". طُوّر في الأصل بواسطة Facebook AI Research وأُطلق ضمن مكتبة Fairscale، ثم أُضيف [دعم أصيل له في PyTorch](https://pytorch.org/blog/introducing-pytorch-fully-sharded-data-parallel-api/) ابتداءً من الإصدار 1.11 من PyTorch.
+
+يقوم عمليًا بالأمر نفسه الذي يقدمه DeepSpeed ZeRO — إدارة تجزئة حالات المُحسّن، والتدرجات، ومعاملات النموذج. كما يدعم التفريغ إلى CPU. ومن الميزات المفيدة أنه يمكن استخدامه كبديل مباشر لـ DistributedDataParallel.
+
+## الملخص
+
+- Accelerate هو غلاف لـ `torch.distributed` يتيح لك تشغيل التدريب أو الاستدلال بسهولة عبر عدة وحدات GPU أو عُقد. يمكن استخدامه أيضًا في تقسيم النموذج بشكل بسيط، ويعمل جيدًا مع كل من DeepSpeed وFSDP لحالات الاستخدام الأكثر تقدمًا.
+- تعد كل من DeepSpeed وFSDP تنفيذين مختلفين للفكرة نفسها: تشظية/تجزئة معاملات النموذج، والتدرجات، وحالات المُحسِّن عبر عدة وحدات GPU. كلاهما يدعم التفريغ إلى CPU ويمكن استخدامهما مع Accelerate.

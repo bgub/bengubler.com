@@ -1,0 +1,296 @@
+---
+title: "Добавление .md-URL для выдачи сырого Markdown в Next.js"
+description: "Как добавить .md-URL в блог на Next.js, чтобы отдавать сырой Markdown, по мотивам документации Vercel."
+date: "2025-06-14"
+tags: [frontend]
+---
+
+> **Обновление**: После публикации этого поста [Guillermo Rauch](https://twitter.com/rauchg) (CEO Vercel) предложил использовать переписывания (rewrites) в Next.js вместо middleware для этого случая. Я обновил реализацию ниже — так проще и быстрее! 🚀
+
+## Если вкратце
+
+Вдохновившись документацией Vercel, мы добавим возможность дописывать `.md` к любому URL поста в блоге, чтобы получить исходный markdown. То есть `/posts/my-post` превращается в `/posts/my-post.md`, и вы получаете сырой исходник. Недавно я добавил эту функцию в свой блог — она идеально подходит для обмена примерами кода или чтобы люди могли увидеть, как именно вы что-то написали.
+
+[Rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) в Next.js делают такую реализацию удивительно простой и аккуратной.
+
+<Tweet id="1930689104800518392" />
+
+## Установка
+
+```bash
+pnpx create-next-app@latest raw-markdown-blog
+cd raw-markdown-blog
+pnpm install @content-collections/core @content-collections/mdx @content-collections/next zod
+```
+
+Выберите TypeScript, Tailwind CSS и App Router.
+
+Добавьте `.content-collections` в файл `.gitignore`:
+
+```
+.content-collections
+```
+
+
+## Настройка Content Collections
+
+[Content Collections](https://www.content-collections.dev/) — отличная библиотека для управления контентом в Next.js: типобезопасная, быстрая и с отличным DX.
+
+Создайте `content-collections.ts` в корне проекта (не в src/):
+
+```typescript
+import { defineCollection, defineConfig } from "@content-collections/core";
+import { compileMDX } from "@content-collections/mdx";
+import { z } from "zod";
+
+const posts = defineCollection({
+  name: "posts",
+  directory: "content",
+  include: "**/*.mdx",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.string().pipe(z.coerce.date()),
+  }),
+  transform: async (document, context) => {
+    const mdx = await compileMDX(context, document);
+    const slug = document._meta.path.replace(/\.mdx$/, "");
+
+    return {
+      ...document,
+      mdx,
+      slug,
+      url: `/posts/${slug}`,
+    };
+  },
+});
+
+export default defineConfig({
+  collections: [posts],
+});
+```
+
+Обновите файл `next.config.js`:
+
+```javascript
+const { withContentCollections } = require("@content-collections/next");
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ваша текущая конфигурация...
+};
+
+module.exports = withContentCollections(nextConfig);
+```
+
+Обновите пути в файле `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    // ... другие параметры
+    "paths": {
+      "@/*": ["./src/*"],
+      "content-collections": ["./.content-collections/generated"]
+    }
+  }
+}
+```
+
+
+## Пример содержимого
+
+Создайте каталог `content/` в корне проекта и добавьте файл `content/hello-world.mdx`:
+
+````markdown
+---
+title: "Привет, мир"
+description: "Мой первый пост в блоге с поддержкой raw markdown."
+date: "2024-12-20"
+---
+
+## Добро пожаловать
+
+Это мой первый пост в блоге! Вот немного **жирного текста** и блок кода:
+
+```javascript
+console.log("Привет, мир!");
+```
+
+Довольно круто, правда?
+````
+
+
+## Страницы записей
+
+Замените `app/page.tsx`:
+
+```tsx
+import { allPosts } from "content-collections";
+import Link from "next/link";
+
+export default function Home() {
+  const sortedPosts = allPosts.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  return (
+    <div className="max-w-2xl mx-auto p-8">
+      <h1 className="text-3xl font-bold mb-8">Мой блог</h1>
+      <div className="space-y-6">
+        {sortedPosts.map((post) => (
+          <article key={post.slug} className="border-b pb-4">
+            <Link
+              href={post.url}
+              className="text-xl font-semibold hover:text-blue-600"
+            >
+              {post.title}
+            </Link>
+            <p className="text-gray-600 mt-2">{post.description}</p>
+            <time className="text-sm text-gray-500">
+              {post.date.toLocaleDateString()}
+            </time>
+            <div className="mt-2 text-sm">
+              <Link
+                href={`${post.url}.md`}
+                className="text-blue-500 hover:underline"
+              >
+                Посмотреть исходный код markdown
+              </Link>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+Создайте файл `app/posts/[slug]/page.tsx`:
+
+```tsx
+import { allPosts } from "content-collections";
+import { MDXContent } from "@content-collections/mdx/react";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = allPosts.find((p) => p.slug === slug);
+
+  if (!post) notFound();
+
+  return (
+    <div className="max-w-2xl mx-auto p-8">
+      <Link
+        href="/"
+        className="text-blue-600 hover:underline mb-4 inline-block"
+      >
+        ← Назад к записям
+      </Link>
+
+      <article>
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
+          <p className="text-gray-600 mb-2">{post.description}</p>
+          <time className="text-sm text-gray-500">
+            {post.date.toLocaleDateString()}
+          </time>
+          <div className="mt-4">
+            <Link
+              href={`${post.url}.md`}
+              className="text-blue-500 hover:underline text-sm"
+            >
+              Посмотреть исходный markdown
+            </Link>
+          </div>
+        </header>
+
+        <div className="prose prose-lg max-w-none">
+          <MDXContent code={post.mdx} />
+        </div>
+      </article>
+    </div>
+  );
+}
+
+export function generateStaticParams() {
+  return allPosts.map((post) => ({ slug: post.slug }));
+}
+```
+
+
+## Магия: Rewrites
+
+Вот где переписывания в Next.js раскрываются во всей красе — мы можем изящно перенаправлять URL всего несколькими строками конфигурации.
+
+Обновите `next.config.js`, чтобы добавить правило переписывания:
+
+```javascript
+const { withContentCollections } = require("@content-collections/next");
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/posts/:slug.md",
+        destination: "/api/posts/:slug/raw",
+      },
+    ];
+  },
+};
+
+module.exports = withContentCollections(nextConfig);
+```
+
+Правило перезаписи автоматически перенаправляет любой запрос вида `/posts/:slug.md` на `/api/posts/:slug/raw`. Параметр `:slug` берётся из исходного URL и передаётся по назначению. В браузере пользователь видит `/posts/hello-world.md`, но Next.js отдаёт его с `/api/posts/hello-world/raw`.
+
+
+## Маршрут API для исходного содержимого
+
+Создайте `app/api/posts/[slug]/raw/route.ts`:
+
+```typescript
+import { allPosts } from "content-collections";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;
+  const post = allPosts.find((p) => p.slug === slug);
+
+  if (!post) {
+    return new NextResponse("Публикация не найдена", { status: 404 });
+  }
+
+  return new NextResponse(post.content, {
+    headers: {
+      "Content-Type": "text/markdown; charset=utf-8",
+      "Cache-Control": "public, max-age=3600", // Кэш на 1 час
+    },
+  });
+}
+
+export function generateStaticParams() {
+  return allPosts.map((post) => ({ slug: post.slug }));
+}
+```
+
+
+## Готово
+
+Запустите dev‑сервер и протестируйте оба URL:
+
+- `/posts/hello-world` — отрендеренный MDX со стилизацией и компонентами
+- `/posts/hello-world.md` — исходный текст в формате Markdown
+
+Заголовки кэширования гарантируют, что исходный Markdown кэшируется на час, снижая нагрузку на сервер для популярных постов. В продакшене вы можете добавить к постам кнопку «View raw» (как я сделал в своём блоге), а не просто показывать ссылку в списке постов.
+
+Эта функция отлично подходит для обмена примерами, отладки контента или для того, чтобы другие могли изучать ваше оформление в Markdown. Переписывания Next.js делают реализацию аккуратной и производительной — без сложной логики маршрутизации.

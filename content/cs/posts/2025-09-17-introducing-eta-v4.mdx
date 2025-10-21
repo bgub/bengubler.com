@@ -1,0 +1,17 @@
+---
+title: "Představujeme Eta v4"
+description: "Přechod Eta na ESM-only, změna scope balíčku a vylepšení CI/CD."
+date: "2025-09-17T11:30:00-06:00"
+tags: [open-source]
+---
+
+Poprvé jsem vydal Etu před pěti lety! Od té doby na ní závisí stovky balíčků a týdně se stahuje přes milionkrát.
+
+Od verze v3, která vyšla v červnu 2023, považuji Etu většinou za „hotové dílo“. Nebyl jsem ale spokojený s bundlováním, testováním, lintováním a CI/CD, tak jsem ji přepsal! (A následně jsem změny dodatečně vyčlenil do [nové šablony TS knihovny s názvem ts-base](https://www.bengubler.com/posts/2025-09-17-ts-base-typescript-library-template)).
+
+Je tu ještě několik dalších změn, na které je dobré myslet:
+
+- Eta je nyní ve výchozím stavu pouze ESM. Je rok 2025 a tohle je správná volba!
+- Přesunul jsem repozitář (a další související repozitáře) na svůj osobní účet na GitHubu, [bgub](https://github.com/bgub). Protože jsem hlavní přispěvatel, myslím, že to zjednoduší údržbu a sníží zmatek.
+- Eta bude nadále publikována na https://deno.land/x/, ale doporučuji místo toho používat https://jsr.io/@bgub/eta.
+- Pokud chcete použít verzi Ety kompatibilní s prohlížečem, musíte importovat z `eta/core`, protože nyní používáme mnohem čistší `"exports"` v našem `package.json`.

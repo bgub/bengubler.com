@@ -1,0 +1,89 @@
+---
+title: Nastavení Dockeru pro strojové učení
+description: Dockerfile, který používám k nastavení svého prostředí pro strojové učení.
+date: "2023-09-08"
+lastUpdated: "2024-06-24"
+tags: [ml/ai]
+---
+
+_AKTUALIZACE 2024: Tento příspěvek jsem upravil tak, aby vycházel z image `nvcr.io/nvidia/pytorch`, který dnes používám vždy kvůli skvělé podpoře NVIDIA + NCCL + InfiniBand. Také jsem soubor zjednodušil a přizpůsobil ho tak, aby používal `gom` pro monitorování GPU._
+
+Tento příspěvek je primárně určen pro kolegy, ale může být užitečný i pro ostatní. Podělím se o Dockerfile, který používám k nastavení svého prostředí pro strojové učení. Je založen na image `pytorch` od NVIDIA, ale přidal jsem pár věcí (aktualizované balíčky pipu, GitHub CLI, prompt Starship, [monitorování GPU](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement) atd.), které považuji za užitečné.
+
+## Nastavení
+
+Zkopírujte a vložte níže uvedený `Dockerfile` do nového adresáře. Klidně cokoliv přidejte nebo odeberte — tenhle příspěvek budu nejspíš průběžně aktualizovat, jak budu svůj setup upravovat.
+
+```dockerfile
+# Základní obraz s Ubuntu 22.04, Python 3.10, CUDA 12.4
+FROM nvcr.io/nvidia/pytorch:24.04-py3
+
+#####################
+# PYTHON BALÍČKY    #
+#####################
+
+# Zakázat varování „running pip as the 'root' user can..."
+ENV PIP_ROOT_USER_ACTION=ignore
+
+# Aktualizovat pip
+RUN pip3 install --upgrade pip
+
+# Aktualizovat a nainstalovat užitečné balíčky pro strojové učení
+RUN pip3 install --upgrade transformers accelerate deepspeed fire tqdm openai numpy rouge_score wandb ipython emoji tokenizers evaluate matplotlib seaborn lm-eval jupyter nltk tiktoken aiolimiter swifter pytorch-lightning lightning sentencepiece jsonargparse[signatures] bitsandbytes datasets zstandard rich transformer_lens librosa soundfile gom git+https://github.com/stanfordnlp/pyvene.git git+https://github.com/stanfordnlp/pyreft.git
+
+# Nainstalovat TorchAudio nightly
+RUN pip3 install --no-deps torchaudio
+
+# Opravit nesprávný Docker pip balíček, aby GOM fungoval
+RUN mv /usr/local/lib/python3.10/dist-packages/docker /usr/local/lib/python3.10/dist-packages/docker_old
+
+#####################
+# GH CLI & STARSHIP #
+#####################
+
+# GitHub CLI
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+    && apt-get update \
+    && apt-get install gh -y
+
+RUN apt-get upgrade -y
+
+# Starship Prompt
+RUN curl -sS https://starship.rs/install.sh -o starship-install.sh 
+RUN sh -posix starship-install.sh --yes
+RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
+
+# Konfigurace Starship
+RUN echo $'[character]\n\
+    success_symbol = "[λ](bold green) "\n\
+    error_symbol = "[λ](bold red) "\n\
+    \n\
+    [aws]\n\
+    disabled = true' > /root/.config/starship.toml
+```
+
+
+## Sestavení image
+
+Jakmile vytvoříte soubory, můžete image sestavit pomocí:
+
+```bash
+cd /cesta/k/adresáři
+docker build -t NÁZEV_VAŠEHO_OBRAZU .
+```
+
+
+## Spuštění image
+
+Image můžete spustit pomocí:
+
+```bash
+docker run -d --rm -it \
+    --gpus all \
+    --name NÁZEV_VAŠEHO_KONTEJNERU \
+    --mount type=bind,source=VÁŠ_DOMÁCÍ_ADRESÁŘ,target=VÁŠ_DOMÁCÍ_ADRESÁŘ \
+    -w VÁŠ_DOMÁCÍ_ADRESÁŘ \
+    NÁZEV_VAŠEHO_OBRAZU:latest
+```

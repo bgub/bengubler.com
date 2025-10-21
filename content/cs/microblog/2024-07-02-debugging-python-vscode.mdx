@@ -1,0 +1,12 @@
+---
+title: Ladění Pythonu ve VSCode
+description: Použití funkce code.interact() ke spuštění interaktivního interpretu
+date: "2024-07-02"
+tags: [random]
+---
+
+Říká se, že se člověk každý den naučí něco nového, ale mě šokovalo, když jsem narazil na skvělou funkci Pythonu, o které jsem neměl tušení.
+
+Můžete totiž pozastavit běh pythoního skriptu a otevřít si interaktivní terminál s lokálními proměnnými! Narazil jsem na to při sledování videa Andreje Karpathyho o [reprodukci GPT-2](https://www.youtube.com/watch?v=l8pRSuU81PU) (věřte Karpathymu, ten zná podobné vychytávky).
+
+Stačí dát na začátek souboru `import code` a kamkoli do kódu vložit `code.interact(local=locals())`. Hotovo! Jakmile běh dojde na toto místo, v terminálu se otevře interpret Pythonu s přístupem ke všem lokálním proměnným. Stisknutím `CTRL+D` interpret zavřete a program poběží dál, nebo napište `quit()` pro ukončení terminálu a zastavení běhu.

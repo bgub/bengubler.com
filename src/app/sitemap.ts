@@ -1,11 +1,14 @@
 import { getBaseUrl } from "@/lib/utils";
 import { allPosts } from "content-collections";
+import { getLocale } from "gt-next/server";
 
 const baseUrl = getBaseUrl();
 
 export default async function sitemap() {
+  const locale = (await getLocale()) || "en";
   // Content links from non-archived posts only
   const postLinks = allPosts
+    .filter((post) => (post as any).locale === locale)
     .filter((post) => !post.archived)
     .map((post) => ({
       url: `${baseUrl}/posts/${post.slug}`,

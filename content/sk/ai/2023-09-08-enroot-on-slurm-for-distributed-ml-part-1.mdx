@@ -1,0 +1,56 @@
+---
+title: "Enroot na Slurm pre distribuované ML: Časť 1"
+description: Ako používať Enroot na Slurm na kontajnerový tréning na viacerých uzloch.
+date: "2023-09-08T22:00:00+0000"
+tags: [ml/ai]
+---
+
+_Toto je 1. časť z dvojdielnej série. [Časť 2](./enroot-on-slurm-for-distributed-ml-part-2) nájdete tu._
+
+V laboratóriu, kde pracujem, máme prístup k prostrediu vysokovýkonného výpočtovania (HPC), ktoré používa [Slurm Workload Manager](https://slurm.schedmd.com/documentation.html). Naše HPC beží na RHEL (Red Hat Enterprise Linux) 7 a jednotliví používatelia majú výrazne obmedzené oprávnenia. Nemáme `sudo` a z výpočtových uzlov nie je prístup na internet.
+
+V praxi je proces inštalácie balíkov a aktualizácie ovládačov priamo na výpočtovom uzle natoľko náročný, že robí distribuovaný tréning s moderným softvérom nesmierne komplikovaným. Našťastie existuje riešenie: kontajnerizácia.
+
+Na lokálnom počítači vytvoríme pomocou Dockeru image so všetkými potrebnými balíkmi. Ten potom prenesieme do HPC a použijeme na spustenie tréningového skriptu.
+
+## Krok 1: Vytvorte Docker image lokálne
+
+Už som písal o [Docker nastavení, ktoré používam na strojové učenie](./ultimate-ml-dockerfile), takže sa tu nebudem opakovať. Dôležité je, aby ste mali označený (tagovaný) Docker image s balíkmi, ktoré potrebujete na spustenie tréningového skriptu. Ja používam Ubuntu 20.04 a CUDA 11.8.
+
+## Krok 2: Zbalenie a prenos obrazu
+
+Nainštalujte [Enroot](https://github.com/NVIDIA/enroot) a potom spustite nasledujúci príkaz, aby ste previedli svoj Docker image na súbor typu squashfs:
+
+```bash
+enroot import dockerd://<image-name>
+```
+
+Týmto sa vo vašom aktuálnom adresári vytvorí súbor s názvom `<image-name>.sqsh`. Tento súbor preneste na HPC pomocou `scp`.
+
+
+## Krok 3: Načítanie image na HPC
+
+Vstúpte na výpočtový uzol pomocou `salloc --nodes=1 --gpus=8 --qos=<qos> --mem=2000G --time=72:00:00 --ntasks=1 --cpus-per-task=128`.
+
+Najprv musíme načítať modul Enroot:
+
+```bash
+module load jq zstd pigz parallel libnvidia-container enroot
+```
+
+Na HPC vytvorte obraz pomocou nasledujúceho príkazu:
+
+```bash
+enroot create --name image-name /path/to/image-name.sqsh
+```
+
+Potom ho spustite:
+
+```bash
+enroot start --mount /lokálna/cesta/súboru:/cesta/súboru/v/obraze \
+             --rw názov-obrazu bash
+```
+
+Tým sa otvorí interaktívny shell vnútri kontajnera. Nezabudnite na prepínač `--rw`, ktorý sprístupní koreňový súborový systém na zápis. Môžete pridať toľko prepínačov `--mount`, koľko potrebujete, aby ste pripojili súbory a adresáre z hostiteľského počítača.
+
+Ak chcete preniesť premenné prostredia, môžete použiť prepínač `--env` spolu s názvom premennej prostredia na hostiteľskom počítači. Napríklad `--env SLURM_NODEID` prenesie premennú prostredia `SLURM_NODEID`.

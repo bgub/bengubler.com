@@ -1,0 +1,77 @@
+---
+title: Jeden konfiguračný súbor, ktorý vládne všetkým
+description: JavaScriptové nástroje majú príliš veľa konfiguračných súborov. Spojme ich dokopy.
+date: "2023-06-29"
+tags: [open-source]
+was_llm_utilized: slightly
+---
+
+Moderný webový vývoj zahŕňa prácu s viacerými build nástrojmi a frameworkmi pre JS, z ktorých každý vyžaduje vlastné konfiguračné súbory. Správa týchto súborov, ako napríklad `.eslintrc`, `next.config.js` a `tailwind.config.js`, môže byť zdĺhavá a časovo náročná. V tomto blogovom príspevku preskúmam myšlienku spojiť tieto konfiguračné súbory do jediného `global.config.js`, čím sa centralizuje konfigurácia projektu a zníži sa miera rozptyľovania.
+
+## Konfiguračné súbory na každom kroku
+
+Keď píšem tento blogový príspevok, koreň môjho projektu obsahuje súbory `.eslintrc.json`, `next.config.js`, `postcss.config.js`, `tailwind.config.js` a `tsconfig.json`. Hoci je moja konfigurácia v podstate „z krabice“ a každý súbor má menej než 30 riadkov, aj tak zaberajú v paneli VSCode cenné miesto a odvádzajú pozornosť od toho podstatného: zdrojového kódu.
+
+Môj prípad nie je žiadna výnimka. Mnohé projekty používajú konfiguračných súborov ešte viac. Predstavte si, ako preplnený môže byť projekt, keď priberiete `.babelrc`, `prettier.config.js`, `jest.config.js`, `cypress.json` a ďalšie.
+
+## Riešenie: `global.config.js`
+
+Navrhujem jednoduché riešenie: zjednotiť konfiguračné súbory do súboru s názvom `global.config.js`. Konfigurácia pre každý nástroj by bola uložená v exportovanom objekte pod kľúčom s názvom príslušného balíka z npm.
+
+Projekty by mali stále umožňovať používanie samostatných konfiguračných súborov v prípadoch, keď je konfigurácia rozsiahla a zložitá (napr. `tsconfig.json`), no najprv by mali skontrolovať, či existuje `global.config.js` a či obsahuje konfiguráciu pre daný nástroj.
+
+Takto by mohol vyzerať jednoduchý `global.config.js`:
+
+```js
+module.exports = {
+  eslint: {
+    extends: ["next/core-web-vitals"]
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {}
+    }
+  },
+  tailwindcss: {
+    content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}"],
+    theme: {
+      extend: {
+        backgroundImage: {
+          "gradient-radial": "radial-gradient(var(--tw-gradient-stops))"
+        }
+      }
+    },
+    plugins: [require("@tailwindcss/typography")]
+  }
+}
+```
+
+
+## A čo typy?
+
+Dopĺňanie typov pre `global.config.js` možno jednoducho povoliť pridaním typových definícií do komentárov, podobne ako to už vo svojich konfiguračných súboroch robia Tailwind a Next.js.
+
+```js
+module.exports = {
+  // ...
+
+  /** @type {import('tailwindcss').Config} */
+  tailwindcss: {
+    content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}"],
+    theme: {
+      extend: {
+        backgroundImage: {
+          "gradient-radial": "radial-gradient(var(--tw-gradient-stops))"
+        }
+      }
+    },
+    plugins: [require("@tailwindcss/typography")]
+  }
+}
+```
+
+
+## Ďalšie kroky
+
+Ak sa vám tento nápad páči, pošlite PR do svojho obľúbeného build nástroja! Ak nie, napíšte mi na Twitteri, prečo nie. Alebo aj nie — a jednoducho pokračujte ďalej.

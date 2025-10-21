@@ -1,0 +1,29 @@
+---
+title: Veľké jazykové modely (LLMs) nikdy nebudú vedieť robiť (komplikovanú) matematiku
+description: Keďže súčasné architektúry veľkých jazykových modelov nevyužívajú rekurziu, sú v zásade neschopné vykonávať niektoré matematické operácie.
+date: "2023-08-23"
+lastUpdated: "2024-06-24"
+tags: [ml/ai]
+---
+
+_AKTUALIZÁCIA 2024: Pre upresnenie, tento príspevok sa týka matematických operácií, ktoré prirodzene vyžadujú viacero rekurzívnych krokov, napríklad umocňovania. Ako ukázal [zaujímavý výskum](https://arxiv.org/abs/2405.17399v1), transformery sa po určitých úpravách dokážu pomerne dobre naučiť základné aritmetické operácie. Pridanie „scratchpadu“ môže ďalej zlepšiť výkon modelu a môže byť dobrým obchádzkovým riešením problémov spomenutých v tomto článku._
+
+## Problém
+
+Veľké jazykové modely (LLMs) majú obrovský potenciál v mnohých oblastiach, no väčšina súčasných modelov má jednu vrodenú obmedzenosť: majú čisto feed-forward štruktúru. To znamená, že údaje prúdia lineárne od vstupu k výstupu, bez rekurzie či spätného prehľadávania. To umožňuje mimoriadne rýchly a efektívny tréning pomocou gradientného zostupu a spätného šírenia. Výpočty možno vykonávať paralelne pomocou násobenia matíc.
+
+Žiaľ, absencia rekurzie znemožňuje niektoré typy matematických operácií. Zoberme si umocňovanie. ChatGPT zvládne jednoduché príklady s exponentmi, no keď sa spýtate, čo je X^Y pre vysoké hodnoty X alebo Y, začne byť nepresný.
+
+Hoci sa exponenciálne operácie dajú rozložiť na lineárnu postupnosť, je nemožné, aby konečná feed-forward neurónová sieť zvládla ľubovoľnú rekurzívnu operáciu (t. j. X^Y s ľubovoľnou hodnotou Y). Miera rekurzie, ktorú môže LLM „simulovať“, je obmedzená počtom jeho parametrov a vrstiev.
+
+## Zhrnutie
+
+Absencia rekurzie je inherentné dizajnové obmedzenie súčasných veľkých jazykových modelov (LLMs) v štýle GPT, ktoré im bráni vykonávať zložitejšie matematické operácie. Pravdou však je, že vo väčšine prípadov použitia veľkých jazykových modelov (LLMs) na tom nezáleží! Stále sú výkonné a užitočné v širokej škále situácií.
+
+## Zábavné veci
+
+Pri pochopení správania natrénovaných veľkých jazykových modelov nás ešte čaká veľa práce. Tu je niečo fascinujúce, na čo som narazil pri písaní tohto článku:
+
+Keď som sa spýtal ChatGPT, koľko je 7^15, vrátilo odpoveď **170,859,375**. Správny výsledok je **4,747,561,509,943**.
+
+Hoci je táto odpoveď očividne nesprávna, **170,859,375** má jedinečnú vlastnosť: rozkladá sa na **(3^7)\*(5^7)**. Zdá sa, že model „pod kapotou“ pretransformoval **A^(B\*C)** na **(B^A)\*(C^A)**. Zaujímalo by ma, prečo sa to deje!

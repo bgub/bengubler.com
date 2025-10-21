@@ -1,0 +1,12 @@
+---
+title: Ladenie Pythonu vo VSCode
+description: Použitie funkcie code.interact() na spustenie interaktívneho interpretera kódu
+date: "2024-07-02"
+tags: [random]
+---
+
+Hovorí sa, že sa každý deň naučíš niečo nové, ale aj tak ma šokovalo, keď som narazil na fantastickú funkciu Pythonu, o ktorej som nemal ani tušenie.
+
+Zrejme môžeš pozastaviť vykonávanie pythonového súboru a otvoriť interaktívny terminál s lokálnymi premennými! Objavil som to pri sledovaní videa Andreja Karpathyho o [reprodukovaní GPT-2](https://www.youtube.com/watch?v=l8pRSuU81PU) (ver Karpathymu, že pozná aj takéto náhodné triky).
+
+Stačí dať `import code` na začiatok súboru a potom vložiť `code.interact(local=locals())` na ľubovoľné miesto v kóde. Voilà! Keď vykonávanie dôjde na tento bod, v termináli sa otvorí interpret Pythonu s prístupom ku všetkým lokálnym premenným. Môžeš stlačiť `CTRL+D` na zatvorenie interpretera a pokračovanie vo vykonávaní alebo napísať `quit()` na ukončenie terminálu a zastavenie vykonávania.

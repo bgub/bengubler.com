@@ -1,0 +1,77 @@
+---
+title: ملف إعداد واحد يحكم الجميع
+description: أدوات JavaScript لديها ملفات إعداد كثيرة جداً. فلنجمعها.
+date: "2023-06-29"
+tags: [open-source]
+was_llm_utilized: slightly
+---
+
+يتضمن تطوير الويب الحديث العمل مع عدة أدوات بناء وأطر عمل JavaScript، لكلٍ منها ملفات إعداد خاصة به. قد يصبح التعامل مع هذه الملفات، مثل `.eslintrc` و`next.config.js` و`tailwind.config.js`، مرهقاً ويستغرق وقتاً طويلاً. في هذه التدوينة، سأستكشف فكرة دمج هذه الملفات في ملف واحد يسمى `global.config.js`، لتوحيد إعدادات المشروع وتقليل المشتتات.
+
+## ملفات الإعداد في كل مكان
+
+بينما أكتب هذه التدوينة، يحتوي جذر مشروعي على `.eslintrc.json` و`next.config.js` و`postcss.config.js` و`tailwind.config.js` و`tsconfig.json`. على الرغم من أن إعداداتي شبه افتراضية، وكل ملف أقل من 30 سطرًا، فإن هذه الملفات تشغل مساحة ثمينة في الشريط الجانبي لـVSCode وتشتت الانتباه عمّا هو مهم: الشيفرة المصدرية.
+
+حالتي ليست استثناءً. بعض المشاريع الأخرى تستخدم عددًا أكبر بكثير من ملفات الإعداد. تخيّل مدى الفوضى التي قد يصل إليها مشروع عندما تضيف `.babelrc` و`prettier.config.js` و`jest.config.js` و`cypress.json` وغيرها.
+
+## الحل: `global.config.js`
+
+أود أن أقترح حلاً بسيطًا: توحيد ملفات الإعداد في ملف يُسمّى `global.config.js`. ستُخزَّن إعدادات كل أداة داخل الكائن المُصدَّر، تحت مفتاح يحمل اسم حزمة npm.
+
+يجب أن تستمر المشاريع في السماح باستخدام ملفات الإعداد الفردية في الحالات التي تكون فيها الإعدادات كبيرة ومعقدة (مثل `tsconfig.json`)، لكنها ينبغي أولاً أن تتحقق مما إذا كان هناك ملف `global.config.js` موجود وتتوفر فيه إعدادات لأداتهم.
+
+إليك مثالًا على شكل ملف `global.config.js` بسيط:
+
+```js
+module.exports = {
+  eslint: {
+    extends: ["next/core-web-vitals"]
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {}
+    }
+  },
+  tailwindcss: {
+    content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}"],
+    theme: {
+      extend: {
+        backgroundImage: {
+          "gradient-radial": "radial-gradient(var(--tw-gradient-stops))"
+        }
+      }
+    },
+    plugins: [require("@tailwindcss/typography")]
+  }
+}
+```
+
+
+## لكن ماذا عن الأنواع؟
+
+يمكنك تفعيل إكمال الأنواع بسهولة لملف `global.config.js` بإضافة تعريفات الأنواع داخل التعليقات، تمامًا كما تفعل Tailwind وNextJS في ملفات الإعداد الخاصة بهما.
+
+```js
+module.exports = {
+  // ...
+
+  /** @type {import('tailwindcss').Config} */
+  tailwindcss: {
+    content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}"],
+    theme: {
+      extend: {
+        backgroundImage: {
+          "gradient-radial": "radial-gradient(var(--tw-gradient-stops))"
+        }
+      }
+    },
+    plugins: [require("@tailwindcss/typography")]
+  }
+}
+```
+
+
+## الخطوات التالية
+
+إذا راقت لك هذه الفكرة، قدّم طلب سحب (PR) لأداة البناء المفضلة لديك! وإن لم تعجبك، أخبرني بالسبب على تويتر. أو لا تفعل، وواصل حياتك كالمعتاد.
