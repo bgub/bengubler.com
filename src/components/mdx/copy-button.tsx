@@ -19,7 +19,7 @@ export function CopyButton({ text }: { text: string }) {
     <button
       onClick={copy}
       type="button"
-      className="absolute top-3 right-3 z-10 p-2 rounded-md bg-background/80 hover:bg-background border transition-all duration-200 shadow-sm backdrop-blur-sm"
+      className="absolute top-3 end-3 z-10 p-2 rounded-md bg-background/80 hover:bg-background border transition-all duration-200 shadow-sm backdrop-blur-sm"
       aria-label={gt("Copy code to clipboard")}
     >
       {copied ? (

@@ -18,7 +18,7 @@ export function MobileThemeToggle({ onThemeChange }: MobileThemeToggleProps) {
   };
 
   return (
-    <div className="flex items-center space-x-1">
+    <div className="flex items-center gap-1">
       <Button
         variant={theme === "light" ? "default" : "ghost"}
         size="sm"

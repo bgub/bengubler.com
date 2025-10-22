@@ -79,7 +79,7 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
       <DialogTrigger asChild>
         <Button
           size="icon"
-          className="fixed bottom-6 right-6 h-12 w-12 rounded-full shadow-lg"
+          className="fixed bottom-6 end-6 h-12 w-12 rounded-full shadow-lg"
           title={gt("Explain Like I'm 5")}
         >
           <Brain className="h-5 w-5" />
@@ -116,7 +116,7 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
                         paragraph.trim() && <p key={paragraph}>{paragraph}</p>,
                     )}
                   {isExplaining && (
-                    <span className="inline-block w-2 h-4 bg-foreground animate-pulse ml-1" />
+                    <span className="inline-block w-2 h-4 bg-foreground animate-pulse ms-1" />
                   )}
                 </div>
               </div>
@@ -158,12 +158,12 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
           >
             {isExplaining ? (
               <T>
-                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                <Loader2 className="h-4 w-4 animate-spin me-2" />
                 Explaining...
               </T>
             ) : (
               <>
-                <Brain className="h-4 w-4 mr-2" />
+                <Brain className="h-4 w-4 me-2" />
                 {explanation ? gt("Explain Again") : gt("Start Explaining")}
               </>
             )}
