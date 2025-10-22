@@ -10,10 +10,11 @@ import { getPostColors } from "@/lib/colors";
 import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
 import type { Metadata } from "next/types";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getGT, getLocale } from "gt-next/server";
 import { T, DateTime } from "gt-next";
+import { ViewTransition } from "react";
 
 import { ClientTOC } from "./client-toc";
 
@@ -85,13 +86,8 @@ export async function generateMetadata({
   };
 }
 
-// View transition style function (same as old website)
-function getTransitionStyle(slug: string, prefix: string = "") {
-  const transitionName =
-    prefix + slug.replace(/[^\w\s\-\/]/gi, "").replace(/[\s\/]/g, "-");
-  return {
-    viewTransitionName: transitionName,
-  };
+function sanitize(slug: string, prefix: string = "") {
+  return prefix + slug.replace(/[^\w\s\-\/]/gi, "").replace(/[\s\/]/g, "-");
 }
 
 export default async function PostPage({
@@ -111,15 +107,13 @@ export default async function PostPage({
   const colors = getPostColors(post.slug);
   const toc: TOCNode = JSON.parse(post.toc);
   const hasTOC = toc.children.length > 0;
+  const base = post.url.replace(/[^\w\s\-\/]/gi, "").replace(/[\s\/]/g, "-");
 
   return (
     <div className="space-y-8">
       <header className="space-y-4">
         <nav className="text-sm text-muted-foreground">
-          <Link
-            href="/posts"
-            className="hover:text-foreground transition-colors"
-          >
+          <Link href="/posts" className="hover:text-foreground transition-colors">
             <T>Posts</T>
           </Link>
           <span className="mx-2">›</span>
@@ -127,69 +121,50 @@ export default async function PostPage({
         </nav>
 
         {/* Styled Post Header */}
-        <div
-          className={`${colors.bg} ${colors.border} border rounded-lg shadow-sm transition-all duration-300 hover:shadow-lg`}
-          style={getTransitionStyle(post.url, "post-card-")}
-        >
-          <div className="p-6 space-y-3">
-            <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono">
-              <time
-                dateTime={post.date.toISOString()}
-                style={getTransitionStyle(post.url, "date-")}
-              >
-                <DateTime>{post.date}</DateTime>
-              </time>
-              <span>•</span>
-              <span style={getTransitionStyle(post.url, "reading-time-")}>
-                {(post as any).readingTime || gt("5 min read")}
-              </span>
-              {post.lastUpdated && (
-                <>
-                  <span>•</span>
-                  <span>
-                    <T>
-                      Updated <DateTime>{post.lastUpdated}</DateTime>
-                    </T>
-                  </span>
-                </>
+        <ViewTransition name={`post-card-${base}`}>
+          <div className={`${colors.bg} ${colors.border} border rounded-lg shadow-sm transition-all duration-300 hover:shadow-lg`}>
+            <div className="p-6 space-y-3">
+              <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono">
+                <ViewTransition name={`date-${base}`}>
+                  <time dateTime={post.date.toISOString()}>
+                    <DateTime>{post.date}</DateTime>
+                  </time>
+                </ViewTransition>
+                <span>•</span>
+                <ViewTransition name={`reading-time-${base}`}>
+                  <span>{(post as any).readingTime || gt("5 min read")}</span>
+                </ViewTransition>
+              </div>
+              <ViewTransition name={`title-${base}`}>
+                <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-tight group-hover:text-foreground/90 transition-colors break-words">
+                  {post.title}
+                  {post.archived && (
+                    <span className="text-muted-foreground"> <T>(archived)</T></span>
+                  )}
+                </h1>
+              </ViewTransition>
+            </div>
+            <div className="px-6 pb-6 space-y-4">
+              <ViewTransition name={`description-${base}`}>
+                <p className="text-lg leading-relaxed text-muted-foreground max-w-3xl break-words">{post.description}</p>
+              </ViewTransition>
+              {post.tags.length > 0 && (
+                <div className="flex flex-wrap gap-1.5">
+                  {post.tags.map((tag) => (
+                    <ViewTransition key={tag} name={`tag-${base}-${tag}`}>
+                      <Badge
+                        variant="outline"
+                        className="text-xs px-2 py-0.5 bg-background/60 hover:bg-background/80 transition-colors"
+                      >
+                        #{tag.toLowerCase()}
+                      </Badge>
+                    </ViewTransition>
+                  ))}
+                </div>
               )}
             </div>
-            <h1
-              className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-tight group-hover:text-foreground/90 transition-colors break-words"
-              style={getTransitionStyle(post.url, "title-")}
-            >
-              {post.title}
-              {post.archived && (
-                <span className="text-muted-foreground">
-                  {" "}
-                  <T>(archived)</T>
-                </span>
-              )}
-            </h1>
           </div>
-          <div className="px-6 pb-6 space-y-4">
-            <p
-              className="text-lg leading-relaxed text-muted-foreground max-w-3xl break-words"
-              style={getTransitionStyle(post.url, "description-")}
-            >
-              {post.description}
-            </p>
-            {post.tags.length > 0 && (
-              <div className="flex flex-wrap gap-1.5">
-                {post.tags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant="outline"
-                    className="text-xs px-2 py-0.5 bg-background/60 hover:bg-background/80 transition-colors"
-                    style={getTransitionStyle(`${post.url}-${tag}`, `tag-`)}
-                  >
-                    #{tag.toLowerCase()}
-                  </Badge>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+        </ViewTransition>
       </header>
 
       {/* Mobile TOC and Raw Markdown - Show before content on mobile */}

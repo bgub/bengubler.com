@@ -1,5 +1,5 @@
 import { LinkIcon } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import NextImage, { ImageProps } from "next/image";
 import { ReactNode, createElement } from "react";
 import { Tweet, TweetProps } from "react-tweet";

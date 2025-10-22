@@ -4,7 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { ViewTransitions } from "next-view-transitions";
+import { ViewTransition } from "react";
 import { Geist_Mono, Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,17 +28,18 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s - Ben Gubler"
     },
     description:
-    gt("Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU. Thoughts on web development, AI, and building things that matter."),
+      gt("Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU. Thoughts on web development, AI, and building things that matter."),
     keywords: [
-    "Ben Gubler",
-    gt("web developer"),
-    "Vercel",
-    "Next.js",
-    "React",
-    "TypeScript",
-    "AI",
-    gt("machine learning"),
-    "BYU"],
+      "Ben Gubler",
+      gt("web developer"),
+      "Vercel",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "AI",
+      gt("machine learning"),
+      "BYU"
+    ],
 
     authors: [{ name: "Ben Gubler", url: "https://bengubler.com" }],
     creator: "Ben Gubler",
@@ -50,14 +51,14 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "https://bengubler.com",
       title: "Ben Gubler",
       description:
-      gt("Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU."),
+        gt("Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU."),
       siteName: "Ben Gubler"
     },
     twitter: {
       card: "summary_large_image",
       title: "Ben Gubler",
       description:
-      gt("Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU."),
+        gt("Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU."),
       creator: "@bgub_"
     },
     robots: {
@@ -76,62 +77,60 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({
   children
-
-
-}: {children: React.ReactNode;}) {
+}: { children: React.ReactNode }) {
   const gt = await getGT();
 
   return (
-  <ViewTransitions>
-      <html suppressHydrationWarning lang={await getLocale()}>
-        <body className={`${inter.className} ${geistMono.variable}`}><GTProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange>
+    <html suppressHydrationWarning lang={await getLocale()}>
+      <body className={`${inter.className} ${geistMono.variable}`}>
+          <GTProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {/* Outermost wrapper for max-width and centering */}
+              <div className="w-full max-w-screen-xl mx-auto bg-background">
+                <div className="flex min-h-screen">
+                  {/* Desktop Sidebar */}
+                  <Sidebar />
 
-            {/* Outermost wrapper for max-width and centering */}
-            <div className="w-full max-w-screen-xl mx-auto bg-background">
-              <div className="flex min-h-screen">
-                {/* Desktop Sidebar */}
-                <Sidebar />
-
-                {/* Main Content Area */}
-                <div className="flex-1 md:ml-64 flex flex-col">
-                  {/* Mobile Header */}
-                  <header className="sticky top-0 z-40 md:hidden border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                    <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-                      <Link href="/" className="flex items-center space-x-3">
-                        <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-border/20">
-                          <Image
-                            src="/bengubler.jpg"
-                            alt={gt("Profile photo")}
-                            width={32}
-                            height={32}
-                            className="object-cover"
-                            priority />
-
-                        </div>
-                        <span className="text-lg font-semibold">
-                          Ben Gubler
-                        </span>
-                      </Link>
-                      <MobileNav />
-                    </div>
-                  </header>
-                  {/* Page Content Wrapper */}
-                  <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                    <div className="mb-16">{children}</div>
-                  </main>
+                  {/* Main Content Area */}
+                  <div className="flex-1 md:ml-64 flex flex-col">
+                    {/* Mobile Header */}
+                    <header className="sticky top-0 z-40 md:hidden border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                      <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+                        <Link href="/" className="flex items-center space-x-3">
+                          <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-border/20">
+                            <Image
+                              src="/bengubler.jpg"
+                              alt={gt("Profile photo")}
+                              width={32}
+                              height={32}
+                              className="object-cover"
+                              priority
+                            />
+                          </div>
+                          <span className="text-lg font-semibold">Ben Gubler</span>
+                        </Link>
+                        <MobileNav />
+                      </div>
+                    </header>
+                    {/* Page Content Wrapper */}
+                    <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                      <ViewTransition>
+                        <div className="mb-16">{children}</div>
+                      </ViewTransition>
+                    </main>
+                  </div>
                 </div>
               </div>
-            </div>
-          </ThemeProvider>
-          <Analytics />
-          <SpeedInsights />
-        </GTProvider></body>
-      </html>
-    </ViewTransitions>
+            </ThemeProvider>
+            <Analytics />
+            <SpeedInsights />
+          </GTProvider>
+      </body>
+    </html>
   );
 }
