@@ -7,7 +7,8 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { LocaleSelector, useMessages, useGT } from "gt-next";
+import { useMessages, useGT } from "gt-next";
+import { MobileLocaleSelector } from "@/components/mobile-locale-selector";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -101,10 +102,12 @@ export function MobileNav() {
             })}
           </div>
 
-          {/* Locale Selector & Theme Toggle - Bottom */}
-          <div className="flex flex-col gap-3 pt-4 mt-4 border-t border-border/40">
-            <LocaleSelector />
+          {/* Theme + Language row */}
+          <div className="flex items-center gap-2 pt-4 mt-4 border-t border-border/40">
             <MobileThemeToggle onThemeChange={() => setIsOpen(false)} />
+            <div className="ml-auto">
+              <MobileLocaleSelector mode="compact" />
+            </div>
           </div>
         </div>
       )}

@@ -5,7 +5,8 @@ import { navigation } from "@/lib/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LocaleSelector, useMessages, useGT } from "gt-next";
+import { useMessages, useGT } from "gt-next";
+import { LocaleOrbit } from "@/components/locale-orbit";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -79,7 +80,9 @@ export function Sidebar() {
         </div>
         {/* Theme Toggle & Locale Selector */}
         <div className="px-6 pb-6 space-y-3">
-          <LocaleSelector />
+          <div className="hidden md:block">
+            <LocaleOrbit className="mx-auto" />
+          </div>
           <ThemeToggle />
         </div>
       </div>
