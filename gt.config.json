@@ -1,21 +1,13 @@
 {
   "$schema": "https://assets.gtx.dev/config-schema.json",
-  "locales": [
-    "en",
-    "ar",
-    "ru",
-    "cs",
-    "sk"
-  ],
+  "locales": ["en", "ar", "ru", "cs", "sk"],
   "defaultLocale": "en",
   "files": {
     "gt": {
       "output": "public/_gt/[locale].json"
     },
     "mdx": {
-      "include": [
-        "content/[locale]/**/*.mdx"
-      ]
+      "include": ["content/[locale]/**/*.mdx"]
     }
   },
   "framework": "next-app",

@@ -46,7 +46,7 @@ const createHeaderComponent = (tagName: string) => {
           {
             href: `#${id}`,
             className:
-              "opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground ml-2 inline-block align-baseline",
+              "opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground ms-2 inline-block align-baseline",
             "aria-label": m(LINK_TO_SECTION_LABEL),
           },
           createElement(LinkIcon, { className: "h-4 w-4 flex-shrink-0" }),

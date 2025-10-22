@@ -24,10 +24,10 @@ export function Typography({ children, className }: TypographyProps) {
         // Links
         "[&_a]:font-medium [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary/80",
         // Lists with proper spacing
-        "[&_ul]:my-6 [&_ul]:ml-6 [&_ul]:list-disc [&_ul_li]:mt-2",
-        "[&_ol]:my-6 [&_ol]:ml-6 [&_ol]:list-decimal [&_ol_li]:mt-2",
+        "[&_ul]:my-6 [&_ul]:ms-6 [&_ul]:list-disc [&_ul_li]:mt-2",
+        "[&_ol]:my-6 [&_ol]:ms-6 [&_ol]:list-decimal [&_ol_li]:mt-2",
         // Blockquotes
-        "[&_blockquote]:mt-6 [&_blockquote]:border-l-2 [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-muted-foreground",
+        "[&_blockquote]:mt-6 [&_blockquote]:border-s-2 [&_blockquote]:ps-6 [&_blockquote]:italic [&_blockquote]:text-muted-foreground",
         // Inline code - compact vertical padding
         "[&_code]:relative [&_code]:rounded [&_code]:bg-muted [&_code]:px-[0.3rem] [&_code]:py-[0.1rem] [&_code]:font-mono [&_code]:font-semibold",
         // Code blocks with better spacing

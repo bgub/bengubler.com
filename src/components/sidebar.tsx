@@ -18,7 +18,7 @@ export function Sidebar() {
       <div className="flex grow flex-col overflow-y-auto bg-background">
         <div className="flex grow flex-col gap-y-5 px-6 py-8 md:py-12">
           {/* Profile Section */}
-          <Link href="/" className="flex items-start space-x-3 group">
+          <Link href="/" className="flex items-start gap-3 group">
             <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-border/20 group-hover:ring-border/40 transition-all">
               <Image
                 src="/bengubler.jpg"
@@ -51,15 +51,15 @@ export function Sidebar() {
                 return (
                   <li key={item.name} className="relative">
                     {item.isSubItem && (
-                      <div className="absolute left-2 top-0 h-1/2 w-px bg-border/70"></div>
+                      <div className="absolute start-2 top-0 h-1/2 w-px bg-border/70"></div>
                     )}
                     {item.isSubItem && (
-                      <div className="absolute left-2 top-1/2 w-4 h-px bg-border/70"></div>
+                      <div className="absolute start-2 top-1/2 w-4 h-px bg-border/70"></div>
                     )}
                     <Link
                       href={item.href}
                       className={`group flex items-center gap-x-3 rounded-md p-2 text-sm font-medium leading-6 transition-all duration-200 ${
-                        item.isSubItem ? "ml-6" : ""
+                        item.isSubItem ? "ms-6" : ""
                       } ${
                         isActive
                           ? "bg-accent text-foreground border border-border"

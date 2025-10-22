@@ -70,7 +70,7 @@ export function MobileNav() {
       {isOpen && (
         <div
           id="mobile-menu-popover"
-          className="absolute right-0 top-12 z-50 w-80 rounded-lg border border-border/40 bg-background p-4 shadow-lg"
+          className="absolute end-0 top-12 z-50 w-80 rounded-lg border border-border/40 bg-background p-4 shadow-lg"
         >
           <div className="space-y-1">
             {navigation.map((item) => {
@@ -80,15 +80,15 @@ export function MobileNav() {
               return (
                 <div key={item.name} className="relative">
                   {item.isSubItem && (
-                    <div className="absolute left-2 top-0 h-1/2 w-px bg-border/70"></div>
+                    <div className="absolute start-2 top-0 h-1/2 w-px bg-border/70"></div>
                   )}
                   {item.isSubItem && (
-                    <div className="absolute left-2 top-1/2 w-4 h-px bg-border/70"></div>
+                    <div className="absolute start-2 top-1/2 w-4 h-px bg-border/70"></div>
                   )}
                   <Link
                     href={item.href}
-                    className={`group flex items-center gap-x-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                      item.isSubItem ? "ml-6" : ""
+                    className={`group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                      item.isSubItem ? "ms-6" : ""
                     } ${
                       isActive
                         ? "bg-accent text-foreground"
@@ -107,7 +107,7 @@ export function MobileNav() {
           {/* Theme + Language row */}
           <div className="flex items-center gap-2 pt-4 mt-4 border-t border-border/40">
             <MobileThemeToggle onThemeChange={() => setIsOpen(false)} />
-            <div className="ml-auto">
+            <div className="ms-auto">
               <MobileLocaleSelector mode="compact" />
             </div>
           </div>
