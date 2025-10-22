@@ -28,4 +28,4 @@ const nextConfig: NextConfig = {
 };
 
 // withContentCollections must be the outermost plugin
-export default withGTConfig(withContentCollections(nextConfig), {});
+export default withContentCollections(withGTConfig(nextConfig, {}));
