@@ -4,7 +4,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { ViewTransition } from "react";
 import { Geist_Mono, Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -119,9 +118,7 @@ export default async function RootLayout({
                     </header>
                     {/* Page Content Wrapper */}
                     <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                      <ViewTransition>
-                        <div className="mb-16">{children}</div>
-                      </ViewTransition>
+                      <div className="mb-16">{children}</div>
                     </main>
                   </div>
                 </div>
