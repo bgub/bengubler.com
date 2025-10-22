@@ -80,10 +80,12 @@ export default async function HomePage() {
               >projects</Link>, read my <Link
                 href="/posts"
                 className="text-foreground hover:underline font-medium"
-              >writing</Link>, or view my <Link
+              >writing</Link>, or view my <a
                 href="/ben-gubler-resume.pdf"
                 className="text-foreground hover:underline font-medium"
-              >résumé</Link>.</T>
+                target="_blank"
+                rel="noopener noreferrer"
+              >résumé</a>.</T>
             </p>
           </div>
         </div>

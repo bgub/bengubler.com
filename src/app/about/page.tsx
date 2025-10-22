@@ -75,14 +75,14 @@ export default function AboutPage() {
             </Link>{" "}
             for courses, papers, and learning resources. For my professional
             background, you can view my{" "}
-            <Link
+            <a
               href="/ben-gubler-resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-foreground hover:underline"
             >
               résumé
-            </Link>
+            </a>
             .
           </p>
         </T>
