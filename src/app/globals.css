@@ -125,6 +125,39 @@
   }
 }
 
+/* RTL support: flip directional utilities under [dir="rtl"] */
+@layer utilities {
+  /* Sidebar main content margin: md:ml-64 -> md:mr-64 in RTL */
+  [dir="rtl"] .md\:ml-64 {
+    margin-left: 0;
+    margin-right: 16rem; /* 64 */
+  }
+
+  /* Horizontal spacing: space-x-* -> space-x-reverse trick in RTL */
+  [dir="rtl"] .space-x-1 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+  [dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+
+  /* Absolute positioning: right-0/left-* swaps */
+  [dir="rtl"] .right-0 {
+    right: auto;
+    left: 0;
+  }
+  [dir="rtl"] .left-2 {
+    left: auto;
+    right: 0.5rem; /* 2 */
+  }
+
+  /* Indentation for submenu items: ml-6 -> mr-6 */
+  [dir="rtl"] .ml-6 {
+    margin-left: 0;
+    margin-right: 1.5rem; /* 6 */
+  }
+}
+
 @layer base {
   button:not([disabled]),
   [role="button"]:not([disabled]) {

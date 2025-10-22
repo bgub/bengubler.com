@@ -83,9 +83,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const gt = await getGT();
+  const locale = await getLocale();
+  const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <html suppressHydrationWarning lang={await getLocale()}>
+    <html suppressHydrationWarning lang={locale} dir={dir}>
       <body className={`${inter.className} ${geistMono.variable}`}>
         <GTProvider>
           <ThemeProvider
