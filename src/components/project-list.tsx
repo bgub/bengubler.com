@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { T, useMessages } from "gt-next";
+import Link from "next/link";
 import type { Project } from "@/lib/projects";
 
 interface ProjectListProps {

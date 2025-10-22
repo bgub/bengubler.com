@@ -7,7 +7,7 @@ export const rehypePreprocessPrettyCode = () => (tree: any) => {
 
       if (codeEl.tagName !== "code") return;
 
-      node.properties["__raw_string__"] = codeEl.children?.[0].value;
+      node.properties.__raw_string__ = codeEl.children?.[0].value;
     }
   });
 };
@@ -29,10 +29,9 @@ export const rehypePostprocessPrettyCode = () => (tree: any) => {
     ) {
       for (const child of node.children) {
         if (child.tagName === "pre") {
-          child.properties["__raw_string__"] =
-            node.properties["__raw_string__"];
+          child.properties.__raw_string__ = node.properties.__raw_string__;
 
-          node.properties["__raw_string__"] = undefined;
+          node.properties.__raw_string__ = undefined;
           break;
         }
       }

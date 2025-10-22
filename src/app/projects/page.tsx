@@ -1,15 +1,15 @@
-import { projectsData } from "@/lib/projects";
-import { ProjectList } from "@/components/project-list";
-import type { Metadata } from "next";
 import { T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
+import type { Metadata } from "next";
+import { ProjectList } from "@/components/project-list";
+import { projectsData } from "@/lib/projects";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
   return {
     title: `${gt("Projects")} - Ben Gubler`,
     description: gt(
-      "A collection of Ben Gubler's projects, from featured work to experimental builds."
+      "A collection of Ben Gubler's projects, from featured work to experimental builds.",
     ),
   };
 }

@@ -1,13 +1,16 @@
-import { getBaseUrl } from "@/lib/utils";
 import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
 import { Feed } from "feed";
-import { NextRequest, NextResponse } from "next/server";
 import { getLocale } from "gt-next/server";
+import { NextResponse } from "next/server";
+import type ReactDOMServer from "react-dom/server";
+import { getBaseUrl } from "@/lib/utils";
 
 const baseUrl = getBaseUrl();
 
-const createFeed = async (renderToString: Function) => {
+const createFeed = async (
+  renderToString: typeof ReactDOMServer.renderToString,
+) => {
   const locale = (await getLocale()) || "en";
   const feed = new Feed({
     title: "Ben Gubler",
@@ -31,7 +34,7 @@ const createFeed = async (renderToString: Function) => {
 
   // Get all published posts for current locale, sorted by date
   const posts = allPosts
-    .filter((post) => (post as any).locale === locale)
+    .filter((post) => post.locale === locale)
     .filter((post) => !post.archived)
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 
@@ -63,7 +66,7 @@ const createFeed = async (renderToString: Function) => {
   return feed.rss2();
 };
 
-export async function GET(req: NextRequest): Promise<NextResponse> {
+export async function GET(): Promise<NextResponse> {
   try {
     const ReactDOMServer = (await import("react-dom/server")).default;
 
@@ -72,7 +75,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     // Add XML stylesheet reference for better styling
     const updatedFeed = feed.replace(
       '<?xml version="1.0" encoding="utf-8"?>',
-      '<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/rss.xsl"?>'
+      '<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/rss.xsl"?>',
     );
 
     return new NextResponse(updatedFeed, {

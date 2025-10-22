@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { T, useGT } from "gt-next";
 import { Share } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { T, useGT } from "gt-next";
+import { cn } from "@/lib/utils";
 
 interface SocialProps {
   title: string;

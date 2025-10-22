@@ -1,8 +1,8 @@
-import { Comments } from "@/components/comments";
-import type { Metadata } from "next";
-import Link from "next/link";
 import { T, useGT } from "gt-next";
 import { getGT } from "gt-next/server";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Comments } from "@/components/comments";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
@@ -27,21 +27,25 @@ export default function RussianCaseCardsPage() {
             <T>Language Learning</T>
           </Link>
           <span className="mx-2">›</span>
-          <T><span>Russian Case Cards</span></T>
+          <T>
+            <span>Russian Case Cards</span>
+          </T>
         </nav>
         <T>
           <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             Russian Case Cards
           </h1>
         </T>
-        <p className="text-lg text-muted-foreground">{gt("I built case cards for Russian so you don't have to.")}</p>
+        <p className="text-lg text-muted-foreground">
+          {gt("I built case cards for Russian so you don't have to.")}
+        </p>
       </header>
 
       <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
         <T>
           <p>
-            I spent many hours creating this! Print it out and you'll memorize the
-            Russian declension patterns in no time.
+            I spent many hours creating this! Print it out and you'll memorize
+            the Russian declension patterns in no time.
           </p>
         </T>
 

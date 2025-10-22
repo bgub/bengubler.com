@@ -1,9 +1,9 @@
-import { LinkIcon } from "lucide-react";
-import Link from "next/link";
-import NextImage, { ImageProps } from "next/image";
-import { ReactNode, createElement } from "react";
-import { Tweet, TweetProps } from "react-tweet";
 import { msg, useMessages } from "gt-next";
+import { LinkIcon } from "lucide-react";
+import NextImage, { type ImageProps } from "next/image";
+import Link from "next/link";
+import { createElement, type ReactNode } from "react";
+import { Tweet, type TweetProps } from "react-tweet";
 
 import { CopyButton } from "./mdx/copy-button";
 import "./mdx/mdx-styles.css";
@@ -48,8 +48,8 @@ const createHeaderComponent = (tagName: string) => {
               "opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground ml-2 inline-block align-baseline",
             "aria-label": m(LINK_TO_SECTION_LABEL),
           },
-          createElement(LinkIcon, { className: "h-4 w-4 flex-shrink-0" })
-        )
+          createElement(LinkIcon, { className: "h-4 w-4 flex-shrink-0" }),
+        ),
     );
   };
 };
@@ -84,7 +84,7 @@ const mdxComponents = {
 
   // Enhanced pre component with copy button (for Shiki)
   pre: ({ children, ...props }: CodeProps) => {
-    const rawString = (props as any)["__raw_string__"] as string;
+    const rawString = props.__raw_string__;
 
     return (
       <div className="relative">

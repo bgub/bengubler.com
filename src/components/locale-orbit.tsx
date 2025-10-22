@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { useLocaleSelector } from "gt-next/client";
 import { Globe2 } from "lucide-react";
 import { useMemo } from "react";
-import { useLocaleSelector } from "gt-next/client";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type LocaleOrbitProps = {
   className?: string;
@@ -23,11 +23,12 @@ export function LocaleOrbit({ className, size = 128 }: LocaleOrbitProps) {
   const radius = edgeRadius - 6;
 
   const positions = useMemo(() => {
-    if (!locales || locales.length === 0) return [] as Array<{
-      code: string;
-      left: number;
-      top: number;
-    }>;
+    if (!locales || locales.length === 0)
+      return [] as Array<{
+        code: string;
+        left: number;
+        top: number;
+      }>;
     const step = (2 * Math.PI) / locales.length;
     const center = size / 2;
     return locales.map((code, index) => {
@@ -42,11 +43,7 @@ export function LocaleOrbit({ className, size = 128 }: LocaleOrbitProps) {
 
   return (
     <div
-      className={cn(
-        "relative select-none",
-        "rounded-full",
-        className
-      )}
+      className={cn("relative select-none", "rounded-full", className)}
       style={{ width: size, height: size }}
       aria-label="Language selector"
     >
@@ -78,7 +75,7 @@ export function LocaleOrbit({ className, size = 128 }: LocaleOrbitProps) {
               "absolute -translate-x-1/2 -translate-y-1/2 rounded-full px-3 py-1 h-8",
               active
                 ? "shadow-xs"
-                : "bg-background/80 backdrop-blur border-border/60"
+                : "bg-background/80 backdrop-blur border-border/60",
             )}
             style={{ left, top }}
             onClick={() => setLocale(code)}
@@ -94,5 +91,3 @@ export function LocaleOrbit({ className, size = 128 }: LocaleOrbitProps) {
 }
 
 export default LocaleOrbit;
-
-

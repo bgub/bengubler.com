@@ -1,12 +1,12 @@
 "use client";
 
-import { ThemeToggle } from "@/components/theme-toggle";
-import { navigation } from "@/lib/navigation";
+import { useGT, useMessages } from "gt-next";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMessages, useGT } from "gt-next";
 import { LocaleOrbit } from "@/components/locale-orbit";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { navigation } from "@/lib/navigation";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -41,7 +41,7 @@ export function Sidebar() {
 
           {/* Navigation */}
           <nav className="flex flex-1 flex-col">
-            <ul role="list" className="flex flex-1 flex-col gap-y-1">
+            <ul className="flex flex-1 flex-col gap-y-1">
               {navigation.map((item) => {
                 const isActive =
                   pathname === item.href ||

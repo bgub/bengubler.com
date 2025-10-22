@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
-import type { Metadata } from "next";
-import Link from "next/link";
 import { T } from "gt-next";
 import { getGT } from "gt-next/server";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();

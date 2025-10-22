@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import { msg, T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
+import type { Metadata } from "next";
 
 type FavoriteItem = {
   name: string;
@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: gt("Favorites - Ben Gubler"),
     description: gt(
-      "Ben Gubler's favorite books, movies, and personal recommendations."
+      "Ben Gubler's favorite books, movies, and personal recommendations.",
     ),
   };
 }

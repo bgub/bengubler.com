@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { T } from "gt-next";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { T } from "gt-next";
+import { Button } from "@/components/ui/button";
 
 interface MobileThemeToggleProps {
   onThemeChange?: () => void;

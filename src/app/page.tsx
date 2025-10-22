@@ -1,23 +1,22 @@
+import { allPosts } from "content-collections";
+import { decodeMsg, T } from "gt-next";
+import { getLocale } from "gt-next/server";
+import { ArrowRight, Github, Twitter } from "lucide-react";
+import Link from "next/link";
 import { PostCard } from "@/components/post-card";
 import { ProjectList } from "@/components/project-list";
 import { Badge } from "@/components/ui/badge";
 import { getPostColors } from "@/lib/colors";
 import { projectsData } from "@/lib/projects";
-import { allPosts } from "content-collections";
-import { getLocale } from "gt-next/server";
-import { ArrowRight, Github, Twitter } from "lucide-react";
-import Link from "next/link";
-import { decodeMsg, T } from "gt-next";
 
 type Post = (typeof allPosts)[0];
 
 export default async function HomePage() {
-
   const locale = (await getLocale()) || "en";
 
   // Get all posts sorted by date for consistent color assignment (current locale only)
   const sortedPosts = allPosts
-    .filter((post: Post) => (post as any).locale === locale)
+    .filter((post: Post) => post.locale === locale)
     .filter((post: Post) => !post.archived)
     .sort((a: Post, b: Post) => b.date.getTime() - a.date.getTime());
 
@@ -33,8 +32,8 @@ export default async function HomePage() {
 
   // Get featured projects from the new data structure
   const featuredProjects =
-    projectsData.find((section) => decodeMsg(section.category) === "Featured")?.projects ||
-    [];
+    projectsData.find((section) => decodeMsg(section.category) === "Featured")
+      ?.projects || [];
 
   return (
     <div className="space-y-12 md:space-y-16">
@@ -56,7 +55,9 @@ export default async function HomePage() {
                 rel="noopener noreferrer"
               >
                 <Github className="h-4 w-4" />
-                <span className="sr-only"><T id="github_label">GitHub</T></span>
+                <span className="sr-only">
+                  <T id="github_label">GitHub</T>
+                </span>
               </Link>
               <Link
                 href="https://x.com/bgub_"
@@ -65,27 +66,47 @@ export default async function HomePage() {
                 rel="noopener noreferrer"
               >
                 <Twitter className="h-4 w-4" />
-                <span className="sr-only"><T id="twitter_label">Twitter</T></span>
+                <span className="sr-only">
+                  <T id="twitter_label">Twitter</T>
+                </span>
               </Link>
             </div>
           </div>
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              <T id="hero_bio_paragraph_1">I'm Ben — a student at BYU studying Applied Math and Arabic. I build open-source libraries, web applications, and AI tools. Currently interning at Vercel.</T>
+              <T id="hero_bio_paragraph_1">
+                I'm Ben — a student at BYU studying Applied Math and Arabic. I
+                build open-source libraries, web applications, and AI tools.
+                Currently interning at Vercel.
+              </T>
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              <T id="hero_bio_paragraph_2">Check out my <Link
-                href="/projects"
-                className="text-foreground hover:underline font-medium"
-              >projects</Link>, read my <Link
-                href="/posts"
-                className="text-foreground hover:underline font-medium"
-              >writing</Link>, or view my <a
-                href="/ben-gubler-resume.pdf"
-                className="text-foreground hover:underline font-medium"
-                target="_blank"
-                rel="noopener noreferrer"
-              >résumé</a>.</T>
+              <T id="hero_bio_paragraph_2">
+                Check out my{" "}
+                <Link
+                  href="/projects"
+                  className="text-foreground hover:underline font-medium"
+                >
+                  projects
+                </Link>
+                , read my{" "}
+                <Link
+                  href="/posts"
+                  className="text-foreground hover:underline font-medium"
+                >
+                  writing
+                </Link>
+                , or view my{" "}
+                <a
+                  href="/ben-gubler-resume.pdf"
+                  className="text-foreground hover:underline font-medium"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  résumé
+                </a>
+                .
+              </T>
             </p>
           </div>
         </div>
@@ -117,7 +138,7 @@ export default async function HomePage() {
             <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               <T id="recent_posts_heading">Recent Posts</T>
             </h2>
-            {allPosts.filter((p) => (p as any).locale === locale).length > 3 && (
+            {allPosts.filter((p) => p.locale === locale).length > 3 && (
               <Link
                 href="/posts"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"

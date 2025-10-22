@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "pnpm translate && next build",
     "start": "next start",
-    "translate": "gtx-cli translate"
+    "translate": "gtx-cli translate",
+    "lint": "biome check",
+    "format": "biome format --write"
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
@@ -33,18 +35,17 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.2.6",
     "@content-collections/core": "^0.10.0",
     "@content-collections/mdx": "^0.2.2",
     "@content-collections/next": "^0.2.8",
     "@tailwindcss/postcss": "^4.1.15",
-    "@types/mdast": "^4.0.4",
     "@types/node": "^24.9.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@types/unist": "^3.0.3",
     "github-slugger": "^2.0.0",
     "gtx-cli": "^2.4.0",
-    "mdast-util-to-string": "^4.0.0",
     "mdx-bundler": "^10.1.1",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",

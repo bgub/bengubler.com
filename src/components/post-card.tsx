@@ -1,9 +1,9 @@
-import { Badge } from "@/components/ui/badge";
-import { getPostColors } from "@/lib/post-colors";
-import { allPosts } from "content-collections";
+import type { allPosts } from "content-collections";
+import { DateTime, T } from "gt-next";
 import Link from "next/link";
 import { ViewTransition } from "react";
-import { T, DateTime, Var } from "gt-next";
+import { Badge } from "@/components/ui/badge";
+import { getPostColors } from "@/lib/post-colors";
 
 type Post = (typeof allPosts)[0] & {
   color?: string;
@@ -15,7 +15,7 @@ interface PostCardProps {
 }
 
 function sanitize(slug: string) {
-  return slug.replace(/[^\w\s\-\/]/gi, "").replace(/[\s\/]/g, "-");
+  return slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
 }
 
 export function PostCard({ post }: PostCardProps) {
@@ -27,7 +27,9 @@ export function PostCard({ post }: PostCardProps) {
   return (
     <Link href={post.url}>
       <ViewTransition name={`post-card-${base}`}>
-        <div className={`${bgColor} ${borderColor} border rounded-lg shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-[1.02] cursor-pointer group h-full p-6 space-y-4`}>
+        <div
+          className={`${bgColor} ${borderColor} border rounded-lg shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-[1.02] cursor-pointer group h-full p-6 space-y-4`}
+        >
           <div className="space-y-3">
             <div className="flex justify-between items-center text-xs text-muted-foreground font-mono">
               <ViewTransition name={`date-${base}`}>
@@ -36,16 +38,20 @@ export function PostCard({ post }: PostCardProps) {
                 </time>
               </ViewTransition>
               <ViewTransition name={`reading-time-${base}`}>
-                <span>{(post as any).readingTime || <T>5 min read</T>}</span>
+                <span>{post.readingTime || <T>5 min read</T>}</span>
               </ViewTransition>
             </div>
             <ViewTransition name={`title-${base}`}>
-              <h3 className="text-lg font-medium leading-tight group-hover:text-foreground/90 transition-colors break-words">{post.title}</h3>
+              <h3 className="text-lg font-medium leading-tight group-hover:text-foreground/90 transition-colors break-words">
+                {post.title}
+              </h3>
             </ViewTransition>
           </div>
           <div className="space-y-4">
             <ViewTransition name={`description-${base}`}>
-              <p className="text-sm leading-relaxed break-words text-muted-foreground">{post.description}</p>
+              <p className="text-sm leading-relaxed break-words text-muted-foreground">
+                {post.description}
+              </p>
             </ViewTransition>
             {post.tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5">

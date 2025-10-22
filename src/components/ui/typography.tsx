@@ -1,5 +1,5 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
 
 interface TypographyProps {
   children: ReactNode;
@@ -52,7 +52,7 @@ export function Typography({ children, className }: TypographyProps) {
         "[&_small]:text-sm [&_small]:font-medium [&_small]:leading-none",
         // Max width for readability
         "max-w-none",
-        className
+        className,
       )}
     >
       {children}

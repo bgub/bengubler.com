@@ -1,16 +1,18 @@
-import { PostCard } from "@/components/post-card";
-import { getPostColors } from "@/lib/colors";
 import { allPosts } from "content-collections";
+import { T, Var } from "gt-next";
+import { getGT, getLocale } from "gt-next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getGT, getLocale } from "gt-next/server";
-import { T, Var } from "gt-next";
+import { PostCard } from "@/components/post-card";
+import { getPostColors } from "@/lib/colors";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
   return {
     title: gt("Posts - Ben Gubler"),
-    description: gt("Thoughts on web development, AI, and building things that matter."),
+    description: gt(
+      "Thoughts on web development, AI, and building things that matter.",
+    ),
   };
 }
 
@@ -23,11 +25,11 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
   const locale = (await getLocale()) || "en";
 
   // Filter to current locale
-  const localePosts = allPosts.filter((p) => (p as any).locale === locale);
+  const localePosts = allPosts.filter((p) => p.locale === locale);
 
   // Get all posts sorted by date
   const sortedPosts = localePosts.sort(
-    (a, b) => b.date.getTime() - a.date.getTime()
+    (a, b) => b.date.getTime() - a.date.getTime(),
   );
 
   // Add consistent colors based on date-determined index
@@ -43,10 +45,13 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
   // Get all unique tags sorted by frequency
   const tagCounts = localePosts
     .flatMap((post) => post.tags)
-    .reduce((counts, tag) => {
-      counts[tag] = (counts[tag] || 0) + 1;
-      return counts;
-    }, {} as Record<string, number>);
+    .reduce(
+      (counts, tag) => {
+        counts[tag] = (counts[tag] || 0) + 1;
+        return counts;
+      },
+      {} as Record<string, number>,
+    );
 
   const allTags = Object.keys(tagCounts).sort((a, b) => {
     // Sort by frequency (descending), then alphabetically for ties
@@ -89,7 +94,9 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
           </Link>
         </div>
         <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-          <T id="posts_description">Thoughts on web development, AI, and building things that matter.</T>
+          <T id="posts_description">
+            Thoughts on web development, AI, and building things that matter.
+          </T>
         </p>
       </header>
 
@@ -128,7 +135,13 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
         {filteredPosts.length === 0 && selectedTag && (
           <div className="text-center py-12">
             <p className="text-muted-foreground">
-              <T id="no_posts_with_tag">No posts found with tag <span className="font-medium">#<Var>{selectedTag.toLowerCase()}</Var></span>.</T>
+              <T id="no_posts_with_tag">
+                No posts found with tag{" "}
+                <span className="font-medium">
+                  #<Var>{selectedTag.toLowerCase()}</Var>
+                </span>
+                .
+              </T>
             </p>
           </div>
         )}
@@ -142,7 +155,9 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
               <T id="archived_heading">Archived</T>
             </h2>
             <p className="text-muted-foreground">
-              <T id="archived_description">Older posts that might be outdated but still have some value.</T>
+              <T id="archived_description">
+                Older posts that might be outdated but still have some value.
+              </T>
             </p>
           </div>
           <div className="@container">
