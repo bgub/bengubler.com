@@ -113,17 +113,6 @@
       "\" v jednoduchých slovách"
     ]
   },
-  "84adf280752678e1": {
-    "t": "C1",
-    "i": 1,
-    "c": [
-      {
-        "t": "Loader2",
-        "i": 2
-      },
-      "Vysvetľujem..."
-    ]
-  },
   "7e74172900c60360": "Odkaz na sekciu",
   "69a38e8afebf5dd4": "Zatvoriť menu",
   "6662bfef4fbe8763": "Otvoriť menu",
@@ -341,14 +330,14 @@
       }
     ]
   },
-  "b710e73c5611e3f4": "Kontakt – Ben Gubler",
-  "233fe71d46008091": "Ozvite sa mi ohľadom spolupráce, otázok alebo len tak, aby ste pozdravili.",
   "b50c41465e5408b3": "E‑mail",
   "8313f3c1e394a316": "Najlepšie na pracovné dopyty a dlhšie konverzácie",
   "aa3f99e380d00c4f": "Sledujte ma pre rýchle novinky a tech diskusie",
   "6e8a4f1758b76948": "Profesionálna sieť a diskusie o kariére",
   "28a45948473da7f8": "GitHub",
   "4088fbaddc00d228": "Pozrite si moje open-source projekty a príspevky",
+  "b710e73c5611e3f4": "Kontakt – Ben Gubler",
+  "233fe71d46008091": "Ozvite sa mi ohľadom spolupráce, otázok alebo len tak, aby ste pozdravili.",
   "0704279d82328bbd": {
     "t": "h1",
     "i": 1,
@@ -359,14 +348,14 @@
     "i": 1,
     "c": "Vždy ma zaujíma spojiť sa s ďalšími vývojármi, diskutovať o nových nápadoch alebo preskúmať možné spolupráce. Neváhajte ma kontaktovať!"
   },
-  "1f1b4086cadac9b6": "Učenie jazykov – Ben Gubler",
-  "4373e32d3674bcd0": "Nástroje a zdroje na učenie jazykov, vrátane aplikácií na precvičovanie skloňovania a ďalších.",
   "98931a83736430a1": "Webová stránka poháňaná umelou inteligenciou na učenie sa jazykov s personalizovanými lekciami a interaktívnymi cvičnými sedenia­mi.",
   "2d5e296989434d34": "Komplexná webová stránka na precvičovanie skloňovania podstatných mien v češtine, slovenčine a ruštine s interaktívnymi cvičeniami.",
   "ca744e725e390110": "Czech Case Cards – kartičky českých pádov",
   "0ee81746110ea465": "Tlačiteľné kartičky pádov na rýchle a efektívne zapamätanie českých vzorov skloňovania podstatných mien.",
   "2e881bd80673c0fa": "Russian Case Cards",
   "97c326fd40fc8abd": "Tlačiteľné kartičky pádov na rýchle a efektívne zapamätanie vzorov skloňovania ruských podstatných mien.",
+  "1f1b4086cadac9b6": "Učenie jazykov – Ben Gubler",
+  "4373e32d3674bcd0": "Nástroje a zdroje na učenie jazykov, vrátane aplikácií na precvičovanie skloňovania a ďalších.",
   "e6d86a912aea1aa4": {
     "t": "h1",
     "i": 1,
@@ -644,5 +633,12 @@
   "82d3a80413d6a1c3": "Čítanie na 5 min",
   "cfb740b7462fab33": "Príspevky",
   "8b7fcaab32fd3bc4": "(archivované)",
-  "77d68abb75acf8cd": "Príspevok nenájdený"
+  "77d68abb75acf8cd": "Príspevok nenájdený",
+  "ae22c9e36cd4543e": [
+    {
+      "t": "Loader2",
+      "i": 1
+    },
+    "Vysvetľujem..."
+  ]
 }

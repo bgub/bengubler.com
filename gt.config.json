@@ -1,15 +1,23 @@
 {
   "$schema": "https://assets.gtx.dev/config-schema.json",
-  "locales": ["en", "ar", "ru", "cs", "sk"],
+  "locales": [
+    "en",
+    "ar",
+    "ru",
+    "cs",
+    "sk"
+  ],
   "defaultLocale": "en",
   "files": {
     "gt": {
       "output": "public/_gt/[locale].json"
     },
     "mdx": {
-      "include": ["content/[locale]/**/*.mdx"]
+      "include": [
+        "content/[locale]/**/*.mdx"
+      ]
     }
   },
   "framework": "next-app",
-  "_versionId": "3abb0975a8658ef040dfb3cc73e966ae89a19a9103074c6d76d7aac8a71dcf43"
+  "_versionId": "8aa256da5fe0cbdd0e066853fce30c64cedce3ec88d025fe0a6b7f47570b684b"
 }

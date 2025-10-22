@@ -11,18 +11,19 @@ import "./mdx/mdx-styles.css";
 interface AnchorProps {
   href?: string;
   children?: ReactNode;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface CodeProps {
   children?: ReactNode;
-  [key: string]: any;
+  __raw_string__?: string;
+  [key: string]: unknown;
 }
 
 interface HeaderProps {
   id?: string;
   children?: ReactNode;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 const LINK_TO_SECTION_LABEL = msg("Link to section");
@@ -84,7 +85,7 @@ const mdxComponents = {
 
   // Enhanced pre component with copy button (for Shiki)
   pre: ({ children, ...props }: CodeProps) => {
-    const rawString = props.__raw_string__;
+    const rawString = (props as { __raw_string__?: string }).__raw_string__;
 
     return (
       <div className="relative">

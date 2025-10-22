@@ -99,9 +99,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.2
         version: 19.2.2(@types/react@19.2.2)
-      '@types/unist':
-        specifier: ^3.0.3
-        version: 3.0.3
       github-slugger:
         specifier: ^2.0.0
         version: 2.0.0
@@ -138,15 +135,9 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
-      unified:
-        specifier: ^11.0.5
-        version: 11.0.5
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
-      vfile:
-        specifier: ^6.0.3
-        version: 6.0.3
       zod:
         specifier: ^4.1.12
         version: 4.1.12

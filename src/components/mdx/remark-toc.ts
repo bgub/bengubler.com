@@ -1,10 +1,29 @@
 import GithubSlugger from "github-slugger";
-import type { Plugin, Transformer } from "unified";
-import type { Node } from "unist";
 import { visit } from "unist-util-visit";
-import type { VFile } from "vfile";
 
-interface HeadingNode extends Node {
+// Helper to call unist-util-visit without importing its types
+function callVisit(
+  tree: unknown,
+  testOrVisitor?: unknown,
+  maybeVisitor?: unknown,
+): void {
+  (
+    visit as unknown as (
+      tree: unknown,
+      test?: unknown,
+      visitor?: unknown,
+    ) => void
+  )(tree, testOrVisitor, maybeVisitor);
+}
+
+// Minimal local types to avoid external type-only deps
+type UnifiedPlugin = () => (
+  tree: unknown,
+  file: { data: Record<string, unknown> },
+) => void;
+type UnistNode = { [key: string]: unknown };
+
+interface HeadingNode extends UnistNode {
   depth: number;
   children: { value: string }[];
 }
@@ -18,18 +37,19 @@ export interface TOCNode {
 }
 
 // Helper function to extract text from a node and its children
-const extractText = (node: Node): string => {
+const extractText = (node: UnistNode): string => {
   let text = "";
-  visit(node, (child) => {
-    if ("value" in child && typeof child.value === "string") {
-      text += child.value;
+  callVisit(node as unknown as { [key: string]: unknown }, (child: unknown) => {
+    const c = child as { value?: unknown };
+    if (typeof c.value === "string") {
+      text += c.value;
     }
   });
   return text;
 };
 
-export const tocPlugin: Plugin = (): Transformer => {
-  return (tree: Node, file: VFile): void => {
+export const tocPlugin: UnifiedPlugin = () => {
+  return (tree: unknown, file: { data: Record<string, unknown> }): void => {
     const toc: TOCNode = {
       type: "root",
       children: [],
@@ -38,7 +58,7 @@ export const tocPlugin: Plugin = (): Transformer => {
     const slugger = new GithubSlugger();
     const stack: TOCNode[] = [toc]; // Stack to track the hierarchy
 
-    visit(tree, "heading", (node: HeadingNode) => {
+    callVisit(tree as unknown, "heading", (node: HeadingNode) => {
       const { depth } = node;
       const title = extractText(node);
 
@@ -51,7 +71,10 @@ export const tocPlugin: Plugin = (): Transformer => {
       };
 
       // Pop from stack until we find the appropriate parent level
-      while (stack.length > 1 && stack[stack.length - 1].depth! >= depth) {
+      while (
+        stack.length > 1 &&
+        (stack[stack.length - 1].depth ?? 0) >= depth
+      ) {
         stack.pop();
       }
 
