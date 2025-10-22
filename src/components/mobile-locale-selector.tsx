@@ -1,5 +1,7 @@
 "use client";
 
+import { useLocaleSelector } from "gt-next/client";
+import { Check, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -8,8 +10,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { Check, Languages } from "lucide-react";
-import { useLocaleSelector } from "gt-next/client";
 
 type MobileLocaleSelectorProps = {
   className?: string;
@@ -17,8 +17,12 @@ type MobileLocaleSelectorProps = {
 };
 
 // Compact dropdown for mobile using shadcn menu components.
-export function MobileLocaleSelector({ className, mode = "default" }: MobileLocaleSelectorProps) {
-  const { locale, locales, setLocale, getLocaleProperties } = useLocaleSelector();
+export function MobileLocaleSelector({
+  className,
+  mode = "default",
+}: MobileLocaleSelectorProps) {
+  const { locale, locales, setLocale, getLocaleProperties } =
+    useLocaleSelector();
 
   if (!locales?.length) return null;
 
@@ -48,7 +52,8 @@ export function MobileLocaleSelector({ className, mode = "default" }: MobileLoca
           >
             <Languages className="h-4 w-4" />
             <span className="font-medium tracking-wide">
-              {active?.regionCode?.toUpperCase?.() || (locale ?? "").toUpperCase()}
+              {active?.regionCode?.toUpperCase?.() ||
+                (locale ?? "").toUpperCase()}
             </span>
           </Button>
         )}
@@ -67,7 +72,9 @@ export function MobileLocaleSelector({ className, mode = "default" }: MobileLoca
                 <span className="text-xs px-1.5 py-0.5 rounded border text-foreground/80">
                   {props.regionCode?.toUpperCase?.() || code.toUpperCase()}
                 </span>
-                <span className="truncate">{props.nativeNameWithRegionCode || code}</span>
+                <span className="truncate">
+                  {props.nativeNameWithRegionCode || code}
+                </span>
               </div>
               {isActive && <Check className="h-4 w-4 text-primary" />}
             </DropdownMenuItem>
@@ -79,5 +86,3 @@ export function MobileLocaleSelector({ className, mode = "default" }: MobileLoca
 }
 
 export default MobileLocaleSelector;
-
-

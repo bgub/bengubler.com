@@ -1,4 +1,3 @@
-import { capitalizationOptions } from "@/lib/capitalization";
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
 import readingTime from "reading-time";
@@ -9,13 +8,14 @@ import { remark } from "remark";
 import remarkCapitalizeHeadings from "remark-capitalize-headings";
 import remarkGfm from "remark-gfm";
 import { z } from "zod";
+import { capitalizationOptions } from "@/lib/capitalization";
 
 import {
   rehypePostprocessPrettyCode,
   rehypePreprocessPrettyCode,
   rehypePrettyCodeOptions,
 } from "./src/components/mdx/rehype-pretty-code";
-import { TOCNode, tocPlugin } from "./src/components/mdx/remark-toc";
+import { type TOCNode, tocPlugin } from "./src/components/mdx/remark-toc";
 
 const posts = defineCollection({
   name: "posts",
@@ -62,7 +62,10 @@ const posts = defineCollection({
 
     // Generate clean slug without folder prefixes
     const fileName =
-      document._meta.path.split("/").pop()?.replace(/\.mdx$/, "") || "";
+      document._meta.path
+        .split("/")
+        .pop()
+        ?.replace(/\.mdx$/, "") || "";
 
     // Derive locale and top-level folder from path: <locale>/<folder>/...
     const [locale, folder] = document._meta.path.split("/");

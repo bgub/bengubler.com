@@ -1,9 +1,9 @@
 "use client";
 
-import { TOCNode } from "@/components/mdx/remark-toc";
-import { TOCLink } from "@/components/mdx/toc-link";
 import { T } from "gt-next";
 import { useEffect, useState } from "react";
+import type { TOCNode } from "@/components/mdx/remark-toc";
+import { TOCLink } from "@/components/mdx/toc-link";
 
 interface ClientTOCProps {
   tree: TOCNode;
@@ -24,14 +24,16 @@ export function ClientTOC({ tree }: ClientTOCProps) {
       {
         rootMargin: "-20% 0% -35% 0%",
         threshold: 0,
-      }
+      },
     );
 
     // Observe all headings with IDs
     const headings = document.querySelectorAll(
-      "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]"
+      "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]",
     );
-    headings.forEach((heading) => observer.observe(heading));
+    headings.forEach((heading) => {
+      observer.observe(heading);
+    });
 
     return () => observer.disconnect();
   }, []);
@@ -48,9 +50,7 @@ export function ClientTOC({ tree }: ClientTOCProps) {
           <li key={node.id}>
             <TOCLink node={node} activeSection={activeSection} />
             {node.children.length > 0 && (
-              <div className="mt-1">
-                {renderTOCNodes(node.children)}
-              </div>
+              <div className="mt-1">{renderTOCNodes(node.children)}</div>
             )}
           </li>
         ))}

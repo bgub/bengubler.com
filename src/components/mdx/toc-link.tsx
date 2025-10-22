@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { TOCNode } from "./remark-toc";
+import type { TOCNode } from "./remark-toc";
 
 interface TOCLinkProps {
   node: TOCNode;
@@ -75,7 +75,7 @@ export function TOCLink({ node, activeSection }: TOCLinkProps) {
         "block py-1 transition-colors hover:text-foreground leading-relaxed",
         isActive ? "text-foreground font-medium" : "text-muted-foreground",
         styles.padding,
-        styles.text
+        styles.text,
       )}
     >
       {node.title}

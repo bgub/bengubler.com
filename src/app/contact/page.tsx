@@ -1,15 +1,14 @@
-import { getColorByIndex } from "@/lib/colors";
-import type { Metadata } from "next";
+import { T, useGT } from "gt-next";
 import { getGT } from "gt-next/server";
-import { useGT } from "gt-next";
-import { T } from "gt-next";
+import type { Metadata } from "next";
+import { getColorByIndex } from "@/lib/colors";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
   return {
     title: gt("Contact - Ben Gubler"),
     description: gt(
-      "Get in touch with me for collaborations, questions, or just to say hello."
+      "Get in touch with me for collaborations, questions, or just to say hello.",
     ),
   };
 }
@@ -54,9 +53,9 @@ export default function ContactPage() {
         </T>
         <T>
           <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            I'm always interested in connecting with fellow developers, discussing
-            new ideas, or exploring potential collaborations. Feel free to reach
-            out!
+            I'm always interested in connecting with fellow developers,
+            discussing new ideas, or exploring potential collaborations. Feel
+            free to reach out!
           </p>
         </T>
       </header>

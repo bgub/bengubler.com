@@ -1,8 +1,8 @@
 "use client";
 
+import { useGT } from "gt-next";
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
-import { useGT } from "gt-next";
 
 export function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -18,6 +18,7 @@ export function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={copy}
+      type="button"
       className="absolute top-3 right-3 z-10 p-2 rounded-md bg-background/80 hover:bg-background border transition-all duration-200 shadow-sm backdrop-blur-sm"
       aria-label={gt("Copy code to clipboard")}
     >

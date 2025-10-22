@@ -1,8 +1,8 @@
 "use client";
 
+import { Branch, T } from "gt-next";
 import { Check, Copy, ExternalLink } from "lucide-react";
 import { useState } from "react";
-import { T, Branch } from "gt-next";
 
 interface RawMarkdownProps {
   slug: string;
@@ -43,6 +43,7 @@ export function RawMarkdown({ slug, content }: RawMarkdownProps) {
         </T>
         <button
           onClick={copyToClipboard}
+          type="button"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors w-full justify-start"
         >
           <T>

@@ -1,20 +1,20 @@
+import { MDXContent } from "@content-collections/mdx/react";
+import { allPosts } from "content-collections";
+import { DateTime, T } from "gt-next";
+import { getGT, getLocale } from "gt-next/server";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next/types";
+import { ViewTransition } from "react";
 import { Comments } from "@/components/comments";
 import { FloatingELI5 } from "@/components/floating-eli5";
+import type { TOCNode } from "@/components/mdx/remark-toc";
 import { mdxComponents } from "@/components/mdx-components";
-import { TOCNode } from "@/components/mdx/remark-toc";
 import { RawMarkdown } from "@/components/raw-markdown";
 import { Social } from "@/components/social";
 import { Badge } from "@/components/ui/badge";
 import { Typography } from "@/components/ui/typography";
 import { getPostColors } from "@/lib/colors";
-import { MDXContent } from "@content-collections/mdx/react";
-import { allPosts } from "content-collections";
-import type { Metadata } from "next/types";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { getGT, getLocale } from "gt-next/server";
-import { T, DateTime } from "gt-next";
-import { ViewTransition } from "react";
 
 import { ClientTOC } from "./client-toc";
 
@@ -38,7 +38,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const locale = (await getLocale()) || "en";
-  const post = allPosts.find((p) => p.slug === slug && (p as any).locale === locale);
+  const post = allPosts.find((p) => p.slug === slug && p.locale === locale);
   const gt = await getGT();
 
   if (!post) {
@@ -87,7 +87,7 @@ export async function generateMetadata({
 }
 
 function sanitize(slug: string, prefix: string = "") {
-  return prefix + slug.replace(/[^\w\s\-\/]/gi, "").replace(/[\s\/]/g, "-");
+  return prefix + slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
 }
 
 export default async function PostPage({
@@ -97,7 +97,7 @@ export default async function PostPage({
 }) {
   const { slug } = await params;
   const locale = (await getLocale()) || "en";
-  const post = allPosts.find((p) => p.slug === slug && (p as any).locale === locale);
+  const post = allPosts.find((p) => p.slug === slug && p.locale === locale);
   const gt = await getGT();
 
   if (!post) {
@@ -107,13 +107,16 @@ export default async function PostPage({
   const colors = getPostColors(post.slug);
   const toc: TOCNode = JSON.parse(post.toc);
   const hasTOC = toc.children.length > 0;
-  const base = post.url.replace(/[^\w\s\-\/]/gi, "").replace(/[\s\/]/g, "-");
+  const base = post.url.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
 
   return (
     <div className="space-y-8">
       <header className="space-y-4">
         <nav className="text-sm text-muted-foreground">
-          <Link href="/posts" className="hover:text-foreground transition-colors">
+          <Link
+            href="/posts"
+            className="hover:text-foreground transition-colors"
+          >
             <T>Posts</T>
           </Link>
           <span className="mx-2">›</span>
@@ -122,7 +125,9 @@ export default async function PostPage({
 
         {/* Styled Post Header */}
         <ViewTransition name={`post-card-${base}`}>
-          <div className={`${colors.bg} ${colors.border} border rounded-lg shadow-sm transition-all duration-300 hover:shadow-lg`}>
+          <div
+            className={`${colors.bg} ${colors.border} border rounded-lg shadow-sm transition-all duration-300 hover:shadow-lg`}
+          >
             <div className="p-6 space-y-3">
               <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono">
                 <ViewTransition name={`date-${base}`}>
@@ -132,21 +137,26 @@ export default async function PostPage({
                 </ViewTransition>
                 <span>•</span>
                 <ViewTransition name={`reading-time-${base}`}>
-                  <span>{(post as any).readingTime || gt("5 min read")}</span>
+                  <span>{post.readingTime || gt("5 min read")}</span>
                 </ViewTransition>
               </div>
               <ViewTransition name={`title-${base}`}>
                 <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-tight group-hover:text-foreground/90 transition-colors break-words">
                   {post.title}
                   {post.archived && (
-                    <span className="text-muted-foreground"> <T>(archived)</T></span>
+                    <span className="text-muted-foreground">
+                      {" "}
+                      <T>(archived)</T>
+                    </span>
                   )}
                 </h1>
               </ViewTransition>
             </div>
             <div className="px-6 pb-6 space-y-4">
               <ViewTransition name={`description-${base}`}>
-                <p className="text-lg leading-relaxed text-muted-foreground max-w-3xl break-words">{post.description}</p>
+                <p className="text-lg leading-relaxed text-muted-foreground max-w-3xl break-words">
+                  {post.description}
+                </p>
               </ViewTransition>
               {post.tags.length > 0 && (
                 <div className="flex flex-wrap gap-1.5">

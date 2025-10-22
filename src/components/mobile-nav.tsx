@@ -1,14 +1,14 @@
 "use client";
 
-import { MobileThemeToggle } from "@/components/mobile-theme-toggle";
-import { Button } from "@/components/ui/button";
-import { navigation } from "@/lib/navigation";
+import { useGT, useMessages } from "gt-next";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { useMessages, useGT } from "gt-next";
 import { MobileLocaleSelector } from "@/components/mobile-locale-selector";
+import { MobileThemeToggle } from "@/components/mobile-theme-toggle";
+import { Button } from "@/components/ui/button";
+import { navigation } from "@/lib/navigation";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +61,9 @@ export function MobileNav() {
         aria-controls="mobile-menu-popover"
       >
         {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        <span className="sr-only">{isOpen ? gt("Close menu") : gt("Open menu")}</span>
+        <span className="sr-only">
+          {isOpen ? gt("Close menu") : gt("Open menu")}
+        </span>
       </Button>
 
       {/* Popover Menu */}

@@ -1,3 +1,4 @@
+import { msg } from "gt-next";
 import {
   Code,
   FileText,
@@ -9,7 +10,6 @@ import {
   Star,
   User,
 } from "lucide-react";
-import { msg } from "gt-next";
 
 export type NavigationItem = {
   name: string;

@@ -1,6 +1,6 @@
 import { streamText } from "ai";
-import { NextRequest } from "next/server";
 import { getGT } from "gt-next/server";
+import type { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
   const gt = await getGT();
@@ -13,7 +13,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Simplified ELI5 system prompt
-    const systemPrompt = gt(`You are an expert at explaining complex topics in simple, fun terms.
+    const systemPrompt = gt(
+      `You are an expert at explaining complex topics in simple, fun terms.
 
 Explain the following blog post as if you're talking to a 5-year-old child:
 - Use simple words and short sentences
@@ -22,7 +23,9 @@ Explain the following blog post as if you're talking to a 5-year-old child:
 - Break complex ideas into bite-sized pieces
 - Make it engaging but accurate
 
-Title: "{title}"`, { title });
+Title: "{title}"`,
+      { title },
+    );
 
     const result = streamText({
       model: "meta/llama-3-8b",
@@ -30,7 +33,10 @@ Title: "{title}"`, { title });
         { role: "system", content: systemPrompt },
         {
           role: "user",
-          content: gt(`Please explain this blog post in simple terms:\n\n{content}`, { content })
+          content: gt(
+            `Please explain this blog post in simple terms:\n\n{content}`,
+            { content },
+          ),
         },
       ],
       temperature: 0.7,
@@ -41,7 +47,7 @@ Title: "{title}"`, { title });
     console.error("ELI5 API Error:", error);
     return new Response(
       gt("Sorry, I couldn't explain this right now. Please try again!"),
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

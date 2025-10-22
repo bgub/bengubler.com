@@ -1,4 +1,3 @@
-
 export default async function loadTranslations(locale) {
   try {
     // Load translations from public/_gt directory

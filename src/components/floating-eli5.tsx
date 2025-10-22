@@ -1,5 +1,8 @@
 "use client";
 
+import { T, useGT, Var } from "gt-next";
+import { Brain, Loader2 } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,9 +14,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Brain, Loader2 } from "lucide-react";
-import { useState } from "react";
-import { T, Var, useGT } from "gt-next";
 
 interface FloatingELI5Props {
   content: string;
@@ -60,7 +60,7 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
     } catch (error) {
       console.error("Error getting explanation:", error);
       setExplanation(
-        gt("Sorry, I couldn't explain this right now. Please try again!")
+        gt("Sorry, I couldn't explain this right now. Please try again!"),
       );
     } finally {
       setIsExplaining(false);
@@ -112,8 +112,8 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
                   {explanation
                     .split("\n")
                     .map(
-                      (paragraph, index) =>
-                        paragraph.trim() && <p key={index}>{paragraph}</p>
+                      (paragraph) =>
+                        paragraph.trim() && <p key={paragraph}>{paragraph}</p>,
                     )}
                   {isExplaining && (
                     <span className="inline-block w-2 h-4 bg-foreground animate-pulse ml-1" />
@@ -124,7 +124,9 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
               <div className="flex flex-col items-center justify-center py-8">
                 <Loader2 className="h-6 w-6 animate-spin mb-3" />
                 <T>
-                  <p className="text-sm font-medium">Reading your blog post...</p>
+                  <p className="text-sm font-medium">
+                    Reading your blog post...
+                  </p>
                 </T>
                 <T>
                   <p className="text-xs text-muted-foreground mt-1">
@@ -156,10 +158,8 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
           >
             {isExplaining ? (
               <T>
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                  Explaining...
-                </>
+                <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                Explaining...
               </T>
             ) : (
               <>

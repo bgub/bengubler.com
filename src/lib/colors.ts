@@ -54,7 +54,7 @@ export function getColorByIndex(index: number) {
 function getPostIndex(slug: string): number {
   // Create a deterministic sorted array of all posts (newest first)
   const sortedPosts = allPosts.sort(
-    (a, b) => b.date.getTime() - a.date.getTime()
+    (a, b) => b.date.getTime() - a.date.getTime(),
   );
   const index = sortedPosts.findIndex((post) => post.slug === slug);
   return index === -1 ? 0 : index;

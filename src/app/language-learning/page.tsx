@@ -1,16 +1,15 @@
-import { getColorByIndex } from "@/lib/colors";
+import { msg, T, useMessages } from "gt-next";
+import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getGT } from "gt-next/server";
-import { msg, useMessages } from "gt-next";
-import { T } from "gt-next";
+import { getColorByIndex } from "@/lib/colors";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
   return {
     title: gt("Language Learning - Ben Gubler"),
     description: gt(
-      "Tools and resources for learning languages, including declension practice apps and more."
+      "Tools and resources for learning languages, including declension practice apps and more.",
     ),
   };
 }
@@ -20,7 +19,7 @@ const languageTools = [
     id: "tinylingo",
     title: msg("TinyLingo"),
     description: msg(
-      "AI-powered website to learn languages with personalized lessons and interactive practice sessions."
+      "AI-powered website to learn languages with personalized lessons and interactive practice sessions.",
     ),
     href: "https://tinylingo.com/",
     isExternal: true,
@@ -29,7 +28,7 @@ const languageTools = [
     id: "decline-app",
     title: msg("Decline App"),
     description: msg(
-      "A comprehensive website for practicing Czech, Slovak, and Russian noun declensions with interactive exercises."
+      "A comprehensive website for practicing Czech, Slovak, and Russian noun declensions with interactive exercises.",
     ),
     href: "https://decline.vercel.app/",
     isExternal: true,
@@ -38,7 +37,7 @@ const languageTools = [
     id: "czech-case-cards",
     title: msg("Czech Case Cards"),
     description: msg(
-      "Printable case cards for memorizing Czech noun declension patterns quickly and effectively."
+      "Printable case cards for memorizing Czech noun declension patterns quickly and effectively.",
     ),
     href: "/language-learning/czech-declensions",
     isExternal: false,
@@ -47,7 +46,7 @@ const languageTools = [
     id: "russian-case-cards",
     title: msg("Russian Case Cards"),
     description: msg(
-      "Printable case cards for memorizing Russian noun declension patterns quickly and effectively."
+      "Printable case cards for memorizing Russian noun declension patterns quickly and effectively.",
     ),
     href: "/language-learning/russian-declensions",
     isExternal: false,

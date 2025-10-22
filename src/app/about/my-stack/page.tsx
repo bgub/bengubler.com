@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
-import Link from "next/link";
 import { msg, T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
+import type { Metadata } from "next";
+import Link from "next/link";
 
 type FavoriteItem = {
   name: string;
@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: gt("My Stack - Ben Gubler"),
     description: gt(
-      "Technologies, apps, and tools that Ben Gubler uses for development and productivity."
+      "Technologies, apps, and tools that Ben Gubler uses for development and productivity.",
     ),
   };
 }
@@ -109,7 +109,8 @@ export default function MyStackPage() {
         </T>
         <T>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Technologies, apps, and tools I use for development and productivity.
+            Technologies, apps, and tools I use for development and
+            productivity.
           </p>
         </T>
       </header>
@@ -128,7 +129,11 @@ export default function MyStackPage() {
                   </span>
                   :{" "}
                   {subsection.items.map((item, index) => {
-                    const displayName = typeof item.name === 'string' && item.name.startsWith('__') ? m(item.name) : item.name;
+                    const displayName =
+                      typeof item.name === "string" &&
+                      item.name.startsWith("__")
+                        ? m(item.name)
+                        : item.name;
                     return (
                       <span key={item.name}>
                         {item.link ? (

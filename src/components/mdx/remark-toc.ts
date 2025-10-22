@@ -1,8 +1,8 @@
 import GithubSlugger from "github-slugger";
-import { Plugin, Transformer } from "unified";
-import { Node } from "unist";
+import type { Plugin, Transformer } from "unified";
+import type { Node } from "unist";
 import { visit } from "unist-util-visit";
-import { VFile } from "vfile";
+import type { VFile } from "vfile";
 
 interface HeadingNode extends Node {
   depth: number;
@@ -58,7 +58,7 @@ export const tocPlugin: Plugin = (): Transformer => {
       // Add to the current parent (last item in stack)
       const parent = stack[stack.length - 1];
       parent.children.push(newItem);
-      
+
       // Push this item to the stack for potential children
       stack.push(newItem);
     });
@@ -67,5 +67,3 @@ export const tocPlugin: Plugin = (): Transformer => {
     file.data.toc = toc;
   };
 };
-
-

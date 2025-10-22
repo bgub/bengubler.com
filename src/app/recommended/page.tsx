@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
-import Link from "next/link";
 import { msg, T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
+import type { Metadata } from "next";
+import Link from "next/link";
 
 type RecommendationItem = {
   name: string;
@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: gt("Recommended - Ben Gubler"),
     description: gt(
-      "A curated collection of useful links and resources that Ben Gubler has found valuable."
+      "A curated collection of useful links and resources that Ben Gubler has found valuable.",
     ),
   };
 }
@@ -35,7 +35,10 @@ const recommendations: RecommendationSection[] = [
       {
         title: msg("OS Development & Systems Programming"),
         items: [
-          { name: msg("Writing an OS in Rust"), url: "https://os.phil-opp.com/" },
+          {
+            name: msg("Writing an OS in Rust"),
+            url: "https://os.phil-opp.com/",
+          },
           {
             name: msg("Linux From Scratch"),
             url: "https://www.linuxfromscratch.org/",
