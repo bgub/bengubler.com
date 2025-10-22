@@ -21,7 +21,7 @@ code[data-theme] span {
 .prose h4,
 .prose h5,
 .prose h6 {
-  margin-left: 0 !important;
+  margin-left: 0;
 }
 
 /* Remove gap from header flex containers to prevent left margin */
@@ -31,8 +31,8 @@ code[data-theme] span {
 .prose h4 > span,
 .prose h5 > span,
 .prose h6 > span {
-  gap: 0 !important;
-  margin-left: 0 !important;
+  gap: 0;
+  margin-left: 0;
 }
 
 /* Ensure code in headers is properly sized and can wrap */

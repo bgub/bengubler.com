@@ -86,10 +86,6 @@ export async function generateMetadata({
   };
 }
 
-function sanitize(slug: string, prefix: string = "") {
-  return prefix + slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
-}
-
 export default async function PostPage({
   params,
 }: {

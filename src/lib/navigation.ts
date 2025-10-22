@@ -10,11 +10,12 @@ import {
   Star,
   User,
 } from "lucide-react";
+import type React from "react";
 
 export type NavigationItem = {
   name: string;
   href: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   isSubItem?: boolean;
   parent?: string;
 };

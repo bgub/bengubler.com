@@ -94,7 +94,9 @@ export default function ContactPage() {
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
+                      role="img"
                     >
+                      <title>External link</title>
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"

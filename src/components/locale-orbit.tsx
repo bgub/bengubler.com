@@ -42,7 +42,7 @@ export function LocaleOrbit({ className, size = 128 }: LocaleOrbitProps) {
   if (!locales?.length) return null;
 
   return (
-    <div
+    <fieldset
       className={cn("relative select-none", "rounded-full", className)}
       style={{ width: size, height: size }}
       aria-label="Language selector"
@@ -86,7 +86,7 @@ export function LocaleOrbit({ className, size = 128 }: LocaleOrbitProps) {
           </Button>
         );
       })}
-    </div>
+    </fieldset>
   );
 }
 

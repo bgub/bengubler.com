@@ -113,17 +113,6 @@
       "\" jednoduše"
     ]
   },
-  "84adf280752678e1": {
-    "t": "C1",
-    "i": 1,
-    "c": [
-      {
-        "t": "Loader2",
-        "i": 2
-      },
-      "Vysvětluji…"
-    ]
-  },
   "7e74172900c60360": "Odkaz na sekci",
   "69a38e8afebf5dd4": "Zavřít nabídku",
   "6662bfef4fbe8763": "Otevřít menu",
@@ -341,14 +330,14 @@
       }
     ]
   },
-  "b710e73c5611e3f4": "Kontakt – Ben Gubler",
-  "233fe71d46008091": "Ozvěte se mi kvůli spolupráci, dotazům, nebo jen tak na pozdrav.",
   "b50c41465e5408b3": "E‑mail",
   "8313f3c1e394a316": "Nejvhodnější pro obchodní dotazy a delší konverzace",
   "aa3f99e380d00c4f": "„Sledujte mě pro rychlé novinky a debaty o technologiích.“",
   "6e8a4f1758b76948": "Profesní síť a kariérní diskuse",
   "28a45948473da7f8": "GitHub",
   "4088fbaddc00d228": "Podívejte se na mé open‑source projekty a příspěvky",
+  "b710e73c5611e3f4": "Kontakt – Ben Gubler",
+  "233fe71d46008091": "Ozvěte se mi kvůli spolupráci, dotazům, nebo jen tak na pozdrav.",
   "0704279d82328bbd": {
     "t": "h1",
     "i": 1,
@@ -359,14 +348,14 @@
     "i": 1,
     "c": "Rád se propojuji s dalšími vývojáři, bavím se o nových nápadech a zkoumám možné spolupráce. Klidně se ozvěte!"
   },
-  "1f1b4086cadac9b6": "Učení jazyků – Ben Gubler",
-  "4373e32d3674bcd0": "Nástroje a zdroje pro učení jazyků, včetně aplikací na procvičování skloňování a dalších.",
   "98931a83736430a1": "Web s podporou AI pro výuku jazyků s personalizovanými lekcemi a interaktivními cvičnými sezeními.",
   "2d5e296989434d34": "Komplexní web pro procvičování skloňování podstatných jmen v češtině, slovenštině a ruštině s interaktivními cvičeními.",
   "ca744e725e390110": "Czech Case Cards – kartičky pádů",
   "0ee81746110ea465": "Tisknutelné kartičky pádů pro rychlé a efektivní zapamatování vzorů skloňování českých podstatných jmen.",
   "2e881bd80673c0fa": "Russian Case Cards",
   "97c326fd40fc8abd": "Tisknutelné kartičky pádů pro rychlé a efektivní zapamatování vzorů skloňování ruských podstatných jmen.",
+  "1f1b4086cadac9b6": "Učení jazyků – Ben Gubler",
+  "4373e32d3674bcd0": "Nástroje a zdroje pro učení jazyků, včetně aplikací na procvičování skloňování a dalších.",
   "e6d86a912aea1aa4": {
     "t": "h1",
     "i": 1,
@@ -644,5 +633,12 @@
   "82d3a80413d6a1c3": "Čtení na 5 min",
   "cfb740b7462fab33": "Příspěvky",
   "8b7fcaab32fd3bc4": "(archivováno)",
-  "77d68abb75acf8cd": "Příspěvek nebyl nalezen"
+  "77d68abb75acf8cd": "Příspěvek nebyl nalezen",
+  "ae22c9e36cd4543e": [
+    {
+      "t": "Loader2",
+      "i": 1
+    },
+    "Vysvětluji..."
+  ]
 }

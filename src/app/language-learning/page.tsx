@@ -91,7 +91,11 @@ export default function LanguageLearningPage() {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
+                    role="img"
                   >
+                    <title>
+                      {tool.isExternal ? "External link" : "Navigate"}
+                    </title>
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
