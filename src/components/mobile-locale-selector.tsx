@@ -30,7 +30,7 @@ export function MobileLocaleSelector({
   const active = getLocaleProperties(locale || locales[0]);
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger
         render={
           mode === "compact" ? (
@@ -63,7 +63,7 @@ export function MobileLocaleSelector({
           )
         }
       />
-      <DropdownMenuPositioner align="end">
+      <DropdownMenuPositioner align="end" className="z-[1000]">
         <DropdownMenuContent className="w-56">
           {locales.map((code) => {
             const props = getLocaleProperties(code);
@@ -71,7 +71,7 @@ export function MobileLocaleSelector({
             return (
               <DropdownMenuItem
                 key={code}
-                onSelect={() => setLocale(code)}
+                onClick={() => setLocale(code)}
                 className="justify-between"
               >
                 <div className="flex items-center gap-2">
