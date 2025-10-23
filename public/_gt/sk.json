@@ -113,6 +113,13 @@
       "\" v jednoduchých slovách"
     ]
   },
+  "ae22c9e36cd4543e": [
+    {
+      "t": "Loader2",
+      "i": 1
+    },
+    "Vysvetľujem..."
+  ],
   "7e74172900c60360": "Odkaz na sekciu",
   "69a38e8afebf5dd4": "Zatvoriť menu",
   "6662bfef4fbe8763": "Otvoriť menu",
@@ -484,11 +491,6 @@
     "c": "Starostlivo vybraný súbor užitočných odkazov a zdrojov, ktoré som považoval za hodnotné."
   },
   "53b5f7c376481390": "Skopírovať kód do schránky",
-  "daf080584b6c4e5f": {
-    "t": "span",
-    "i": 1,
-    "c": "Zavrieť"
-  },
   "bc79b8827bd6278c": "Knihy",
   "6601f653ec09b078": "Klasika",
   "27c04964a9ee9e77": "Viera",
@@ -633,12 +635,5 @@
   "82d3a80413d6a1c3": "Čítanie na 5 min",
   "cfb740b7462fab33": "Príspevky",
   "8b7fcaab32fd3bc4": "(archivované)",
-  "77d68abb75acf8cd": "Príspevok nenájdený",
-  "ae22c9e36cd4543e": [
-    {
-      "t": "Loader2",
-      "i": 1
-    },
-    "Vysvetľujem..."
-  ]
+  "77d68abb75acf8cd": "Príspevok nenájdený"
 }

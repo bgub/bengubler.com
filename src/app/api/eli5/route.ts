@@ -28,7 +28,7 @@ Title: "{title}"`,
     );
 
     const result = streamText({
-      model: "meta/llama-3-8b",
+      model: "meta/llama-3.1-8b",
       messages: [
         { role: "system", content: systemPrompt },
         {

@@ -76,15 +76,17 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      <DialogTrigger asChild>
-        <Button
-          size="icon"
-          className="fixed bottom-6 end-6 h-12 w-12 rounded-full shadow-lg"
-          title={gt("Explain Like I'm 5")}
-        >
-          <Brain className="h-5 w-5" />
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger
+        render={
+          <Button
+            size="icon"
+            className="fixed bottom-6 end-6 h-12 w-12 rounded-full shadow-lg"
+            title={gt("Explain Like I'm 5")}
+          >
+            <Brain className="h-5 w-5" />
+          </Button>
+        }
+      />
 
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-hidden">
         <DialogHeader>

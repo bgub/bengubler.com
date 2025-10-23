@@ -33,16 +33,21 @@ export default function PostNotFound() {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 items-center">
-        <Button asChild>
-          <T>
-            <Link href="/posts">Browse All Posts</Link>
-          </T>
-        </Button>
-        <Button variant="outline" asChild>
-          <T>
-            <Link href="/">Go Home</Link>
-          </T>
-        </Button>
+        <Button
+          render={
+            <T>
+              <Link href="/posts">Browse All Posts</Link>
+            </T>
+          }
+        />
+        <Button
+          variant="outline"
+          render={
+            <T>
+              <Link href="/">Go Home</Link>
+            </T>
+          }
+        />
       </div>
     </div>
   );
