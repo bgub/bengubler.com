@@ -7,6 +7,7 @@ import { Tweet, type TweetProps } from "react-tweet";
 
 import { CopyButton } from "./mdx/copy-button";
 import "./mdx/mdx-styles.css";
+import type { Route } from "next";
 
 interface AnchorProps {
   href?: string;
@@ -69,7 +70,7 @@ const mdxComponents = {
 
     // Internal link
     return (
-      <Link href={href as string} {...props}>
+      <Link href={href as Route} {...props}>
         {children}
       </Link>
     );

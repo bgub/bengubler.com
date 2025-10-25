@@ -51,7 +51,7 @@ const languageTools = [
     href: "/language-learning/russian-declensions",
     isExternal: false,
   },
-];
+] as const;
 
 export default function LanguageLearningPage() {
   const m = useMessages();

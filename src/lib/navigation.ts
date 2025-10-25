@@ -10,11 +10,12 @@ import {
   Star,
   User,
 } from "lucide-react";
+import type { Route } from "next";
 import type React from "react";
 
 export type NavigationItem = {
   name: string;
-  href: string;
+  href: Route;
   icon: React.ComponentType<{ className?: string }>;
   isSubItem?: boolean;
   parent?: string;

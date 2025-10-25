@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   experimental: {
     inlineCss: true,
   },
+  typedRoutes: true,
   async rewrites() {
     return [
       {

@@ -1,11 +1,11 @@
 import { msg, T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import Link from "next/link";
 
 type RecommendationItem = {
   name: string;
-  url: string;
+  url: Route;
 };
 
 type RecommendationSubsection = {
