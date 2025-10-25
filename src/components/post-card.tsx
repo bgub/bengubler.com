@@ -1,5 +1,6 @@
 import type { allPosts } from "content-collections";
 import { DateTime, T } from "gt-next";
+import type { Route } from "next";
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -25,7 +26,7 @@ export function PostCard({ post }: PostCardProps) {
   const base = sanitize(post.url);
 
   return (
-    <Link href={post.url}>
+    <Link href={post.url as Route}>
       <ViewTransition name={`post-card-${base}`}>
         <div
           className={`${bgColor} ${borderColor} border rounded-lg shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-[1.02] cursor-pointer group h-full p-6 space-y-4`}
