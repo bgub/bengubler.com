@@ -1,21 +1,17 @@
 import { msg, T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import Link from "next/link";
-
-type FavoriteItem = {
-  name: string;
-  link?: string;
-};
-
-type FavoriteSubsection = {
-  title: string;
-  items: FavoriteItem[];
-};
 
 type FavoriteSection = {
   category: string;
-  subsections: FavoriteSubsection[];
+  subsections: Array<{
+    title: string;
+    items: Array<{
+      name: string;
+      link?: Route;
+    }>;
+  }>;
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -66,7 +62,7 @@ const stack: FavoriteSection[] = [
       },
       {
         title: msg("Development"),
-        items: [{ name: "Zed w/ Vim keybindings" }, { name: "Zen Browser" }],
+        items: [{ name: "Zed w/ Vim keybindings" }, { name: "Brave Browser" }],
       },
     ],
   },
@@ -129,11 +125,7 @@ export default function MyStackPage() {
                   </span>
                   :{" "}
                   {subsection.items.map((item, index) => {
-                    const displayName =
-                      typeof item.name === "string" &&
-                      item.name.startsWith("__")
-                        ? m(item.name)
-                        : item.name;
+                    const displayName = m(item.name);
                     return (
                       <span key={item.name}>
                         {item.link ? (
