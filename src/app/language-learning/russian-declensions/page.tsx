@@ -79,12 +79,12 @@ export default function RussianCaseCardsPage() {
         <T>
           <p className="text-muted-foreground">
             Note: this won't display properly on mobile: go{" "}
-            <Link
+            <a
               href="/declensions/russian-cases-card.pdf"
               className="text-foreground hover:underline font-medium"
             >
               here
-            </Link>{" "}
+            </a>{" "}
             to view and download the PDF in a new window.
           </p>
         </T>

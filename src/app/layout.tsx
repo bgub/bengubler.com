@@ -12,10 +12,15 @@ import "./globals.css";
 import { GTProvider } from "gt-next";
 import { getGT, getLocale } from "gt-next/server";
 
-const inter = Inter({ subsets: ["latin"] });
+const interSans = Inter({
+  variable: "--font-inter-sans",
+  subsets: ["latin"],
+  weight: "variable",
+});
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: "variable",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -30,14 +35,14 @@ export async function generateMetadata(): Promise<Metadata> {
       "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU. Thoughts on web development, AI, and building things that matter.",
     ),
     keywords: [
-      "Ben Gubler",
       gt("web developer"),
+      gt("machine learning"),
+      "Ben Gubler",
       "Vercel",
       "Next.js",
       "React",
       "TypeScript",
       "AI",
-      gt("machine learning"),
       "BYU",
     ],
 
@@ -88,7 +93,7 @@ export default async function RootLayout({
 
   return (
     <html suppressHydrationWarning lang={locale} dir={dir}>
-      <body className={`${inter.className} ${geistMono.variable}`}>
+      <body className={`${interSans.variable} ${geistMono.variable}`}>
         <GTProvider>
           <ThemeProvider
             attribute="class"

@@ -79,12 +79,12 @@ export default function CzechCaseCardsPage() {
         <T>
           <p className="text-muted-foreground">
             Note: this won't display properly on mobile: go{" "}
-            <Link
+            <a
               href="/declensions/czech-cases-card-basic.pdf"
               className="text-foreground hover:underline font-medium"
             >
               here
-            </Link>{" "}
+            </a>{" "}
             to view and download the PDF in a new window.
           </p>
         </T>
@@ -108,12 +108,12 @@ export default function CzechCaseCardsPage() {
         <T>
           <p className="text-muted-foreground">
             Note: this won't display properly on mobile: go{" "}
-            <Link
+            <a
               href="/declensions/czech-cases-card-advanced.pdf"
               className="text-foreground hover:underline font-medium"
             >
               here
-            </Link>{" "}
+            </a>{" "}
             to view and download the PDF in a new window.
           </p>
         </T>
