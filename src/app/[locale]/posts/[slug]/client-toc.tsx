@@ -1,6 +1,6 @@
 "use client";
 
-import { T } from "gt-next";
+import { T } from "gt-next/client";
 import { useEffect, useState } from "react";
 import type { TOCNode } from "@/components/mdx/remark-toc";
 import { TOCLink } from "@/components/mdx/toc-link";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Branch, T } from "gt-next";
+import { Branch, T } from "gt-next/client";
 import { Check, Copy, ExternalLink } from "lucide-react";
 import { useState } from "react";
 

@@ -1,4 +1,4 @@
-import { T, useMessages } from "gt-next";
+import { T, useMessages } from "gt-next/client";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import { ProjectList } from "@/components/project-list";

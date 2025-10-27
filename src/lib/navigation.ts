@@ -1,4 +1,4 @@
-import { msg } from "gt-next";
+import { msg } from "gt-next/client";
 import {
   Code,
   FileText,

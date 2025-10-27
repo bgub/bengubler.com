@@ -1,4 +1,4 @@
-import { T } from "gt-next";
+import { T } from "gt-next/client";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import Link from "next/link";

@@ -1,4 +1,4 @@
-import { msg, useMessages } from "gt-next";
+import { msg, useMessages } from "gt-next/client";
 import { LinkIcon } from "lucide-react";
 import NextImage, { type ImageProps } from "next/image";
 import Link from "next/link";

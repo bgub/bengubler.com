@@ -1,7 +1,7 @@
 import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
-import { DateTime, T } from "gt-next";
-import { getGT, getLocale } from "gt-next/server";
+import { DateTime, T, useGT } from "gt-next/client";
+import { getGT } from "gt-next/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next/types";
@@ -14,8 +14,8 @@ import { RawMarkdown } from "@/components/raw-markdown";
 import { Social } from "@/components/social";
 import { Badge } from "@/components/ui/badge";
 import { Typography } from "@/components/ui/typography";
+import getLocale from "@/getLocale";
 import { getPostColors } from "@/lib/colors";
-
 import { ClientTOC } from "./client-toc";
 
 // Generate static params with unique slugs (dedup across locales)
@@ -94,7 +94,7 @@ export default async function PostPage({
   const { slug } = await params;
   const locale = (await getLocale()) || "en";
   const post = allPosts.find((p) => p.slug === slug && p.locale === locale);
-  const gt = await getGT();
+  const gt = useGT();
 
   if (!post) {
     notFound();

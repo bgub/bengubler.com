@@ -1,6 +1,6 @@
 "use client";
 
-import { T, useGT } from "gt-next";
+import { T, useGT } from "gt-next/client";
 import { Share } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";

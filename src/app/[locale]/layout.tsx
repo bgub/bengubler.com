@@ -8,9 +8,11 @@ import type React from "react";
 import { MobileNav } from "@/components/mobile-nav";
 import { Sidebar } from "@/components/sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
-import "./globals.css";
-import { GTProvider } from "gt-next";
-import { getGT, getLocale } from "gt-next/server";
+import "../globals.css";
+import { GTClientProvider as GTProvider } from "gt-next/client";
+import { getGT } from "gt-next/server";
+import getLocale from "@/getLocale";
+import loadTranslations from "@/loadTranslations";
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -94,7 +96,7 @@ export default async function RootLayout({
   return (
     <html suppressHydrationWarning lang={locale} dir={dir}>
       <body className={`${interSans.variable} ${geistMono.variable}`}>
-        <GTProvider>
+        <GTProvider loadTranslations={loadTranslations} locale={locale}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

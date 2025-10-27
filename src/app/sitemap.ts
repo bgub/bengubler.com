@@ -1,5 +1,5 @@
 import { allPosts } from "content-collections";
-import { getLocale } from "gt-next/server";
+import getLocale from "@/getLocale";
 import { getBaseUrl } from "@/lib/utils";
 
 const baseUrl = getBaseUrl();

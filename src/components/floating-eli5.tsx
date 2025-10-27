@@ -1,6 +1,6 @@
 "use client";
 
-import { T, useGT, Var } from "gt-next";
+import { T, useGT, Var } from "gt-next/client";
 import { Brain, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";

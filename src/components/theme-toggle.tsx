@@ -1,6 +1,6 @@
 "use client";
 
-import { T } from "gt-next";
+import { T } from "gt-next/client";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";

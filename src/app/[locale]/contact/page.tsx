@@ -1,4 +1,4 @@
-import { T, useGT } from "gt-next";
+import { T, useGT } from "gt-next/client";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import { getColorByIndex } from "@/lib/colors";

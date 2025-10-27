@@ -1,6 +1,6 @@
 "use client";
 
-import { useGT } from "gt-next";
+import { useGT } from "gt-next/client";
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 

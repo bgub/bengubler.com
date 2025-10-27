@@ -1,4 +1,4 @@
-import { T, useMessages } from "gt-next";
+import { T, useMessages } from "gt-next/client";
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
 

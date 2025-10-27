@@ -1,5 +1,5 @@
 import { allPosts } from "content-collections";
-import { T, Var } from "gt-next";
+import { T, Var } from "gt-next/client";
 import { getGT, getLocale } from "gt-next/server";
 import type { Metadata } from "next";
 import Link from "next/link";

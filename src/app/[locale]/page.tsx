@@ -1,11 +1,11 @@
 import { allPosts } from "content-collections";
-import { decodeMsg, T } from "gt-next";
-import { getLocale } from "gt-next/server";
+import { decodeMsg, T } from "gt-next/client";
 import { ArrowRight, Github, Twitter } from "lucide-react";
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
 import { ProjectList } from "@/components/project-list";
 import { Badge } from "@/components/ui/badge";
+import getLocale from "@/getLocale";
 import { getPostColors } from "@/lib/colors";
 import { projectsData } from "@/lib/projects";
 

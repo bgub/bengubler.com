@@ -1,5 +1,5 @@
 import type { allPosts } from "content-collections";
-import { DateTime, T } from "gt-next";
+import { DateTime, T } from "gt-next/client";
 import type { Route } from "next";
 import Link from "next/link";
 import { ViewTransition } from "react";
