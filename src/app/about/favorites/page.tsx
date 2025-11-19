@@ -2,18 +2,14 @@ import { msg, T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 
-type FavoriteItem = {
-  name: string;
-};
-
-type FavoriteSubsection = {
-  title: string;
-  items: FavoriteItem[];
-};
-
 type FavoriteSection = {
   category: string;
-  subsections: FavoriteSubsection[];
+  subsections: Array<{
+    title: string;
+    items: Array<{
+      name: string;
+    }>;
+  }>;
 };
 
 export async function generateMetadata(): Promise<Metadata> {
