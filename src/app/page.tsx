@@ -1,10 +1,11 @@
 import { allPosts } from "content-collections";
 import { decodeMsg, T } from "gt-next";
 import { getLocale } from "gt-next/server";
-import { ArrowRight, Github, Twitter } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
 import { ProjectList } from "@/components/project-list";
+import { GitHubIcon, XIcon } from "@/components/social";
 import { Badge } from "@/components/ui/badge";
 import { getPostColors } from "@/lib/colors";
 import { projectsData } from "@/lib/projects";
@@ -54,10 +55,7 @@ export default async function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-4 w-4" />
-                <span className="sr-only">
-                  <T id="github_label">GitHub</T>
-                </span>
+                <GitHubIcon className="h-4 w-4" />
               </Link>
               <Link
                 href="https://x.com/bgub_"
@@ -65,10 +63,7 @@ export default async function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Twitter className="h-4 w-4" />
-                <span className="sr-only">
-                  <T id="twitter_label">Twitter</T>
-                </span>
+                <XIcon className="h-4 w-4" />
               </Link>
             </div>
           </div>

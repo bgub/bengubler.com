@@ -3,19 +3,15 @@ import { getGT } from "gt-next/server";
 import type { Metadata, Route } from "next";
 import Link from "next/link";
 
-type RecommendationItem = {
-  name: string;
-  url: Route;
-};
-
-type RecommendationSubsection = {
-  title: string;
-  items: RecommendationItem[];
-};
-
 type RecommendationSection = {
   category: string;
-  subsections: RecommendationSubsection[];
+  subsections: Array<{
+    title: string;
+    items: Array<{
+      name: string;
+      url: Route;
+    }>;
+  }>;
 };
 
 export async function generateMetadata(): Promise<Metadata> {

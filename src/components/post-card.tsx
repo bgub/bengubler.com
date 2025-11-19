@@ -4,7 +4,7 @@ import type { Route } from "next";
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { Badge } from "@/components/ui/badge";
-import { getPostColors } from "@/lib/post-colors";
+import { getPostColors } from "@/lib/colors";
 
 type Post = (typeof allPosts)[0] & {
   color?: string;
