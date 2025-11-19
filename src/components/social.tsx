@@ -10,7 +10,6 @@ interface SocialProps {
   className?: string;
 }
 
-// Custom X (Twitter) icon component since Lucide doesn't have the updated X logo
 export const XIcon = ({ className }: { className?: string }) => (
   <svg
     viewBox="0 0 24 24"
@@ -33,7 +32,6 @@ export const GitHubIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Custom LinkedIn icon for better styling
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg
     viewBox="0 0 24 24"
@@ -45,7 +43,6 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Custom Reddit icon
 const RedditIcon = ({ className }: { className?: string }) => (
   <svg
     viewBox="0 0 24 24"
@@ -57,7 +54,6 @@ const RedditIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Custom Hacker News icon
 const HackerNewsIcon = ({ className }: { className?: string }) => (
   <svg
     viewBox="0 0 24 24"
