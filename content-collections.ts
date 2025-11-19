@@ -28,6 +28,7 @@ const posts = defineCollection({
     lastUpdated: z.string().pipe(z.coerce.date()).optional(),
     archived: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
+    content: z.string(),
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
