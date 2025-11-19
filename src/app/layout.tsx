@@ -34,46 +34,17 @@ export async function generateMetadata(): Promise<Metadata> {
     description: gt(
       "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU. Thoughts on web development, AI, and building things that matter.",
     ),
-    keywords: [
-      gt("web developer"),
-      gt("machine learning"),
-      "Ben Gubler",
-      "Vercel",
-      "Next.js",
-      "React",
-      "TypeScript",
-      "AI",
-      "BYU",
-    ],
-
     authors: [{ name: "Ben Gubler", url: "https://bengubler.com" }],
-    creator: "Ben Gubler",
-    publisher: "Ben Gubler",
     metadataBase: new URL("https://bengubler.com"),
     openGraph: {
-      type: "website",
-      locale: "en_US",
-      url: "https://bengubler.com",
-      title: "Ben Gubler",
-      description: gt(
-        "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU.",
-      ),
       siteName: "Ben Gubler",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Ben Gubler",
-      description: gt(
-        "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU.",
-      ),
       creator: "@bgub_",
     },
     robots: {
-      index: true,
-      follow: true,
       googleBot: {
-        index: true,
-        follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",
         "max-snippet": -1,
