@@ -8,7 +8,8 @@
     "start": "next start",
     "translate": "gtx-cli translate",
     "lint": "biome check",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "analyze": "𝚗𝚎𝚡𝚝 𝚎𝚡𝚙𝚎𝚛𝚒𝚖𝚎𝚗𝚝𝚊𝚕-𝚊𝚗𝚊𝚕𝚢𝚣𝚎"
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
@@ -24,7 +25,7 @@
     "feed": "^5.1.0",
     "gt-next": "^6.8.3",
     "lucide-react": "^0.554.0",
-    "next": "16.0.3",
+    "next": "16.0.2-canary.24",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

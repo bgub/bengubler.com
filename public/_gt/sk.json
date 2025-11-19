@@ -272,7 +272,6 @@
   },
   "7e74172900c60360": "Odkaz na sekciu",
   "7f390daec7bf71b5": "hecto: Vytvorte si vlastný textový editor v jazyku Rust",
-  "7fe23b0204df5f61": "Osobná webová stránka Ben Gubler. Stážista v oblasti webového vývoja vo Vercel, študuje AI a ľudské jazyky na BYU.",
   "814a904a77c7c0f5": "Neurónové siete: Od nuly po hrdinu",
   "81d4f577c1f1ff07": {
     "c": "Zaujímavosti",
@@ -517,7 +516,6 @@
   "def93bda648985e9": "Vysvetli mi to, akoby som mal 5 rokov",
   "e1753ab0ce7d5975": "LinkedIn",
   "e3241e6f5849984e": "Čítanie na 5 min",
-  "e3a0b3dcbf2ec893": "strojové učenie",
   "e5cff5481ca8546c": "Zábavné a zaujímavé",
   "e6d86a912aea1aa4": {
     "c": "Učenie jazykov",
@@ -566,7 +564,6 @@
   "f41ea186c275b56e": "O mne",
   "f52129a3f95b5597": "Vzdelávacie zdroje",
   "f52c29a8ce2d1f99": "Reddit",
-  "f5f2092b85074291": "webový vývojár",
   "f706057a0ef052ff": {
     "c": "Venoval som tomu veľa hodín! Vytlačte si to a skloňovacie vzory ruštiny si osvojíte raz-dva.",
     "i": 1,
@@ -593,7 +590,6 @@
   "fe04975a9ca7df24": "Výpočtová knižnica podobná PyTorch pre TS/JS využívajúca WebGPU (rozpracované).",
   "fe3e875a7e5fc2a3": "Rámec COMET",
   "feb481b144af444a": "Myšlienky o webovom vývoji, umelej inteligencii a budovaní vecí, na ktorých záleží.",
-  "github_label": "GitHub",
   "hero_bio_paragraph_1": "Som Ben — študent na BYU, študujem Aplikovanú matematiku a arabčinu. Tvorím open-source knižnice, webové aplikácie a AI nástroje. Momentálne stážujem vo Vercel.",
   "hero_bio_paragraph_2": [
     "Pozrite si moje ",
@@ -639,6 +635,5 @@
   "projects_heading": "Projekty",
   "recent_posts_heading": "Najnovšie príspevky",
   "rss_link": "RSS",
-  "twitter_label": "Twitter",
   "view_all": "Zobraziť všetko"
 }
