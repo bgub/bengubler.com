@@ -1,6 +1,5 @@
 "use client";
 
-import { GTProvider } from "gt-next";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ReactNode } from "react";
 
@@ -10,7 +9,6 @@ type ProvidersProps = {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <GTProvider>
       <NextThemesProvider
         attribute="class"
         defaultTheme="system"
@@ -19,6 +17,5 @@ export function Providers({ children }: ProvidersProps) {
       >
         {children}
       </NextThemesProvider>
-    </GTProvider>
   );
 }
