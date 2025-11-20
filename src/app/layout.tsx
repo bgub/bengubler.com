@@ -9,6 +9,7 @@ import { Sidebar } from "@/components/sidebar";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GTProvider } from "gt-next";
 import { getGT, getLocale } from "gt-next/server";
 
 const interSans = Inter({
@@ -64,7 +65,8 @@ export default async function RootLayout({
   return (
     <html suppressHydrationWarning lang={locale} dir={dir}>
       <body className={`${interSans.variable} ${geistMono.variable}`}>
-        <Providers>
+        <GTProvider>
+          <Providers>
           {/* Outermost wrapper for max-width and centering */}
           <div className="w-full max-w-screen-xl mx-auto bg-background">
             <div className="flex min-h-screen">
@@ -99,7 +101,8 @@ export default async function RootLayout({
               </div>
             </div>
           </div>
-        </Providers>
+          </Providers>
+        </GTProvider>
         <Analytics />
         <SpeedInsights />
       </body>
