@@ -114,13 +114,13 @@ export default function FavoritesPage() {
       </header>
 
       {favorites.map((section) => (
-        <section key={section.category} className="space-y-3">
+        <section key={m(section.category)} className="space-y-3">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             {m(section.category)}
           </h2>
           <div className="space-y-2">
             {section.subsections.map((subsection) => (
-              <div key={subsection.title} className="space-y-1">
+              <div key={m(subsection.title)} className="space-y-1">
                 <p className="text-muted-foreground leading-relaxed">
                   <span className="font-bold text-foreground">
                     {m(subsection.title)}
