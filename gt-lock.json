@@ -414,6 +414,24 @@
           "sk": {
             "updatedAt": "2025-11-19T09:01:34.621Z"
           }
+        },
+        "ac50f62cd6aa6b82573ca4ba93645145e9e322066b3de04a090283cf48d2474c": {
+          "ar": {
+            "updatedAt": "2026-01-23T20:20:47.394Z",
+            "postProcessHash": "a61962dd09b754b0c64f420fa74d8afbc0998bed1b41a182fe01e7f059bdd684"
+          },
+          "cs": {
+            "updatedAt": "2026-01-23T20:20:47.396Z",
+            "postProcessHash": "d63b4ca9a4e88e74cdb8b409c3237c15bfb6003572fdbf9d6900f84c6ec0baa2"
+          },
+          "ru": {
+            "updatedAt": "2026-01-23T20:20:47.399Z",
+            "postProcessHash": "d5d4afc304c2e15ee584cd8d38390f1ed95def54590ca54a0ef18541cba002c4"
+          },
+          "sk": {
+            "updatedAt": "2026-01-23T20:20:47.401Z",
+            "postProcessHash": "350ffc2c4fc6708f0f8b739b004c95185aef3e47fcd90466d603e69bf1b99a68"
+          }
         }
       },
       "9a279dc45cec6d0801853b18e2df62b77eb80339c991e34aafef788c1ca78f24": {
