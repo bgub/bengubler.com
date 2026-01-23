@@ -43,6 +43,10 @@ const recommendations: RecommendationSection[] = [
             name: msg("Nand to Tetris"),
             url: "https://www.coursera.org/learn/build-a-computer",
           },
+          {
+            name: msg("How CPU Memory & Caches Work - Computerphile"),
+            url: "https://www.youtube.com/watch?v=SAk-6gVkio0",
+          },
         ],
       },
       {
@@ -57,6 +61,15 @@ const recommendations: RecommendationSection[] = [
             url: "https://overreacted.io/algebraic-effects-for-the-rest-of-us/",
           },
           { name: msg("Effekt"), url: "https://effekt-lang.org/" },
+        ],
+      },
+      {
+        title: msg("Web Development & React"),
+        items: [
+          {
+            name: msg("RSC Explorer"),
+            url: "https://overreacted.io/introducing-rsc-explorer/",
+          },
         ],
       },
       {
