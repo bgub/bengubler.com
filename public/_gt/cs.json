@@ -1,5 +1,8 @@
 {
   "005377c29fedee52": "Šavijská škola",
+  "0220d6c7de3b3750": "STÁTY USA",
+  "0266e82b7d29533e": "Mapa hustoty členství v církvi LDS — 2024",
+  "057af6ccdf06263b": "NÍZKÉ",
   "05bbfe728618dc37": {
     "c": [
       {
@@ -40,6 +43,18 @@
   "0bb058038c571a69": "Sada nástrojů pro trénování BPE tokenizérů na vlastních datových sadách s pokročilými možnostmi konfigurace.",
   "0c929cb89a81866c": "Učení jazyků",
   "0cfbf4677a02b4fe": "Aplikace",
+  "0d032386e8f2de4f": {
+    "c": [
+      "Svatí posledních dnů ",
+      {
+        "c": "po celém světě",
+        "i": 2,
+        "t": "span"
+      }
+    ],
+    "i": 1,
+    "t": "h1"
+  },
   "0e413a5825e314de": {
     "c": "V současnosti studuji na Brigham Young University v Provo, kde se věnuji hlavnímu oboru ACME (Applied and Computational Mathematics) a vedlejšímu oboru arabština. Zároveň pracuji jako výzkumný asistent v PCCL (Laboratoř percepce, řízení a kognice) na BYU, kde zkoumám nové aplikace umělé inteligence a zpracování přirozeného jazyka.",
     "i": 1,
@@ -49,6 +64,18 @@
   "10c587eefc060c58": "Omarchy",
   "1115207f8bc4ea29": "OverTheWire Wargames",
   "116ab3333ed53b2d": "Tic-Tac-Too",
+  "11cf3d5ef54bd4e5": {
+    "c": [
+      {
+        "i": 2,
+        "k": "_gt_n_2",
+        "v": "n"
+      },
+      " členů"
+    ],
+    "i": 1,
+    "t": "div"
+  },
   "14951deeb9fd1a80": "Učení jazyků",
   "1758b3d1d63f639f": {
     "c": "Omlouvám se, příspěvek, který hledáte, neexistuje nebo byl přesunut.",
@@ -100,6 +127,11 @@
   "23833883c2b7d83b": "Please explain this blog post in simple terms:\\n\\n{content}",
   "239e1d076b1e9abe": "Rozšíření pro Chrome, které při psaní převádí znaky napsané v esperantském 'x-systému' na esperantské znaky.",
   "24cddcfc4781cfcd": "Obvody transformátorů",
+  "268a73c2221bfe7a": {
+    "c": "Načítání…",
+    "i": 1,
+    "t": "div"
+  },
   "26cc9442083084ff": "Vývoj operačních systémů a systémové programování",
   "274172cd9b242e6a": {
     "c": "Doporučené",
@@ -112,6 +144,7 @@
   "27c04964a9ee9e77": "Víra",
   "28a45948473da7f8": "GitHub",
   "28ac8a369bb99280": "Pepper &amp; Carrot v toki poně",
+  "29cfbfca6cedbb8e": "Celkový počet členů",
   "2b07b7656f564e82": "tokka-bench",
   "2c2da55d6d410519": "Jednoduchá implementace GRPO",
   "2ce262d5ab363438": "Články – Ben Gubler",
@@ -146,6 +179,7 @@
     "i": 1,
     "t": "h1"
   },
+  "3ffc2360b973b826": "0 %",
   "402715cd330d167a": "Počítače",
   "4088fbaddc00d228": "Podívejte se na mé open‑source projekty a příspěvky",
   "40947665b1503ba3": {
@@ -166,6 +200,18 @@
     "c": "Jednoduché vysvětlení",
     "i": 1,
     "t": "h4"
+  },
+  "49e1ce5a0cb1d7de": {
+    "c": [
+      {
+        "i": 2,
+        "k": "_gt_value_2",
+        "v": "v"
+      },
+      "× · posuň / přetáhni"
+    ],
+    "i": 1,
+    "t": "div"
   },
   "4a48758f8e4e06c2": "Redox OS",
   "4a73344dd83b8f0e": {
@@ -189,7 +235,18 @@
     "i": 1,
     "t": "p"
   },
+  "5654bd3554e4cc06": {
+    "c": "Stát USA",
+    "i": 1,
+    "t": "div"
+  },
+  "579689a0f509a8fc": "% populace",
   "579a989363e7dd8c": "Vaše první aplikace ve WebGPU",
+  "57aebae9579c486f": {
+    "c": "Mapa členství · 2024",
+    "i": 1,
+    "t": "div"
+  },
   "57df581328929c7a": {
     "c": "Je nám líto, ale stránka, kterou hledáte, neexistuje nebo byla přesunuta.",
     "i": 1,
@@ -202,12 +259,18 @@
     "t": "Link"
   },
   "5ae7fd1fc9c3f5a9": "Systém",
+  "5bd93c8ca8e4715d": {
+    "c": "Zdroj: Church of Jesus Christ Newsroom, World Population Review, Statistics Canada. 31. prosince 2024. Údaje o kanadských provinciích jsou odhady založené na přibližně 40% podílu Alberty z celkového národního počtu 205 tisíc.",
+    "i": 1,
+    "t": "div"
+  },
   "5c09252a83b0de9b": {
     "c": "Pokročilá pádová karta",
     "i": 1,
     "t": "h2"
   },
   "5c24a8953aebc532": "bengubler.com",
+  "5c3cbf165903fcab": "KANADSKÉ PROVINCIE",
   "5d1a87ebd0ba9c9e": "O Benovi Gublerovi",
   "5d7a168f112ec5d5": "Můj osobní web a blog, kde píšu o AI, distribuovaném trénování a učení jazyků.",
   "600789898ab6a2f9": {
@@ -265,6 +328,11 @@
   "772e15e4f2f20a76": "Důkaz vět",
   "77d68abb75acf8cd": "Příspěvek nebyl nalezen",
   "78344b60f407928e": "Jiné",
+  "7a87a6c41143b213": {
+    "c": "Žádná zaznamenaná přítomnost",
+    "i": 1,
+    "t": "div"
+  },
   "7be30fc926cb3b77": "AI bot pro piškvorky vytvořený pomocí TensorFlow.js. Vytvořeno jako teenager při učení se o strojovém učení.",
   "7ca9c9a15764489d": "GitHub",
   "7cd96c52865feaa9": {
@@ -285,8 +353,21 @@
   "82d3a80413d6a1c3": "Čtení na 5 min",
   "8313f3c1e394a316": "Nejvhodnější pro obchodní dotazy a delší konverzace",
   "84de340c2461f1e1": "Sdílet na {name}",
+  "8587d99cfeadb311": {
+    "c": [
+      {
+        "i": 2,
+        "k": "_gt_value_2",
+        "v": "v"
+      },
+      "% populace"
+    ],
+    "i": 1,
+    "t": "div"
+  },
   "870932ff32fe810d": "Nand to Tetris",
   "880b21ecb28d7479": "Operační systémy",
+  "899acbe0cb96edd5": "Interaktivní mapa hustoty členství v církvi LDS po celém světě podle jednotlivých zemí, států USA a kanadských provincií.",
   "8b7fcaab32fd3bc4": "(archivováno)",
   "8c74857ecf98c255": "Vývoj",
   "8d5bef805f152308": {
@@ -352,6 +433,7 @@
   "8f0d08612dc860db": "Jak slepý model vidí Zemi?",
   "9090d8c41e669be7": "Produktivita a život",
   "9263adc2beb9fc18": "AI a strojové učení",
+  "92d1b68f576a0d5f": "Tichomoří",
   "959d0255998606b4": "CodeCrafters: Postavte si vlastní X v Rustu",
   "95f506e43b9b3265": "Příspěvek nebyl nalezen - Ben Gubler",
   "97c326fd40fc8abd": "Tisknutelné kartičky pádů pro rychlé a efektivní zapamatování vzorů skloňování ruských podstatných jmen.",
@@ -369,6 +451,7 @@
   },
   "a34bed55aa23f894": "Squirrelly",
   "a64c6d2a941c060b": "LeetCode pro GPU",
+  "a6fd277111c7cd66": "Neznámé",
   "a7a6f6e342ca4342": {
     "c": "Obsah",
     "i": 1,
@@ -381,6 +464,7 @@
   "aa5bfb3c14b0a681": "Učíme se základy",
   "aa600fbbd0a9d686": "Základní Nix konfigurace pro macOS s rozumnými výchozími nastaveními a dokumentací.",
   "aab25fba56518455": "Lingvistika",
+  "abaacba7b0f79fe8": "Resetovat",
   "acd3df01d58f5765": "Úloha divergentních asociací",
   "ade50401b1396de9": "Příspěvky",
   "ae22c9e36cd4543e": [
@@ -403,20 +487,25 @@
   },
   "archived_description": "Starší příspěvky, které mohou být zastaralé, ale stále mají určitou hodnotu.",
   "archived_heading": "Archivováno",
+  "b09fa3fb65954f11": "ZEMĚ",
   "b0e41f1527b81cd3": {
     "c": "Rád se propojuji s dalšími vývojáři, bavím se o nových nápadech a zkoumám možné spolupráce. Klidně se ozvěte!",
     "i": 1,
     "t": "p"
   },
+  "b24c8ee92c656887": "USA",
   "b305d06d0af683b4": "Stránka nebyla nalezena - Ben Gubler",
   "b50c41465e5408b3": "E‑mail",
   "b6679fa5d0ab6497": "Psát operační systém v jazyce Rust",
   "b710e73c5611e3f4": "Kontakt – Ben Gubler",
   "b8baaea54c6c1704": "Eta",
+  "ba44feacbb90d4dd": "MILIONŮ",
   "bc79b8827bd6278c": "Knihy",
+  "bc7adb2d75ca4f3e": "Afrika",
   "bc959b56a841666f": "Oblíbené – Ben Gubler",
   "bd4cbf79a8e9b868": "Linux From Scratch",
   "be7aef60733f8a31": "Czech Case Cards – kartičky pádů – Ben Gubler",
+  "c0fa5428a2f6a612": "Jižní Amerika",
   "c18af923a81d97db": "Matematika a formální metody",
   "c24789fa6ee1226c": "stín",
   "c2a07f3d5a77e750": "Osobní webová stránka Bena Gublera. Stážista webového vývoje ve společnosti Vercel, studuje umělou inteligenci a lidské jazyky na BYU. Myšlenky o webovém vývoji, umělé inteligenci a vytváření věcí, které mají smysl.",
@@ -446,6 +535,7 @@
   "c913a4cd1fdb059a": "Hádanky s GPU a tenzory",
   "c96c6913115e475e": "Hardware",
   "ca744e725e390110": "Czech Case Cards – kartičky pádů",
+  "cacb17a8b51b5771": "65 %+%",
   "cb10fe00fbfa4b87": "Stavebnice jazyků",
   "cc0ddbf6a83c8fa4": "Russian Case Cards – Ben Gubler",
   "cc77c2b66c79a626": "Splashpad",
