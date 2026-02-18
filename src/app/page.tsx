@@ -70,7 +70,7 @@ export default async function HomePage() {
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
               <T id="hero_bio_paragraph_1">
-                I'm Ben — a student at BYU studying Applied Math and Arabic. I
+                I'm Ben — a student at BYU studying CS and Arabic. I
                 build open-source libraries, web applications, and AI tools.
                 Currently interning at Vercel.
               </T>
