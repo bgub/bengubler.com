@@ -1,0 +1,97 @@
+---
+title: "Představujeme helm"
+description: "Typově bezpečný TypeScript framework pro AI agenty. Nahraďte desítky nástrojů dvěma — „search“ a „execute“ — a izolujte kód generovaný LLM v sandboxu s jemně nastavitelnými oprávněními."
+date: "2026-02-25"
+tags: [ml/ai, open-source, frontend]
+---
+
+# Představujeme helm
+
+helm je typovaný framework v TypeScriptu pro AI agenty. Místo spouštění shellových příkazů a parsování textových řetězců volají agenti typované funkce se strukturovanými vstupy a výstupy:
+
+```ts
+import { createHelm, git, fs, grep } from "@bgub/helm";
+
+const agent = createHelm({
+  permissions: {
+    "fs.read": "allow",
+    "fs.write": "ask",
+    "fs.remove": "deny",
+    "git.status": "allow",
+    "git.*": "ask",
+  },
+  onPermissionRequest: async (operation, args) => {
+    return confirm(`Allow ${operation}?`);
+  },
+})
+  .use(fs())
+  .use(git())
+  .use(grep());
+
+const { staged, unstaged, branch } = await agent.git.status();
+const { content } = await agent.fs.read("./package.json");
+```
+
+„Dovednosti“ — skupiny souvisejících operací — registruješ pomocí builder patternu. TypeScript na každém kroku odvozuje kompletní typ. Každá operace má úroveň oprávnění: `allow` (spustí se ihned), `ask` (pozastaví se a čeká na schválení) nebo `deny` (vyhodí `PermissionDeniedError`). Oprávnění se vyhodnocují podle priority: přesná shoda → zástupný znak (wildcard) → výchozí nastavení autora dovednosti → globální výchozí nastavení.
+
+helm obsahuje vestavěné dovednosti pro věci, které agenti dělají každý den: `fs`, `git`, `grep`, `edit`, `shell`, `http`. Můžeš si definovat vlastní dovednosti a automaticky získáš typy, vyhledávání a oprávnění.
+
+
+## Ukázka
+
+Vytvořil jsem chatbota, kde má agent přesně dva nástroje: `search` a `execute`.
+
+`search` provádí vyhledávání podle klíčových slov ve všech registrovaných operacích nástroje Helm — agent ho volá, aby zjistil, co je k dispozici, a naučil se signatury funkcí:
+
+```ts
+agent.search("file read");
+// → [{ qualifiedName: "fs.read",
+//      description: "Přečte soubor a vrátí jeho obsah jako řetězec",
+//      signature: "(path: string) => Promise<{ content: string }>", ... }]
+```
+
+`execute` přijímá libovolný JavaScriptový kód a spustí ho nad API agenta Helmu. LLM pak generuje kód jako:
+
+```js
+const { staged, unstaged, branch } = await agent.git.status();
+return { branch, staged: staged.length, unstaged: unstaged.length };
+```
+
+V kontextu jsou jen dva nástroje, bez ohledu na to, kolik schopností je zaregistrováno. Agent si podle potřeby sám zjistí, co je potřeba, a napíše k tomu kód.
+
+![Ukázková aplikace Helm vypisující soubory v aktuálním adresáři](/blog-images/helm-demo-app-list-files.png)
+
+
+### Sandboxování nedůvěryhodného kódu
+
+Nástroj `execute` spouští jakýkoli JavaScript, který LLM napíše. Aby to bylo bezpečné, demo ho spouští v sandboxu pomocí [SES (Secure ECMAScript)](https://github.com/endojs/endo/tree/master/packages/ses) v podprocesu.
+
+SES `lockdown()` zmrazí všechny vestavěné objekty JavaScriptu — `Object`, `Array`, `Promise`, `Function`, zkrátka všechno. Kód běží uvnitř `Compartment`, izolovaného globálního oboru názvů s přístupem přesně ke dvěma věcem: proxy `agent`u a osekané `console`. `fetch`, `require`, `import`, `process`, `fs` — nic z toho v compartmentu neexistuje. Jediný způsob, jak dělat něco zajímavého, je přes agent proxy.
+
+`agent` uvnitř sandboxu není skutečný helm agent — je to rekurzivní `Proxy`, která zachytává přístupy k vlastnostem a volání funkcí. Když kód zavolá `agent.git.status()`, proxy pošle IPC zprávu do nadřazeného procesu. Ten zavolá skutečnou metodu na skutečném helm agentovi, spustí kompletní kontrolu oprávnění a pošle výsledek zpět. Pokud je operace nastavená na `"ask"`, nadřazený proces se před odpovědí zastaví a čeká na souhlas uživatele. Pokud je to `"deny"`, chyba se propaguje zpět přes IPC.
+
+Sandboxovaný kód nemá tušení, že se tohle všechno děje. Jen vidí, že se jeho `await` vyřeší s nějakou hodnotou. Jediný způsob, jak interagovat s okolním světem, je přes operace helmu chráněné oprávněními.
+
+### Uživatelské rozhraní oprávnění
+
+Chatovací rozhraní má postranní panel se seznamem všech registrovaných nástrojů a operací, z nichž každý má přepínač povolit/zeptat se/zakázat. Změna oprávnění se projeví u následující zprávy.
+
+![The tools panel with per-operation permission controls](/blog-images/helm-demo-app.png)
+
+Když LLM narazí na operaci nastavenou na `"ask"`, server streamuje požadavek na schválení do frontendu. Volání nástroje zobrazí inline banner s tlačítky Allow a Deny. Server čeká na `Promise<boolean>`, dokud uživatel na jedno z nich neklikne.
+
+![An execute tool call awaiting user approval with Allow and Deny buttons](/blog-images/helm-demo-app-sandbox-feature.png)
+
+Pokud uživatel požadavek zamítne, `PermissionDeniedError` se propaguje celou cestu zpět a LLM tuto chybu uvidí ve výsledku nástroje. Může vysvětlit, proč dané oprávnění potřebuje, zkusit jiný postup, nebo to vzdát.
+
+## Inspirace
+
+Tato architektura — dát agentovi jeden nástroj pro spouštění kódu místo desítek jednotlivých nástrojů — byla inspirovaná režimem [code mode](https://blog.cloudflare.com/code-mode-mcp/) od Cloudflare pro jejich MCP server, kde snížili spotřebu tokenů o 99,9 % tím, že nahradili více než 2 500 nástrojů pro API endpointy kombinací `search` + `execute`. [Podobný nápad Rhys Sullivana](https://x.com/RhysSullivan/status/2019819177473933404) mi myšlenku definitivně srovnal v hlavě: kombinace spouštění kódu, snadného objevování a granulárního modelu oprávnění znamená, že agent může dělat prakticky cokoli, ale nemůže se úplně utrhnout ze řetězu.
+
+## Vyzkoušejte to
+
+```bash
+npm install @bgub/helm
+```
+
+Zdroj najdete na [GitHub](https://github.com/bgub/helm). Ukázková aplikace je v `apps/demo`.
