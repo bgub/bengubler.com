@@ -1,0 +1,95 @@
+---
+title: "Představuji agentpane"
+description: "Lokální webové rozhraní pro AI agenty na psaní kódu. Více panelů, více relací, streamování — spouštějte Claude Code a Codex vedle sebe přímo v prohlížeči."
+date: "2026-03-05"
+tags: [ml/ai, open-source, frontend]
+---
+
+# Představujeme agentpane
+
+agentpane je lokální webové rozhraní pro AI agenty pro programování. Spustíte `npx agentpane`, otevře se v prohlížeči a můžete komunikovat s Claude Code, Codexem nebo jakýmkoli agentem, který podporuje [ACP (Agent Client Protocol)](https://github.com/anthropics/agent-protocol) — to vše z rozhraní s více panely, průběžným výstupem, trvalým ukládáním a správou relací:
+
+```bash
+npx agentpane
+# → http://localhost:6767
+```
+
+Vyberte agenta, zvolte pracovní adresář a spusťte relaci. Agent běží jako podproces přímo na vašem počítači. Žádný cloud, žádné nasazování, žádné účty.
+
+![Obrazovka nastavení agentpane s výběrem agenta a adresáře](/blog-images/agentpane-setup.png)
+
+
+## Více panelů, více agentů
+
+To hlavní, co jsem chtěl, byla možnost spustit více agentů najednou a mít je vedle sebe. agentpane nabízí až čtyři panely s nastavitelnou velikostí a kartami. Relace můžete přetáhnout z postranního panelu do libovolného okna nebo přetažením karty vytvořit nové. Rozvržení zůstane zachované i po obnovení stránky.
+
+To znamená, že v jednom panelu může Claude Code pracovat na vašem backendu a v druhém může Codex refaktorovat frontend — na stejné obrazovce, ve stejné aplikaci.
+
+![Dvě relace spuštěné vedle sebe — vlevo Codex, vpravo Claude Code](/blog-images/agentpane-hero.png)
+
+## Architektura
+
+Aplikace se skládá ze dvou procesů:
+
+* **API server** (Hono, port 3456) — spouští agenty, spravuje relace a zajišťuje perzistenci
+* **Webový frontend** (Next.js, port 6767) — uživatelské rozhraní, kde se volání `/api` přepisují na backend
+
+Backend je postavený na [Effect.ts](https://effect.website/) a využívá dependency injection prostřednictvím kompozovatelných servisních vrstev:
+
+```
+SessionRepo (DB)
+  → ConnectionManager (agent subprocess lifecycle)
+  → PromptEngine (turn orchestration)
+  → EventHub / EventBroadcaster (SSE)
+  → WriteQueue (batched DB writes)
+```
+
+Agenti komunikují přes ACP — JSON-RPC 2.0 nad stdio. Když odešlete prompt, `PromptEngine` vytvoří záznamy jednotlivých kol, předá zprávu podprocesu agenta přes ACP a průběžně posílá výsledky zpět prostřednictvím Server-Sent Events.
+
+
+### Streamování s odolností při opětovném připojení
+
+Frontend se pro každou relaci připojuje k SSE endpointu. Každá událost dostane monotonně rostoucí ID. `EventBroadcaster` udržuje kruhový buffer (512 KB / 1000 událostí), takže pokud se váš prohlížeč odpojí a znovu připojí, přehraje zmeškané události pomocí hlavičky `Last-Event-ID`. Žádné mezery v konverzaci, není potřeba nic ručně obnovovat.
+
+### Ukládání odolné proti pádu
+
+Veškerý stav se ukládá do lokální databáze SQLite v `~/.agentpane/agentpane.db`. Zápisy ale neprobíhají přímo — `WriteQueue` shromažďuje operace a každých 50 ms je dávkově zapisuje. Před samotným zápisem se operace uloží do tabulky pro obnovu. Pokud server během zápisu spadne, po restartu pokračuje tam, kde skončil. Žádná zpráva se neztratí.
+
+```sql
+-- Tabulka pro zotavení
+CREATE TABLE write_queue_ops (
+  id TEXT PRIMARY KEY,
+  session_id TEXT NOT NULL,
+  op_json TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+```
+
+
+## Co agenti vidí
+
+agentpane neřeší, jaký model agenta pohání — komunikuje přes ACP. Když se připojíte k relaci, `ConnectionManager`:
+
+1. Najde spustitelný soubor agenta (kvůli kompatibilitě s npm prohledá `node_modules/.bin/`)
+2. Spustí ho jako podřízený proces s připojenými proudy stdio
+3. Vyjedná možnosti ACP (auth, config, modes, commands)
+4. Pokud se znovu připojuje k předchozí relaci, pokusí se ji obnovit
+
+Uživatelské rozhraní se přizpůsobí tomu, co agent podporuje. Pokud agent nabízí možnosti konfigurace, zobrazí se jako rozbalovací nabídky. Pokud podporuje příkazy se `/`, budete mít k dispozici automatické doplňování. Pokud průběžně posílá bloky myšlenek, zobrazí se jako sbalitelné sekce.
+
+## Frontend
+
+Webová aplikace běží na Next.js 16 s Reactem 19 a React Compilerem — nikde není potřeba ručně používat `useMemo` ani `useCallback`. Stav je rozdělený do dvou vrstev kontextu:
+
+* **SessionProvider** — aktivní relace, kontroly stavu, CRUD operace nad relacemi
+* **LayoutProvider** — konfigurace panelů, pořadí karet, drag-and-drop
+
+Stav na serveru (relace, konverzace, využití tokenů) se spravuje pomocí TanStack React Query a při SSE událostech se invaliduje. Markdown se během streamování vykresluje průběžně pomocí [Streamdown](https://github.com/anthropics/streamdown) se zvýrazňováním syntaxe přes Shiki.
+
+## Vyzkoušejte si to
+
+```bash
+npx agentpane
+```
+
+Zdrojový kód je na [GitHubu](https://github.com/bgub/agentpane). Dokumentace je v `apps/docs`.
