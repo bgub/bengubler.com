@@ -14,6 +14,7 @@ export function Providers({ children }: ProvidersProps) {
         defaultTheme="system"
         enableSystem
         disableTransitionOnChange
+        scriptProps={typeof window === "undefined" ? undefined : { type: "application/json" }}
       >
         {children}
       </NextThemesProvider>
