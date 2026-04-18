@@ -1,13 +1,13 @@
 ---
 title: "انتقالات سلسة بين الصفحات في Next.js باستخدام next-view-transitions"
-description: "أضف انتقالات سلسة بين الصفحات إلى Next.js باستخدام View Transitions API."
+description: "أضف انتقالات سلسة بين الصفحات في Next.js باستخدام واجهة View Transitions API."
 date: "2025-06-14"
 tags: [frontend]
----
+---"
 
-## الخلاصة
+## باختصار
 
-تُدخل حزمة [`next-view-transitions`](https://github.com/shuding/next-view-transitions) انتقالات صفحات سلسة إلى Next.js. سنبني مدونة بسيطة ونضيف انتقالات سلسة للعناصر باستخدام الخاصية `viewTransitionName` لجعل العناوين والتواريخ تتغيّر بسلاسة بين الصفحات. إليك عرضًا توضيحيًا لما سنبنيه:
+تضيف حزمة [`next-view-transitions`](https://github.com/shuding/next-view-transitions) انتقالات سلسة بين الصفحات إلى Next.js. سنبني مدونة بسيطة ونضيف انتقالات سلسة للعناصر باستخدام خصائص `viewTransitionName`، بحيث تتحول العناوين والتواريخ بانسيابية بين الصفحات. إليك عرضًا توضيحيًا لما سنبنيه:
 
 <Tweet id="1934092246921671158" />
 
@@ -21,13 +21,12 @@ pnpm install next-view-transitions
 
 اختر TypeScript وTailwind CSS وApp Router.
 
-أضِف shadcn/ui:
+أضف shadcn/ui:
 
 ```bash
 pnpx shadcn@latest init
 pnpx shadcn@latest add card badge
 ```
-
 
 ## بيانات تجريبية
 
@@ -47,40 +46,39 @@ export const posts: Post[] = [
   {
     id: 1,
     slug: "getting-started-nextjs",
-    title: "البدء مع Next.js",
+    title: "Getting Started with Next.js",
     description:
-      "هذا نص تجريبي يُستخدم كمثال. يمكن استبداله بمحتوى حقيقي لاحقاً.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
     date: "2024-12-01",
     content:
-      "هذا نص تجريبي يُستخدم كمثال. يمكن استبداله بمحتوى حقيقي لاحقاً. هذا النص أطول قليلاً لإظهار كيفية التعامل مع المحتوى الأطول في التطبيق.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
   },
   {
     id: 2,
     slug: "react-best-practices",
-    title: "أفضل ممارسات React",
+    title: "React Best Practices",
     description:
-      "هذا نص تجريبي آخر يُستخدم كمثال للوصف. يمكن استبداله بمحتوى حقيقي عند الحاجة.",
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
     date: "2024-12-05",
     content:
-      "هذا نص تجريبي آخر يُستخدم كمثال للمحتوى. يمكن استبداله بمحتوى حقيقي عند الحاجة. هذا النص يوضح كيفية عرض المحتوى الطويل.",
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
   },
   {
     id: 3,
     slug: "tailwind-tips",
-    title: "نصائح وحيل Tailwind CSS",
+    title: "Tailwind CSS Tips and Tricks",
     description:
-      "هذا نص تجريبي ثالث يُستخدم كمثال للوصف. سيتم استبداله بمحتوى حقيقي في المستقبل.",
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     date: "2024-12-10",
     content:
-      "هذا نص تجريبي ثالث يُستخدم كمثال للمحتوى. سيتم استبداله بمحتوى حقيقي في المستقبل. هذا النص يساعد في اختبار التطبيق.",
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.",
   },
 ];
 ```
 
+## قائمة المقالات
 
-## قائمة التدوينات
-
-استبدِل `app/page.tsx`:
+استبدل `app/page.tsx`:
 
 ```tsx
 import {
@@ -97,7 +95,7 @@ import Link from "next/link";
 export default function PostsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">مدونتي</h1>
+      <h1 className="text-3xl font-bold mb-8">My Blog</h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <Link key={post.id} href={`/posts/${post.slug}`}>
@@ -118,8 +116,7 @@ export default function PostsPage() {
 }
 ```
 
-
-## صفحات المنشورات الفردية
+## صفحات المقالات المنفصلة
 
 أنشئ `app/posts/[slug]/page.tsx`:
 
@@ -147,7 +144,7 @@ export default async function PostPage({ params }: PostPageProps) {
         href="/"
         className="text-blue-600 hover:underline mb-4 inline-block"
       >
-        ← العودة إلى المنشورات
+        ← Back to posts
       </Link>
 
       <article className="max-w-3xl">
@@ -173,12 +170,11 @@ export function generateStaticParams() {
 }
 ```
 
-باتت لديك الآن مدونة تعمل مع تنقّل عادي بين الصفحات.
+أصبح لديك الآن مدونة تعمل مع تنقّل عادي بين الصفحات.
 
+## أضف انتقالات العرض
 
-## أضِف انتقالات العرض
-
-لفّ تطبيقك داخل `app/layout.tsx`:
+قم بتغليف تطبيقك داخل `app/layout.tsx`:
 
 ```tsx
 import { ViewTransitions } from "next-view-transitions";
@@ -192,7 +188,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ViewTransitions>
-        <html lang="ar">
+      <html lang="en">
         <body>{children}</body>
       </html>
     </ViewTransitions>
@@ -210,15 +206,14 @@ import Link from "next/link";
 import { Link } from "next-view-transitions";
 ```
 
-في هذه المرحلة، تبدو عناصر التنقّل مطابقة لما كانت عليه سابقًا. لا تضيف الحزمة أي انتقالات بشكل افتراضي.
-
+في هذه المرحلة، يبدو التنقّل مطابقًا تمامًا لما كان عليه سابقًا. لا تضيف الحزمة أي انتقالات تلقائيًا.
 
 ## السحر: انتقالات العناصر المشتركة
 
-أضف خاصية `viewTransitionName` إلى العناصر التي ينبغي أن تتحول بين الصفحات:
+أضِف خصائص `viewTransitionName` إلى العناصر التي يُفترض أن تتحول بين الصفحات:
 
 ```tsx
-// في قائمة المنشورات الخاصة بك (app/page.tsx):
+// في قائمة مقالاتك (app/page.tsx):
 <CardTitle
   className="line-clamp-2"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -235,7 +230,7 @@ import { Link } from "next-view-transitions";
 ```
 
 ```tsx
-// في صفحة المنشور الفردي (app/posts/[slug]/page.tsx):
+// في صفحة المقال الفردية (app/posts/[slug]/page.tsx):
 <h1
   className="text-4xl font-bold mb-4"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -250,9 +245,8 @@ import { Link } from "next-view-transitions";
 </Badge>
 ```
 
-الآن ينتقل العنوان والتاريخ بسلاسة من البطاقة إلى صفحة التدوينة. **هذه هي الطريقة الوحيدة لمعاينة الانتقالات فعليًا** — عبر مطابقة قيم `viewTransitionName` بين الصفحات.
+الآن ينتقل العنوان والتاريخ بسلاسة من البطاقة إلى صفحة المقال. **وهذه هي الطريقة الوحيدة لرؤية الانتقالات فعليًا** — وذلك بمطابقة قيم `viewTransitionName` بين الصفحات.
 
+## تم
 
-## تمّ
-
-توفر هذه الانتقالات استمرارية بصرية، وتجعل التطبيق أكثر استجابة، وتساعد المستخدمين على الحفاظ على السياق. تدعم متصفحات Chrome وEdge وOpera واجهة برمجة تطبيقات View Transitions، مع عودة سلسة إلى التنقل العادي في المتصفحات الأخرى.
+توفر هذه الانتقالات استمرارية بصرية، وتجعل التطبيق يبدو أكثر سرعة في الاستجابة، وتساعد المستخدمين على الحفاظ على السياق. واجهة View Transitions API مدعومة في Chrome وEdge وOpera، مع انتقال سلس إلى التنقل العادي في المتصفحات الأخرى.

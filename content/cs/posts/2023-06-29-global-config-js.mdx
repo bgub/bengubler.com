@@ -1,24 +1,24 @@
 ---
 title: Jeden konfigurační soubor, který vládne všem
-description: Nástroje v JavaScriptu mají příliš mnoho konfiguračních souborů. Pojďme je sloučit.
+description: JavaScriptové nástroje mají příliš mnoho konfiguračních souborů. Pojďme je sloučit.
 date: "2023-06-29"
 tags: [open-source]
 was_llm_utilized: slightly
 ---
 
-Moderní webový vývoj obnáší práci s řadou build nástrojů a frameworků pro JS, z nichž každý vyžaduje vlastní konfigurační soubor. Správa těchto souborů, jako jsou `.eslintrc`, `next.config.js` a `tailwind.config.js`, může být zdlouhavá a časově náročná. V tomto článku se podívám na myšlenku sloučit je do jediného souboru `global.config.js`, čímž se konfigurace projektu centralizuje a ubude zbytečného rozptylování.
+Moderní webový vývoj zahrnuje práci s řadou JS build nástrojů a frameworků, z nichž každý vyžaduje vlastní konfigurační soubory. Správa těchto konfiguračních souborů, jako jsou `.eslintrc`, `next.config.js` a `tailwind.config.js`, může být nepraktická a časově náročná. V tomto příspěvku se podívám na možnost sloučit tyto konfigurační soubory do jediného souboru s názvem `global.config.js`, centralizovat tak konfiguraci projektu a omezit zbytečné rozptylování.
 
 ## Konfigurační soubory všude
 
-Když píšu tento blogpost, kořen mého projektu obsahuje `.eslintrc.json`, `next.config.js`, `postcss.config.js`, `tailwind.config.js` a `tsconfig.json`. Přestože je moje konfigurace víceméně „out of the box“ a každý soubor má méně než 30 řádků, tyhle soubory zabírají cenné místo v postranním panelu VS Code a odvádějí pozornost od toho podstatného: mého zdrojového kódu.
+Zatímco píšu tento blogový post, v kořenovém adresáři projektu mám `.eslintrc.json`, `next.config.js`, `postcss.config.js`, `tailwind.config.js` a `tsconfig.json`. I když je moje konfigurace víceméně výchozí a každý soubor má méně než 30 řádků, zabírají tyto soubory cenné místo v postranním panelu VSCode a odvádějí pozornost od toho podstatného: od zdrojového kódu.
 
-Můj případ není nijak výjimečný. Některé projekty používají konfiguračních souborů mnohem víc. Představte si, jak moc se může projekt zaplevelit, když přidáte `.babelrc`, `prettier.config.js`, `jest.config.js`, `cypress.json` atd.
+Můj případ zdaleka není nijak výjimečný. Některé jiné projekty používají konfiguračních souborů mnohem víc. Představte si, jak nepřehledný projekt může být, když přidáte `.babelrc`, `prettier.config.js`, `jest.config.js`, `cypress.json` atd.
 
 ## Řešení: `global.config.js`
 
-Rád bych navrhl jednoduché řešení: sloučit konfigurační soubory do jednoho souboru s názvem `global.config.js`. Konfigurace pro každý nástroj by byla uložena v exportovaném objektu pod klíčem odpovídajícím názvu balíčku na npm.
+Chtěl bych navrhnout jednoduché řešení: sloučit konfigurační soubory do jednoho souboru s názvem `global.config.js`. Konfigurace pro každý nástroj by byla uložená v exportovaném objektu pod klíčem pojmenovaným podle příslušného npm balíčku.
 
-Projekty by měly stále umožňovat používání jednotlivých konfiguračních souborů pro případy, kdy je konfigurace rozsáhlá a komplexní (např. `tsconfig.json`), ale nejprve by měly zkontrolovat, zda existuje `global.config.js` a zda v něm mají konfiguraci pro daný nástroj.
+Projekty by stále měly umožňovat používat samostatné konfigurační soubory v případech, kdy je konfigurace rozsáhlá a složitá (např. `tsconfig.json`), ale nejdřív by měly zkontrolovat, jestli existuje `global.config.js` a jestli obsahuje konfiguraci pro daný nástroj.
 
 Takto by mohl vypadat jednoduchý `global.config.js`:
 
@@ -47,10 +47,9 @@ module.exports = {
 }
 ```
 
-
 ## Ale co typy?
 
-Doplnění typů lze snadno zapnout pro `global.config.js` přidáním typových definic do komentářů, podobně jako to už dělají Tailwind a Next.js ve svých konfiguračních souborech.
+Doplňování typů lze v `global.config.js` snadno povolit přidáním typových definic do komentářů, stejně jako to už ve svých konfiguračních souborech dělají Tailwind a NextJS.
 
 ```js
 module.exports = {
@@ -71,7 +70,6 @@ module.exports = {
 }
 ```
 
-
 ## Další kroky
 
-Pokud se vám tenhle nápad líbí, pošlete PR do svého oblíbeného build nástroje! Pokud ne, napište mi na Twitteru proč. A nebo nenapište a prostě pokračujte ve svém životě.
+Jestli se vám tenhle nápad líbí, pošlete PR do svého oblíbeného build nástroje! Pokud ne, dejte mi na Twitteru vědět proč. Nebo taky ne a prostě žijte dál.

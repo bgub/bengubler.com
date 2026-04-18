@@ -1,36 +1,35 @@
 ---
-title: "Enroot na Slurm pre distribuované ML: Časť 1"
-description: Ako používať Enroot na Slurm na kontajnerový tréning na viacerých uzloch.
+title: "Enroot na Slurme pre distribuované ML: 1. časť"
+description: Ako používať Enroot na Slurme na kontajnerizovaný tréning na viacerých uzloch.
 date: "2023-09-08T22:00:00+0000"
 tags: [ml/ai]
 ---
 
-_Toto je 1. časť z dvojdielnej série. [Časť 2](./enroot-on-slurm-for-distributed-ml-part-2) nájdete tu._
+*Toto je 1. časť z 2-dielnej série. [2. časť](./enroot-on-slurm-for-distributed-ml-part-2) nájdete tu.*
 
-V laboratóriu, kde pracujem, máme prístup k prostrediu vysokovýkonného výpočtovania (HPC), ktoré používa [Slurm Workload Manager](https://slurm.schedmd.com/documentation.html). Naše HPC beží na RHEL (Red Hat Enterprise Linux) 7 a jednotliví používatelia majú výrazne obmedzené oprávnenia. Nemáme `sudo` a z výpočtových uzlov nie je prístup na internet.
+V laboratóriu, kde pracujem, máme prístup k prostrediu vysokovýkonného počítania (HPC), ktoré používa [Slurm Workload Manager](https://slurm.schedmd.com/documentation.html). Naše HPC beží na RHEL (Red Hat Enterprise Linux) 7 a jednotliví používatelia majú výrazne obmedzené oprávnenia. Nemáme prístup k `sudo` a z výpočtových uzlov sa nemôžeme pripojiť na internet.
 
-V praxi je proces inštalácie balíkov a aktualizácie ovládačov priamo na výpočtovom uzle natoľko náročný, že robí distribuovaný tréning s moderným softvérom nesmierne komplikovaným. Našťastie existuje riešenie: kontajnerizácia.
+V skutočnosti je inštalácia balíkov a aktualizácia ovládačov priamo z výpočtového uzla natoľko náročná, že distribuovaný tréning s moderným softvérom je neuveriteľne komplikovaný. Našťastie existuje riešenie: kontajnerizácia.
 
-Na lokálnom počítači vytvoríme pomocou Dockeru image so všetkými potrebnými balíkmi. Ten potom prenesieme do HPC a použijeme na spustenie tréningového skriptu.
+Docker použijeme na vytvorenie obrazu na našom lokálnom počítači, ktorý bude obsahovať všetky balíky, ktoré potrebujeme. Potom tento obraz prenesieme do HPC a použijeme ho na spustenie nášho tréningového skriptu.
 
 ## Krok 1: Vytvorte Docker image lokálne
 
-Už som písal o [Docker nastavení, ktoré používam na strojové učenie](./ultimate-ml-dockerfile), takže sa tu nebudem opakovať. Dôležité je, aby ste mali označený (tagovaný) Docker image s balíkmi, ktoré potrebujete na spustenie tréningového skriptu. Ja používam Ubuntu 20.04 a CUDA 11.8.
+O [nastavení Dockeru, ktoré používam na strojové učenie](./ultimate-ml-dockerfile), som už písal, takže sa tu nebudem opakovať. Dôležité je, aby ste mali otagovaný Docker image s balíkmi, ktoré potrebujete na spustenie tréningového skriptu. Ja používam Ubuntu 20.04 a CUDA 11.8.
 
-## Krok 2: Zbalenie a prenos obrazu
+## Krok 2: Zbaľte a preneste obraz
 
-Nainštalujte [Enroot](https://github.com/NVIDIA/enroot) a potom spustite nasledujúci príkaz, aby ste previedli svoj Docker image na súbor typu squashfs:
+Nainštalujte [Enroot](https://github.com/NVIDIA/enroot) a potom spustite nasledujúci príkaz, aby ste svoj Docker obraz premenili na súbor squashfs:
 
 ```bash
 enroot import dockerd://<image-name>
 ```
 
-Týmto sa vo vašom aktuálnom adresári vytvorí súbor s názvom `<image-name>.sqsh`. Tento súbor preneste na HPC pomocou `scp`.
+Tým sa v aktuálnom adresári vytvorí súbor s názvom `<image-name>.sqsh`. Tento súbor preneste na HPC pomocou `scp`.
 
+## Krok 3: Načítanie kontajnerového obrazu na HPC
 
-## Krok 3: Načítanie image na HPC
-
-Vstúpte na výpočtový uzol pomocou `salloc --nodes=1 --gpus=8 --qos=<qos> --mem=2000G --time=72:00:00 --ntasks=1 --cpus-per-task=128`.
+Na výpočtový uzol sa prihláste pomocou `salloc --nodes=1 --gpus=8 --qos=<qos> --mem=2000G --time=72:00:00 --ntasks=1 --cpus-per-task=128`.
 
 Najprv musíme načítať modul Enroot:
 
@@ -47,10 +46,10 @@ enroot create --name image-name /path/to/image-name.sqsh
 Potom ho spustite:
 
 ```bash
-enroot start --mount /lokálna/cesta/súboru:/cesta/súboru/v/obraze \
-             --rw názov-obrazu bash
+enroot start --mount /local/file/path:/image/file/path \
+             --rw image-name bash
 ```
 
-Tým sa otvorí interaktívny shell vnútri kontajnera. Nezabudnite na prepínač `--rw`, ktorý sprístupní koreňový súborový systém na zápis. Môžete pridať toľko prepínačov `--mount`, koľko potrebujete, aby ste pripojili súbory a adresáre z hostiteľského počítača.
+Týmto sa vo vnútri kontajnera otvorí interaktívny shell. Nezabudnite na príznak `--rw`, ktorý nastaví koreňový súborový systém na zápis. Môžete pridať toľko príznakov `--mount`, koľko potrebujete, a pripojiť tak súbory a adresáre z hostiteľského stroja.
 
-Ak chcete preniesť premenné prostredia, môžete použiť prepínač `--env` spolu s názvom premennej prostredia na hostiteľskom počítači. Napríklad `--env SLURM_NODEID` prenesie premennú prostredia `SLURM_NODEID`.
+Ak chcete preniesť premenné prostredia, môžete použiť príznak `--env` spolu s názvom premennej prostredia na hostiteľskom stroji. Napríklad `--env SLURM_NODEID` prenesie premennú prostredia `SLURM_NODEID`.

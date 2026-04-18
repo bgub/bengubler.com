@@ -1,17 +1,17 @@
 ---
-title: "إضافة عناوين .md لعرض محتوى Markdown الخام في Next.js"
-description: "كيفية إضافة عناوين .md إلى مدونة Next.js لديك لتقديم محتوى Markdown الخام، مستوحًى من وثائق Vercel."
+title: "إضافة روابط .md لمحتوى Markdown الخام في Next.js"
+description: "كيفية إضافة روابط .md إلى مدونتك في Next.js لتقديم محتوى Markdown الخام، استلهامًا من توثيق Vercel."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-> **تحديث**: بعد نشر هذا المقال، اقترح [Guillermo Rauch](https://twitter.com/rauchg) (المدير التنفيذي لـ Vercel) استخدام rewrites في Next.js بدلًا من middleware لهذا الاستخدام. لقد حدّثتُ التنفيذ أدناه — أصبح أبسط وأكثر كفاءة! 🚀
+> **تحديث**: بعد نشر هذا المقال، اقترح [Guillermo Rauch](https://twitter.com/rauchg) (المدير التنفيذي لـ Vercel) استخدام إعادة كتابة في Next.js بدلًا من middleware في هذه الحالة. وقد حدّثت التطبيق أدناه — فهو أبسط وأعلى أداءً! 🚀
 
 ## الخلاصة
 
-استلهامًا من وثائق Vercel، سنضيف إمكانية إلحاق `.md` بأي رابط لتدوينة للحصول على محتوى Markdown الخام. هكذا يتحول `/posts/my-post` إلى `/posts/my-post.md` للمصدر الخام. أضفتُ هذه الميزة مؤخرًا إلى مدونتي — وهي مثالية لمشاركة أمثلة الشيفرة أو إطلاع الآخرين على كيفية كتابتك لشيءٍ ما.
+استلهامًا من توثيق Vercel، سنضيف إمكانية إلحاق `.md` بأي رابط لمقال في المدونة للحصول على محتوى Markdown الخام. وبذلك يتحول `/posts/my-post` إلى `/posts/my-post.md` للوصول إلى المصدر الخام. أضفتُ هذه الميزة مؤخرًا إلى مدونتي، وهي مثالية لمشاركة أمثلة الشيفرة أو لتمكين الآخرين من الاطلاع على الطريقة التي كتبت بها شيئًا ما.
 
-تجعل [إعادة الكتابة](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) في Next.js تنفيذ ذلك بسهولة وبشكلٍ نظيف على نحوٍ مدهش.
+تجعل [إعادة كتابة](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) في Next.js تنفيذ ذلك بشكل نظيف أسهل على نحو مفاجئ.
 
 <Tweet id="1930689104800518392" />
 
@@ -25,18 +25,17 @@ pnpm install @content-collections/core @content-collections/mdx @content-collect
 
 اختر TypeScript وTailwind CSS وApp Router.
 
-أضف `.content-collections` إلى ملف `.gitignore` لديك:
+أضف `.content-collections` إلى ملف `.gitignore`:
 
 ```
 .content-collections
 ```
 
-
 ## إعداد Content Collections
 
-[Content Collections](https://www.content-collections.dev/) مكتبة ممتازة لإدارة المحتوى في Next.js — فهي آمنة نوعيًا، سريعة، وتوفر تجربة تطوير رائعة.
+تُعدّ [Content Collections](https://www.content-collections.dev/) مكتبة ممتازة لإدارة المحتوى في Next.js، فهي آمنة من حيث الأنواع، وسريعة، وتوفّر تجربة تطوير رائعة.
 
-أنشئ الملف `content-collections.ts` في جذر مشروعك (وليس داخل src/):
+أنشئ `content-collections.ts` في جذر مشروعك (وليس داخل src/):
 
 ```typescript
 import { defineCollection, defineConfig } from "@content-collections/core";
@@ -70,7 +69,7 @@ export default defineConfig({
 });
 ```
 
-حدّث ملف `next.config.js`:
+حدِّث `next.config.js`:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -83,7 +82,7 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-حدّث مسارات `tsconfig.json`:
+حدّث المسارات في `tsconfig.json`:
 
 ```json
 {
@@ -97,21 +96,20 @@ module.exports = withContentCollections(nextConfig);
 }
 ```
 
+## محتوى تجريبي
 
-## محتوى نموذجي
-
-أنشئ مجلد `content/` في جذر مشروعك وأضف الملف `content/hello-world.mdx`:
+أنشئ المجلد `content/` في المجلد الجذر لمشروعك، ثم أضف `content/hello-world.mdx`:
 
 ````markdown
 ---
-title: "مرحباً بالعالم"
-description: "أول تدوينة لي مع دعم Markdown الخام."
+title: "Hello World"
+description: "مقالي الأول مع دعم Markdown الخام."
 date: "2024-12-20"
 ---
 
 ## مرحباً
 
-هذه أول تدوينة لي! إليكم بعض **النص العريض** وكتلة كود:
+هذا هو مقالي الأول! إليك بعض **النص العريض** وكتلة برمجية:
 
 ```javascript
 console.log("Hello, world!");
@@ -120,10 +118,9 @@ console.log("Hello, world!");
 رائع، أليس كذلك؟
 ````
 
+## صفحات المقالات
 
-## صفحات التدوينات
-
-استبدل الملف `app/page.tsx`:
+استبدل `app/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -136,7 +133,7 @@ export default function Home() {
 
   return (
     <div className="max-w-2xl mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-8">مدونتي</h1>
+      <h1 className="text-3xl font-bold mb-8">My Blog</h1>
       <div className="space-y-6">
         {sortedPosts.map((post) => (
           <article key={post.slug} className="border-b pb-4">
@@ -155,7 +152,7 @@ export default function Home() {
                 href={`${post.url}.md`}
                 className="text-blue-500 hover:underline"
               >
-                عرض الملف الأصلي
+                View raw markdown
               </Link>
             </div>
           </article>
@@ -166,7 +163,7 @@ export default function Home() {
 }
 ```
 
-أنشِئ الملف `app/posts/[slug]/page.tsx`:
+أنشئ الملف `app/posts/[slug]/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -190,7 +187,7 @@ export default async function PostPage({
         href="/"
         className="text-blue-600 hover:underline mb-4 inline-block"
       >
-        ← العودة إلى المنشورات
+        ← Back to posts
       </Link>
 
       <article>
@@ -205,7 +202,7 @@ export default async function PostPage({
               href={`${post.url}.md`}
               className="text-blue-500 hover:underline text-sm"
             >
-              عرض ملف الماركداون الأصلي
+              View raw markdown
             </Link>
           </div>
         </header>
@@ -223,10 +220,9 @@ export function generateStaticParams() {
 }
 ```
 
+## السحر: إعادة كتابة المسارات
 
-## السحر: إعادة التوجيهات
-
-هنا يتألق Next.js في ميزة إعادة التوجيه — يمكننا التعامل مع إعادة كتابة عناوين URL بسلاسة من خلال بضعة أسطر فقط من الإعداد.
+هنا يبرز جمال ميزة إعادة الكتابة في Next.js — إذ يمكننا التعامل مع إعادة كتابة عناوين URL بأناقة عبر بضعة أسطر فقط من الإعدادات.
 
 حدّث `next.config.js` لإضافة قاعدة إعادة الكتابة:
 
@@ -248,10 +244,9 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-تقوم قاعدة إعادة الكتابة تلقائيًا بمواءمة أي طلب يطابق `/posts/:slug.md` مع `/api/posts/:slug/raw`. يتم استخراج معامل `:slug` من عنوان URL المصدر وتمريره إلى الوجهة. يرى المستخدم `/posts/hello-world.md` في متصفحه، لكن Next.js يقدمه فعليًا من `/api/posts/hello-world/raw`.
+تعمل قاعدة إعادة الكتابة تلقائيًا على توجيه أي طلب يطابق `/posts/:slug.md` إلى `/api/posts/:slug/raw`. ويُلتقط المعامل `:slug` من عنوان URL المصدر ويُمرَّر إلى الوجهة. يرى المستخدم `/posts/hello-world.md` في المتصفح، لكن Next.js يقدّمه من `/api/posts/hello-world/raw`.
 
-
-## مسار واجهة API للمحتوى الخام
+## مسار API للمحتوى الخام
 
 أنشئ `app/api/posts/[slug]/raw/route.ts`:
 
@@ -267,7 +262,7 @@ export async function GET(
   const post = allPosts.find((p) => p.slug === slug);
 
   if (!post) {
-    return new NextResponse("المقال غير موجود", { status: 404 });
+    return new NextResponse("Post not found", { status: 404 });
   }
 
   return new NextResponse(post.content, {
@@ -283,14 +278,13 @@ export function generateStaticParams() {
 }
 ```
 
-
 ## تم
 
-ابدأ خادم التطوير لديك واختبر كلا العنوانين:
+شغّل خادم التطوير لديك واختبر كلا الرابطين:
 
-- `/posts/hello-world` - MDX مُقدَّم مع الأنماط والمكوّنات
-- `/posts/hello-world.md` - مصدر Markdown الخام
+* `/posts/hello-world` - محتوى MDX مُصيَّر مع التنسيق والمكوّنات
+* `/posts/hello-world.md` - مصدر markdown الخام
 
-تضمن ترويسات التخزين المؤقت حفظ Markdown الخام لمدة ساعة، ما يخفف الحمل عن الخادم للمشاركات الشائعة. في بيئة الإنتاج، قد ترغب في إضافة زر "عرض المصدر الخام" إلى منشوراتك (كما فعلت في مدونتي) بدلًا من مجرد إظهار الرابط في قائمة المنشورات.
+تضمن ترويسات التخزين المؤقت تخزين markdown الخام مؤقتًا لمدة ساعة، مما يقلّل الحمل على الخادم للمقالات الشائعة. في بيئة الإنتاج، قد ترغب في إضافة زر &quot;عرض المصدر الخام&quot; إلى مقالاتك (كما فعلتُ في مدونتي الشخصية) بدلًا من الاكتفاء بعرض الرابط في قائمة المقالات.
 
-هذه الميزة مثالية لمشاركة الأمثلة، أو تنقيح المحتوى، أو السماح للآخرين بدراسة تنسيق الـMarkdown الخاص بك. كما أن عمليات إعادة الكتابة في Next.js تجعل التنفيذ نظيفًا وعالي الأداء — دون الحاجة إلى منطق توجيه معقّد.
+هذه الميزة مثالية لمشاركة الأمثلة، أو استكشاف مشكلات المحتوى وإصلاحها، أو إتاحة الفرصة للآخرين لدراسة تنسيق markdown لديك. كما أن عمليات إعادة الكتابة في Next.js تجعل التنفيذ نظيفًا وعالي الأداء - من دون الحاجة إلى منطق توجيه معقّد.

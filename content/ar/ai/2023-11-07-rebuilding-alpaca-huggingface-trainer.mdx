@@ -1,56 +1,56 @@
 ---
-title: إعادة بناء Alpaca باستخدام صنف Hugging Face Trainer
-description: ضبط Llama-2-7B بدقة باستخدام مجموعة بيانات Alpaca وأداة Hugging Face Trainer
+title: إعادة إنشاء Alpaca باستخدام فئة Trainer من Hugging Face
+description: الضبط الدقيق لـ Llama-2-7B باستخدام مجموعة بيانات Alpaca وTrainer من Hugging Face
 date: "2023-11-07"
 tags: [ml/ai, open-source]
 ---
 
-_تحديث 2024: قد يكون الكود في هذه التدوينة قديمًا. أنصح بالاطلاع على [دليل Hugging Face Trainer](https://huggingface.co/docs/transformers/v4.41.3/en/trainer) لمعرفة أحدث المعلومات._
+*تحديث 2024: قد يكون الكود الوارد في هذا المقال قديمًا. أنصح بالاطلاع على [توثيق Hugging Face Trainer](https://huggingface.co/docs/transformers/v4.41.3/en/trainer) للحصول على أحدث المعلومات.*
 
 ## المقدمة
 
-في مارس من هذا العام (2023)، أصدر مختبر في Stanford مشروعًا صغيرًا سرعان ما أصبح شديد التأثير — [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html). استخدم المؤلفون `text-davinci-003` (أحد نماذج InstructGPT من OpenAI) لتوليد مجموعة بيانات تضم 52 ألف مثال من المطالبات والاستجابات، ثم أجروا ضبطًا دقيقًا لنموذج Llama-7B باستخدام تلك الأزواج من المطالبات والاستجابات.
+في مارس من هذا العام (2023)، أطلق أحد مختبرات ستانفورد مشروعًا صغيرًا سرعان ما أصبح مؤثرًا للغاية — [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html). استخدم المؤلفون `text-davinci-003` (وهو نموذج InstructGPT من OpenAI) لتوليد مجموعة بيانات تضم 52 ألف مثال من الموجّهات والاستجابات، ثم أجروا ضبطًا دقيقًا لـ Llama-7B باستخدام أزواج الموجّهات والاستجابات تلك.
 
-كانت النتيجة مفاجئة بجودتها — إذ تمكن Alpaca من التفاعل مع المستخدمين بطريقة مشابهة لنماذج InstructGPT من OpenAI، رغم انخفاض تكلفة تدريبه وعدم اعتماده على مجموعة بيانات تدريب مُنشأة بشريًا. في هذه التدوينة، سنكتب شيفرة لتدريب نموذجنا الخاص من الصفر باستخدام مجموعة بيانات Alpaca.
+وجاءت النتيجة جيدة على نحو مفاجئ — إذ تمكن Alpaca من التفاعل مع المستخدمين بطريقة مشابهة لنماذج InstructGPT من OpenAI، رغم انخفاض تكلفة تدريبه وعدم اعتماده على مجموعة بيانات تدريب من إعداد بشري. في هذا المقال، سنكتب شيفرة لتدريب نموذجنا الخاص من الصفر باستخدام مجموعة بيانات Alpaca.
 
-_تعتمد الشيفرة في هذه التدوينة على ما ورد في [مستودع Alpaca](https://github.com/tatsu-lab/stanford_alpaca)، على أمل أن تكون أبسط وأكثر بداهة. يعود الفضل الكامل إلى المؤلفين الأصليين للورقة._
+*تعتمد الشيفرة في هذا المقال على الشيفرة الموجودة في [مستودع Alpaca](https://github.com/tatsu-lab/stanford_alpaca)، لكنني آمل أن تكون أبسط وأسهل فهمًا. ويعود كامل الفضل إلى المؤلفين الأصليين للورقة البحثية.*
 
 ## الإعداد
 
-ستحتاج إلى تثبيت `torch` و`transformers` و`datasets` و`accelerate`. يعد `wandb` خيارًا ممتازًا إذا أردت تتبّع خسارة التدريب مع مرور الوقت. وبالطبع ستحتاج إلى بعض وحدات GPU قوية إذا رغبت في تدريب نموذجك بسرعة.
+ستحتاج إلى تثبيت `torch` و`transformers` و`datasets` و`accelerate`. ويُعد `wandb` خيارًا رائعًا إذا أردت تتبّع خسارة التدريب مع مرور الوقت. وبالطبع، ستحتاج إلى بعض وحدات معالجة الرسومات (GPU) الجيدة إذا كنت تريد أن يتدرّب نموذجك بسرعة.
 
-ابدأ بإنشاء مجلد رئيسي باسم `alpaca-repro`، مع مجلدين فرعيين: أحدهما باسم `trainer` لوضع كود التدريب، والآخر باسم `finetunes` لحفظ نموذجك المكيَّف (المضبوط) بدقة.
+ابدأ بإنشاء مجلد رئيسي باسم `alpaca-repro`، مع مجلدين فرعيين: أحدهما باسم `trainer`، حيث سيوضع كود التدريب، والآخر باسم `finetunes`، حيث سنحفظ نموذجك المضبوط بدقة.
 
 ## الخطوة 1: تحميل البيانات ومعالجتها
 
-ضع كل الشفرة في هذا القسم داخل `trainer/get_data.py`.
+ضع كل الشيفرة في هذا القسم داخل `trainer/get_data.py`.
 
-سنبدأ بتحميل [بيانات Alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca) من منصة HuggingFace. يحتاج كل زوج سؤال/مُحفِّز في مجموعة البيانات إلى تحويل إلى سلسلة نصية واحدة يمكننا تدريب النموذج عليها، لكننا في الواقع نولّد سلسلة إضافية واحدة: `source`، والتي نستخدمها لاحقًا لتجاهل الوسوم (labels) حتى لا يتدرّب نموذجنا على التعليمات.
+سنبدأ بتحميل [بيانات Alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca) من Hub الخاص بـ Hugging Face. يجب تحويل كل زوج من السؤال/الموجّه في مجموعة البيانات إلى سلسلة نصية واحدة يمكننا تدريب النموذج عليها، لكننا نُنشئ في الواقع سلسلة إضافية هي: `source`، ونستخدمها لاحقًا لتجاهل التسميات حتى لا يتدرّب نموذجنا على التعليمات.
 
 ```python
 from datasets import load_dataset
 
 original_dataset = load_dataset("tatsu-lab/alpaca")["train"]
 
-template_no_context = """فيما يلي تعليمات تصف مهمة. \
-اكتب ردًا يكمل الطلب بشكل مناسب.
+template_no_context = """Below is an instruction that describes a task. \
+Write a response that appropriately completes the request.
 
-### التعليمات:
+### Instruction:
 {instruction}
 
-### الرد:
+### Response:
 """
 
-template_context = """فيما يلي تعليمات تصف مهمة. \
-اكتب ردًا يكمل الطلب بشكل مناسب.
+template_context = """Below is an instruction that describes a task. \
+Write a response that appropriately completes the request.
 
-### التعليمات:
+### Instruction:
 {instruction}
 
-### المدخلات:
+### Input:
 {input}
 
-### الرد:
+### Response:
 """
 
 def data_to_string(data):
@@ -73,7 +73,7 @@ dataset = original_dataset.map(
 ).remove_columns(['instruction', 'input', 'output'])
 ```
 
-هنا نقسّم البيانات لنستخدم 10% للتقييم والاختبارات لاحقًا.
+هنا نقسّم البيانات لنتمكن لاحقًا من استخدام 10% للتقييم والاختبار.
 
 ```python
 processed_dataset = dataset.train_test_split(test_size=0.1)
@@ -82,7 +82,7 @@ train_dataset = processed_dataset["train"]
 eval_dataset = processed_dataset["test"]
 ```
 
-أخيرًا، نعرّف مُجمِّع بيانات لاستخدامه في حلقة التدريب لدينا. تذكّر أن كل سلسلة `text` تتكوّن ببساطة من `source` متبوعًا بالاستجابة. لذا نقوم بترميز سلسلة `source` لمعرفة عدد الوسوم/التصنيفات في سلسلة `text` التي ينبغي تجاهلها.
+أخيرًا، نعرّف مُجمِّع بيانات لاستخدامه في حلقة التدريب. تذكّر أن كل سلسلة `text` تتكوّن فقط من `source` مضافًا إليها الاستجابة. لذلك نُرمِّز سلسلة `source` لمعرفة عدد التسميات في سلسلة `text` التي يجب تجاهلها.
 
 ```python
 IGNORE_TOKEN = -100
@@ -121,12 +121,11 @@ def data_collator(features, tokenizer):
     return res
 ```
 
+## الخطوة 2: كتابة حلقة التدريب
 
-## الخطوة 2: كتابة حلقة التدريب الخاصة بنا
+ضع كل الشيفرة في هذا القسم داخل `trainer/loop.py`.
 
-ضع كل الشفرة في هذا القسم داخل `trainer/loop.py`.
-
-هذه الشفرة واضحة إلى حد كبير، لذا اكتفيت بإضافة تعليقات توضيحية.
+هذا الكود واضح إلى حدٍّ كبير، لذا اكتفيتُ بإرفاقه ببعض التعليقات التوضيحية.
 
 ```python
 from transformers import LlamaForCausalLM, LlamaTokenizer, Trainer, TrainingArguments
@@ -135,20 +134,20 @@ from get_data import train_dataset, eval_dataset, data_collator
 
 accelerator = Accelerator()
 
-MODEL_PATH = "meta-llama/Llama-2-7b-hf" # مسار نموذج Llama على منصة Hugging Face Hub
-OUTPUT_DIR = "../finetunes/alpaca-7b" # مجلد حفظ النموذج المُحسَّن
+MODEL_PATH = "meta-llama/Llama-2-7b-hf" # مسار Llama على Hugging Face Hub
+OUTPUT_DIR = "../finetunes/alpaca-7b" # مكان حفظ النموذج المضبوط دقيقًا
 
 tokenizer = LlamaTokenizer.from_pretrained(MODEL_PATH, legacy=False)
 tokenizer.pad_token = tokenizer.eos_token
-tokenizer.padding_side = "right" # غير مُعرَّف افتراضياً، وهذا أمر غريب
+tokenizer.padding_side = "right" # لا يُضبط افتراضيًا، وهذا أمر غريب
 
 model = LlamaForCausalLM.from_pretrained(
     MODEL_PATH, device_map="auto"
 )
 
 training_args = TrainingArguments(
-    output_dir='checkpoints', # المجلد الذي سيحفظ فيه المدرب نقاط التفتيش
-    num_train_epochs=1, # ابدأ بعدد قليل من الحقب للاختبار
+    output_dir='checkpoints', # المكان الذي سيحفظ فيه Trainer نقاط تفتيش النموذج
+    num_train_epochs=1, # ابدأ بعدد حقب منخفض للاختبار
     learning_rate=2e-5,
     logging_steps=10,
     per_device_train_batch_size=8,
@@ -174,10 +173,9 @@ model.save_pretrained(OUTPUT_DIR)
 tokenizer.save_pretrained(OUTPUT_DIR)
 ```
 
-
 ## الخطوة 3: تشغيل حلقة التدريب
 
-أنشئ الملف `trainer/accelerate_config.yaml`، ثم الصق الإعدادات التالية:
+أنشئ `trainer/accelerate_config.yaml`، ثم الصق الإعداد التالي:
 
 ```yaml
 compute_environment: LOCAL_MACHINE
@@ -194,31 +192,30 @@ num_processes: 1
 use_cpu: false
 ```
 
-ثم انتقل بالأمر `cd` إلى `./trainer` وشغّل:
+ثم انتقل إلى `./trainer` باستخدام `cd` ثم شغّل:
 
 ```bash
 accelerate launch --config_file accelerate_config.yaml loop.py
 ```
 
-قد يستغرق حفظ النموذج والأوزان بعض الوقت، لذا كن صبورًا!
+قد يستغرق حفظ النموذج والأوزان بعض الوقت، لذا يُرجى التحلي بالصبر!
 
+## الخطوة 4: اختبار نموذجنا المضبوط بدقة!
 
-## الخطوة 4: اختبار نموذجنا المُعَدّ بدقّة!
-
-كتبتُ سكربتًا بسيطًا لتحميل نموذجنا المُعَدّ بدقّة والتفاعل معه! لا يدعم المحادثات السياقية، لكنه طريقة رائعة للتعرّف إلى كيفية عمل النموذج.
+كتبتُ سكربتًا بسيطًا لتحميل نموذجنا المضبوط بدقة والتفاعل معه! لا يدعم المحادثات التي تحتفظ بالسياق، لكنه طريقة رائعة لرؤية كيفية عمل النموذج.
 
 أنشئ ملفًا جديدًا باسم `alpaca-repro/model_test.py`، ثم شغّل `python3 model_test.py`.
 
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 
-template = """فيما يلي تعليمات تصف مهمة. \
-اكتب ردًا يكمل الطلب بشكل مناسب.
+template = """Below is an instruction that describes a task. \
+Write a response that appropriately completes the request.
 
-### التعليمات:
+### Instruction:
 {instruction}
 
-### الرد:
+### Response:
 """
 
 model_path = "./finetunes/alpaca-7b"
@@ -242,7 +239,7 @@ pipe = pipeline(
 )
 
 def prompt_model():
-    prompt = input("أدخل سؤالك: ")
+    prompt = input("Enter your question: ")
     prompt = template.format(instruction=prompt)
     answer = pipe(prompt)
     print(answer[0]["generated_text"])
@@ -251,9 +248,8 @@ while True:
     prompt_model()
 ```
 
-
 ## الخلاصة
 
-آمل أن يكون هذا المقال مفيدًا وغنيًا بالمعلومات! أخطّط لنشر متابعة خلال بضعة أيام أشرح فيها كيفية استخدام FSDP مع Hugging Face Trainer.
+آمل أن تكون هذه المقالة مفيدة وثرية بالمعلومات! وأخطط خلال الأيام القليلة المقبلة لمتابعتها بشرح لكيفية استخدام FSDP مع Hugging Face Trainer.
 
-إذا التبست عليك الأمور أثناء القراءة، فإليك Gist يضم الشيفرة النهائية للمشروع: https://gist.github.com/bgub/1da2c0064d53decf197a304267799708
+إذا شعرت ببعض الالتباس أثناء المتابعة، فإليك Gist يحتوي على الشيفرة النهائية للمشروع: https://gist.github.com/bgub/1da2c0064d53decf197a304267799708

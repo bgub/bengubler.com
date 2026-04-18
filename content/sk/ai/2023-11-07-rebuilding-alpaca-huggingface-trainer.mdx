@@ -1,56 +1,56 @@
 ---
-title: Znovupostavenie Alpaca pomocou triedy HuggingFace Trainer
-description: Doladenie modelu Llama-2-7B na datasete Alpaca pomocou HuggingFace Trainer
+title: Vytvorenie Alpacy nanovo pomocou triedy Hugging Face Trainer
+description: Jemné doladenie Llama-2-7B pomocou datasetu Alpaca a Hugging Face Trainer
 date: "2023-11-07"
 tags: [ml/ai, open-source]
 ---
 
-_UPDATE 2024: Kód v tomto príspevku môže byť neaktuálny. Odporúčam pozrieť si [dokumentáciu HuggingFace Trainer](https://huggingface.co/docs/transformers/v4.41.3/en/trainer) pre najnovšie informácie._
+*AKTUALIZÁCIA 2024: Kód v tomto článku už môže byť zastaraný. Odporúčam pozrieť si [dokumentáciu k Hugging Face Trainer](https://huggingface.co/docs/transformers/v4.41.3/en/trainer), kde nájdete najaktuálnejšie informácie.*
 
 ## Úvod
 
-V marci tohto roka (2023) laboratórium na Stanforde zverejnilo malý projekt, ktorý sa rýchlo stal mimoriadne vplyvným — [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html). Autori použili `text-davinci-003` (InstructGPT model od OpenAI) na vygenerovanie datasetu s 52 tisíc príkladmi promptov a odpovedí, potom pomocou týchto párov prompt–odpoveď doladili Llama-7B.
+V marci tohto roka (2023) zverejnilo jedno stanfordské laboratórium malý projekt, ktorý sa rýchlo stal mimoriadne vplyvným — [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html). Autori použili `text-davinci-003` (model InstructGPT od OpenAI) na vygenerovanie datasetu s 52-tisíc príkladmi promptov a odpovedí a potom na týchto dvojiciach promptov a odpovedí doladili Llama-7B.
 
-Výsledok bol prekvapivo dobrý — Alpaca dokázala komunikovať s používateľmi podobne ako InstructGPT modely od OpenAI, hoci bola lacná na trénovanie a nevyužívala ľuďmi vytvorený tréningový dataset. V tomto blogovom príspevku napíšeme kód na natrénovanie vlastného modelu od nuly s použitím datasetu Alpaca.
+Výsledok bol prekvapivo dobrý — Alpaca dokázala komunikovať s používateľmi podobne ako modely InstructGPT od OpenAI, hoci jej trénovanie bolo lacné a nevyužívala tréningový dataset vytvorený ľuďmi. V tomto blogovom príspevku napíšeme kód na natrénovanie vlastného modelu od nuly s použitím datasetu Alpaca.
 
-_Kód v tomto blogovom príspevku vychádza z kódu v [Alpaca repo](https://github.com/tatsu-lab/stanford_alpaca), hoci dúfam, že bude jednoduchší a intuitívnejší. Všetky zásluhy patria pôvodným autorom článku._
+*Kód v tomto blogovom príspevku vychádza z kódu v [repozitári Alpaca](https://github.com/tatsu-lab/stanford_alpaca), no dúfam, že bude jednoduchší a intuitívnejší. Všetky zásluhy patria pôvodným autorom článku.*
 
 ## Nastavenie
 
-Budeš si musieť nainštalovať `torch`, `transformers`, `datasets` a `accelerate`. `wandb` je super, ak chceš sledovať tréningovú stratu v čase. A, samozrejme, budeš potrebovať poriadne GPU, ak chceš, aby sa tvoj model trénoval rýchlo.
+Budete si musieť nainštalovať `torch`, `transformers`, `datasets` a `accelerate`. `wandb` je skvelý, ak chcete priebežne sledovať tréningovú stratu. A, samozrejme, budete potrebovať aj výkonné GPU, ak chcete, aby sa váš model trénoval rýchlo.
 
-Začni vytvorením jedného hlavného priečinka, `alpaca-repro`, s dvoma podpriečinkami: jedného s názvom `trainer`, kam pôjde tvoj tréningový kód, a jedného s názvom `finetunes`, kam uložíme tvoj doladený model.
+Na začiatok vytvorte jeden hlavný priečinok, `alpaca-repro`, s dvoma podpriečinkami: jeden s názvom `trainer`, kam pôjde váš tréningový kód, a druhý s názvom `finetunes`, kam uložíme váš doladený model.
 
-## Krok 1: Načítanie a spracovanie údajov
+## Krok 1: Načítanie a spracovanie dát
 
-Vložte všetok kód v tejto sekcii do `trainer/get_data.py`.
+Všetok kód v tejto časti vložte do `trainer/get_data.py`.
 
-Začneme načítaním [dát Alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca) z HuggingFace hubu. Každú dvojicu otázka/pokyn v datasete je potrebné previesť na jeden reťazec, na ktorom môžeme trénovať model, no v skutočnosti generujeme ešte jeden dodatočný reťazec: `source`, ktorý nižšie používame na ignorovanie štítkov, aby náš model netrénoval na inštrukciách.
+Začneme načítaním [dát Alpaca](https://huggingface.co/datasets/tatsu-lab/alpaca) z hubu Hugging Face. Každý pár otázka/prompt v datasete treba previesť na jeden reťazec, na ktorom môžeme model trénovať, no zároveň vytvoríme ešte jeden dodatočný reťazec: `source`, ktorý neskôr použijeme na ignorovanie labelov, aby sa model netrénoval na inštrukciách.
 
 ```python
 from datasets import load_dataset
 
 original_dataset = load_dataset("tatsu-lab/alpaca")["train"]
 
-template_no_context = """Nižšie je inštrukcia, ktorá popisuje úlohu. \
-Napíšte odpoveď, ktorá vhodne splní požiadavku.
+template_no_context = """Below is an instruction that describes a task. \
+Write a response that appropriately completes the request.
 
-### Inštrukcia:
+### Instruction:
 {instruction}
 
-### Odpoveď:
+### Response:
 """
 
-template_context = """Nižšie je inštrukcia, ktorá popisuje úlohu. \
-Napíšte odpoveď, ktorá vhodne splní požiadavku.
+template_context = """Below is an instruction that describes a task. \
+Write a response that appropriately completes the request.
 
-### Inštrukcia:
+### Instruction:
 {instruction}
 
-### Vstup:
+### Input:
 {input}
 
-### Odpoveď:
+### Response:
 """
 
 def data_to_string(data):
@@ -73,7 +73,7 @@ dataset = original_dataset.map(
 ).remove_columns(['instruction', 'input', 'output'])
 ```
 
-Tu rozdelíme dáta, aby sme mohli neskôr použiť 10 % na vyhodnotenie a testovanie.
+Tu rozdelíme dáta tak, aby sme mohli 10 % neskôr použiť na vyhodnotenie a testovanie.
 
 ```python
 processed_dataset = dataset.train_test_split(test_size=0.1)
@@ -82,7 +82,7 @@ train_dataset = processed_dataset["train"]
 eval_dataset = processed_dataset["test"]
 ```
 
-Nakoniec definujeme zlučovač dát (data collator), ktorý použijeme v tréningovej slučke. Pamätajte, že každý reťazec `text` je zložený len zo `source` a odpovede. Preto tokenizujeme reťazec `source`, aby sme zistili, koľko označení v reťazci `text` máme ignorovať.
+Nakoniec definujeme kolátor dát, ktorý bude používať naša tréningová slučka. Pamätajte, že každý reťazec `text` sa skladá len z `source` a odpovede. Preto tokenizujeme reťazec `source`, aby sme zistili, koľko labelov v reťazci `text` máme ignorovať.
 
 ```python
 IGNORE_TOKEN = -100
@@ -121,12 +121,11 @@ def data_collator(features, tokenizer):
     return res
 ```
 
-
-## Krok 2: Písanie nášho tréningového loopu
+## Krok 2: Písanie našej tréningovej slučky
 
 Všetok kód z tejto časti vložte do `trainer/loop.py`.
 
-Tento kód je pomerne priamočiary, preto som ho iba doplnil komentármi.
+Tento kód je pomerne zrozumiteľný aj sám osebe, takže som ho len doplnil komentármi.
 
 ```python
 from transformers import LlamaForCausalLM, LlamaTokenizer, Trainer, TrainingArguments
@@ -140,7 +139,7 @@ OUTPUT_DIR = "../finetunes/alpaca-7b" # kam uložiť doladený model
 
 tokenizer = LlamaTokenizer.from_pretrained(MODEL_PATH, legacy=False)
 tokenizer.pad_token = tokenizer.eos_token
-tokenizer.padding_side = "right" # nie je nastavené predvolene, čudne
+tokenizer.padding_side = "right" # predvolene nenastavené, čudné
 
 model = LlamaForCausalLM.from_pretrained(
     MODEL_PATH, device_map="auto"
@@ -148,7 +147,7 @@ model = LlamaForCausalLM.from_pretrained(
 
 training_args = TrainingArguments(
     output_dir='checkpoints', # kam Trainer uloží kontrolné body modelu
-    num_train_epochs=1, # začni s nízkym počtom epoch na testovanie
+    num_train_epochs=1, # začnite s malým počtom epoch na testovanie
     learning_rate=2e-5,
     logging_steps=10,
     per_device_train_batch_size=8,
@@ -174,10 +173,9 @@ model.save_pretrained(OUTPUT_DIR)
 tokenizer.save_pretrained(OUTPUT_DIR)
 ```
 
+## Krok 3: Spustenie tréningovej slučky
 
-## Krok 3: Spustenie nášho tréningového loopu
-
-Vytvorte súbor `trainer/accelerate_config.yaml` a vložte doň nasledujúcu konfiguráciu:
+Vytvorte `trainer/accelerate_config.yaml` a vložte doň nasledujúcu konfiguráciu:
 
 ```yaml
 compute_environment: LOCAL_MACHINE
@@ -194,31 +192,30 @@ num_processes: 1
 use_cpu: false
 ```
 
-Potom prejdite pomocou `cd` do priečinka `./trainer` a spustite:
+Potom pomocou `cd` prejdite do `./trainer` a spustite:
 
 ```bash
 accelerate launch --config_file accelerate_config.yaml loop.py
 ```
 
-Ukladanie modelu a váh môže chvíľu trvať, buďte trpezliví!
-
+Uloženie modelu a váh môže chvíľu trvať, takže buďte trpezliví!
 
 ## Krok 4: Testovanie nášho doladeného modelu!
 
-Napísal som jednoduchý skript, ktorý načíta náš doladený model a umožní s ním pracovať! Nepodporuje rozhovory s kontextom, ale je to skvelý spôsob, ako vidieť, ako model funguje.
+Napísal som jednoduchý skript na načítanie nášho doladeného modelu a interakciu s ním! Nepodporuje konverzácie s kontextom, ale je to skvelý spôsob, ako vidieť, ako model funguje.
 
-Vytvorte nový súbor s názvom `alpaca-repro/model_test.py`, potom spustite `python3 model_test.py`.
+Vytvorte nový súbor s názvom `alpaca-repro/model_test.py` a potom spustite `python3 model_test.py`.
 
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 
-template = """Nižšie je inštrukcia, ktorá popisuje úlohu. \
-Napíšte odpoveď, ktorá vhodne dokončí požiadavku.
+template = """Below is an instruction that describes a task. \
+Write a response that appropriately completes the request.
 
-### Inštrukcia:
+### Instruction:
 {instruction}
 
-### Odpoveď:
+### Response:
 """
 
 model_path = "./finetunes/alpaca-7b"
@@ -242,7 +239,7 @@ pipe = pipeline(
 )
 
 def prompt_model():
-    prompt = input("Zadajte vašu otázku: ")
+    prompt = input("Enter your question: ")
     prompt = template.format(instruction=prompt)
     answer = pipe(prompt)
     print(answer[0]["generated_text"])
@@ -251,9 +248,8 @@ while True:
     prompt_model()
 ```
 
-
 ## Záver
 
-Dúfam, že tento článok bol užitočný a prínosný! O pár dní plánujem nadviazať vysvetlením, ako používať FSDP s Hugging Face Trainerom.
+Dúfam, že vám tento článok pomohol a bol pre vás prínosný! O pár dní naň plánujem nadviazať vysvetlením, ako používať FSDP s Hugging Face Trainerom.
 
-Ak ste sa po ceste stratili, tu je Gist s finálnym kódom projektu: https://gist.github.com/bgub/1da2c0064d53decf197a304267799708
+Ak ste sa v tom cestou trochu zamotali, tu je Gist s finálnym kódom projektu: https://gist.github.com/bgub/1da2c0064d53decf197a304267799708

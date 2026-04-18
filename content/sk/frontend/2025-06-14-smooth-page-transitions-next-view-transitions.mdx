@@ -1,13 +1,13 @@
 ---
-title: "Plynulé prechody stránok v Next.js s next-view-transitions"
-description: "Pridajte do Next.js plynulé prechody stránok pomocou View Transitions API."
+title: "Plynulé prechody stránok v Next.js pomocou next-view-transitions"
+description: "Pridajte do Next.js plynulé prechody stránok pomocou rozhrania View Transitions API."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-## TL;DR
+## Stručne
 
-Balíček [`next-view-transitions`](https://github.com/shuding/next-view-transitions) prináša plynulé prechody stránok do Next.js. Vytvoríme jednoduchý blog a pridáme plynulé prechody prvkov pomocou vlastnosti `viewTransitionName`, aby sa nadpisy a dátumy medzi stránkami plynulo transformovali. Tu je ukážka toho, čo budeme vytvárať:
+Balík [`next-view-transitions`](https://github.com/shuding/next-view-transitions) prináša do Next.js plynulé prechody medzi stránkami. Vytvoríme jednoduchý blog a pomocou vlastností `viewTransitionName` pridáme plynulé prechody prvkov, vďaka ktorým sa názvy a dátumy budú medzi stránkami plynule meniť. Tu je ukážka toho, čo budeme vytvárať:
 
 <Tweet id="1934092246921671158" />
 
@@ -28,10 +28,9 @@ pnpx shadcn@latest init
 pnpx shadcn@latest add card badge
 ```
 
+## Testovacie dáta
 
-## Ukážkové dáta
-
-Vytvorte `lib/posts.ts`:
+Vytvorte súbor `lib/posts.ts`:
 
 ```typescript
 export interface Post {
@@ -47,7 +46,7 @@ export const posts: Post[] = [
   {
     id: 1,
     slug: "getting-started-nextjs",
-    title: "Začíname s Next.js",
+    title: "Getting Started with Next.js",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
     date: "2024-12-01",
@@ -57,7 +56,7 @@ export const posts: Post[] = [
   {
     id: 2,
     slug: "react-best-practices",
-    title: "Osvedčené postupy v Reacte",
+    title: "React Best Practices",
     description:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
     date: "2024-12-05",
@@ -67,7 +66,7 @@ export const posts: Post[] = [
   {
     id: 3,
     slug: "tailwind-tips",
-    title: "Tipy a triky pre Tailwind CSS",
+    title: "Tailwind CSS Tips and Tricks",
     description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     date: "2024-12-10",
@@ -76,7 +75,6 @@ export const posts: Post[] = [
   },
 ];
 ```
-
 
 ## Zoznam príspevkov
 
@@ -97,7 +95,7 @@ import Link from "next/link";
 export default function PostsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Môj blog</h1>
+      <h1 className="text-3xl font-bold mb-8">My Blog</h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <Link key={post.id} href={`/posts/${post.slug}`}>
@@ -118,8 +116,7 @@ export default function PostsPage() {
 }
 ```
 
-
-## Samostatné stránky príspevkov
+## Stránky jednotlivých príspevkov
 
 Vytvorte `app/posts/[slug]/page.tsx`:
 
@@ -147,7 +144,7 @@ export default async function PostPage({ params }: PostPageProps) {
         href="/"
         className="text-blue-600 hover:underline mb-4 inline-block"
       >
-        ← Späť na príspevky
+        ← Back to posts
       </Link>
 
       <article className="max-w-3xl">
@@ -175,10 +172,9 @@ export function generateStaticParams() {
 
 Teraz máte funkčný blog so štandardnou navigáciou medzi stránkami.
 
-
 ## Pridajte View Transitions
 
-Obaľte svoju aplikáciu do `app/layout.tsx`:
+Zabaľte aplikáciu do `app/layout.tsx`:
 
 ```tsx
 import { ViewTransitions } from "next-view-transitions";
@@ -192,7 +188,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ViewTransitions>
-        <html lang="sk">
+      <html lang="en">
         <body>{children}</body>
       </html>
     </ViewTransitions>
@@ -210,15 +206,14 @@ import Link from "next/link";
 import { Link } from "next-view-transitions";
 ```
 
-V tomto momente vyzerá navigácia rovnako ako predtým. Balík predvolene nepridáva žiadne prechody.
+V tomto bode vyzerá navigácia rovnako ako predtým. Balík predvolene nepridáva žiadne prechody.
 
+## Kúzlo: prechody zdieľaných prvkov
 
-## Kúzlo: prechody so zdieľanými prvkami
-
-Pridajte vlastnosť `viewTransitionName` k prvkom, ktoré sa majú medzi stránkami plynulo premeniť:
+Pridajte vlastnosti `viewTransitionName` prvkom, ktoré sa majú medzi stránkami plynulo transformovať:
 
 ```tsx
-// V zozname príspevkov (app/page.tsx):
+// Vo výpise vašich príspevkov (app/page.tsx):
 <CardTitle
   className="line-clamp-2"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -250,9 +245,8 @@ Pridajte vlastnosť `viewTransitionName` k prvkom, ktoré sa majú medzi stránk
 </Badge>
 ```
 
-Teraz sa názov a dátum plynule prelievajú z karty na stránku príspevku. **Toto je jediný spôsob, ako naozaj vidieť prechody** – mať medzi stránkami zhodné hodnoty `viewTransitionName`.
-
+Teraz sa názov a dátum plynulo presunú z karty na stránku príspevku. **Len takto možno prechody naozaj vidieť** – zladením hodnôt `viewTransitionName` medzi stránkami.
 
 ## Hotovo
 
-Tieto prechody zabezpečujú vizuálnu kontinuitu, aplikácia vďaka nim pôsobí svižnejšie a používateľom pomáhajú udržať si kontext. View Transitions API je podporované v prehliadačoch Chrome, Edge a Opera, pričom v ostatných prehliadačoch sa elegantne vráti k bežnej navigácii.
+Tieto prechody zabezpečujú vizuálnu kontinuitu, aplikácia vďaka nim pôsobí svižnejšie a používateľom pomáhajú udržať si kontext. API View Transitions podporujú prehliadače Chrome, Edge a Opera, pričom v ostatných prehliadačoch sa bez problémov použije bežná navigácia.
