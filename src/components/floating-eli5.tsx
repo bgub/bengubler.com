@@ -100,7 +100,7 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
         </DialogHeader>
 
         <ScrollArea className="max-h-[50vh]">
-          <div className="border rounded-lg p-4 bg-muted/30">
+          <div className="border rounded-sm p-4 bg-muted/30">
             {explanation ? (
               <div className="space-y-4">
                 <T>

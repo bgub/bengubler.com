@@ -56,21 +56,21 @@ const languageTools = [
 export default function LanguageLearningPage() {
   const m = useMessages();
   return (
-    <div className="space-y-12">
-      <header className="space-y-4">
+    <div className="space-y-10">
+      <header className="space-y-3">
         <T>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            Language Learning
+          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
+            Language Learning.
           </h1>
         </T>
         <T>
-          <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+          <p className="font-serif text-lg text-ink-soft max-w-lg leading-relaxed font-light">
             Tools and resources I've built to help with language learning.
           </p>
         </T>
       </header>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2">
         {languageTools.map((tool, index) => {
           const colors = getColorByIndex(index);
           return (
@@ -79,36 +79,25 @@ export default function LanguageLearningPage() {
               href={tool.href}
               target={tool.isExternal ? "_blank" : undefined}
               rel={tool.isExternal ? "noopener noreferrer" : undefined}
-              className={`${colors.bg} ${colors.border} border rounded-lg p-6 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] group block`}
+              className="bg-card border border-border rounded-sm relative overflow-hidden transition-all duration-200 hover:shadow-md group block no-underline"
             >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-foreground group-hover:text-foreground/90 transition-colors">
+              <div className={`absolute top-0 left-0 right-0 h-1.5 ${colors.stripe}`} />
+              <div className="p-4 pt-5">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-serif text-xl font-medium text-foreground group-hover:text-foreground/80 transition-colors">
                     {m(tool.title)}
                   </h3>
-                  <svg
-                    className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    role="img"
-                  >
-                    <title>
-                      {tool.isExternal ? "External link" : "Navigate"}
-                    </title>
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d={
-                        tool.isExternal
-                          ? "M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                          : "M9 5l7 7-7 7"
-                      }
-                    />
-                  </svg>
+                  {tool.isExternal ? (
+                    <svg className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  ) : (
+                    <svg className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  )}
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light">
                   {m(tool.description)}
                 </p>
               </div>

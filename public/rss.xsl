@@ -7,30 +7,31 @@
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title><xsl:value-of select="/rss/channel/title" /> - RSS Feed</title>
+                <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=DM+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet" />
                 <style>
                     :root {
-                        --color-background: #ffffff;
-                        --color-foreground: #0a0a0a;
-                        --color-muted: #6b7280;
-                        --color-muted-foreground: #6b7280;
-                        --color-card: #ffffff;
-                        --color-border: #e5e7eb;
-                        --color-primary: #3b82f6;
-                        --color-primary-foreground: #ffffff;
-                        --color-accent: #f3f4f6;
+                        --background: #faf6ef;
+                        --foreground: #2a2722;
+                        --card: #fffdf8;
+                        --border: #e5ddcd;
+                        --ink-soft: #4a443c;
+                        --ink-mute: #807668;
+                        --ink-faint: #b5ab9b;
+                        --paper-deep: #f4eee3;
+                        --peach-deep: #c69a72;
                     }
 
                     @media (prefers-color-scheme: dark) {
                         :root {
-                            --color-background: #0a0a0a;
-                            --color-foreground: #fafafa;
-                            --color-muted: #1f2937;
-                            --color-muted-foreground: #9ca3af;
-                            --color-card: #1f2937;
-                            --color-border: #374151;
-                            --color-primary: #60a5fa;
-                            --color-primary-foreground: #1e40af;
-                            --color-accent: #1f2937;
+                            --background: #1f1c18;
+                            --foreground: #f2ead8;
+                            --card: #262218;
+                            --border: #3a342a;
+                            --ink-soft: #d6ccb6;
+                            --ink-mute: #948b79;
+                            --ink-faint: #5d5649;
+                            --paper-deep: #181511;
+                            --peach-deep: #e8bd8b;
                         }
                     }
 
@@ -39,165 +40,139 @@
                     }
 
                     body {
-                        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-                        line-height: 1.6;
-                        color: var(--color-foreground);
-                        background-color: var(--color-background);
+                        font-family: "Newsreader", ui-serif, Georgia, serif;
+                        line-height: 1.7;
+                        color: var(--foreground);
+                        background-color: var(--background);
                         margin: 0;
                         padding: 0;
                         min-height: 100vh;
                     }
 
                     .container {
-                        max-width: 800px;
+                        max-width: 720px;
                         margin: 0 auto;
-                        padding: 2rem 1rem;
+                        padding: 3rem 1.5rem;
                     }
 
                     .header {
-                        text-align: center;
-                        margin-bottom: 3rem;
-                        padding: 2rem;
-                        background-color: var(--color-card);
-                        border: 1px solid var(--color-border);
-                        border-radius: 0.75rem;
+                        margin-bottom: 2.5rem;
                     }
 
                     .header h1 {
+                        font-family: "Newsreader", ui-serif, Georgia, serif;
                         font-size: 2.5rem;
-                        font-weight: 700;
+                        font-weight: 500;
                         margin: 0 0 0.5rem 0;
-                        color: var(--color-foreground);
+                        color: var(--foreground);
+                        letter-spacing: -0.02em;
+                        line-height: 1.05;
                     }
 
                     .header p {
-                        font-size: 1.125rem;
-                        color: var(--color-muted-foreground);
-                        margin: 0 0 1.5rem 0;
+                        font-size: 1.1rem;
+                        color: var(--ink-soft);
+                        margin: 0 0 1.25rem 0;
+                        font-weight: 300;
                     }
 
                     .rss-info {
                         display: inline-flex;
                         align-items: center;
-                        gap: 0.5rem;
-                        padding: 0.5rem 1rem;
-                        background-color: var(--color-accent);
-                        border: 1px solid var(--color-border);
-                        border-radius: 0.5rem;
-                        font-size: 0.875rem;
-                        color: var(--color-muted-foreground);
+                        gap: 0.375rem;
+                        padding: 0.375rem 0.75rem;
+                        border: 1px solid var(--border);
+                        border-radius: 2px;
+                        font-family: "DM Mono", ui-monospace, monospace;
+                        font-size: 0.7rem;
+                        color: var(--ink-mute);
                         text-decoration: none;
+                        letter-spacing: 0.03em;
+                        transition: color 0.15s, border-color 0.15s;
                     }
 
                     .rss-info:hover {
-                        background-color: var(--color-primary);
-                        color: var(--color-primary-foreground);
+                        color: var(--foreground);
+                        border-color: var(--ink-mute);
                     }
 
                     .posts {
                         display: flex;
                         flex-direction: column;
-                        gap: 1.5rem;
                     }
 
                     .post {
-                        background-color: var(--color-card);
-                        border: 1px solid var(--color-border);
-                        border-radius: 0.75rem;
-                        padding: 1.5rem;
-                        transition: all 0.2s ease;
+                        padding: 1.25rem 0;
+                        border-bottom: 1px dotted var(--border);
                     }
 
-                    .post:hover {
-                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                    .post:first-child {
+                        padding-top: 0;
                     }
 
                     .post h2 {
-                        font-size: 1.5rem;
-                        font-weight: 600;
-                        margin: 0 0 0.75rem 0;
-                        line-height: 1.3;
+                        font-family: "Newsreader", ui-serif, Georgia, serif;
+                        font-size: 1.35rem;
+                        font-weight: 500;
+                        margin: 0 0 0.25rem 0;
+                        line-height: 1.25;
                     }
 
                     .post h2 a {
-                        color: var(--color-foreground);
+                        color: var(--foreground);
                         text-decoration: none;
                     }
 
                     .post h2 a:hover {
-                        color: var(--color-primary);
+                        text-decoration: underline;
                     }
 
                     .post-meta {
-                        display: flex;
-                        align-items: center;
-                        gap: 1rem;
-                        margin-bottom: 1rem;
-                        font-size: 0.875rem;
-                        color: var(--color-muted-foreground);
-                    }
-
-                    .post-date {
-                        display: flex;
-                        align-items: center;
-                        gap: 0.25rem;
+                        font-family: "DM Mono", ui-monospace, monospace;
+                        font-size: 0.7rem;
+                        color: var(--ink-mute);
+                        margin-bottom: 0.5rem;
+                        letter-spacing: 0.03em;
                     }
 
                     .post-content {
-                        color: var(--color-muted-foreground);
-                        margin-bottom: 1rem;
+                        font-size: 0.95rem;
+                        color: var(--ink-soft);
+                        font-weight: 300;
+                        line-height: 1.6;
                     }
 
                     .categories {
                         display: flex;
                         flex-wrap: wrap;
-                        gap: 0.5rem;
-                        margin-top: 1rem;
+                        gap: 0.375rem;
+                        margin-top: 0.75rem;
                     }
 
                     .category {
                         display: inline-flex;
                         align-items: center;
-                        padding: 0.25rem 0.75rem;
-                        background-color: var(--color-accent);
-                        border: 1px solid var(--color-border);
-                        border-radius: 0.375rem;
-                        font-size: 0.75rem;
-                        font-weight: 500;
-                        color: var(--color-muted-foreground);
+                        padding: 0.125rem 0.5rem;
+                        border: 1px solid var(--border);
+                        border-radius: 2px;
+                        font-family: "DM Mono", ui-monospace, monospace;
+                        font-size: 0.65rem;
+                        color: var(--ink-soft);
+                        background: var(--card);
                     }
 
                     .category::before {
                         content: "#";
-                        margin-right: 0.125rem;
+                        margin-right: 0.1rem;
                     }
 
                     @media (max-width: 640px) {
                         .container {
-                            padding: 1rem 0.5rem;
-                        }
-
-                        .header {
-                            padding: 1.5rem;
-                            margin-bottom: 2rem;
+                            padding: 2rem 1rem;
                         }
 
                         .header h1 {
                             font-size: 2rem;
-                        }
-
-                        .post {
-                            padding: 1rem;
-                        }
-
-                        .post h2 {
-                            font-size: 1.25rem;
-                        }
-
-                        .post-meta {
-                            flex-direction: column;
-                            align-items: flex-start;
-                            gap: 0.5rem;
                         }
                     }
                 </style>
@@ -208,24 +183,21 @@
                         <h1><xsl:value-of select="/rss/channel/title" /></h1>
                         <p><xsl:value-of select="/rss/channel/description" /></p>
                         <a href="{/rss/channel/link}" class="rss-info">
-                            🌐 Visit Website
+                            Visit Website &#x203A;
                         </a>
                     </div>
 
                     <div class="posts">
                         <xsl:for-each select="/rss/channel/item">
                             <article class="post">
+                                <div class="post-meta">
+                                    <xsl:value-of select="substring(pubDate, 1, 16)" />
+                                </div>
                                 <h2>
                                     <a href="{link}">
                                         <xsl:value-of select="title" />
                                     </a>
                                 </h2>
-                                
-                                <div class="post-meta">
-                                    <div class="post-date">
-                                        📅 <xsl:value-of select="substring(pubDate, 1, 16)" />
-                                    </div>
-                                </div>
 
                                 <div class="post-content">
                                     <xsl:value-of select="description" />
@@ -247,4 +219,4 @@
             </body>
         </html>
     </xsl:template>
-</xsl:stylesheet> 
+</xsl:stylesheet>

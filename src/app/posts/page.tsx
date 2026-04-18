@@ -1,10 +1,15 @@
 import { allPosts } from "content-collections";
-import { T, Var } from "gt-next";
+import { DateTime, T, Var } from "gt-next";
 import { getGT, getLocale } from "gt-next/server";
 import type { Metadata } from "next";
+import type { Route } from "next";
 import Link from "next/link";
-import { PostCard } from "@/components/post-card";
+import { ViewTransition } from "react";
 import { getPostColors } from "@/lib/colors";
+
+function sanitize(slug: string) {
+  return slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
@@ -24,25 +29,12 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
   const { tag: selectedTag } = await searchParams;
   const locale = (await getLocale()) || "en";
 
-  // Filter to current locale
   const localePosts = allPosts.filter((p) => p.locale === locale);
 
-  // Get all posts sorted by date
   const sortedPosts = localePosts.sort(
     (a, b) => b.date.getTime() - a.date.getTime(),
   );
 
-  // Add consistent colors based on date-determined index
-  const postsWithColors = sortedPosts.map((post) => {
-    const colors = getPostColors(post.slug);
-    return {
-      ...post,
-      color: colors.bg,
-      borderColor: colors.border,
-    };
-  });
-
-  // Get all unique tags sorted by frequency
   const tagCounts = localePosts
     .flatMap((post) => post.tags)
     .reduce(
@@ -54,36 +46,34 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
     );
 
   const allTags = Object.keys(tagCounts).sort((a, b) => {
-    // Sort by frequency (descending), then alphabetically for ties
     const countDiff = tagCounts[b] - tagCounts[a];
     return countDiff !== 0 ? countDiff : a.localeCompare(b);
   });
 
-  // Filter posts by tag and archived status
-  const filteredPosts = postsWithColors.filter((post) => {
+  const filteredPosts = sortedPosts.filter((post) => {
     if (selectedTag && !post.tags.includes(selectedTag)) {
       return false;
     }
     return !post.archived;
   });
 
-  const archivedPosts = postsWithColors.filter((post) => post.archived);
+  const archivedPosts = sortedPosts.filter((post) => post.archived);
 
   return (
-    <div className="space-y-12">
-      <header className="space-y-4">
+    <div className="space-y-10">
+      <header className="space-y-3">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            <T id="posts_heading">Posts</T>
+          <h1 className="font-serif font-normal text-4xl sm:text-5xl tracking-tight text-foreground">
+            <T id="posts_heading">Posts.</T>
           </h1>
           <Link
             href="/rss.xml"
-            className="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors border border-border rounded-md hover:bg-accent"
+            className="inline-flex items-center gap-2 px-2.5 py-1 font-mono text-[10.5px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-sm hover:bg-rule-soft"
             target="_blank"
             rel="noopener noreferrer"
           >
             <svg
-              className="h-4 w-4"
+              className="h-3.5 w-3.5"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -93,79 +83,148 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
             <T id="rss_link">RSS</T>
           </Link>
         </div>
-        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
+        <p className="font-serif text-lg text-ink-soft max-w-lg leading-relaxed font-light">
           <T id="posts_description">
-            Thoughts on web development, AI, and building things that matter.
+            Notes on software, language, and the overlap between them.
           </T>
         </p>
       </header>
 
       {/* Tag Filter */}
       {allTags.length > 0 && (
-        <div className="flex flex-wrap gap-2">
-          {allTags.map((tag) => (
+        <div className="flex flex-wrap items-baseline gap-2 py-2.5 border-y border-dotted border-border">
+          <span className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground mr-1">
+            <T id="filter_label">filter</T>
+          </span>
+          {allTags.map((tag) => {
+            const isActive = selectedTag === tag;
+            return (
+              <Link
+                key={tag}
+                href={
+                  isActive
+                    ? "/posts"
+                    : (`/posts?tag=${encodeURIComponent(tag)}` as Route)
+                }
+                className={`font-mono text-[11px] px-2.5 py-0.5 rounded-sm border transition-colors ${
+                  isActive
+                    ? "bg-foreground text-background border-foreground"
+                    : "bg-transparent text-ink-soft border-border hover:border-ink-mute"
+                }`}
+              >
+                #{tag.toLowerCase()}
+              </Link>
+            );
+          })}
+          {selectedTag && (
             <Link
-              key={tag}
-              href={
-                selectedTag === tag
-                  ? "/posts"
-                  : `/posts?tag=${encodeURIComponent(tag)}`
-              }
-              className={`inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
-                selectedTag === tag
-                  ? "bg-blue-100 text-blue-800 border border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground border border-border"
-              }`}
+              href="/posts"
+              className="font-mono text-[10.5px] text-muted-foreground underline ml-auto"
             >
-              #{tag.toLowerCase()} ({tagCounts[tag]})
+              <T id="clear_filter">clear</T>
             </Link>
-          ))}
+          )}
         </div>
       )}
 
-      {/* Regular Posts */}
+      {/* Posts — row layout */}
       <section>
-        <div className="@container">
-          <div className="grid gap-6 @md:grid-cols-2 @2xl:grid-cols-3">
-            {filteredPosts.map((post) => (
-              <PostCard key={post.slug} post={post} />
-            ))}
-          </div>
+        <div>
+          {filteredPosts.map((post) => (
+            <Link
+              key={post.slug}
+              href={post.url as Route}
+              className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
+            >
+              <ViewTransition name={`date-${sanitize(post.url)}`}>
+                <div className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
+                  <DateTime>{post.date}</DateTime>
+                </div>
+              </ViewTransition>
+              <div>
+                <ViewTransition name={`title-${sanitize(post.url)}`}>
+                  <h3 className="font-serif text-[22px] font-medium text-foreground leading-tight mb-1">
+                    {post.title}
+                  </h3>
+                </ViewTransition>
+                <ViewTransition name={`description-${sanitize(post.url)}`}>
+                  <p className="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light">
+                    {post.description}
+                  </p>
+                </ViewTransition>
+                {post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {post.tags.map((tag) => (
+                      <ViewTransition key={tag} name={`tag-${sanitize(post.url)}-${tag}`}>
+                        <span className="font-mono text-[10px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
+                          #{tag.toLowerCase()}
+                        </span>
+                      </ViewTransition>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="hidden sm:block font-mono text-[10px] text-muted-foreground text-right whitespace-nowrap">
+                <ViewTransition name={`reading-time-${sanitize(post.url)}`}>
+                  <span>{post.readingTime}</span>
+                </ViewTransition>
+              </div>
+            </Link>
+          ))}
         </div>
         {filteredPosts.length === 0 && selectedTag && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">
-              <T id="no_posts_with_tag">
-                No posts found with tag{" "}
-                <span className="font-medium">
-                  #<Var>{selectedTag.toLowerCase()}</Var>
-                </span>
-                .
-              </T>
-            </p>
-          </div>
+          <p className="font-serif text-[15px] text-muted-foreground italic text-center py-10">
+            <T id="no_posts_with_tag">
+              No posts match tag{" "}
+              <span className="font-medium">
+                #<Var>{selectedTag.toLowerCase()}</Var>
+              </span>
+              .
+            </T>
+          </p>
         )}
       </section>
 
       {/* Archived Posts */}
       {archivedPosts.length > 0 && !selectedTag && (
         <section>
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">
+          <div className="mb-5">
+            <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground mb-2">
               <T id="archived_heading">Archived</T>
             </h2>
-            <p className="text-muted-foreground">
+            <p className="font-serif text-ink-soft font-light">
               <T id="archived_description">
                 Older posts that might be outdated but still have some value.
               </T>
             </p>
           </div>
-          <div className="@container">
-            <div className="grid gap-6 @md:grid-cols-2 @2xl:grid-cols-3">
-              {archivedPosts.map((post) => (
-                <PostCard key={post.slug} post={post} />
-              ))}
-            </div>
+          <div>
+            {archivedPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={post.url as Route}
+                className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
+              >
+                <div className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
+                  <DateTime>{post.date}</DateTime>
+                </div>
+                <div>
+                  <h3 className="font-serif text-[22px] font-medium text-foreground leading-tight mb-1">
+                    {post.title}
+                  </h3>
+                  <p className="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light">
+                    {post.description}
+                  </p>
+                </div>
+                <div className="hidden sm:block font-mono text-[10px] text-muted-foreground text-right whitespace-nowrap">
+                  {post.readingTime}
+                  <br />
+                  <span className="text-ink-faint text-[9.5px]">
+                    {post.tags.map((t) => `#${t}`).join(" ")}
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
       )}

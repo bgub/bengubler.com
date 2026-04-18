@@ -263,14 +263,14 @@ export default function RecommendedPage() {
   const m = useMessages();
   return (
     <div className="space-y-12">
-      <header className="space-y-4">
+      <header className="space-y-3">
         <T>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            Recommended
+          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
+            Recommended.
           </h1>
         </T>
         <T>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="font-serif text-lg text-ink-soft max-w-lg font-light">
             A curated collection of useful links and resources I've found
             valuable.
           </p>
@@ -279,17 +279,19 @@ export default function RecommendedPage() {
 
       {recommendations.map((section) => (
         <section key={m(section.category)} className="space-y-3">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            {m(section.category)}
-          </h2>
-          <div className="space-y-2">
+          <div className="flex items-baseline gap-3.5">
+            <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
+              {m(section.category)}
+            </h2>
+            <div className="flex-1 border-t border-dotted border-ink-faint mt-1.5" />
+          </div>
+          <div>
             {section.subsections.map((subsection) => (
-              <div key={m(subsection.title)} className="space-y-1">
-                <p className="text-muted-foreground leading-relaxed">
-                  <span className="font-bold text-foreground">
-                    {m(subsection.title)}
-                  </span>
-                  :{" "}
+              <div key={m(subsection.title)} className="grid grid-cols-[1fr] sm:grid-cols-[auto_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border">
+                <span className="font-serif font-medium text-foreground whitespace-nowrap">
+                  {m(subsection.title)}
+                </span>
+                <span className="font-serif text-ink-soft font-light">
                   {subsection.items.map((item, index) => (
                     <span key={m(item.name)}>
                       <Link
@@ -303,7 +305,7 @@ export default function RecommendedPage() {
                       {index < subsection.items.length - 1 && ", "}
                     </span>
                   ))}
-                </p>
+                </span>
               </div>
             ))}
           </div>

@@ -6,21 +6,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter-sans);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-serif);
   --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -41,75 +32,101 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  /* Accent tokens */
+  --color-peach: var(--peach);
+  --color-peach-deep: var(--peach-deep);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-lavender: var(--lavender);
+  --color-lavender-deep: var(--lavender-deep);
+  --color-buttercream: var(--buttercream);
+  --color-paper-deep: var(--paper-deep);
+  --color-paper-card: var(--paper-card);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-mute: var(--ink-mute);
+  --color-ink-faint: var(--ink-faint);
+  --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.25rem;
+  /* Warm editorial palette — light */
+  --background: #faf6ef;
+  --foreground: #2a2722;
+  --card: #fffdf8;
+  --card-foreground: #2a2722;
+  --popover: #fffdf8;
+  --popover-foreground: #2a2722;
+  --primary: #2a2722;
+  --primary-foreground: #faf6ef;
+  --secondary: #f4eee3;
+  --secondary-foreground: #2a2722;
+  --muted: #f4eee3;
+  --muted-foreground: #807668;
+  --accent: #f4eee3;
+  --accent-foreground: #2a2722;
+  --destructive: #b91c1c;
+  --border: #e5ddcd;
+  --input: #e5ddcd;
+  --ring: #b5ab9b;
+  --sidebar: #f4eee3;
+  --sidebar-foreground: #2a2722;
+  --sidebar-border: #e5ddcd;
+  /* Warm accents */
+  --peach: #e8d5c4;
+  --peach-deep: #c69a72;
+  --sage: #c9d8c5;
+  --sage-deep: #7a9578;
+  --lavender: #d4c5e2;
+  --lavender-deep: #8a77a3;
+  --buttercream: #f0e4c4;
+  --paper-deep: #f4eee3;
+  --paper-card: #fffdf8;
+  --ink-soft: #4a443c;
+  --ink-mute: #807668;
+  --ink-faint: #b5ab9b;
+  --rule: #e5ddcd;
+  --rule-soft: #efe7d6;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.269 0 0);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #1f1c18;
+  --foreground: #f2ead8;
+  --card: #262218;
+  --card-foreground: #f2ead8;
+  --popover: #262218;
+  --popover-foreground: #f2ead8;
+  --primary: #f2ead8;
+  --primary-foreground: #1f1c18;
+  --secondary: #2f2a22;
+  --secondary-foreground: #f2ead8;
+  --muted: #2f2a22;
+  --muted-foreground: #948b79;
+  --accent: #2f2a22;
+  --accent-foreground: #f2ead8;
+  --destructive: #ef4444;
+  --border: #3a342a;
+  --input: #3a342a;
+  --ring: #5d5649;
+  --sidebar: #181511;
+  --sidebar-foreground: #f2ead8;
+  --sidebar-border: #3a342a;
+  /* Warm accents — dark */
+  --peach: #7a5a44;
+  --peach-deep: #e8bd8b;
+  --sage: #4a5c48;
+  --sage-deep: #b1cea6;
+  --lavender: #584a66;
+  --lavender-deep: #cdb8e1;
+  --buttercream: #5c4e2f;
+  --paper-deep: #181511;
+  --paper-card: #262218;
+  --ink-soft: #d6ccb6;
+  --ink-mute: #948b79;
+  --ink-faint: #5d5649;
+  --rule: #3a342a;
+  --rule-soft: #2f2a22;
 }
 
 @layer base {
@@ -117,7 +134,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-paper-deep text-foreground;
     scrollbar-gutter: stable;
   }
   html {

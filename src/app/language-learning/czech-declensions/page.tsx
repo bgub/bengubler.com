@@ -18,30 +18,26 @@ export default function CzechCaseCardsPage() {
 
   return (
     <div className="space-y-8">
-      <header className="space-y-4">
-        <nav className="text-sm text-muted-foreground">
+      <header className="space-y-3">
+        <nav className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
           <Link
             href="/language-learning"
-            className="hover:text-foreground transition-colors"
+            className="hover:text-foreground transition-colors no-underline"
           >
-            <T>Language Learning</T>
+            &lsaquo; <T>Language Learning</T>
           </Link>
-          <span className="mx-2">›</span>
-          <T>
-            <span>Czech Case Cards</span>
-          </T>
         </nav>
         <T>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            Czech Case Cards
+          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
+            Czech Case Cards.
           </h1>
         </T>
-        <p className="text-lg text-muted-foreground">
+        <p className="font-serif text-lg text-ink-soft font-light">
           {gt("I built case cards for Czech so you don't have to.")}
         </p>
       </header>
 
-      <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+      <div className="space-y-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
         <T>
           <p>
             I spent many hours creating these! Print these out and you'll
@@ -70,14 +66,14 @@ export default function CzechCaseCardsPage() {
         </T>
       </div>
 
-      <section className="space-y-6">
+      <section className="space-y-4">
         <T>
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
             Basic Case Card
           </h2>
         </T>
         <T>
-          <p className="text-muted-foreground">
+          <p className="font-serif text-ink-soft font-light">
             Note: this won't display properly on mobile: go{" "}
             <a
               href="/declensions/czech-cases-card-basic.pdf"
@@ -88,7 +84,7 @@ export default function CzechCaseCardsPage() {
             to view and download the PDF in a new window.
           </p>
         </T>
-        <div className="w-full border border-[hsl(var(--border))] rounded-lg overflow-hidden">
+        <div className="w-full border border-border rounded-sm overflow-hidden">
           <embed
             src="/declensions/czech-cases-card-basic.pdf"
             width="100%"
@@ -99,14 +95,14 @@ export default function CzechCaseCardsPage() {
         </div>
       </section>
 
-      <section className="space-y-6">
+      <section className="space-y-4">
         <T>
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
             Advanced Case Card
           </h2>
         </T>
         <T>
-          <p className="text-muted-foreground">
+          <p className="font-serif text-ink-soft font-light">
             Note: this won't display properly on mobile: go{" "}
             <a
               href="/declensions/czech-cases-card-advanced.pdf"
@@ -117,7 +113,7 @@ export default function CzechCaseCardsPage() {
             to view and download the PDF in a new window.
           </p>
         </T>
-        <div className="w-full border border-[hsl(var(--border))] rounded-lg overflow-hidden">
+        <div className="w-full border border-border rounded-sm overflow-hidden">
           <embed
             src="/declensions/czech-cases-card-advanced.pdf"
             width="100%"
@@ -128,7 +124,6 @@ export default function CzechCaseCardsPage() {
         </div>
       </section>
 
-      {/* Comments Section */}
       <Comments />
     </div>
   );

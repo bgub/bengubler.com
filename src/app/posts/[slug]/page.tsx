@@ -12,7 +12,7 @@ import type { TOCNode } from "@/components/mdx/remark-toc";
 import { mdxComponents } from "@/components/mdx-components";
 import { RawMarkdown } from "@/components/raw-markdown";
 import { Social } from "@/components/social";
-import { Badge } from "@/components/ui/badge";
+import { Squiggle } from "@/components/squiggle";
 import { Typography } from "@/components/ui/typography";
 import { getPostColors } from "@/lib/colors";
 
@@ -47,7 +47,6 @@ export async function generateMetadata({
     };
   }
 
-  // Clean URL construction using URLSearchParams
   const ogParams = new URLSearchParams({
     title: post.title,
     description: post.description,
@@ -108,117 +107,103 @@ export default async function PostPage({
   return (
     <div className="space-y-8">
       <header className="space-y-4">
-        <nav className="text-sm text-muted-foreground">
+        {/* Breadcrumb */}
+        <nav className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
           <Link
             href="/posts"
-            className="hover:text-foreground transition-colors"
+            className="hover:text-foreground transition-colors no-underline"
           >
-            <T>Posts</T>
+            &lsaquo; <T>All Posts</T>
           </Link>
-          <span className="mx-2">›</span>
-          <span>{post.title}</span>
         </nav>
 
-        {/* Styled Post Header */}
-        <ViewTransition name={`post-card-${base}`}>
-          <div
-            className={`${colors.bg} ${colors.border} border rounded-lg shadow-sm transition-all duration-300 hover:shadow-lg`}
-          >
-            <div className="p-6 space-y-3">
-              <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono">
-                <ViewTransition name={`date-${base}`}>
-                  <time dateTime={post.date.toISOString()}>
-                    <DateTime>{post.date}</DateTime>
-                  </time>
-                </ViewTransition>
-                <span>•</span>
-                <ViewTransition name={`reading-time-${base}`}>
-                  <span>{post.readingTime || gt("5 min read")}</span>
-                </ViewTransition>
-              </div>
-              <ViewTransition name={`title-${base}`}>
-                <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-tight group-hover:text-foreground/90 transition-colors break-words">
-                  {post.title}
-                  {post.archived && (
-                    <span className="text-muted-foreground">
-                      {" "}
-                      <T>(archived)</T>
-                    </span>
-                  )}
-                </h1>
-              </ViewTransition>
-            </div>
-            <div className="px-6 pb-6 space-y-4">
-              <ViewTransition name={`description-${base}`}>
-                <p className="text-lg leading-relaxed text-muted-foreground max-w-3xl break-words">
-                  {post.description}
-                </p>
-              </ViewTransition>
-              {post.tags.length > 0 && (
-                <div className="flex flex-wrap gap-1.5">
-                  {post.tags.map((tag) => (
-                    <ViewTransition key={tag} name={`tag-${base}-${tag}`}>
-                      <Badge
-                        variant="outline"
-                        className="text-xs px-2 py-0.5 bg-background/60 hover:bg-background/80 transition-colors"
-                      >
-                        #{tag.toLowerCase()}
-                      </Badge>
-                    </ViewTransition>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
+        {/* Date + reading time */}
+        <div className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
+          <ViewTransition name={`date-${base}`}>
+            <time dateTime={post.date.toISOString()}>
+              <DateTime>{post.date}</DateTime>
+            </time>
+          </ViewTransition>
+          <span className="mx-1.5">&middot;</span>
+          <ViewTransition name={`reading-time-${base}`}>
+            <span>{post.readingTime || gt("5 min read")}</span>
+          </ViewTransition>
+        </div>
+
+        {/* Title */}
+        <ViewTransition name={`title-${base}`}>
+          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
+            {post.title}
+            {post.archived && (
+              <span className="text-muted-foreground">
+                {" "}
+                <T>(archived)</T>
+              </span>
+            )}
+            <span className="text-peach-deep">.</span>
+          </h1>
         </ViewTransition>
+
+        <ViewTransition name={`description-${base}`}>
+          <p className="font-serif text-lg leading-relaxed text-ink-soft font-light max-w-2xl">
+            {post.description}
+          </p>
+        </ViewTransition>
+
+        <Squiggle className="text-lavender w-24" height={6} />
+
+        {/* Tags */}
+        {post.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {post.tags.map((tag) => (
+              <ViewTransition key={tag} name={`tag-${base}-${tag}`}>
+                <span className="font-mono text-[10px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
+                  #{tag.toLowerCase()}
+                </span>
+              </ViewTransition>
+            ))}
+          </div>
+        )}
       </header>
 
-      {/* Mobile TOC and Raw Markdown - Show before content on mobile */}
+      {/* Mobile TOC and Raw Markdown */}
       <div className="lg:hidden space-y-4">
         {hasTOC && (
-          <div className="bg-card border rounded-lg p-4">
+          <div className="border border-border rounded-sm p-4 bg-card">
             <ClientTOC tree={toc} />
           </div>
         )}
-        <div className="bg-card border rounded-lg p-4">
+        <div className="border border-border rounded-sm p-4 bg-card">
           <RawMarkdown slug={post.slug} content={post.content} />
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="grid lg:grid-cols-[1fr_250px] gap-8">
+      <div className="grid lg:grid-cols-[1fr_180px] gap-8">
         <main className="min-w-0">
           <Typography className="text-lg">
             <MDXContent code={post.mdx} components={mdxComponents} />
           </Typography>
 
-          {/* Mobile Social - Show after content on mobile */}
+          {/* Mobile Social */}
           <div className="lg:hidden mt-8">
-            <div className="bg-card border rounded-lg p-4">
+            <div className="border border-border rounded-sm p-4 bg-card">
               <Social title={post.title} />
             </div>
           </div>
 
           {/* Comments */}
-          <div className="mt-12 pt-8 border-t">
+          <div className="mt-12 pt-8 border-t border-border">
             <Comments />
           </div>
         </main>
 
-        {/* Desktop TOC, Social, and Raw Markdown - Show on desktop only */}
+        {/* Desktop sidebar */}
         <aside className="hidden lg:block">
-          <div className="sticky top-24 space-y-6">
-            {hasTOC && (
-              <div className="bg-card border rounded-lg p-4">
-                <ClientTOC tree={toc} />
-              </div>
-            )}
-            <div className="bg-card border rounded-lg p-4">
-              <Social title={post.title} />
-            </div>
-            <div className="bg-card border rounded-lg p-4">
-              <RawMarkdown slug={post.slug} content={post.content} />
-            </div>
+          <div className="sticky top-24 space-y-6 border-l border-dotted border-border pl-4">
+            {hasTOC && <ClientTOC tree={toc} />}
+            <Social title={post.title} />
+            <RawMarkdown slug={post.slug} content={post.content} />
           </div>
         </aside>
       </div>
