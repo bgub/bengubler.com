@@ -1,13 +1,14 @@
 import { allPosts } from "content-collections";
 import { decodeMsg, T } from "gt-next";
 import { getLocale } from "gt-next/server";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { PostCard } from "@/components/post-card";
+import { ViewTransition } from "react";
 import { ProjectList } from "@/components/project-list";
-import { GitHubIcon, XIcon } from "@/components/social";
-import { Badge } from "@/components/ui/badge";
 import { getPostColors } from "@/lib/colors";
+
+function sanitize(slug: string) {
+  return slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
+}
 import { projectsData } from "@/lib/projects";
 
 type Post = (typeof allPosts)[0];
@@ -15,141 +16,157 @@ type Post = (typeof allPosts)[0];
 export default async function HomePage() {
   const locale = (await getLocale()) || "en";
 
-  // Get all posts sorted by date for consistent color assignment (current locale only)
   const sortedPosts = allPosts
     .filter((post: Post) => post.locale === locale)
     .filter((post: Post) => !post.archived)
     .sort((a: Post, b: Post) => b.date.getTime() - a.date.getTime());
 
-  // Get the 3 most recent posts with consistent colors based on date-determined index
-  const recentPosts = sortedPosts.slice(0, 3).map((post) => {
+  const recentPosts = sortedPosts.slice(0, 4).map((post) => {
     const colors = getPostColors(post.slug);
-    return {
-      ...post,
-      color: colors.bg,
-      borderColor: colors.border,
-    };
+    return { ...post, ...colors };
   });
 
-  // Get featured projects from the new data structure
   const featuredProjects =
     projectsData.find((section) => decodeMsg(section.category) === "Featured")
       ?.projects || [];
 
   return (
-    <div className="space-y-12 md:space-y-16">
+    <div className="space-y-10">
       {/* Hero Section */}
       <section>
-        <div className="space-y-8">
-          <div className="space-y-4">
-            <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-              <T id="hero_greeting">Hello! Ahoj! Привет! مرحبا! 👋</T>
-            </h1>
-            <div className="flex items-center space-x-3">
-              <Badge className="text-xs px-2 py-1 rounded-md bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 dark:bg-blue-950/30 dark:text-blue-400 dark:border-blue-800/30">
-                <T id="hero_vercel_badge">Currently interning @ Vercel</T>
-              </Badge>
-              <Link
-                href="https://github.com/bgub"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GitHubIcon className="h-4 w-4" />
-              </Link>
-              <Link
-                href="https://x.com/bgub_"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <XIcon className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-          <div className="space-y-6">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              <T id="hero_bio_paragraph_1">
-                I'm Ben — a student at BYU studying CS and Arabic. I
-                build open-source libraries, web applications, and AI tools.
-                Currently interning at Vercel.
-              </T>
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              <T id="hero_bio_paragraph_2">
-                Check out my{" "}
-                <Link
-                  href="/projects"
-                  className="text-foreground hover:underline font-medium"
-                >
-                  projects
-                </Link>
-                , read my{" "}
-                <Link
-                  href="/posts"
-                  className="text-foreground hover:underline font-medium"
-                >
-                  writing
-                </Link>
-                , or view my{" "}
-                <a
-                  href="/ben-gubler-resume.pdf"
-                  className="text-foreground hover:underline font-medium"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  résumé
-                </a>
-                .
-              </T>
-            </p>
-          </div>
+        <h1 className="font-serif font-normal text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-tight text-foreground mb-4">
+          <T id="hero_greeting">
+            Hello, Ahoj, Привет,{" "}
+            <span dir="rtl">مرحبا</span>.
+          </T>
+        </h1>
+
+        <p className="font-serif text-lg sm:text-xl leading-relaxed text-ink-soft font-light max-w-xl mb-2.5">
+          <T id="hero_bio_paragraph_1">
+            I'm Ben — a student at BYU studying CS and Arabic. I build
+            open-source libraries, web applications, and AI tools. Currently
+            interning at{" "}
+            <span className="bg-buttercream px-1.5 rounded-sm font-sans text-sm align-[2px] text-foreground font-normal">
+              Vercel
+            </span>
+            .
+          </T>
+        </p>
+
+        <div className="flex flex-wrap items-center gap-x-1.5 font-mono text-[11.5px] text-muted-foreground mt-5">
+          <T id="hero_bio_paragraph_2">
+            <Link
+              href="/projects"
+              className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors"
+            >
+              Projects
+            </Link>
+            <span className="mx-1 text-ink-faint">&middot;</span>
+            <Link
+              href="/posts"
+              className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors"
+            >
+              Writing
+            </Link>
+            <span className="mx-1 text-ink-faint">&middot;</span>
+            <a
+              href="/ben-gubler-resume.pdf"
+              className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              R&eacute;sum&eacute;
+            </a>
+            <span className="mx-1 text-ink-faint">&middot;</span>
+            <Link
+              href="https://github.com/bgub"
+              className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </Link>
+            <span className="mx-1 text-ink-faint">&middot;</span>
+            <Link
+              href="https://x.com/bgub_"
+              className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              X
+            </Link>
+          </T>
         </div>
       </section>
+
 
       {/* Featured Projects Section */}
       <section>
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              <T id="projects_heading">Projects</T>
-            </h2>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
-            >
-              <T id="view_all">View all</T>
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </div>
-          <ProjectList projects={featuredProjects} />
+        <div className="flex items-baseline justify-between mb-5">
+          <h2 className="font-serif font-medium text-[28px] tracking-tight text-foreground">
+            <T id="projects_heading">Projects</T>
+          </h2>
+          <Link
+            href="/projects"
+            className="font-mono text-[10.5px] text-muted-foreground hover:text-foreground no-underline transition-colors"
+          >
+            <T id="view_all">See all &rsaquo;</T>
+          </Link>
         </div>
+        <ProjectList projects={featuredProjects} compact />
       </section>
+
 
       {/* Recent Posts Section */}
       <section>
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              <T id="recent_posts_heading">Recent Posts</T>
-            </h2>
-            {allPosts.filter((p) => p.locale === locale).length > 3 && (
-              <Link
-                href="/posts"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
-              >
-                <T id="view_all">View all</T>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </Link>
-            )}
-          </div>
-          <div className="@container">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {recentPosts.map((post: Post) => (
-                <PostCard key={post.slug} post={post} />
-              ))}
-            </div>
-          </div>
+        <div className="flex items-baseline justify-between mb-5">
+          <h2 className="font-serif font-medium text-[28px] tracking-tight text-foreground">
+            <T id="recent_posts_heading">Recent posts</T>
+          </h2>
+          {sortedPosts.length > 4 && (
+            <Link
+              href="/posts"
+              className="font-mono text-[10.5px] text-muted-foreground hover:text-foreground no-underline transition-colors"
+            >
+              <T id="view_all_posts">See all &rsaquo;</T>
+            </Link>
+          )}
+        </div>
+        <div>
+          {recentPosts.map((post) => (
+            <Link
+              key={post.slug}
+              href={post.url as any}
+              className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
+            >
+              <ViewTransition name={`date-${sanitize(post.url)}`}>
+                <div className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
+                  {post.date.toLocaleDateString(locale, {
+                    month: "numeric",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </div>
+              </ViewTransition>
+              <div>
+                <ViewTransition name={`title-${sanitize(post.url)}`}>
+                  <div className="font-serif text-xl font-medium text-foreground leading-tight mb-1">
+                    {post.title}
+                  </div>
+                </ViewTransition>
+                <ViewTransition name={`description-${sanitize(post.url)}`}>
+                  <div className="font-serif text-sm leading-relaxed text-ink-soft font-light">
+                    {post.description}
+                  </div>
+                </ViewTransition>
+              </div>
+              <div className="hidden sm:block font-mono text-[10px] text-muted-foreground text-right whitespace-nowrap">
+                <ViewTransition name={`reading-time-${sanitize(post.url)}`}>
+                  <span>{post.readingTime}</span>
+                </ViewTransition>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
     </div>

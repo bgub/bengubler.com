@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import {
+  DM_Mono,
+  Newsreader,
+} from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import type React from "react";
@@ -12,15 +15,16 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GTProvider } from "gt-next";
 import { getGT, getLocale } from "gt-next/server";
 
-const interSans = Inter({
-  variable: "--font-inter-sans",
+const newsreader = Newsreader({
+  variable: "--font-serif",
   subsets: ["latin"],
-  weight: "variable",
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
 });
-const geistMono = Geist_Mono({
+const dmMono = DM_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-  weight: "variable",
+  weight: ["300", "400", "500"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -64,7 +68,7 @@ export default async function RootLayout({
 
   return (
     <html suppressHydrationWarning lang={locale} dir={dir}>
-      <body className={`${interSans.variable} ${geistMono.variable}`}>
+      <body className={`${newsreader.variable} ${dmMono.variable}`}>
         <GTProvider>
           <Providers>
           {/* Outermost wrapper for max-width and centering */}
@@ -74,22 +78,22 @@ export default async function RootLayout({
               <Sidebar />
 
               {/* Main Content Area */}
-              <div className="flex-1 md:ms-64 flex flex-col">
+              <div className="flex-1 md:ms-64 flex flex-col bg-background">
                 {/* Mobile Header */}
-                <header className="sticky top-0 z-40 md:hidden border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                  <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+                <header className="sticky top-0 z-40 md:hidden border-b border-border bg-paper-deep/95 backdrop-blur supports-[backdrop-filter]:bg-paper-deep/60">
+                  <div className="flex h-14 items-center justify-between px-4 sm:px-6">
                     <Link href="/" className="flex items-center gap-3">
-                      <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-border/20">
+                      <div className="relative w-9 h-9 rounded-full overflow-hidden border border-border shrink-0">
                         <Image
                           src="/bengubler.jpg"
                           alt={gt("Profile photo")}
-                          width={32}
-                          height={32}
+                          width={36}
+                          height={36}
                           className="object-cover"
                           priority
                         />
                       </div>
-                      <span className="text-lg font-semibold">Ben Gubler</span>
+                      <span className="font-serif text-xl font-medium translate-y-px">Ben Gubler</span>
                     </Link>
                     <MobileNav />
                   </div>

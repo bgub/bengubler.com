@@ -92,7 +92,7 @@ const mdxComponents = {
       <div className="relative">
         <pre
           {...props}
-          className="border overflow-x-auto rounded-lg bg-muted/50 p-4 text-sm [&>code]:bg-transparent [&>code]:p-0"
+          className="border overflow-x-auto rounded-sm bg-muted/50 p-4 text-sm [&>code]:bg-transparent [&>code]:p-0"
         >
           {rawString && <CopyButton text={rawString} />}
           {children}

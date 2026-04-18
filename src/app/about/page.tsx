@@ -2,7 +2,6 @@ import { T } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getColorByIndex } from "@/lib/colors";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
@@ -16,19 +15,17 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function AboutPage() {
-  const colors = getColorByIndex(0); // Use first color for consistency
-
   return (
     <div className="space-y-10">
-      <header className="space-y-4">
+      <header>
         <T>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            About Me
+          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
+            About me.
           </h1>
         </T>
       </header>
 
-      <section className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+      <section className="space-y-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
         <T>
           <p>
             My name's Ben, but you might know me by my GitHub username,{" "}
@@ -98,17 +95,15 @@ export default function AboutPage() {
         </T>
       </section>
 
-      <section className="space-y-6">
+      <section className="space-y-5">
         <T>
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
             Fun Facts
           </h2>
         </T>
-        <div
-          className={`${colors.bg} ${colors.border} border rounded-lg p-6 shadow-sm transition-all duration-300 hover:shadow-lg`}
-        >
+        <div className="border border-border rounded-sm p-6 bg-card">
           <T>
-            <ul className="list-disc space-y-3 pl-5 text-lg text-muted-foreground leading-relaxed">
+            <ul className="list-disc space-y-3 pl-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
               <li>
                 I'm passionate about language learning — I speak English, Czech,
                 and Slovak, and am currently learning Russian and Arabic.

@@ -100,14 +100,14 @@ export default function FavoritesPage() {
   const m = useMessages();
   return (
     <div className="space-y-12">
-      <header className="space-y-4">
+      <header className="space-y-3">
         <T>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            Favorites
+          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
+            Favorites.
           </h1>
         </T>
         <T>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="font-serif text-lg text-ink-soft max-w-lg font-light">
             Books, movies, and other things I love and recommend.
           </p>
         </T>
@@ -115,24 +115,26 @@ export default function FavoritesPage() {
 
       {favorites.map((section) => (
         <section key={section.category} className="space-y-3">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            {m(section.category)}
-          </h2>
-          <div className="space-y-2">
+          <div className="flex items-baseline gap-3.5">
+            <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
+              {m(section.category)}
+            </h2>
+            <div className="flex-1 border-t border-dotted border-ink-faint mt-1.5" />
+          </div>
+          <div>
             {section.subsections.map((subsection) => (
-              <div key={subsection.title} className="space-y-1">
-                <p className="text-muted-foreground leading-relaxed">
-                  <span className="font-bold text-foreground">
-                    {m(subsection.title)}
-                  </span>
-                  :{" "}
+              <div key={subsection.title} className="grid grid-cols-[1fr] sm:grid-cols-[140px_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border">
+                <span className="font-serif font-medium text-foreground">
+                  {m(subsection.title)}
+                </span>
+                <span className="font-serif text-ink-soft font-light">
                   {subsection.items.map((item, index) => (
                     <span key={item.name}>
                       {item.name}
                       {index < subsection.items.length - 1 && ", "}
                     </span>
                   ))}
-                </p>
+                </span>
               </div>
             ))}
           </div>

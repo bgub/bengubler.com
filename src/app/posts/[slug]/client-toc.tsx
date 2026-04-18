@@ -27,7 +27,6 @@ export function ClientTOC({ tree }: ClientTOCProps) {
       },
     );
 
-    // Observe all headings with IDs
     const headings = document.querySelectorAll(
       "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]",
     );
@@ -42,15 +41,14 @@ export function ClientTOC({ tree }: ClientTOCProps) {
     return null;
   }
 
-  // Recursive component to render TOC nodes at any depth
-  const renderTOCNodes = (nodes: TOCNode[]) => {
+  const renderTOCNodes = (nodes: TOCNode[], depth = 0) => {
     return (
-      <ul className="space-y-1">
+      <ul className="space-y-0.5">
         {nodes.map((node) => (
           <li key={node.id}>
             <TOCLink node={node} activeSection={activeSection} />
             {node.children.length > 0 && (
-              <div className="mt-1">{renderTOCNodes(node.children)}</div>
+              <div className="mt-0.5">{renderTOCNodes(node.children, depth + 1)}</div>
             )}
           </li>
         ))}
@@ -61,8 +59,8 @@ export function ClientTOC({ tree }: ClientTOCProps) {
   return (
     <div className="space-y-2">
       <T>
-        <h3 className="font-semibold text-sm text-foreground">
-          Table of Contents
+        <h3 className="font-mono text-[9px] tracking-widest uppercase text-ink-faint">
+          In this entry
         </h3>
       </T>
       {renderTOCNodes(tree.children)}

@@ -5,8 +5,9 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { MobileLocaleSelector } from "@/components/mobile-locale-selector";
-import { MobileThemeToggle } from "@/components/mobile-theme-toggle";
+import { LocaleOrbit } from "@/components/locale-orbit";
+import { Squiggle } from "@/components/squiggle";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { navigation } from "@/lib/navigation";
 
@@ -26,13 +27,12 @@ export function MobileNav() {
         buttonRef.current &&
         !buttonRef.current.contains(event.target as Node)
       ) {
-        // Check if the click is on a dropdown menu item
         const target = event.target as Element;
         if (
           target.closest('[role="menuitem"]') ||
           target.closest("[data-radix-collection-item]")
         ) {
-          return; // Don't close if clicking on dropdown items
+          return;
         }
         setIsOpen(false);
       }
@@ -70,46 +70,54 @@ export function MobileNav() {
       {isOpen && (
         <div
           id="mobile-menu-popover"
-          className="absolute end-0 top-12 z-50 w-80 rounded-lg border border-border/40 bg-background p-4 shadow-lg"
+          className="absolute end-0 top-12 z-50 w-72 rounded-sm border border-border bg-paper-deep p-4 shadow-lg"
         >
-          <div className="space-y-1">
+          <nav className="flex flex-col gap-y-0.5">
             {navigation.map((item) => {
               const isActive =
                 pathname === item.href ||
-                (item.href === "/posts" && pathname.startsWith("/posts/"));
+                (item.href === "/posts" && pathname.startsWith("/posts/")) ||
+                (item.href === "/language-learning" &&
+                  pathname.startsWith("/language-learning"));
               return (
                 <div key={item.name} className="relative">
                   {item.isSubItem && (
-                    <div className="absolute start-2 top-0 h-1/2 w-px bg-border/70"></div>
+                    <div className="absolute start-2 top-0 h-1/2 w-px bg-border/70" />
                   )}
                   {item.isSubItem && (
-                    <div className="absolute start-2 top-1/2 w-4 h-px bg-border/70"></div>
+                    <div className="absolute start-2 top-1/2 w-4 h-px bg-border/70" />
                   )}
                   <Link
                     href={item.href}
-                    className={`group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                      item.isSubItem ? "ms-6" : ""
+                    className={`group flex items-center gap-x-2.5 rounded-sm px-2.5 py-2 text-sm font-sans leading-tight transition-all duration-100 ${
+                      item.isSubItem ? "ms-4" : ""
                     } ${
                       isActive
-                        ? "bg-accent text-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                        ? "bg-card text-foreground shadow-[inset_0_0_0_1px_var(--border)]"
+                        : "text-ink-soft hover:bg-rule-soft"
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
-                    <item.icon className="h-4 w-4 shrink-0" />
+                    <item.icon
+                      className="h-[15px] w-[15px] shrink-0 opacity-75"
+                      aria-hidden="true"
+                    />
                     {m(item.name)}
                   </Link>
                 </div>
               );
             })}
-          </div>
+          </nav>
 
-          {/* Theme + Language row */}
-          <div className="flex items-center gap-2 pt-4 mt-4 border-t border-border/40">
-            <MobileThemeToggle onThemeChange={() => setIsOpen(false)} />
-            <div className="ms-auto">
-              <MobileLocaleSelector mode="compact" />
-            </div>
+          <Squiggle className="text-ink-faint my-3" />
+
+          <LocaleOrbit />
+
+          <div className="border-t border-dotted border-border mt-3 pt-3 flex items-center justify-between">
+            <span className="font-mono text-[9.5px] text-ink-faint tracking-wider">
+              &copy; Ben Gubler
+            </span>
+            <ThemeToggle />
           </div>
         </div>
       )}

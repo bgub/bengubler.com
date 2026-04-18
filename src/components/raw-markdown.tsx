@@ -1,7 +1,6 @@
 "use client";
 
 import { Branch, T } from "gt-next";
-import { Check, Copy, ExternalLink } from "lucide-react";
 import { useState } from "react";
 
 interface RawMarkdownProps {
@@ -23,44 +22,33 @@ export function RawMarkdown({ slug, content }: RawMarkdownProps) {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       <T>
-        <h3 className="font-semibold text-sm text-foreground">
-          View Raw (for LLMs)
+        <h3 className="font-mono text-[9px] tracking-widest uppercase text-ink-faint">
+          Raw (for LLMs)
         </h3>
       </T>
-      <div className="space-y-2">
+      <div className="font-serif text-[12.5px] text-ink-soft font-light leading-relaxed space-y-1">
         <T>
           <a
             href={`/posts/${slug}.md`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="block text-foreground no-underline border-b border-border w-fit hover:border-ink-mute transition-colors"
           >
-            <ExternalLink className="h-4 w-4" />
-            View raw markdown
+            View Markdown
           </a>
         </T>
         <button
           onClick={copyToClipboard}
           type="button"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors w-full justify-start"
+          className="block text-foreground no-underline border-b border-border hover:border-ink-mute transition-colors"
         >
           <T>
             <Branch
               branch={copied.toString()}
-              true={
-                <>
-                  <Check className="h-4 w-4 text-green-500" />
-                  Copied!
-                </>
-              }
-              false={
-                <>
-                  <Copy className="h-4 w-4" />
-                  Copy raw content
-                </>
-              }
+              true="Copied!"
+              false="Copy Raw"
             />
           </T>
         </button>
