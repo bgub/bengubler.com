@@ -12,6 +12,7 @@ import { navigation } from "@/lib/navigation";
 export function Sidebar() {
   const pathname = usePathname();
   const m = useMessages();
+  const gt = useGT();
 
   return (
     <div className="hidden md:fixed md:inset-y-0 md:z-50 md:flex md:w-64 md:flex-col">
@@ -22,7 +23,7 @@ export function Sidebar() {
             <div className="relative w-[52px] h-[52px] rounded-full overflow-hidden shrink-0 border border-border">
               <Image
                 src="/bengubler.jpg"
-                alt="Profile photo"
+                alt={gt("Profile photo")}
                 width={52}
                 height={52}
                 className="object-cover"

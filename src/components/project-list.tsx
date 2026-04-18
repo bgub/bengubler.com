@@ -1,4 +1,4 @@
-import { T, useMessages } from "gt-next";
+import { useGT, useMessages } from "gt-next";
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
 import { GitHubIcon } from "@/components/social";
@@ -11,6 +11,7 @@ interface ProjectListProps {
 
 export function ProjectList({ projects, compact = false }: ProjectListProps) {
   const m = useMessages();
+  const gt = useGT();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {projects.map((project, i) => {
@@ -43,7 +44,7 @@ export function ProjectList({ projects, compact = false }: ProjectListProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground transition-colors shrink-0 mt-1"
-                    aria-label={`${m(project.name)} on GitHub`}
+                    aria-label={gt('{name} on GitHub', { name: m(project.name) })}
                   >
                     <GitHubIcon className="h-4 w-4" />
                   </Link>

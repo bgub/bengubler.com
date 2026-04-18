@@ -30,30 +30,32 @@ interface HeaderProps {
 const LINK_TO_SECTION_LABEL = msg("Link to section");
 
 // Header component with link icon that allows text wrapping
+function MdxHeader({ tagName, id, children, ...props }: HeaderProps & { tagName: string }) {
+  const m = useMessages();
+  return createElement(
+    tagName,
+    {
+      ...props,
+      id,
+      className: "group scroll-mt-20 relative",
+    },
+    children,
+    id &&
+      createElement(
+        "a",
+        {
+          href: `#${id}`,
+          className:
+            "opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground ms-2 inline-block align-baseline",
+          "aria-label": m(LINK_TO_SECTION_LABEL),
+        },
+        createElement(LinkIcon, { className: "h-4 w-4 flex-shrink-0" }),
+      ),
+  );
+}
+
 const createHeaderComponent = (tagName: string) => {
-  return ({ id, children, ...props }: HeaderProps) => {
-    const m = useMessages();
-    return createElement(
-      tagName,
-      {
-        ...props,
-        id,
-        className: "group scroll-mt-20 relative",
-      },
-      children,
-      id &&
-        createElement(
-          "a",
-          {
-            href: `#${id}`,
-            className:
-              "opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground ms-2 inline-block align-baseline",
-            "aria-label": m(LINK_TO_SECTION_LABEL),
-          },
-          createElement(LinkIcon, { className: "h-4 w-4 flex-shrink-0" }),
-        ),
-    );
-  };
+  return (props: HeaderProps) => <MdxHeader tagName={tagName} {...props} />;
 };
 
 const mdxComponents = {
