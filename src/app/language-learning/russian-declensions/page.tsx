@@ -19,7 +19,7 @@ export default function RussianCaseCardsPage() {
   return (
     <div className="space-y-8">
       <header className="space-y-3">
-        <nav className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
+        <nav className="font-mono text-[11px] text-muted-foreground tracking-wide">
           <Link
             href="/language-learning"
             className="hover:text-foreground transition-colors no-underline"

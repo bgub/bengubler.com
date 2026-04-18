@@ -114,7 +114,7 @@ export function MobileNav() {
           <LocaleOrbit />
 
           <div className="border-t border-dotted border-border mt-3 pt-3 flex items-center justify-between">
-            <span className="font-mono text-[9.5px] text-ink-faint tracking-wider">
+            <span className="font-mono text-[11px] text-muted-foreground tracking-wider">
               &copy; Ben Gubler
             </span>
             <ThemeToggle />

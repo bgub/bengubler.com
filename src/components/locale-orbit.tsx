@@ -22,7 +22,7 @@ export function LocaleOrbit({ className }: LocaleOrbitProps) {
             type="button"
             onClick={() => setLocale(code)}
             className={cn(
-              "flex-1 font-mono text-[10px] tracking-wide py-1 rounded-sm border border-dashed transition-colors text-center",
+              "flex-1 font-mono text-[11px] tracking-wide py-1 rounded-sm border border-dashed transition-colors text-center",
               active
                 ? "border-foreground text-foreground bg-peach"
                 : "border-ink-faint text-muted-foreground hover:border-ink-mute hover:text-foreground",

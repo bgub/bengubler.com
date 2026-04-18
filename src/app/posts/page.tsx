@@ -68,7 +68,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
           </h1>
           <Link
             href="/rss.xml"
-            className="inline-flex items-center gap-2 px-2.5 py-1 font-mono text-[10.5px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-sm hover:bg-rule-soft"
+            className="inline-flex items-center gap-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-sm hover:bg-rule-soft"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -93,7 +93,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
       {/* Tag Filter */}
       {allTags.length > 0 && (
         <div className="flex flex-wrap items-baseline gap-2 py-2.5 border-y border-dotted border-border">
-          <span className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground mr-1">
+          <span className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground mr-1">
             <T id="filter_label">filter</T>
           </span>
           {allTags.map((tag) => {
@@ -119,7 +119,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
           {selectedTag && (
             <Link
               href="/posts"
-              className="font-mono text-[10.5px] text-muted-foreground underline ml-auto"
+              className="font-mono text-[11px] text-muted-foreground underline ml-auto"
             >
               <T id="clear_filter">clear</T>
             </Link>
@@ -137,7 +137,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
               className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
             >
               <ViewTransition name={`date-${sanitize(post.url)}`}>
-                <div className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
+                <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
                   <DateTime>{post.date}</DateTime>
                 </div>
               </ViewTransition>
@@ -156,7 +156,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {post.tags.map((tag) => (
                       <ViewTransition key={tag} name={`tag-${sanitize(post.url)}-${tag}`}>
-                        <span className="font-mono text-[10px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
+                        <span className="font-mono text-[11px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
                           #{tag.toLowerCase()}
                         </span>
                       </ViewTransition>
@@ -164,7 +164,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
                   </div>
                 )}
               </div>
-              <div className="hidden sm:block font-mono text-[10px] text-muted-foreground text-right whitespace-nowrap">
+              <div className="hidden sm:block font-mono text-[11px] text-muted-foreground text-right whitespace-nowrap">
                 <ViewTransition name={`reading-time-${sanitize(post.url)}`}>
                   <span>{post.readingTime}</span>
                 </ViewTransition>
@@ -205,7 +205,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
                 href={post.url as Route}
                 className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
               >
-                <div className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
+                <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
                   <DateTime>{post.date}</DateTime>
                 </div>
                 <div>
@@ -216,10 +216,10 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
                     {post.description}
                   </p>
                 </div>
-                <div className="hidden sm:block font-mono text-[10px] text-muted-foreground text-right whitespace-nowrap">
+                <div className="hidden sm:block font-mono text-[11px] text-muted-foreground text-right whitespace-nowrap">
                   {post.readingTime}
                   <br />
-                  <span className="text-ink-faint text-[9.5px]">
+                  <span className="text-muted-foreground text-[11px]">
                     {post.tags.map((t) => `#${t}`).join(" ")}
                   </span>
                 </div>
