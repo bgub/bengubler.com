@@ -42,7 +42,7 @@ export function ProjectList({ projects, compact = false }: ProjectListProps) {
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-ink-faint hover:text-foreground transition-colors shrink-0 mt-1"
+                    className="text-muted-foreground hover:text-foreground transition-colors shrink-0 mt-1"
                     aria-label={`${m(project.name)} on GitHub`}
                   >
                     <GitHubIcon className="h-4 w-4" />
@@ -53,7 +53,7 @@ export function ProjectList({ projects, compact = false }: ProjectListProps) {
                 {m(project.description)}
               </div>
               {!compact && (
-                <div className="font-mono text-[10px] text-muted-foreground tracking-wide mt-2.5">
+                <div className="font-mono text-[11px] text-muted-foreground tracking-wide mt-2.5">
                   {project.tech}
                 </div>
               )}

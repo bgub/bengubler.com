@@ -108,7 +108,7 @@ export default async function PostPage({
     <div className="space-y-8">
       <header className="space-y-4">
         {/* Breadcrumb */}
-        <nav className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
+        <nav className="font-mono text-[11px] text-muted-foreground tracking-wide">
           <Link
             href="/posts"
             className="hover:text-foreground transition-colors no-underline"
@@ -118,7 +118,7 @@ export default async function PostPage({
         </nav>
 
         {/* Date + reading time */}
-        <div className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
+        <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
           <ViewTransition name={`date-${base}`}>
             <time dateTime={post.date.toISOString()}>
               <DateTime>{post.date}</DateTime>
@@ -157,7 +157,7 @@ export default async function PostPage({
           <div className="flex flex-wrap gap-1.5">
             {post.tags.map((tag) => (
               <ViewTransition key={tag} name={`tag-${base}-${tag}`}>
-                <span className="font-mono text-[10px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
+                <span className="font-mono text-[11px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
                   #{tag.toLowerCase()}
                 </span>
               </ViewTransition>

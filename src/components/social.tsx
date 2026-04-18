@@ -101,7 +101,7 @@ export function Social({ title, className }: SocialProps) {
   return (
     <div className={cn("space-y-2", className)}>
       <T>
-        <h3 className="font-mono text-[9px] tracking-widest uppercase text-ink-faint">
+        <h3 className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
           Pass along
         </h3>
       </T>

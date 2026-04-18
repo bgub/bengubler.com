@@ -59,7 +59,7 @@ export function ClientTOC({ tree }: ClientTOCProps) {
   return (
     <div className="space-y-2">
       <T>
-        <h3 className="font-mono text-[9px] tracking-widest uppercase text-ink-faint">
+        <h3 className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
           In this entry
         </h3>
       </T>

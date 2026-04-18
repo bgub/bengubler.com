@@ -110,7 +110,7 @@ const mdxComponents = {
   blockquote: ({ children, ...props }: CodeProps) => (
     <blockquote
       {...props}
-      className="border-l-4 border-border pl-4 italic text-muted-foreground"
+      className="border-l-4 border-border pl-4 italic text-ink-soft"
     >
       {children}
     </blockquote>
