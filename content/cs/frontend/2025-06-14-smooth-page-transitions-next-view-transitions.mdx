@@ -1,13 +1,13 @@
 ---
-title: "Plynulé přechody stránek v Next.js s next-view-transitions"
-description: "Přidejte do Next.js plynulé přechody stránek pomocí View Transitions API."
+title: "Plynulé přechody mezi stránkami v Next.js pomocí next-view-transitions"
+description: "Přidejte do Next.js plynulé přechody mezi stránkami pomocí rozhraní View Transitions API."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
 ## Stručně
 
-Balíček [`next-view-transitions`](https://github.com/shuding/next-view-transitions) přináší do Next.js plynulé přechody mezi stránkami. Postavíme si jednoduchý blog a přidáme plynulé přechody prvků pomocí vlastnosti `viewTransitionName`, aby se nadpisy a data mezi stránkami plynule proměňovaly. Tady je ukázka toho, co budeme vytvářet:
+Balíček [`next-view-transitions`](https://github.com/shuding/next-view-transitions) přináší do Next.js plynulé přechody mezi stránkami. Vytvoříme jednoduchý blog a pomocí vlastností `viewTransitionName` přidáme plynulé přechody prvků, díky nimž se nadpisy a data mezi stránkami plynule promění. Tady je ukázka toho, co budeme vytvářet:
 
 <Tweet id="1934092246921671158" />
 
@@ -28,7 +28,6 @@ pnpx shadcn@latest init
 pnpx shadcn@latest add card badge
 ```
 
-
 ## Testovací data
 
 Vytvořte `lib/posts.ts`:
@@ -47,7 +46,7 @@ export const posts: Post[] = [
   {
     id: 1,
     slug: "getting-started-nextjs",
-    title: "Začínáme s Next.js",
+    title: "Getting Started with Next.js",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
     date: "2024-12-01",
@@ -57,7 +56,7 @@ export const posts: Post[] = [
   {
     id: 2,
     slug: "react-best-practices",
-    title: "Nejlepší postupy v Reactu",
+    title: "React Best Practices",
     description:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
     date: "2024-12-05",
@@ -67,7 +66,7 @@ export const posts: Post[] = [
   {
     id: 3,
     slug: "tailwind-tips",
-    title: "Tipy a triky pro Tailwind CSS",
+    title: "Tailwind CSS Tips and Tricks",
     description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     date: "2024-12-10",
@@ -77,8 +76,7 @@ export const posts: Post[] = [
 ];
 ```
 
-
-## Seznam příspěvků
+## Přehled příspěvků
 
 Nahraďte soubor `app/page.tsx`:
 
@@ -97,7 +95,7 @@ import Link from "next/link";
 export default function PostsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Můj blog</h1>
+      <h1 className="text-3xl font-bold mb-8">My Blog</h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <Link key={post.id} href={`/posts/${post.slug}`}>
@@ -117,7 +115,6 @@ export default function PostsPage() {
   );
 }
 ```
-
 
 ## Stránky jednotlivých příspěvků
 
@@ -147,7 +144,7 @@ export default async function PostPage({ params }: PostPageProps) {
         href="/"
         className="text-blue-600 hover:underline mb-4 inline-block"
       >
-        ← Zpět na příspěvky
+        ← Back to posts
       </Link>
 
       <article className="max-w-3xl">
@@ -173,12 +170,11 @@ export function generateStaticParams() {
 }
 ```
 
-Nyní máte funkční blog se standardní navigací mezi stránkami.
-
+Nyní už máte funkční blog s běžnou navigací mezi stránkami.
 
 ## Přidejte View Transitions
 
-Aplikaci obalte do `app/layout.tsx`:
+V `app/layout.tsx` obalte svou aplikaci:
 
 ```tsx
 import { ViewTransitions } from "next-view-transitions";
@@ -192,7 +188,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ViewTransitions>
-        <html lang="cs">
+      <html lang="en">
         <body>{children}</body>
       </html>
     </ViewTransitions>
@@ -200,7 +196,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 }
 ```
 
-Nahraďte všechny importy `next/link` verzí s podporou transitionů:
+Nahraďte všechny importy `next/link` verzí, která podporuje přechody:
 
 ```tsx
 // Místo:
@@ -210,15 +206,14 @@ import Link from "next/link";
 import { Link } from "next-view-transitions";
 ```
 
-V tuto chvíli vypadá navigace stejně jako předtím. Balíček ve výchozím nastavení nepřidává žádné přechody.
-
+Navigace zatím vypadá stejně jako dřív. Balíček ve výchozím nastavení nepřidává žádné přechody.
 
 ## Kouzlo: přechody sdílených prvků
 
-Přidejte vlastnost `viewTransitionName` k prvkům, které se mají mezi stránkami plynule proměnit:
+Přidejte prvkům, které se mají mezi stránkami plynule proměňovat, vlastnosti `viewTransitionName`:
 
 ```tsx
-// V seznamu příspěvků (app/page.tsx):
+// Ve výpisu příspěvků (app/page.tsx):
 <CardTitle
   className="line-clamp-2"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -250,9 +245,8 @@ Přidejte vlastnost `viewTransitionName` k prvkům, které se mají mezi stránk
 </Badge>
 ```
 
-Teď se název a datum plynule přemění z karty na stránku příspěvku. **Tohle je jediný způsob, jak přechody opravdu vidět** – mít mezi stránkami shodné hodnoty `viewTransitionName`.
-
+Teď se název a datum plynule přenesou z karty na stránku příspěvku. **Tohle je jediný způsob, jak přechody opravdu uvidět** – hodnoty `viewTransitionName` se mezi stránkami musí shodovat.
 
 ## Hotovo
 
-Tyto přechody zajišťují vizuální kontinuitu, díky nim aplikace působí svižněji a pomáhají uživatelům udržovat kontext. View Transitions API je podporováno v prohlížečích Chrome, Edge a Opera, přičemž v ostatních dochází k plynulému návratu k běžné navigaci.
+Tyto přechody zajišťují vizuální kontinuitu, aplikace díky nim působí pohotověji a uživatelům pomáhají neztratit kontext. View Transitions API podporují prohlížeče Chrome, Edge a Opera, zatímco v ostatních prohlížečích se elegantně přepne na běžnou navigaci.

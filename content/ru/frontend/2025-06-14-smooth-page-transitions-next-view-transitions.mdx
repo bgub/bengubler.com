@@ -1,17 +1,17 @@
 ---
-title: "Плавные переходы страниц в Next.js с next-view-transitions"
-description: "Добавьте плавные переходы страниц в Next.js с помощью View Transitions API."
+title: "Плавные переходы между страницами в Next.js с next-view-transitions"
+description: "Добавьте плавные переходы между страницами в Next.js с использованием API View Transitions."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-## В двух словах
+## Вкратце
 
-Пакет [`next-view-transitions`](https://github.com/shuding/next-view-transitions) добавляет плавные переходы между страницами в Next.js. Мы создадим простой блог и добавим плавные переходы элементов, используя свойство `viewTransitionName`, чтобы заголовки и даты плавно перетекали между страницами. Вот демо того, что мы будем делать:
+Пакет [`next-view-transitions`](https://github.com/shuding/next-view-transitions) добавляет в Next.js плавные переходы между страницами. Мы создадим простой блог и добавим плавные переходы элементов с помощью свойств `viewTransitionName`, чтобы заголовки и даты плавно переходили с одной страницы на другую. Вот демонстрация того, что мы будем делать:
 
 <Tweet id="1934092246921671158" />
 
-## Установка
+## Настройка
 
 ```bash
 pnpx create-next-app@latest my-smooth-blog
@@ -27,7 +27,6 @@ pnpm install next-view-transitions
 pnpx shadcn@latest init
 pnpx shadcn@latest add card badge
 ```
-
 
 ## Тестовые данные
 
@@ -47,7 +46,7 @@ export const posts: Post[] = [
   {
     id: 1,
     slug: "getting-started-nextjs",
-    title: "Начинаем работу с Next.js",
+    title: "Getting Started with Next.js",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
     date: "2024-12-01",
@@ -57,7 +56,7 @@ export const posts: Post[] = [
   {
     id: 2,
     slug: "react-best-practices",
-    title: "Лучшие практики React",
+    title: "React Best Practices",
     description:
       "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
     date: "2024-12-05",
@@ -67,7 +66,7 @@ export const posts: Post[] = [
   {
     id: 3,
     slug: "tailwind-tips",
-    title: "Советы и хитрости Tailwind CSS",
+    title: "Tailwind CSS Tips and Tricks",
     description:
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     date: "2024-12-10",
@@ -76,7 +75,6 @@ export const posts: Post[] = [
   },
 ];
 ```
-
 
 ## Список публикаций
 
@@ -97,7 +95,7 @@ import Link from "next/link";
 export default function PostsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Мой блог</h1>
+      <h1 className="text-3xl font-bold mb-8">My Blog</h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <Link key={post.id} href={`/posts/${post.slug}`}>
@@ -118,8 +116,7 @@ export default function PostsPage() {
 }
 ```
 
-
-## Отдельные страницы постов
+## Страница отдельной публикации
 
 Создайте `app/posts/[slug]/page.tsx`:
 
@@ -147,7 +144,7 @@ export default async function PostPage({ params }: PostPageProps) {
         href="/"
         className="text-blue-600 hover:underline mb-4 inline-block"
       >
-        ← Назад к записям
+        ← Back to posts
       </Link>
 
       <article className="max-w-3xl">
@@ -173,12 +170,11 @@ export function generateStaticParams() {
 }
 ```
 
-Теперь у вас есть полноценный блог с обычной навигацией по страницам.
+Теперь у вас есть рабочий блог с обычной навигацией между страницами.
 
+## Добавьте View Transitions
 
-## Включите View Transitions
-
-Обратите приложение в `app/layout.tsx`:
+Оберните приложение в `app/layout.tsx`:
 
 ```tsx
 import { ViewTransitions } from "next-view-transitions";
@@ -192,7 +188,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ViewTransitions>
-        <html lang="ru">
+      <html lang="en">
         <body>{children}</body>
       </html>
     </ViewTransitions>
@@ -200,7 +196,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 }
 ```
 
-Замените все импорты `next/link` на версию с поддержкой переходов:
+Замените все импорты `next/link` на вариант с поддержкой переходов:
 
 ```tsx
 // Вместо:
@@ -210,15 +206,14 @@ import Link from "next/link";
 import { Link } from "next-view-transitions";
 ```
 
-На этом этапе навигация выглядит так же, как и раньше. Пакет по умолчанию не добавляет никаких анимаций переходов.
+На этом этапе навигация выглядит точно так же, как и раньше. Пакет по умолчанию не добавляет никаких анимаций перехода.
 
+## Магия: переходы общих элементов
 
-## Магия: переходы с общими элементами
-
-Добавьте свойство `viewTransitionName` тем элементам, которые должны плавно трансформироваться при переходе между страницами:
+Добавьте свойство `viewTransitionName` элементам, которые должны плавно переходить между страницами:
 
 ```tsx
-// В списке ваших постов (app/page.tsx):
+// В списке публикаций (app/page.tsx):
 <CardTitle
   className="line-clamp-2"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -235,7 +230,7 @@ import { Link } from "next-view-transitions";
 ```
 
 ```tsx
-// На странице отдельного поста (app/posts/[slug]/page.tsx):
+// На странице отдельной публикации (app/posts/[slug]/page.tsx):
 <h1
   className="text-4xl font-bold mb-4"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -250,9 +245,8 @@ import { Link } from "next-view-transitions";
 </Badge>
 ```
 
-Теперь заголовок и дата плавно перетекают с карточки на страницу поста. **Это единственный способ действительно увидеть переходы** — совпадение значений `viewTransitionName` между страницами.
-
+Теперь заголовок и дата плавно переходят с карточки на страницу публикации. **Только так можно действительно увидеть переходы** — если значения `viewTransitionName` на страницах совпадают.
 
 ## Готово
 
-Эти переходы обеспечивают визуальную целостность, делают приложение отзывчивее и помогают пользователям не терять контекст. View Transitions API поддерживается в Chrome, Edge и Opera, а в остальных браузерах предусмотрено корректное переключение на обычную навигацию.
+Эти переходы обеспечивают визуальную целостность, делают приложение более отзывчивым и помогают пользователям не терять контекст. API View Transitions поддерживается в Chrome, Edge и Opera, а в других браузерах приложение просто использует обычную навигацию.

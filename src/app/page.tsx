@@ -45,8 +45,12 @@ export default async function HomePage() {
           <T id="hero_bio_paragraph_1">
             I'm Ben — a student at BYU studying CS and Arabic. I build
             open-source libraries, web applications, and AI tools. Currently
-            interning at{" "}
-            <span className="bg-buttercream px-1.5 rounded-sm font-sans text-sm align-[2px] text-foreground font-normal">
+            working at{" "}
+            <span className="bg-buttercream px-1.5 py-0.5 rounded-sm text-foreground font-normal">
+              General Translation
+            </span>
+            , previously interned at{" "}
+            <span className="bg-buttercream px-1.5 py-0.5 rounded-sm text-foreground font-normal">
               Vercel
             </span>
             .
@@ -108,7 +112,7 @@ export default async function HomePage() {
           </h2>
           <Link
             href="/projects"
-            className="font-mono text-[10.5px] text-muted-foreground hover:text-foreground no-underline transition-colors"
+            className="font-mono text-[11px] text-muted-foreground hover:text-foreground no-underline transition-colors"
           >
             <T id="view_all">See all &rsaquo;</T>
           </Link>
@@ -126,7 +130,7 @@ export default async function HomePage() {
           {sortedPosts.length > 4 && (
             <Link
               href="/posts"
-              className="font-mono text-[10.5px] text-muted-foreground hover:text-foreground no-underline transition-colors"
+              className="font-mono text-[11px] text-muted-foreground hover:text-foreground no-underline transition-colors"
             >
               <T id="view_all_posts">See all &rsaquo;</T>
             </Link>
@@ -140,7 +144,7 @@ export default async function HomePage() {
               className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
             >
               <ViewTransition name={`date-${sanitize(post.url)}`}>
-                <div className="font-mono text-[10.5px] text-muted-foreground tracking-wide">
+                <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
                   {post.date.toLocaleDateString(locale, {
                     month: "numeric",
                     day: "numeric",
@@ -160,7 +164,7 @@ export default async function HomePage() {
                   </div>
                 </ViewTransition>
               </div>
-              <div className="hidden sm:block font-mono text-[10px] text-muted-foreground text-right whitespace-nowrap">
+              <div className="hidden sm:block font-mono text-[11px] text-muted-foreground text-right whitespace-nowrap">
                 <ViewTransition name={`reading-time-${sanitize(post.url)}`}>
                   <span>{post.readingTime}</span>
                 </ViewTransition>

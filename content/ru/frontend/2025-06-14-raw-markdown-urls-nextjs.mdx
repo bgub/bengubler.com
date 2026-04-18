@@ -1,21 +1,21 @@
 ---
-title: "Добавление .md-URL для выдачи сырого Markdown в Next.js"
-description: "Как добавить .md-URL в блог на Next.js, чтобы отдавать сырой Markdown, по мотивам документации Vercel."
+title: "Добавление URL с .md для исходного Markdown-контента в Next.js"
+description: "Как добавить URL с .md в блог на Next.js, чтобы отдавать исходный Markdown-контент, вдохновившись документацией Vercel."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-> **Обновление**: После публикации этого поста [Guillermo Rauch](https://twitter.com/rauchg) (CEO Vercel) предложил использовать переписывания (rewrites) в Next.js вместо middleware для этого случая. Я обновил реализацию ниже — так проще и быстрее! 🚀
+> **Обновление**: После публикации этой публикации [Guillermo Rauch](https://twitter.com/rauchg) (CEO of Vercel) предложил использовать rewrites в Next.js вместо middleware для этой задачи. Я обновил реализацию ниже — так проще и производительнее! 🚀
 
-## Если вкратце
+## Кратко
 
-Вдохновившись документацией Vercel, мы добавим возможность дописывать `.md` к любому URL поста в блоге, чтобы получить исходный markdown. То есть `/posts/my-post` превращается в `/posts/my-post.md`, и вы получаете сырой исходник. Недавно я добавил эту функцию в свой блог — она идеально подходит для обмена примерами кода или чтобы люди могли увидеть, как именно вы что-то написали.
+Вдохновившись документацией Vercel, мы добавим возможность дописывать `.md` к URL любой публикации в блоге, чтобы получать исходный Markdown-контент. То есть `/posts/my-post` превращается в `/posts/my-post.md`, открывая доступ к исходнику. Недавно я добавил эту возможность в свой блог — она отлично подходит и для того, чтобы делиться примерами кода, и для того, чтобы показывать, как именно что-то написано.
 
-[Rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) в Next.js делают такую реализацию удивительно простой и аккуратной.
+[rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) в Next.js позволяют реализовать это на удивление просто и аккуратно.
 
 <Tweet id="1930689104800518392" />
 
-## Установка
+## Настройка
 
 ```bash
 pnpx create-next-app@latest raw-markdown-blog
@@ -31,10 +31,9 @@ pnpm install @content-collections/core @content-collections/mdx @content-collect
 .content-collections
 ```
 
-
 ## Настройка Content Collections
 
-[Content Collections](https://www.content-collections.dev/) — отличная библиотека для управления контентом в Next.js: типобезопасная, быстрая и с отличным DX.
+[Content Collections](https://www.content-collections.dev/) — отличная библиотека для управления контентом в Next.js: она обеспечивает типобезопасность, работает быстро и даёт отличный DX.
 
 Создайте `content-collections.ts` в корне проекта (не в src/):
 
@@ -70,7 +69,7 @@ export default defineConfig({
 });
 ```
 
-Обновите файл `next.config.js`:
+Обновите `next.config.js`:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -83,7 +82,7 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-Обновите пути в файле `tsconfig.json`:
+Обновите пути в `tsconfig.json`:
 
 ```json
 {
@@ -97,31 +96,29 @@ module.exports = withContentCollections(nextConfig);
 }
 ```
 
-
 ## Пример содержимого
 
 Создайте каталог `content/` в корне проекта и добавьте файл `content/hello-world.mdx`:
 
 ````markdown
 ---
-title: "Привет, мир"
-description: "Мой первый пост в блоге с поддержкой raw markdown."
+title: "Hello World"
+description: "My first blog post with raw markdown support."
 date: "2024-12-20"
 ---
 
-## Добро пожаловать
+## Welcome
 
-Это мой первый пост в блоге! Вот немного **жирного текста** и блок кода:
+Это моя первая публикация! Вот немного **жирного текста** и блок кода:
 
 ```javascript
-console.log("Привет, мир!");
+console.log("Hello, world!");
 ```
 
-Довольно круто, правда?
+Pretty cool, right?
 ````
 
-
-## Страницы записей
+## Страницы с публикациями
 
 Замените `app/page.tsx`:
 
@@ -136,7 +133,7 @@ export default function Home() {
 
   return (
     <div className="max-w-2xl mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-8">Мой блог</h1>
+      <h1 className="text-3xl font-bold mb-8">My Blog</h1>
       <div className="space-y-6">
         {sortedPosts.map((post) => (
           <article key={post.slug} className="border-b pb-4">
@@ -155,7 +152,7 @@ export default function Home() {
                 href={`${post.url}.md`}
                 className="text-blue-500 hover:underline"
               >
-                Посмотреть исходный код markdown
+                View raw markdown
               </Link>
             </div>
           </article>
@@ -190,7 +187,7 @@ export default async function PostPage({
         href="/"
         className="text-blue-600 hover:underline mb-4 inline-block"
       >
-        ← Назад к записям
+        ← Back to posts
       </Link>
 
       <article>
@@ -205,7 +202,7 @@ export default async function PostPage({
               href={`${post.url}.md`}
               className="text-blue-500 hover:underline text-sm"
             >
-              Посмотреть исходный markdown
+              View raw markdown
             </Link>
           </div>
         </header>
@@ -223,12 +220,11 @@ export function generateStaticParams() {
 }
 ```
 
+## Магия: rewrites
 
-## Магия: Rewrites
+Вот где rewrites в Next.js действительно раскрываются: мы можем изящно настроить переписывание URL всего несколькими строками конфигурации.
 
-Вот где переписывания в Next.js раскрываются во всей красе — мы можем изящно перенаправлять URL всего несколькими строками конфигурации.
-
-Обновите `next.config.js`, чтобы добавить правило переписывания:
+Обновите `next.config.js`, добавив правило rewrite:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -248,10 +244,9 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-Правило перезаписи автоматически перенаправляет любой запрос вида `/posts/:slug.md` на `/api/posts/:slug/raw`. Параметр `:slug` берётся из исходного URL и передаётся по назначению. В браузере пользователь видит `/posts/hello-world.md`, но Next.js отдаёт его с `/api/posts/hello-world/raw`.
+Правило перезаписи автоматически направляет любой запрос, соответствующий `/posts/:slug.md`, на `/api/posts/:slug/raw`. Параметр `:slug` берётся из исходного URL-адреса и передаётся в целевой адрес. Пользователь видит `/posts/hello-world.md` в своём браузере, но Next.js отдаёт его из `/api/posts/hello-world/raw`.
 
-
-## Маршрут API для исходного содержимого
+## API-маршрут для исходного содержимого
 
 Создайте `app/api/posts/[slug]/raw/route.ts`:
 
@@ -267,7 +262,7 @@ export async function GET(
   const post = allPosts.find((p) => p.slug === slug);
 
   if (!post) {
-    return new NextResponse("Публикация не найдена", { status: 404 });
+    return new NextResponse("Post not found", { status: 404 });
   }
 
   return new NextResponse(post.content, {
@@ -283,14 +278,13 @@ export function generateStaticParams() {
 }
 ```
 
-
 ## Готово
 
-Запустите dev‑сервер и протестируйте оба URL:
+Запустите сервер разработки и проверьте оба URL:
 
-- `/posts/hello-world` — отрендеренный MDX со стилизацией и компонентами
-- `/posts/hello-world.md` — исходный текст в формате Markdown
+* `/posts/hello-world` - Отрендеренный MDX со стилями и компонентами
+* `/posts/hello-world.md` - Исходный markdown в сыром виде
 
-Заголовки кэширования гарантируют, что исходный Markdown кэшируется на час, снижая нагрузку на сервер для популярных постов. В продакшене вы можете добавить к постам кнопку «View raw» (как я сделал в своём блоге), а не просто показывать ссылку в списке постов.
+Заголовки кэширования гарантируют, что исходный markdown будет кэшироваться в течение часа, снижая нагрузку на сервер для популярных публикаций. В продакшене, возможно, стоит добавить к своим публикациям кнопку &quot;View raw&quot; (как я сделал в своём блоге), а не просто показывать ссылку в списке публикаций.
 
-Эта функция отлично подходит для обмена примерами, отладки контента или для того, чтобы другие могли изучать ваше оформление в Markdown. Переписывания Next.js делают реализацию аккуратной и производительной — без сложной логики маршрутизации.
+Эта возможность отлично подходит для обмена примерами, отладки контента или для того, чтобы другие могли изучить форматирование вашего markdown. А rewrites в Next.js делают реализацию простой и производительной — без сложной логики маршрутизации.

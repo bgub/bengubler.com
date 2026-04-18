@@ -1,36 +1,36 @@
 ---
 title: "Ohlédnutí za létem 2025"
-description: Co jsem se naučil a jaké projekty jsem udělal.
+description: Co jsem se naučil a jaké projekty jsem vytvořil.
 date: "2025-09-19"
 tags: [random]
 ---
 
-Původně jsem chtěl psát jak o své stáži ve Vercelu, tak o osobních projektech a učení, ale rozhodl jsem se to rozdělit do dvou příspěvků. O stáži se brzy dozvíte víc!
+Původně jsem chtěl psát jak o své stáži ve Vercel, tak o svých osobních projektech a o tom, co jsem se naučil, ale nakonec jsem se rozhodl tato témata rozdělit do dvou příspěvků. Brzy se o mé stáži dozvíte víc!
 
-Mezitím tady je stručný přehled nepracovních událostí z mého léta. Je to něco mezi deníkovým zápiskem, blogovým příspěvkem a „seznamem chlubení“, který si mohou prohlédnout potenciální zaměstnavatelé ;), takže se předem omlouvám, pokud to občas zní, jako bych se moc chválil.
+Mezitím je tady stručný přehled toho, co se během léta dělo mimo práci. Bude to něco mezi deníkovým zápiskem, blogovým příspěvkem a „seznamem úspěchů“, do kterého mohou nahlédnout potenciální zaměstnavatelé ;), takže se předem omlouvám, pokud to bude působit, jako bych se až moc chválil.
 
 ## AI projekty
 
-Konečně jsem se naučil psát GPU kernely díky [pár](https://developer.nvidia.com/blog/even-easier-introduction-cuda/) [skvělým](https://codelabs.developers.google.com/your-first-webgpu-app) [zdrojům](https://leetgpu.com/)! V návaznosti na to jsem vytvořil (zatím dost WIP) knihovnu podobnou PyTorchu pro výpočty akcelerované pomocí WebGPU v JavaScriptu. Říkám jí [shade](https://github.com/bgub/shade) (jako _shaders_, chápeme se?). Zpětné šíření (backpropagation) ale ještě nemám.
+Konečně jsem se naučil psát GPU kernely díky několika [fajn](https://developer.nvidia.com/blog/even-easier-introduction-cuda/) [zdrojům](https://codelabs.developers.google.com/your-first-webgpu-app) [materiálům](https://leetgpu.com/)! V návaznosti na to jsem vytvořil (zatím dost rozpracovanou) knihovnu podobnou PyTorch pro výpočty akcelerované pomocí WebGPU v JavaScriptu. Říkám jí [shade](https://github.com/bgub/shade) (chápete, jako *shaders*?) Zpětnou propagaci jsem do ní ale zatím ještě nepřidal.
 
-Taky jsem vydal pár projektů souvisejících s tokenizací, oblasti, která mě hodně zajímá: [tokka-bench](./2025-08-25-tokka-bench-evaluate-tokenizers-multilingual), nástroj pro vyhodnocování/benchmarking tokenizérů napříč jazyky, a [tokka](http://github.com/bgub/tokka), sadu nástrojů pro snadné trénování tokenizérů na vlastních mixech dat.
+Vydal jsem také několik projektů souvisejících s tokenizací, což je oblast, která mě hodně zajímá: [tokka-bench](./2025-08-25-tokka-bench-evaluate-tokenizers-multilingual), sadu nástrojů pro vyhodnocování a benchmarkování tokenizérů napříč více jazyky, a [tokka](http://github.com/bgub/tokka), sadu nástrojů pro snadné trénování tokenizérů na vlastních kombinacích dat.
 
-Protože práce s velkým množstvím dat jen pomocí Datasetů HuggingFace je obtížná, napsal jsem [hf_to_mds](https://github.com/bgub/hf_to_mds) — skript pro snadné převádění datasetů do formátu MosaicML Streaming a jejich nahrávání na HuggingFace Hub! Vytvořil jsem [MDS verzi datasetu Wikipedia](https://huggingface.co/datasets/bgub/wikipedia-mds) a rád bych převedl další, ale zatím čekám na zvýšení limitů úložiště.
+Protože práce s velkým množstvím dat jen pomocí Datasetů HuggingFace je obtížná, napsal jsem [hf&#95;to&#95;mds](https://github.com/bgub/hf_to_mds) — skript pro snadný převod datasetů do formátu MosaicML Streaming a jejich nahrávání na HuggingFace Hub! Vytvořil jsem [MDS verzi datasetu Wikipedia](https://huggingface.co/datasets/bgub/wikipedia-mds) a rád bych převedl i další, ale pořád ještě čekám na odpověď ohledně navýšení limitů úložiště.
 
-Nakonec jsem napsal [článek na LessWrong](https://www.lesswrong.com/posts/yRoXmjBKJFbc6zSFq/dialects-for-humans-sounding-distinct-from-llms?utm_campaign=post_share&utm_source=link) o tom, jak lidé mění svou mluvu, aby zněli odlišně od velkých jazykových modelů. Dostal se na titulní stránku, což je docela fajn!
+Nakonec jsem napsal [článek na LessWrong](https://www.lesswrong.com/posts/yRoXmjBKJFbc6zSFq/dialects-for-humans-sounding-distinct-from-llms?utm_campaign=post_share\&utm_source=link) o tom, jak lidé mění svůj způsob vyjadřování, aby zněli odlišně od velkých jazykových modelů. Dostal se na titulní stránku, což je docela super!
 
-## Náhodné věci
+## Různé
 
-- Po letech prokrastinace jsem se konečně naučil klávesové zkratky ve Vimu! Překvapivě se hodí. Chvíli jsem jel na LazyVim a teď používám Zed.
-- Když už mluvíme o Zedu, pracuju na konfiguraci inspirované LazyVim s klávesovými zkratkami přes leader key. Doufám, že ji brzy vydám! Taky jsem sloučil PR, který [umožňuje uživatelům skrýt titulní lištu](https://github.com/zed-industries/zed/pull/37428).
-- Konečně jsem se odhodlal a přejmenoval se z `@nebrelbug` na `@bgub` na GitHubu! Na X jsem `@bgub_`… dejte vědět, jestli víte, jak získám `@bgub`!
-- Tenhle web vypadá výrazně líp poté, co jsem aktualizoval UI s pomocí stylování od v0. A přidal jsem super tlačítko „Vysvětli jako pro pětileté“ pro streamované, AI‑poháněné souhrny příspěvků!
-- Přes léto jsem poprvé delší dobu používal macOS. Líbilo se mi méně, než jsem čekal (automatické dlaždicování je mnohem horší než na Linuxu), takže na osobním stroji pořád denně používám Linux. Několik týdnů jsem jel na Omarchy, pak jsem se vrátil na Fedoru s desktopem COSMIC, který jsem možná [pomohl inspirovat](https://www.reddit.com/r/pop_os/comments/1empjaw/5_years_ago_i_suggested_that_system76_write_a/) (ale realisticky spíš ne).
-- Zkoušení tolika různých OS mě unavilo z neustálého nastavování počítače, tak jsem se naučil používat Nix! Připravil jsem konfiguraci s home-managerem pro svůj pracovní MacBook a k tomu [veřejnou šablonu](https://github.com/bgub/nix-macos-starter). Můj setup funguje i na linuxových strojích, ale ty změny jsem do šablony zatím neposlal upstream.
-- Ve Vercelu jsem napsal 7dílný tutoriál o tom, jak postavit React framework od nuly. Ještě jsem ho nezveřejnil, ale snad brzy!
+* Po letech prokrastinace jsem se konečně naučil klávesové zkratky ve Vimu! Ukázaly se jako překvapivě užitečné. Chvíli jsem používal LazyVim a teď jedu na Zed.
+* Když už jsme u Zedu, pracuji na konfiguraci inspirované LazyVimem s klávesovými zkratkami přes leader key. Snad ji brzy vydám! Taky jsem mergnul PR, které [uživatelům umožní skrýt titulkový pruh okna](https://github.com/zed-industries/zed/pull/37428).
+* Konečně jsem se odhodlal a na GitHub přejmenoval `@nebrelbug` na `@bgub`! Na X jsem `@bgub_`... dejte mi vědět, jestli víte, jak bych mohl získat `@bgub`!
+* Tahle stránka vypadá po úpravě UI s pomocí v0 výrazně lépe. A taky jsem přidal super tlačítko „Vysvětli jako pro pětileté“ pro streamovaná AI shrnutí příspěvků!
+* Během léta jsem poprvé dlouhodobě používal macOS. Líbilo se mi míň, než jsem čekal (automatické skládání oken je mnohem horší než na Linuxu), takže na svém osobním počítači dál denně používám Linux. Několik týdnů jsem jel na Omarchy, pak jsem se vrátil k Fedoře s desktopem COSMIC, ke kterému jsem [možná trochu pomohl dát impuls](https://www.reddit.com/r/pop_os/comments/1empjaw/5_years_ago_i_suggested_that_system76_write_a/) (ale reálně asi ne).
+* Zkoušení tolika různých OS mě unavilo neustálým nastavováním počítače, takže jsem se naučil používat Nix! Vytvořil jsem konfiguraci s home-managerem pro svůj pracovní MacBook a k tomu i [veřejnou šablonu](https://github.com/bgub/nix-macos-starter). Moje nastavení funguje i na linuxových počítačích, ale tyto změny jsem do šablony zatím nepropsal.
+* Ve Vercel jsem napsal sedmidílný tutoriál, který vysvětluje, jak od nuly postavit React framework. Ještě jsem ho nepublikoval, ale snad už brzy!
 
-Nakonec pár novinek z posledních pár týdnů (už to technicky není léto, ale jsem příliš unavený na psaní dalších postů).
+A nakonec pár novinek z posledních několika týdnů (technicky už sice není léto, ale jsem moc unavený na to, abych psal další příspěvky).
 
-- Vydal jsem [šablonu pro TS knihovny](2025-09-17-ts-base-typescript-library-template) s moderními nástroji jako release-please, Vitest, tsdown a Biome.
-- Vydal jsem novou, pouze ESM verzi [eta](2025-09-17-introducing-eta-v4) s využitím výše zmíněných nástrojů.
-- Aktualizoval jsem [eta.js.org](https://eta.js.org/) a [squirrelly.js.org](https://squirrelly.js.org/) na FumaDocs místo Docusauru, přidal lepší verzování atd.
+* Vydal jsem [šablonu pro TS knihovny](2025-09-17-ts-base-typescript-library-template) využívající moderní nástroje jako release-please, Vitest, tsdown a Biome.
+* Vydal jsem novou verzi [eta](2025-09-17-introducing-eta-v4), pouze pro ESM, postavenou na stejných nástrojích.
+* Aktualizoval jsem [eta.js.org](https://eta.js.org/) a [squirrelly.js.org](https://squirrelly.js.org/), aby místo Docusaurusu používaly FumaDocs, lépe podporovaly verzování atd.

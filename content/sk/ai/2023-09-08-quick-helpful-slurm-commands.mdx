@@ -5,50 +5,47 @@ date: "2023-09-08"
 tags: [ml/ai]
 ---
 
-V laboratóriu, v ktorom pracujem, máme prístup k prostrediu vysokovýkonného výpočtovania (HPC), ktoré používa [Slurm Workload Manager](https://slurm.schedmd.com/documentation.html).
+V laboratóriu, kde pracujem, máme prístup k prostrediu High Performance Computing (HPC), ktoré používa [Slurm Workload Manager](https://slurm.schedmd.com/documentation.html).
 
-Používam ho už nejaký čas a našiel som niekoľko príkazov, ktoré používam stále. Povedal som si, že sa o ne podelím, ak by sa hodili aj niekomu ďalšiemu.
+Používam ho už nejaký čas a vybral som pár príkazov, ktoré používam stále. Napadlo mi, že sa o ne tu podelím, ak by sa zišli aj niekomu ďalšiemu.
 
 ## Kontrola stavu úlohy
 
 ```bash
 # Zobraziť všetky úlohy
 squeue
-# Skontrolovať stav len vašich úloh
+# Skontrolovať stav iba svojich úloh
 squeue -u <username>
 # Skontrolovať stav úloh s konkrétnym QOS
 squeue -q <QOS>
 ```
 
-
-## Rušenie úloh
+## Zrušenie úloh
 
 ```bash
-# Zrušiť konkrétnu úlohu
+# Zruš konkrétnu úlohu
 scancel <job_id>
-# Zrušiť všetky vaše úlohy
+# Zruš všetky svoje úlohy
 scancel -u <username>
 ```
 
-
-## Interaktívne požiadanie o uzol
+## Vyžiadanie uzla v interaktívnom režime
 
 ```bash
-# Požiadanie o jeden uzol (toto ho otvorí interaktívne vo vašom termináli)
-# Keď ukončíte terminál, uzol bude znovu pridelený
+# Vyžiadanie jedného uzla (otvorí sa interaktívne vo vašom termináli)
+# Po ukončení terminálu bude uzol uvoľnený
 salloc --nodes=1 --gpus=8 --qos=<QOS> --mem=2000G --time=72:00:00 --ntasks=1 --cpus-per-task=128
 ```
 
-
 ## Odoslanie úlohy
 
-Čo ak sú všetky vaše výpočtové uzly obsadené alebo nechcete, aby sa úloha ukončila hneď po zatvorení terminálového pripojenia? V takom prípade môžete použiť `sbatch` na odoslanie úlohy do frontu. Automaticky sa spustí, hneď ako sa podarí prideliť zdroje.
+Čo ak sú všetky vaše výpočtové uzly obsadené alebo nechcete, aby sa úloha ukončila hneď po zatvorení terminálu? V takom prípade môžete pomocou `sbatch` odoslať úlohu do frontu. Spustí sa automaticky, hneď ako sa pre ňu podarí prideliť potrebné zdroje.
 
-Bude to vyžadovať o niečo viac nastavenia. Predpokladajme, že úloha, ktorú chceme naozaj spustiť, je v `myjob.sh`. Aby sme tento skript odoslali ako úlohu, najprv vytvoríme Bash skript, ktorý spustí Slurm. Nazvime ho `run.sh`:
+Toto si bude vyžadovať o niečo viac prípravy. Predpokladajme, že úloha, ktorú chceme v skutočnosti spustiť, je v `myjob.sh`. Aby sme tento skript odoslali ako úlohu, najprv vytvoríme Bash skript, ktorý potom spustí Slurm. Nazvime ho `run.sh`:
 
 ```bash
 #!/bin/bash
-#SBATCH -J "NÁZOV_ÚLOHY"
+#SBATCH -J "JOBNAME"
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=128
@@ -59,17 +56,16 @@ Bude to vyžadovať o niečo viac nastavenia. Predpokladajme, že úloha, ktorú
 srun --nodes=1 myjob.sh
 ```
 
-Všimnite si, že používame smernicu pre spracovanie `#SBATCH` na odovzdanie parametrov, ktoré by sme inak zadali `salloc`. Taktiež používame `srun` na spustenie samotnej úlohy; podľa potreby sa postará o spustenie skriptu naprieč viacerými uzlami.
+Všimnite si, že používame direktívu `#SBATCH` na odovzdanie parametrov, ktoré by sme predtým zadali príkazu `salloc`. Na spustenie samotnej úlohy používame aj `srun`; ak budeme chcieť, postará sa aj o spustenie skriptu na viacerých uzloch.
 
-Nakoniec, na spustenie nášho skriptu spustíme:
+Nakoniec náš skript spustíme takto:
 
 ```bash
 sbatch run.sh
 ```
 
-
 ## Záver
 
-To je všetko! Dúfam, že to bolo užitočné. Ak máte nejaké otázky, môžete sa spýtať ChatGPT alebo Bardu (poskytnú buď neuveriteľne užitočné, alebo úplne nesprávne odpovede, ale za pokus to stojí!).
+To je všetko! Dúfam, že to bolo užitočné. Ak máte nejaké otázky, môžete sa opýtať ChatGPT alebo Barda (buď vám dajú neuveriteľne užitočné odpovede, alebo budú úplne mimo, ale za pokus to stojí!)
 
-Môžete si tiež pozrieť [dokumentáciu k Slurmu](https://slurm.schedmd.com/documentation.html) alebo stránku [Leo's notes](https://leo.leung.xyz/wiki/Slurm) o Slurme pre viac informácií.
+Viac informácií nájdete aj v [dokumentácii Slurmu](https://slurm.schedmd.com/documentation.html) alebo na stránke [Leove poznámky](https://leo.leung.xyz/wiki/Slurm) o Slurme.

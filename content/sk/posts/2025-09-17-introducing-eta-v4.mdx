@@ -1,17 +1,17 @@
 ---
 title: "Predstavujeme Eta v4"
-description: "Prechod Eta na ESM-only, zmena scope balíka a vylepšenie CI/CD."
+description: "Eta prechádza na čisto ESM, mení scope balíka a zlepšuje CI/CD."
 date: "2025-09-17T11:30:00-06:00"
 tags: [open-source]
 ---
 
-Eta som prvýkrát vydal pred piatimi rokmi! Odvtedy z nej vyrástla knižnica, od ktorej závisia stovky balíkov a ktorá sa sťahuje vyše 1 milióna razy týždenne.
+Eta som prvýkrát vydal pred piatimi rokmi! Odvtedy sa rozrástla natoľko, že od nej dnes závisia stovky balíkov a každý týždeň sa stiahne viac ako 1 miliónkrát.
 
-Od verzie v3, vydanej v júni 2023, považujem Etu „vo veľkej miere za hotové dielo“. Nebol som však spokojný s bundlingom, testovaním, lintovaním a CI/CD v projekte, tak som ho prepísal! (A následne som svoje zmeny spätne vyčlenil do [novej šablóny knižnice TS s názvom ts-base](https://www.bengubler.com/posts/2025-09-17-ts-base-typescript-library-template)).
+Od verzie v3, ktorá vyšla v júni 2023, považujem Eta v podstate za „hotové dielo“. Nebol som však spokojný s bundlovaním, testovaním, lintovaním a CI/CD stránkou projektu, takže som ju prepísal! (A potom som tieto zmeny dodatočne vyčlenil do [novej šablóny TS knižnice s názvom ts-base](https://www.bengubler.com/posts/2025-09-17-ts-base-typescript-library-template)).
 
-Je tu ešte niekoľko zmien, na ktoré treba pamätať:
+Je tu ešte niekoľko zmien, o ktorých by ste mali vedieť:
 
-- Eta je teraz štandardne iba ESM. Je rok 2025 a toto je správna voľba!
-- Presunul som repozitár (a ďalšie súvisiace repozitáre) do môjho osobného účtu na GitHub, [bgub](https://github.com/bgub). Keďže som hlavný prispievateľ, myslím si, že to zjednoduší údržbu a zníži zmätok.
-- Eta bude naďalej publikovaná na https://deno.land/x/, ale odporúčam používateľom používať namiesto toho https://jsr.io/@bgub/eta.
-- Ak chcete použiť verziu Eta kompatibilnú s prehliadačom, musíte importovať z `eta/core`, keďže teraz používame omnoho čistejšie `"exports"` v súbore `package.json`.
+* Eta je teraz štandardne len ESM. Je rok 2025 a je to správna voľba!
+* Repozitár (a ďalšie súvisiace repozitáre) som presunul do svojho osobného GitHub účtu, [bgub](https://github.com/bgub). Keďže som hlavný prispievateľ, myslím si, že to zjednoduší údržbu a zníži nejasnosti.
+* Eta sa bude naďalej publikovať na https://deno.land/x/, ale používateľom odporúčam radšej používať https://jsr.io/@bgub/eta.
+* Ak chcete používať verziu Eta pre prehliadač, musíte importovať z `eta/core`, pretože teraz v našom `package.json` používame oveľa čistejšie `"exports"`.

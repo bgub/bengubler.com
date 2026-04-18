@@ -33,7 +33,7 @@ export function Sidebar() {
               <div className="font-serif text-xl font-medium text-foreground leading-tight tracking-tight group-hover:text-foreground/80 transition-colors">
                 Ben Gubler
               </div>
-              <div className="font-mono text-[11px] text-muted-foreground mt-0">
+              <div className="font-mono text-sm text-muted-foreground mt-0">
                 @bgub
               </div>
             </div>
@@ -86,7 +86,7 @@ export function Sidebar() {
             <LocaleOrbit className="mx-auto" />
           </div>
           <div className="border-t border-dotted border-border pt-3 flex items-center justify-between">
-            <span className="font-mono text-[9.5px] text-ink-faint tracking-wider">
+            <span className="font-mono text-[11px] text-muted-foreground tracking-wider">
               &copy; Ben Gubler
             </span>
             <ThemeToggle />

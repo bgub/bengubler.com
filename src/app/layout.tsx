@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s - Ben Gubler",
     },
     description: gt(
-      "Ben Gubler's personal website. Web Development Intern at Vercel, studying AI and human languages at BYU. Thoughts on web development, AI, and building things that matter.",
+      "Ben Gubler's personal website. Working at General Translation, previously interned at Vercel. Studying AI and human languages at BYU. Thoughts on web development, AI, and building things that matter.",
     ),
     authors: [{ name: "Ben Gubler", url: "https://bengubler.com" }],
     metadataBase: new URL("https://bengubler.com"),
