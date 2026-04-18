@@ -1,19 +1,24 @@
 {
-  "005377c29fedee52": "Šavijská škola",
+  "005377c29fedee52": "Shavian School",
+  "01bc13d5e2a819d8": {
+    "c": "Zobrazit v Markdownu",
+    "i": 1,
+    "t": "a"
+  },
   "05bbfe728618dc37": {
     "c": [
       {
-        "c": "Jsem nadšený do učení jazyků — mluvím anglicky, česky a slovensky a aktuálně se učím rusky a arabsky.",
+        "c": "Jsem nadšený pro učení jazyků — mluvím anglicky, česky a slovensky a momentálně se učím rusky a arabsky.",
         "i": 2,
         "t": "li"
       },
       {
-        "c": "Rád trávím čas venku! Mezi mé oblíbené koníčky patří pěší treking s batohem, rybaření a horská cyklistika.",
+        "c": "Rád trávím čas venku v přírodě! Backpacking, rybaření a horská kola patří mezi moje oblíbené koníčky.",
         "i": 3,
         "t": "li"
       },
       {
-        "c": "Užívám si skvělou literaturu, současnou i klasickou!",
+        "c": "Mám rád skvělou literaturu, jak současnou, tak klasickou!",
         "i": 4,
         "t": "li"
       }
@@ -24,127 +29,102 @@
   "05e4896829f2e7b6": "Software",
   "062756dc4fdf55bf": "Interpretovatelnost",
   "062a8c8bf68039ab": "Fantasy",
-  "064898550ebaf40b": "Pip balíček s CLI nástrojem pro monitorování využití GPU napříč Docker kontejnery. Minimalistická alternativa k 'nvidia-smi'.",
+  "064898550ebaf40b": "Pip balíček s CLI nástrojem pro sledování využití GPU v kontejnerech Dockeru. Minimalistická alternativa k nvidia-smi.",
   "06780520e9f90863": {
-    "c": "Nástroje a zdroje, které jsem vytvořil, aby pomohly s učením jazyků.",
+    "c": "Nástroje a zdroje, které jsem vytvořil na pomoc s učením jazyků.",
     "i": 1,
     "t": "p"
-  },
-  "0704279d82328bbd": {
-    "c": "Kontakt",
-    "i": 1,
-    "t": "h1"
   },
   "08dd3091faf0d1ce": "Škálování monosemantičnosti",
-  "0a43db96a3879d8b": "Převádí mezi npm/Yarn/pnpm/bun CLI příkazy s podporou všech hlavních správců balíčků.",
-  "0bb058038c571a69": "Sada nástrojů pro trénování BPE tokenizérů na vlastních datových sadách s pokročilými možnostmi konfigurace.",
-  "0c929cb89a81866c": "Učení jazyků",
+  "0a43db96a3879d8b": "Převádí příkazy CLI mezi npm/Yarn/pnpm/bun a podporuje všechny hlavní správce balíčků.",
+  "0bb058038c571a69": "Sada nástrojů pro trénování vlastních tokenizérů BPE (Byte Pair Encoding) s pokročilými možnostmi nastavení.",
+  "0c929cb89a81866c": "Učení se jazykům",
   "0cfbf4677a02b4fe": "Aplikace",
   "0e413a5825e314de": {
-    "c": "V současnosti studuji na Brigham Young University v Provo, kde se věnuji hlavnímu oboru ACME (Applied and Computational Mathematics) a vedlejšímu oboru arabština. Zároveň pracuji jako výzkumný asistent v PCCL (Laboratoř percepce, řízení a kognice) na BYU, kde zkoumám nové aplikace umělé inteligence a zpracování přirozeného jazyka.",
+    "c": "Momentálně studuji na Brigham Young University v Provu, kde se specializuji na obor ACME (Applied and Computational Mathematics) a mám vedlejší obor arabštinu. Zároveň pracuji jako výzkumný asistent v PCCL (Laboratoř percepce, řízení a kognice) na BYU, kde se věnuji novým aplikacím umělé inteligence a zpracování přirozeného jazyka.",
     "i": 1,
     "t": "p"
   },
-  "0ee81746110ea465": "Tisknutelné kartičky pádů pro rychlé a efektivní zapamatování vzorů skloňování českých podstatných jmen.",
+  "0ee81746110ea465": "Tisknutelné kartičky pádů pro rychlé a efektivní zapamatování vzorů českého skloňování podstatných jmen.",
   "10c587eefc060c58": "Omarchy",
   "1115207f8bc4ea29": "OverTheWire Wargames",
-  "116ab3333ed53b2d": "Tic-Tac-Too",
-  "14951deeb9fd1a80": "Učení jazyků",
-  "1758b3d1d63f639f": {
-    "c": "Omlouvám se, příspěvek, který hledáte, neexistuje nebo byl přesunut.",
-    "i": 1,
-    "t": "p"
-  },
-  "18b7f8e2dee69d61": "Příspěvek nebyl nalezen",
-  "1947f94eeedb8b9c": "Sbírka projektů Bena Gublera – od vybraných ukázek až po experimentální buildy.",
-  "1f1b4086cadac9b6": "Učení jazyků – Ben Gubler",
-  "2096e678e9ff17b6": "Nástroje s otevřeným zdrojovým kódem",
-  "213400d064806672": {
+  "116ab3333ed53b2d": "Piškvorky trochu jinak",
+  "11762cb8a1cf14fb": {
     "d": {
       "b": {
-        "false": {
-          "c": [
-            {
-              "i": 3,
-              "t": "Copy"
-            },
-            "Zkopírovat neupravený obsah"
-          ],
-          "i": 2,
-          "t": "C2"
-        },
-        "true": {
-          "c": [
-            {
-              "i": 3,
-              "t": "Check"
-            },
-            "Zkopírováno!"
-          ],
-          "i": 2,
-          "t": "C2"
-        }
+        "false": "Kopírovat zdrojový kód",
+        "true": "Zkopírováno!"
       },
       "t": "b"
     },
     "i": 1,
     "t": "Branch"
   },
+  "14951deeb9fd1a80": "Učení jazyků",
+  "1758b3d1d63f639f": {
+    "c": "Omlouváme se, příspěvek, který hledáte, neexistuje nebo byl přesunut.",
+    "i": 1,
+    "t": "p"
+  },
+  "18b7f8e2dee69d61": "Příspěvek nebyl nalezen",
+  "1947f94eeedb8b9c": "Sbírka projektů Bena Gublera – od zásadních projektů po experimentální kousky.",
+  "1f1b4086cadac9b6": "Studium jazyků – Ben Gubler",
+  "2096e678e9ff17b6": "open‑source nástroje",
   "217a321934b935db": {
     "c": "Stránka nebyla nalezena",
     "i": 1,
     "t": "h2"
   },
-  "23386a6bcb41d5c5": "Nekonečně velký ubrousek",
-  "233fe71d46008091": "Ozvěte se mi kvůli spolupráci, dotazům, nebo jen tak na pozdrav.",
-  "23833883c2b7d83b": "Please explain this blog post in simple terms:\\n\\n{content}",
-  "239e1d076b1e9abe": "Rozšíření pro Chrome, které při psaní převádí znaky napsané v esperantském 'x-systému' na esperantské znaky.",
-  "24cddcfc4781cfcd": "Obvody transformátorů",
+  "23386a6bcb41d5c5": "Nekonečný ubrousek",
+  "233fe71d46008091": "Ozvěte se mi kvůli spolupráci, dotazům nebo jen tak na pozdrav.",
+  "23833883c2b7d83b": "Vysvětli, prosím, tento blogový příspěvek jednoduše:\\n\\n{content}",
+  "239e1d076b1e9abe": "Rozšíření pro Chrome, které při psaní převádí znaky esperantského „x‑systému“ na písmena s esperantskou diakritikou.",
+  "24cddcfc4781cfcd": "Obvody v transformerech",
   "26cc9442083084ff": "Vývoj operačních systémů a systémové programování",
-  "274172cd9b242e6a": {
-    "c": "Doporučené",
-    "i": 1,
-    "t": "h1"
-  },
   "275116dd1bbe1e27": "X (Twitter)",
   "2755e00e7c4025c0": "TinyLingo",
   "279124bb438079a6": "Od GPT-2 k GPT-OSS",
   "27c04964a9ee9e77": "Víra",
   "28a45948473da7f8": "GitHub",
-  "28ac8a369bb99280": "Pepper &amp; Carrot v toki poně",
+  "28ac8a369bb99280": "Pepper & Carrot v jazyce Toki Pona",
   "2b07b7656f564e82": "tokka-bench",
+  "2bd8febe6028d220": {
+    "c": "Russian Case Cards.",
+    "i": 1,
+    "t": "h1"
+  },
   "2c2da55d6d410519": "Jednoduchá implementace GRPO",
-  "2ce262d5ab363438": "Články – Ben Gubler",
-  "2d5e296989434d34": "Komplexní web pro procvičování skloňování podstatných jmen v češtině, slovenštině a ruštině s interaktivními cvičeními.",
+  "2ce262d5ab363438": "Příspěvky – Ben Gubler",
+  "2d5e296989434d34": "Rozsáhlý web na procvičování skloňování podstatných jmen v češtině, slovenštině a ruštině s interaktivními cvičeními.",
   "2e881bd80673c0fa": "Russian Case Cards",
   "2ecf88ef9e8e4259": "Domů",
-  "2f4b57fb59c746d0": "GPU a vysokovýkonné programování",
+  "2f4b57fb59c746d0": "GPU a vysoce výkonné programování",
+  "34cb108cba52437c": {
+    "c": "Sdílet",
+    "i": 1,
+    "t": "h3"
+  },
   "3507ea577cbfe240": {
     "c": "Přejít na domovskou stránku",
     "i": 1,
     "t": "Link"
   },
-  "356fdf32f4af59c1": "You are an expert at explaining complex topics in simple, fun terms. Explain the following blog post as if you're talking to a 5-year-old child: - Use simple words and short sentences - Include fun analogies and comparisons they can relate to - Be enthusiastic and encouraging - Break complex ideas into bite-sized pieces - Make it engaging but accurate Title: \"{title}\"",
-  "36cc93069891afc3": "Hra s přirozenými čísly",
+  "356fdf32f4af59c1": "Jsi expert na vysvětlování složitých věcí jednoduchým a zábavným způsobem.\n\nVysvětli následující blogový příspěvek tak, jako bys mluvil s pětiletým dítětem:\n- Používej jednoduchá slova a krátké věty\n- Přidávej zábavná přirovnání a příklady, kterým bude rozumět\n- Buď nadšený a povzbudivý\n- Rozděl složité myšlenky na malé kousky\n- Udělej to poutavé, ale přesné\n\nNázev: \"{title}\"",
+  "36cc93069891afc3": "The Natural Number Game",
   "374c5518c6ab30e6": "hf_to_mds",
   "37882905c4941c4c": "GOM",
-  "382eff4355fc0871": {
-    "c": "Můj stack",
-    "i": 1,
-    "t": "h1"
-  },
-  "38e4a3d50b9db8cd": "Studijní vydání řeckého Nového zákona",
-  "3966ae164fc4fb1f": "Vytvořil jsem kartičky pádů pro češtinu, abyste nemuseli vy.",
+  "38e4a3d50b9db8cd": "Greek New Testament Study Edition",
+  "3966ae164fc4fb1f": "Vytvořil jsem kartičky pádů pro češtinu, takže už nemusíte.",
   "3a965260146ebab1": "tokka",
+  "3b577cb32e521352": {
+    "c": "V surovém formátu (pro velké jazykové modely)",
+    "i": 1,
+    "t": "h3"
+  },
   "3da0fce6cf767642": {
-    "c": "Připraveni zjednodušit!",
+    "c": "Připraven zjednodušit!",
     "i": 1,
     "t": "p"
-  },
-  "3f96a7686163d260": {
-    "c": "Oblíbené",
-    "i": 1,
-    "t": "h1"
   },
   "402715cd330d167a": "Počítače",
   "4088fbaddc00d228": "Podívejte se na mé open‑source projekty a příspěvky",
@@ -153,37 +133,28 @@
     "i": 1,
     "t": "h1"
   },
-  "41d2f4230d1d960e": {
-    "c": "Czech Case Cards – kartičky pádů",
-    "i": 1,
-    "t": "h1"
-  },
   "428fedbd5fc2d3d1": "Starší projekty",
   "4314e052a3524c51": "Oblíbené",
-  "4373e32d3674bcd0": "Nástroje a zdroje pro učení jazyků, včetně aplikací na procvičování skloňování a dalších.",
-  "47ed76f7077e0280": "Doporučené – Ben Gubler",
+  "4373e32d3674bcd0": "Nástroje a zdroje pro studium jazyků, včetně aplikací na procvičování skloňování a dalších oblastí.",
+  "47ed76f7077e0280": "Doporučuje Ben Gubler",
   "4835968fd99ecdc2": {
     "c": "Jednoduché vysvětlení",
     "i": 1,
     "t": "h4"
   },
   "4a48758f8e4e06c2": "Redox OS",
-  "4a73344dd83b8f0e": {
-    "c": "Projekty",
+  "4add1139ae8ec5c1": "Kontakt",
+  "4ea7e037ee1dab24": "Esperaboard",
+  "4fc74c7fb8c15459": "Převádějte Datasety HuggingFace do formátu MosaicML Streaming (MDS) pro efektivní trénování v cloudu.",
+  "51ca342c96cf6a4d": "Toki Pona za 18 minut",
+  "529a3d0a9cf9f5da": "Cosmic Desktop Environment",
+  "53b5f7c376481390": "Zkopírovat kód do schránky",
+  "55209380fa0ca8fe": {
+    "c": "Učení jazyků.",
     "i": 1,
     "t": "h1"
   },
-  "4add1139ae8ec5c1": "Kontakt",
-  "4cac20508360aea4": {
-    "c": "Systémové nastavení vzhledu",
-    "i": 1,
-    "t": "span"
-  },
-  "4ea7e037ee1dab24": "Esperaboard",
-  "4fc74c7fb8c15459": "Převeďte datasety HuggingFace do formátu MosaicML Streaming (MDS) pro efektivní trénování v cloudu.",
-  "51ca342c96cf6a4d": "Toki Pona za 18 minut",
-  "529a3d0a9cf9f5da": "Kosmické desktopové prostředí",
-  "53b5f7c376481390": "Zkopírovat kód do schránky",
+  "5550a8e6774e8198": "Všechny příspěvky",
   "56354511d24cdb32": {
     "c": "Knihy, filmy a další věci, které miluji a doporučuji.",
     "i": 1,
@@ -191,7 +162,7 @@
   },
   "579a989363e7dd8c": "Vaše první aplikace ve WebGPU",
   "57df581328929c7a": {
-    "c": "Je nám líto, ale stránka, kterou hledáte, neexistuje nebo byla přesunuta.",
+    "c": "Omlouváme se, stránka, kterou hledáte, neexistuje nebo byla přesunuta.",
     "i": 1,
     "t": "p"
   },
@@ -209,12 +180,12 @@
   },
   "5c24a8953aebc532": "bengubler.com",
   "5d1a87ebd0ba9c9e": "O Benovi Gublerovi",
-  "5d7a168f112ec5d5": "Můj osobní web a blog, kde píšu o AI, distribuovaném trénování a učení jazyků.",
+  "5d7a168f112ec5d5": "Můj osobní web a blog, kde píšu o AI, distribuovaném trénování modelů a učení se jazykům.",
   "600789898ab6a2f9": {
     "c": [
-      "Možná vás také zaujme můj ",
+      "Mohly by vás také zajímat moje ",
       {
-        "c": "web pro procvičování českých/ruských pádových koncovek",
+        "c": "webové stránky pro procvičování českých/ruských skloňování",
         "i": 2,
         "t": "Link"
       },
@@ -229,11 +200,11 @@
     "i": 1,
     "t": "p"
   },
-  "61213b3c0bb8433e": "Za X minut se naučíte Y",
+  "61213b3c0bb8433e": "Learn X in Y Minutes",
   "64ade5006b5d1b36": "Decline App",
   "6601f653ec09b078": "Klasika",
-  "6662bfef4fbe8763": "Otevřít nabídku",
-  "67131f082395778d": "Jak funguje paměť a cache procesoru – Computerphile",
+  "6662bfef4fbe8763": "Otevřít menu",
+  "67131f082395778d": "Jak funguje paměť procesoru a cache – Computerphile",
   "69559c11d66b6a7d": "SQLBolt",
   "69a38e8afebf5dd4": "Zavřít nabídku",
   "6a4e04c1621bc2cb": {
@@ -242,19 +213,23 @@
     "t": "Link"
   },
   "6aa37389c540a0b2": "npm-to-yarn",
-  "6c9b9dc3b6bc4b97": "Příspěvek, který hledáte, neexistuje.",
-  "6cf3a79976b7d2d2": "Desktop a terminál",
-  "6d1c840177d6e865": {
-    "c": "Studuji strojové učení a (lidské) jazyky. Ve volném čase rád vytvářím weby a open‑source knihovny. Pravděpodobně o tom všem čas od času něco napíšu.",
+  "6c9b9dc3b6bc4b97": "Hledaný příspěvek neexistuje.",
+  "6cdb60e5ef49bd48": {
+    "c": "Knihovny, aplikace a experimenty. Většina je open‑source, některé jsou stále ve vývoji.",
     "i": 1,
     "t": "p"
   },
-  "6d57c627b689ce3a": "Hacker News",
+  "6cf3a79976b7d2d2": "Desktop a terminál",
+  "6d1c840177d6e865": {
+    "c": "Studuji strojové učení a (lidské) jazyky. Ve volném čase rád vytvářím webové stránky a open-source knihovny. Pravděpodobně budu čas od času psát o všem výše uvedeném.",
+    "i": 1,
+    "t": "p"
+  },
   "6e71ec1bfb3ad539": "Vývoj programovacích jazyků a algebraické efekty",
-  "6e8a4f1758b76948": "Profesní síť a kariérní diskuse",
+  "6e8a4f1758b76948": "Profesní síť a kariérní diskuze",
   "6f83fb5bebf33e82": "Oblíbené knihy, filmy a osobní doporučení Bena Gublera.",
-  "70e12787aab9ee65": "Trénujte reasoning model pomocí GRPO",
-  "7224ad670aa82471": "Rozšíření pro Chrome, které promění vaši stránku nové karty v přizpůsobitelný dashboard.",
+  "70e12787aab9ee65": "Vytrénujte model uvažování pomocí GRPO",
+  "7224ad670aa82471": "Rozšíření pro Chrome, které z nové karty udělá přizpůsobitelný přehledový panel.",
   "74816cbe74a8f193": "RSC Explorer",
   "762da2d8b92c643b": "Toki Pona",
   "7653c554c5512d00": {
@@ -262,31 +237,30 @@
     "i": 1,
     "t": "span"
   },
-  "772e15e4f2f20a76": "Důkaz vět",
+  "772e15e4f2f20a76": "Dokazování vět",
   "77d68abb75acf8cd": "Příspěvek nebyl nalezen",
-  "78344b60f407928e": "Jiné",
-  "7be30fc926cb3b77": "AI bot pro piškvorky vytvořený pomocí TensorFlow.js. Vytvořeno jako teenager při učení se o strojovém učení.",
-  "7ca9c9a15764489d": "GitHub",
-  "7cd96c52865feaa9": {
-    "c": "Russian Case Cards",
-    "i": 1,
-    "t": "h1"
-  },
+  "78344b60f407928e": "Ostatní",
+  "7be30fc926cb3b77": "AI bot pro piškvorky postavený na TensorFlow.js. Vytvořil jsem ho jako teenager, když jsem se seznamoval s ML.",
   "7e74172900c60360": "Odkaz na sekci",
-  "7f390daec7bf71b5": "hecto: Postavte si vlastní textový editor v Rustu",
-  "814a904a77c7c0f5": "Neuronové sítě: Od nuly k hrdinovi",
+  "7f390daec7bf71b5": "hecto: Vytvořte si vlastní textový editor v Rustu",
+  "814a904a77c7c0f5": "Neuronové sítě: od základů po experta",
   "81d4f577c1f1ff07": {
     "c": "Zajímavosti",
     "i": 1,
     "t": "h2"
   },
-  "820298311342f8d7": "Nástroj pro snadné vytváření malých jazykových modelů (SLM), zaměřený na výzkumníky (rozpracováno).",
+  "820298311342f8d7": "Sada nástrojů pro snadné sestavování malých jazykových modelů (SLM), zaměřená na výzkumníky (ve vývoji).",
   "8234751d76090b58": "Různé",
   "82d3a80413d6a1c3": "Čtení na 5 min",
-  "8313f3c1e394a316": "Nejvhodnější pro obchodní dotazy a delší konverzace",
+  "8313f3c1e394a316": "Nejlepší na obchodní záležitosti a delší konverzace",
   "84de340c2461f1e1": "Sdílet na {name}",
   "870932ff32fe810d": "Nand to Tetris",
   "880b21ecb28d7479": "Operační systémy",
+  "8930ed7325ea1be7": {
+    "c": "Technologie, které používám.",
+    "i": 1,
+    "t": "h1"
+  },
   "8b7fcaab32fd3bc4": "(archivováno)",
   "8c74857ecf98c255": "Vývoj",
   "8d5bef805f152308": {
@@ -297,23 +271,23 @@
         "i": 2,
         "t": "Link"
       },
-      " technologií a nástrojů, které používám, prohlédněte si mé ",
+      " technologií a nástrojů, které používám, projděte si moje ",
       {
         "c": "oblíbené",
         "i": 3,
         "t": "Link"
       },
-      ", včetně knih a filmů, které miluji, nebo se podívejte, co jsem ",
+      " věci včetně knih a filmů, které miluji, nebo se podívejte, co jsem ",
       {
         "c": "doporučil",
         "i": 4,
         "t": "Link"
       },
-      " na kurzy, články a studijní materiály. Pro můj profesní profil si můžete prohlédnout moje ",
+      " ohledně kurzů, článků a studijních zdrojů. Můj profesní profil najdete v mém ",
       {
         "c": "CV",
         "i": 5,
-        "t": "Link"
+        "t": "a"
       },
       "."
     ],
@@ -321,14 +295,9 @@
     "t": "p"
   },
   "8de6fbc525168418": {
-    "c": "Pečlivě vybraný soubor užitečných odkazů a zdrojů, které pro mě byly cenné.",
+    "c": "Pečlivě vybraná sbírka užitečných odkazů a zdrojů, které považuji za cenné.",
     "i": 1,
     "t": "p"
-  },
-  "8e6afde0f536eee2": {
-    "c": "O mně",
-    "i": 1,
-    "t": "h1"
   },
   "8e96b87ad3aa0700": {
     "c": [
@@ -349,40 +318,30 @@
     "i": 1,
     "t": "p"
   },
-  "8f0d08612dc860db": "Jak slepý model vidí Zemi?",
+  "8f0d08612dc860db": "Jak vidí Zemi slepý model?",
   "9090d8c41e669be7": "Produktivita a život",
   "9263adc2beb9fc18": "AI a strojové učení",
   "959d0255998606b4": "CodeCrafters: Postavte si vlastní X v Rustu",
   "95f506e43b9b3265": "Příspěvek nebyl nalezen - Ben Gubler",
-  "97c326fd40fc8abd": "Tisknutelné kartičky pádů pro rychlé a efektivní zapamatování vzorů skloňování ruských podstatných jmen.",
-  "98931a83736430a1": "Web s podporou AI pro výuku jazyků s personalizovanými lekcemi a interaktivními cvičnými sezeními.",
-  "9a5c9a18a1736a01": "Profilová fotografie",
+  "97c326fd40fc8abd": "Tisknutelné kartičky pádů pro rychlé a efektivní zapamatování vzorů ruského skloňování podstatných jmen.",
+  "98931a83736430a1": "Web poháněný AI pro učení jazyků s personalizovanými lekcemi a interaktivním procvičováním.",
+  "9a5c9a18a1736a01": "Profilová fotka",
   "9a806cc1e5ca8a4a": "Umělá inteligence",
   "9bc7b69261332832": "Algebraické efekty pro nás ostatní",
-  "a040bdb90a115bab": "Napsat interpret v Go",
+  "a040bdb90a115bab": "Napsání interpretu v Go",
   "a04daf17e3be1edc": "Periferie",
-  "a20c7af31a16306f": "Technologie, aplikace a nástroje, které Ben Gubler používá pro vývoj a produktivitu.",
-  "a293b881fcc975bd": {
-    "c": "Světlý motiv",
-    "i": 1,
-    "t": "span"
-  },
+  "a20c7af31a16306f": "Technologie, aplikace a nástroje, které Ben Gubler používá při vývoji a pro svou produktivitu.",
   "a34bed55aa23f894": "Squirrelly",
   "a64c6d2a941c060b": "LeetCode pro GPU",
-  "a7a6f6e342ca4342": {
-    "c": "Obsah",
-    "i": 1,
-    "t": "h3"
-  },
-  "a9b1bb5ea856e25c": "Doporučené",
-  "a9ccfb1510066ff2": "Pečlivě vybraný soubor užitečných odkazů a zdrojů, které Ben Gubler považuje za hodnotné.",
-  "aa2d9f8e9ea84f58": "Vyrobil jsem kartičky pádů pro ruštinu, abyste už nemuseli.",
-  "aa3f99e380d00c4f": "„Sledujte mě pro rychlé novinky a debaty o technologiích.“",
-  "aa5bfb3c14b0a681": "Učíme se základy",
-  "aa600fbbd0a9d686": "Základní Nix konfigurace pro macOS s rozumnými výchozími nastaveními a dokumentací.",
+  "a9b1bb5ea856e25c": "Vybrané",
+  "a9ccfb1510066ff2": "Pečlivě vybraný soubor užitečných odkazů a zdrojů, které se Benovi Gublerovi v praxi osvědčily.",
+  "aa2d9f8e9ea84f58": "Vytvořil jsem kartičky pádů pro ruštinu, takže už nemusíte.",
+  "aa3f99e380d00c4f": "Sledujte mě kvůli rychlým novinkám a diskusím o technologiích",
+  "aa5bfb3c14b0a681": "Zvládnutí základů",
+  "aa600fbbd0a9d686": "Výchozí konfigurace Nixu pro macOS s rozumným výchozím nastavením a dokumentací.",
   "aab25fba56518455": "Lingvistika",
   "acd3df01d58f5765": "Úloha divergentních asociací",
-  "ade50401b1396de9": "Příspěvky",
+  "ade50401b1396de9": "Články",
   "ae22c9e36cd4543e": [
     {
       "i": 1,
@@ -390,47 +349,47 @@
     },
     "Vysvětluji..."
   ],
-  "af3863609bbecf5b": "Vývoj webu a React",
+  "af3863609bbecf5b": "Webový vývoj a React",
   "afaa0561ba5a8ba7": {
     "c": "Příspěvek nebyl nalezen",
     "i": 1,
     "t": "h2"
   },
   "afd298096cfd8136": {
-    "c": "Rozloženo do jednoduchých pojmů",
+    "c": "Vysvětleno jednoduchými slovy",
     "i": 1,
     "t": "p"
   },
   "archived_description": "Starší příspěvky, které mohou být zastaralé, ale stále mají určitou hodnotu.",
   "archived_heading": "Archivováno",
   "b0e41f1527b81cd3": {
-    "c": "Rád se propojuji s dalšími vývojáři, bavím se o nových nápadech a zkoumám možné spolupráce. Klidně se ozvěte!",
+    "c": "Vždycky mám zájem o kontakt s ostatními vývojáři, diskuzi o nových nápadech nebo zkoumání možné spolupráce. Neváhejte se ozvat!",
     "i": 1,
     "t": "p"
   },
-  "b305d06d0af683b4": "Stránka nebyla nalezena - Ben Gubler",
+  "b305d06d0af683b4": "Stránka nebyla nalezena – Ben Gubler",
   "b50c41465e5408b3": "E‑mail",
-  "b6679fa5d0ab6497": "Psát operační systém v jazyce Rust",
+  "b6679fa5d0ab6497": "Psaní operačního systému v Rustu",
   "b710e73c5611e3f4": "Kontakt – Ben Gubler",
   "b8baaea54c6c1704": "Eta",
+  "ba94b10fba37f9dd": {
+    "c": "Oblíbené.",
+    "i": 1,
+    "t": "h1"
+  },
   "bc79b8827bd6278c": "Knihy",
   "bc959b56a841666f": "Oblíbené – Ben Gubler",
   "bd4cbf79a8e9b868": "Linux From Scratch",
-  "be7aef60733f8a31": "Czech Case Cards – kartičky pádů – Ben Gubler",
+  "be7aef60733f8a31": "Czech Case Cards – kartičky pádů - Ben Gubler",
   "c18af923a81d97db": "Matematika a formální metody",
-  "c24789fa6ee1226c": "stín",
-  "c2a07f3d5a77e750": "Osobní webová stránka Bena Gublera. Stážista webového vývoje ve společnosti Vercel, studuje umělou inteligenci a lidské jazyky na BYU. Myšlenky o webovém vývoji, umělé inteligenci a vytváření věcí, které mají smysl.",
-  "c3ae9cdbdb6ac881": "Začněte vysvětlovat",
-  "c3f6f3040689b349": {
-    "c": "Zobrazit nezpracované (pro LLMs)",
-    "i": 1,
-    "t": "h3"
-  },
+  "c24789fa6ee1226c": "shade",
+  "c2a07f3d5a77e750": "Osobní web Bena Gublera. Stážista webového vývoje ve společnosti Vercel, studuje AI a lidské jazyky na BYU. Myšlenky o webovém vývoji, AI a tvorbě smysluplných věcí.",
+  "c3ae9cdbdb6ac881": "Začít vysvětlovat",
   "c416e456567fdf39": "mokka",
-  "c480d98c240a3a0f": "Obsah je povinný",
-  "c59720248f69d5aa": "Doporučeno",
-  "c60bbea0759db02a": "Aplikace pro učení jazyků zaměřená na zlepšování porozumění. Poslouchejte autentické podcasty rodilých mluvčích s přepisy a překlady generovanými umělou inteligencí.",
-  "c62378275dc5c4f6": "moje vlastní nástroje",
+  "c480d98c240a3a0f": "Obsah je povinný údaj",
+  "c59720248f69d5aa": "Doporučené",
+  "c60bbea0759db02a": "Aplikace pro výuku jazyků zaměřená na zlepšení porozumění. Poslouchejte autentické podcasty od rodilých mluvčích s přepisy a překlady generovanými pomocí AI.",
+  "c62378275dc5c4f6": "Moje vlastní nástroje",
   "c71006556cf1328e": {
     "c": [
       {
@@ -443,33 +402,33 @@
     "t": "DialogTitle"
   },
   "c7a2323b7e48530a": "Můj stack – Ben Gubler",
-  "c913a4cd1fdb059a": "Hádanky s GPU a tenzory",
+  "c913a4cd1fdb059a": "Hádanky s GPU a tensory",
   "c96c6913115e475e": "Hardware",
   "ca744e725e390110": "Czech Case Cards – kartičky pádů",
-  "cb10fe00fbfa4b87": "Stavebnice jazyků",
-  "cc0ddbf6a83c8fa4": "Russian Case Cards – Ben Gubler",
+  "cb10fe00fbfa4b87": "The Language Construction Kit",
+  "cc0ddbf6a83c8fa4": "Russian Case Cards – kartičky pádů - Ben Gubler",
   "cc77c2b66c79a626": "Splashpad",
   "cc84bfe0ee5d0174": "Projekty",
-  "cd87582257eec44a": {
-    "c": "Sdílet tento příspěvek",
+  "cc9e5da73d7f755f": {
+    "c": "Doporučuji.",
     "i": 1,
-    "t": "h3"
+    "t": "h1"
   },
   "cd8ccd4b937873e1": "Tmavý",
   "cd8d0c77a410efb9": {
     "c": [
-      "Poznámka: na mobilu se to nezobrazí správně; otevřete ",
+      "Poznámka: toto se na mobilním zařízení nezobrazí správně: klikněte ",
       {
-        "c": "tento odkaz",
+        "c": "sem",
         "i": 2,
-        "t": "Link"
+        "t": "a"
       },
-      " a v novém okně si zobrazte a stáhněte PDF."
+      " pro zobrazení a stažení PDF v novém okně."
     ],
     "i": 1,
     "t": "p"
   },
-  "cdceac6a8ba205a3": "The page you're looking for doesn't exist.",
+  "cdceac6a8ba205a3": "Stránka, kterou hledáte, neexistuje.",
   "ce4f5e5113604fa9": "Specializovaná témata a aplikace",
   "ce793a9070a24133": {
     "c": [
@@ -479,73 +438,56 @@
         "k": "_gt_value_2",
         "v": "v"
       },
-      "\" jednoduše"
+      "\" jednoduchými slovy"
     ],
     "i": 1,
     "t": "p"
   },
   "ceb6ba0f86d976c1": {
-    "c": "Čtu tvůj blogový příspěvek…",
+    "c": "Čtu váš blogový příspěvek...",
     "i": 1,
     "t": "p"
   },
-  "cf1dfa31f755ed76": "Porovnejte a testujte tokenizéry napříč mnoha jazyky pomocí interaktivních vizualizací a analýz.",
-  "cfb740b7462fab33": "Příspěvky",
-  "d006c44856493996": "Informatika",
-  "d2154e244ec0287a": {
-    "c": "Soubor věcí, které jsem za ta léta vytvořil — od open‑source knihoven po webové aplikace a rozšíření prohlížeče.",
-    "i": 1,
-    "t": "p"
-  },
-  "d486259b8271dcc6": "Lehký JavaScriptový šablonovací engine s podporou helperů, partials, filtrů atd. Projekt, který mi pomohl dostat se do open source.",
-  "d486d877a0d841e6": "Textual",
-  "d7899ed4822e5ab1": "Můj Stack",
-  "d8b46c0127d88a10": "Zjistěte více o Benovi Gublerovi, jeho studiích v oblasti AI, jazycích a jeho práci webového vývojáře.",
-  "d9a4d6e70a27f799": "Omlouvám se, teď to nedokážu vysvětlit. Zkuste to prosím znovu!",
-  "da70affac9781e55": "Učení jazyků",
-  "daad66bd542f4ac1": "nix-macos-starter",
-  "daf080584b6c4e5f": {
-    "c": "Zavřít",
-    "i": 1,
-    "t": "span"
-  },
-  "db1fe4831da96145": {
-    "c": "Věnoval jsem jejich tvorbě spoustu hodin! Vytiskněte si je a skloňovací vzory v češtině si osvojíte raz dva.",
-    "i": 1,
-    "t": "p"
-  },
-  "dbd5ab298a023ab8": "Rychlý vestavěný JS šablonovací engine. Široce používaný s více než 1,5 tisíci hvězdičkami na GitHubu a přibližně 1 milionem stažení týdně.",
-  "dc94ea51cf0b8c7a": "Filmy",
-  "def93bda648985e9": "Vysvětli jako pro pětileté",
-  "e1753ab0ce7d5975": "LinkedIn",
-  "e3241e6f5849984e": "Čtení na 5 min",
-  "e5cff5481ca8546c": "Zábava a zajímavosti",
-  "e6d86a912aea1aa4": {
-    "c": "Učení jazyků",
+  "cefe03047d1f5c4f": {
+    "c": "Kontakt.",
     "i": 1,
     "t": "h1"
   },
+  "cf1dfa31f755ed76": "Měřte výkon a porovnávejte tokenizéry pro mnoho jazyků pomocí interaktivních vizualizací a analýz.",
+  "clear_filter": "Vyčistit",
+  "d006c44856493996": "Informatika",
+  "d0df80c39dbd6d64": {
+    "c": "V tomto článku",
+    "i": 1,
+    "t": "h3"
+  },
+  "d486259b8271dcc6": "Lehký šablonovací engine pro JavaScript s podporou helperů, partialů, filtrů atd. Projekt, který mě přivedl k open‑source.",
+  "d486d877a0d841e6": "Textual",
+  "d7899ed4822e5ab1": "Můj stack",
+  "d8b46c0127d88a10": "Zjistěte více o Benovi Gublerovi, jeho studiích v oblasti AI a jazyků i o jeho práci webového vývojáře.",
+  "d9a4d6e70a27f799": "Je mi líto, teď to nedokážu vysvětlit. Zkuste to prosím znovu!",
+  "da70affac9781e55": "Učení jazyků",
+  "daad66bd542f4ac1": "nix-macos-starter",
+  "db1fe4831da96145": {
+    "c": "Strávil jsem nad tím spoustu hodin! Vytiskněte si je a naučíte se české deklinační vzory v mžiku.",
+    "i": 1,
+    "t": "p"
+  },
+  "dbd5ab298a023ab8": "Rychlý šablonovací engine pro JavaScript s vloženou (embedded) syntaxí. Široce používaný, má přes 1,5 tisíce hvězdiček na GitHubu a zhruba 1 milion stažení týdně.",
+  "dc94ea51cf0b8c7a": "Filmy",
+  "def93bda648985e9": "Vysvětli jako pro pětileté",
+  "e1753ab0ce7d5975": "LinkedIn",
+  "e5cff5481ca8546c": "Zábavné a zajímavé",
   "e7c0553f70c9ca10": "Mezinárodní",
   "e999020212037bfa": {
     "c": "Technologie, aplikace a nástroje, které používám pro vývoj a produktivitu.",
     "i": 1,
     "t": "p"
   },
-  "ea3bb70a42a500de": "PWA pro procvičování českých, slovenských a ruských deklinačních vzorů.",
-  "eab4edac737eba98": {
-    "c": [
-      {
-        "i": 2,
-        "t": "ExternalLink"
-      },
-      "Zobrazit původní Markdown"
-    ],
-    "i": 1,
-    "t": "a"
-  },
+  "ea3bb70a42a500de": "PWA (progresivní webová aplikace) na procvičování skloňování v češtině, slovenštině a ruštině.",
   "eb4c23226464ede2": {
     "c": [
-      "Jmenuji se Ben, ale možná mě znáte podle mého uživatelského jména na GitHubu, ",
+      "Jmenuji se Ben, ale možná mě znáte pod mým GitHub uživatelským jménem ",
       {
         "c": "@bgub",
         "i": 2,
@@ -556,44 +498,54 @@
     "i": 1,
     "t": "p"
   },
-  "ec69ee288daa47b4": "Efekt",
-  "ec8e528936b96b22": "Bezpečnost",
-  "ef1e481ac2b7ac31": "Američan",
+  "ec0edbfae61efd11": {
+    "c": "Czech Case Cards – kartičky pádů.",
+    "i": 1,
+    "t": "h1"
+  },
+  "ec69ee288daa47b4": "Effekt",
+  "ec8e528936b96b22": "Zabezpečení",
+  "ef1e481ac2b7ac31": "Americké",
   "f1c6f3c2d9e4a392": {
-    "c": "Základní pádová kartička",
+    "c": "Základní pádová karta",
     "i": 1,
     "t": "h2"
   },
   "f41ea186c275b56e": "O mně",
-  "f52129a3f95b5597": "Studijní zdroje",
-  "f52c29a8ce2d1f99": "Reddit",
+  "f52129a3f95b5597": "Studijní materiály",
   "f706057a0ef052ff": {
-    "c": "Strávil jsem nad tím spoustu hodin! Vytiskněte si to a skloňovací vzory ruštiny si zapamatujete raz dva.",
+    "c": "Strávil jsem nad tím spoustu hodin! Vytiskněte si to a ruské deklinační vzory si zapamatujete v mžiku.",
     "i": 1,
     "t": "p"
   },
   "f8352ccc2624f2bb": "Programování v OCamlu: CS 3110",
-  "f841c04f448b1021": {
-    "c": "Tmavé téma",
-    "i": 1,
-    "t": "span"
-  },
   "faacfe0817aee2f5": {
     "c": "Zjednodušování složitých témat",
     "i": 1,
     "t": "DialogDescription"
   },
-  "fbe4f10390c772d7": "Návrh umělých jazyků",
+  "fbe4f10390c772d7": "Tvorba umělých jazyků",
   "fdd81c55ee7946f3": "Světlý",
   "fdd8a5b7dce4c10c": {
-    "c": "Kartička pádů",
+    "c": "Pádové kartičky",
     "i": 1,
     "t": "h2"
   },
-  "fe04975a9ca7df24": "Výpočetní knihovna podobná PyTorch pro TS/JS využívající WebGPU (rozpracováno).",
-  "fe3e875a7e5fc2a3": "Framework COMET",
-  "feb481b144af444a": "Postřehy k webovému vývoji, umělé inteligenci a tvorbě věcí, na kterých záleží.",
-  "hero_bio_paragraph_1": "Jsem Ben — student na BYU, kde studuji aplikovanou matematiku a arabštinu. Vytvářím open-source knihovny, webové aplikace a nástroje pro AI. Momentálně pracuji jako stážista ve Vercelu.",
+  "fde050dd7e259d31": {
+    "c": "Projekty.",
+    "i": 1,
+    "t": "h1"
+  },
+  "fe04975a9ca7df24": "Knihovna pro numerické výpočty v TS/JS ve stylu PyTorch, postavená na WebGPU (ve vývoji).",
+  "fe3e875a7e5fc2a3": "framework COMET",
+  "feb481b144af444a": "Myšlenky o webovém vývoji, AI a tvorbě smysluplných věcí.",
+  "ff0bc40ec63502ec": {
+    "c": "O mně.",
+    "i": 1,
+    "t": "h1"
+  },
+  "filter_label": "Filtr",
+  "hero_bio_paragraph_1": "Jsem Ben — student na BYU, kde studuji Aplikovanou matematiku a arabštinu. Vytvářím open-source knihovny, webové aplikace a nástroje pro AI. Momentálně stážista ve Vercelu.",
   "hero_bio_paragraph_2": [
     "Podívejte se na moje ",
     {
@@ -616,9 +568,8 @@
     "."
   ],
   "hero_greeting": "Hello! Ahoj! Привет! مرحبا! 👋",
-  "hero_vercel_badge": "Momentálně stážista @ Vercel",
   "no_posts_with_tag": [
-    "No posts found with tag ",
+    "Nebyly nalezeny žádné příspěvky se štítkem ",
     {
       "c": [
         "#",
@@ -633,10 +584,11 @@
     },
     "."
   ],
-  "posts_description": "Myšlenky o webovém vývoji, AI a tvorbě věcí, na kterých záleží.",
+  "posts_description": "Myšlenky o webovém vývoji, AI a vytváření věcí, které mají smysl.",
   "posts_heading": "Příspěvky",
   "projects_heading": "Projekty",
   "recent_posts_heading": "Nejnovější příspěvky",
   "rss_link": "RSS",
-  "view_all": "Zobrazit vše"
+  "view_all": "Zobrazit vše",
+  "view_all_posts": "Zobrazit vše ›"
 }
