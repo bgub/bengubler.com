@@ -30,7 +30,7 @@ export function MobileNav() {
         const target = event.target as Element;
         if (
           target.closest('[role="menuitem"]') ||
-          target.closest("[data-radix-collection-item]")
+          target.closest("[data-slot]")
         ) {
           return;
         }
