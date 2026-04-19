@@ -9,6 +9,7 @@ import { ViewTransition } from "react";
 import { Comments } from "@/components/comments";
 import { FloatingELI5 } from "@/components/floating-eli5";
 import type { TOCNode } from "@/components/mdx/remark-toc";
+import { PageTitle } from "@/components/page-title";
 import { mdxComponents } from "@/components/mdx-components";
 import { RawMarkdown } from "@/components/raw-markdown";
 import { Social } from "@/components/social";
@@ -132,7 +133,7 @@ export default async function PostPage({
 
         {/* Title */}
         <ViewTransition name={`title-${base}`}>
-          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
+          <PageTitle>
             {post.title}
             {post.archived && (
               <span className="text-muted-foreground">
@@ -140,12 +141,11 @@ export default async function PostPage({
                 <T>(archived)</T>
               </span>
             )}
-            <span className="text-peach-deep">.</span>
-          </h1>
+          </PageTitle>
         </ViewTransition>
 
         <ViewTransition name={`description-${base}`}>
-          <p className="font-serif text-lg leading-relaxed text-ink-soft font-light max-w-2xl">
+          <p className="font-serif text-lg leading-relaxed text-ink-soft font-light">
             {post.description}
           </p>
         </ViewTransition>

@@ -41,7 +41,7 @@ export default async function HomePage() {
           </T>
         </h1>
 
-        <p className="font-serif text-lg sm:text-xl leading-relaxed text-ink-soft font-light max-w-xl mb-2.5">
+        <p className="font-serif text-lg sm:text-xl leading-relaxed text-ink-soft font-light mb-2.5">
           <T id="hero_bio_paragraph_1">
             I'm Ben — a student at BYU studying CS and Arabic. I build
             open-source libraries, web applications, and AI tools. Currently
@@ -114,7 +114,7 @@ export default async function HomePage() {
             href="/projects"
             className="font-mono text-[11px] text-muted-foreground hover:text-foreground no-underline transition-colors"
           >
-            <T id="view_all">See all &rsaquo;</T>
+            <T id="view_all">See All &#x25B8;</T>
           </Link>
         </div>
         <ProjectList projects={featuredProjects} compact />
@@ -125,14 +125,14 @@ export default async function HomePage() {
       <section>
         <div className="flex items-baseline justify-between mb-5">
           <h2 className="font-serif font-medium text-[28px] tracking-tight text-foreground">
-            <T id="recent_posts_heading">Recent posts</T>
+            <T id="recent_posts_heading">Recent Posts</T>
           </h2>
           {sortedPosts.length > 4 && (
             <Link
               href="/posts"
               className="font-mono text-[11px] text-muted-foreground hover:text-foreground no-underline transition-colors"
             >
-              <T id="view_all_posts">See all &rsaquo;</T>
+              <T id="view_all_posts">See All &#x25B8;</T>
             </Link>
           )}
         </div>

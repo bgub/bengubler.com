@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import type { Route } from "next";
 import Link from "next/link";
 import { ViewTransition } from "react";
+import { PageTitle } from "@/components/page-title";
 import { getPostColors } from "@/lib/colors";
 
 function sanitize(slug: string) {
@@ -63,9 +64,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
     <div className="space-y-10">
       <header className="space-y-3">
         <div className="flex items-center justify-between">
-          <h1 className="font-serif font-normal text-4xl sm:text-5xl tracking-tight text-foreground">
-            <T id="posts_heading">Posts.</T>
-          </h1>
+          <PageTitle><T id="posts_heading">Posts</T></PageTitle>
           <Link
             href="/rss.xml"
             className="inline-flex items-center gap-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-sm hover:bg-rule-soft"
@@ -83,7 +82,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
             <T id="rss_link">RSS</T>
           </Link>
         </div>
-        <p className="font-serif text-lg text-ink-soft max-w-lg leading-relaxed font-light">
+        <p className="font-serif text-lg text-ink-soft leading-relaxed font-light">
           <T id="posts_description">
             Notes on software, language, and the overlap between them.
           </T>

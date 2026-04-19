@@ -21,9 +21,9 @@ export const projectsData: ProjectSection[] = [
     category: msg("Featured"),
     projects: [
       {
-        name: msg("Eta"),
+        name: msg("eta"),
         description: msg(
-          "A fast embedded JS template engine. Widely used with 1.5K+ GitHub stars and ~1M weekly downloads.",
+          "A fast embedded JS template engine. Widely used with 1.5K+ GitHub stars and ~2M weekly downloads.",
         ),
         tech: "TypeScript, microbundle, Jest, GitHub Actions",
         links: {
@@ -43,17 +43,17 @@ export const projectsData: ProjectSection[] = [
         },
       },
       {
-        name: msg("shade"),
+        name: msg("helm"),
         description: msg(
-          "PyTorch-like computation library for TS/JS using WebGPU (Work in Progress).",
+          "TypeScript AI \"code mode\" toolkit with permissions and search.",
         ),
-        tech: "Deno, WGSL",
+        tech: "TypeScript",
         links: {
-          github: "https://github.com/nebrelbug/shade",
+          github: "https://github.com/bgub/helm",
         },
       },
       {
-        name: msg("TinyLingo"),
+        name: msg("tinylingo.com"),
         description: msg(
           "A language learning app for improving comprehension. Listen to authentic native podcasts with AI-generated transcriptions and translations.",
         ),
@@ -99,7 +99,17 @@ export const projectsData: ProjectSection[] = [
         },
       },
       {
-        name: msg("GOM"),
+        name: msg("agentpane"),
+        description: msg(
+          "Web interface for AI coding agents.",
+        ),
+        tech: "TypeScript",
+        links: {
+          github: "https://github.com/bgub/agentpane",
+        },
+      },
+      {
+        name: msg("gom"),
         description: msg(
           "Pip package with CLI tool to monitor GPU usage across Docker containers. A minimalistic alternative to 'nvidia-smi'.",
         ),
@@ -147,6 +157,16 @@ export const projectsData: ProjectSection[] = [
         },
       },
       {
+        name: msg("shade"),
+        description: msg(
+          "PyTorch-like computation library for TS/JS using WebGPU (Work in Progress).",
+        ),
+        tech: "Deno, WGSL",
+        links: {
+          github: "https://github.com/bgub/shade",
+        },
+      },
+      {
         name: msg("npm-to-yarn"),
         description: msg(
           "Converts between npm/Yarn/pnpm/bun CLI commands with support for all major package managers.",
@@ -163,7 +183,7 @@ export const projectsData: ProjectSection[] = [
     category: msg("Legacy Projects"),
     projects: [
       {
-        name: msg("Squirrelly"),
+        name: msg("squirrelly"),
         description: msg(
           "A lightweight JavaScript template engine with support for helpers, partials, filters, etc. The project that helped me get into open source.",
         ),

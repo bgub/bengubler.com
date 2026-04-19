@@ -2,6 +2,7 @@ import { msg, T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata, Route } from "next";
 import Link from "next/link";
+import { PageTitle } from "@/components/page-title";
 
 type RecommendationSection = {
   category: string;
@@ -265,15 +266,11 @@ export default function RecommendedPage() {
     <div className="space-y-12">
       <header className="space-y-3">
         <T>
-          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
-            Recommended.
-          </h1>
-        </T>
-        <T>
-          <p className="font-serif text-lg text-ink-soft max-w-lg font-light">
-            A curated collection of useful links and resources I've found
-            valuable.
-          </p>
+          <PageTitle
+            subtitle="A curated collection of useful links and resources I've found valuable."
+          >
+            Recommended
+          </PageTitle>
         </T>
       </header>
 

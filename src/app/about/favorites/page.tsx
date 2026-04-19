@@ -1,6 +1,7 @@
 import { msg, T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
+import { PageTitle } from "@/components/page-title";
 
 type FavoriteSection = {
   category: string;
@@ -102,14 +103,11 @@ export default function FavoritesPage() {
     <div className="space-y-12">
       <header className="space-y-3">
         <T>
-          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
-            Favorites.
-          </h1>
-        </T>
-        <T>
-          <p className="font-serif text-lg text-ink-soft max-w-lg font-light">
-            Books, movies, and other things I love and recommend.
-          </p>
+          <PageTitle
+            subtitle="Books, movies, and other things I love and recommend."
+          >
+            Favorites
+          </PageTitle>
         </T>
       </header>
 

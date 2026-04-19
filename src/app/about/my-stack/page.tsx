@@ -2,6 +2,7 @@ import { msg, T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata, Route } from "next";
 import Link from "next/link";
+import { PageTitle } from "@/components/page-title";
 
 type FavoriteSection = {
   category: string;
@@ -99,15 +100,11 @@ export default function MyStackPage() {
     <div className="space-y-12">
       <header className="space-y-3">
         <T>
-          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
-            My stack.
-          </h1>
-        </T>
-        <T>
-          <p className="font-serif text-lg text-ink-soft max-w-lg font-light">
-            Technologies, apps, and tools I use for development and
-            productivity.
-          </p>
+          <PageTitle
+            subtitle="Technologies, apps, and tools I use for development and productivity."
+          >
+            My Stack
+          </PageTitle>
         </T>
       </header>
 
