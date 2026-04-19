@@ -1,4 +1,4 @@
-import { msg, T, useMessages } from "gt-next";
+import { msg, T, useGT, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata, Route } from "next";
 import Link from "next/link";
@@ -33,15 +33,15 @@ const stack: FavoriteSection[] = [
       {
         title: msg("Computers"),
         items: [
-          { name: "MacBook Pro (work)" },
-          { name: "Dell XPS 15 (personal)" },
+          { name: msg("MacBook Pro (work)") },
+          { name: msg("Dell XPS 15 (personal)") },
         ],
       },
       {
         title: msg("Peripherals"),
         items: [
-          { name: "NuPhy Air75 V3 Keyboard" },
-          { name: "MX Master 3S Mouse" },
+          { name: msg("NuPhy Air75 V3 Keyboard") },
+          { name: msg("MX Master 3S Mouse") },
         ],
       },
     ],
@@ -57,13 +57,13 @@ const stack: FavoriteSection[] = [
         title: msg("Desktop & Terminal"),
         items: [
           { name: "GNOME Desktop" },
-          { name: "Cosmic Desktop (occasionally)" },
+          { name: msg("Cosmic Desktop (occasionally)") },
           { name: "Alacritty" },
         ],
       },
       {
         title: msg("Development"),
-        items: [{ name: "Zed w/ Vim keybindings" }, { name: "Brave Browser" }],
+        items: [{ name: msg("Zed w/ Vim keybindings") }, { name: msg("Brave Browser") }],
       },
     ],
   },
@@ -87,7 +87,7 @@ const stack: FavoriteSection[] = [
           { name: "Obsidian" },
           { name: "Monarch Money", link: "https://monarchmoney.com" },
           { name: "Wispr Flow" },
-          { name: "Day One Journal" },
+          { name: msg("Day One Journal") },
         ],
       },
     ],
@@ -96,12 +96,13 @@ const stack: FavoriteSection[] = [
 
 export default function MyStackPage() {
   const m = useMessages();
+  const gt = useGT();
   return (
     <div className="space-y-12">
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle="Technologies, apps, and tools I use for development and productivity."
+            subtitle={gt("Technologies, apps, and tools I use for development and productivity.")}
           >
             My Stack
           </PageTitle>

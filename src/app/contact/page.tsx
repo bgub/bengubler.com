@@ -47,7 +47,7 @@ export default function ContactPage() {
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle="I'm always interested in connecting with fellow developers, discussing new ideas, or exploring potential collaborations. Feel free to reach out!"
+            subtitle={gt("I'm always interested in connecting with fellow developers, discussing new ideas, or exploring potential collaborations. Feel free to reach out!")}
           >
             Contact
           </PageTitle>
