@@ -2,6 +2,7 @@ import { T } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageTitle } from "@/components/page-title";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
@@ -19,9 +20,7 @@ export default function AboutPage() {
     <div className="space-y-10">
       <header>
         <T>
-          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
-            About me.
-          </h1>
+          <PageTitle>About Me</PageTitle>
         </T>
       </header>
 

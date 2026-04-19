@@ -1,6 +1,7 @@
 import { T, useGT } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
+import { PageTitle } from "@/components/page-title";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
@@ -45,16 +46,11 @@ export default function ContactPage() {
     <div className="space-y-10">
       <header className="space-y-3">
         <T>
-          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
-            Contact.
-          </h1>
-        </T>
-        <T>
-          <p className="font-serif text-lg text-ink-soft max-w-lg leading-relaxed font-light">
-            I'm always interested in connecting with fellow developers,
-            discussing new ideas, or exploring potential collaborations. Feel
-            free to reach out!
-          </p>
+          <PageTitle
+            subtitle="I'm always interested in connecting with fellow developers, discussing new ideas, or exploring potential collaborations. Feel free to reach out!"
+          >
+            Contact
+          </PageTitle>
         </T>
       </header>
 
@@ -84,7 +80,7 @@ export default function ContactPage() {
                 <div className="font-mono text-sm text-foreground">
                   {method.value}
                   {method.href && (
-                    <span className="text-ink-faint ml-1">&rsaquo;</span>
+                    <span className="text-ink-faint ml-1">&#x25B8;</span>
                   )}
                 </div>
                 <div className="font-serif text-sm text-ink-soft font-light mt-0.5">

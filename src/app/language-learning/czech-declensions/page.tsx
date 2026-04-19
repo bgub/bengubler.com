@@ -3,6 +3,7 @@ import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Comments } from "@/components/comments";
+import { PageTitle } from "@/components/page-title";
 
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
@@ -28,9 +29,7 @@ export default function CzechCaseCardsPage() {
           </Link>
         </nav>
         <T>
-          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
-            Czech Case Cards.
-          </h1>
+          <PageTitle>Czech Case Cards</PageTitle>
         </T>
         <p className="font-serif text-lg text-ink-soft font-light">
           {gt("I built case cards for Czech so you don't have to.")}

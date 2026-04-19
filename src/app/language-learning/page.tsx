@@ -2,6 +2,7 @@ import { msg, T, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageTitle } from "@/components/page-title";
 import { getColorByIndex } from "@/lib/colors";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -17,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const languageTools = [
   {
     id: "tinylingo",
-    title: msg("TinyLingo"),
+    title: msg("tinylingo.com"),
     description: msg(
       "AI-powered website to learn languages with personalized lessons and interactive practice sessions.",
     ),
@@ -59,14 +60,11 @@ export default function LanguageLearningPage() {
     <div className="space-y-10">
       <header className="space-y-3">
         <T>
-          <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
-            Language Learning.
-          </h1>
-        </T>
-        <T>
-          <p className="font-serif text-lg text-ink-soft max-w-lg leading-relaxed font-light">
-            Tools and resources I've built to help with language learning.
-          </p>
+          <PageTitle
+            subtitle="Tools and resources I've built to help with language learning."
+          >
+            Language Learning
+          </PageTitle>
         </T>
       </header>
 

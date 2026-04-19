@@ -9,7 +9,7 @@ export async function GET(request: Request) {
     const title = searchParams.get("title") || "Ben Gubler";
     const description =
       searchParams.get("description") ||
-      "Open-source developer, student in ML, and aspiring polyglot. Creator of Eta and Squirrelly.";
+      "Open-source developer, student in ML, and aspiring polyglot. Creator of eta and squirrelly.";
 
     return new ImageResponse(
       <div
