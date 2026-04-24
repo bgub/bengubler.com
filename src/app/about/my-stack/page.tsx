@@ -33,15 +33,15 @@ const stack: FavoriteSection[] = [
       {
         title: msg("Computers"),
         items: [
-          { name: "MacBook Pro (work)" },
-          { name: "Dell XPS 15 (personal)" },
+          { name: msg("MacBook Pro (work)") },
+          { name: msg("Dell XPS 15 (personal)") },
         ],
       },
       {
         title: msg("Peripherals"),
         items: [
-          { name: "NuPhy Air75 V3 Keyboard" },
-          { name: "MX Master 3S Mouse" },
+          { name: msg("NuPhy Air75 V3 Keyboard") },
+          { name: msg("MX Master 3S Mouse") },
         ],
       },
     ],
@@ -51,19 +51,19 @@ const stack: FavoriteSection[] = [
     subsections: [
       {
         title: msg("Operating Systems"),
-        items: [{ name: "macOS" }, { name: "Fedora Linux" }],
+        items: [{ name: msg("macOS") }, { name: msg("Fedora Linux") }],
       },
       {
         title: msg("Desktop & Terminal"),
         items: [
-          { name: "GNOME Desktop" },
-          { name: "Cosmic Desktop (occasionally)" },
-          { name: "Alacritty" },
+          { name: msg("GNOME Desktop") },
+          { name: msg("Cosmic Desktop (occasionally)") },
+          { name: msg("Alacritty") },
         ],
       },
       {
         title: msg("Development"),
-        items: [{ name: "Zed w/ Vim keybindings" }, { name: "Brave Browser" }],
+        items: [{ name: msg("Zed w/ Vim keybindings") }, { name: msg("Brave Browser") }],
       },
     ],
   },
@@ -73,21 +73,21 @@ const stack: FavoriteSection[] = [
       {
         title: msg("Language Learning"),
         items: [
-          { name: "Anki", link: "https://apps.ankiweb.net" },
-          { name: "Readlang", link: "https://readlang.com" },
-          { name: "Pimsleur", link: "https://pimsleur.com" },
-          { name: "Beelinguapp", link: "https://beelinguapp.com" },
+          { name: msg("Anki"), link: "https://apps.ankiweb.net" },
+          { name: msg("Readlang"), link: "https://readlang.com" },
+          { name: msg("Pimsleur"), link: "https://pimsleur.com" },
+          { name: msg("Beelinguapp"), link: "https://beelinguapp.com" },
           { name: msg("my own tools"), link: "/language-learning" },
         ],
       },
       {
         title: msg("Productivity & Life"),
         items: [
-          { name: "Todoist" },
-          { name: "Obsidian" },
-          { name: "Monarch Money", link: "https://monarchmoney.com" },
-          { name: "Wispr Flow" },
-          { name: "Day One Journal" },
+          { name: msg("Todoist") },
+          { name: msg("Obsidian") },
+          { name: msg("Monarch Money"), link: "https://monarchmoney.com" },
+          { name: msg("Wispr Flow") },
+          { name: msg("Day One Journal") },
         ],
       },
     ],
