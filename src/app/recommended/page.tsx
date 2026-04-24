@@ -1,4 +1,4 @@
-import { msg, T, useMessages } from "gt-next";
+import { msg, T, useGT, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata, Route } from "next";
 import Link from "next/link";
@@ -262,12 +262,13 @@ const recommendations: RecommendationSection[] = [
 
 export default function RecommendedPage() {
   const m = useMessages();
+  const gt = useGT();
   return (
     <div className="space-y-12">
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle="A curated collection of useful links and resources I've found valuable."
+            subtitle={gt("A curated collection of useful links and resources I've found valuable.")}
           >
             Recommended
           </PageTitle>

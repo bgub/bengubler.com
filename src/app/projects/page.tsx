@@ -1,4 +1,4 @@
-import { T, useMessages } from "gt-next";
+import { T, useGT, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import { PageTitle } from "@/components/page-title";
@@ -17,12 +17,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function ProjectsPage() {
   const m = useMessages();
+  const gt = useGT();
   return (
     <div className="space-y-12">
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle="Libraries, apps, and experiments. Most are open source; a few are still finding their shape."
+            subtitle={gt("Libraries, apps, and experiments. Most are open source; a few are still finding their shape.")}
           >
             Projects
           </PageTitle>
