@@ -1,4 +1,4 @@
-import { msg, T, useMessages } from "gt-next";
+import { msg, T, useGT, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata, Route } from "next";
 import Link from "next/link";
@@ -96,12 +96,13 @@ const stack: FavoriteSection[] = [
 
 export default function MyStackPage() {
   const m = useMessages();
+  const gt = useGT();
   return (
     <div className="space-y-12">
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle="Technologies, apps, and tools I use for development and productivity."
+            subtitle={gt("Technologies, apps, and tools I use for development and productivity.")}
           >
             My Stack
           </PageTitle>

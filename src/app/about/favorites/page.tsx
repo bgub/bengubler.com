@@ -1,4 +1,4 @@
-import { msg, T, useMessages } from "gt-next";
+import { msg, T, useGT, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import { PageTitle } from "@/components/page-title";
@@ -31,43 +31,43 @@ const favorites: FavoriteSection[] = [
       {
         title: msg("Classics"),
         items: [
-          { name: "The Brothers Karamazov" },
-          { name: "The Death of Ivan Ilyich" },
-          { name: "Les Misérables" },
-          { name: "Things Fall Apart" },
-          { name: "Animal Farm" },
-          { name: "A River Runs Through It" },
-          { name: "The Little Prince" },
-          { name: "A Tale of Two Cities" },
-          { name: "The Picture of Dorian Gray" },
-          { name: "Brave New World" },
-          { name: "Fahrenheit 451" },
+          { name: msg("The Brothers Karamazov") },
+          { name: msg("The Death of Ivan Ilyich") },
+          { name: msg("Les Misérables") },
+          { name: msg("Things Fall Apart") },
+          { name: msg("Animal Farm") },
+          { name: msg("A River Runs Through It") },
+          { name: msg("The Little Prince") },
+          { name: msg("A Tale of Two Cities") },
+          { name: msg("The Picture of Dorian Gray") },
+          { name: msg("Brave New World") },
+          { name: msg("Fahrenheit 451") },
         ],
       },
       {
         title: msg("Faith"),
         items: [
-          { name: "The Book of Mormon" },
-          { name: "The Bible" },
-          { name: "The Screwtape Letters" },
-          { name: "Jesus the Christ" },
+          { name: msg("The Book of Mormon") },
+          { name: msg("The Bible") },
+          { name: msg("The Screwtape Letters") },
+          { name: msg("Jesus the Christ") },
         ],
       },
       {
         title: msg("Fantasy"),
         items: [
-          { name: "The Lord of the Rings" },
-          { name: "The Stormlight Archive" },
-          { name: "Inkheart Series" },
-          { name: "The Queen's Thief Series" },
+          { name: msg("The Lord of the Rings") },
+          { name: msg("The Stormlight Archive") },
+          { name: msg("Inkheart Series") },
+          { name: msg("The Queen's Thief Series") },
         ],
       },
       {
         title: msg("Other"),
         items: [
-          { name: "The Hiding Place" },
-          { name: "Just Mercy" },
-          { name: "44 Scotland Street" },
+          { name: msg("The Hiding Place") },
+          { name: msg("Just Mercy") },
+          { name: msg("44 Scotland Street") },
         ],
       },
     ],
@@ -78,19 +78,19 @@ const favorites: FavoriteSection[] = [
       {
         title: msg("American"),
         items: [
-          { name: "Fiddler on the Roof" },
-          { name: "A River Runs Through It" },
-          { name: "The Founder" },
-          { name: "The Prestige" },
-          { name: "Interstellar" },
+          { name: msg("Fiddler on the Roof") },
+          { name: msg("A River Runs Through It") },
+          { name: msg("The Founder") },
+          { name: msg("The Prestige") },
+          { name: msg("Interstellar") },
         ],
       },
       {
         title: msg("International"),
         items: [
-          { name: "Jojo Rabbit" },
-          { name: "Hunt for the Wilderpeople" },
-          { name: "Pelíšky" },
+          { name: msg("Jojo Rabbit") },
+          { name: msg("Hunt for the Wilderpeople") },
+          { name: msg("Pelíšky") },
         ],
       },
     ],
@@ -99,12 +99,13 @@ const favorites: FavoriteSection[] = [
 
 export default function FavoritesPage() {
   const m = useMessages();
+  const gt = useGT();
   return (
     <div className="space-y-12">
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle="Books, movies, and other things I love and recommend."
+            subtitle={gt("Books, movies, and other things I love and recommend.")}
           >
             Favorites
           </PageTitle>
@@ -128,7 +129,7 @@ export default function FavoritesPage() {
                 <span className="font-serif text-ink-soft font-light">
                   {subsection.items.map((item, index) => (
                     <span key={item.name}>
-                      {item.name}
+                      {m(item.name)}
                       {index < subsection.items.length - 1 && ", "}
                     </span>
                   ))}

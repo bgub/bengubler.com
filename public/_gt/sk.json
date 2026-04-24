@@ -1,5 +1,6 @@
 {
   "005377c29fedee52": "Shavian School",
+  "00d3991449447669": "Bratia Karamazovci",
   "01bc13d5e2a819d8": {
     "c": "Zobraziť Markdown",
     "i": 1,
@@ -60,6 +61,7 @@
     "i": 1,
     "t": "Branch"
   },
+  "140cc6c1b8358650": "Archív Búrlivého svetla",
   "14951deeb9fd1a80": "učenie jazykov",
   "1758b3d1d63f639f": {
     "c": "Prepáčte, príspevok, ktorý hľadáte, neexistuje alebo bol presunutý.",
@@ -69,6 +71,7 @@
   "18b7f8e2dee69d61": "Príspevok nenájdený",
   "1947f94eeedb8b9c": "Výber projektov Bena Gublera – od hlavných prác až po experimentálne projekty.",
   "1f1b4086cadac9b6": "Učenie jazykov - Ben Gubler",
+  "1f7052f11b6baa02": "Príbeh dvoch miest",
   "2096e678e9ff17b6": "Open-source nástroje",
   "217a321934b935db": {
     "c": "Stránka nenájdená",
@@ -110,8 +113,10 @@
     "t": "Link"
   },
   "356fdf32f4af59c1": "Si expert na vysvetľovanie zložitých tém jednoducho a zábavne.\n\nVysvetli nasledujúci príspevok na blogu tak, akoby si sa rozprával s 5-ročným dieťaťom:\n- Používaj jednoduché slová a krátke vety\n- Zahrň zábavné analógie a prirovnania, ktorým bude rozumieť\n- Buď nadšený a povzbudzujúci\n- Rozdeľ zložité myšlienky na malé kúsky\n- Nech je to pútavé, ale presné\n\nNázov: \"{title}\"",
+  "35e47f78c1abf14b": "Kniha Mormonova",
   "36cc93069891afc3": "Hra s prirodzenými číslami",
   "374c5518c6ab30e6": "hf_to_mds",
+  "38129977cdbc7506": "Vždy rád nadväzujem kontakt s ďalšími vývojármi, diskutujem o nových nápadoch alebo skúmam možnosti spolupráce. Pokojne sa ozvite!",
   "382eff4355fc0871": {
     "c": "Môj stack",
     "i": 1,
@@ -120,6 +125,7 @@
   "38e4a3d50b9db8cd": "Greek New Testament Study Edition",
   "3966ae164fc4fb1f": "Vytvoril som kartičky českých pádov, aby ste nemuseli vy.",
   "3a965260146ebab1": "tokka",
+  "3ae5586ba63100ab": "Muzikant na streche",
   "3b577cb32e521352": {
     "c": "Nespracované (pre veľké jazykové modely (LLMs))",
     "i": 1,
@@ -142,12 +148,16 @@
     "i": 1,
     "t": "h1"
   },
+  "4156905e88354209": "Fahrenheit 451",
   "41d2f4230d1d960e": {
     "c": "Czech Case Cards – kartičky českých pádov",
     "i": 1,
     "t": "PageTitle"
   },
+  "4269b54637152022": "Séria The Queen's Thief",
   "428fedbd5fc2d3d1": "Staršie projekty",
+  "42a56a68288e81c4": "Knižnice, aplikácie a experimenty. Väčšina je open-source; niektoré ešte stále naberajú svoju podobu.",
+  "42b2c611d8c7f4e9": "Zvieracia farma",
   "4314e052a3524c51": "Obľúbené",
   "4373e32d3674bcd0": "Nástroje a zdroje na učenie jazykov vrátane aplikácií na precvičovanie skloňovania a ďalších materiálov.",
   "47ed76f7077e0280": "Odporúčané - Ben Gubler",
@@ -163,6 +173,8 @@
     "t": "PageTitle"
   },
   "4add1139ae8ec5c1": "Kontakt",
+  "4d6c82c642c573cb": "Malý princ",
+  "4dbde0a18f4d9702": "Prekrásny nový svet",
   "4ea7e037ee1dab24": "Esperaboard",
   "4fc74c7fb8c15459": "Konvertuje Datasety HuggingFace do streamingového formátu MosaicML (MDS) na efektívne trénovanie v cloude.",
   "51ca342c96cf6a4d": "Toki Pona in 18 Minutes",
@@ -190,6 +202,7 @@
   "5c24a8953aebc532": "bengubler.com",
   "5d1a87ebd0ba9c9e": "O Benovi Gublerovi",
   "5d7a168f112ec5d5": "Moja osobná webová stránka a blog, kde píšem o AI, distribuovanom trénovaní a učení jazykov.",
+  "5d98c55cc5387153": "Technológie, aplikácie a nástroje, ktoré používam pri vývoji a na zvýšenie produktivity.",
   "5e0781afaffab993": "squirrelly",
   "600789898ab6a2f9": {
     "c": [
@@ -223,7 +236,9 @@
     "i": 1,
     "t": "Link"
   },
+  "6a8c0b782ac8649f": "Listy skúseného diabla",
   "6aa37389c540a0b2": "npm-to-yarn",
+  "6b27c952e181188e": "Obraz Doriana Graya",
   "6c9b9dc3b6bc4b97": "Príspevok, ktorý hľadáte, neexistuje.",
   "6cf3a79976b7d2d2": "Desktop a terminál",
   "6d1c840177d6e865": {
@@ -236,6 +251,7 @@
   "6f83fb5bebf33e82": "Obľúbené knihy, filmy a osobné odporúčania Bena Gublera.",
   "70e12787aab9ee65": "Natrénujte model uvažovania pomocou GRPO",
   "7224ad670aa82471": "Rozšírenie pre Chrome, ktoré zmení stránku novej karty na prispôsobiteľný dashboard.",
+  "723653dd8fec6fdc": "Hunt for the Wilderpeople",
   "729c5a4511ba6828": "Osobná webová stránka Bena Gublera. Pracuje v General Translation, predtým stážoval vo Vercel. Študuje AI a ľudské jazyky na BYU. Úvahy o webovom vývoji, AI a tvorbe vecí, na ktorých záleží.",
   "74816cbe74a8f193": "RSC Explorer",
   "762da2d8b92c643b": "Toki Pona",
@@ -248,6 +264,7 @@
   "77d68abb75acf8cd": "Príspevok nenájdený",
   "78344b60f407928e": "Ostatné",
   "7be30fc926cb3b77": "AI bot na piškvorky vytvorený pomocou TensorFlow.js. Vytvoril som ho ako tínedžer, keď som sa učil o ML.",
+  "7c97ea9d706f9d23": "Starostlivo vybraný súbor užitočných odkazov a zdrojov, ktoré sa mi osvedčili.",
   "7cd96c52865feaa9": {
     "c": "Russian Case Cards",
     "i": 1,
@@ -255,6 +272,7 @@
   },
   "7e74172900c60360": "Odkaz na sekciu",
   "7f390daec7bf71b5": "hecto: Vytvorte si vlastný textový editor v jazyku Rust",
+  "810c1343f4ab57db": "Úkryt",
   "814a904a77c7c0f5": "Neurónové siete: Od nuly k expertovi",
   "81d4f577c1f1ff07": {
     "c": "Zaujímavosti",
@@ -268,6 +286,7 @@
   "84de340c2461f1e1": "Zdieľať na {name}",
   "870932ff32fe810d": "Nand to Tetris",
   "880b21ecb28d7479": "Operačné systémy",
+  "8a5b42fae262c8d4": "Smrť Ivana Iľjiča",
   "8b7fcaab32fd3bc4": "(archivované)",
   "8c74857ecf98c255": "Vývoj",
   "8d5bef805f152308": {
@@ -331,15 +350,19 @@
   "9263adc2beb9fc18": "AI a strojové učenie",
   "92747439a157d726": "helm",
   "959d0255998606b4": "CodeCrafters: Build Your Own X in Rust",
+  "95e4c24a851ab7e3": "Dokonalý trik",
   "95f506e43b9b3265": "Príspevok nenájdený - Ben Gubler",
   "97c326fd40fc8abd": "Kartičky pádov na vytlačenie na rýchle a efektívne zapamätanie ruských skloňovacích vzorov podstatných mien.",
   "98931a83736430a1": "Web na učenie jazykov s podporou AI, s personalizovanými lekciami a interaktívnymi cvičeniami.",
   "9a5c9a18a1736a01": "Profilová fotografia",
   "9a806cc1e5ca8a4a": "Umelá inteligencia",
+  "9ba8db402e604791": "Jojo Rabbit",
   "9bc7b69261332832": "Algebraické efekty pre nás ostatných",
+  "9c2986fca82710b5": "Zakladateľ",
   "a040bdb90a115bab": "Písanie interpretra v Go",
   "a04daf17e3be1edc": "Periférne zariadenia",
   "a20c7af31a16306f": "Technológie, aplikácie a nástroje, ktoré Ben Gubler používa pri vývoji a na zvýšenie produktivity.",
+  "a20f64ea291a4e8a": "44 Scotland Street",
   "a64c6d2a941c060b": "LeetCode pre GPU",
   "a838dfe826852e73": "Sada nástrojov TypeScript pre AI v režime „code“ s oprávneniami a vyhľadávaním.",
   "a9b1bb5ea856e25c": "Vybrané",
@@ -349,6 +372,8 @@
   "aa5bfb3c14b0a681": "Naučte sa základy",
   "aa600fbbd0a9d686": "Úvodná konfigurácia Nixu pre macOS s rozumnými predvolenými nastaveniami a dokumentáciou.",
   "aab25fba56518455": "Lingvistika",
+  "abc7afca4ddb4c94": "Tadiaľto tečie rieka",
+  "abf651cef8f7b7b2": "Séria Inkheart",
   "acd3df01d58f5765": "The Divergent Association Task",
   "ade50401b1396de9": "Príspevky",
   "ae22c9e36cd4543e": [
@@ -379,10 +404,12 @@
   "bc79b8827bd6278c": "Knihy",
   "bc959b56a841666f": "Obľúbené - Ben Gubler",
   "bd4cbf79a8e9b868": "Linux From Scratch",
+  "be138224ecf6224a": "Knihy, filmy a ďalšie veci, ktoré mám rád a odporúčam.",
   "be7aef60733f8a31": "Czech Case Cards – kartičky českých pádov - Ben Gubler",
   "c18af923a81d97db": "Matematika a formálne metódy",
   "c24789fa6ee1226c": "shade",
   "c3ae9cdbdb6ac881": "Začať vysvetľovať",
+  "c3d75dccd88075f2": "Interstellar",
   "c416e456567fdf39": "mokka",
   "c480d98c240a3a0f": "Obsah je povinný",
   "c59720248f69d5aa": "Odporúčané",
@@ -400,10 +427,12 @@
     "t": "DialogTitle"
   },
   "c7a2323b7e48530a": "Môj stack - Ben Gubler",
+  "c7ee1a20e25cdfe0": "Len spravodlivosť",
   "c913a4cd1fdb059a": "GPU a tenzorové hádanky",
   "c96c6913115e475e": "Hardvér",
   "ca744e725e390110": "Czech Case Cards – kartičky českých pádov",
   "cb10fe00fbfa4b87": "The Language Construction Kit",
+  "cb3d390992c293e3": "Všetko sa rozpadá",
   "cc0ddbf6a83c8fa4": "Russian Case Cards - Ben Gubler",
   "cc77c2b66c79a626": "Splashpad",
   "cc84bfe0ee5d0174": "Projekty",
@@ -449,9 +478,12 @@
     "i": 1,
     "t": "h3"
   },
+  "d0ff6328bf959f14": "Pán prsteňov",
   "d486259b8271dcc6": "Ľahký šablónovací engine pre JavaScript s podporou helperov, partialov, filtrov atď. Projekt, vďaka ktorému som sa dostal k open-source.",
   "d486d877a0d841e6": "Textual",
+  "d5ddfbc5b8cd23e4": "Nástroje a zdroje, ktoré som vytvoril na pomoc pri učení jazykov.",
   "d7899ed4822e5ab1": "Môj stack",
+  "d7caa4d010633d49": "Ježiš Kristus",
   "d8b46c0127d88a10": "Zistite viac o Benovi Gublerovi, jeho štúdiu AI a jazykov a o jeho práci webového vývojára.",
   "d9a4d6e70a27f799": "Prepáčte, momentálne to neviem vysvetliť. Skúste to prosím znova!",
   "da70affac9781e55": "Učenie jazykov",
@@ -461,6 +493,7 @@
     "i": 1,
     "t": "p"
   },
+  "dc2756d11af8d057": "Bedári",
   "dc94ea51cf0b8c7a": "Filmy",
   "dc9f1a12fca86efe": "Rýchly vstavaný JS nástroj. Široko používaný, s viac ako 1,5 tis. hviezdičkami na GitHube a ~2 mil. stiahnutí týždenne.",
   "def93bda648985e9": "Vysvetli mi to, akoby som mal 5 rokov",
@@ -496,6 +529,7 @@
   },
   "f41ea186c275b56e": "O mne",
   "f52129a3f95b5597": "Študijné materiály",
+  "f6a89728879f3df1": "Biblia",
   "f706057a0ef052ff": {
     "c": "Strávil som veľa hodín ich tvorbou! Vytlačte si ich a ruské skloňovacie vzory si osvojíte raz-dva.",
     "i": 1,
@@ -508,6 +542,7 @@
     "i": 1,
     "t": "DialogDescription"
   },
+  "fbbe6855ed44d65a": "Pelíšky",
   "fbe4f10390c772d7": "Tvorba umelých jazykov",
   "fdd81c55ee7946f3": "Svetlá",
   "fdd8a5b7dce4c10c": {

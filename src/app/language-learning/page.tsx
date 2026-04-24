@@ -1,4 +1,4 @@
-import { msg, T, useMessages } from "gt-next";
+import { msg, T, useGT, useMessages } from "gt-next";
 import { getGT } from "gt-next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -56,12 +56,13 @@ const languageTools = [
 
 export default function LanguageLearningPage() {
   const m = useMessages();
+  const gt = useGT();
   return (
     <div className="space-y-10">
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle="Tools and resources I've built to help with language learning."
+            subtitle={gt("Tools and resources I've built to help with language learning.")}
           >
             Language Learning
           </PageTitle>
