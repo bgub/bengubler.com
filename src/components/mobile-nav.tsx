@@ -1,6 +1,6 @@
 "use client";
 
-import { useGT, useMessages } from "gt-next";
+import { useDefaultLocale, useGT, useLocale, useMessages } from "gt-next";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,7 +13,13 @@ import { navigation } from "@/lib/navigation";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const locale = useLocale();
+  const defaultLocale = useDefaultLocale();
+  const pathname =
+    locale !== defaultLocale
+      ? rawPathname.replace(new RegExp(`^/${locale}`), "") || "/"
+      : rawPathname;
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const m = useMessages();

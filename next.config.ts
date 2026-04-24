@@ -7,7 +7,6 @@ const nextConfig: NextConfig = {
     inlineCss: true,
     turbopackFileSystemCacheForDev: true,
   },
-  typedRoutes: true,
   async rewrites() {
     return [
       {
@@ -33,4 +32,8 @@ const nextConfig: NextConfig = {
 };
 
 // withContentCollections must be the outermost plugin
-export default withContentCollections(withGTConfig(nextConfig, {}));
+export default withContentCollections(
+  withGTConfig(nextConfig, {
+    experimentalLocaleResolution: true,
+  }),
+);

@@ -2,11 +2,9 @@ import { allPosts } from "content-collections";
 import { DateTime, T, Var } from "gt-next";
 import { getGT, getLocale } from "gt-next/server";
 import type { Metadata } from "next";
-import type { Route } from "next";
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { PageTitle } from "@/components/page-title";
-import { getPostColors } from "@/lib/colors";
 
 function sanitize(slug: string) {
   return slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
@@ -103,7 +101,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
                 href={
                   isActive
                     ? "/posts"
-                    : (`/posts?tag=${encodeURIComponent(tag)}` as Route)
+                    : `/posts?tag=${encodeURIComponent(tag)}`
                 }
                 className={`font-mono text-[11px] px-2.5 py-0.5 rounded-sm border transition-colors ${
                   isActive
@@ -132,7 +130,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
           {filteredPosts.map((post) => (
             <Link
               key={post.slug}
-              href={post.url as Route}
+              href={post.url}
               className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
             >
               <ViewTransition name={`date-${sanitize(post.url)}`}>
@@ -201,7 +199,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
             {archivedPosts.map((post) => (
               <Link
                 key={post.slug}
-                href={post.url as Route}
+                href={post.url}
                 className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
               >
                 <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
