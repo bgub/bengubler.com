@@ -1,28 +1,28 @@
 ---
 title: Nastavenie Dockeru pre strojové učenie
-description: Dockerfile, ktorý používam na nastavenie svojho prostredia pre strojové učenie.
+description: Dockerfile, ktorý používam na nastavenie môjho prostredia pre strojové učenie.
 date: "2023-09-08"
 lastUpdated: "2024-06-24"
 tags: [ml/ai]
 ---
 
-*AKTUALIZÁCIA 2024: Tento článok som aktualizoval tak, aby vychádzal z obrazu `nvcr.io/nvidia/pytorch`, ktorý dnes používam prakticky vždy pre jeho skvelú podporu NVIDIA + NCCL + Infiniband. Súbor som tiež zjednodušil a upravil tak, aby na monitorovanie GPU používal `gom`.*
+_UPDATE 2024: Tento príspevok som aktualizoval tak, aby vychádzal z image `nvcr.io/nvidia/pytorch`, ktorý v poslednom čase vždy používam vďaka jeho výbornej podpore NVIDIA + NCCL + Infiniband. Zjednodušil som aj súbor a upravil ho tak, aby používal `gom` na monitorovanie GPU._
 
-Tento článok je určený hlavne kolegom, ale môže byť užitočný aj pre ostatných. Podelím sa v ňom o Dockerfile, ktorý používam na nastavenie svojho prostredia pre strojové učenie. Vychádza z NVIDIA obrazu `pytorch`, ale pridal som doň niekoľko vecí (aktualizované balíčky Pip, GitHub CLI, prompt Starship, [monitorovanie GPU](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement) atď.), ktoré sa mi osvedčili.
+Tento príspevok je určený najmä kolegom, no môže byť užitočný aj pre ostatných. Zdieľam Dockerfile, ktorý používam na nastavenie svojho prostredia pre strojové učenie. Vychádza z NVIDIA image `pytorch`, no pridal som pár vecí (aktualizované balíky pre Pip, GitHub CLI, Starship prompt, [monitorovanie GPU](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement) atď.), ktoré považujem za užitočné.
 
 ## Nastavenie
 
-Skopírujte nižšie uvedený `Dockerfile` do nového adresára. Pokojne si pridajte alebo odstráňte, čo chcete — tento článok budem pravdepodobne aktualizovať podľa toho, ako budem upravovať svoje nastavenie.
+Skopírujte a prilepte nižšie uvedený `Dockerfile` do nového adresára. Kľudne niečo pridajte alebo odstráňte — tento príspevok pravdepodobne aktualizujem, keď budem robiť zmeny vo svojom nastavení.
 
 ```dockerfile
 # Základný obraz s Ubuntu 22.04, Python 3.10, CUDA 12.4
 FROM nvcr.io/nvidia/pytorch:24.04-py3
 
 #####################
-# PYTHON BALÍČKY    #
+# PYTHON BALÍČKY   #
 #####################
 
-# Zakázať upozornenie "running pip as the 'root' user can..."
+# Zakázať varovanie „running pip as the 'root' user can..."
 ENV PIP_ROOT_USER_ACTION=ignore
 
 # Aktualizovať pip
@@ -50,12 +50,12 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
 
 RUN apt-get upgrade -y
 
-# Starship prompt
+# Starship Prompt
 RUN curl -sS https://starship.rs/install.sh -o starship-install.sh 
 RUN sh -posix starship-install.sh --yes
 RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
 
-# Konfigurácia Starship
+# Starship Config
 RUN echo $'[character]\n\
     success_symbol = "[λ](bold green) "\n\
     error_symbol = "[λ](bold red) "\n\
@@ -64,24 +64,26 @@ RUN echo $'[character]\n\
     disabled = true' > /root/.config/starship.toml
 ```
 
-## Zostavenie obrazu
 
-Po vytvorení súborov môžete obraz zostaviť pomocou:
+## Vytvorenie image
+
+Keď už máte súbory pripravené, môžete image vytvoriť pomocou:
 
 ```bash
-cd /path/to/directory
-docker build -t YOUR_IMAGE_NAME_HERE .
+cd /cesta/k/adresáru
+docker build -t NÁZOV_VÁŠHO_OBRAZU .
 ```
 
-## Spustenie obrazu
 
-Obraz môžete spustiť pomocou:
+## Spustenie image
+
+Image môžete spustiť pomocou:
 
 ```bash
 docker run -d --rm -it \
     --gpus all \
-    --name YOUR_CONTAINER_NAME \
-    --mount type=bind,source=YOUR_HOME_DIR,target=YOUR_HOME_DIR \
-    -w YOUR_HOME_DIR \
-    YOUR_IMAGE_NAME_HERE:latest
+    --name NÁZOV_VÁŠHO_KONTAJNERA \
+    --mount type=bind,source=VÁŠ_DOMOVSKÝ_PRIEČINOK,target=VÁŠ_DOMOVSKÝ_PRIEČINOK \
+    -w VÁŠ_DOMOVSKÝ_PRIEČINOK \
+    NÁZOV_VÁŠHO_OBRAZU:latest
 ```
