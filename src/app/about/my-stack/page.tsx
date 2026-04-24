@@ -33,15 +33,15 @@ const stack: FavoriteSection[] = [
       {
         title: msg("Computers"),
         items: [
-          { name: msg("MacBook Pro (work)") },
-          { name: msg("Dell XPS 15 (personal)") },
+          { name: "MacBook Pro (work)" },
+          { name: "Dell XPS 15 (personal)" },
         ],
       },
       {
         title: msg("Peripherals"),
         items: [
-          { name: msg("NuPhy Air75 V3 Keyboard") },
-          { name: msg("MX Master 3S Mouse") },
+          { name: "NuPhy Air75 V3 Keyboard" },
+          { name: "MX Master 3S Mouse" },
         ],
       },
     ],
@@ -57,13 +57,13 @@ const stack: FavoriteSection[] = [
         title: msg("Desktop & Terminal"),
         items: [
           { name: "GNOME Desktop" },
-          { name: msg("Cosmic Desktop (occasionally)") },
+          { name: "Cosmic Desktop (occasionally)" },
           { name: "Alacritty" },
         ],
       },
       {
         title: msg("Development"),
-        items: [{ name: msg("Zed w/ Vim keybindings") }, { name: msg("Brave Browser") }],
+        items: [{ name: "Zed w/ Vim keybindings" }, { name: "Brave Browser" }],
       },
     ],
   },
@@ -87,7 +87,7 @@ const stack: FavoriteSection[] = [
           { name: "Obsidian" },
           { name: "Monarch Money", link: "https://monarchmoney.com" },
           { name: "Wispr Flow" },
-          { name: msg("Day One Journal") },
+          { name: "Day One Journal" },
         ],
       },
     ],
