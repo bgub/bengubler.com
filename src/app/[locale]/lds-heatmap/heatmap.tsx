@@ -14,6 +14,7 @@ import {
   type RankedItem,
 } from "./data";
 import { decodeTopo, type Topology } from "./topojson";
+import { T, Var, useGT, msg, useMessages } from "gt-next";
 
 // ── COLOR SCALES ─────────────────────────────────────────────
 // ColorBrewer Blues-7 (total members) and YlOrRd-7 (% of pop.)
@@ -41,14 +42,21 @@ const W = 960;
 const H = 500;
 
 const FLY_TARGETS = [
-  ["Reset", 0, 0, 1],
-  ["US", -580, -115, 4.2],
-  ["S. America", -420, -550, 3.2],
-  ["Africa", -1020, -340, 4],
-  ["Pacific", -1950, -350, 3.8],
+  [msg("Reset"), 0, 0, 1],
+  [msg("US"), -580, -115, 4.2],
+  [msg("S. America"), -420, -550, 3.2],
+  [msg("Africa"), -1020, -340, 4],
+  [msg("Pacific"), -1950, -350, 3.8],
 ] as const;
 
+const MODE_OPTIONS: ["total" | "pct", string][] = [
+  ["total", msg("Total Members")],
+  ["pct", msg("% of Pop.")],
+];
+
 export function Heatmap() {
+  const gt = useGT();
+  const m = useMessages();
   const svgRef = useRef<SVGSVGElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const [world, setWorld] = useState<ReturnType<typeof decodeTopo> | null>(null);
@@ -148,17 +156,21 @@ export function Heatmap() {
         style={{ padding: "12px 18px 8px", borderBottom: "1px solid #e5e8ed" }}
       >
         <div>
-          <div className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: 3, color: "#888" }}>
-            Membership Heat Map &middot; 2024
-          </div>
-          <h1 style={{ fontSize: 20, fontWeight: 700, margin: "2px 0 0", color: "#1a1a2e" }}>
-            Latter-day Saints{" "}
-            <span style={{ fontWeight: 400, color: "#888", fontSize: 15 }}>Worldwide</span>
-          </h1>
+          <T>
+            <div className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: 3, color: "#888" }}>
+              Membership Heat Map &middot; 2024
+            </div>
+          </T>
+          <T>
+            <h1 style={{ fontSize: 20, fontWeight: 700, margin: "2px 0 0", color: "#1a1a2e" }}>
+              Latter-day Saints{" "}
+              <span style={{ fontWeight: 400, color: "#888", fontSize: 15 }}>Worldwide</span>
+            </h1>
+          </T>
         </div>
         <div className="flex flex-wrap items-center gap-1 pb-0.5">
           <div className="flex mr-2" style={{ background: "#eef1f5", borderRadius: 6, padding: 2 }}>
-            {([["total", "Total Members"], ["pct", "% of Pop."]] as const).map(([k, label]) => (
+            {MODE_OPTIONS.map(([k, label]) => (
               <button
                 key={k}
                 onClick={() => setMode(k)}
@@ -175,7 +187,7 @@ export function Heatmap() {
                   transition: "all .15s",
                 }}
               >
-                {label}
+                {m(label)}
               </button>
             ))}
           </div>
@@ -193,7 +205,7 @@ export function Heatmap() {
                 fontSize: 9.5,
               }}
             >
-              {label}
+              {m(label)}
             </button>
           ))}
         </div>
@@ -204,7 +216,7 @@ export function Heatmap() {
         <div className="relative flex-1 overflow-hidden" style={{ background: "#eef2f6" }}>
           {!world ? (
             <div className="flex items-center justify-center h-full" style={{ color: "#aaa" }}>
-              Loading&hellip;
+              <T>Loading&hellip;</T>
             </div>
           ) : (
             <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} className="w-full h-full cursor-grab">
@@ -240,7 +252,7 @@ export function Heatmap() {
                           setTip(
                             d
                               ? { name: COUNTRY_NAMES[id], m: d[0], pv: pct(d[0], d[1]) }
-                              : { name: COUNTRY_NAMES[id] || "Unknown" },
+                              : { name: COUNTRY_NAMES[id] || gt("Unknown") },
                           );
                         }
                       }}
@@ -288,7 +300,7 @@ export function Heatmap() {
             }}
           >
             <span className="font-mono" style={{ fontSize: 8, color: "#999" }}>
-              {isPct ? "0%" : "FEW"}
+              {isPct ? "0%" : gt("FEW")}
             </span>
             <div
               style={{
@@ -299,7 +311,7 @@ export function Heatmap() {
               }}
             />
             <span className="font-mono" style={{ fontSize: 8, color: "#999" }}>
-              {isPct ? "65%+" : "MILLIONS"}
+              {isPct ? "65%+" : gt("MILLIONS")}
             </span>
           </div>
           <div
@@ -313,7 +325,7 @@ export function Heatmap() {
               color: "#aaa",
             }}
           >
-            {zoom.toFixed(1)}&times; &middot; scroll / drag
+            <T><Var>{zoom.toFixed(1)}</Var>&times; &middot; scroll / drag</T>
           </div>
         </div>
 
@@ -327,14 +339,16 @@ export function Heatmap() {
             background: "#fff",
           }}
         >
-          <Rank title="Countries" items={ranked} max={topVal(ranked)} mode={mode} />
-          <Rank title="US States" items={stateRanked} max={topVal(stateRanked)} mode={mode} hasBorder />
-          <Rank title="Canadian Provinces" items={caRanked} max={topVal(caRanked)} mode={mode} hasBorder />
-          <div className="font-mono" style={{ marginTop: 12, fontSize: 7.5, color: "#bbb", lineHeight: 1.5 }}>
-            Source: Church of Jesus Christ Newsroom, World Population Review, Statistics Canada. Dec
-            31 2024. Canadian province figures are estimates based on ~40% Alberta share of 205K
-            national total.
-          </div>
+          <Rank title={gt("Countries")} items={ranked} max={topVal(ranked)} mode={mode} />
+          <Rank title={gt("US States")} items={stateRanked} max={topVal(stateRanked)} mode={mode} hasBorder />
+          <Rank title={gt("Canadian Provinces")} items={caRanked} max={topVal(caRanked)} mode={mode} hasBorder />
+          <T>
+            <div className="font-mono" style={{ marginTop: 12, fontSize: 7.5, color: "#bbb", lineHeight: 1.5 }}>
+              Source: Church of Jesus Christ Newsroom, World Population Review, Statistics Canada. Dec
+              31 2024. Canadian province figures are estimates based on ~40% Alberta share of 205K
+              national total.
+            </div>
+          </T>
         </div>
       </div>
 
@@ -354,21 +368,25 @@ export function Heatmap() {
             minWidth: 120,
           }}
         >
-          <div style={{ fontWeight: 700, fontSize: 12, color: "#1a1a2e" }}>{tip.name}</div>
+          <div style={{ fontWeight: 700, fontSize: 12, color: "#1a1a2e" }}>{m(tip.name)}</div>
           {tip.m ? (
             <>
-              <div className="font-mono" style={{ fontSize: 11, color: "#2d7fc0" }}>
-                {tip.m.toLocaleString()} members
-              </div>
-              <div className="font-mono" style={{ fontSize: 10, color: "#666" }}>
-                {tip.pv?.toFixed(2)}% of population
-              </div>
+              <T>
+                <div className="font-mono" style={{ fontSize: 11, color: "#2d7fc0" }}>
+                  <Var>{tip.m.toLocaleString()}</Var> members
+                </div>
+              </T>
+              <T>
+                <div className="font-mono" style={{ fontSize: 10, color: "#666" }}>
+                  <Var>{tip.pv?.toFixed(2)}</Var>% of population
+                </div>
+              </T>
               {tip.state && (
-                <div style={{ fontSize: 8, color: "#bbb", marginTop: 1 }}>U.S. State</div>
+                <T><div style={{ fontSize: 8, color: "#bbb", marginTop: 1 }}>U.S. State</div></T>
               )}
             </>
           ) : (
-            <div style={{ fontSize: 10, color: "#bbb" }}>No reported presence</div>
+            <T><div style={{ fontSize: 10, color: "#bbb" }}>No reported presence</div></T>
           )}
         </div>
       )}
@@ -389,6 +407,7 @@ function Rank({
   mode: "total" | "pct";
   hasBorder?: boolean;
 }) {
+  const m = useMessages();
   return (
     <div style={hasBorder ? { marginTop: 10, borderTop: "1px solid #eef1f5", paddingTop: 8 } : undefined}>
       <div
@@ -419,7 +438,7 @@ function Rank({
                   className="overflow-hidden text-ellipsis whitespace-nowrap"
                   style={{ color: i < 3 ? "#1a1a2e" : "#666", fontSize: 10 }}
                 >
-                  {it.n}
+                  {m(it.n)}
                 </span>
                 <span
                   className="font-mono whitespace-nowrap"
