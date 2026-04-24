@@ -1,7 +1,7 @@
 import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
 import { Feed } from "feed";
-import { getLocale } from "gt-next/server";
+import { getGT, getLocale } from "gt-next/server";
 import { NextResponse } from "next/server";
 import type ReactDOMServer from "react-dom/server";
 import { getBaseUrl } from "@/lib/utils";
@@ -12,15 +12,16 @@ const createFeed = async (
   renderToString: typeof ReactDOMServer.renderToString,
 ) => {
   const locale = (await getLocale()) || "en";
+  const gt = await getGT();
   const feed = new Feed({
     title: "Ben Gubler",
     description:
-      "Ben Gubler's personal website. Thoughts on web development, AI, and building things that matter.",
+      gt("Ben Gubler's personal website. Thoughts on web development, AI, and building things that matter."),
     id: baseUrl,
     link: baseUrl,
     language: locale,
     favicon: `${baseUrl}/icon.png`,
-    copyright: `Copyright ${new Date().getFullYear()} Ben Gubler`,
+    copyright: gt("Copyright {year} Ben Gubler", { year: new Date().getFullYear() }),
     author: {
       name: "Ben Gubler",
       email: "hello@bengubler.com",

@@ -21,13 +21,11 @@ export default function ProjectsPage() {
   return (
     <div className="space-y-12">
       <header className="space-y-3">
-        <T>
-          <PageTitle
-            subtitle={gt("Libraries, apps, and experiments. Most are open source; a few are still finding their shape.")}
-          >
-            Projects
-          </PageTitle>
-        </T>
+        <PageTitle
+          subtitle={gt("Libraries, apps, and experiments. Most are open source; a few are still finding their shape.")}
+        >
+          <T id="projects_heading">Projects</T>
+        </PageTitle>
       </header>
 
       {projectsData.map((section) => (
