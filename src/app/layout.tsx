@@ -69,7 +69,7 @@ export default async function RootLayout({
   return (
     <html suppressHydrationWarning lang={locale} dir={dir}>
       <body className={`${newsreader.variable} ${dmMono.variable}`}>
-        <GTProvider>
+        <GTProvider locale={locale}>
           <Providers>
           {/* Outermost wrapper for max-width and centering */}
           <div className="w-full max-w-screen-xl mx-auto bg-background">
