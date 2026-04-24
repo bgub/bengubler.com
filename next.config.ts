@@ -2,7 +2,8 @@ import { withContentCollections } from "@content-collections/next";
 import { withGTConfig } from "gt-next/config";
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig: NextConfig & { cacheComponents?: boolean } = {
+  cacheComponents: true,
   experimental: {
     inlineCss: true,
     turbopackFileSystemCacheForDev: true,
