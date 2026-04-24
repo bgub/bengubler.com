@@ -36,8 +36,8 @@ importers:
         specifier: ^5.2.0
         version: 5.2.0
       gt-next:
-        specifier: ^6.16.7
-        version: 6.16.7(next@16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        specifier: ^6.16.12
+        version: 6.16.12(next@16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       lucide-react:
         specifier: ^1.8.0
         version: 1.8.0(react@19.2.5)
@@ -100,8 +100,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       gtx-cli:
-        specifier: ^2.14.17
-        version: 2.14.17(@babel/core@7.28.4)
+        specifier: ^2.14.19
+        version: 2.14.19(@babel/core@7.28.4)
       reading-time:
         specifier: ^1.5.0
         version: 1.5.0
@@ -707,8 +707,8 @@ packages:
   '@formatjs/intl-localematcher@0.6.2':
     resolution: {integrity: sha512-XOMO2Hupl0wdd172Y06h6kLpBz6Dv+J4okPLl4LPtzbr8f66WbIoy4ev98EBuZ6ZK4h5ydTN6XneT4QVpD7cdA==}
 
-  '@generaltranslation/compiler@1.3.8':
-    resolution: {integrity: sha512-4TSPt7K682GJfH4daEkHJWxBgl0gTsqNbbVA6UYjhVmwCbx2GolzNSzYNRnnUsQWUiL6xEYDV0/ar29ePMGvcQ==}
+  '@generaltranslation/compiler@1.3.11':
+    resolution: {integrity: sha512-Cuk9f+7g/FxP6ZEMnNuu2ZFPXPwusA/BYfxYBLztvNB8jVcT92pla1ypGPXUossWQ6jRaMYg4vpAKC4CzGedYQ==}
     engines: {node: '>=16.0.0'}
 
   '@generaltranslation/next-internal@0.1.2':
@@ -718,17 +718,17 @@ packages:
       react: '>=16.8.0 <20.0.0'
       react-dom: '>=16.8.0 <20.0.0'
 
-  '@generaltranslation/python-extractor@0.2.10':
-    resolution: {integrity: sha512-VHtWFvsPihE3BHcJqYUIcZKsMNpnj+LrLsD+2t+7HjBnwgLzN7GqT+e9t526Y9SsLswARHuaMrjJ/Wh71xNY2g==}
+  '@generaltranslation/python-extractor@0.2.11':
+    resolution: {integrity: sha512-NkV+qf9ZXbAK4wlOwM9zapgE4wacJ4M/Qj8yuH6jYLS8f/jo+4TDr3YIzID8hYJjoz4Hf4MYhsbmLveacRCqMA==}
     engines: {node: '>=16.0.0'}
 
-  '@generaltranslation/react-core@1.8.4':
-    resolution: {integrity: sha512-EPGCFbnx5Hui9BZZ5AuEJWd2gzQVGWlLGvec+/MJ8t8LjkE5Px1XT+8ZApV2y729W14hRYb851lBdJ8pyM2sNQ==}
+  '@generaltranslation/react-core@1.8.5':
+    resolution: {integrity: sha512-DaJ8kA6iXYGZIOjrGd8lDI4ym8e9YLVPPa1u2FAuWNouMKhJYPK925ve0WT5LSw3OCs9egpAXpkJFeJWP8PlWw==}
     peerDependencies:
       react: '>=16.8.0'
 
-  '@generaltranslation/supported-locales@2.0.63':
-    resolution: {integrity: sha512-fO7ac7KMzj3DXsH/XM+C/lgNUjPm746fOHQeLDDnrSsKWDz9wUCT8f8827F5tNNUHWYaLzXQETMOvWpAAJwYug==}
+  '@generaltranslation/supported-locales@2.0.64':
+    resolution: {integrity: sha512-E8FDySVbNVw/EU0/gsKNCZgo6gQNzPKaDTXukA35e6PIKJTGFfq/iH26ar30mOxmwobavEMyYByR6Z3Je/pGOw==}
 
   '@giscus/react@3.1.0':
     resolution: {integrity: sha512-0TCO2TvL43+oOdyVVGHDItwxD1UMKP2ZYpT6gXmhFOqfAJtZxTzJ9hkn34iAF/b6YzyJ4Um89QIt9z/ajmAEeg==}
@@ -965,6 +965,10 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+
+  '@noble/hashes@2.2.0':
+    resolution: {integrity: sha512-IYqDGiTXab6FniAgnSdZwgWbomxpy9FtYvLKs7wCUs2a8RkITG+DFGO1DM9cr+E3/RgADRpFjrKVaJ1z6sjtEg==}
+    engines: {node: '>= 20.19.0'}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1356,6 +1360,11 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  baseline-browser-mapping@2.10.21:
+    resolution: {integrity: sha512-Q+rUQ7Uz8AHM7DEaNdwvfFCTq7a43lNTzuS94eiWqwyxfV/wJv+oUivef51T91mmRY4d4A1u9rcSvkeufCVXlA==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
   braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
@@ -1375,6 +1384,9 @@ packages:
 
   caniuse-lite@1.0.30001788:
     resolution: {integrity: sha512-6q8HFp+lOQtcf7wBK+uEenxymVWkGKkjFpCvw5W25cmMwEDU45p1xQFBQv8JDlMMry7eNxyBaR+qxgmTUZkIRQ==}
+
+  caniuse-lite@1.0.30001790:
+    resolution: {integrity: sha512-bOoxfJPyYo+ds6W0YfptaCWbFnJYjh2Y1Eow5lRv+vI2u8ganPZqNm1JwNh0t2ELQCqIWg4B3dWEusgAmsoyOw==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -1436,9 +1448,6 @@ packages:
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
-
-  crypto-js@4.2.0:
-    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
@@ -1618,11 +1627,15 @@ packages:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
-  electron-to-chromium@1.5.340:
-    resolution: {integrity: sha512-908qahOGocRMinT2nM3ajCEM99H4iPdv84eagPP3FfZy/1ZGeOy2CZYzjhms81ckOPCXPlW7LkY4XpxD8r1DrA==}
+  electron-to-chromium@1.5.344:
+    resolution: {integrity: sha512-4MxfbmNDm+KPh066EZy+eUnkcDPcZ35wNmOWzFuh/ijvHsve6kbLTLURy88uCNK5FbpN+yk2nQY6BYh1GEt+wg==}
 
   enhanced-resolve@5.20.1:
     resolution: {integrity: sha512-Qohcme7V1inbAfvjItgw0EaxVX5q2rdVEZHRBrEQdRZTssLDGsL8Lwrznl8oQ/6kuTJONLaDcGjkNP247XEhcA==}
+    engines: {node: '>=10.13.0'}
+
+  enhanced-resolve@5.21.0:
+    resolution: {integrity: sha512-otxSQPw4lkOZWkHpB3zaEQs6gWYEsmX4xQF68ElXC/TWvGxGMSGOvoNbaLXm6/cS/fSfHtsEdw90y20PCd+sCA==}
     engines: {node: '>=10.13.0'}
 
   entities@6.0.1:
@@ -1745,8 +1758,8 @@ packages:
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
 
-  generaltranslation@8.2.5:
-    resolution: {integrity: sha512-fKthvp6E+07uYT3gbkBUd91sXe+rywN2M8T/8Oy2o3x9VcpTahljHqb87uVr7peCkHhLJZSbCYAzxUHik1jgVQ==}
+  generaltranslation@8.2.6:
+    resolution: {integrity: sha512-HVEgiBjlRZpM/UwBFOKKu6ypz3FzvwgAVC40Pp7E8pOwTWncFNgSwAKlTWf6cqYgEYpoEv07UFtnYIcVyAO0pg==}
 
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
@@ -1773,18 +1786,18 @@ packages:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
 
-  gt-i18n@0.8.3:
-    resolution: {integrity: sha512-P/P+241tRS3eduzWTZDDKjTpJKomP+O5wFbXHij90HuSLEZAs8aQCbLQbLsJQAUdBvRtVJn886HOxEkbTPs77g==}
+  gt-i18n@0.8.4:
+    resolution: {integrity: sha512-Ye4j8L0gHzR28UqPdwfT3bv8lCznDdNXVFngpRpGYqCtLYgn3xSOqrBCfp9yMVCHsOn8m+eVfMasyQejyYN3Gw==}
 
-  gt-next@6.16.7:
-    resolution: {integrity: sha512-JTjbNj22mlOX5H74CZIrx3Z/iXkIqRLJ5JquxskXt29LNjcX0oP2ywS9rRE6kieJgFfaTg74U8HVrs1ffO4CNA==}
+  gt-next@6.16.12:
+    resolution: {integrity: sha512-fBRBcbQAIKuhkO5j3elmQceX4idAnzCY+NJ+aF8tnB6IgD4XZXPE38bzxSWkHBalUycSZwEKB2frCJPAWTQCaw==}
     peerDependencies:
       next: '>=13.0.0 <15.2.1 || >15.2.2'
       react: '>=16.8.0 <20.0.0'
       react-dom: '>=16.8.0 <20.0.0'
 
-  gt-react@10.19.0:
-    resolution: {integrity: sha512-qlQjCZjwg1OXDnQTo1wEDnRbFY4LM/NcdkZvZn4kVRAyHbn4KDVCOuEXa1JSBr8NBLwsKTjDqHilmLAPvIeGZg==}
+  gt-react@10.19.3:
+    resolution: {integrity: sha512-QX15UYypG96Y1kUNUhyA4cbonYGSgFa6S4w6/pSlNbqDvZvw+2WljcbPFGwXvM4nxeIPNEB1YSMEtBpVl/WSxA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -1792,12 +1805,12 @@ packages:
   gt-remark@1.0.7:
     resolution: {integrity: sha512-YBIA+cg+rNhY11SaCfWj/PTnRCH0IbvVBfafNQjFBn4I7yZMfEesLea0ZccXdRHaMaQwbWwyGbhjE8qy6h+HfQ==}
 
-  gt@2.14.17:
-    resolution: {integrity: sha512-TlPlo4DNsvqiz+z/LmtJrknL02Y8FvhyUomW42K7N2OvfRvCuypDQmpOBSYvWvnoqBjlQ1wyhDyAWJ4sl6d3FA==}
+  gt@2.14.19:
+    resolution: {integrity: sha512-+cU2ExxqkFaStiYSAJ9+D4GWacdoRJtJQ5Yj+xzCuUQZGeXZzwDIDM5MR/265YQsY17cazBxFUfEAGO7TXb8bg==}
     hasBin: true
 
-  gtx-cli@2.14.17:
-    resolution: {integrity: sha512-YnkKhnHX83laNojvUO3zcb6zg5cJolCW301gIK1f1SL3CHGlM4HfOMGHoThm5D3yaNK4/W5wpBJOb4yx6HUJ1Q==}
+  gtx-cli@2.14.19:
+    resolution: {integrity: sha512-VYhjeVvrzcU40FHv0R3vPti75aFr9R7/UM2R55d/TrcbaJCop8K1JT3Z2hUg7ItC5hKEIzMxKAl7fS9QcN3A4Q==}
     hasBin: true
 
   hasown@2.0.3:
@@ -2292,8 +2305,8 @@ packages:
     resolution: {integrity: sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==}
     hasBin: true
 
-  node-releases@2.0.37:
-    resolution: {integrity: sha512-1h5gKZCF+pO/o3Iqt5Jp7wc9rH3eJJ0+nh/CIoiRwjRxde/hAHyLPXYN4V3CqKAbiZPSeJFSWHmJsbkicta0Eg==}
+  node-releases@2.0.38:
+    resolution: {integrity: sha512-3qT/88Y3FbH/Kx4szpQQ4HzUbVrHPKTLVpVocKiLfoYvw9XSGOX2FmD2d6DrXbVYyAQTF2HeF6My8jmzx7/CRw==}
 
   npm-run-path@5.3.0:
     resolution: {integrity: sha512-ppwTtiJZq0O/ai0z7yfudtBpWIoxM8yE6nHi1X47eFR2EWORqfbu6CnPlNsjeN683eT0qG6H/Pyf9fCcvjnnnQ==}
@@ -2640,6 +2653,10 @@ packages:
 
   tapable@2.3.2:
     resolution: {integrity: sha512-1MOpMXuhGzGL5TTCZFItxCc0AARf1EZFQkGqMm7ERKj8+Hgr5oLvJOVFcC+lRmR8hCe2S3jC4T5D7Vg/d7/fhA==}
+    engines: {node: '>=6'}
+
+  tapable@2.3.3:
+    resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
 
   thread-stream@4.0.0:
@@ -3254,13 +3271,13 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@generaltranslation/compiler@1.3.8':
+  '@generaltranslation/compiler@1.3.11':
     dependencies:
       '@babel/generator': 7.29.1
       '@babel/parser': 7.29.2
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.0
-      generaltranslation: 8.2.5
+      generaltranslation: 8.2.6
       unplugin: 2.3.11
     transitivePeerDependencies:
       - supports-color
@@ -3271,24 +3288,24 @@ snapshots:
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
 
-  '@generaltranslation/python-extractor@0.2.10':
+  '@generaltranslation/python-extractor@0.2.11':
     dependencies:
-      generaltranslation: 8.2.5
+      generaltranslation: 8.2.6
       tree-sitter-python: 0.25.0
       web-tree-sitter: 0.26.8
     transitivePeerDependencies:
       - tree-sitter
 
-  '@generaltranslation/react-core@1.8.4(react@19.2.5)':
+  '@generaltranslation/react-core@1.8.5(react@19.2.5)':
     dependencies:
-      '@generaltranslation/supported-locales': 2.0.63
-      generaltranslation: 8.2.5
-      gt-i18n: 0.8.3
+      '@generaltranslation/supported-locales': 2.0.64
+      generaltranslation: 8.2.6
+      gt-i18n: 0.8.4
       react: 19.2.5
 
-  '@generaltranslation/supported-locales@2.0.63':
+  '@generaltranslation/supported-locales@2.0.64':
     dependencies:
-      generaltranslation: 8.2.5
+      generaltranslation: 8.2.6
 
   '@giscus/react@3.1.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
@@ -3492,6 +3509,8 @@ snapshots:
 
   '@next/swc-win32-x64-msvc@16.2.4':
     optional: true
+
+  '@noble/hashes@2.2.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -3833,16 +3852,18 @@ snapshots:
 
   baseline-browser-mapping@2.10.20: {}
 
+  baseline-browser-mapping@2.10.21: {}
+
   braces@3.0.3:
     dependencies:
       fill-range: 7.1.1
 
   browserslist@4.28.2:
     dependencies:
-      baseline-browser-mapping: 2.10.20
-      caniuse-lite: 1.0.30001788
-      electron-to-chromium: 1.5.340
-      node-releases: 2.0.37
+      baseline-browser-mapping: 2.10.21
+      caniuse-lite: 1.0.30001790
+      electron-to-chromium: 1.5.344
+      node-releases: 2.0.38
       update-browserslist-db: 1.2.3(browserslist@4.28.2)
 
   bundle-name@4.1.0:
@@ -3852,6 +3873,8 @@ snapshots:
   camelcase@8.0.0: {}
 
   caniuse-lite@1.0.30001788: {}
+
+  caniuse-lite@1.0.30001790: {}
 
   ccount@2.0.1: {}
 
@@ -3900,8 +3923,6 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
-
-  crypto-js@4.2.0: {}
 
   csstype@3.2.3: {}
 
@@ -4092,12 +4113,17 @@ snapshots:
 
   dotenv@16.6.1: {}
 
-  electron-to-chromium@1.5.340: {}
+  electron-to-chromium@1.5.344: {}
 
   enhanced-resolve@5.20.1:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.3.2
+
+  enhanced-resolve@5.21.0:
+    dependencies:
+      graceful-fs: 4.2.11
+      tapable: 2.3.3
 
   entities@6.0.1: {}
 
@@ -4276,11 +4302,10 @@ snapshots:
 
   function-bind@1.1.2: {}
 
-  generaltranslation@8.2.5:
+  generaltranslation@8.2.6:
     dependencies:
       '@formatjs/icu-messageformat-parser': 2.11.4
-      crypto-js: 4.2.0
-      fast-json-stable-stringify: 2.1.0
+      '@noble/hashes': 2.2.0
       intl-messageformat: 10.7.18
 
   gensync@1.0.0-beta.2: {}
@@ -4306,31 +4331,31 @@ snapshots:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
-  gt-i18n@0.8.3:
+  gt-i18n@0.8.4:
     dependencies:
-      '@generaltranslation/supported-locales': 2.0.63
-      generaltranslation: 8.2.5
+      '@generaltranslation/supported-locales': 2.0.64
+      generaltranslation: 8.2.6
 
-  gt-next@6.16.7(next@16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  gt-next@6.16.12(next@16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
-      '@generaltranslation/compiler': 1.3.8
+      '@generaltranslation/compiler': 1.3.11
       '@generaltranslation/next-internal': 0.1.2(next@16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      '@generaltranslation/supported-locales': 2.0.63
-      generaltranslation: 8.2.5
-      gt-i18n: 0.8.3
-      gt-react: 10.19.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      '@generaltranslation/supported-locales': 2.0.64
+      generaltranslation: 8.2.6
+      gt-i18n: 0.8.4
+      gt-react: 10.19.3(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       next: 16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
     transitivePeerDependencies:
       - supports-color
 
-  gt-react@10.19.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  gt-react@10.19.3(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
-      '@generaltranslation/react-core': 1.8.4(react@19.2.5)
-      '@generaltranslation/supported-locales': 2.0.63
-      generaltranslation: 8.2.5
-      gt-i18n: 0.8.3
+      '@generaltranslation/react-core': 1.8.5(react@19.2.5)
+      '@generaltranslation/supported-locales': 2.0.64
+      generaltranslation: 8.2.6
+      gt-i18n: 0.8.4
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
 
@@ -4348,7 +4373,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  gt@2.14.17(@babel/core@7.28.4):
+  gt@2.14.19(@babel/core@7.28.4):
     dependencies:
       '@babel/generator': 7.29.1
       '@babel/parser': 7.29.2
@@ -4356,15 +4381,15 @@ snapshots:
       '@babel/traverse': 7.29.0
       '@clack/prompts': 1.0.0-alpha.6
       '@formatjs/icu-messageformat-parser': 2.11.4
-      '@generaltranslation/python-extractor': 0.2.10
+      '@generaltranslation/python-extractor': 0.2.11
       chalk: 5.6.2
       commander: 12.1.0
       dotenv: 16.6.1
-      enhanced-resolve: 5.20.1
+      enhanced-resolve: 5.21.0
       esbuild: 0.27.7
       fast-glob: 3.3.3
       fast-json-stable-stringify: 2.1.0
-      generaltranslation: 8.2.5
+      generaltranslation: 8.2.6
       gt-remark: 1.0.7
       html-entities: 2.6.0
       json-pointer: 0.6.2
@@ -4389,11 +4414,11 @@ snapshots:
       - supports-color
       - tree-sitter
 
-  gtx-cli@2.14.17(@babel/core@7.28.4):
+  gtx-cli@2.14.19(@babel/core@7.28.4):
     dependencies:
       commander: 12.1.0
       dotenv: 16.6.1
-      gt: 2.14.17(@babel/core@7.28.4)
+      gt: 2.14.19(@babel/core@7.28.4)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -5197,7 +5222,7 @@ snapshots:
 
   node-gyp-build@4.8.4: {}
 
-  node-releases@2.0.37: {}
+  node-releases@2.0.38: {}
 
   npm-run-path@5.3.0:
     dependencies:
@@ -5627,6 +5652,8 @@ snapshots:
   tailwindcss@4.2.2: {}
 
   tapable@2.3.2: {}
+
+  tapable@2.3.3: {}
 
   thread-stream@4.0.0:
     dependencies:
