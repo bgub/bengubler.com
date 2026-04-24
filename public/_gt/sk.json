@@ -47,6 +47,7 @@
     "t": "p"
   },
   "0ee81746110ea465": "Kartičky pádov na vytlačenie na rýchle a efektívne zapamätanie českých skloňovacích vzorov podstatných mien.",
+  "0efb3da8c7e035a1": "Monarch Money",
   "10c587eefc060c58": "Omarchy",
   "1115207f8bc4ea29": "OverTheWire Wargames",
   "116ab3333ed53b2d": "Tic-Tac-Too",
@@ -97,10 +98,12 @@
   "28ac8a369bb99280": "Pepper & Carrot in Toki Pona",
   "2b07b7656f564e82": "tokka-bench",
   "2c2da55d6d410519": "Jednoduchá implementácia GRPO",
+  "2ca83092601df6ee": "Obsidian",
   "2ce262d5ab363438": "Príspevky - Ben Gubler",
   "2d5e296989434d34": "Komplexná webová stránka na precvičovanie skloňovania českých, slovenských a ruských podstatných mien pomocou interaktívnych cvičení.",
   "2e881bd80673c0fa": "Russian Case Cards",
   "2ecf88ef9e8e4259": "Domov",
+  "2f00e71f816405c2": "Dell XPS 15 (súkromný)",
   "2f4b57fb59c746d0": "GPU a vysokovýkonné programovanie",
   "34cb108cba52437c": {
     "c": "Čo ďalej",
@@ -114,6 +117,7 @@
   },
   "356fdf32f4af59c1": "Si expert na vysvetľovanie zložitých tém jednoducho a zábavne.\n\nVysvetli nasledujúci príspevok na blogu tak, akoby si sa rozprával s 5-ročným dieťaťom:\n- Používaj jednoduché slová a krátke vety\n- Zahrň zábavné analógie a prirovnania, ktorým bude rozumieť\n- Buď nadšený a povzbudzujúci\n- Rozdeľ zložité myšlienky na malé kúsky\n- Nech je to pútavé, ale presné\n\nNázov: \"{title}\"",
   "35e47f78c1abf14b": "Kniha Mormonova",
+  "365eecb4547061ff": "Prehliadač Brave",
   "36cc93069891afc3": "Hra s prirodzenými číslami",
   "374c5518c6ab30e6": "hf_to_mds",
   "38129977cdbc7506": "Vždy rád nadväzujem kontakt s ďalšími vývojármi, diskutujem o nových nápadoch alebo skúmam možnosti spolupráce. Pokojne sa ozvite!",
@@ -166,21 +170,26 @@
     "i": 1,
     "t": "h4"
   },
+  "49378166463c2a95": "Myš MX Master 3S",
   "4a48758f8e4e06c2": "Redox OS",
   "4a73344dd83b8f0e": {
     "c": "Projekty",
     "i": 1,
     "t": "PageTitle"
   },
+  "4a87671f82acf209": "Klávesnica NuPhy Air75 V3",
   "4add1139ae8ec5c1": "Kontakt",
   "4d6c82c642c573cb": "Malý princ",
   "4dbde0a18f4d9702": "Prekrásny nový svet",
   "4ea7e037ee1dab24": "Esperaboard",
   "4fc74c7fb8c15459": "Konvertuje Datasety HuggingFace do streamingového formátu MosaicML (MDS) na efektívne trénovanie v cloude.",
   "51ca342c96cf6a4d": "Toki Pona in 18 Minutes",
+  "525ac3c303eb0e29": "Todoist",
   "529a3d0a9cf9f5da": "Desktopové prostredie COSMIC",
   "53b5f7c376481390": "Skopírovať kód do schránky",
+  "542a09176cd8adb1": "Fedora Linux",
   "5550a8e6774e8198": "Všetky príspevky",
+  "568af492f9a30333": "Anki",
   "579a989363e7dd8c": "Vaša prvá aplikácia vo WebGPU",
   "57df581328929c7a": {
     "c": "Prepáčte, stránka, ktorú hľadáte, neexistuje alebo bola presunutá.",
@@ -193,7 +202,9 @@
     "i": 1,
     "t": "Link"
   },
+  "593dab95ec87fb1a": "Zed s klávesovými skratkami Vim",
   "5ae7fd1fc9c3f5a9": "Systém",
+  "5b0ea6350126478b": "Alacritty",
   "5c09252a83b0de9b": {
     "c": "Pokročilá pádová kartička",
     "i": 1,
@@ -224,6 +235,7 @@
     "t": "p"
   },
   "61213b3c0bb8433e": "Naučte sa X za Y minút",
+  "6455227309955661": "Pimsleur",
   "64ade5006b5d1b36": "Decline App",
   "6601f653ec09b078": "Klasika",
   "6662bfef4fbe8763": "Otvoriť menu",
@@ -237,6 +249,7 @@
     "t": "Link"
   },
   "6a8c0b782ac8649f": "Listy skúseného diabla",
+  "6a9f1df769ad433e": "Desktopové prostredie COSMIC (občas)",
   "6aa37389c540a0b2": "npm-to-yarn",
   "6b27c952e181188e": "Obraz Doriana Graya",
   "6c9b9dc3b6bc4b97": "Príspevok, ktorý hľadáte, neexistuje.",
@@ -249,10 +262,12 @@
   "6e71ec1bfb3ad539": "Vývoj programovacích jazykov a algebraické efekty",
   "6e8a4f1758b76948": "Profesijná sieť a diskusie o kariére",
   "6f83fb5bebf33e82": "Obľúbené knihy, filmy a osobné odporúčania Bena Gublera.",
+  "6fa4fca04aedadba": "Prostredie GNOME",
   "70e12787aab9ee65": "Natrénujte model uvažovania pomocou GRPO",
   "7224ad670aa82471": "Rozšírenie pre Chrome, ktoré zmení stránku novej karty na prispôsobiteľný dashboard.",
   "723653dd8fec6fdc": "Hunt for the Wilderpeople",
   "729c5a4511ba6828": "Osobná webová stránka Bena Gublera. Pracuje v General Translation, predtým stážoval vo Vercel. Študuje AI a ľudské jazyky na BYU. Úvahy o webovom vývoji, AI a tvorbe vecí, na ktorých záleží.",
+  "730dcee4f7598b16": "MacBook Pro (na prácu)",
   "74816cbe74a8f193": "RSC Explorer",
   "762da2d8b92c643b": "Toki Pona",
   "7653c554c5512d00": {
@@ -353,6 +368,7 @@
   "95e4c24a851ab7e3": "Dokonalý trik",
   "95f506e43b9b3265": "Príspevok nenájdený - Ben Gubler",
   "97c326fd40fc8abd": "Kartičky pádov na vytlačenie na rýchle a efektívne zapamätanie ruských skloňovacích vzorov podstatných mien.",
+  "97f7dc350050087c": "macOS",
   "98931a83736430a1": "Web na učenie jazykov s podporou AI, s personalizovanými lekciami a interaktívnymi cvičeniami.",
   "9a5c9a18a1736a01": "Profilová fotografia",
   "9a806cc1e5ca8a4a": "Umelá inteligencia",
@@ -374,6 +390,7 @@
   "aab25fba56518455": "Lingvistika",
   "abc7afca4ddb4c94": "Tadiaľto tečie rieka",
   "abf651cef8f7b7b2": "Séria Inkheart",
+  "ac94723b2e9de669": "Beelinguapp",
   "acd3df01d58f5765": "The Divergent Association Task",
   "ade50401b1396de9": "Príspevky",
   "ae22c9e36cd4543e": [
@@ -433,6 +450,7 @@
   "ca744e725e390110": "Czech Case Cards – kartičky českých pádov",
   "cb10fe00fbfa4b87": "The Language Construction Kit",
   "cb3d390992c293e3": "Všetko sa rozpadá",
+  "cbcec085bbae5d0d": "Readlang",
   "cc0ddbf6a83c8fa4": "Russian Case Cards - Ben Gubler",
   "cc77c2b66c79a626": "Splashpad",
   "cc84bfe0ee5d0174": "Projekty",
@@ -497,6 +515,7 @@
   "dc94ea51cf0b8c7a": "Filmy",
   "dc9f1a12fca86efe": "Rýchly vstavaný JS nástroj. Široko používaný, s viac ako 1,5 tis. hviezdičkami na GitHube a ~2 mil. stiahnutí týždenne.",
   "def93bda648985e9": "Vysvetli mi to, akoby som mal 5 rokov",
+  "e0ec8b1ac98ca1d6": "Wispr Flow",
   "e1753ab0ce7d5975": "LinkedIn",
   "e5cff5481ca8546c": "Zábavné a zaujímavé",
   "e6d86a912aea1aa4": {
@@ -505,6 +524,7 @@
     "t": "PageTitle"
   },
   "e7c0553f70c9ca10": "Medzinárodné",
+  "e9143d18038a1abb": "Day One Journal",
   "ea3bb70a42a500de": "Progresívna webová aplikácia (PWA) na precvičovanie českých, slovenských a ruských skloňovacích vzorov.",
   "eb4c23226464ede2": {
     "c": [
