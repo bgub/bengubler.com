@@ -1,47 +1,47 @@
 ---
-title: إعداد Docker للتعلّم الآلي
-description: ملف Dockerfile الذي أستخدمه لإعداد بيئة التعلّم الآلي الخاصة بي.
+title: إعداد Docker لتعلّم الآلة
+description: ملف Dockerfile الذي أستخدمه لإعداد بيئة تعلّم الآلة الخاصة بي.
 date: "2023-09-08"
 lastUpdated: "2024-06-24"
 tags: [ml/ai]
 ---
 
-*تحديث 2024: حدّثت هذا المقال ليعتمد على صورة `nvcr.io/nvidia/pytorch`، وهي الصورة التي أستخدمها دائمًا هذه الأيام لما توفّره من دعم ممتاز لـ NVIDIA وNCCL وInfiniband. كما بسّطت الملف وعدّلته لاستخدام `GOM` لمراقبة الـ GPU.*
+_UPDATE 2024: حدّثتُ هذا المنشور ليعتمد على الصورة `nvcr.io/nvidia/pytorch`، التي أستخدمها دائمًا هذه الأيام بفضل دعمها الممتاز لـ NVIDIA وNCCL وInfiniband. كما بسّطتُ الملف وعدّلته لاستخدام `gom` لمراقبة وحدات GPU._
 
-هذا المقال موجّه أساسًا إلى زملاء العمل، لكنه قد يكون مفيدًا لغيرهم أيضًا. سأشارك ملف Dockerfile الذي أستخدمه لإعداد بيئة التعلّم الآلي الخاصة بي. وهو مبني على صورة `pytorch` من NVIDIA، لكنني أضفت إليه بعض الأمور التي أجدها مفيدة (مثل ترقية حزم Pip، وGitHub CLI، وموجّه Starship، و[مراقبة الـ GPU](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement)، وغيرها).
+هذا المنشور موجّه أساسًا لزملائي في العمل، لكنه قد يكون مفيدًا لغيرهم أيضًا. سأشارك ملف Dockerfile الذي أستخدمه لإعداد بيئة تعلّم الآلة الخاصة بي. وهو مبنيّ على صورة `pytorch` من NVIDIA، لكنني أضفتُ بعض الأمور (ترقية حزم Pip، GitHub CLI، موجه Starship، [مراقبة GPU](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement)، وغيرها) التي أجدها مفيدة.
 
 ## الإعداد
 
-انسخ والصق ملف `Dockerfile` أدناه في مجلد جديد. لا تتردد في إضافة أو إزالة أي شيء تريده — وعلى الأرجح سأحدّث هذا المقال كلما أجريت تغييرات على إعداداتي.
+انسخ والصق ملف `Dockerfile` أدناه في مجلد جديد. لا تتردد في إضافة أو إزالة ما تشاء — على الأرجح سأحدّث هذا المنشور كلما أجريت تغييرات على بيئتي.
 
 ```dockerfile
-# الصورة الأساسية مع Ubuntu 22.04 وPython 3.10 وCUDA 12.4
+# صورة أساسية مع Ubuntu 22.04، Python 3.10، CUDA 12.4
 FROM nvcr.io/nvidia/pytorch:24.04-py3
 
 #####################
-# حزم PYTHON        #
+# حزم PYTHON       #
 #####################
 
-# تعطيل تحذير "تشغيل pip كمستخدم 'root' قد..."
+# تعطيل تحذير "تشغيل pip كمستخدم 'root' يمكن أن..."
 ENV PIP_ROOT_USER_ACTION=ignore
 
-# تحديث pip
+# ترقية pip
 RUN pip3 install --upgrade pip
 
-# تحديث وتثبيت حزم التعلّم الآلي المفيدة
+# ترقية وتثبيت حزم التعلم الآلي المفيدة
 RUN pip3 install --upgrade transformers accelerate deepspeed fire tqdm openai numpy rouge_score wandb ipython emoji tokenizers evaluate matplotlib seaborn lm-eval jupyter nltk tiktoken aiolimiter swifter pytorch-lightning lightning sentencepiece jsonargparse[signatures] bitsandbytes datasets zstandard rich transformer_lens librosa soundfile gom git+https://github.com/stanfordnlp/pyvene.git git+https://github.com/stanfordnlp/pyreft.git
 
-# تثبيت الإصدار الليلي من TorchAudio
+# تثبيت TorchAudio nightly
 RUN pip3 install --no-deps torchaudio
 
-# إصلاح حزمة Docker pip الخاطئة لكي يعمل GOM
+# إصلاح حزمة Docker pip غير الصحيحة، حتى يعمل GOM
 RUN mv /usr/local/lib/python3.10/dist-packages/docker /usr/local/lib/python3.10/dist-packages/docker_old
 
 #####################
-# GH CLI و STARSHIP #
+# GH CLI & STARSHIP #
 #####################
 
-# واجهة سطر أوامر GitHub
+# GitHub CLI
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
     && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
@@ -50,7 +50,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
 
 RUN apt-get upgrade -y
 
-# موجّه Starship
+# موجه Starship
 RUN curl -sS https://starship.rs/install.sh -o starship-install.sh 
 RUN sh -posix starship-install.sh --yes
 RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
@@ -64,6 +64,7 @@ RUN echo $'[character]\n\
     disabled = true' > /root/.config/starship.toml
 ```
 
+
 ## إنشاء الصورة
 
 بعد إنشاء الملفات، يمكنك إنشاء الصورة باستخدام:
@@ -73,15 +74,16 @@ cd /path/to/directory
 docker build -t YOUR_IMAGE_NAME_HERE .
 ```
 
+
 ## تشغيل الصورة
 
-يمكنك تشغيلها باستخدام:
+يمكنك تشغيل الصورة عبر:
 
 ```bash
 docker run -d --rm -it \
     --gpus all \
-    --name YOUR_CONTAINER_NAME \
-    --mount type=bind,source=YOUR_HOME_DIR,target=YOUR_HOME_DIR \
-    -w YOUR_HOME_DIR \
-    YOUR_IMAGE_NAME_HERE:latest
+    --name اسم_الحاوية_الخاصة_بك \
+    --mount type=bind,source=مجلد_المنزل_الخاص_بك,target=مجلد_المنزل_الخاص_بك \
+    -w مجلد_المنزل_الخاص_بك \
+    اسم_الصورة_هنا:latest
 ```
