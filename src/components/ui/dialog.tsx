@@ -1,6 +1,7 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { T } from "gt-next";
 import { XIcon } from "lucide-react";
 import type * as React from "react";
 import { Button } from "@/components/ui/button";
@@ -70,7 +71,7 @@ function DialogContent({
             }
           >
             <XIcon />
-            <span className="sr-only">Close</span>
+            <T><span className="sr-only">Close</span></T>
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Popup>
@@ -108,7 +109,7 @@ function DialogFooter({
       {children}
       {showCloseButton && (
         <DialogPrimitive.Close render={<Button variant="outline" />}>
-          Close
+          <T>Close</T>
         </DialogPrimitive.Close>
       )}
     </div>

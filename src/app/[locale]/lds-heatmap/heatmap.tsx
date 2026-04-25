@@ -14,6 +14,7 @@ import {
   US_STATES,
 } from "./data";
 import { decodeTopo, type Topology } from "./topojson";
+import { T, Var, Num, useGT, useMessages, msg } from "gt-next";
 
 // ── COLOR SCALES ─────────────────────────────────────────────
 // ColorBrewer Blues-7 (total members) and YlOrRd-7 (% of pop.)
@@ -67,13 +68,18 @@ function heat(
 const W = 960;
 const H = 500;
 
-const FLY_TARGETS = [
-  ["Reset", 0, 0, 1],
-  ["US", -580, -115, 4.2],
-  ["S. America", -420, -550, 3.2],
-  ["Africa", -1020, -340, 4],
-  ["Pacific", -1950, -350, 3.8],
-] as const;
+const FLY_TARGETS: [string, number, number, number][] = [
+  [msg("Reset"), 0, 0, 1],
+  [msg("US"), -580, -115, 4.2],
+  [msg("S. America"), -420, -550, 3.2],
+  [msg("Africa"), -1020, -340, 4],
+  [msg("Pacific"), -1950, -350, 3.8],
+];
+
+const MODE_LABELS: [string, string][] = [
+  ["total", msg("Total Members")],
+  ["pct", msg("% of Pop.")],
+];
 
 export function Heatmap() {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -86,6 +92,8 @@ export function Heatmap() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [mode, setMode] = useState<"total" | "pct">("total");
+  const gt = useGT();
+  const m = useMessages();
 
   useEffect(() => {
     const load = (url: string) => fetch(url).then((r) => r.json());
@@ -194,7 +202,7 @@ export function Heatmap() {
             className="font-mono uppercase"
             style={{ fontSize: 9, letterSpacing: 3, color: "#888" }}
           >
-            Membership Heat Map &middot; 2024
+            <T>Membership Heat Map &middot; 2024</T>
           </div>
           <h1
             style={{
@@ -204,10 +212,12 @@ export function Heatmap() {
               color: "#1a1a2e",
             }}
           >
-            Latter-day Saints{" "}
-            <span style={{ fontWeight: 400, color: "#888", fontSize: 15 }}>
-              Worldwide
-            </span>
+            <T>
+              Latter-day Saints{" "}
+              <span style={{ fontWeight: 400, color: "#888", fontSize: 15 }}>
+                Worldwide
+              </span>
+            </T>
           </h1>
         </div>
         <div className="flex flex-wrap items-center gap-1 pb-0.5">
@@ -215,16 +225,11 @@ export function Heatmap() {
             className="flex mr-2"
             style={{ background: "#eef1f5", borderRadius: 6, padding: 2 }}
           >
-            {(
-              [
-                ["total", "Total Members"],
-                ["pct", "% of Pop."],
-              ] as const
-            ).map(([k, label]) => (
+            {MODE_LABELS.map(([k, label]) => (
               <button
                 type="button"
                 key={k}
-                onClick={() => setMode(k)}
+                onClick={() => setMode(k as "total" | "pct")}
                 className="font-mono cursor-pointer"
                 style={{
                   padding: "4px 12px",
@@ -238,7 +243,7 @@ export function Heatmap() {
                   transition: "all .15s",
                 }}
               >
-                {label}
+                {m(label)}
               </button>
             ))}
           </div>
@@ -257,7 +262,7 @@ export function Heatmap() {
                 fontSize: 9.5,
               }}
             >
-              {label}
+              {m(label)}
             </button>
           ))}
         </div>
@@ -274,14 +279,14 @@ export function Heatmap() {
               className="flex items-center justify-center h-full"
               style={{ color: "#aaa" }}
             >
-              Loading&hellip;
+              <T>Loading&hellip;</T>
             </div>
           ) : (
             <svg
               ref={svgRef}
               viewBox={`0 0 ${W} ${H}`}
               className="w-full h-full cursor-grab"
-              aria-label="LDS membership heat map"
+              aria-label={gt("LDS membership heat map")}
             >
               <rect width={W} height={H} fill="#eef2f6" />
               <g id="g">
@@ -322,7 +327,7 @@ export function Heatmap() {
                                   m: d[0],
                                   pv: pct(d[0], d[1]),
                                 }
-                              : { name: COUNTRY_NAMES[id] || "Unknown" },
+                              : { name: COUNTRY_NAMES[id] || gt("Unknown") },
                           );
                         }
                       }}
@@ -379,7 +384,7 @@ export function Heatmap() {
             }}
           >
             <span className="font-mono" style={{ fontSize: 8, color: "#999" }}>
-              {isPct ? "0%" : "FEW"}
+              {isPct ? "0%" : gt("FEW")}
             </span>
             <div
               style={{
@@ -390,7 +395,7 @@ export function Heatmap() {
               }}
             />
             <span className="font-mono" style={{ fontSize: 8, color: "#999" }}>
-              {isPct ? "65%+" : "MILLIONS"}
+              {isPct ? "65%+" : gt("MILLIONS")}
             </span>
           </div>
           <div
@@ -404,7 +409,7 @@ export function Heatmap() {
               color: "#aaa",
             }}
           >
-            {zoom.toFixed(1)}&times; &middot; scroll / drag
+            <T><Var>{zoom.toFixed(1)}</Var>&times; &middot; scroll / drag</T>
           </div>
         </div>
 
@@ -419,20 +424,20 @@ export function Heatmap() {
           }}
         >
           <Rank
-            title="Countries"
+            title={gt("Countries")}
             items={ranked}
             max={topVal(ranked)}
             mode={mode}
           />
           <Rank
-            title="US States"
+            title={gt("US States")}
             items={stateRanked}
             max={topVal(stateRanked)}
             mode={mode}
             hasBorder
           />
           <Rank
-            title="Canadian Provinces"
+            title={gt("Canadian Provinces")}
             items={caRanked}
             max={topVal(caRanked)}
             mode={mode}
@@ -447,9 +452,11 @@ export function Heatmap() {
               lineHeight: 1.5,
             }}
           >
-            Source: Church of Jesus Christ Newsroom, World Population Review,
-            Statistics Canada. Dec 31 2024. Canadian province figures are
-            estimates based on ~40% Alberta share of 205K national total.
+            <T>
+              Source: Church of Jesus Christ Newsroom, World Population Review,
+              Statistics Canada. Dec 31 2024. Canadian province figures are
+              estimates based on ~40% Alberta share of 205K national total.
+            </T>
           </div>
         </div>
       </div>
@@ -478,28 +485,36 @@ export function Heatmap() {
           </div>
           {tip.m ? (
             <>
-              <div
-                className="font-mono"
-                style={{ fontSize: 11, color: "#2d7fc0" }}
-              >
-                {tip.m.toLocaleString()} members
-              </div>
-              <div
-                className="font-mono"
-                style={{ fontSize: 10, color: "#666" }}
-              >
-                {tip.pv?.toFixed(2)}% of population
-              </div>
-              {tip.state && (
-                <div style={{ fontSize: 8, color: "#bbb", marginTop: 1 }}>
-                  U.S. State
+              <T>
+                <div
+                  className="font-mono"
+                  style={{ fontSize: 11, color: "#2d7fc0" }}
+                >
+                  <Num>{tip.m}</Num> members
                 </div>
+              </T>
+              <T>
+                <div
+                  className="font-mono"
+                  style={{ fontSize: 10, color: "#666" }}
+                >
+                  <Var>{tip.pv?.toFixed(2)}</Var>% of population
+                </div>
+              </T>
+              {tip.state && (
+                <T>
+                  <div style={{ fontSize: 8, color: "#bbb", marginTop: 1 }}>
+                    U.S. State
+                  </div>
+                </T>
               )}
             </>
           ) : (
-            <div style={{ fontSize: 10, color: "#bbb" }}>
-              No reported presence
-            </div>
+            <T>
+              <div style={{ fontSize: 10, color: "#bbb" }}>
+                No reported presence
+              </div>
+            </T>
           )}
         </div>
       )}

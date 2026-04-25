@@ -115,7 +115,7 @@ export default function FavoritesPage() {
       </header>
 
       {favorites.map((section) => (
-        <section key={section.category} className="space-y-3">
+        <section key={m(section.category)} className="space-y-3">
           <div className="flex items-baseline gap-3.5">
             <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
               {m(section.category)}
@@ -125,7 +125,7 @@ export default function FavoritesPage() {
           <div>
             {section.subsections.map((subsection) => (
               <div
-                key={subsection.title}
+                key={m(subsection.title)}
                 className="grid grid-cols-[1fr] sm:grid-cols-[140px_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border"
               >
                 <span className="font-serif font-medium text-foreground">
@@ -133,7 +133,7 @@ export default function FavoritesPage() {
                 </span>
                 <span className="font-serif text-ink-soft font-light">
                   {subsection.items.map((item, index) => (
-                    <span key={item.name}>
+                    <span key={m(item.name)}>
                       {m(item.name)}
                       {index < subsection.items.length - 1 && ", "}
                     </span>
