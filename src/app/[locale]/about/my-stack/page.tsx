@@ -115,7 +115,7 @@ export default function MyStackPage() {
       </header>
 
       {stack.map((section) => (
-        <section key={section.category} className="space-y-3">
+        <section key={m(section.category)} className="space-y-3">
           <div className="flex items-baseline gap-3.5">
             <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
               {m(section.category)}
@@ -125,7 +125,7 @@ export default function MyStackPage() {
           <div className="space-y-2">
             {section.subsections.map((subsection) => (
               <div
-                key={subsection.title}
+                key={m(subsection.title)}
                 className="grid grid-cols-[1fr] sm:grid-cols-[180px_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border"
               >
                 <span className="font-serif font-medium text-foreground">
@@ -135,7 +135,7 @@ export default function MyStackPage() {
                   {subsection.items.map((item, index) => {
                     const displayName = m(item.name);
                     return (
-                      <span key={item.name}>
+                      <span key={m(item.name)}>
                         {item.link ? (
                           <Link
                             href={item.link}
