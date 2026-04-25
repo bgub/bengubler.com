@@ -17,7 +17,11 @@ export interface RankedItem {
 // ── UTILS ─────────────────────────────────────────────────────
 
 export const fmt = (n: number) =>
-  n >= 1e6 ? (n / 1e6).toFixed(1) + "M" : n >= 1e3 ? Math.round(n / 1e3) + "K" : "" + n;
+  n >= 1e6
+    ? `${(n / 1e6).toFixed(1)}M`
+    : n >= 1e3
+      ? `${Math.round(n / 1e3)}K`
+      : `${n}`;
 
 export const pct = (m: number, p: number) => (p ? (m / p) * 100 : 0);
 

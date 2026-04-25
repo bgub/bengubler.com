@@ -1,8 +1,8 @@
-import { T, useMessages } from "gt-next";
+import { useMessages } from "gt-next";
 import Link from "next/link";
-import type { Project } from "@/lib/projects";
 import { GitHubIcon } from "@/components/social";
 import { getColorByIndex } from "@/lib/colors";
+import type { Project } from "@/lib/projects";
 
 interface ProjectListProps {
   projects: Project[];
@@ -20,7 +20,9 @@ export function ProjectList({ projects, compact = false }: ProjectListProps) {
             key={project.name}
             className="bg-card border border-border rounded-sm relative overflow-hidden transition-all duration-200 hover:shadow-md group"
           >
-            <div className={`absolute top-0 left-0 right-0 h-1.5 ${colors.stripe}`} />
+            <div
+              className={`absolute top-0 left-0 right-0 h-1.5 ${colors.stripe}`}
+            />
             <div className="p-4 pt-5">
               <div className="flex items-start justify-between gap-2 mb-1.5">
                 <div className="font-serif text-xl font-medium text-foreground">

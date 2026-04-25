@@ -62,7 +62,9 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
     <div className="space-y-10">
       <header className="space-y-3">
         <div className="flex items-center justify-between">
-          <PageTitle><T id="posts_heading">Posts</T></PageTitle>
+          <PageTitle>
+            <T id="posts_heading">Posts</T>
+          </PageTitle>
           <Link
             href="/rss.xml"
             className="inline-flex items-center gap-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-sm hover:bg-rule-soft"
@@ -99,9 +101,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
               <Link
                 key={tag}
                 href={
-                  isActive
-                    ? "/posts"
-                    : `/posts?tag=${encodeURIComponent(tag)}`
+                  isActive ? "/posts" : `/posts?tag=${encodeURIComponent(tag)}`
                 }
                 className={`font-mono text-[11px] px-2.5 py-0.5 rounded-sm border transition-colors ${
                   isActive
@@ -152,7 +152,10 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
                 {post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {post.tags.map((tag) => (
-                      <ViewTransition key={tag} name={`tag-${sanitize(post.url)}-${tag}`}>
+                      <ViewTransition
+                        key={tag}
+                        name={`tag-${sanitize(post.url)}-${tag}`}
+                      >
                         <span className="font-mono text-[11px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
                           #{tag.toLowerCase()}
                         </span>

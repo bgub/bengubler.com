@@ -9,8 +9,8 @@ import { ViewTransition } from "react";
 import { Comments } from "@/components/comments";
 import { FloatingELI5 } from "@/components/floating-eli5";
 import type { TOCNode } from "@/components/mdx/remark-toc";
-import { PageTitle } from "@/components/page-title";
 import { mdxComponents } from "@/components/mdx-components";
+import { PageTitle } from "@/components/page-title";
 import { RawMarkdown } from "@/components/raw-markdown";
 import { Social } from "@/components/social";
 import { Squiggle } from "@/components/squiggle";
@@ -100,7 +100,7 @@ export default async function PostPage({
     notFound();
   }
 
-  const colors = getPostColors(post.slug);
+  const _colors = getPostColors(post.slug);
   const toc: TOCNode = JSON.parse(post.toc);
   const hasTOC = toc.children.length > 0;
   const base = post.url.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
