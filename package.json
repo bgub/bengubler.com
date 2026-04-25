@@ -18,7 +18,6 @@
     "@vercel/speed-insights": "^2.0.0",
     "ai": "beta",
     "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "d3": "^7.9.0",
     "feed": "^5.2.0",
     "gt-next": "^6.16.12",
@@ -30,7 +29,6 @@
     "react-tweet": "^3.3.0",
     "rehype-pretty-code": "^0.14.3",
     "remark-capitalize-headings": "^3.0.0",
-    "shiki": "^4.0.2",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
