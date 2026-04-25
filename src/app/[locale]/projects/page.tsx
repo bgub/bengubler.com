@@ -23,7 +23,9 @@ export default function ProjectsPage() {
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle={gt("Libraries, apps, and experiments. Most are open source; a few are still finding their shape.")}
+            subtitle={gt(
+              "Libraries, apps, and experiments. Most are open source; a few are still finding their shape.",
+            )}
           >
             Projects
           </PageTitle>

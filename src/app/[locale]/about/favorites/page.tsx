@@ -105,7 +105,9 @@ export default function FavoritesPage() {
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle={gt("Books, movies, and other things I love and recommend.")}
+            subtitle={gt(
+              "Books, movies, and other things I love and recommend.",
+            )}
           >
             Favorites
           </PageTitle>
@@ -122,7 +124,10 @@ export default function FavoritesPage() {
           </div>
           <div>
             {section.subsections.map((subsection) => (
-              <div key={subsection.title} className="grid grid-cols-[1fr] sm:grid-cols-[140px_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border">
+              <div
+                key={subsection.title}
+                className="grid grid-cols-[1fr] sm:grid-cols-[140px_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border"
+              >
                 <span className="font-serif font-medium text-foreground">
                   {m(subsection.title)}
                 </span>

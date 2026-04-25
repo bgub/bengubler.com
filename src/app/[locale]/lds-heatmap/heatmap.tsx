@@ -1,17 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import { useEffect, useRef, useState } from "react";
 import {
+  CA_PROVINCES,
   COUNTRIES,
   COUNTRY_NAMES,
-  US_STATES,
-  CA_PROVINCES,
   FIPS_TO_STATE,
   fmt,
   pct,
-  type TipData,
   type RankedItem,
+  type TipData,
+  US_STATES,
 } from "./data";
 import { decodeTopo, type Topology } from "./topojson";
 
@@ -21,12 +21,39 @@ import { decodeTopo, type Topology } from "./topojson";
 // upper range so 4% and 60% looked nearly identical.
 
 const BG = "#f0f4f8";
-const PALETTE_TOTAL = ["#f7fbff", "#c6dbef", "#6baed6", "#3182bd", "#08519c", "#08306b", "#041e42"];
-const PALETTE_PCT = ["#ffffcc", "#fed976", "#fd8d3c", "#fc4e2a", "#e31a1c", "#b10026", "#4a0012"];
+const PALETTE_TOTAL = [
+  "#f7fbff",
+  "#c6dbef",
+  "#6baed6",
+  "#3182bd",
+  "#08519c",
+  "#08306b",
+  "#041e42",
+];
+const PALETTE_PCT = [
+  "#ffffcc",
+  "#fed976",
+  "#fd8d3c",
+  "#fc4e2a",
+  "#e31a1c",
+  "#b10026",
+  "#4a0012",
+];
 
-function heat(val: number, lo: number, hi: number, palette: string[], exp: number) {
+function heat(
+  val: number,
+  lo: number,
+  hi: number,
+  palette: string[],
+  exp: number,
+) {
   if (!val) return BG;
-  const t = d3.scalePow().exponent(exp).domain([lo, hi]).range([0, 1]).clamp(true)(val);
+  const t = d3
+    .scalePow()
+    .exponent(exp)
+    .domain([lo, hi])
+    .range([0, 1])
+    .clamp(true)(val);
   const n = palette.length - 1;
   return d3
     .scaleLinear<string>()
@@ -51,7 +78,9 @@ const FLY_TARGETS = [
 export function Heatmap() {
   const svgRef = useRef<SVGSVGElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
-  const [world, setWorld] = useState<ReturnType<typeof decodeTopo> | null>(null);
+  const [world, setWorld] = useState<ReturnType<typeof decodeTopo> | null>(
+    null,
+  );
   const [us, setUs] = useState<ReturnType<typeof decodeTopo> | null>(null);
   const [tip, setTip] = useState<TipData | null>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
@@ -60,11 +89,11 @@ export function Heatmap() {
 
   useEffect(() => {
     const load = (url: string) => fetch(url).then((r) => r.json());
-    load("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then((t: Topology) =>
-      setWorld(decodeTopo(t, t.objects.countries)),
+    load("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(
+      (t: Topology) => setWorld(decodeTopo(t, t.objects.countries)),
     );
-    load("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then((t: Topology) =>
-      setUs(decodeTopo(t, t.objects.states)),
+    load("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(
+      (t: Topology) => setUs(decodeTopo(t, t.objects.states)),
     );
   }, []);
 
@@ -120,9 +149,17 @@ export function Heatmap() {
       : heat(d[0], 2000, 2.2e6, PALETTE_TOTAL, 0.2);
   }
 
-  const rank = (data: Record<string, [number, number]>, names?: Record<string, string>) =>
+  const rank = (
+    data: Record<string, [number, number]>,
+    names?: Record<string, string>,
+  ) =>
     Object.entries(data)
-      .map(([key, [m, p]]) => ({ n: names ? names[key] || key : key, m, p, pv: pct(m, p) }))
+      .map(([key, [m, p]]) => ({
+        n: names ? names[key] || key : key,
+        m,
+        p,
+        pv: pct(m, p),
+      }))
       .sort((a, b) => (isPct ? b.pv - a.pv : b.m - a.m));
 
   const ranked = rank(COUNTRIES, COUNTRY_NAMES).slice(0, 20);
@@ -135,12 +172,17 @@ export function Heatmap() {
   return (
     <div
       ref={boxRef}
+      role="application"
       onMouseMove={(e) => {
         const r = boxRef.current?.getBoundingClientRect();
         if (r) setMouse({ x: e.clientX - r.left, y: e.clientY - r.top });
       }}
       className="relative flex flex-col overflow-hidden select-none"
-      style={{ background: "#f8f9fb", color: "#1a1a2e", height: "calc(100vh - 64px)" }}
+      style={{
+        background: "#f8f9fb",
+        color: "#1a1a2e",
+        height: "calc(100vh - 64px)",
+      }}
     >
       {/* Header */}
       <div
@@ -148,18 +190,39 @@ export function Heatmap() {
         style={{ padding: "12px 18px 8px", borderBottom: "1px solid #e5e8ed" }}
       >
         <div>
-          <div className="font-mono uppercase" style={{ fontSize: 9, letterSpacing: 3, color: "#888" }}>
+          <div
+            className="font-mono uppercase"
+            style={{ fontSize: 9, letterSpacing: 3, color: "#888" }}
+          >
             Membership Heat Map &middot; 2024
           </div>
-          <h1 style={{ fontSize: 20, fontWeight: 700, margin: "2px 0 0", color: "#1a1a2e" }}>
+          <h1
+            style={{
+              fontSize: 20,
+              fontWeight: 700,
+              margin: "2px 0 0",
+              color: "#1a1a2e",
+            }}
+          >
             Latter-day Saints{" "}
-            <span style={{ fontWeight: 400, color: "#888", fontSize: 15 }}>Worldwide</span>
+            <span style={{ fontWeight: 400, color: "#888", fontSize: 15 }}>
+              Worldwide
+            </span>
           </h1>
         </div>
         <div className="flex flex-wrap items-center gap-1 pb-0.5">
-          <div className="flex mr-2" style={{ background: "#eef1f5", borderRadius: 6, padding: 2 }}>
-            {([["total", "Total Members"], ["pct", "% of Pop."]] as const).map(([k, label]) => (
+          <div
+            className="flex mr-2"
+            style={{ background: "#eef1f5", borderRadius: 6, padding: 2 }}
+          >
+            {(
+              [
+                ["total", "Total Members"],
+                ["pct", "% of Pop."],
+              ] as const
+            ).map(([k, label]) => (
               <button
+                type="button"
                 key={k}
                 onClick={() => setMode(k)}
                 className="font-mono cursor-pointer"
@@ -181,6 +244,7 @@ export function Heatmap() {
           </div>
           {FLY_TARGETS.map(([label, x, y, s]) => (
             <button
+              type="button"
               key={label}
               onClick={() => fly(x, y, s)}
               className="font-mono cursor-pointer"
@@ -201,13 +265,24 @@ export function Heatmap() {
 
       <div className="flex flex-1 min-h-0">
         {/* Map */}
-        <div className="relative flex-1 overflow-hidden" style={{ background: "#eef2f6" }}>
+        <div
+          className="relative flex-1 overflow-hidden"
+          style={{ background: "#eef2f6" }}
+        >
           {!world ? (
-            <div className="flex items-center justify-center h-full" style={{ color: "#aaa" }}>
+            <div
+              className="flex items-center justify-center h-full"
+              style={{ color: "#aaa" }}
+            >
               Loading&hellip;
             </div>
           ) : (
-            <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} className="w-full h-full cursor-grab">
+            <svg
+              ref={svgRef}
+              viewBox={`0 0 ${W} ${H}`}
+              className="w-full h-full cursor-grab"
+              aria-label="LDS membership heat map"
+            >
               <rect width={W} height={H} fill="#eef2f6" />
               <g id="g">
                 <path
@@ -223,13 +298,16 @@ export function Heatmap() {
                   strokeWidth={0.3}
                 />
 
-                {world.features.map((f, i) => {
+                {world.features.map((f) => {
                   const id = String(f.id).padStart(3, "0");
                   const isUS = id === "840";
                   return (
+                    // biome-ignore lint/a11y/noStaticElementInteractions: SVG path used for tooltip hover
                     <path
-                      key={i}
-                      d={geoPath(f as unknown as d3.GeoPermissibleObjects) || ""}
+                      key={id}
+                      d={
+                        geoPath(f as unknown as d3.GeoPermissibleObjects) || ""
+                      }
                       fill={countryColor(id)}
                       stroke={COUNTRIES[id] ? "#c0c8d4" : "#dde1e7"}
                       strokeWidth={strokeWidth}
@@ -239,7 +317,11 @@ export function Heatmap() {
                           const d = COUNTRIES[id];
                           setTip(
                             d
-                              ? { name: COUNTRY_NAMES[id], m: d[0], pv: pct(d[0], d[1]) }
+                              ? {
+                                  name: COUNTRY_NAMES[id],
+                                  m: d[0],
+                                  pv: pct(d[0], d[1]),
+                                }
                               : { name: COUNTRY_NAMES[id] || "Unknown" },
                           );
                         }
@@ -249,14 +331,16 @@ export function Heatmap() {
                   );
                 })}
 
-                {us?.features.map((f, i) => {
-                  const name = FIPS_TO_STATE[String(f.id).padStart(2, "0")];
+                {us?.features.map((f) => {
+                  const fips = String(f.id).padStart(2, "0");
+                  const name = FIPS_TO_STATE[fips];
                   if (!name) return null;
                   const d = geoPath(f as unknown as d3.GeoPermissibleObjects);
                   if (!d) return null;
                   return (
+                    // biome-ignore lint/a11y/noStaticElementInteractions: SVG path used for tooltip hover
                     <path
-                      key={"s" + i}
+                      key={`s${fips}`}
                       d={d}
                       fill={stateColor(name)}
                       stroke="#c0c8d4"
@@ -265,7 +349,14 @@ export function Heatmap() {
                       onMouseEnter={() => {
                         const dd = US_STATES[name];
                         setTip(
-                          dd ? { name, m: dd[0], pv: pct(dd[0], dd[1]), state: true } : { name },
+                          dd
+                            ? {
+                                name,
+                                m: dd[0],
+                                pv: pct(dd[0], dd[1]),
+                                state: true,
+                              }
+                            : { name },
                         );
                       }}
                       onMouseLeave={() => setTip(null)}
@@ -327,13 +418,38 @@ export function Heatmap() {
             background: "#fff",
           }}
         >
-          <Rank title="Countries" items={ranked} max={topVal(ranked)} mode={mode} />
-          <Rank title="US States" items={stateRanked} max={topVal(stateRanked)} mode={mode} hasBorder />
-          <Rank title="Canadian Provinces" items={caRanked} max={topVal(caRanked)} mode={mode} hasBorder />
-          <div className="font-mono" style={{ marginTop: 12, fontSize: 7.5, color: "#bbb", lineHeight: 1.5 }}>
-            Source: Church of Jesus Christ Newsroom, World Population Review, Statistics Canada. Dec
-            31 2024. Canadian province figures are estimates based on ~40% Alberta share of 205K
-            national total.
+          <Rank
+            title="Countries"
+            items={ranked}
+            max={topVal(ranked)}
+            mode={mode}
+          />
+          <Rank
+            title="US States"
+            items={stateRanked}
+            max={topVal(stateRanked)}
+            mode={mode}
+            hasBorder
+          />
+          <Rank
+            title="Canadian Provinces"
+            items={caRanked}
+            max={topVal(caRanked)}
+            mode={mode}
+            hasBorder
+          />
+          <div
+            className="font-mono"
+            style={{
+              marginTop: 12,
+              fontSize: 7.5,
+              color: "#bbb",
+              lineHeight: 1.5,
+            }}
+          >
+            Source: Church of Jesus Christ Newsroom, World Population Review,
+            Statistics Canada. Dec 31 2024. Canadian province figures are
+            estimates based on ~40% Alberta share of 205K national total.
           </div>
         </div>
       </div>
@@ -343,7 +459,10 @@ export function Heatmap() {
         <div
           className="absolute pointer-events-none"
           style={{
-            left: Math.min(mouse.x + 14, (boxRef.current?.clientWidth || 800) - 195),
+            left: Math.min(
+              mouse.x + 14,
+              (boxRef.current?.clientWidth || 800) - 195,
+            ),
             top: Math.max(mouse.y - 55, 10),
             background: "#fff",
             border: "1px solid #dde1e7",
@@ -354,21 +473,33 @@ export function Heatmap() {
             minWidth: 120,
           }}
         >
-          <div style={{ fontWeight: 700, fontSize: 12, color: "#1a1a2e" }}>{tip.name}</div>
+          <div style={{ fontWeight: 700, fontSize: 12, color: "#1a1a2e" }}>
+            {tip.name}
+          </div>
           {tip.m ? (
             <>
-              <div className="font-mono" style={{ fontSize: 11, color: "#2d7fc0" }}>
+              <div
+                className="font-mono"
+                style={{ fontSize: 11, color: "#2d7fc0" }}
+              >
                 {tip.m.toLocaleString()} members
               </div>
-              <div className="font-mono" style={{ fontSize: 10, color: "#666" }}>
+              <div
+                className="font-mono"
+                style={{ fontSize: 10, color: "#666" }}
+              >
                 {tip.pv?.toFixed(2)}% of population
               </div>
               {tip.state && (
-                <div style={{ fontSize: 8, color: "#bbb", marginTop: 1 }}>U.S. State</div>
+                <div style={{ fontSize: 8, color: "#bbb", marginTop: 1 }}>
+                  U.S. State
+                </div>
               )}
             </>
           ) : (
-            <div style={{ fontSize: 10, color: "#bbb" }}>No reported presence</div>
+            <div style={{ fontSize: 10, color: "#bbb" }}>
+              No reported presence
+            </div>
           )}
         </div>
       )}
@@ -390,10 +521,21 @@ function Rank({
   hasBorder?: boolean;
 }) {
   return (
-    <div style={hasBorder ? { marginTop: 10, borderTop: "1px solid #eef1f5", paddingTop: 8 } : undefined}>
+    <div
+      style={
+        hasBorder
+          ? { marginTop: 10, borderTop: "1px solid #eef1f5", paddingTop: 8 }
+          : undefined
+      }
+    >
       <div
         className="font-mono uppercase"
-        style={{ fontSize: 9, letterSpacing: 2, color: "#aaa", marginBottom: 6 }}
+        style={{
+          fontSize: 9,
+          letterSpacing: 2,
+          color: "#aaa",
+          marginBottom: 6,
+        }}
       >
         {title}
       </div>
@@ -401,7 +543,11 @@ function Rank({
         const v = mode === "pct" ? it.pv : it.m;
         const barW = Math.max(1.5, (v / max) * 100);
         return (
-          <div key={i} className="flex items-center gap-1.5" style={{ padding: "2.5px 0" }}>
+          <div
+            key={it.n}
+            className="flex items-center gap-1.5"
+            style={{ padding: "2.5px 0" }}
+          >
             <span
               className="font-mono text-right"
               style={{
@@ -425,14 +571,17 @@ function Rank({
                   className="font-mono whitespace-nowrap"
                   style={{ fontSize: 8.5, color: "#1d4e89", marginLeft: 3 }}
                 >
-                  {mode === "pct" ? it.pv.toFixed(1) + "%" : fmt(it.m)}
+                  {mode === "pct" ? `${it.pv.toFixed(1)}%` : fmt(it.m)}
                 </span>
               </div>
-              <div className="overflow-hidden" style={{ height: 2.5, background: "#f0f2f5", borderRadius: 2 }}>
+              <div
+                className="overflow-hidden"
+                style={{ height: 2.5, background: "#f0f2f5", borderRadius: 2 }}
+              >
                 <div
                   style={{
                     height: "100%",
-                    width: barW + "%",
+                    width: `${barW}%`,
                     background:
                       i === 0
                         ? "linear-gradient(90deg,#2d7fc0,#1d4e89)"

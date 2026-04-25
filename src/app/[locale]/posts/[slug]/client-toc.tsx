@@ -48,7 +48,9 @@ export function ClientTOC({ tree }: ClientTOCProps) {
           <li key={node.id}>
             <TOCLink node={node} activeSection={activeSection} />
             {node.children.length > 0 && (
-              <div className="mt-0.5">{renderTOCNodes(node.children, depth + 1)}</div>
+              <div className="mt-0.5">
+                {renderTOCNodes(node.children, depth + 1)}
+              </div>
             )}
           </li>
         ))}

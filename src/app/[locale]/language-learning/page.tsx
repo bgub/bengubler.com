@@ -62,7 +62,9 @@ export default function LanguageLearningPage() {
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle={gt("Tools and resources I've built to help with language learning.")}
+            subtitle={gt(
+              "Tools and resources I've built to help with language learning.",
+            )}
           >
             Language Learning
           </PageTitle>
@@ -80,19 +82,43 @@ export default function LanguageLearningPage() {
               rel={tool.isExternal ? "noopener noreferrer" : undefined}
               className="bg-card border border-border rounded-sm relative overflow-hidden transition-all duration-200 hover:shadow-md group block no-underline"
             >
-              <div className={`absolute top-0 left-0 right-0 h-1.5 ${colors.stripe}`} />
+              <div
+                className={`absolute top-0 left-0 right-0 h-1.5 ${colors.stripe}`}
+              />
               <div className="p-4 pt-5">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-serif text-xl font-medium text-foreground group-hover:text-foreground/80 transition-colors">
                     {m(tool.title)}
                   </h3>
                   {tool.isExternal ? (
-                    <svg className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    <svg
+                      className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
                     </svg>
                   ) : (
-                    <svg className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg
+                      className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   )}
                 </div>

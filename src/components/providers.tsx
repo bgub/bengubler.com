@@ -9,14 +9,16 @@ type ProvidersProps = {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-      <NextThemesProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-        scriptProps={typeof window === "undefined" ? undefined : { type: "application/json" }}
-      >
-        {children}
-      </NextThemesProvider>
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+      scriptProps={
+        typeof window === "undefined" ? undefined : { type: "application/json" }
+      }
+    >
+      {children}
+    </NextThemesProvider>
   );
 }

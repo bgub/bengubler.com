@@ -17,7 +17,9 @@ export default function PostNotFound() {
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6">
       <div className="space-y-4">
         <T>
-          <h1 className="font-serif text-6xl font-medium text-muted-foreground">404</h1>
+          <h1 className="font-serif text-6xl font-medium text-muted-foreground">
+            404
+          </h1>
         </T>
         <T>
           <h2 className="font-serif text-3xl font-medium tracking-tight text-foreground">
@@ -33,13 +35,19 @@ export default function PostNotFound() {
 
       <div className="flex gap-4 items-center font-mono text-[11.5px]">
         <T>
-          <Link href="/posts" className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors">
+          <Link
+            href="/posts"
+            className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors"
+          >
             Browse All Posts
           </Link>
         </T>
         <span className="text-ink-faint">&middot;</span>
         <T>
-          <Link href="/" className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors">
+          <Link
+            href="/"
+            className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors"
+          >
             Go Home
           </Link>
         </T>

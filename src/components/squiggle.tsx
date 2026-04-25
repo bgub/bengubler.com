@@ -1,7 +1,10 @@
 export function Squiggle({
   className = "",
   height = 6,
-}: { className?: string; height?: number }) {
+}: {
+  className?: string;
+  height?: number;
+}) {
   return (
     <svg
       className={className}

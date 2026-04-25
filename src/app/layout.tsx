@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import {
-  DM_Mono,
-  Newsreader,
-} from "next/font/google";
+import { DM_Mono, Newsreader } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import type React from "react";
@@ -71,40 +68,42 @@ export default async function RootLayout({
       <body className={`${newsreader.variable} ${dmMono.variable}`}>
         <GTProvider locale={locale}>
           <Providers>
-          {/* Outermost wrapper for max-width and centering */}
-          <div className="w-full max-w-screen-xl mx-auto bg-background">
-            <div className="flex min-h-screen">
-              {/* Desktop Sidebar */}
-              <Sidebar />
+            {/* Outermost wrapper for max-width and centering */}
+            <div className="w-full max-w-screen-xl mx-auto bg-background">
+              <div className="flex min-h-screen">
+                {/* Desktop Sidebar */}
+                <Sidebar />
 
-              {/* Main Content Area */}
-              <div className="flex-1 md:ms-64 flex flex-col bg-background">
-                {/* Mobile Header */}
-                <header className="sticky top-0 z-40 md:hidden border-b border-border bg-paper-deep/95 backdrop-blur supports-[backdrop-filter]:bg-paper-deep/60">
-                  <div className="flex h-14 items-center justify-between px-4 sm:px-6">
-                    <Link href="/" className="flex items-center gap-3">
-                      <div className="relative w-9 h-9 rounded-full overflow-hidden border border-border shrink-0">
-                        <Image
-                          src="/bengubler.jpg"
-                          alt={gt("Profile photo")}
-                          width={36}
-                          height={36}
-                          className="object-cover"
-                          priority
-                        />
-                      </div>
-                      <span className="font-serif text-xl font-medium translate-y-px">Ben Gubler</span>
-                    </Link>
-                    <MobileNav />
-                  </div>
-                </header>
-                {/* Page Content Wrapper */}
-                <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-                  <div className="mb-16">{children}</div>
-                </main>
+                {/* Main Content Area */}
+                <div className="flex-1 md:ms-64 flex flex-col bg-background">
+                  {/* Mobile Header */}
+                  <header className="sticky top-0 z-40 md:hidden border-b border-border bg-paper-deep/95 backdrop-blur supports-[backdrop-filter]:bg-paper-deep/60">
+                    <div className="flex h-14 items-center justify-between px-4 sm:px-6">
+                      <Link href="/" className="flex items-center gap-3">
+                        <div className="relative w-9 h-9 rounded-full overflow-hidden border border-border shrink-0">
+                          <Image
+                            src="/bengubler.jpg"
+                            alt={gt("Profile photo")}
+                            width={36}
+                            height={36}
+                            className="object-cover"
+                            priority
+                          />
+                        </div>
+                        <span className="font-serif text-xl font-medium translate-y-px">
+                          Ben Gubler
+                        </span>
+                      </Link>
+                      <MobileNav />
+                    </div>
+                  </header>
+                  {/* Page Content Wrapper */}
+                  <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+                    <div className="mb-16">{children}</div>
+                  </main>
+                </div>
               </div>
             </div>
-          </div>
           </Providers>
         </GTProvider>
         <Analytics />

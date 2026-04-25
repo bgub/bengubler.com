@@ -47,7 +47,9 @@ export default function ContactPage() {
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle={gt("I'm always interested in connecting with fellow developers, discussing new ideas, or exploring potential collaborations. Feel free to reach out!")}
+            subtitle={gt(
+              "I'm always interested in connecting with fellow developers, discussing new ideas, or exploring potential collaborations. Feel free to reach out!",
+            )}
           >
             Contact
           </PageTitle>
@@ -70,7 +72,9 @@ export default function ContactPage() {
               key={method.name}
               {...linkProps}
               className={`grid grid-cols-[1fr] sm:grid-cols-[120px_1fr] gap-x-4 gap-y-1 py-4 border-b border-dotted border-border group ${
-                method.href ? "hover:bg-rule-soft/30 -mx-2 px-2 rounded-sm cursor-pointer" : ""
+                method.href
+                  ? "hover:bg-rule-soft/30 -mx-2 px-2 rounded-sm cursor-pointer"
+                  : ""
               } block no-underline`}
             >
               <div className="font-serif text-base font-medium text-foreground group-hover:text-foreground/80 transition-colors">
