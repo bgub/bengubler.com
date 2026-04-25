@@ -1,15 +1,16 @@
 import { allPosts } from "content-collections";
 import { decodeMsg, T } from "gt-next";
 import { getLocale } from "gt-next/server";
+import type { Route } from "next";
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { ProjectList } from "@/components/project-list";
 import { getPostColors } from "@/lib/colors";
+import { projectsData } from "@/lib/projects";
 
 function sanitize(slug: string) {
   return slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
 }
-import { projectsData } from "@/lib/projects";
 
 type Post = (typeof allPosts)[0];
 
@@ -36,8 +37,7 @@ export default async function HomePage() {
       <section>
         <h1 className="font-serif font-normal text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-tight text-foreground mb-4">
           <T id="hero_greeting">
-            Hello, Ahoj, Привет,{" "}
-            <span dir="rtl">مرحبا</span>.
+            Hello, Ahoj, Привет, <span dir="rtl">مرحبا</span>.
           </T>
         </h1>
 
@@ -103,7 +103,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-
       {/* Featured Projects Section */}
       <section>
         <div className="flex items-baseline justify-between mb-5">
@@ -119,7 +118,6 @@ export default async function HomePage() {
         </div>
         <ProjectList projects={featuredProjects} compact />
       </section>
-
 
       {/* Recent Posts Section */}
       <section>
@@ -140,7 +138,7 @@ export default async function HomePage() {
           {recentPosts.map((post) => (
             <Link
               key={post.slug}
-              href={post.url as any}
+              href={post.url as Route}
               className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
             >
               <ViewTransition name={`date-${sanitize(post.url)}`}>

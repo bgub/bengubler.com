@@ -45,7 +45,7 @@ export const projectsData: ProjectSection[] = [
       {
         name: msg("helm"),
         description: msg(
-          "TypeScript AI \"code mode\" toolkit with permissions and search.",
+          'TypeScript AI "code mode" toolkit with permissions and search.',
         ),
         tech: "TypeScript",
         links: {
@@ -100,9 +100,7 @@ export const projectsData: ProjectSection[] = [
       },
       {
         name: msg("agentpane"),
-        description: msg(
-          "Web interface for AI coding agents.",
-        ),
+        description: msg("Web interface for AI coding agents."),
         tech: "TypeScript",
         links: {
           github: "https://github.com/bgub/agentpane",

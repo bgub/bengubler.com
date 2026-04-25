@@ -1,14 +1,14 @@
-import type React from "react";
 import { getLocales } from "gt-next/server";
+import type React from "react";
 
 export function generateStaticParams() {
-	return getLocales().map((locale) => ({ locale }));
+  return getLocales().map((locale) => ({ locale }));
 }
 
 export default function LocaleLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return children;
+  return children;
 }

@@ -63,7 +63,10 @@ const stack: FavoriteSection[] = [
       },
       {
         title: msg("Development"),
-        items: [{ name: msg("Zed w/ Vim keybindings") }, { name: msg("Brave Browser") }],
+        items: [
+          { name: msg("Zed w/ Vim keybindings") },
+          { name: msg("Brave Browser") },
+        ],
       },
     ],
   },
@@ -102,7 +105,9 @@ export default function MyStackPage() {
       <header className="space-y-3">
         <T>
           <PageTitle
-            subtitle={gt("Technologies, apps, and tools I use for development and productivity.")}
+            subtitle={gt(
+              "Technologies, apps, and tools I use for development and productivity.",
+            )}
           >
             My Stack
           </PageTitle>
@@ -119,10 +124,13 @@ export default function MyStackPage() {
           </div>
           <div className="space-y-2">
             {section.subsections.map((subsection) => (
-              <div key={subsection.title} className="grid grid-cols-[1fr] sm:grid-cols-[180px_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border">
+              <div
+                key={subsection.title}
+                className="grid grid-cols-[1fr] sm:grid-cols-[180px_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border"
+              >
                 <span className="font-serif font-medium text-foreground">
-                    {m(subsection.title)}
-                  </span>
+                  {m(subsection.title)}
+                </span>
                 <span className="font-serif text-ink-soft font-light">
                   {subsection.items.map((item, index) => {
                     const displayName = m(item.name);
