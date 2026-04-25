@@ -1,8 +1,9 @@
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { type ClassNameValue, twMerge } from "tailwind-merge";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+export function cn(...inputs: unknown[]) {
+  return twMerge(
+    inputs.filter((v) => typeof v === "string") as ClassNameValue[],
+  );
 }
 
 export const getBaseUrl = () => {
