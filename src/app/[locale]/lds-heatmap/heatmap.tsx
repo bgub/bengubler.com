@@ -1,6 +1,7 @@
 "use client";
 
 import * as d3 from "d3";
+import { T, Var, Num, msg, useGT, useMessages } from "gt-next";
 import { useEffect, useRef, useState } from "react";
 import {
   CA_PROVINCES,
@@ -67,15 +68,17 @@ function heat(
 const W = 960;
 const H = 500;
 
-const FLY_TARGETS = [
-  ["Reset", 0, 0, 1],
-  ["US", -580, -115, 4.2],
-  ["S. America", -420, -550, 3.2],
-  ["Africa", -1020, -340, 4],
-  ["Pacific", -1950, -350, 3.8],
-] as const;
+const FLY_TARGETS: [string, number, number, number][] = [
+  [msg("Reset"), 0, 0, 1],
+  [msg("US"), -580, -115, 4.2],
+  [msg("S. America"), -420, -550, 3.2],
+  [msg("Africa"), -1020, -340, 4],
+  [msg("Pacific"), -1950, -350, 3.8],
+];
 
 export function Heatmap() {
+  const gt = useGT();
+  const m = useMessages();
   const svgRef = useRef<SVGSVGElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const [world, setWorld] = useState<ReturnType<typeof decodeTopo> | null>(
@@ -173,7 +176,7 @@ export function Heatmap() {
     <div
       ref={boxRef}
       role="application"
-      aria-label="Interactive Latter-day Saints membership heat map"
+      aria-label={gt("Interactive Latter-day Saints membership heat map")}
       onMouseMove={(e) => {
         const r = boxRef.current?.getBoundingClientRect();
         if (r) setMouse({ x: e.clientX - r.left, y: e.clientY - r.top });
@@ -191,25 +194,29 @@ export function Heatmap() {
         style={{ padding: "12px 18px 8px", borderBottom: "1px solid #e5e8ed" }}
       >
         <div>
-          <div
-            className="font-mono uppercase"
-            style={{ fontSize: 9, letterSpacing: 3, color: "#888" }}
-          >
-            Membership Heat Map &middot; 2024
-          </div>
-          <h1
-            style={{
-              fontSize: 20,
-              fontWeight: 700,
-              margin: "2px 0 0",
-              color: "#1a1a2e",
-            }}
-          >
-            Latter-day Saints{" "}
-            <span style={{ fontWeight: 400, color: "#888", fontSize: 15 }}>
-              Worldwide
-            </span>
-          </h1>
+          <T>
+            <div
+              className="font-mono uppercase"
+              style={{ fontSize: 9, letterSpacing: 3, color: "#888" }}
+            >
+              Membership Heat Map &middot; 2024
+            </div>
+          </T>
+          <T>
+            <h1
+              style={{
+                fontSize: 20,
+                fontWeight: 700,
+                margin: "2px 0 0",
+                color: "#1a1a2e",
+              }}
+            >
+              Latter-day Saints{" "}
+              <span style={{ fontWeight: 400, color: "#888", fontSize: 15 }}>
+                Worldwide
+              </span>
+            </h1>
+          </T>
         </div>
         <div className="flex flex-wrap items-center gap-1 pb-0.5">
           <div
@@ -218,9 +225,9 @@ export function Heatmap() {
           >
             {(
               [
-                ["total", "Total Members"],
-                ["pct", "% of Pop."],
-              ] as const
+                ["total", gt("Total Members")],
+                ["pct", gt("% of Pop.")],
+              ] as ["total" | "pct", string][]
             ).map(([k, label]) => (
               <button
                 key={k}
@@ -258,7 +265,7 @@ export function Heatmap() {
                 fontSize: 9.5,
               }}
             >
-              {label}
+              {m(label)}
             </button>
           ))}
         </div>
@@ -271,12 +278,14 @@ export function Heatmap() {
           style={{ background: "#eef2f6" }}
         >
           {!world ? (
-            <div
-              className="flex items-center justify-center h-full"
-              style={{ color: "#aaa" }}
-            >
-              Loading&hellip;
-            </div>
+            <T>
+              <div
+                className="flex items-center justify-center h-full"
+                style={{ color: "#aaa" }}
+              >
+                Loading&hellip;
+              </div>
+            </T>
           ) : (
             <svg
               ref={svgRef}
@@ -286,7 +295,7 @@ export function Heatmap() {
               className="w-full h-full cursor-grab"
             >
               <title id="lds-heatmap-title">
-                Latter-day Saints worldwide membership heat map
+                {gt("Latter-day Saints worldwide membership heat map")}
               </title>
               <rect width={W} height={H} fill="#eef2f6" />
               <g id="g">
@@ -306,7 +315,7 @@ export function Heatmap() {
                 {world.features.map((f) => {
                   const id = String(f.id).padStart(3, "0");
                   const isUS = id === "840";
-                  const name = COUNTRY_NAMES[id] || "Unknown";
+                  const name = COUNTRY_NAMES[id] || gt("Unknown");
                   const data = COUNTRIES[id];
                   const nextTip = data
                     ? {
@@ -407,7 +416,7 @@ export function Heatmap() {
             }}
           >
             <span className="font-mono" style={{ fontSize: 8, color: "#999" }}>
-              {isPct ? "0%" : "FEW"}
+              {isPct ? "0%" : gt("FEW")}
             </span>
             <div
               style={{
@@ -418,22 +427,24 @@ export function Heatmap() {
               }}
             />
             <span className="font-mono" style={{ fontSize: 8, color: "#999" }}>
-              {isPct ? "65%+" : "MILLIONS"}
+              {isPct ? "65%+" : gt("MILLIONS")}
             </span>
           </div>
-          <div
-            className="absolute bottom-2.5 right-2.5 font-mono"
-            style={{
-              background: "rgba(255,255,255,0.92)",
-              padding: "3px 8px",
-              borderRadius: 4,
-              border: "1px solid #dde1e7",
-              fontSize: 9,
-              color: "#aaa",
-            }}
-          >
-            {zoom.toFixed(1)}&times; &middot; scroll / drag
-          </div>
+          <T>
+            <div
+              className="absolute bottom-2.5 right-2.5 font-mono"
+              style={{
+                background: "rgba(255,255,255,0.92)",
+                padding: "3px 8px",
+                borderRadius: 4,
+                border: "1px solid #dde1e7",
+                fontSize: 9,
+                color: "#aaa",
+              }}
+            >
+              <Var>{zoom.toFixed(1)}</Var>&times; &middot; scroll / drag
+            </div>
+          </T>
         </div>
 
         {/* Sidebar */}
@@ -447,38 +458,40 @@ export function Heatmap() {
           }}
         >
           <Rank
-            title="Countries"
+            title={gt("Countries")}
             items={ranked}
             max={topVal(ranked)}
             mode={mode}
           />
           <Rank
-            title="US States"
+            title={gt("US States")}
             items={stateRanked}
             max={topVal(stateRanked)}
             mode={mode}
             hasBorder
           />
           <Rank
-            title="Canadian Provinces"
+            title={gt("Canadian Provinces")}
             items={caRanked}
             max={topVal(caRanked)}
             mode={mode}
             hasBorder
           />
-          <div
-            className="font-mono"
-            style={{
-              marginTop: 12,
-              fontSize: 7.5,
-              color: "#bbb",
-              lineHeight: 1.5,
-            }}
-          >
-            Source: Church of Jesus Christ Newsroom, World Population Review,
-            Statistics Canada. Dec 31 2024. Canadian province figures are
-            estimates based on ~40% Alberta share of 205K national total.
-          </div>
+          <T>
+            <div
+              className="font-mono"
+              style={{
+                marginTop: 12,
+                fontSize: 7.5,
+                color: "#bbb",
+                lineHeight: 1.5,
+              }}
+            >
+              Source: Church of Jesus Christ Newsroom, World Population Review,
+              Statistics Canada. Dec 31 2024. Canadian province figures are
+              estimates based on ~40% Alberta share of 205K national total.
+            </div>
+          </T>
         </div>
       </div>
 
@@ -506,28 +519,36 @@ export function Heatmap() {
           </div>
           {tip.m ? (
             <>
-              <div
-                className="font-mono"
-                style={{ fontSize: 11, color: "#2d7fc0" }}
-              >
-                {tip.m.toLocaleString()} members
-              </div>
-              <div
-                className="font-mono"
-                style={{ fontSize: 10, color: "#666" }}
-              >
-                {tip.pv?.toFixed(2)}% of population
-              </div>
-              {tip.state && (
-                <div style={{ fontSize: 8, color: "#bbb", marginTop: 1 }}>
-                  U.S. State
+              <T>
+                <div
+                  className="font-mono"
+                  style={{ fontSize: 11, color: "#2d7fc0" }}
+                >
+                  <Num>{tip.m}</Num> members
                 </div>
+              </T>
+              <T>
+                <div
+                  className="font-mono"
+                  style={{ fontSize: 10, color: "#666" }}
+                >
+                  <Var>{tip.pv?.toFixed(2)}</Var>% of population
+                </div>
+              </T>
+              {tip.state && (
+                <T>
+                  <div style={{ fontSize: 8, color: "#bbb", marginTop: 1 }}>
+                    U.S. State
+                  </div>
+                </T>
               )}
             </>
           ) : (
-            <div style={{ fontSize: 10, color: "#bbb" }}>
-              No reported presence
-            </div>
+            <T>
+              <div style={{ fontSize: 10, color: "#bbb" }}>
+                No reported presence
+              </div>
+            </T>
           )}
         </div>
       )}

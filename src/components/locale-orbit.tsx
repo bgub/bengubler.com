@@ -1,6 +1,7 @@
 "use client";
 
 import { useDefaultLocale, useLocaleSelector } from "gt-next/client";
+import { useGT } from "gt-next";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
@@ -30,6 +31,7 @@ export function LocaleOrbit({ className }: LocaleOrbitProps) {
   const pathname = usePathname();
   const defaultLocale = useDefaultLocale();
   const { locale, locales } = useLocaleSelector();
+  const gt = useGT();
 
   if (!locales?.length) return null;
 
@@ -70,7 +72,7 @@ export function LocaleOrbit({ className }: LocaleOrbitProps) {
                   : "border-ink-faint text-muted-foreground hover:border-ink-mute hover:text-foreground",
               )}
               aria-pressed={active}
-              aria-label={`Switch language to ${code}`}
+              aria-label={gt("Switch language to {code}", { code })}
             >
               {code.toUpperCase()}
             </button>
