@@ -1,6 +1,26 @@
 {
   "729c5a4511ba6828": "Ben Gubler's personal website. Working at General Translation, previously interned at Vercel. Studying AI and human languages at BYU. Thoughts on web development, AI, and building things that matter.",
   "9a5c9a18a1736a01": "Profile photo",
+  "217a321934b935db": {
+    "t": "h2",
+    "i": 1,
+    "c": "Page Not Found"
+  },
+  "57df581328929c7a": {
+    "t": "p",
+    "i": 1,
+    "c": "Sorry, the page you're looking for doesn't exist or has been moved."
+  },
+  "3507ea577cbfe240": {
+    "t": "Link",
+    "i": 1,
+    "c": "Go Home"
+  },
+  "6a4e04c1621bc2cb": {
+    "t": "Link",
+    "i": 1,
+    "c": "View Posts"
+  },
   "d9a4d6e70a27f799": "Sorry, I couldn't explain this right now. Please try again!",
   "def93bda648985e9": "Explain Like I'm 5",
   "582c94a306553566": "Explain Again",
@@ -64,6 +84,7 @@
   "7e74172900c60360": "Link to section",
   "69a38e8afebf5dd4": "Close menu",
   "6662bfef4fbe8763": "Open menu",
+  "27ffbd1b12838b8d": "{name} on GitHub",
   "3b577cb32e521352": {
     "t": "h3",
     "i": 1,
@@ -155,29 +176,8 @@
     "i": 1,
     "c": "404"
   },
-  "217a321934b935db": {
-    "t": "h2",
-    "i": 1,
-    "c": "Page Not Found"
-  },
-  "57df581328929c7a": {
-    "t": "p",
-    "i": 1,
-    "c": "Sorry, the page you're looking for doesn't exist or has been moved."
-  },
-  "3507ea577cbfe240": {
-    "t": "Link",
-    "i": 1,
-    "c": "Go Home"
-  },
-  "6a4e04c1621bc2cb": {
-    "t": "Link",
-    "i": 1,
-    "c": "View Posts"
-  },
   "hero_greeting": [
-    "Hello, Ahoj, Привет,",
-    " ",
+    "Hello, Ahoj, Привет, ",
     {
       "t": "span",
       "i": 1,
@@ -185,7 +185,7 @@
     },
     "."
   ],
-  "hero_bio_paragraph_1": [
+  "7593dfb14e078ee7": [
     "I'm Ben — a student at BYU studying CS and Arabic. I build open-source libraries, web applications, and AI tools. Currently working at",
     " ",
     {
@@ -202,7 +202,7 @@
     },
     "."
   ],
-  "hero_bio_paragraph_2": [
+  "965afbdd105f4ab4": [
     {
       "t": "Link",
       "i": 1,
@@ -249,11 +249,16 @@
       "c": "X"
     }
   ],
-  "projects_heading": "Projects",
-  "view_all": "See All ▸",
-  "recent_posts_heading": "Recent Posts",
-  "view_all_posts": "See All ▸",
+  "3a16e63273d7d383": "Projects",
+  "6742536cd5eab08a": "See All ▸",
+  "009a7eca764d06f5": "Recent Posts",
   "53b5f7c376481390": "Copy code to clipboard",
+  "daf080584b6c4e5f": {
+    "t": "span",
+    "i": 1,
+    "c": "Close"
+  },
+  "480646ceb98c7163": "Close",
   "5d1a87ebd0ba9c9e": "About Ben Gubler",
   "d8b46c0127d88a10": "Learn more about Ben Gubler, his studies in AI, languages, and his work as a web developer.",
   "8e6afde0f536eee2": {
@@ -379,6 +384,74 @@
     "i": 1,
     "c": "Language Learning"
   },
+  "23c488de8eef8c32": "LDS membership heat map",
+  "a6fd277111c7cd66": "Unknown",
+  "057af6ccdf06263b": "FEW",
+  "ba44feacbb90d4dd": "MILLIONS",
+  "b09fa3fb65954f11": "Countries",
+  "0220d6c7de3b3750": "US States",
+  "5c3cbf165903fcab": "Canadian Provinces",
+  "abaacba7b0f79fe8": "Reset",
+  "b24c8ee92c656887": "US",
+  "c0fa5428a2f6a612": "S. America",
+  "bc7adb2d75ca4f3e": "Africa",
+  "92d1b68f576a0d5f": "Pacific",
+  "29cfbfca6cedbb8e": "Total Members",
+  "579689a0f509a8fc": "% of Pop.",
+  "8067f0bd58584c31": "Membership Heat Map · 2024",
+  "c4d382a9f7bcbeb9": [
+    "Latter-day Saints",
+    " ",
+    {
+      "t": "span",
+      "i": 1,
+      "c": "Worldwide"
+    }
+  ],
+  "5a0125dd9241cdec": "Loading…",
+  "fb28c7155cb1319a": [
+    {
+      "i": 1,
+      "k": "_gt_value_1",
+      "v": "v"
+    },
+    "× · scroll / drag"
+  ],
+  "5e33de9e7598af5c": "Source: Church of Jesus Christ Newsroom, World Population Review, Statistics Canada. Dec 31 2024. Canadian province figures are estimates based on ~40% Alberta share of 205K national total.",
+  "11cf3d5ef54bd4e5": {
+    "t": "div",
+    "i": 1,
+    "c": [
+      {
+        "i": 2,
+        "k": "_gt_n_2",
+        "v": "n"
+      },
+      " members"
+    ]
+  },
+  "8587d99cfeadb311": {
+    "t": "div",
+    "i": 1,
+    "c": [
+      {
+        "i": 2,
+        "k": "_gt_value_2",
+        "v": "v"
+      },
+      "% of population"
+    ]
+  },
+  "5654bd3554e4cc06": {
+    "t": "div",
+    "i": 1,
+    "c": "U.S. State"
+  },
+  "7a87a6c41143b213": {
+    "t": "div",
+    "i": 1,
+    "c": "No reported presence"
+  },
   "95f506e43b9b3265": "Post Not Found - Ben Gubler",
   "6c9b9dc3b6bc4b97": "The post you're looking for doesn't exist.",
   "afaa0561ba5a8ba7": {
@@ -398,12 +471,12 @@
   },
   "2ce262d5ab363438": "Posts - Ben Gubler",
   "feb481b144af444a": "Thoughts on web development, AI, and building things that matter.",
-  "posts_heading": "Posts",
-  "rss_link": "RSS",
-  "posts_description": "Notes on software, language, and the overlap between them.",
-  "filter_label": "filter",
-  "clear_filter": "clear",
-  "no_posts_with_tag": [
+  "cfb740b7462fab33": "Posts",
+  "a0c7b60e4bd05412": "RSS",
+  "cc7e76bf9365389f": "Notes on software, language, and the overlap between them.",
+  "8779da9f65deb1b4": "filter",
+  "ca767ad1f99bd854": "clear",
+  "9f80b8935efc0330": [
     "No posts match tag",
     " ",
     {
@@ -420,8 +493,8 @@
     },
     "."
   ],
-  "archived_heading": "Archived",
-  "archived_description": "Older posts that might be outdated but still have some value.",
+  "9e0e71048f2e77ca": "Archived",
+  "398e692f8a6b07f0": "Older posts that might be outdated but still have some value.",
   "42a56a68288e81c4": "Libraries, apps, and experiments. Most are open source; a few are still finding their shape.",
   "1947f94eeedb8b9c": "A collection of Ben Gubler's projects, from featured work to experimental builds.",
   "4a73344dd83b8f0e": {

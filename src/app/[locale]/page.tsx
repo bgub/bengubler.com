@@ -42,7 +42,7 @@ export default async function HomePage() {
         </h1>
 
         <p className="font-serif text-lg sm:text-xl leading-relaxed text-ink-soft font-light mb-2.5">
-          <T id="hero_bio_paragraph_1">
+          <T>
             I'm Ben — a student at BYU studying CS and Arabic. I build
             open-source libraries, web applications, and AI tools. Currently
             working at{" "}
@@ -58,7 +58,7 @@ export default async function HomePage() {
         </p>
 
         <div className="flex flex-wrap items-center gap-x-1.5 font-mono text-[11.5px] text-muted-foreground mt-5">
-          <T id="hero_bio_paragraph_2">
+          <T>
             <Link
               href="/projects"
               className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors"
@@ -107,13 +107,13 @@ export default async function HomePage() {
       <section>
         <div className="flex items-baseline justify-between mb-5">
           <h2 className="font-serif font-medium text-[28px] tracking-tight text-foreground">
-            <T id="projects_heading">Projects</T>
+            <T>Projects</T>
           </h2>
           <Link
             href="/projects"
             className="font-mono text-[11px] text-muted-foreground hover:text-foreground no-underline transition-colors"
           >
-            <T id="view_all">See All &#x25B8;</T>
+            <T>See All &#x25B8;</T>
           </Link>
         </div>
         <ProjectList projects={featuredProjects} compact />
@@ -123,14 +123,14 @@ export default async function HomePage() {
       <section>
         <div className="flex items-baseline justify-between mb-5">
           <h2 className="font-serif font-medium text-[28px] tracking-tight text-foreground">
-            <T id="recent_posts_heading">Recent Posts</T>
+            <T>Recent Posts</T>
           </h2>
           {sortedPosts.length > 4 && (
             <Link
               href="/posts"
               className="font-mono text-[11px] text-muted-foreground hover:text-foreground no-underline transition-colors"
             >
-              <T id="view_all_posts">See All &#x25B8;</T>
+              <T>See All &#x25B8;</T>
             </Link>
           )}
         </div>
