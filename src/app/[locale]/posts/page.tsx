@@ -63,7 +63,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
       <header className="space-y-3">
         <div className="flex items-center justify-between">
           <PageTitle>
-            <T id="posts_heading">Posts</T>
+            <T>Posts</T>
           </PageTitle>
           <Link
             href="/rss.xml"
@@ -79,13 +79,11 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
             >
               <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z" />
             </svg>
-            <T id="rss_link">RSS</T>
+            <T>RSS</T>
           </Link>
         </div>
         <p className="font-serif text-lg text-ink-soft leading-relaxed font-light">
-          <T id="posts_description">
-            Notes on software, language, and the overlap between them.
-          </T>
+          <T>Notes on software, language, and the overlap between them.</T>
         </p>
       </header>
 
@@ -93,7 +91,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
       {allTags.length > 0 && (
         <div className="flex flex-wrap items-baseline gap-2 py-2.5 border-y border-dotted border-border">
           <span className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground mr-1">
-            <T id="filter_label">filter</T>
+            <T>filter</T>
           </span>
           {allTags.map((tag) => {
             const isActive = selectedTag === tag;
@@ -118,7 +116,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
               href="/posts"
               className="font-mono text-[11px] text-muted-foreground underline ml-auto"
             >
-              <T id="clear_filter">clear</T>
+              <T>clear</T>
             </Link>
           )}
         </div>
@@ -174,7 +172,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
         </div>
         {filteredPosts.length === 0 && selectedTag && (
           <p className="font-serif text-[15px] text-muted-foreground italic text-center py-10">
-            <T id="no_posts_with_tag">
+            <T>
               No posts match tag{" "}
               <span className="font-medium">
                 #<Var>{selectedTag.toLowerCase()}</Var>
@@ -190,10 +188,10 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
         <section>
           <div className="mb-5">
             <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground mb-2">
-              <T id="archived_heading">Archived</T>
+              <T>Archived</T>
             </h2>
             <p className="font-serif text-ink-soft font-light">
-              <T id="archived_description">
+              <T>
                 Older posts that might be outdated but still have some value.
               </T>
             </p>

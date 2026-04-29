@@ -1,5 +1,6 @@
 {
   "005377c29fedee52": "Shavian School",
+  "009a7eca764d06f5": "Najnovšie príspevky",
   "00d3991449447669": "Bratia Karamazovci",
   "01bc13d5e2a819d8": {
     "c": "Zobraziť Markdown",
@@ -145,6 +146,8 @@
   },
   "38e4a3d50b9db8cd": "Greek New Testament Study Edition",
   "3966ae164fc4fb1f": "Vytvoril som kartičky českých pádov, aby ste nemuseli vy.",
+  "398e692f8a6b07f0": "Staršie príspevky, ktoré môžu byť zastarané, no stále majú určitú hodnotu.",
+  "3a16e63273d7d383": "Projekty",
   "3a965260146ebab1": "tokka",
   "3ae5586ba63100ab": "Muzikant na streche",
   "3b577cb32e521352": {
@@ -267,6 +270,7 @@
   "6601f653ec09b078": "Klasika",
   "6662bfef4fbe8763": "Otvoriť menu",
   "67131f082395778d": "Ako funguje pamäť CPU a cache - Computerphile",
+  "6742536cd5eab08a": "Zobraziť všetky ▸",
   "686f913391efa52f": "tinylingo.com",
   "69559c11d66b6a7d": "SQLBolt",
   "69a38e8afebf5dd4": "Zatvoriť menu",
@@ -296,6 +300,21 @@
   "729c5a4511ba6828": "Osobná webová stránka Bena Gublera. Pracuje v General Translation, predtým stážoval vo Vercel. Na BYU študuje AI a ľudské jazyky. Úvahy o webovom vývoji, AI a tvorbe vecí, na ktorých záleží.",
   "730dcee4f7598b16": "MacBook Pro (na prácu)",
   "74816cbe74a8f193": "RSC Explorer",
+  "7593dfb14e078ee7": [
+    "Som Ben — študent na BYU, kde študujem informatiku a arabčinu. Tvorím open-source knižnice, webové aplikácie a AI nástroje. Momentálne pracujem v ",
+    {
+      "c": "General Translation",
+      "i": 1,
+      "t": "span"
+    },
+    ", predtým som bol stážistom vo ",
+    {
+      "c": "Vercel",
+      "i": 2,
+      "t": "span"
+    },
+    "."
+  ],
   "762da2d8b92c643b": "Toki Pona",
   "7653c554c5512d00": {
     "c": "Prepnúť tému",
@@ -345,6 +364,7 @@
     "t": "div"
   },
   "870932ff32fe810d": "Nand to Tetris",
+  "8779da9f65deb1b4": "filter",
   "880b21ecb28d7479": "Operačné systémy",
   "8a5b42fae262c8d4": "Smrť Ivana Iľjiča",
   "8b7fcaab32fd3bc4": "(archivované)",
@@ -413,6 +433,53 @@
   "959d0255998606b4": "CodeCrafters: Build Your Own X in Rust",
   "95e4c24a851ab7e3": "Dokonalý trik",
   "95f506e43b9b3265": "Príspevok nenájdený - Ben Gubler",
+  "965afbdd105f4ab4": [
+    {
+      "c": "Projekty",
+      "i": 1,
+      "t": "Link"
+    },
+    {
+      "c": "·",
+      "i": 2,
+      "t": "span"
+    },
+    {
+      "c": "Písanie",
+      "i": 3,
+      "t": "Link"
+    },
+    {
+      "c": "·",
+      "i": 4,
+      "t": "span"
+    },
+    {
+      "c": "CV",
+      "i": 5,
+      "t": "a"
+    },
+    {
+      "c": "·",
+      "i": 6,
+      "t": "span"
+    },
+    {
+      "c": "GitHub",
+      "i": 7,
+      "t": "Link"
+    },
+    {
+      "c": "·",
+      "i": 8,
+      "t": "span"
+    },
+    {
+      "c": "X",
+      "i": 9,
+      "t": "Link"
+    }
+  ],
   "97c326fd40fc8abd": "Kartičky pádov na vytlačenie na rýchle a efektívne zapamätanie ruských skloňovacích vzorov podstatných mien.",
   "97f7dc350050087c": "macOS",
   "98931a83736430a1": "Web na učenie jazykov s podporou AI, s personalizovanými lekciami a interaktívnymi cvičeniami.",
@@ -421,8 +488,26 @@
   "9ba8db402e604791": "Jojo Rabbit",
   "9bc7b69261332832": "Algebraické efekty pre nás ostatných",
   "9c2986fca82710b5": "Zakladateľ",
+  "9e0e71048f2e77ca": "Archív",
+  "9f80b8935efc0330": [
+    "Nenašli sa žiadne príspevky so značkou ",
+    {
+      "c": [
+        "#",
+        {
+          "i": 2,
+          "k": "_gt_value_2",
+          "v": "v"
+        }
+      ],
+      "i": 1,
+      "t": "span"
+    },
+    "."
+  ],
   "a040bdb90a115bab": "Písanie interpretra v Go",
   "a04daf17e3be1edc": "Periférne zariadenia",
+  "a0c7b60e4bd05412": "RSS",
   "a20c7af31a16306f": "Technológie, aplikácie a nástroje, ktoré Ben Gubler používa pri vývoji a na zvýšenie produktivity.",
   "a20f64ea291a4e8a": "44 Scotland Street",
   "a64c6d2a941c060b": "LeetCode pre GPU",
@@ -459,8 +544,6 @@
     "i": 1,
     "t": "p"
   },
-  "archived_description": "Staršie príspevky, ktoré už nemusia byť aktuálne, no stále môžu byť užitočné.",
-  "archived_heading": "Archív",
   "b09fa3fb65954f11": "Krajiny",
   "b24c8ee92c656887": "USA",
   "b305d06d0af683b4": "Stránka nenájdená - Ben Gubler",
@@ -509,11 +592,13 @@
   "c913a4cd1fdb059a": "GPU a tenzorové hádanky",
   "c96c6913115e475e": "Hardvér",
   "ca744e725e390110": "Czech Case Cards – kartičky českých pádov",
+  "ca767ad1f99bd854": "vymazať",
   "cb10fe00fbfa4b87": "The Language Construction Kit",
   "cb3d390992c293e3": "Všetko sa rozpadá",
   "cbcec085bbae5d0d": "Readlang",
   "cc0ddbf6a83c8fa4": "Russian Case Cards - Ben Gubler",
   "cc77c2b66c79a626": "Splashpad",
+  "cc7e76bf9365389f": "Poznámky o softvéri, jazykoch a o tom, kde sa prelínajú.",
   "cc84bfe0ee5d0174": "Projekty",
   "cd8ccd4b937873e1": "Tmavá",
   "cd8d0c77a410efb9": {
@@ -550,7 +635,7 @@
     "t": "p"
   },
   "cf1dfa31f755ed76": "Porovnávajte tokenizéry v mnohých jazykoch pomocou interaktívnych vizualizácií a analýzy.",
-  "clear_filter": "vyčistiť",
+  "cfb740b7462fab33": "Príspevky",
   "d006c44856493996": "Informatika",
   "d0df80c39dbd6d64": {
     "c": "V tomto článku",
@@ -647,99 +732,13 @@
   "fe04975a9ca7df24": "Výpočtová knižnica pre TS/JS podobná PyTorchu s využitím WebGPU (rozpracované).",
   "fe3e875a7e5fc2a3": "Framework COMET",
   "feb481b144af444a": "Úvahy o webovom vývoji, AI a tvorbe vecí, na ktorých záleží.",
-  "filter_label": "filter",
-  "hero_bio_paragraph_1": [
-    "Som Ben — študujem na BYU informatiku a arabčinu. Vytváram open-source knižnice, webové aplikácie a AI nástroje. Momentálne pracujem v ",
-    {
-      "c": "General Translation",
-      "i": 1,
-      "t": "span"
-    },
-    ", predtým som bol stážista vo ",
-    {
-      "c": "Vercel",
-      "i": 2,
-      "t": "span"
-    },
-    "."
-  ],
-  "hero_bio_paragraph_2": [
-    {
-      "c": "Projekty",
-      "i": 1,
-      "t": "Link"
-    },
-    {
-      "c": "·",
-      "i": 2,
-      "t": "span"
-    },
-    {
-      "c": "Texty",
-      "i": 3,
-      "t": "Link"
-    },
-    {
-      "c": "·",
-      "i": 4,
-      "t": "span"
-    },
-    {
-      "c": "CV",
-      "i": 5,
-      "t": "a"
-    },
-    {
-      "c": "·",
-      "i": 6,
-      "t": "span"
-    },
-    {
-      "c": "GitHub",
-      "i": 7,
-      "t": "Link"
-    },
-    {
-      "c": "·",
-      "i": 8,
-      "t": "span"
-    },
-    {
-      "c": "X",
-      "i": 9,
-      "t": "Link"
-    }
-  ],
   "hero_greeting": [
-    "Ahoj, ahoj, Привет, ",
+    "Dobrý deň, ahoj, Привет, ",
     {
       "c": "مرحبا",
       "i": 1,
       "t": "span"
     },
     "."
-  ],
-  "no_posts_with_tag": [
-    "Nenašli sa žiadne príspevky so značkou ",
-    {
-      "c": [
-        "#",
-        {
-          "i": 2,
-          "k": "_gt_value_2",
-          "v": "v"
-        }
-      ],
-      "i": 1,
-      "t": "span"
-    },
-    "."
-  ],
-  "posts_description": "Poznámky o softvéri, jazykoch a o tom, kde sa pretínajú.",
-  "posts_heading": "Príspevky.",
-  "projects_heading": "Projekty",
-  "recent_posts_heading": "Nedávne príspevky",
-  "rss_link": "RSS",
-  "view_all": "Zobraziť všetko ›",
-  "view_all_posts": "Zobraziť všetky ›"
+  ]
 }
