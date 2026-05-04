@@ -11,9 +11,6 @@
     Roboto, sans-serif;
   --font-serif: var(--font-serif);
   --font-mono: var(--font-geist-mono);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -42,8 +39,7 @@
   --color-lavender: var(--lavender);
   --color-lavender-deep: var(--lavender-deep);
   --color-buttercream: var(--buttercream);
-  --color-paper-deep: var(--paper-deep);
-  --color-paper-card: var(--paper-card);
+  --color-shell: var(--shell);
   --color-ink-soft: var(--ink-soft);
   --color-ink-mute: var(--ink-mute);
   --color-ink-faint: var(--ink-faint);
@@ -72,9 +68,6 @@
   --border: #e5ddcd;
   --input: #e5ddcd;
   --ring: #b5ab9b;
-  --sidebar: #f4eee3;
-  --sidebar-foreground: #2a2722;
-  --sidebar-border: #e5ddcd;
   /* Warm accents */
   --peach: #e8d5c4;
   --peach-deep: #c69a72;
@@ -83,8 +76,8 @@
   --lavender: #d4c5e2;
   --lavender-deep: #8a77a3;
   --buttercream: #f0e4c4;
-  --paper-deep: #f4eee3;
-  --paper-card: #fffdf8;
+  /* Shell — chrome surface (body bg, sidebar, mobile nav, mobile header) */
+  --shell: #f4eee3;
   --ink-soft: #4a443c;
   --ink-mute: #807668;
   --ink-faint: #b5ab9b;
@@ -111,9 +104,6 @@
   --border: #3a342a;
   --input: #3a342a;
   --ring: #5d5649;
-  --sidebar: #181511;
-  --sidebar-foreground: #f2ead8;
-  --sidebar-border: #3a342a;
   /* Warm accents — dark */
   --peach: #7a5a44;
   --peach-deep: #e8bd8b;
@@ -122,8 +112,7 @@
   --lavender: #584a66;
   --lavender-deep: #cdb8e1;
   --buttercream: #5c4e2f;
-  --paper-deep: #181511;
-  --paper-card: #262218;
+  --shell: #181511;
   --ink-soft: #d6ccb6;
   --ink-mute: #948b79;
   --ink-faint: #5d5649;
@@ -136,7 +125,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-paper-deep text-foreground;
+    @apply bg-shell text-foreground;
     scrollbar-gutter: stable;
   }
   html {
