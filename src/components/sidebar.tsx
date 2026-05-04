@@ -21,7 +21,7 @@ export function Sidebar() {
 
   return (
     <div className="hidden md:fixed md:inset-y-0 md:z-50 md:flex md:w-64 md:flex-col">
-      <div className="flex grow flex-col overflow-y-auto bg-paper-deep border-r border-border">
+      <div className="flex grow flex-col overflow-y-auto bg-shell border-r border-border">
         <div className="flex grow flex-col gap-y-5 px-5 py-8 md:py-10">
           {/* Profile Section */}
           <Link href="/" className="flex items-center gap-3.5 group px-1">

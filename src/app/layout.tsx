@@ -77,7 +77,7 @@ export default async function RootLayout({
                 {/* Main Content Area */}
                 <div className="flex-1 md:ms-64 flex flex-col bg-background">
                   {/* Mobile Header */}
-                  <header className="sticky top-0 z-40 md:hidden border-b border-border bg-paper-deep/95 backdrop-blur supports-[backdrop-filter]:bg-paper-deep/60">
+                  <header className="sticky top-0 z-40 md:hidden border-b border-border bg-shell/95 backdrop-blur supports-[backdrop-filter]:bg-shell/60">
                     <div className="flex h-14 items-center justify-between px-4 sm:px-6">
                       <Link href="/" className="flex items-center gap-3">
                         <div className="relative w-9 h-9 rounded-full overflow-hidden border border-border shrink-0">

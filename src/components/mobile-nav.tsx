@@ -76,7 +76,7 @@ export function MobileNav() {
       {isOpen && (
         <div
           id="mobile-menu-popover"
-          className="absolute end-0 top-12 z-50 w-72 rounded-sm border border-border bg-paper-deep p-4 shadow-lg"
+          className="absolute end-0 top-12 z-50 w-72 rounded-sm border border-border bg-shell p-4 shadow-lg"
         >
           <nav className="flex flex-col gap-y-0.5">
             {navigation.map((item) => {
