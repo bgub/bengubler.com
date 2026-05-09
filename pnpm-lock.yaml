@@ -33,8 +33,8 @@ importers:
         specifier: ^5.2.0
         version: 5.2.0
       gt-next:
-        specifier: ^6.16.19
-        version: 6.16.19(next@16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        specifier: ^6.16.26
+        version: 6.16.26(next@16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       lucide-react:
         specifier: ^1.8.0
         version: 1.8.0(react@19.2.5)
@@ -94,8 +94,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       gtx-cli:
-        specifier: ^2.14.28
-        version: 2.14.28(@babel/core@7.28.4)
+        specifier: ^2.14.34
+        version: 2.14.34(@babel/core@7.28.4)
       reading-time:
         specifier: ^1.5.0
         version: 1.5.0
@@ -153,8 +153,8 @@ packages:
     resolution: {integrity: sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/compat-data@7.29.0':
-    resolution: {integrity: sha512-T1NCJqT/j9+cn8fvkt7jtwbLBfLC/1y1c7NtCeXFRgzGTsafi68MRv8yzkYSapBnFA6L3U2VSc02ciDzoAJhJg==}
+  '@babel/compat-data@7.29.3':
+    resolution: {integrity: sha512-LIVqM46zQWZhj17qA8wb4nW/ixr2y1Nw+r1etiAWgRM6U1IqP+LNhL1yg440jYZR72jCWcWbLWzIosH+uP1fqg==}
     engines: {node: '>=6.9.0'}
 
   '@babel/core@7.28.4':
@@ -207,8 +207,8 @@ packages:
     resolution: {integrity: sha512-HoGuUs4sCZNezVEKdVcwqmZN8GoHirLUcLaYVNBK2J0DadGtdcqgr3BCbvH8+XUo4NGjNl3VOtSjEKNzqfFgKw==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/parser@7.29.2':
-    resolution: {integrity: sha512-4GgRzy/+fsBa72/RZVJmGKPmZu9Byn8o4MoLpmNe1m8ZfYnz5emHLQz3U4gLud6Zwl0RZIcgiLD7Uq7ySFuDLA==}
+  '@babel/parser@7.29.3':
+    resolution: {integrity: sha512-b3ctpQwp+PROvU/cttc4OYl4MzfJUWy6FZg+PMXfzmt/+39iHVF0sDfqay8TQM3JA2EUOyKcFZt75jWriQijsA==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -701,8 +701,8 @@ packages:
   '@formatjs/intl-localematcher@0.6.2':
     resolution: {integrity: sha512-XOMO2Hupl0wdd172Y06h6kLpBz6Dv+J4okPLl4LPtzbr8f66WbIoy4ev98EBuZ6ZK4h5ydTN6XneT4QVpD7cdA==}
 
-  '@generaltranslation/compiler@1.3.16':
-    resolution: {integrity: sha512-w5v//J1G+pX9pEy5JOPL0tMLNf+nx5z7HN4xGJxY1Ery1zvMN+WHlzH2ZPbP7TIsYuJk28It/lQomwIPkWmGEA==}
+  '@generaltranslation/compiler@1.3.21':
+    resolution: {integrity: sha512-hdBPYIusRVqnEsFDnrynx2e+fS7q1xF5rRDtFPvRTr9GPqgUVRwOXNhtnGNduNNbikVNzNJSAMZ3/JHcDfeV1Q==}
     engines: {node: '>=16.0.0'}
 
   '@generaltranslation/next-internal@0.1.2':
@@ -712,17 +712,17 @@ packages:
       react: '>=16.8.0 <20.0.0'
       react-dom: '>=16.8.0 <20.0.0'
 
-  '@generaltranslation/python-extractor@0.2.15':
-    resolution: {integrity: sha512-Kx7+GfXWInkXw5Mb54rgiWgvB8wz8lKwaprUFHKTEvl2qnEGw1hHuqLsY+HqZTaxSMPw1YpTxObwYK8qAFPVRA==}
+  '@generaltranslation/python-extractor@0.2.19':
+    resolution: {integrity: sha512-b9ICjKAIRY+++q7Pody8WX7k9TmfrCFMa7W5pxXtrcC0s7wNXJzFWvtkHeC63unr1Puaj4L6skfcXeByO5n3Ow==}
     engines: {node: '>=16.0.0'}
 
-  '@generaltranslation/react-core@1.8.10':
-    resolution: {integrity: sha512-AFPt3MycLxi/6DDquLjXlwC2CdYeLRa5eqxG3J4t+QVY1isxZetl+hIpl8SvVZUZXqxRlntAFFFscMKPmXuVGw==}
+  '@generaltranslation/react-core@1.8.17':
+    resolution: {integrity: sha512-s0kz3XI10zMA8sivv3WmIfC/TL9UFZRSBglu2lhtaR3Q0LrOI94dWmSVXyz11LtfOdACxifB2cQeJEjDQNuzMA==}
     peerDependencies:
       react: '>=16.8.0'
 
-  '@generaltranslation/supported-locales@2.0.68':
-    resolution: {integrity: sha512-oQFtRFCDtnxkcwZOTpnsZAOA2euXcjD2+TRNgExPBkiXHMYFfLeFOvIBSDufxqsSnb3aRkIJohlztk8bSJEdZg==}
+  '@generaltranslation/supported-locales@2.0.71':
+    resolution: {integrity: sha512-ipyIRgdBNe5fHYk/z8Os3qzdpRQyr9eJg4YiCiVf/Yq1xV5QKkA0BgR05q3PnItXunyAaOjTKgkiPXXoHkmazg==}
 
   '@giscus/react@3.1.0':
     resolution: {integrity: sha512-0TCO2TvL43+oOdyVVGHDItwxD1UMKP2ZYpT6gXmhFOqfAJtZxTzJ9hkn34iAF/b6YzyJ4Um89QIt9z/ajmAEeg==}
@@ -1354,8 +1354,8 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  baseline-browser-mapping@2.10.21:
-    resolution: {integrity: sha512-Q+rUQ7Uz8AHM7DEaNdwvfFCTq7a43lNTzuS94eiWqwyxfV/wJv+oUivef51T91mmRY4d4A1u9rcSvkeufCVXlA==}
+  baseline-browser-mapping@2.10.28:
+    resolution: {integrity: sha512-Ic44hnOtFIgravCunj1ifSoQPSUrkNiJuH9Mf6jr2jjoA74icqV8wU0KuadXeOR8zuIJMOoTv0GuQjZ9ZYNMeA==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -1379,8 +1379,8 @@ packages:
   caniuse-lite@1.0.30001788:
     resolution: {integrity: sha512-6q8HFp+lOQtcf7wBK+uEenxymVWkGKkjFpCvw5W25cmMwEDU45p1xQFBQv8JDlMMry7eNxyBaR+qxgmTUZkIRQ==}
 
-  caniuse-lite@1.0.30001790:
-    resolution: {integrity: sha512-bOoxfJPyYo+ds6W0YfptaCWbFnJYjh2Y1Eow5lRv+vI2u8ganPZqNm1JwNh0t2ELQCqIWg4B3dWEusgAmsoyOw==}
+  caniuse-lite@1.0.30001792:
+    resolution: {integrity: sha512-hVLMUZFgR4JJ6ACt1uEESvQN1/dBVqPAKY0hgrV70eN3391K6juAfTjKZLKvOMsx8PxA7gsY1/tLMMTcfFLLpw==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -1621,15 +1621,15 @@ packages:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
-  electron-to-chromium@1.5.344:
-    resolution: {integrity: sha512-4MxfbmNDm+KPh066EZy+eUnkcDPcZ35wNmOWzFuh/ijvHsve6kbLTLURy88uCNK5FbpN+yk2nQY6BYh1GEt+wg==}
+  electron-to-chromium@1.5.353:
+    resolution: {integrity: sha512-kOrWphBi8TOZyiJZqsgqIle0lw+tzmnQK83pV9dZUd01Nm2POECSyFQMAuarzZdYqQW7FH9RaYOuaRo3h+bQ3w==}
 
   enhanced-resolve@5.20.1:
     resolution: {integrity: sha512-Qohcme7V1inbAfvjItgw0EaxVX5q2rdVEZHRBrEQdRZTssLDGsL8Lwrznl8oQ/6kuTJONLaDcGjkNP247XEhcA==}
     engines: {node: '>=10.13.0'}
 
-  enhanced-resolve@5.21.0:
-    resolution: {integrity: sha512-otxSQPw4lkOZWkHpB3zaEQs6gWYEsmX4xQF68ElXC/TWvGxGMSGOvoNbaLXm6/cS/fSfHtsEdw90y20PCd+sCA==}
+  enhanced-resolve@5.21.2:
+    resolution: {integrity: sha512-xe9vQb5kReirPUxgQrXA3ihgbCqssmTiM7cOZ+Gzu+VeGWgpV98lLZvp0dl4yriyAePcewxGUs9UpKD8PET9KQ==}
     engines: {node: '>=10.13.0'}
 
   entities@6.0.1:
@@ -1752,8 +1752,8 @@ packages:
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
 
-  generaltranslation@8.2.10:
-    resolution: {integrity: sha512-I7HGQFTbKY8XuglXYxr3pH4YcB8uxfgt7kWtT+XM1i+/HPzh50tSyruNSatHo6bn57STmBxFJhEHNye7BeciNg==}
+  generaltranslation@8.2.13:
+    resolution: {integrity: sha512-LGt1yr3F4LHWOxhIj0v+9BbNl9y76PPDfrHKKPDk1GI/jkgSuRmx7CG/tcYXlKeUfkMgzQK69UAs7dbjjQMH9g==}
 
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
@@ -1780,18 +1780,18 @@ packages:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
 
-  gt-i18n@0.8.9:
-    resolution: {integrity: sha512-46kzBwlPEXklfQx0nzsVDJRVAYdZfMvcl5nmLH4th4o6C2CcdHSjPaL1PCPZOVi/eKo0f5h+5vtCBa9XxOoDUw==}
+  gt-i18n@0.9.1:
+    resolution: {integrity: sha512-fIyfHEjdellgxsgn2/ovLgdLFSZJhNcCSxVx+Xe8S7gXZndyYl34Ide5cUPVioHNp00hBklx3CmWJdYMSpiiGw==}
 
-  gt-next@6.16.19:
-    resolution: {integrity: sha512-fgdeVdY1I1UTjyaGqNNfYOLtIuHeMn+ZRL9jcVXYlX0baiCfybj47ro8zdEWJ5WVGrkKnyTUla/MP/X2LZv18Q==}
+  gt-next@6.16.26:
+    resolution: {integrity: sha512-SWhhrcN+XL1MkeAFJveoJfHhrz6/il366t4CqelMJRWBFUMojQmLDw40PmNNIdQPrc20JIlvXwyNwkNlfyFrzQ==}
     peerDependencies:
       next: '>=13.0.0 <15.2.1 || >15.2.2'
       react: '>=16.8.0 <20.0.0'
       react-dom: '>=16.8.0 <20.0.0'
 
-  gt-react@10.19.8:
-    resolution: {integrity: sha512-xXmqVa+xOjospsk/zrIi8fxtEw/0kJT3Ow3joz1be1tP0hMLpTZJeKLs+brRh18Zdz2h36hObpr1MwEBVRO3tg==}
+  gt-react@10.19.15:
+    resolution: {integrity: sha512-oYuDsyg9fsWdCCkOXZY0A3fZP3fVyFD4BbbdZUT0SpmtWVkM9s49ShO2zyGLPZdRVH2XIKnzthFXKfToqCbDtQ==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -1799,12 +1799,12 @@ packages:
   gt-remark@1.0.7:
     resolution: {integrity: sha512-YBIA+cg+rNhY11SaCfWj/PTnRCH0IbvVBfafNQjFBn4I7yZMfEesLea0ZccXdRHaMaQwbWwyGbhjE8qy6h+HfQ==}
 
-  gt@2.14.28:
-    resolution: {integrity: sha512-u64nWkM1jFqBd1hWmaD6S+EGjUr3P7D4HHXkLLUQ0xVnDKrUsLeqeT39KL1M7Yn0aUjoceRX786hUWlx+RueuA==}
+  gt@2.14.34:
+    resolution: {integrity: sha512-/duEn7Bi40xcSK1y707wAMWaAU3Dsg0ZsRtgdYJ0jYy3Z9cM802YSlV1B0OaDYwdhEylIW0O+2Zwa/RBg0vgXw==}
     hasBin: true
 
-  gtx-cli@2.14.28:
-    resolution: {integrity: sha512-IeDsf+wHkKIrEKZztNa+kwcOxt7df8LtxB+uQBaRSf5aP1H2oW1rHSYgt/EA0k3B63t7xz82FYkyAENnHtbHdw==}
+  gtx-cli@2.14.34:
+    resolution: {integrity: sha512-j3nbRCTk4DL5inBCISB6X47CRTbSPReVpCR07pP4LLafatvXaq0nwLpFdT23uWOGNX9kUukfN1s11YecBenW1g==}
     hasBin: true
 
   hasown@2.0.3:
@@ -2314,11 +2314,11 @@ packages:
     resolution: {integrity: sha512-1FlR+gjXK7X+AsAHso35MnyN5KqGwJRi/31ft6x0M194ht7S+rWAvd7PHss9xSKMzE0asv1pyIHaJYq+BbacAQ==}
     engines: {node: '>=12'}
 
-  oniguruma-parser@0.12.1:
-    resolution: {integrity: sha512-8Unqkvk1RYc6yq2WBYRj4hdnsAxVze8i7iPfQr8e4uSP3tRv0rpZcbGUDvxfQQcdwHt/e9PrMvGCsa8OqG9X3w==}
+  oniguruma-parser@0.12.2:
+    resolution: {integrity: sha512-6HVa5oIrgMC6aA6WF6XyyqbhRPJrKR02L20+2+zpDtO5QAzGHAUGw5TKQvwi5vctNnRHkJYmjAhRVQF2EKdTQw==}
 
-  oniguruma-to-es@4.3.5:
-    resolution: {integrity: sha512-Zjygswjpsewa0NLTsiizVuMQZbp0MDyM6lIt66OxsF21npUDlzpHi1Mgb/qhQdkb+dWFTzJmFbEWdvZgRho8eQ==}
+  oniguruma-to-es@4.3.6:
+    resolution: {integrity: sha512-csuQ9x3Yr0cEIs/Zgx/OEt9iBw9vqIunAPQkx19R/fiMq2oGVTgcMqO/V3Ybqefr1TBvosI6jU539ksaBULJyA==}
 
   open@10.2.0:
     resolution: {integrity: sha512-YgBpdJHPyQ2UE5x+hlSXcnejzAvD0b22U2OuAP+8OnlJT+PjWPxtgmGqKKc+RgTM63U9gN0YzrYc71R2WT/hTA==}
@@ -2783,6 +2783,11 @@ packages:
     engines: {node: '>= 14.6'}
     hasBin: true
 
+  yaml@2.8.4:
+    resolution: {integrity: sha512-ml/JPOj9fOQK8RNnWojA67GbZ0ApXAUlN2UQclwv2eVgTgn7O9gg9o7paZWKMp4g0H3nTLtS9LVzhkpOFIKzog==}
+    engines: {node: '>= 14.6'}
+    hasBin: true
+
   yocto-queue@1.2.2:
     resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
     engines: {node: '>=12.20'}
@@ -2822,7 +2827,7 @@ snapshots:
       js-tokens: 4.0.0
       picocolors: 1.1.1
 
-  '@babel/compat-data@7.29.0': {}
+  '@babel/compat-data@7.29.3': {}
 
   '@babel/core@7.28.4':
     dependencies:
@@ -2831,7 +2836,7 @@ snapshots:
       '@babel/helper-compilation-targets': 7.28.6
       '@babel/helper-module-transforms': 7.28.6(@babel/core@7.28.4)
       '@babel/helpers': 7.29.2
-      '@babel/parser': 7.29.2
+      '@babel/parser': 7.29.3
       '@babel/template': 7.28.6
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.0
@@ -2846,7 +2851,7 @@ snapshots:
 
   '@babel/generator@7.29.1':
     dependencies:
-      '@babel/parser': 7.29.2
+      '@babel/parser': 7.29.3
       '@babel/types': 7.29.0
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
@@ -2858,7 +2863,7 @@ snapshots:
 
   '@babel/helper-compilation-targets@7.28.6':
     dependencies:
-      '@babel/compat-data': 7.29.0
+      '@babel/compat-data': 7.29.3
       '@babel/helper-validator-option': 7.27.1
       browserslist: 4.28.2
       lru-cache: 5.1.1
@@ -2895,7 +2900,7 @@ snapshots:
       '@babel/template': 7.28.6
       '@babel/types': 7.29.0
 
-  '@babel/parser@7.29.2':
+  '@babel/parser@7.29.3':
     dependencies:
       '@babel/types': 7.29.0
 
@@ -2920,7 +2925,7 @@ snapshots:
   '@babel/template@7.28.6':
     dependencies:
       '@babel/code-frame': 7.29.0
-      '@babel/parser': 7.29.2
+      '@babel/parser': 7.29.3
       '@babel/types': 7.29.0
 
   '@babel/traverse@7.29.0':
@@ -2928,7 +2933,7 @@ snapshots:
       '@babel/code-frame': 7.29.0
       '@babel/generator': 7.29.1
       '@babel/helper-globals': 7.28.0
-      '@babel/parser': 7.29.2
+      '@babel/parser': 7.29.3
       '@babel/template': 7.28.6
       '@babel/types': 7.29.0
       debug: 4.4.3
@@ -3265,13 +3270,13 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@generaltranslation/compiler@1.3.16':
+  '@generaltranslation/compiler@1.3.21':
     dependencies:
       '@babel/generator': 7.29.1
-      '@babel/parser': 7.29.2
+      '@babel/parser': 7.29.3
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.0
-      generaltranslation: 8.2.10
+      generaltranslation: 8.2.13
       unplugin: 2.3.11
     transitivePeerDependencies:
       - supports-color
@@ -3282,24 +3287,24 @@ snapshots:
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
 
-  '@generaltranslation/python-extractor@0.2.15':
+  '@generaltranslation/python-extractor@0.2.19':
     dependencies:
-      generaltranslation: 8.2.10
+      generaltranslation: 8.2.13
       tree-sitter-python: 0.25.0
       web-tree-sitter: 0.26.8
     transitivePeerDependencies:
       - tree-sitter
 
-  '@generaltranslation/react-core@1.8.10(react@19.2.5)':
+  '@generaltranslation/react-core@1.8.17(react@19.2.5)':
     dependencies:
-      '@generaltranslation/supported-locales': 2.0.68
-      generaltranslation: 8.2.10
-      gt-i18n: 0.8.9
+      '@generaltranslation/supported-locales': 2.0.71
+      generaltranslation: 8.2.13
+      gt-i18n: 0.9.1
       react: 19.2.5
 
-  '@generaltranslation/supported-locales@2.0.68':
+  '@generaltranslation/supported-locales@2.0.71':
     dependencies:
-      generaltranslation: 8.2.10
+      generaltranslation: 8.2.13
 
   '@giscus/react@3.1.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
@@ -3535,7 +3540,7 @@ snapshots:
     dependencies:
       '@shikijs/types': 4.0.2
       '@shikijs/vscode-textmate': 10.0.2
-      oniguruma-to-es: 4.3.5
+      oniguruma-to-es: 4.3.6
 
   '@shikijs/engine-oniguruma@4.0.2':
     dependencies:
@@ -3846,7 +3851,7 @@ snapshots:
 
   baseline-browser-mapping@2.10.20: {}
 
-  baseline-browser-mapping@2.10.21: {}
+  baseline-browser-mapping@2.10.28: {}
 
   braces@3.0.3:
     dependencies:
@@ -3854,9 +3859,9 @@ snapshots:
 
   browserslist@4.28.2:
     dependencies:
-      baseline-browser-mapping: 2.10.21
-      caniuse-lite: 1.0.30001790
-      electron-to-chromium: 1.5.344
+      baseline-browser-mapping: 2.10.28
+      caniuse-lite: 1.0.30001792
+      electron-to-chromium: 1.5.353
       node-releases: 2.0.38
       update-browserslist-db: 1.2.3(browserslist@4.28.2)
 
@@ -3868,7 +3873,7 @@ snapshots:
 
   caniuse-lite@1.0.30001788: {}
 
-  caniuse-lite@1.0.30001790: {}
+  caniuse-lite@1.0.30001792: {}
 
   ccount@2.0.1: {}
 
@@ -4107,14 +4112,14 @@ snapshots:
 
   dotenv@16.6.1: {}
 
-  electron-to-chromium@1.5.344: {}
+  electron-to-chromium@1.5.353: {}
 
   enhanced-resolve@5.20.1:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.3.2
 
-  enhanced-resolve@5.21.0:
+  enhanced-resolve@5.21.2:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.3.3
@@ -4296,7 +4301,7 @@ snapshots:
 
   function-bind@1.1.2: {}
 
-  generaltranslation@8.2.10:
+  generaltranslation@8.2.13:
     dependencies:
       '@formatjs/icu-messageformat-parser': 2.11.4
       '@noble/hashes': 2.2.0
@@ -4325,31 +4330,31 @@ snapshots:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
-  gt-i18n@0.8.9:
+  gt-i18n@0.9.1:
     dependencies:
-      '@generaltranslation/supported-locales': 2.0.68
-      generaltranslation: 8.2.10
+      '@generaltranslation/supported-locales': 2.0.71
+      generaltranslation: 8.2.13
 
-  gt-next@6.16.19(next@16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  gt-next@6.16.26(next@16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
-      '@generaltranslation/compiler': 1.3.16
+      '@generaltranslation/compiler': 1.3.21
       '@generaltranslation/next-internal': 0.1.2(next@16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      '@generaltranslation/supported-locales': 2.0.68
-      generaltranslation: 8.2.10
-      gt-i18n: 0.8.9
-      gt-react: 10.19.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      '@generaltranslation/supported-locales': 2.0.71
+      generaltranslation: 8.2.13
+      gt-i18n: 0.9.1
+      gt-react: 10.19.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       next: 16.2.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
     transitivePeerDependencies:
       - supports-color
 
-  gt-react@10.19.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  gt-react@10.19.15(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
-      '@generaltranslation/react-core': 1.8.10(react@19.2.5)
-      '@generaltranslation/supported-locales': 2.0.68
-      generaltranslation: 8.2.10
-      gt-i18n: 0.8.9
+      '@generaltranslation/react-core': 1.8.17(react@19.2.5)
+      '@generaltranslation/supported-locales': 2.0.71
+      generaltranslation: 8.2.13
+      gt-i18n: 0.9.1
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
 
@@ -4367,23 +4372,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  gt@2.14.28(@babel/core@7.28.4):
+  gt@2.14.34(@babel/core@7.28.4):
     dependencies:
       '@babel/generator': 7.29.1
-      '@babel/parser': 7.29.2
+      '@babel/parser': 7.29.3
       '@babel/plugin-transform-react-jsx': 7.28.6(@babel/core@7.28.4)
       '@babel/traverse': 7.29.0
       '@clack/prompts': 1.0.0-alpha.6
       '@formatjs/icu-messageformat-parser': 2.11.4
-      '@generaltranslation/python-extractor': 0.2.15
+      '@generaltranslation/python-extractor': 0.2.19
       chalk: 5.6.2
       commander: 12.1.0
       dotenv: 16.6.1
-      enhanced-resolve: 5.21.0
+      enhanced-resolve: 5.21.2
       esbuild: 0.27.7
       fast-glob: 3.3.3
       fast-json-stable-stringify: 2.1.0
-      generaltranslation: 8.2.10
+      generaltranslation: 8.2.13
       gt-remark: 1.0.7
       html-entities: 2.6.0
       json-pointer: 0.6.2
@@ -4402,17 +4407,17 @@ snapshots:
       tsconfig-paths: 4.2.0
       unified: 11.0.5
       unist-util-visit: 5.1.0
-      yaml: 2.8.3
+      yaml: 2.8.4
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
       - tree-sitter
 
-  gtx-cli@2.14.28(@babel/core@7.28.4):
+  gtx-cli@2.14.34(@babel/core@7.28.4):
     dependencies:
       commander: 12.1.0
       dotenv: 16.6.1
-      gt: 2.14.28(@babel/core@7.28.4)
+      gt: 2.14.34(@babel/core@7.28.4)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -5228,11 +5233,11 @@ snapshots:
     dependencies:
       mimic-fn: 4.0.0
 
-  oniguruma-parser@0.12.1: {}
+  oniguruma-parser@0.12.2: {}
 
-  oniguruma-to-es@4.3.5:
+  oniguruma-to-es@4.3.6:
     dependencies:
-      oniguruma-parser: 0.12.1
+      oniguruma-parser: 0.12.2
       regex: 6.1.0
       regex-recursion: 6.0.2
 
@@ -5785,6 +5790,8 @@ snapshots:
   yallist@3.1.1: {}
 
   yaml@2.8.3: {}
+
+  yaml@2.8.4: {}
 
   yocto-queue@1.2.2: {}
 
