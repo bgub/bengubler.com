@@ -83,7 +83,6 @@ export async function GET(request: Request) {
             textAlign: "center",
             maxWidth: "900px",
             padding: "0 60px",
-            zIndex: 1,
             marginTop: "80px",
           }}
         >

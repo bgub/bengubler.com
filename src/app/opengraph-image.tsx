@@ -84,7 +84,6 @@ export default async function Image() {
           textAlign: "center",
           maxWidth: "900px",
           padding: "0 60px",
-          zIndex: 1,
           marginTop: "80px",
         }}
       >
