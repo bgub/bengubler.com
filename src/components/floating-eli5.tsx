@@ -80,7 +80,7 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
         render={
           <Button
             size="icon"
-            className="fixed bottom-6 end-6 h-12 w-12 rounded-full shadow-lg"
+            className="fixed bottom-6 inset-e-6 h-12 w-12 rounded-full shadow-lg"
             title={gt("Explain Like I'm 5")}
           />
         }

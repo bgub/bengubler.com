@@ -26,7 +26,7 @@ export function Sidebar() {
         <div className="flex grow flex-col gap-y-5 px-5 py-8 md:py-10">
           {/* Profile Section */}
           <Link href="/" className="flex items-center gap-3.5 group px-1">
-            <div className="relative w-[52px] h-[52px] rounded-full overflow-hidden shrink-0 border border-border">
+            <div className="relative w-13 h-13 rounded-full overflow-hidden shrink-0 border border-border">
               <Image
                 src="/bengubler.jpg"
                 alt={gt("Profile photo")}
@@ -60,10 +60,10 @@ export function Sidebar() {
                 return (
                   <li key={item.name} className="relative">
                     {item.isSubItem && (
-                      <div className="absolute start-2 top-0 h-1/2 w-px bg-border/70" />
+                      <div className="absolute inset-s-2 top-0 h-1/2 w-px bg-border/70" />
                     )}
                     {item.isSubItem && (
-                      <div className="absolute start-2 top-1/2 w-4 h-px bg-border/70" />
+                      <div className="absolute inset-s-2 top-1/2 w-4 h-px bg-border/70" />
                     )}
                     <Link
                       href={item.href}
@@ -76,7 +76,7 @@ export function Sidebar() {
                       }`}
                     >
                       <item.icon
-                        className="h-[15px] w-[15px] shrink-0 opacity-75"
+                        className="h-3.75 w-3.75 shrink-0 opacity-75"
                         aria-hidden="true"
                       />
                       {m(item.name)}

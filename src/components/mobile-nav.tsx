@@ -76,7 +76,7 @@ export function MobileNav() {
       {isOpen && (
         <div
           id="mobile-menu-popover"
-          className="absolute end-0 top-12 z-50 w-72 rounded-sm border border-border bg-shell p-4 shadow-lg"
+          className="absolute inset-e-0 top-12 z-50 w-72 rounded-sm border border-border bg-shell p-4 shadow-lg"
         >
           <nav className="flex flex-col gap-y-0.5">
             {navigation.map((item) => {
@@ -88,10 +88,10 @@ export function MobileNav() {
               return (
                 <div key={item.name} className="relative">
                   {item.isSubItem && (
-                    <div className="absolute start-2 top-0 h-1/2 w-px bg-border/70" />
+                    <div className="absolute inset-s-2 top-0 h-1/2 w-px bg-border/70" />
                   )}
                   {item.isSubItem && (
-                    <div className="absolute start-2 top-1/2 w-4 h-px bg-border/70" />
+                    <div className="absolute inset-s-2 top-1/2 w-4 h-px bg-border/70" />
                   )}
                   <Link
                     href={item.href}
@@ -105,7 +105,7 @@ export function MobileNav() {
                     onClick={() => setIsOpen(false)}
                   >
                     <item.icon
-                      className="h-[15px] w-[15px] shrink-0 opacity-75"
+                      className="h-3.75 w-3.75 shrink-0 opacity-75"
                       aria-hidden="true"
                     />
                     {m(item.name)}

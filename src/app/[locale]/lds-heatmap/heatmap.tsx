@@ -1,6 +1,7 @@
 "use client";
 
 import * as d3 from "d3";
+import { msg, Num, T, useGT, useMessages, Var } from "gt-next";
 import { useEffect, useRef, useState } from "react";
 import {
   CA_PROVINCES,
@@ -14,7 +15,6 @@ import {
   US_STATES,
 } from "./data";
 import { decodeTopo, type Topology } from "./topojson";
-import { T, Var, Num, useGT, useMessages, msg } from "gt-next";
 
 // ── COLOR SCALES ─────────────────────────────────────────────
 // ColorBrewer Blues-7 (total members) and YlOrRd-7 (% of pop.)
@@ -409,7 +409,9 @@ export function Heatmap() {
               color: "#aaa",
             }}
           >
-            <T><Var>{zoom.toFixed(1)}</Var>&times; &middot; scroll / drag</T>
+            <T>
+              <Var>{zoom.toFixed(1)}</Var>&times; &middot; scroll / drag
+            </T>
           </div>
         </div>
 
