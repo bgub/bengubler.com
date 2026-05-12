@@ -483,7 +483,7 @@ export function Heatmap() {
           }}
         >
           <div style={{ fontWeight: 700, fontSize: 12, color: "#1a1a2e" }}>
-            {tip.name}
+            {m(tip.name)}
           </div>
           {tip.m ? (
             <>
@@ -537,6 +537,7 @@ function Rank({
   mode: "total" | "pct";
   hasBorder?: boolean;
 }) {
+  const m = useMessages();
   return (
     <div
       style={
@@ -582,7 +583,7 @@ function Rank({
                   className="overflow-hidden text-ellipsis whitespace-nowrap"
                   style={{ color: i < 3 ? "#1a1a2e" : "#666", fontSize: 10 }}
                 >
-                  {it.n}
+                  {m(it.n)}
                 </span>
                 <span
                   className="font-mono whitespace-nowrap"
