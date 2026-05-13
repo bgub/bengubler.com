@@ -54,8 +54,13 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
         const { done, value } = await reader.read();
         if (done) break;
 
-        const chunk = decoder.decode(value);
+        const chunk = decoder.decode(value, { stream: true });
         setExplanation((prev) => prev + chunk);
+      }
+
+      const finalChunk = decoder.decode();
+      if (finalChunk) {
+        setExplanation((prev) => prev + finalChunk);
       }
     } catch (error) {
       console.error("Error getting explanation:", error);
