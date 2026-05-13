@@ -91,16 +91,12 @@ export default async function Image() {
         <h1
           style={{
             fontSize: "72px",
-            fontWeight: "800",
+            fontWeight: "600",
             color: "#0f172a",
             marginBottom: "32px",
             lineHeight: 1.1,
             letterSpacing: "-0.025em",
             textAlign: "center",
-            background: "linear-gradient(135deg, #0f172a 0%, #334155 100%)",
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
           }}
         >
           Ben Gubler

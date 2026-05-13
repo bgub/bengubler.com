@@ -22,13 +22,15 @@ import { ClientTOC } from "./client-toc";
 // Generate static params with unique slugs (dedup across locales)
 export function generateStaticParams() {
   const seen = new Set<string>();
-  return allPosts
-    .filter((post) => {
-      if (seen.has(post.slug)) return false;
-      seen.add(post.slug);
-      return true;
-    })
-    .map((post) => ({ slug: post.slug }));
+  const params: { slug: string }[] = [];
+
+  for (const post of allPosts) {
+    if (seen.has(post.slug)) continue;
+    seen.add(post.slug);
+    params.push({ slug: post.slug });
+  }
+
+  return params;
 }
 
 // Generate metadata for each post

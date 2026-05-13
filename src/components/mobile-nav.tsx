@@ -60,13 +60,13 @@ export function MobileNav() {
         variant="ghost"
         size="sm"
         onClick={() => setIsOpen(!isOpen)}
-        className={`h-9 w-9 p-0 transition-colors ${
+        className={`size-9 p-0 transition-colors ${
           isOpen ? "bg-accent text-foreground" : ""
         }`}
         aria-expanded={isOpen}
         aria-controls="mobile-menu-popover"
       >
-        {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
         <span className="sr-only">
           {isOpen ? gt("Close menu") : gt("Open menu")}
         </span>
@@ -105,7 +105,7 @@ export function MobileNav() {
                     onClick={() => setIsOpen(false)}
                   >
                     <item.icon
-                      className="h-3.75 w-3.75 shrink-0 opacity-75"
+                      className="size-3.75 shrink-0 opacity-75"
                       aria-hidden="true"
                     />
                     {m(item.name)}

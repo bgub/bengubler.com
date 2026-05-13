@@ -92,7 +92,7 @@ export default function LanguageLearningPage() {
                   </h3>
                   {tool.isExternal ? (
                     <svg
-                      className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
+                      className="size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -107,7 +107,7 @@ export default function LanguageLearningPage() {
                     </svg>
                   ) : (
                     <svg
-                      className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
+                      className="size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"

@@ -96,13 +96,30 @@ export function Heatmap() {
   const m = useMessages();
 
   useEffect(() => {
-    const load = (url: string) => fetch(url).then((r) => r.json());
-    load("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(
-      (t: Topology) => setWorld(decodeTopo(t, t.objects.countries)),
-    );
-    load("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json").then(
-      (t: Topology) => setUs(decodeTopo(t, t.objects.states)),
-    );
+    const controller = new AbortController();
+    const load = (url: string) =>
+      fetch(url, { signal: controller.signal }).then((r) => r.json());
+    const ignoreAbort = (error: unknown) => {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        return;
+      }
+      console.error("Failed to load map data:", error);
+    };
+
+    Promise.all([
+      load("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+        .then((topology: Topology) =>
+          setWorld(decodeTopo(topology, topology.objects.countries)),
+        )
+        .catch(ignoreAbort),
+      load("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json")
+        .then((topology: Topology) =>
+          setUs(decodeTopo(topology, topology.objects.states)),
+        )
+        .catch(ignoreAbort),
+    ]);
+
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {
@@ -200,14 +217,14 @@ export function Heatmap() {
         <div>
           <div
             className="font-mono uppercase"
-            style={{ fontSize: 9, letterSpacing: 3, color: "#888" }}
+            style={{ fontSize: 12, letterSpacing: 1, color: "#888" }}
           >
             <T>Membership Heat Map &middot; 2024</T>
           </div>
           <h1
             style={{
               fontSize: 20,
-              fontWeight: 700,
+              fontWeight: 600,
               margin: "2px 0 0",
               color: "#1a1a2e",
             }}
@@ -230,17 +247,12 @@ export function Heatmap() {
                 type="button"
                 key={k}
                 onClick={() => setMode(k as "total" | "pct")}
-                className="font-mono cursor-pointer"
+                className="rounded-[5px] border-0 px-3 py-1 font-mono text-xs cursor-pointer transition-[background,color,box-shadow] duration-150"
                 style={{
-                  padding: "4px 12px",
-                  borderRadius: 5,
-                  border: "none",
                   background: mode === k ? "#fff" : "transparent",
                   color: mode === k ? "#1a1a2e" : "#999",
-                  fontSize: 10,
                   fontWeight: mode === k ? 600 : 400,
                   boxShadow: mode === k ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
-                  transition: "all .15s",
                 }}
               >
                 {m(label)}
@@ -252,15 +264,7 @@ export function Heatmap() {
               type="button"
               key={label}
               onClick={() => fly(x, y, s)}
-              className="font-mono cursor-pointer"
-              style={{
-                padding: "3px 9px",
-                borderRadius: 4,
-                border: "1px solid #dde1e7",
-                background: "#fff",
-                color: "#666",
-                fontSize: 9.5,
-              }}
+              className="rounded border border-[#dde1e7] bg-white px-[9px] py-[3px] font-mono text-xs text-[#666] cursor-pointer"
             >
               {m(label)}
             </button>
@@ -303,22 +307,24 @@ export function Heatmap() {
                   strokeWidth={0.3}
                 />
 
-                {world.features.map((f) => {
-                  const id = String(f.id).padStart(3, "0");
+                {world.features.map((f, index) => {
+                  const id =
+                    f.id == null ? undefined : String(f.id).padStart(3, "0");
+                  const countryKey = id ?? `unidentified-${index}`;
                   const isUS = id === "840";
                   return (
                     // biome-ignore lint/a11y/noStaticElementInteractions: SVG path used for tooltip hover
                     <path
-                      key={id}
+                      key={countryKey}
                       d={
                         geoPath(f as unknown as d3.GeoPermissibleObjects) || ""
                       }
-                      fill={countryColor(id)}
-                      stroke={COUNTRIES[id] ? "#c0c8d4" : "#dde1e7"}
+                      fill={id ? countryColor(id) : BG}
+                      stroke={id && COUNTRIES[id] ? "#c0c8d4" : "#dde1e7"}
                       strokeWidth={strokeWidth}
                       className="cursor-pointer"
                       onMouseEnter={() => {
-                        if (!isUS) {
+                        if (id && !isUS) {
                           const d = COUNTRIES[id];
                           setTip(
                             d
@@ -383,7 +389,7 @@ export function Heatmap() {
               backdropFilter: "blur(6px)",
             }}
           >
-            <span className="font-mono" style={{ fontSize: 8, color: "#999" }}>
+            <span className="font-mono" style={{ fontSize: 12, color: "#999" }}>
               {isPct ? "0%" : gt("FEW")}
             </span>
             <div
@@ -394,7 +400,7 @@ export function Heatmap() {
                 background: `linear-gradient(90deg,${palette.join(",")})`,
               }}
             />
-            <span className="font-mono" style={{ fontSize: 8, color: "#999" }}>
+            <span className="font-mono" style={{ fontSize: 12, color: "#999" }}>
               {isPct ? "65%+" : gt("MILLIONS")}
             </span>
           </div>
@@ -405,7 +411,7 @@ export function Heatmap() {
               padding: "3px 8px",
               borderRadius: 4,
               border: "1px solid #dde1e7",
-              fontSize: 9,
+              fontSize: 12,
               color: "#aaa",
             }}
           >
@@ -449,7 +455,7 @@ export function Heatmap() {
             className="font-mono"
             style={{
               marginTop: 12,
-              fontSize: 7.5,
+              fontSize: 12,
               color: "#bbb",
               lineHeight: 1.5,
             }}
@@ -466,20 +472,13 @@ export function Heatmap() {
       {/* Tooltip */}
       {tip && (
         <div
-          className="absolute pointer-events-none"
+          className="absolute pointer-events-none z-30 min-w-[120px] rounded-lg border border-[#dde1e7] bg-white px-3 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
           style={{
             left: Math.min(
               mouse.x + 14,
               (boxRef.current?.clientWidth || 800) - 195,
             ),
             top: Math.max(mouse.y - 55, 10),
-            background: "#fff",
-            border: "1px solid #dde1e7",
-            borderRadius: 8,
-            padding: "8px 12px",
-            zIndex: 100,
-            boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-            minWidth: 120,
           }}
         >
           <div style={{ fontWeight: 700, fontSize: 12, color: "#1a1a2e" }}>
@@ -490,7 +489,7 @@ export function Heatmap() {
               <T>
                 <div
                   className="font-mono"
-                  style={{ fontSize: 11, color: "#2d7fc0" }}
+                  style={{ fontSize: 12, color: "#2d7fc0" }}
                 >
                   <Num>{tip.m}</Num> members
                 </div>
@@ -498,14 +497,14 @@ export function Heatmap() {
               <T>
                 <div
                   className="font-mono"
-                  style={{ fontSize: 10, color: "#666" }}
+                  style={{ fontSize: 12, color: "#666" }}
                 >
                   <Var>{tip.pv?.toFixed(2)}</Var>% of population
                 </div>
               </T>
               {tip.state && (
                 <T>
-                  <div style={{ fontSize: 8, color: "#bbb", marginTop: 1 }}>
+                  <div style={{ fontSize: 12, color: "#bbb", marginTop: 1 }}>
                     U.S. State
                   </div>
                 </T>
@@ -513,7 +512,7 @@ export function Heatmap() {
             </>
           ) : (
             <T>
-              <div style={{ fontSize: 10, color: "#bbb" }}>
+              <div style={{ fontSize: 12, color: "#bbb" }}>
                 No reported presence
               </div>
             </T>
@@ -548,8 +547,8 @@ function Rank({
       <div
         className="font-mono uppercase"
         style={{
-          fontSize: 9,
-          letterSpacing: 2,
+          fontSize: 12,
+          letterSpacing: 1,
           color: "#aaa",
           marginBottom: 6,
         }}
@@ -568,7 +567,7 @@ function Rank({
             <span
               className="font-mono text-right"
               style={{
-                fontSize: 8.5,
+                fontSize: 12,
                 color: i < 3 ? "#1d4e89" : "#ccc",
                 width: 14,
                 fontWeight: i < 3 ? 600 : 400,
@@ -580,13 +579,13 @@ function Rank({
               <div className="flex justify-between" style={{ marginBottom: 1 }}>
                 <span
                   className="overflow-hidden text-ellipsis whitespace-nowrap"
-                  style={{ color: i < 3 ? "#1a1a2e" : "#666", fontSize: 10 }}
+                  style={{ color: i < 3 ? "#1a1a2e" : "#666", fontSize: 12 }}
                 >
                   {it.n}
                 </span>
                 <span
                   className="font-mono whitespace-nowrap"
-                  style={{ fontSize: 8.5, color: "#1d4e89", marginLeft: 3 }}
+                  style={{ fontSize: 12, color: "#1d4e89", marginLeft: 3 }}
                 >
                   {mode === "pct" ? `${it.pv.toFixed(1)}%` : fmt(it.m)}
                 </span>

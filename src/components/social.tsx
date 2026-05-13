@@ -112,11 +112,11 @@ export function Social({ title, className }: SocialProps) {
             href={share.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-9 h-9 rounded-sm border border-border flex items-center justify-center text-ink-soft hover:bg-rule-soft hover:text-foreground transition-colors"
+            className="size-9 rounded-sm border border-border flex items-center justify-center text-ink-soft hover:bg-rule-soft hover:text-foreground transition-colors"
             title={gt("Share on {name}", { name: share.name })}
             aria-label={gt("Share on {name}", { name: share.name })}
           >
-            <share.icon className="h-3.5 w-3.5" />
+            <share.icon className="size-3.5" />
           </a>
         ))}
       </div>

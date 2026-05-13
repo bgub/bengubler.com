@@ -74,12 +74,14 @@ export default function RussianCaseCardsPage() {
         <T>
           <p className="font-serif text-ink-soft font-light">
             Note: this won't display properly on mobile: go{" "}
-            <a
+            <Link
               href="/declensions/russian-cases-card.pdf"
               className="text-foreground hover:underline font-medium"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               here
-            </a>{" "}
+            </Link>{" "}
             to view and download the PDF in a new window.
           </p>
         </T>
