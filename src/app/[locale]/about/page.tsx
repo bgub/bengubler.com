@@ -71,14 +71,14 @@ export default function AboutPage() {
             </Link>{" "}
             for courses, papers, and learning resources. For my professional
             background, you can view my{" "}
-            <a
+            <Link
               href="/ben-gubler-resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-foreground hover:underline"
             >
               résumé
-            </a>
+            </Link>
             .
           </p>
         </T>
@@ -104,7 +104,7 @@ export default function AboutPage() {
           <T>
             <ul className="list-disc space-y-3 pl-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
               <li>
-                I'm passionate about language learning — I speak English, Czech,
+                I'm passionate about language learning: I speak English, Czech,
                 and Slovak, and am currently learning Russian and Arabic.
               </li>
               <li>

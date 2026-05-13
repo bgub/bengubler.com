@@ -26,7 +26,7 @@ export function Sidebar() {
         <div className="flex grow flex-col gap-y-5 px-5 py-8 md:py-10">
           {/* Profile Section */}
           <Link href="/" className="flex items-center gap-3.5 group px-1">
-            <div className="relative w-13 h-13 rounded-full overflow-hidden shrink-0 border border-border">
+            <div className="relative size-13 rounded-full overflow-hidden shrink-0 border border-border">
               <Image
                 src="/bengubler.jpg"
                 alt={gt("Profile photo")}
@@ -76,7 +76,7 @@ export function Sidebar() {
                       }`}
                     >
                       <item.icon
-                        className="h-3.75 w-3.75 shrink-0 opacity-75"
+                        className="size-3.75 shrink-0 opacity-75"
                         aria-hidden="true"
                       />
                       {m(item.name)}

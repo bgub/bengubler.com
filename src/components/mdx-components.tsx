@@ -50,7 +50,7 @@ const createHeaderComponent = (tagName: string) => {
               "opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground ms-2 inline-block align-baseline",
             "aria-label": m(LINK_TO_SECTION_LABEL),
           },
-          createElement(LinkIcon, { className: "h-4 w-4 flex-shrink-0" }),
+          createElement(LinkIcon, { className: "size-4 flex-shrink-0" }),
         ),
     );
   };
@@ -110,7 +110,7 @@ const mdxComponents = {
   blockquote: ({ children, ...props }: CodeProps) => (
     <blockquote
       {...props}
-      className="border-l-4 border-border pl-4 italic text-ink-soft"
+      className="border-l border-border pl-4 italic text-ink-soft"
     >
       {children}
     </blockquote>

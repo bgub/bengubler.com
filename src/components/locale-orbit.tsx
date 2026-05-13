@@ -52,8 +52,8 @@ export function LocaleOrbit({ className }: LocaleOrbitProps) {
 
   return (
     <div className={cn("flex gap-1.5 w-full", className)}>
-      {[...locales]
-        .sort((a, b) =>
+      {locales
+        .toSorted((a, b) =>
           a === defaultLocale ? -1 : b === defaultLocale ? 1 : 0,
         )
         .map((code) => {
@@ -79,5 +79,3 @@ export function LocaleOrbit({ className }: LocaleOrbitProps) {
     </div>
   );
 }
-
-export default LocaleOrbit;

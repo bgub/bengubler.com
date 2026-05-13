@@ -72,7 +72,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
             rel="noopener noreferrer"
           >
             <svg
-              className="h-3.5 w-3.5"
+              className="size-3.5"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
