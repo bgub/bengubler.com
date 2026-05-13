@@ -80,3 +80,5 @@ export function decodeTopo(
     })),
   } as d3.GeoPermissibleObjects & { features: GeoFeature[] };
 }
+
+export type DecodedTopology = ReturnType<typeof decodeTopo>;
