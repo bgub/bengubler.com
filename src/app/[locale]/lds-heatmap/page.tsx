@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
+import { getGT } from "gt-next/server";
 import { Heatmap } from "./heatmap";
 import type { Topology } from "./topojson";
 
-export const metadata: Metadata = {
-  title: "LDS Membership Heat Map — 2024",
-  description:
-    "Interactive heat map of Latter-day Saint membership worldwide, by country, US state, and Canadian province.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const gt = await getGT();
+  return {
+    title: gt("LDS Membership Heat Map — 2024"),
+    description: gt(
+      "Interactive heat map of Latter-day Saint membership worldwide, by country, US state, and Canadian province."
+    ),
+  };
+}
 
 const MAP_REVALIDATE_SECONDS = 60 * 60 * 24 * 30;
 

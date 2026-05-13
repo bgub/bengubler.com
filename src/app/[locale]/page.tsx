@@ -1,6 +1,6 @@
 import { allPosts } from "content-collections";
 import { decodeMsg, T } from "gt-next";
-import { getLocale } from "gt-next/server";
+import { getGT, getLocale } from "gt-next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ViewTransition } from "react";
@@ -15,13 +15,17 @@ import { projectsData } from "@/lib/projects";
 
 type Post = (typeof allPosts)[0];
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Ben Gubler",
-  },
-  description:
-    "Ben Gubler's personal website. Working at General Translation, previously interned at Vercel. Studying AI and human languages at BYU.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const gt = await getGT();
+  return {
+    title: {
+      absolute: "Ben Gubler",
+    },
+    description: gt(
+      "Ben Gubler's personal website. Working at General Translation, previously interned at Vercel. Studying AI and human languages at BYU.",
+    ),
+  };
+}
 
 export default async function HomePage() {
   const locale = (await getLocale()) || "en";
