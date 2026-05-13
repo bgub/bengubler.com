@@ -1,6 +1,6 @@
 "use client";
 
-import { useDefaultLocale, useGT, useLocale, useMessages } from "gt-next";
+import { useGT, useLocale, useMessages } from "gt-next";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,11 +12,8 @@ import { navigation } from "@/lib/navigation";
 export function Sidebar() {
   const rawPathname = usePathname();
   const locale = useLocale();
-  const defaultLocale = useDefaultLocale();
   const pathname =
-    locale !== defaultLocale
-      ? rawPathname.replace(new RegExp(`^/${locale}`), "") || "/"
-      : rawPathname;
+    rawPathname.replace(new RegExp(`^/${locale}(?=/|$)`), "") || "/";
   const m = useMessages();
   const gt = useGT();
 
