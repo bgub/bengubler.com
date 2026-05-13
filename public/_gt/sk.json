@@ -9,27 +9,6 @@
   },
   "0220d6c7de3b3750": "Štáty USA",
   "057af6ccdf06263b": "MÁLO",
-  "05bbfe728618dc37": {
-    "c": [
-      {
-        "c": "Nadchýna ma učenie jazykov — hovorím po anglicky, česky a slovensky a momentálne sa učím po rusky a po arabsky.",
-        "i": 2,
-        "t": "li"
-      },
-      {
-        "c": "Veľmi rád trávim čas v prírode! Medzi moje obľúbené záľuby patria viacdňové túry s batohom, rybárčenie a horská cyklistika.",
-        "i": 3,
-        "t": "li"
-      },
-      {
-        "c": "Mám rád skvelú literatúru, súčasnú aj klasickú!",
-        "i": 4,
-        "t": "li"
-      }
-    ],
-    "i": 1,
-    "t": "ul"
-  },
   "05e4896829f2e7b6": "Softvér",
   "062756dc4fdf55bf": "Interpretovateľnosť",
   "062a8c8bf68039ab": "Fantasy",
@@ -52,6 +31,21 @@
   "0ee81746110ea465": "Kartičky pádov na vytlačenie na rýchle a efektívne zapamätanie českých skloňovacích vzorov podstatných mien.",
   "0efb3da8c7e035a1": "Monarch Money",
   "10c587eefc060c58": "Omarchy",
+  "10d511e621addb81": [
+    "Som Ben, študent na BYU, kde študujem informatiku a arabčinu. Vytváram open-source knižnice, webové aplikácie a AI nástroje. Momentálne pracujem v ",
+    {
+      "c": "General Translation",
+      "i": 1,
+      "t": "span"
+    },
+    ", predtým som stážoval vo ",
+    {
+      "c": "Vercel",
+      "i": 2,
+      "t": "span"
+    },
+    "."
+  ],
   "1115207f8bc4ea29": "OverTheWire Wargames",
   "116ab3333ed53b2d": "Tic-Tac-Too",
   "11762cb8a1cf14fb": {
@@ -76,6 +70,11 @@
     ],
     "i": 1,
     "t": "div"
+  },
+  "12458c3d207c8c39": {
+    "c": "Čítam váš príspevok…",
+    "i": 1,
+    "t": "p"
   },
   "140cc6c1b8358650": "Archív Búrlivého svetla",
   "14951deeb9fd1a80": "učenie jazykov",
@@ -300,21 +299,6 @@
   "729c5a4511ba6828": "Osobná webová stránka Bena Gublera. Pracuje v General Translation, predtým stážoval vo Vercel. Na BYU študuje AI a ľudské jazyky. Úvahy o webovom vývoji, AI a tvorbe vecí, na ktorých záleží.",
   "730dcee4f7598b16": "MacBook Pro (na prácu)",
   "74816cbe74a8f193": "RSC Explorer",
-  "7593dfb14e078ee7": [
-    "Som Ben — študent na BYU, kde študujem informatiku a arabčinu. Tvorím open-source knižnice, webové aplikácie a AI nástroje. Momentálne pracujem v ",
-    {
-      "c": "General Translation",
-      "i": 1,
-      "t": "span"
-    },
-    ", predtým som bol stážistom vo ",
-    {
-      "c": "Vercel",
-      "i": 2,
-      "t": "span"
-    },
-    "."
-  ],
   "762da2d8b92c643b": "Toki Pona",
   "7653c554c5512d00": {
     "c": "Prepnúť tému",
@@ -427,6 +411,27 @@
   "8f0d08612dc860db": "Ako vidí Zem slepý model?",
   "9090d8c41e669be7": "Produktivita a život",
   "90c1b367e1e259e7": "eta",
+  "920bb9308fb787be": {
+    "c": [
+      {
+        "c": "Baví ma učenie jazykov: hovorím po anglicky, česky a slovensky a momentálne sa učím po rusky a po arabsky.",
+        "i": 2,
+        "t": "li"
+      },
+      {
+        "c": "Veľmi rád trávim čas v prírode! Medzi moje obľúbené koníčky patria turistika s batohom, rybárčenie a horská cyklistika.",
+        "i": 3,
+        "t": "li"
+      },
+      {
+        "c": "Mám rád skvelú literatúru, súčasnú aj klasickú!",
+        "i": 4,
+        "t": "li"
+      }
+    ],
+    "i": 1,
+    "t": "ul"
+  },
   "9263adc2beb9fc18": "AI a strojové učenie",
   "92747439a157d726": "helm",
   "92d1b68f576a0d5f": "Pacifik",
@@ -526,13 +531,6 @@
   "ac94723b2e9de669": "Beelinguapp",
   "acd3df01d58f5765": "The Divergent Association Task",
   "ade50401b1396de9": "Príspevky",
-  "ae22c9e36cd4543e": [
-    {
-      "i": 1,
-      "t": "Loader2"
-    },
-    "Vysvetľujem..."
-  ],
   "af3863609bbecf5b": "Webový vývoj a React",
   "afaa0561ba5a8ba7": {
     "c": "Príspevok nenájdený",
@@ -546,6 +544,13 @@
   },
   "b09fa3fb65954f11": "Krajiny",
   "b24c8ee92c656887": "USA",
+  "b28cd0fa97a4537e": [
+    {
+      "i": 1,
+      "t": "Loader2"
+    },
+    "Vysvetľujem…"
+  ],
   "b305d06d0af683b4": "Stránka nenájdená - Ben Gubler",
   "b50c41465e5408b3": "E-mail",
   "b563aee1e5fe12ee": "gom",
@@ -626,11 +631,6 @@
       },
       "\" in simple terms"
     ],
-    "i": 1,
-    "t": "p"
-  },
-  "ceb6ba0f86d976c1": {
-    "c": "Čítam tento blogový príspevok...",
     "i": 1,
     "t": "p"
   },
@@ -733,7 +733,7 @@
   "fe3e875a7e5fc2a3": "Framework COMET",
   "feb481b144af444a": "Úvahy o webovom vývoji, AI a tvorbe vecí, na ktorých záleží.",
   "hero_greeting": [
-    "Dobrý deň, ahoj, Привет, ",
+    "Ahoj, Ahoj, Привет, ",
     {
       "c": "مرحبا",
       "i": 1,
