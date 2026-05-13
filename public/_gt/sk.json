@@ -10,43 +10,31 @@
     "t": "a"
   },
   "0220d6c7de3b3750": "Štáty USA",
-  "0266e82b7d29533e": "Tepelná mapa členstva LDS — 2024",
+  "025e81c8c9af3cab": "Oklahoma",
+  "0266e82b7d29533e": "LDS tepelná mapa členstva — 2024",
   "027d02e80bd4acd3": "Ghana",
+  "041e5bdcde4346b8": "Kansas",
+  "046bc068bd444faa": "Montana",
   "057af6ccdf06263b": "MÁLO",
-  "05bbfe728618dc37": {
-    "c": [
-      {
-        "c": "Nadchýna ma učenie jazykov — hovorím po anglicky, česky a slovensky a momentálne sa učím po rusky a po arabsky.",
-        "i": 2,
-        "t": "li"
-      },
-      {
-        "c": "Veľmi rád trávim čas v prírode! Medzi moje obľúbené záľuby patria viacdňové túry s batohom, rybárčenie a horská cyklistika.",
-        "i": 3,
-        "t": "li"
-      },
-      {
-        "c": "Mám rád skvelú literatúru, súčasnú aj klasickú!",
-        "i": 4,
-        "t": "li"
-      }
-    ],
-    "i": 1,
-    "t": "ul"
-  },
   "05e4896829f2e7b6": "Softvér",
+  "05f4a0b1f5418f74": "Illinois",
   "06201f8aa3d9aa67": "Togo",
   "062756dc4fdf55bf": "Interpretovateľnosť",
   "062a8c8bf68039ab": "Fantasy",
   "064898550ebaf40b": "Balík pip s CLI nástrojom na monitorovanie využitia GPU naprieč kontajnermi Docker. Minimalistická alternatíva k nástroju „nvidia-smi“.",
+  "06b88b2a67722410": "Vermont",
+  "06f99b56af48e614": "Severozápadné teritóriá",
   "0704279d82328bbd": {
     "c": "Kontakt",
     "i": 1,
     "t": "PageTitle"
   },
   "08dd3091faf0d1ce": "Škálovanie monosemantickosti",
+  "08fe27fe9f06fee4": "Quebec",
+  "097aa991e3e3c14b": "Kalifornia",
   "0a43db96a3879d8b": "Konvertuje príkazy CLI medzi npm/Yarn/pnpm/bun s podporou všetkých hlavných správcov balíkov.",
-  "0b8ce6b837600c2d": "Bosna a Herz.",
+  "0b7ef84ac88dcc53": "Kentucky",
+  "0b8ce6b837600c2d": "Bosna a Hercegovina",
   "0bb058038c571a69": "Nástroj na trénovanie tokenizérov BPE (Byte Pair Encoding) na vlastných dátových rozdeleniach s pokročilými možnosťami nastavenia.",
   "0c929cb89a81866c": "Učenie jazykov",
   "0cfbf4677a02b4fe": "Aplikácie",
@@ -58,6 +46,21 @@
   "0ee81746110ea465": "Kartičky pádov na vytlačenie na rýchle a efektívne zapamätanie českých skloňovacích vzorov podstatných mien.",
   "0efb3da8c7e035a1": "Monarch Money",
   "10c587eefc060c58": "Omarchy",
+  "10d511e621addb81": [
+    "Som Ben, študent na BYU, kde študujem informatiku a arabčinu. Vytváram open-source knižnice, webové aplikácie a AI nástroje. Momentálne pracujem v ",
+    {
+      "c": "General Translation",
+      "i": 1,
+      "t": "span"
+    },
+    ", predtým som stážoval vo ",
+    {
+      "c": "Vercel",
+      "i": 2,
+      "t": "span"
+    },
+    "."
+  ],
   "1115207f8bc4ea29": "OverTheWire Wargames",
   "116ab3333ed53b2d": "Tic-Tac-Too",
   "11762cb8a1cf14fb": {
@@ -83,7 +86,15 @@
     "i": 1,
     "t": "div"
   },
+  "11e7d0209a9c3db8": "Massachusetts",
+  "12458c3d207c8c39": {
+    "c": "Čítam váš príspevok…",
+    "i": 1,
+    "t": "p"
+  },
+  "12c1578756fefe6b": "Oregon",
   "138f1c228519cc2b": "Angola",
+  "13a2644fbe7bbb85": "Mississippi",
   "140cc6c1b8358650": "Archív Búrlivého svetla",
   "14951deeb9fd1a80": "učenie jazykov",
   "1684d5043a96121e": "Etiópia",
@@ -100,7 +111,7 @@
   "1b684898471c9e88": "Surinam",
   "1f1b4086cadac9b6": "Učenie jazykov - Ben Gubler",
   "1f7052f11b6baa02": "Príbeh dvoch miest",
-  "1fce2ea0cc5f056e": "Osobná webová stránka Bena Gublera. Myšlienky o webovom vývoji, AI a tvorbe zmysluplných vecí.",
+  "1fce2ea0cc5f056e": "Osobná webová stránka Bena Gublera. Úvahy o webovom vývoji, AI a tvorbe vecí, na ktorých záleží.",
   "2096e678e9ff17b6": "Open-source nástroje",
   "20bba13e9a5287ac": "Konžská demokratická republika",
   "217a321934b935db": {
@@ -119,6 +130,7 @@
   "24b5f066083a1ba1": "Webové rozhranie pre AI agentov na písanie kódu.",
   "24cddcfc4781cfcd": "Obvody transformátorov",
   "253f0537136dbdb7": "Uganda",
+  "26bc2481dc6b340d": "Maryland",
   "26cc9442083084ff": "Vývoj operačných systémov a systémové programovanie",
   "274172cd9b242e6a": {
     "c": "Odporúčané",
@@ -126,12 +138,14 @@
     "t": "PageTitle"
   },
   "275116dd1bbe1e27": "X (Twitter)",
+  "277c7fb54daa2ebd": "Ostrov princa Eduarda",
   "279124bb438079a6": "Od GPT-2 po GPT-OSS",
   "27c04964a9ee9e77": "Viera",
   "27ffbd1b12838b8d": "{name} na GitHube",
   "28804cef2c57e4d5": "Copyright {year} Ben Gubler",
   "28a45948473da7f8": "GitHub",
   "28ac8a369bb99280": "Pepper & Carrot in Toki Pona",
+  "29b444a015ff1233": "Ohio",
   "29cfbfca6cedbb8e": "Počet členov",
   "29e29dae950103eb": "Malta",
   "2ac29e7cedb1e1a3": "Gruzínsko",
@@ -143,13 +157,16 @@
   "2cd75ded56b3c523": "Fínsko",
   "2ce262d5ab363438": "Príspevky - Ben Gubler",
   "2d5e296989434d34": "Komplexná webová stránka na precvičovanie skloňovania českých, slovenských a ruských podstatných mien pomocou interaktívnych cvičení.",
+  "2e7b9240db0e31e0": "Manitoba",
   "2e881bd80673c0fa": "Russian Case Cards",
   "2ecf88ef9e8e4259": "Domov",
   "2f00e71f816405c2": "Dell XPS 15 (súkromný)",
   "2f40f533f136f46d": "Estónsko",
   "2f4b57fb59c746d0": "GPU a vysokovýkonné programovanie",
+  "2fe919e89da5f2e6": "Colorado",
   "316301acba5cd27e": "Benin",
-  "338042bd9af934e9": "Holandsko",
+  "338042bd9af934e9": "Nizozemsko",
+  "338b1d1ab0e1e209": "Virgínia",
   "34cb108cba52437c": {
     "c": "Čo ďalej",
     "i": 1,
@@ -216,9 +233,11 @@
   "42b2c611d8c7f4e9": "Zvieracia farma",
   "4314e052a3524c51": "Obľúbené",
   "4373e32d3674bcd0": "Nástroje a zdroje na učenie jazykov vrátane aplikácií na precvičovanie skloňovania a ďalších materiálov.",
+  "44d427dcadeba046": "Aljaška",
   "44f5c9d3d83113f1": "Litva",
   "46258874be363668": "Brazília",
   "46612d7e43627fca": "Kamerun",
+  "46a7e9493b7e1ed9": "Florida",
   "4700d882bc81855a": "Honduras",
   "47ed76f7077e0280": "Odporúčané - Ben Gubler",
   "480646ceb98c7163": "Zavrieť",
@@ -227,6 +246,7 @@
     "i": 1,
     "t": "h4"
   },
+  "4924b4629204feb3": "Washington",
   "49378166463c2a95": "Myš MX Master 3S",
   "4a48758f8e4e06c2": "Redox OS",
   "4a73344dd83b8f0e": {
@@ -234,14 +254,18 @@
     "i": 1,
     "t": "PageTitle"
   },
+  "4a75eedfccdf7c16": "Iowa",
   "4a87671f82acf209": "Klávesnica NuPhy Air75 V3",
+  "4aacd3eca8e46bd9": "Newfoundland",
   "4add1139ae8ec5c1": "Kontakt",
   "4c9f5f6661d88e9b": "Austrália",
   "4d6c82c642c573cb": "Malý princ",
   "4d99c304274d4897": "Nový Zéland",
   "4dbde0a18f4d9702": "Prekrásny nový svet",
+  "4e56c17483677fa0": "Texas",
   "4ea7e037ee1dab24": "Esperaboard",
   "4fc74c7fb8c15459": "Konvertuje Datasety HuggingFace do streamingového formátu MosaicML (MDS) na efektívne trénovanie v cloude.",
+  "50a296d921f6b849": "Tennessee",
   "50cb50616fa9648e": "Izrael",
   "513bae38f55f8565": "Papua-Nová Guinea",
   "51ca342c96cf6a4d": "Toki Pona in 18 Minutes",
@@ -310,6 +334,7 @@
   },
   "61213b3c0bb8433e": "Naučte sa X za Y minút",
   "6223c45811e4bc71": "Kanada",
+  "631ee7e693a308c8": "Idaho",
   "638d933fb5975d0e": "Taliansko",
   "6455227309955661": "Pimsleur",
   "64ade5006b5d1b36": "Decline App",
@@ -322,7 +347,9 @@
   "6823e8871ecb55cd": "India",
   "686f913391efa52f": "tinylingo.com",
   "68b9f83d614198b5": "Chorvátsko",
+  "68bcba9a5e5a1b44": "Michigan",
   "69559c11d66b6a7d": "SQLBolt",
+  "698190aab8330166": "Západná Virgínia",
   "69a38e8afebf5dd4": "Zatvoriť menu",
   "6a2bbccfb878b796": "Jamajka",
   "6a4e04c1621bc2cb": {
@@ -337,6 +364,7 @@
   "6afaabc340379239": "Guyana",
   "6b27c952e181188e": "Obraz Doriana Graya",
   "6c8c3ba17e59f0e3": "Eswatini",
+  "6c9a671d69c064a9": "Alberta",
   "6c9b9dc3b6bc4b97": "Príspevok, ktorý hľadáte, neexistuje.",
   "6cf3a79976b7d2d2": "Desktop a terminál",
   "6d1c840177d6e865": {
@@ -352,6 +380,7 @@
   "6f83fb5bebf33e82": "Obľúbené knihy, filmy a osobné odporúčania Bena Gublera.",
   "6fa4fca04aedadba": "Prostredie GNOME",
   "70e12787aab9ee65": "Natrénujte model uvažovania pomocou GRPO",
+  "716ee68d07cb169f": "New Jersey",
   "71824c83c2d53ee9": "Grécko",
   "7224ad670aa82471": "Rozšírenie pre Chrome, ktoré zmení stránku novej karty na prispôsobiteľný dashboard.",
   "723653dd8fec6fdc": "Hunt for the Wilderpeople",
@@ -359,21 +388,7 @@
   "730dcee4f7598b16": "MacBook Pro (na prácu)",
   "73ddaae9d7fad0d4": "Nigéria",
   "74816cbe74a8f193": "RSC Explorer",
-  "7593dfb14e078ee7": [
-    "Som Ben — študent na BYU, kde študujem informatiku a arabčinu. Tvorím open-source knižnice, webové aplikácie a AI nástroje. Momentálne pracujem v ",
-    {
-      "c": "General Translation",
-      "i": 1,
-      "t": "span"
-    },
-    ", predtým som bol stážistom vo ",
-    {
-      "c": "Vercel",
-      "i": 2,
-      "t": "span"
-    },
-    "."
-  ],
+  "74f0083d6ef2943c": "New Hampshire",
   "762da2d8b92c643b": "Toki Pona",
   "7653c554c5512d00": {
     "c": "Prepnúť tému",
@@ -381,6 +396,7 @@
     "t": "span"
   },
   "772e15e4f2f20a76": "Dokazovanie viet",
+  "77b037197feae42f": "Arkansas",
   "77d68abb75acf8cd": "Príspevok nenájdený",
   "78344b60f407928e": "Ostatné",
   "7a87a6c41143b213": {
@@ -400,6 +416,7 @@
   "7dd2d085f19452b5": "Belize",
   "7e74172900c60360": "Odkaz na sekciu",
   "7f390daec7bf71b5": "hecto: Vytvorte si vlastný textový editor v jazyku Rust",
+  "7fe036ca5b1fef32": "Missouri",
   "8010116bdc2581d5": "Zambia",
   "8067f0bd58584c31": "Tepelná mapa členstva · 2024",
   "810c1343f4ab57db": "Úkryt",
@@ -415,6 +432,7 @@
   "82d3a80413d6a1c3": "Čítanie na 5 min",
   "82f4c87f0265ae8b": "Írsko",
   "8313f3c1e394a316": "Najlepšie na obchodné otázky a dlhšie rozhovory",
+  "84309ae7bef4da41": "District of Columbia",
   "84cc5eb3f0ed0d22": "Uruguaj",
   "84de340c2461f1e1": "Zdieľať na {name}",
   "84f949f44dd985cd": "Nórsko",
@@ -436,7 +454,7 @@
   "88b7378582d9589a": "Argentína",
   "88faef7e6d8b4e4e": "Zimbabwe",
   "89809486109c2d37": "Tonga",
-  "899acbe0cb96edd5": "Interaktívna tepelná mapa členstva Svätých neskorších dní vo svete podľa krajiny, štátu USA a kanadskej provincie.",
+  "899acbe0cb96edd5": "Interaktívna tepelná mapa členstva Svätých neskorších dní vo svete podľa krajín, štátov USA a kanadských provincií.",
   "89da3fc9986ff790": "Ukrajina",
   "8a5b42fae262c8d4": "Smrť Ivana Iľjiča",
   "8b7fcaab32fd3bc4": "(archivované)",
@@ -499,12 +517,36 @@
   "8f0d08612dc860db": "Ako vidí Zem slepý model?",
   "9090d8c41e669be7": "Produktivita a život",
   "90c1b367e1e259e7": "eta",
+  "90ced2552874f076": "Havaj",
+  "920bb9308fb787be": {
+    "c": [
+      {
+        "c": "Baví ma učenie jazykov: hovorím po anglicky, česky a slovensky a momentálne sa učím po rusky a po arabsky.",
+        "i": 2,
+        "t": "li"
+      },
+      {
+        "c": "Veľmi rád trávim čas v prírode! Medzi moje obľúbené koníčky patria turistika s batohom, rybárčenie a horská cyklistika.",
+        "i": 3,
+        "t": "li"
+      },
+      {
+        "c": "Mám rád skvelú literatúru, súčasnú aj klasickú!",
+        "i": 4,
+        "t": "li"
+      }
+    ],
+    "i": 1,
+    "t": "ul"
+  },
   "9263adc2beb9fc18": "AI a strojové učenie",
   "92747439a157d726": "helm",
   "92d1b68f576a0d5f": "Pacifik",
   "959d0255998606b4": "CodeCrafters: Build Your Own X in Rust",
+  "95aa988493b6ea8a": "New Brunswick",
   "95e4c24a851ab7e3": "Dokonalý trik",
   "95f506e43b9b3265": "Príspevok nenájdený - Ben Gubler",
+  "960b7dbf0379a1da": "New York",
   "965afbdd105f4ab4": [
     {
       "c": "Projekty",
@@ -557,6 +599,8 @@
   "97c326fd40fc8abd": "Kartičky pádov na vytlačenie na rýchle a efektívne zapamätanie ruských skloňovacích vzorov podstatných mien.",
   "97f7dc350050087c": "macOS",
   "98931a83736430a1": "Web na učenie jazykov s podporou AI, s personalizovanými lekciami a interaktívnymi cvičeniami.",
+  "99f1760751166004": "Osobný web Bena Gublera. Pracuje v spoločnosti General Translation, predtým stážoval vo Vercel. Na BYU študuje AI a ľudské jazyky.",
+  "9a1319fc4e39fee6": "Louisiana",
   "9a5c9a18a1736a01": "Profilová fotka",
   "9a806cc1e5ca8a4a": "Umelá inteligencia",
   "9b362fb8f28b34d1": "Rakúsko",
@@ -564,6 +608,7 @@
   "9bc7b69261332832": "Algebraické efekty pre nás ostatných",
   "9c2986fca82710b5": "Zakladateľ",
   "9cc58ceb8f936642": "Kostarika",
+  "9d902117f81037c5": "Južná Karolína",
   "9dcaba5c9188af36": "Namíbia",
   "9e0e71048f2e77ca": "Archív",
   "9ec680f43d9c06ad": "Švajčiarsko",
@@ -584,12 +629,14 @@
     },
     "."
   ],
+  "9fd3c0201d2e4091": "Wyoming",
   "a040bdb90a115bab": "Písanie interpretra v Go",
   "a04daf17e3be1edc": "Periférne zariadenia",
   "a0c7b60e4bd05412": "RSS",
   "a1f164c66500808a": "Fidži",
   "a20c7af31a16306f": "Technológie, aplikácie a nástroje, ktoré Ben Gubler používa pri vývoji a na zvýšenie produktivity.",
   "a20f64ea291a4e8a": "44 Scotland Street",
+  "a2d1eaffb07f745f": "Severná Karolína",
   "a4b99d2d2e59c99b": "Francúzsko",
   "a59f112c71cb1540": "Slovinsko",
   "a626d84d7422494e": "Botswana",
@@ -605,6 +652,7 @@
   "aa5bfb3c14b0a681": "Naučte sa základy",
   "aa600fbbd0a9d686": "Úvodná konfigurácia Nixu pre macOS s rozumnými predvolenými nastaveniami a dokumentáciou.",
   "aab25fba56518455": "Lingvistika",
+  "ab1992a83eca13be": "Arizona",
   "abaacba7b0f79fe8": "Resetovať",
   "abc7afca4ddb4c94": "Tadiaľto tečie rieka",
   "abf651cef8f7b7b2": "Séria Inkheart",
@@ -612,13 +660,6 @@
   "ac94723b2e9de669": "Beelinguapp",
   "acd3df01d58f5765": "The Divergent Association Task",
   "ade50401b1396de9": "Príspevky",
-  "ae22c9e36cd4543e": [
-    {
-      "i": 1,
-      "t": "Loader2"
-    },
-    "Vysvetľujem..."
-  ],
   "af3863609bbecf5b": "Webový vývoj a React",
   "afaa0561ba5a8ba7": {
     "c": "Príspevok nenájdený",
@@ -636,6 +677,13 @@
   "b104514dd0ff33a5": "Mexiko",
   "b22acab22e51149b": "Japonsko",
   "b24c8ee92c656887": "USA",
+  "b28cd0fa97a4537e": [
+    {
+      "i": 1,
+      "t": "Loader2"
+    },
+    "Vysvetľujem…"
+  ],
   "b305d06d0af683b4": "Stránka nenájdená - Ben Gubler",
   "b387818540cf9565": "Dánsko",
   "b4c836e33738625a": "Luxembursko",
@@ -643,6 +691,7 @@
   "b563aee1e5fe12ee": "gom",
   "b6679fa5d0ab6497": "Písanie operačného systému v Ruste",
   "b710e73c5611e3f4": "Kontakt - Ben Gubler",
+  "b7ce1cee0fff76af": "Delaware",
   "b9ee30cd580736c2": "Rusko",
   "ba1805140f3daec4": "Bulharsko",
   "ba2ee2289e8480fd": "Južná Kórea",
@@ -653,11 +702,14 @@
   "bd4cbf79a8e9b868": "Linux From Scratch",
   "be138224ecf6224a": "Knihy, filmy a ďalšie veci, ktoré mám rád a odporúčam.",
   "be7aef60733f8a31": "Czech Case Cards – kartičky českých pádov - Ben Gubler",
+  "bf93f69f8f64acb8": "Nebraska",
   "c0fa5428a2f6a612": "J. Amerika",
   "c145bf1755845240": "Pobrežie Slonoviny",
   "c18af923a81d97db": "Matematika a formálne metódy",
   "c24789fa6ee1226c": "shade",
+  "c399944bd45a8e59": "Južná Dakota",
   "c3ae9cdbdb6ac881": "Začať vysvetľovať",
+  "c3b8cdf27ab3c87a": "Maine",
   "c3d75dccd88075f2": "Interstellar",
   "c416e456567fdf39": "mokka",
   "c480d98c240a3a0f": "Obsah je povinný",
@@ -672,6 +724,7 @@
   "c59720248f69d5aa": "Odporúčané",
   "c60bbea0759db02a": "Aplikácia na učenie jazykov na zlepšenie porozumenia. Počúvajte autentické podcasty rodených hovoriacich s transkripciami a prekladmi generovanými AI.",
   "c62378275dc5c4f6": "moje vlastné nástroje",
+  "c6ac6b7f87f34e3b": "Pensylvánia",
   "c71006556cf1328e": {
     "c": [
       {
@@ -686,6 +739,7 @@
   "c772710e952c391c": "Filipíny",
   "c7a2323b7e48530a": "Môj stack - Ben Gubler",
   "c7ee1a20e25cdfe0": "Len spravodlivosť",
+  "c8cdfc1fc3866c97": "Yukon",
   "c913a4cd1fdb059a": "GPU a tenzorové hádanky",
   "c96c6913115e475e": "Hardvér",
   "c9c50f0332867e60": "Panama",
@@ -699,6 +753,7 @@
   "cc77c2b66c79a626": "Splashpad",
   "cc7e76bf9365389f": "Poznámky o softvéri, jazykoch a o tom, kde sa prelínajú.",
   "cc84bfe0ee5d0174": "Projekty",
+  "cd2a68dbdbcbcab7": "Saskatchewan",
   "cd8ccd4b937873e1": "Tmavá",
   "cd8d0c77a410efb9": {
     "c": [
@@ -729,11 +784,6 @@
     "i": 1,
     "t": "p"
   },
-  "ceb6ba0f86d976c1": {
-    "c": "Čítam tento blogový príspevok...",
-    "i": 1,
-    "t": "p"
-  },
   "cf1dfa31f755ed76": "Porovnávajte tokenizéry v mnohých jazykoch pomocou interaktívnych vizualizácií a analýzy.",
   "cfb740b7462fab33": "Príspevky",
   "d006c44856493996": "Informatika",
@@ -748,9 +798,11 @@
   "d31ed8a36de506ed": "Švédsko",
   "d3c05da643a43453": "Indonézia",
   "d3c64246988e1ab2": "Mongolsko",
+  "d44b1428aec63e20": "Rhode Island",
   "d486259b8271dcc6": "Ľahký šablónovací engine pre JavaScript s podporou helperov, partialov, filtrov atď. Projekt, vďaka ktorému som sa dostal k open-source.",
   "d486d877a0d841e6": "Textual",
   "d5ddfbc5b8cd23e4": "Nástroje a zdroje, ktoré som vytvoril na pomoc pri učení jazykov.",
+  "d6674c6b48b00bab": "Utah",
   "d7899ed4822e5ab1": "Môj stack",
   "d7caa4d010633d49": "Ježiš Kristus",
   "d87f87ec78d92657": "Malajzia",
@@ -774,10 +826,15 @@
   "dc94ea51cf0b8c7a": "Filmy",
   "dc9f1a12fca86efe": "Rýchly vstavaný JS nástroj. Široko používaný, s viac ako 1,5 tis. hviezdičkami na GitHube a ~2 mil. stiahnutí týždenne.",
   "def93bda648985e9": "Vysvetli mi to, akoby som mal 5 rokov",
+  "df477c814cdcac4b": "Wisconsin",
   "e0ec8b1ac98ca1d6": "Wispr Flow",
   "e1753ab0ce7d5975": "LinkedIn",
+  "e395601b2a099d12": "Britská Kolumbia",
+  "e3960a55f71b6ffe": "Indiana",
   "e46ea56cf3bd8f10": "Bolívia",
   "e5cff5481ca8546c": "Zábavné a zaujímavé",
+  "e69a14dc872a26c4": "Alabama",
+  "e6a75c0aff68a540": "Minnesota",
   "e6b4f76a07b162fd": "Bahrajn",
   "e6d86a912aea1aa4": {
     "c": "Učenie jazykov",
@@ -789,6 +846,8 @@
   "e8192d1f6f3b385a": "Nikaragua",
   "e9143d18038a1abb": "Day One Journal",
   "e9a38127bc28b059": "Srí Lanka",
+  "e9fccbdf357946f4": "Nevada",
+  "ea11ad22a03140b8": "Nové Škótsko",
   "ea3bb70a42a500de": "Progresívna webová aplikácia (PWA) na precvičovanie českých, slovenských a ruských skloňovacích vzorov.",
   "ea58be5aff64a6dc": "Kambodža",
   "eafa3523b0b0171d": "Albánsko",
@@ -809,6 +868,9 @@
   "eb7cdb322e2cac62": "Mozambik",
   "ec69ee288daa47b4": "Effekt",
   "ec8e528936b96b22": "Bezpečnosť",
+  "ec9fffcd5e011807": "Connecticut",
+  "ecc721b6c3807c08": "Nové Mexiko",
+  "ee39dc118c28042b": "Severná Dakota",
   "ee7fdad0f1376f93": "Moldavsko",
   "ef1e481ac2b7ac31": "Americké",
   "ef8e91cb52a44f12": "Španielsko",
@@ -819,6 +881,7 @@
   },
   "f41ea186c275b56e": "O mne",
   "f4a62bd4d2559581": "Lesotho",
+  "f4f0914ef1d23a85": "Ontário",
   "f52129a3f95b5597": "Študijné materiály",
   "f6a89728879f3df1": "Biblia",
   "f706057a0ef052ff": {

@@ -10,42 +10,30 @@
     "t": "a"
   },
   "0220d6c7de3b3750": "Státy USA",
+  "025e81c8c9af3cab": "Oklahoma",
   "0266e82b7d29533e": "Mapa hustoty členství LDS — 2024",
   "027d02e80bd4acd3": "Ghana",
+  "041e5bdcde4346b8": "Kansas",
+  "046bc068bd444faa": "Montana",
   "057af6ccdf06263b": "MÁLO",
-  "05bbfe728618dc37": {
-    "c": [
-      {
-        "c": "Učení jazyků je moje velká vášeň — mluvím anglicky, česky a slovensky a momentálně se učím rusky a arabsky.",
-        "i": 2,
-        "t": "li"
-      },
-      {
-        "c": "Miluji pobyt v přírodě! Mezi moje oblíbené koníčky patří vícedenní pěší výpravy, rybaření a jízda na horském kole.",
-        "i": 3,
-        "t": "li"
-      },
-      {
-        "c": "Mám rád skvělou literaturu, současnou i klasickou!",
-        "i": 4,
-        "t": "li"
-      }
-    ],
-    "i": 1,
-    "t": "ul"
-  },
   "05e4896829f2e7b6": "Software",
+  "05f4a0b1f5418f74": "Illinois",
   "06201f8aa3d9aa67": "Togo",
   "062756dc4fdf55bf": "Interpretovatelnost",
   "062a8c8bf68039ab": "Fantasy",
   "064898550ebaf40b": "Pip balíček s CLI nástrojem pro sledování využití GPU napříč Docker kontejnery. Minimalistická alternativa k „nvidia-smi“.",
+  "06b88b2a67722410": "Vermont",
+  "06f99b56af48e614": "Severozápadní teritoria",
   "0704279d82328bbd": {
     "c": "Kontakt",
     "i": 1,
     "t": "PageTitle"
   },
   "08dd3091faf0d1ce": "Škálování monosemantičnosti",
+  "08fe27fe9f06fee4": "Quebec",
+  "097aa991e3e3c14b": "Kalifornie",
   "0a43db96a3879d8b": "Převádí CLI příkazy mezi npm/Yarn/pnpm/bun a podporuje všechny hlavní správce balíčků.",
+  "0b7ef84ac88dcc53": "Kentucky",
   "0b8ce6b837600c2d": "Bosna a Hercegovina",
   "0bb058038c571a69": "Nástroj pro trénování tokenizérů BPE (Byte Pair Encoding) na vlastních datových splitech s pokročilými možnostmi konfigurace.",
   "0c929cb89a81866c": "Učení jazyků",
@@ -58,6 +46,21 @@
   "0ee81746110ea465": "Tisknutelné kartičky pádů pro rychlé a efektivní osvojení vzorů skloňování českých podstatných jmen.",
   "0efb3da8c7e035a1": "Monarch Money",
   "10c587eefc060c58": "Omarchy",
+  "10d511e621addb81": [
+    "Jsem Ben, student BYU, kde studuji informatiku a arabštinu. Vytvářím open-source knihovny, webové aplikace a AI nástroje. Momentálně pracuji ve ",
+    {
+      "c": "General Translation",
+      "i": 1,
+      "t": "span"
+    },
+    ", dříve jsem byl na stáži ve ",
+    {
+      "c": "Vercel",
+      "i": 2,
+      "t": "span"
+    },
+    "."
+  ],
   "1115207f8bc4ea29": "OverTheWire Wargames",
   "116ab3333ed53b2d": "Tic-Tac-Too",
   "11762cb8a1cf14fb": {
@@ -83,7 +86,15 @@
     "i": 1,
     "t": "div"
   },
+  "11e7d0209a9c3db8": "Massachusetts",
+  "12458c3d207c8c39": {
+    "c": "Čtu váš blogový příspěvek…",
+    "i": 1,
+    "t": "p"
+  },
+  "12c1578756fefe6b": "Oregon",
   "138f1c228519cc2b": "Angola",
+  "13a2644fbe7bbb85": "Mississippi",
   "140cc6c1b8358650": "Archiv bouřné záře",
   "14951deeb9fd1a80": "Učení jazyků",
   "1684d5043a96121e": "Etiopie",
@@ -100,9 +111,9 @@
   "1b684898471c9e88": "Surinam",
   "1f1b4086cadac9b6": "Učení jazyků – Ben Gubler",
   "1f7052f11b6baa02": "Příběh dvou měst",
-  "1fce2ea0cc5f056e": "Osobní web Bena Gublera. Myšlenky o webovém vývoji, AI a tvorbě věcí, na kterých záleží.",
+  "1fce2ea0cc5f056e": "Osobní web Bena Gublera. Úvahy o webovém vývoji, AI a tvorbě věcí, na kterých záleží.",
   "2096e678e9ff17b6": "Open‑source nástroje",
-  "20bba13e9a5287ac": "Kongo (DR)",
+  "20bba13e9a5287ac": "DR Kongo",
   "217a321934b935db": {
     "c": "Stránka nebyla nalezena",
     "i": 1,
@@ -119,6 +130,7 @@
   "24b5f066083a1ba1": "Webové rozhraní pro AI agenty pro programování.",
   "24cddcfc4781cfcd": "Obvody transformerů",
   "253f0537136dbdb7": "Uganda",
+  "26bc2481dc6b340d": "Maryland",
   "26cc9442083084ff": "Vývoj operačních systémů a systémové programování",
   "274172cd9b242e6a": {
     "c": "Doporučené",
@@ -126,12 +138,14 @@
     "t": "PageTitle"
   },
   "275116dd1bbe1e27": "X (Twitter)",
+  "277c7fb54daa2ebd": "Ostrov prince Edwarda",
   "279124bb438079a6": "Od GPT-2 k GPT-OSS",
   "27c04964a9ee9e77": "Víra",
   "27ffbd1b12838b8d": "{name} na GitHubu",
   "28804cef2c57e4d5": "Copyright {year} Ben Gubler",
   "28a45948473da7f8": "GitHub",
   "28ac8a369bb99280": "Pepper & Carrot v Toki Pona",
+  "29b444a015ff1233": "Ohio",
   "29cfbfca6cedbb8e": "Celkem členů",
   "29e29dae950103eb": "Malta",
   "2ac29e7cedb1e1a3": "Gruzie",
@@ -143,13 +157,16 @@
   "2cd75ded56b3c523": "Finsko",
   "2ce262d5ab363438": "Příspěvky – Ben Gubler",
   "2d5e296989434d34": "Komplexní web pro procvičování skloňování podstatných jmen v češtině, slovenštině a ruštině pomocí interaktivních cvičení.",
+  "2e7b9240db0e31e0": "Manitoba",
   "2e881bd80673c0fa": "Russian Case Cards",
   "2ecf88ef9e8e4259": "Domů",
   "2f00e71f816405c2": "Dell XPS 15 (osobní)",
   "2f40f533f136f46d": "Estonsko",
   "2f4b57fb59c746d0": "GPU a vysoce výkonné programování",
+  "2fe919e89da5f2e6": "Colorado",
   "316301acba5cd27e": "Benin",
   "338042bd9af934e9": "Nizozemsko",
+  "338b1d1ab0e1e209": "Virginie",
   "34cb108cba52437c": {
     "c": "Sdílet",
     "i": 1,
@@ -216,9 +233,11 @@
   "42b2c611d8c7f4e9": "Farma zvířat",
   "4314e052a3524c51": "Oblíbené",
   "4373e32d3674bcd0": "Nástroje a materiály pro učení jazyků, včetně aplikací na procvičování skloňování a dalších pomůcek.",
+  "44d427dcadeba046": "Aljaška",
   "44f5c9d3d83113f1": "Litva",
   "46258874be363668": "Brazílie",
   "46612d7e43627fca": "Kamerun",
+  "46a7e9493b7e1ed9": "Florida",
   "4700d882bc81855a": "Honduras",
   "47ed76f7077e0280": "Doporučené – Ben Gubler",
   "480646ceb98c7163": "Zavřít",
@@ -227,6 +246,7 @@
     "i": 1,
     "t": "h4"
   },
+  "4924b4629204feb3": "Washington",
   "49378166463c2a95": "Myš MX Master 3S",
   "4a48758f8e4e06c2": "Redox OS",
   "4a73344dd83b8f0e": {
@@ -234,14 +254,18 @@
     "i": 1,
     "t": "PageTitle"
   },
+  "4a75eedfccdf7c16": "Iowa",
   "4a87671f82acf209": "Klávesnice NuPhy Air75 V3",
+  "4aacd3eca8e46bd9": "Newfoundland",
   "4add1139ae8ec5c1": "Kontakt",
   "4c9f5f6661d88e9b": "Austrálie",
   "4d6c82c642c573cb": "Malý princ",
   "4d99c304274d4897": "Nový Zéland",
   "4dbde0a18f4d9702": "Konec civilizace",
+  "4e56c17483677fa0": "Texas",
   "4ea7e037ee1dab24": "Esperaboard",
   "4fc74c7fb8c15459": "Převádí Datasety HuggingFace do MosaicML Streaming formátu (MDS) pro efektivní trénování v cloudu.",
+  "50a296d921f6b849": "Tennessee",
   "50cb50616fa9648e": "Izrael",
   "513bae38f55f8565": "Papua-Nová Guinea",
   "51ca342c96cf6a4d": "Toki Pona za 18 minut",
@@ -310,6 +334,7 @@
   },
   "61213b3c0bb8433e": "Naučte se X za Y minut",
   "6223c45811e4bc71": "Kanada",
+  "631ee7e693a308c8": "Idaho",
   "638d933fb5975d0e": "Itálie",
   "6455227309955661": "Pimsleur",
   "64ade5006b5d1b36": "Decline App",
@@ -322,7 +347,9 @@
   "6823e8871ecb55cd": "Indie",
   "686f913391efa52f": "tinylingo.com",
   "68b9f83d614198b5": "Chorvatsko",
+  "68bcba9a5e5a1b44": "Michigan",
   "69559c11d66b6a7d": "SQLBolt",
+  "698190aab8330166": "Západní Virginie",
   "69a38e8afebf5dd4": "Zavřít nabídku",
   "6a2bbccfb878b796": "Jamajka",
   "6a4e04c1621bc2cb": {
@@ -336,7 +363,8 @@
   "6ab453d6f14590c4": "Madagaskar",
   "6afaabc340379239": "Guyana",
   "6b27c952e181188e": "Obraz Doriana Graye",
-  "6c8c3ba17e59f0e3": "eSwatini",
+  "6c8c3ba17e59f0e3": "Eswatini",
+  "6c9a671d69c064a9": "Alberta",
   "6c9b9dc3b6bc4b97": "Příspěvek, který hledáte, neexistuje.",
   "6cf3a79976b7d2d2": "Desktop a terminál",
   "6d1c840177d6e865": {
@@ -352,6 +380,7 @@
   "6f83fb5bebf33e82": "Oblíbené knihy, filmy a osobní doporučení Bena Gublera.",
   "6fa4fca04aedadba": "Desktopové prostředí GNOME",
   "70e12787aab9ee65": "Natrénujte model pro uvažování pomocí GRPO",
+  "716ee68d07cb169f": "New Jersey",
   "71824c83c2d53ee9": "Řecko",
   "7224ad670aa82471": "Rozšíření pro Chrome, které promění stránku nové karty v přizpůsobitelný dashboard.",
   "723653dd8fec6fdc": "Hon na pačlověky",
@@ -359,21 +388,7 @@
   "730dcee4f7598b16": "MacBook Pro (pracovní)",
   "73ddaae9d7fad0d4": "Nigérie",
   "74816cbe74a8f193": "RSC Explorer",
-  "7593dfb14e078ee7": [
-    "Jsem Ben — studuji informatiku a arabštinu na BYU. Vytvářím open-source knihovny, webové aplikace a AI nástroje. Momentálně pracuji ve ",
-    {
-      "c": "General Translation",
-      "i": 1,
-      "t": "span"
-    },
-    ", dříve jsem stážoval ve ",
-    {
-      "c": "Vercel",
-      "i": 2,
-      "t": "span"
-    },
-    "."
-  ],
+  "74f0083d6ef2943c": "New Hampshire",
   "762da2d8b92c643b": "Toki Pona",
   "7653c554c5512d00": {
     "c": "Přepnout motiv",
@@ -381,6 +396,7 @@
     "t": "span"
   },
   "772e15e4f2f20a76": "Dokazování vět",
+  "77b037197feae42f": "Arkansas",
   "77d68abb75acf8cd": "Příspěvek nebyl nalezen",
   "78344b60f407928e": "Ostatní",
   "7a87a6c41143b213": {
@@ -400,6 +416,7 @@
   "7dd2d085f19452b5": "Belize",
   "7e74172900c60360": "Odkaz na sekci",
   "7f390daec7bf71b5": "hecto: Vytvořte si vlastní textový editor v jazyce Rust",
+  "7fe036ca5b1fef32": "Missouri",
   "8010116bdc2581d5": "Zambie",
   "8067f0bd58584c31": "Mapa hustoty členství LDS · 2024",
   "810c1343f4ab57db": "Úkryt",
@@ -415,6 +432,7 @@
   "82d3a80413d6a1c3": "Čtení na 5 min",
   "82f4c87f0265ae8b": "Irsko",
   "8313f3c1e394a316": "Nejlepší pro pracovní dotazy a delší konverzace",
+  "84309ae7bef4da41": "Distrikt Columbia",
   "84cc5eb3f0ed0d22": "Uruguay",
   "84de340c2461f1e1": "Sdílet na {name}",
   "84f949f44dd985cd": "Norsko",
@@ -436,7 +454,7 @@
   "88b7378582d9589a": "Argentina",
   "88faef7e6d8b4e4e": "Zimbabwe",
   "89809486109c2d37": "Tonga",
-  "899acbe0cb96edd5": "Interaktivní mapa hustoty členství Svatých posledních dnů po celém světě podle zemí, států USA a kanadských provincií.",
+  "899acbe0cb96edd5": "Interaktivní mapa hustoty členství LDS po celém světě podle zemí, států USA a kanadských provincií.",
   "89da3fc9986ff790": "Ukrajina",
   "8a5b42fae262c8d4": "Smrt Ivana Iljiče",
   "8b7fcaab32fd3bc4": "(archivováno)",
@@ -499,12 +517,36 @@
   "8f0d08612dc860db": "Jak slepý model vidí Zemi?",
   "9090d8c41e669be7": "Produktivita a život",
   "90c1b367e1e259e7": "eta",
+  "90ced2552874f076": "Havaj",
+  "920bb9308fb787be": {
+    "c": [
+      {
+        "c": "Učení jazyků je moje velká vášeň: mluvím anglicky, česky a slovensky a momentálně se učím rusky a arabsky.",
+        "i": 2,
+        "t": "li"
+      },
+      {
+        "c": "Miluji pobyt v přírodě! Mezi moje oblíbené koníčky patří vícedenní turistika s batohem, rybaření a jízda na horském kole.",
+        "i": 3,
+        "t": "li"
+      },
+      {
+        "c": "Mám rád skvělou literaturu, současnou i klasickou!",
+        "i": 4,
+        "t": "li"
+      }
+    ],
+    "i": 1,
+    "t": "ul"
+  },
   "9263adc2beb9fc18": "AI a strojové učení",
   "92747439a157d726": "helm",
   "92d1b68f576a0d5f": "Pacifik",
   "959d0255998606b4": "CodeCrafters: Build Your Own X in Rust",
+  "95aa988493b6ea8a": "Nový Brunšvik",
   "95e4c24a851ab7e3": "Dokonalý trik",
   "95f506e43b9b3265": "Příspěvek nebyl nalezen – Ben Gubler",
+  "960b7dbf0379a1da": "New York",
   "965afbdd105f4ab4": [
     {
       "c": "Projekty",
@@ -557,6 +599,8 @@
   "97c326fd40fc8abd": "Tisknutelné kartičky pádů pro rychlé a efektivní osvojení vzorů skloňování ruských podstatných jmen.",
   "97f7dc350050087c": "macOS",
   "98931a83736430a1": "Web využívající AI pro studium jazyků s personalizovanými lekcemi a interaktivním procvičováním.",
+  "99f1760751166004": "Osobní web Bena Gublera. Pracuje v General Translation, dříve byl na stáži ve Vercelu. Na BYU studuje AI a lidské jazyky.",
+  "9a1319fc4e39fee6": "Louisiana",
   "9a5c9a18a1736a01": "Profilová fotka",
   "9a806cc1e5ca8a4a": "Umělá inteligence",
   "9b362fb8f28b34d1": "Rakousko",
@@ -564,6 +608,7 @@
   "9bc7b69261332832": "Algebraické efekty pro nás ostatní",
   "9c2986fca82710b5": "Zakladatel",
   "9cc58ceb8f936642": "Kostarika",
+  "9d902117f81037c5": "Jižní Karolína",
   "9dcaba5c9188af36": "Namibie",
   "9e0e71048f2e77ca": "Archiv",
   "9ec680f43d9c06ad": "Švýcarsko",
@@ -584,12 +629,14 @@
     },
     "."
   ],
+  "9fd3c0201d2e4091": "Wyoming",
   "a040bdb90a115bab": "Psaní interpretu v Go",
   "a04daf17e3be1edc": "Periferie",
   "a0c7b60e4bd05412": "RSS",
   "a1f164c66500808a": "Fidži",
   "a20c7af31a16306f": "Technologie, aplikace a nástroje, které Ben Gubler používá k vývoji a pro zvýšení produktivity.",
   "a20f64ea291a4e8a": "44 Scotland Street",
+  "a2d1eaffb07f745f": "Severní Karolína",
   "a4b99d2d2e59c99b": "Francie",
   "a59f112c71cb1540": "Slovinsko",
   "a626d84d7422494e": "Botswana",
@@ -605,6 +652,7 @@
   "aa5bfb3c14b0a681": "Základy",
   "aa600fbbd0a9d686": "Výchozí konfigurace Nixu pro macOS s rozumným nastavením a dokumentací.",
   "aab25fba56518455": "Lingvistika",
+  "ab1992a83eca13be": "Arizona",
   "abaacba7b0f79fe8": "Resetovat",
   "abc7afca4ddb4c94": "Protéká tudy řeka",
   "abf651cef8f7b7b2": "Série Inkoustové srdce",
@@ -612,13 +660,6 @@
   "ac94723b2e9de669": "Beelinguapp",
   "acd3df01d58f5765": "The Divergent Association Task",
   "ade50401b1396de9": "Příspěvky",
-  "ae22c9e36cd4543e": [
-    {
-      "i": 1,
-      "t": "Loader2"
-    },
-    "Vysvětluji..."
-  ],
   "af3863609bbecf5b": "Webový vývoj a React",
   "afaa0561ba5a8ba7": {
     "c": "Příspěvek nebyl nalezen",
@@ -631,11 +672,18 @@
     "t": "p"
   },
   "b001897d730bf8b0": "Venezuela",
-  "b06fe500b9dcc919": "Salvador",
+  "b06fe500b9dcc919": "El Salvador",
   "b09fa3fb65954f11": "Země",
   "b104514dd0ff33a5": "Mexiko",
   "b22acab22e51149b": "Japonsko",
   "b24c8ee92c656887": "USA",
+  "b28cd0fa97a4537e": [
+    {
+      "i": 1,
+      "t": "Loader2"
+    },
+    "Vysvětluji…"
+  ],
   "b305d06d0af683b4": "Stránka nebyla nalezena - Ben Gubler",
   "b387818540cf9565": "Dánsko",
   "b4c836e33738625a": "Lucembursko",
@@ -643,6 +691,7 @@
   "b563aee1e5fe12ee": "gom",
   "b6679fa5d0ab6497": "Psaní operačního systému v Rustu",
   "b710e73c5611e3f4": "Kontakt – Ben Gubler",
+  "b7ce1cee0fff76af": "Delaware",
   "b9ee30cd580736c2": "Rusko",
   "ba1805140f3daec4": "Bulharsko",
   "ba2ee2289e8480fd": "Jižní Korea",
@@ -653,11 +702,14 @@
   "bd4cbf79a8e9b868": "Linux From Scratch",
   "be138224ecf6224a": "Knihy, filmy a další věci, které mám rád a doporučuji.",
   "be7aef60733f8a31": "Czech Case Cards – kartičky pádů - Ben Gubler",
+  "bf93f69f8f64acb8": "Nebraska",
   "c0fa5428a2f6a612": "Jižní Amerika",
   "c145bf1755845240": "Pobřeží slonoviny",
   "c18af923a81d97db": "Matematika a formální metody",
   "c24789fa6ee1226c": "shade",
+  "c399944bd45a8e59": "Jižní Dakota",
   "c3ae9cdbdb6ac881": "Začít vysvětlovat",
+  "c3b8cdf27ab3c87a": "Maine",
   "c3d75dccd88075f2": "Interstellar",
   "c416e456567fdf39": "mokka",
   "c480d98c240a3a0f": "Obsah je povinný",
@@ -672,6 +724,7 @@
   "c59720248f69d5aa": "Doporučené",
   "c60bbea0759db02a": "Aplikace pro učení jazyků zaměřená na zlepšení porozumění. Poslouchejte autentické podcasty rodilých mluvčích s přepisy a překlady generovanými AI.",
   "c62378275dc5c4f6": "moje vlastní nástroje",
+  "c6ac6b7f87f34e3b": "Pensylvánie",
   "c71006556cf1328e": {
     "c": [
       {
@@ -686,6 +739,7 @@
   "c772710e952c391c": "Filipíny",
   "c7a2323b7e48530a": "Můj stack - Ben Gubler",
   "c7ee1a20e25cdfe0": "Just Mercy",
+  "c8cdfc1fc3866c97": "Yukon",
   "c913a4cd1fdb059a": "GPU a tensorové hádanky",
   "c96c6913115e475e": "Hardware",
   "c9c50f0332867e60": "Panama",
@@ -699,6 +753,7 @@
   "cc77c2b66c79a626": "Splashpad",
   "cc7e76bf9365389f": "Poznámky o softwaru, jazycích a o tom, kde se prolínají.",
   "cc84bfe0ee5d0174": "Projekty",
+  "cd2a68dbdbcbcab7": "Saskatchewan",
   "cd8ccd4b937873e1": "Tmavý",
   "cd8d0c77a410efb9": {
     "c": [
@@ -729,11 +784,6 @@
     "i": 1,
     "t": "p"
   },
-  "ceb6ba0f86d976c1": {
-    "c": "Právě čtu váš blogový příspěvek...",
-    "i": 1,
-    "t": "p"
-  },
   "cf1dfa31f755ed76": "Porovnávejte tokenizéry napříč mnoha jazyky pomocí interaktivních vizualizací a analýzy.",
   "cfb740b7462fab33": "Příspěvky",
   "d006c44856493996": "Informatika",
@@ -748,9 +798,11 @@
   "d31ed8a36de506ed": "Švédsko",
   "d3c05da643a43453": "Indonésie",
   "d3c64246988e1ab2": "Mongolsko",
+  "d44b1428aec63e20": "Rhode Island",
   "d486259b8271dcc6": "Lehký šablonovací engine pro JavaScript s podporou helperů, partialů, filtrů atd. Projekt, který mi pomohl proniknout do open‑source světa.",
   "d486d877a0d841e6": "Textual",
   "d5ddfbc5b8cd23e4": "Nástroje a materiály, které jsem vytvořil, aby pomáhaly s učením jazyků.",
+  "d6674c6b48b00bab": "Utah",
   "d7899ed4822e5ab1": "Moje nástroje",
   "d7caa4d010633d49": "Ježíš Kristus",
   "d87f87ec78d92657": "Malajsie",
@@ -774,10 +826,15 @@
   "dc94ea51cf0b8c7a": "Filmy",
   "dc9f1a12fca86efe": "Rychlý vestavěný JS šablonovací engine. Široce používaný, s více než 1,5 tis. hvězdičkami na GitHubu a ~2 mil. stažení týdně.",
   "def93bda648985e9": "Vysvětli jako pro pětileté",
+  "df477c814cdcac4b": "Wisconsin",
   "e0ec8b1ac98ca1d6": "Wispr Flow",
   "e1753ab0ce7d5975": "LinkedIn",
+  "e395601b2a099d12": "Britská Kolumbie",
+  "e3960a55f71b6ffe": "Indiana",
   "e46ea56cf3bd8f10": "Bolívie",
   "e5cff5481ca8546c": "Zábavné a zajímavé",
+  "e69a14dc872a26c4": "Alabama",
+  "e6a75c0aff68a540": "Minnesota",
   "e6b4f76a07b162fd": "Bahrajn",
   "e6d86a912aea1aa4": {
     "c": "Učení jazyků",
@@ -789,6 +846,8 @@
   "e8192d1f6f3b385a": "Nikaragua",
   "e9143d18038a1abb": "Day One Journal",
   "e9a38127bc28b059": "Srí Lanka",
+  "e9fccbdf357946f4": "Nevada",
+  "ea11ad22a03140b8": "Nové Skotsko",
   "ea3bb70a42a500de": "PWA (progresivní webová aplikace) pro procvičování vzorů skloňování v češtině, slovenštině a ruštině.",
   "ea58be5aff64a6dc": "Kambodža",
   "eafa3523b0b0171d": "Albánie",
@@ -809,6 +868,9 @@
   "eb7cdb322e2cac62": "Mosambik",
   "ec69ee288daa47b4": "Effekt",
   "ec8e528936b96b22": "Bezpečnost",
+  "ec9fffcd5e011807": "Connecticut",
+  "ecc721b6c3807c08": "Nové Mexiko",
+  "ee39dc118c28042b": "Severní Dakota",
   "ee7fdad0f1376f93": "Moldavsko",
   "ef1e481ac2b7ac31": "Americké",
   "ef8e91cb52a44f12": "Španělsko",
@@ -819,6 +881,7 @@
   },
   "f41ea186c275b56e": "O mně",
   "f4a62bd4d2559581": "Lesotho",
+  "f4f0914ef1d23a85": "Ontario",
   "f52129a3f95b5597": "Výukové materiály",
   "f6a89728879f3df1": "Bible",
   "f706057a0ef052ff": {
