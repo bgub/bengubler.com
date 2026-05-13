@@ -1,6 +1,7 @@
 import { allPosts } from "content-collections";
 import { decodeMsg, T } from "gt-next";
 import { getLocale } from "gt-next/server";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { ProjectList } from "@/components/project-list";
@@ -14,12 +15,19 @@ import { projectsData } from "@/lib/projects";
 
 type Post = (typeof allPosts)[0];
 
+export const metadata: Metadata = {
+  title: {
+    absolute: "Ben Gubler",
+  },
+  description:
+    "Ben Gubler's personal website. Working at General Translation, previously interned at Vercel. Studying AI and human languages at BYU.",
+};
+
 export default async function HomePage() {
   const locale = (await getLocale()) || "en";
 
   const sortedPosts = allPosts
-    .filter((post: Post) => post.locale === locale)
-    .filter((post: Post) => !post.archived)
+    .filter((post: Post) => post.locale === locale && !post.archived)
     .sort((a: Post, b: Post) => b.date.getTime() - a.date.getTime());
 
   const recentPosts = sortedPosts.slice(0, 4).map((post) => {
@@ -43,7 +51,7 @@ export default async function HomePage() {
 
         <p className="font-serif text-lg sm:text-xl leading-relaxed text-ink-soft font-light mb-2.5">
           <T>
-            I'm Ben — a student at BYU studying CS and Arabic. I build
+            I'm Ben, a student at BYU studying CS and Arabic. I build
             open-source libraries, web applications, and AI tools. Currently
             working at{" "}
             <span className="bg-buttercream px-1.5 py-0.5 rounded-sm text-foreground font-normal">
@@ -73,14 +81,14 @@ export default async function HomePage() {
               Writing
             </Link>
             <span className="mx-1 text-ink-faint">&middot;</span>
-            <a
+            <Link
               href="/ben-gubler-resume.pdf"
               className="text-ink-soft no-underline border-b border-border pb-px hover:text-foreground hover:border-ink-mute transition-colors"
               target="_blank"
               rel="noopener noreferrer"
             >
               R&eacute;sum&eacute;
-            </a>
+            </Link>
             <span className="mx-1 text-ink-faint">&middot;</span>
             <Link
               href="https://github.com/bgub"

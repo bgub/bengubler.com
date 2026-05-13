@@ -35,8 +35,7 @@ const createFeed = async (
 
   // Get all published posts for current locale, sorted by date
   const posts = allPosts
-    .filter((post) => post.locale === locale)
-    .filter((post) => !post.archived)
+    .filter((post) => post.locale === locale && !post.archived)
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 
   for (const post of posts) {

@@ -90,16 +90,12 @@ export async function GET(request: Request) {
           <h1
             style={{
               fontSize: title.length > 50 ? "56px" : "72px",
-              fontWeight: "800",
+              fontWeight: "600",
               color: "#0f172a",
               marginBottom: "32px",
               lineHeight: 1.1,
               letterSpacing: "-0.025em",
               textAlign: "center",
-              background: "linear-gradient(135deg, #0f172a 0%, #334155 100%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
             }}
           >
             {title}

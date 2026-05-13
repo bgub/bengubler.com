@@ -11,7 +11,7 @@ interface TOCLinkProps {
 export function TOCLink({ node, activeSection }: TOCLinkProps) {
   const isActive = activeSection === node.id;
 
-  const handleClick = (e: React.MouseEvent) => {
+  const scrollToHeading = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!node.id) return;
     const element = document.getElementById(node.id);
@@ -29,7 +29,7 @@ export function TOCLink({ node, activeSection }: TOCLinkProps) {
   return (
     <a
       href={`#${node.id}`}
-      onClick={handleClick}
+      onClick={scrollToHeading}
       className={cn(
         "block py-0.5 font-serif text-[13px] leading-relaxed transition-colors hover:text-foreground no-underline",
         isSubHeading && "pl-2.5 text-ink-mute",
@@ -40,7 +40,7 @@ export function TOCLink({ node, activeSection }: TOCLinkProps) {
             : "text-ink-soft font-light",
       )}
     >
-      {isSubHeading ? "— " : "§ "}
+      {isSubHeading ? "\u203a " : "§ "}
       {node.title}
     </a>
   );

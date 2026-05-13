@@ -50,7 +50,7 @@ export function ProjectList({ projects, compact = false }: ProjectListProps) {
                       name: m(project.name),
                     })}
                   >
-                    <GitHubIcon className="h-4 w-4" />
+                    <GitHubIcon className="size-4" />
                   </Link>
                 )}
               </div>

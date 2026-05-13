@@ -7,15 +7,17 @@ const baseUrl = getBaseUrl();
 export default async function sitemap() {
   const locale = (await getLocale()) || "en";
   // Content links from non-archived posts only
-  const postLinks = allPosts
-    .filter((post) => post.locale === locale)
-    .filter((post) => !post.archived)
-    .map((post) => ({
+  const postLinks = [];
+  for (const post of allPosts) {
+    if (post.locale !== locale || post.archived) continue;
+
+    postLinks.push({
       url: `${baseUrl}/posts/${post.slug}`,
       lastModified: post.lastUpdated || post.date,
       changeFrequency: "weekly" as const,
       priority: 0.8,
-    }));
+    });
+  }
 
   // Static page links
   const pageLinks = [

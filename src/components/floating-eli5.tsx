@@ -80,19 +80,19 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
         render={
           <Button
             size="icon"
-            className="fixed bottom-6 inset-e-6 h-12 w-12 rounded-full shadow-lg"
+            className="fixed bottom-6 inset-e-6 size-12 rounded-full shadow-lg"
             title={gt("Explain Like I'm 5")}
           />
         }
       >
-        <Brain className="h-5 w-5" />
+        <Brain className="size-5" />
       </DialogTrigger>
 
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-hidden">
         <DialogHeader>
           <T>
             <DialogTitle className="flex items-center gap-2">
-              <Brain className="h-5 w-5" />
+              <Brain className="size-5" />
               Explain Like I'm 5
             </DialogTitle>
           </T>
@@ -118,16 +118,16 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
                         paragraph.trim() && <p key={paragraph}>{paragraph}</p>,
                     )}
                   {isExplaining && (
-                    <span className="inline-block w-2 h-4 bg-foreground animate-pulse ms-1" />
+                    <span className="inline-block h-4 w-2 bg-foreground animate-pulse ms-1" />
                   )}
                 </div>
               </div>
             ) : isExplaining ? (
               <div className="flex flex-col items-center justify-center py-8">
-                <Loader2 className="h-6 w-6 animate-spin mb-3" />
+                <Loader2 className="size-6 animate-spin mb-3" />
                 <T>
                   <p className="text-sm font-medium">
-                    Reading your blog post...
+                    Reading your blog post&hellip;
                   </p>
                 </T>
                 <T>
@@ -138,7 +138,7 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-8">
-                <Brain className="h-8 w-8 text-muted-foreground mb-3" />
+                <Brain className="size-8 text-muted-foreground mb-3" />
                 <T>
                   <p className="text-sm font-medium mb-1">Ready to Simplify!</p>
                 </T>
@@ -160,12 +160,12 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
           >
             {isExplaining ? (
               <T>
-                <Loader2 className="h-4 w-4 animate-spin me-2" />
-                Explaining...
+                <Loader2 className="size-4 animate-spin me-2" />
+                Explaining&hellip;
               </T>
             ) : (
               <>
-                <Brain className="h-4 w-4 me-2" />
+                <Brain className="size-4 me-2" />
                 {explanation ? gt("Explain Again") : gt("Start Explaining")}
               </>
             )}

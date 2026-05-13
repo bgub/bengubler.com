@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function PostNotFound() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6">
+    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center gap-y-6">
       <div className="space-y-4">
         <T>
           <h1 className="font-serif text-6xl font-medium text-muted-foreground">

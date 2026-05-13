@@ -9,6 +9,32 @@ interface ClientTOCProps {
   tree: TOCNode;
 }
 
+function TOCNodeList({
+  nodes,
+  activeSection,
+}: {
+  nodes: TOCNode[];
+  activeSection: string;
+}) {
+  return (
+    <ul className="space-y-0.5">
+      {nodes.map((node) => (
+        <li key={node.id}>
+          <TOCLink node={node} activeSection={activeSection} />
+          {node.children.length > 0 && (
+            <div className="mt-0.5">
+              <TOCNodeList
+                nodes={node.children}
+                activeSection={activeSection}
+              />
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function ClientTOC({ tree }: ClientTOCProps) {
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -41,23 +67,6 @@ export function ClientTOC({ tree }: ClientTOCProps) {
     return null;
   }
 
-  const renderTOCNodes = (nodes: TOCNode[], depth = 0) => {
-    return (
-      <ul className="space-y-0.5">
-        {nodes.map((node) => (
-          <li key={node.id}>
-            <TOCLink node={node} activeSection={activeSection} />
-            {node.children.length > 0 && (
-              <div className="mt-0.5">
-                {renderTOCNodes(node.children, depth + 1)}
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
-    );
-  };
-
   return (
     <div className="space-y-2">
       <T>
@@ -65,7 +74,7 @@ export function ClientTOC({ tree }: ClientTOCProps) {
           In this entry
         </h3>
       </T>
-      {renderTOCNodes(tree.children)}
+      <TOCNodeList nodes={tree.children} activeSection={activeSection} />
     </div>
   );
 }

@@ -59,8 +59,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const gt = await getGT();
-  const locale = await getLocale();
+  const [gt, locale] = await Promise.all([getGT(), getLocale()]);
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
@@ -80,7 +79,7 @@ export default async function RootLayout({
                   <header className="sticky top-0 z-40 md:hidden border-b border-border bg-shell/95 backdrop-blur supports-backdrop-filter:bg-shell/60">
                     <div className="flex h-14 items-center justify-between px-4 sm:px-6">
                       <Link href="/" className="flex items-center gap-3">
-                        <div className="relative w-9 h-9 rounded-full overflow-hidden border border-border shrink-0">
+                        <div className="relative size-9 rounded-full overflow-hidden border border-border shrink-0">
                           <Image
                             src="/bengubler.jpg"
                             alt={gt("Profile photo")}
