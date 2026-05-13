@@ -31,7 +31,7 @@ const LINK_TO_SECTION_LABEL = msg("Link to section");
 
 // Header component with link icon that allows text wrapping
 const createHeaderComponent = (tagName: string) => {
-  return ({ id, children, ...props }: HeaderProps) => {
+  const HeaderComponent = ({ id, children, ...props }: HeaderProps) => {
     const m = useMessages();
     return createElement(
       tagName,
@@ -54,6 +54,7 @@ const createHeaderComponent = (tagName: string) => {
         ),
     );
   };
+  return HeaderComponent;
 };
 
 const mdxComponents = {
