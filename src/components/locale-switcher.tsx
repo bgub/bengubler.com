@@ -4,11 +4,11 @@ import { useGT } from "gt-next";
 import { useDefaultLocale, useLocaleSelector } from "gt-next/client";
 import { cn } from "@/lib/utils";
 
-type LocaleOrbitProps = {
+type LocaleSwitcherProps = {
   className?: string;
 };
 
-export function LocaleOrbit({ className }: LocaleOrbitProps) {
+export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
   const defaultLocale = useDefaultLocale();
   const { locale, locales, setLocale } = useLocaleSelector();
   const gt = useGT();

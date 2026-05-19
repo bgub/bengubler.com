@@ -4,7 +4,7 @@ import { useGT, useLocale, useMessages } from "gt-next";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LocaleOrbit } from "@/components/locale-orbit";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 import { Squiggle } from "@/components/squiggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { navigation } from "@/lib/navigation";
@@ -87,7 +87,7 @@ export function Sidebar() {
         {/* Theme Toggle & Locale Selector */}
         <div className="px-5 pb-5 space-y-3">
           <div className="hidden md:block">
-            <LocaleOrbit className="mx-auto" />
+            <LocaleSwitcher className="mx-auto" />
           </div>
           <div className="border-t border-dotted border-border pt-3 flex items-center justify-between">
             <span className="font-mono text-[11px] text-muted-foreground tracking-wider">

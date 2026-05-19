@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { LocaleOrbit } from "@/components/locale-orbit";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 import { Squiggle } from "@/components/squiggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -114,7 +114,7 @@ export function MobileNav() {
 
           <Squiggle className="text-ink-faint my-3" />
 
-          <LocaleOrbit />
+          <LocaleSwitcher />
 
           <div className="border-t border-dotted border-border mt-3 pt-3 flex items-center justify-between">
             <span className="font-mono text-[11px] text-muted-foreground tracking-wider">
