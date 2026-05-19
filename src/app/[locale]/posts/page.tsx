@@ -66,7 +66,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
             <T>Posts</T>
           </PageTitle>
           <Link
-            href="/rss.xml"
+            href={`/${locale}/rss.xml`}
             className="inline-flex items-center gap-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-sm hover:bg-rule-soft"
             target="_blank"
             rel="noopener noreferrer"

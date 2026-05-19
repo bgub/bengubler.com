@@ -6,13 +6,15 @@ const baseUrl = getBaseUrl();
 
 export default async function sitemap() {
   const locale = (await getLocale()) || "en";
+  const localeBaseUrl = `${baseUrl}/${locale}`;
+
   // Content links from non-archived posts only
   const postLinks = [];
   for (const post of allPosts) {
     if (post.locale !== locale || post.archived) continue;
 
     postLinks.push({
-      url: `${baseUrl}/posts/${post.slug}`,
+      url: `${localeBaseUrl}/posts/${post.slug}`,
       lastModified: post.lastUpdated || post.date,
       changeFrequency: "weekly" as const,
       priority: 0.8,
@@ -31,7 +33,7 @@ export default async function sitemap() {
     "/language-learning/czech-declensions",
     "/language-learning/russian-declensions",
   ].map((url) => ({
-    url: `${baseUrl}${url}`,
+    url: `${localeBaseUrl}${url}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: url === "" ? 1.0 : 0.6,

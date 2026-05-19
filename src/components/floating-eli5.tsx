@@ -1,6 +1,6 @@
 "use client";
 
-import { T, useGT, Var } from "gt-next";
+import { T, useGT, useLocale, Var } from "gt-next";
 import { Brain, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -22,6 +22,7 @@ interface FloatingELI5Props {
 
 export function FloatingELI5({ content, title }: FloatingELI5Props) {
   const gt = useGT();
+  const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
   const [isExplaining, setIsExplaining] = useState(false);
   const [explanation, setExplanation] = useState("");
@@ -31,7 +32,7 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
     setExplanation("");
 
     try {
-      const response = await fetch("/api/eli5", {
+      const response = await fetch(`/${locale}/api/eli5`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

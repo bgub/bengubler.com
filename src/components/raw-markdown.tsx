@@ -1,6 +1,6 @@
 "use client";
 
-import { Branch, T } from "gt-next";
+import { Branch, T, useLocale } from "gt-next";
 import { useState } from "react";
 
 interface RawMarkdownProps {
@@ -9,6 +9,7 @@ interface RawMarkdownProps {
 }
 
 export function RawMarkdown({ slug, content }: RawMarkdownProps) {
+  const locale = useLocale();
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = async () => {
@@ -31,7 +32,7 @@ export function RawMarkdown({ slug, content }: RawMarkdownProps) {
       <div className="font-serif text-[12.5px] text-ink-soft font-light leading-relaxed space-y-1">
         <T>
           <a
-            href={`/posts/${slug}.md`}
+            href={`/${locale}/posts/${slug}.md`}
             target="_blank"
             rel="noopener noreferrer"
             className="block text-foreground no-underline border-b border-border w-fit hover:border-ink-mute transition-colors"

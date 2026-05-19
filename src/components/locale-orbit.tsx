@@ -1,7 +1,7 @@
 "use client";
 
-import { useDefaultLocale, useLocaleSelector } from "gt-next/client";
 import { useGT } from "gt-next";
+import { useDefaultLocale, useLocaleSelector } from "gt-next/client";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
@@ -72,7 +72,7 @@ export function LocaleOrbit({ className }: LocaleOrbitProps) {
                   : "border-ink-faint text-muted-foreground hover:border-ink-mute hover:text-foreground",
               )}
               aria-pressed={active}
-              aria-label={gt('Switch language to {code}', { code })}
+              aria-label={gt("Switch language to {code}", { code })}
             >
               {code.toUpperCase()}
             </button>

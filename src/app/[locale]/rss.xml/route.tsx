@@ -8,27 +8,41 @@ import { getBaseUrl } from "@/lib/utils";
 
 const baseUrl = getBaseUrl();
 
+function RssTweet({ id }: { id?: string }) {
+  if (!id) return null;
+
+  return (
+    <p>
+      <a href={`https://x.com/i/status/${id}`}>View tweet</a>
+    </p>
+  );
+}
+
 const createFeed = async (
   renderToString: typeof ReactDOMServer.renderToString,
 ) => {
   const locale = (await getLocale()) || "en";
+  const localeBaseUrl = `${baseUrl}/${locale}`;
   const gt = await getGT();
   const feed = new Feed({
     title: "Ben Gubler",
-    description:
-      gt("Ben Gubler's personal website. Thoughts on web development, AI, and building things that matter."),
-    id: baseUrl,
-    link: baseUrl,
+    description: gt(
+      "Ben Gubler's personal website. Thoughts on web development, AI, and building things that matter.",
+    ),
+    id: localeBaseUrl,
+    link: localeBaseUrl,
     language: locale,
     favicon: `${baseUrl}/icon.png`,
-    copyright: gt("Copyright {year} Ben Gubler", { year: new Date().getFullYear() }),
+    copyright: gt("Copyright {year} Ben Gubler", {
+      year: new Date().getFullYear(),
+    }),
     author: {
       name: "Ben Gubler",
       email: "hello@bengubler.com",
       link: baseUrl,
     },
     feedLinks: {
-      rss2: `${baseUrl}/rss.xml`,
+      rss2: `${localeBaseUrl}/rss.xml`,
     },
     generator: "Next.js",
   });
@@ -40,12 +54,14 @@ const createFeed = async (
 
   for (const post of posts) {
     try {
-      const html = renderToString(<MDXContent code={post.mdx} />);
+      const html = renderToString(
+        <MDXContent code={post.mdx} components={{ Tweet: RssTweet }} />,
+      );
 
       feed.addItem({
         title: post.title,
-        id: `${baseUrl}/posts/${post.slug}`,
-        link: `${baseUrl}/posts/${post.slug}?utm_campaign=feed&utm_source=rss`,
+        id: `${localeBaseUrl}/posts/${post.slug}`,
+        link: `${localeBaseUrl}/posts/${post.slug}?utm_campaign=feed&utm_source=rss`,
         description: post.description,
         content: html,
         date: post.date,

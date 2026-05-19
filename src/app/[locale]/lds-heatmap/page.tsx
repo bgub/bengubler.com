@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { getGT } from "gt-next/server";
+import type { Metadata } from "next";
 import { Heatmap } from "./heatmap";
 import type { Topology } from "./topojson";
 
@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: gt("LDS Membership Heat Map — 2024"),
     description: gt(
-      "Interactive heat map of Latter-day Saint membership worldwide, by country, US state, and Canadian province."
+      "Interactive heat map of Latter-day Saint membership worldwide, by country, US state, and Canadian province.",
     ),
   };
 }

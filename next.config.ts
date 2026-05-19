@@ -10,8 +10,20 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/rss.xml",
+        destination: "/en/rss.xml",
+      },
+      {
+        source: "/sitemap.xml",
+        destination: "/en/sitemap.xml",
+      },
+      {
         source: "/posts/:slug.md",
-        destination: "/api/posts/:slug/raw",
+        destination: "/en/api/posts/:slug/raw",
+      },
+      {
+        source: "/:locale/posts/:slug.md",
+        destination: "/:locale/api/posts/:slug/raw",
       },
     ];
   },
@@ -25,6 +37,16 @@ const nextConfig: NextConfig = {
       {
         source: "/language-learning/russian-case-cards",
         destination: "/language-learning/russian-declensions",
+        permanent: true,
+      },
+      {
+        source: "/:locale/language-learning/czech-case-cards",
+        destination: "/:locale/language-learning/czech-declensions",
+        permanent: true,
+      },
+      {
+        source: "/:locale/language-learning/russian-case-cards",
+        destination: "/:locale/language-learning/russian-declensions",
         permanent: true,
       },
     ];

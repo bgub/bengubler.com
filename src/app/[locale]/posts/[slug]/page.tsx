@@ -55,7 +55,7 @@ export async function generateMetadata({
     description: post.description,
     type: "post",
   });
-  const ogImageUrl = `/og?${ogParams.toString()}`;
+  const ogImageUrl = `/${locale}/og?${ogParams.toString()}`;
 
   return {
     title: post.title,
