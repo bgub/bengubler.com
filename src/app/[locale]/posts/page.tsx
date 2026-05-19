@@ -10,6 +10,8 @@ function sanitize(slug: string) {
   return slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
 }
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const gt = await getGT();
   return {
@@ -122,7 +124,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
         </div>
       )}
 
-      {/* Posts — row layout */}
+      {/* Posts - row layout */}
       <section>
         <div>
           {filteredPosts.map((post) => (

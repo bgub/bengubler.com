@@ -1,5 +1,5 @@
 import { allPosts } from "content-collections";
-import { getGT } from "gt-next/server";
+import { getGT, registerLocale } from "gt-next/server";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -7,6 +7,7 @@ export async function GET(
   { params }: { params: Promise<{ locale: string; slug: string }> },
 ) {
   const { locale, slug } = await params;
+  registerLocale(locale);
 
   // Find the post
   const post = allPosts.find((p) => p.slug === slug && p.locale === locale);

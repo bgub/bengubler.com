@@ -28,6 +28,8 @@ export function generateStaticParams() {
   return getLocales().map((locale) => ({ locale }));
 }
 
+export const dynamic = "error";
+
 export async function generateMetadata(): Promise<Metadata> {
   const [gt, locale] = await Promise.all([getGT(), getLocale()]);
   const description = `${gt(

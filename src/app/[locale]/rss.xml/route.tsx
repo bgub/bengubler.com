@@ -1,7 +1,7 @@
 import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
 import { Feed } from "feed";
-import { getGT, getLocale } from "gt-next/server";
+import { getGT, registerLocale } from "gt-next/server";
 import { NextResponse } from "next/server";
 import type ReactDOMServer from "react-dom/server";
 import { getBaseUrl } from "@/lib/utils";
@@ -20,8 +20,8 @@ function RssTweet({ id }: { id?: string }) {
 
 const createFeed = async (
   renderToString: typeof ReactDOMServer.renderToString,
+  locale: string,
 ) => {
-  const locale = (await getLocale()) || "en";
   const localeBaseUrl = `${baseUrl}/${locale}`;
   const gt = await getGT();
   const feed = new Feed({
@@ -82,11 +82,17 @@ const createFeed = async (
   return feed.rss2();
 };
 
-export async function GET(): Promise<NextResponse> {
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ locale: string }> },
+): Promise<NextResponse> {
   try {
+    const { locale } = await params;
+    registerLocale(locale);
+
     const ReactDOMServer = (await import("react-dom/server")).default;
 
-    const feed = await createFeed(ReactDOMServer.renderToString);
+    const feed = await createFeed(ReactDOMServer.renderToString, locale);
 
     // Add XML stylesheet reference for better styling
     const updatedFeed = feed.replace(

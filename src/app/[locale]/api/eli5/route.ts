@@ -1,8 +1,14 @@
 import { streamText } from "ai";
-import { getGT } from "gt-next/server";
+import { getGT, registerLocale } from "gt-next/server";
 import type { NextRequest } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ locale: string }> },
+) {
+  const { locale } = await params;
+  registerLocale(locale);
+
   const gt = await getGT();
 
   try {

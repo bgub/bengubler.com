@@ -54,8 +54,4 @@ const nextConfig: NextConfig = {
 };
 
 // withContentCollections must be the outermost plugin
-export default withContentCollections(
-  withGTConfig(nextConfig, {
-    experimentalLocaleResolution: true,
-  }),
-);
+export default withContentCollections(withGTConfig(nextConfig));
