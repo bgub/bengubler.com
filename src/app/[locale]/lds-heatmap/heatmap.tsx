@@ -173,7 +173,7 @@ function HeatmapHeader({
       <div>
         <div
           className="font-mono uppercase"
-          style={{ fontSize: 12, letterSpacing: 1, color: "#888" }}
+          style={{ fontSize: 12, letterSpacing: 0.5, color: "#888" }}
         >
           <T>Membership Heat Map &middot; 2024</T>
         </div>
@@ -548,7 +548,7 @@ function Rank({
         className="font-mono uppercase"
         style={{
           fontSize: 12,
-          letterSpacing: 1,
+          letterSpacing: 0.5,
           color: "#aaa",
           marginBottom: 6,
         }}

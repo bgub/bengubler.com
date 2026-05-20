@@ -32,22 +32,23 @@ export async function GET(
   const localeBaseUrl = `${baseUrl}/${locale}`;
   const staticLastModified = new Date();
 
-  const urls = [
-    ...staticSitemapPaths.map((url) => ({
-      url: `${localeBaseUrl}${url}`,
-      lastModified: staticLastModified,
-      changeFrequency: "monthly",
-      priority: url === "" ? 1.0 : 0.6,
-    })),
-    ...allPosts
-      .filter((post) => post.locale === locale && !post.archived)
-      .map((post) => ({
-        url: `${localeBaseUrl}/posts/${post.slug}`,
-        lastModified: post.lastUpdated || post.date,
-        changeFrequency: "weekly",
-        priority: 0.8,
-      })),
-  ];
+  const urls = staticSitemapPaths.map((url) => ({
+    url: `${localeBaseUrl}${url}`,
+    lastModified: staticLastModified,
+    changeFrequency: "monthly",
+    priority: url === "" ? 1.0 : 0.6,
+  }));
+
+  for (const post of allPosts) {
+    if (post.locale !== locale || post.archived) continue;
+
+    urls.push({
+      url: `${localeBaseUrl}/posts/${post.slug}`,
+      lastModified: post.lastUpdated || post.date,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    });
+  }
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
