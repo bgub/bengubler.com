@@ -1,19 +1,19 @@
 import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
 import { Feed } from "feed";
-import { getGT, registerLocale } from "gt-next/server";
+import { getGT } from "gt-next/server";
 import { NextResponse } from "next/server";
 import type ReactDOMServer from "react-dom/server";
 import { getBaseUrl } from "@/lib/utils";
 
 const baseUrl = getBaseUrl();
 
-function RssTweet({ id }: { id?: string }) {
+function RssTweet({ id, label }: { id?: string; label?: string }) {
   if (!id) return null;
 
   return (
     <p>
-      <a href={`https://x.com/i/status/${id}`}>View tweet</a>
+      <a href={`https://x.com/i/status/${id}`}>{label}</a>
     </p>
   );
 }
@@ -24,6 +24,10 @@ const createFeed = async (
 ) => {
   const localeBaseUrl = `${baseUrl}/${locale}`;
   const gt = await getGT();
+  const viewTweetText = gt("View tweet");
+  const LocalizedTweet = (props: { id?: string }) => (
+    <RssTweet {...props} label={viewTweetText} />
+  );
   const feed = new Feed({
     title: "Ben Gubler",
     description: gt(
@@ -55,7 +59,7 @@ const createFeed = async (
   for (const post of posts) {
     try {
       const html = renderToString(
-        <MDXContent code={post.mdx} components={{ Tweet: RssTweet }} />,
+        <MDXContent code={post.mdx} components={{ Tweet: LocalizedTweet }} />,
       );
 
       feed.addItem({
@@ -88,7 +92,6 @@ export async function GET(
 ): Promise<NextResponse> {
   try {
     const { locale } = await params;
-    registerLocale(locale);
 
     const ReactDOMServer = (await import("react-dom/server")).default;
 

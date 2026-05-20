@@ -52,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: image,
           width: 1200,
           height: 630,
-          alt: "Ben Gubler - Web Developer",
+          alt: gt("Ben Gubler - Web Developer"),
         },
       ],
     },
