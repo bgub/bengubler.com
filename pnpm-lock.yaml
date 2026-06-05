@@ -94,8 +94,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       gtx-cli:
-        specifier: ^2.14.40
-        version: 2.14.40(@babel/core@7.28.4)(@types/react@19.2.15)
+        specifier: ^2.14.46
+        version: 2.14.46(@babel/core@7.28.4)(@types/react@19.2.15)
       reading-time:
         specifier: ^1.5.0
         version: 1.5.0
@@ -723,17 +723,14 @@ packages:
       react: '>=16.8.0 <20.0.0'
       react-dom: '>=16.8.0 <20.0.0'
 
-  '@generaltranslation/python-extractor@0.2.21':
-    resolution: {integrity: sha512-MGnF/Csds3m70VIFQPRt7YNYUMeu4RuP2QQjugaOmrO+ekvNPkswbCima8WzehX10JDuismktD/z1TWB9Fzj6g==}
+  '@generaltranslation/python-extractor@0.2.22':
+    resolution: {integrity: sha512-TthfTvO/GBICqhxQs9+bZsNGJv7vWPAJPk+rAYPhf91t+mKs5Rj6+OIT2vf7OHVH3jVRcxheN/Iy/YTlQ1NVfQ==}
     engines: {node: '>=16.0.0'}
 
   '@generaltranslation/react-core@1.8.21':
     resolution: {integrity: sha512-sdforPKEdSRgzjukpivuv2zfXT01fxF8xry+Jl6Ll5MGlI+yeQ+RxrkXvcxj3FHFrUW8zEAOztD2FDkMpZg73A==}
     peerDependencies:
       react: '>=16.8.0'
-
-  '@generaltranslation/supported-locales@2.1.0':
-    resolution: {integrity: sha512-4/cSZ3HpP2Fibgw3BG6ZiNFL/FRXD7PMcIn1X83j2HTFOT38W0KERMB5mLvYCLCkDuMiyUJTRkk/6fW5/2PfyA==}
 
   '@generaltranslation/supported-locales@2.1.1':
     resolution: {integrity: sha512-tvtQldUnC53gK3H1I3jXOgW+Aa4w9BgnoKfnSFshodbVeNo3uOsRAF780/FUSq63M+XKZocRL4fKI3h8RHLg/w==}
@@ -1804,9 +1801,6 @@ packages:
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
 
-  generaltranslation@8.2.15:
-    resolution: {integrity: sha512-unjT3i8aoBV8x4YpWmRaE3zvWO3XCiQKW1uZOWYrkJQkp+urur1x+9rbeU3FOL2IlbIIgznzTH+gdo6aEvqH3w==}
-
   generaltranslation@8.2.16:
     resolution: {integrity: sha512-0N5Ke8TVUFkuvK51Tajr+2e67dCaUlPrnuX3ltpKOfyopD6QvvR8t3VN5RxhKmFpmsebNf0uXISg/QNDQPH0LA==}
 
@@ -1855,15 +1849,15 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
 
-  gt-remark@1.0.7:
-    resolution: {integrity: sha512-YBIA+cg+rNhY11SaCfWj/PTnRCH0IbvVBfafNQjFBn4I7yZMfEesLea0ZccXdRHaMaQwbWwyGbhjE8qy6h+HfQ==}
+  gt-remark@1.0.8:
+    resolution: {integrity: sha512-aUK5U6rnqsfWtUKo6kJn0nvXVSLcZ4IsEzZztcgdCAXNF+CVnUxIuF0q4XMjFoGb3OY5ACzy/AzAuNWzOgfVbQ==}
 
-  gt@2.14.40:
-    resolution: {integrity: sha512-TvD4WHVP/k7E/z6LO4n3Odx87RuknA72x7WuBs8v5mBkns4vOPnXlePof28H0XWAzNxwKlmh7LjTO1hpEyv0gA==}
+  gt@2.14.46:
+    resolution: {integrity: sha512-qTFkqq5w3FjY1ZRvTp/wyBEy7GztLRgUpeOZEEC79RkMFtrcd/HQ5mSJSMp1V91bD8lU6wXXclEPwsz8imJrqQ==}
     hasBin: true
 
-  gtx-cli@2.14.40:
-    resolution: {integrity: sha512-q1C0gOsmvN7YGJCJqMC1JT1RWt+luVfgkZw8YAif60nuyYwydURAm3sEEs9Bt+7Q8LT5imJBDicaY7OfRiGEjg==}
+  gtx-cli@2.14.46:
+    resolution: {integrity: sha512-CMsuk9MnxIsme67O7M2BppOVo4/F+fTsKor1L1eilZZr0+NZy+PjoVMS145aYIeJK0Osd3ab0yiPyCfz2OXfwA==}
     hasBin: true
 
   hasown@2.0.3:
@@ -3465,9 +3459,9 @@ snapshots:
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 
-  '@generaltranslation/python-extractor@0.2.21':
+  '@generaltranslation/python-extractor@0.2.22':
     dependencies:
-      generaltranslation: 8.2.15
+      generaltranslation: 8.2.16
       tree-sitter-python: 0.25.0
       web-tree-sitter: 0.26.9
     transitivePeerDependencies:
@@ -3480,10 +3474,6 @@ snapshots:
       generaltranslation: 8.2.16
       gt-i18n: 0.9.5
       react: 19.2.6
-
-  '@generaltranslation/supported-locales@2.1.0':
-    dependencies:
-      generaltranslation: 8.2.15
 
   '@generaltranslation/supported-locales@2.1.1':
     dependencies:
@@ -4511,12 +4501,6 @@ snapshots:
 
   function-bind@1.1.2: {}
 
-  generaltranslation@8.2.15:
-    dependencies:
-      '@formatjs/icu-messageformat-parser': 2.11.4
-      '@generaltranslation/format': 0.1.1
-      '@noble/hashes': 2.2.0
-
   generaltranslation@8.2.16:
     dependencies:
       '@formatjs/icu-messageformat-parser': 2.11.4
@@ -4579,7 +4563,7 @@ snapshots:
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 
-  gt-remark@1.0.7:
+  gt-remark@1.0.8:
     dependencies:
       mdast-util-find-and-replace: 3.0.2
       mdast-util-gfm-footnote: 2.1.0
@@ -4593,7 +4577,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  gt@2.14.40(@babel/core@7.28.4)(@types/react@19.2.15):
+  gt@2.14.46(@babel/core@7.28.4)(@types/react@19.2.15):
     dependencies:
       '@babel/generator': 7.29.1
       '@babel/parser': 7.29.3
@@ -4602,8 +4586,8 @@ snapshots:
       '@clack/prompts': 1.0.0-alpha.6
       '@formatjs/icu-messageformat-parser': 2.11.4
       '@generaltranslation/format': 0.1.1
-      '@generaltranslation/python-extractor': 0.2.21
-      '@generaltranslation/supported-locales': 2.1.0
+      '@generaltranslation/python-extractor': 0.2.22
+      '@generaltranslation/supported-locales': 2.1.1
       chalk: 5.6.2
       commander: 12.1.0
       dotenv: 16.6.1
@@ -4611,8 +4595,8 @@ snapshots:
       esbuild: 0.27.7
       fast-glob: 3.3.3
       fast-json-stable-stringify: 2.1.0
-      generaltranslation: 8.2.15
-      gt-remark: 1.0.7
+      generaltranslation: 8.2.16
+      gt-remark: 1.0.8
       html-entities: 2.6.0
       ink: 5.2.1(@types/react@19.2.15)(react@18.3.1)
       json-pointer: 0.6.2
@@ -4642,11 +4626,11 @@ snapshots:
       - tree-sitter
       - utf-8-validate
 
-  gtx-cli@2.14.40(@babel/core@7.28.4)(@types/react@19.2.15):
+  gtx-cli@2.14.46(@babel/core@7.28.4)(@types/react@19.2.15):
     dependencies:
       commander: 12.1.0
       dotenv: 16.6.1
-      gt: 2.14.40(@babel/core@7.28.4)(@types/react@19.2.15)
+      gt: 2.14.46(@babel/core@7.28.4)(@types/react@19.2.15)
     transitivePeerDependencies:
       - '@babel/core'
       - '@types/react'

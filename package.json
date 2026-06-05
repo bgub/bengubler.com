@@ -42,7 +42,7 @@
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "github-slugger": "^2.0.0",
-    "gtx-cli": "^2.14.40",
+    "gtx-cli": "^2.14.46",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
