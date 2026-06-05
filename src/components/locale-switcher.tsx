@@ -1,7 +1,7 @@
 "use client";
 
 import { useGT } from "gt-next";
-import { useDefaultLocale, useLocaleSelector } from "gt-next/client";
+import { useLocaleSelector } from "gt-next/client";
 import { cn } from "@/lib/utils";
 
 type LocaleSwitcherProps = {
@@ -9,18 +9,15 @@ type LocaleSwitcherProps = {
 };
 
 export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
-  const defaultLocale = useDefaultLocale();
   const { locale, locales, setLocale } = useLocaleSelector();
   const gt = useGT();
 
   if (!locales?.length) return null;
 
   return (
-    <div className={cn("flex gap-1.5 w-full", className)}>
+    <div className={cn("grid grid-cols-4 gap-1.5 w-full", className)}>
       {locales
-        .toSorted((a, b) =>
-          a === defaultLocale ? -1 : b === defaultLocale ? 1 : 0,
-        )
+        .toSorted((a, b) => a.localeCompare(b))
         .map((code) => {
           const active = code === locale;
           return (
@@ -29,7 +26,7 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
               type="button"
               onClick={() => setLocale(code)}
               className={cn(
-                "flex-1 font-mono text-[11px] tracking-wide py-1 rounded-sm border border-dashed transition-colors text-center",
+                "font-mono text-[11px] tracking-wide py-1 rounded-sm border border-dashed transition-colors text-center",
                 active
                   ? "border-foreground text-foreground bg-peach"
                   : "border-ink-faint text-muted-foreground hover:border-ink-mute hover:text-foreground",

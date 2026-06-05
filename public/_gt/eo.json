@@ -1,0 +1,928 @@
+{
+  "005377c29fedee52": "Shavian School",
+  "009a7eca764d06f5": "Lastaj afiŝoj",
+  "00bbcba91c5669fc": "Singapuro",
+  "00d3991449447669": "La fratoj Karamazov",
+  "00f88503c52f1933": "Unuiĝinta Reĝlando",
+  "01bc13d5e2a819d8": {
+    "c": "Vidi en Markdown",
+    "i": 1,
+    "t": "a"
+  },
+  "0220d6c7de3b3750": "Usonaj ŝtatoj",
+  "025e81c8c9af3cab": "Oklahomo",
+  "0266e82b7d29533e": "LDS-membreca varmomapo — 2024",
+  "027d02e80bd4acd3": "Ganao",
+  "041e5bdcde4346b8": "Kansaso",
+  "046bc068bd444faa": "Montano",
+  "057af6ccdf06263b": "MALMULTAJ",
+  "05e4896829f2e7b6": "Programaro",
+  "05f4a0b1f5418f74": "Ilinojso",
+  "06201f8aa3d9aa67": "Togo",
+  "062756dc4fdf55bf": "Interpreteblo",
+  "062a8c8bf68039ab": "Fantazio",
+  "064898550ebaf40b": "Pip-pakaĵo kun CLI-ilo por monitori GPU-uzadon tra Docker-ujoj. Minimumisma alternativo al 'nvidia-smi'.",
+  "06b88b2a67722410": "Vermonto",
+  "06f99b56af48e614": "Nordokcidentaj Teritorioj",
+  "0704279d82328bbd": {
+    "c": "Kontakto",
+    "i": 1,
+    "t": "PageTitle"
+  },
+  "08dd3091faf0d1ce": "Skalado de monosemantieco",
+  "08fe27fe9f06fee4": "Kebekio",
+  "097aa991e3e3c14b": "Kalifornio",
+  "0a43db96a3879d8b": "Konvertas inter CLI-komandoj de npm/Yarn/pnpm/bun kun subteno por ĉiuj ĉefaj pakaĵadministriloj.",
+  "0b7ef84ac88dcc53": "Kentukio",
+  "0b8ce6b837600c2d": "Bosnio kaj Herc.",
+  "0bb058038c571a69": "Ilaro por trejni BPE-tokenigilojn sur propraj datumdisigoj kun altnivelaj agordaj ebloj.",
+  "0c929cb89a81866c": "Lingvolernado",
+  "0cfbf4677a02b4fe": "Aplikaĵoj",
+  "0e413a5825e314de": {
+    "c": "Mi nuntempe estas studento ĉe Brigham Young University en Provo, kie mi studas ACME-n (Aplikata kaj Komputa Matematiko) kiel ĉeffakon kaj la araban kiel kromfakon. Mi ankaŭ estas esplorasistanto en la PCCL (Laboratorio pri Percepto, Regado kaj Kognado) ĉe BYU, kie mi esploras novajn aplikaĵojn de artefarita inteligenteco kaj natura lingvoprilaborado.",
+    "i": 1,
+    "t": "p"
+  },
+  "0ee81746110ea465": "Presigeblaj kazkartoj por rapide kaj efike parkerigi ĉeĥajn substantivajn deklinaciajn ŝablonojn.",
+  "0efb3da8c7e035a1": "Monarch Money",
+  "10c587eefc060c58": "Omarchy",
+  "10d511e621addb81": [
+    "Mi estas Ben, studento ĉe BYU, kiu studas komputikon kaj la araban. Mi kreas malfermfontajn bibliotekojn, retaplikaĵojn kaj AI-ilojn. Nuntempe mi laboras ĉe ",
+    {
+      "c": "General Translation",
+      "i": 1,
+      "t": "span"
+    },
+    ", kaj antaŭe mi staĝis ĉe ",
+    {
+      "c": "Vercel",
+      "i": 2,
+      "t": "span"
+    },
+    "."
+  ],
+  "1115207f8bc4ea29": "OverTheWire Wargames",
+  "116ab3333ed53b2d": "Tic-Tac-Too",
+  "11762cb8a1cf14fb": {
+    "d": {
+      "b": {
+        "false": "Kopii Krude",
+        "true": "Kopiita!"
+      },
+      "t": "b"
+    },
+    "i": 1,
+    "t": "Branch"
+  },
+  "11cf3d5ef54bd4e5": {
+    "c": [
+      {
+        "i": 2,
+        "k": "_gt_n_2",
+        "v": "n"
+      },
+      " membroj"
+    ],
+    "i": 1,
+    "t": "div"
+  },
+  "11e7d0209a9c3db8": "Masaĉuseco",
+  "12458c3d207c8c39": {
+    "c": "Legas vian blogan afiŝon…",
+    "i": 1,
+    "t": "p"
+  },
+  "12c1578756fefe6b": "Oregono",
+  "138f1c228519cc2b": "Angolo",
+  "13a2644fbe7bbb85": "Misisipo",
+  "140cc6c1b8358650": "The Stormlight Archive",
+  "14951deeb9fd1a80": "Lingvolernado",
+  "1684d5043a96121e": "Etiopio",
+  "1758b3d1d63f639f": {
+    "c": "Pardonu, la afiŝo, kiun vi serĉas, ne ekzistas aŭ estis translokigita.",
+    "i": 1,
+    "t": "p"
+  },
+  "184e745d7d13c743": "Malavio",
+  "189d7db07ea44187": "Kazaĥstano",
+  "18b7f8e2dee69d61": "Afiŝo ne trovita",
+  "1947f94eeedb8b9c": "Kolekto de la projektoj de Ben Gubler, de elstaraj verkoj ĝis eksperimentaj versioj.",
+  "1acba9df1061bebd": "Kenjo",
+  "1b684898471c9e88": "Surinamo",
+  "1f1b4086cadac9b6": "Lingvolernado - Ben Gubler",
+  "1f7052f11b6baa02": "Rakonto pri du urboj",
+  "1fce2ea0cc5f056e": "La persona retejo de Ben Gubler. Pensoj pri reteja disvolvado, AI kaj konstruado de aferoj, kiuj gravas.",
+  "2096e678e9ff17b6": "Malfermfontaj iloj",
+  "20bba13e9a5287ac": "DR Kongo",
+  "217a321934b935db": {
+    "c": "Paĝo ne trovita",
+    "i": 1,
+    "t": "h2"
+  },
+  "23386a6bcb41d5c5": "Senlime granda buŝtuko",
+  "233fe71d46008091": "Kontaktu min pri kunlaboroj, demandoj aŭ simple por saluti.",
+  "23833883c2b7d83b": "Bonvolu klarigi ĉi tiun blogaĵon per simplaj vortoj:\\n\\n{content}",
+  "239e1d076b1e9abe": "Chrome-etendaĵo por transformi signojn skribitajn per la Esperanta 'x-sistemo' en Esperantajn signojn dum tajpado.",
+  "23b32626507e4ff5": "Kolombio",
+  "23c488de8eef8c32": "LDS-membreca varmomapo",
+  "23febe266e6e0d3d": "Usono",
+  "2412532672c54dc6": "Samoo",
+  "24b5f066083a1ba1": "Reta interfaco por AI-kodagentoj.",
+  "24cddcfc4781cfcd": "Transformilaj cirkvitoj",
+  "253f0537136dbdb7": "Ugando",
+  "26bc2481dc6b340d": "Marilando",
+  "26cc9442083084ff": "Disvolvado de operaciumoj kaj sistemprogramado",
+  "274172cd9b242e6a": {
+    "c": "Rekomendoj",
+    "i": 1,
+    "t": "PageTitle"
+  },
+  "275116dd1bbe1e27": "X (Twitter)",
+  "277c7fb54daa2ebd": "Insulo de Princo Eduardo",
+  "279124bb438079a6": "De GPT-2 ĝis GPT-OSS",
+  "27c04964a9ee9e77": "Religio",
+  "27ffbd1b12838b8d": "{name} en GitHub",
+  "28804cef2c57e4d5": "Kopirajto {year} Ben Gubler",
+  "28a45948473da7f8": "GitHub",
+  "28ac8a369bb99280": "Pepper & Carrot en Toki Pona",
+  "29b444a015ff1233": "Ohio",
+  "29cfbfca6cedbb8e": "Tuta membraro",
+  "29e29dae950103eb": "Malto",
+  "2ac29e7cedb1e1a3": "Kartvelio",
+  "2acbb0f4acd72360": "Germanio",
+  "2b07b7656f564e82": "tokka-bench",
+  "2c2da55d6d410519": "Simpla GRPO-efektivigo",
+  "2c732e8694095d25": "Sud-Afriko",
+  "2ca83092601df6ee": "Obsidian",
+  "2cd75ded56b3c523": "Finnlando",
+  "2ce262d5ab363438": "Afiŝoj - Ben Gubler",
+  "2d5e296989434d34": "Ampleksa retejo por ekzerci la deklinacion de ĉeĥaj, slovakaj kaj rusaj substantivoj per interagaj ekzercoj.",
+  "2e7b9240db0e31e0": "Manitobo",
+  "2e881bd80673c0fa": "Russian Case Cards",
+  "2ecf88ef9e8e4259": "Ĉefpaĝo",
+  "2f00e71f816405c2": "Dell XPS 15 (persona)",
+  "2f40f533f136f46d": "Estonio",
+  "2f4b57fb59c746d0": "GPU kaj alt-efikeca programado",
+  "2fe919e89da5f2e6": "Kolorado",
+  "316301acba5cd27e": "Benino",
+  "338042bd9af934e9": "Nederlando",
+  "338b1d1ab0e1e209": "Virginio",
+  "34cb108cba52437c": {
+    "c": "Pludoni",
+    "i": 1,
+    "t": "h3"
+  },
+  "3507ea577cbfe240": {
+    "c": "Al ĉefpaĝo",
+    "i": 1,
+    "t": "Link"
+  },
+  "356fdf32f4af59c1": "Vi estas spertulo pri klarigado de komplikaj temoj per simplaj, amuzaj vortoj.\n\nKlarigu la jenan blogaĵon kvazaŭ vi parolus al 5-jara infano:\n- Uzu simplajn vortojn kaj mallongajn frazojn\n- Enmetu amuzajn analogiojn kaj komparojn, kiujn ili facile komprenas\n- Estu entuziasma kaj kuraĝiga\n- Dividu kompleksajn ideojn en etajn, facile kompreneblajn partojn\n- Faru ĝin alloga, sed preciza\n\nTitolo: \"{title}\"",
+  "35e47f78c1abf14b": "La Libro de Mormon",
+  "365eecb4547061ff": "Brave Browser",
+  "369eb3a697023921": "Turkio",
+  "36cc93069891afc3": "La ludo pri naturaj nombroj",
+  "374c5518c6ab30e6": "hf_to_mds",
+  "38129977cdbc7506": "Min ĉiam interesas kontaktiĝi kun aliaj programistoj, diskuti novajn ideojn aŭ esplori eblajn kunlaborojn. Bonvolu kontakti min!",
+  "382eff4355fc0871": {
+    "c": "Mia stako",
+    "i": 1,
+    "t": "PageTitle"
+  },
+  "38e4a3d50b9db8cd": "Studeldono de la Greka Nova Testamento",
+  "3966ae164fc4fb1f": "Mi kreis kazkartojn por la ĉeĥa, por ke vi ne bezonu.",
+  "397ba28e12a728d0": "Armenio",
+  "398e692f8a6b07f0": "Pli malnovaj afiŝoj, kiuj eble jam ne estas ĝisdataj, sed ankoraŭ utilas.",
+  "3a16e63273d7d383": "Projektoj",
+  "3a965260146ebab1": "tokka",
+  "3ae5586ba63100ab": "Fiddler on the Roof",
+  "3b577cb32e521352": {
+    "c": "Kruda (por LLM-oj)",
+    "i": 1,
+    "t": "h3"
+  },
+  "3cd1510ae2089fd7": "Dominika Respubliko",
+  "3da0fce6cf767642": {
+    "c": "Preta por simpligi!",
+    "i": 1,
+    "t": "p"
+  },
+  "3e784d336673b7ec": "Ĉeĥio",
+  "3f90a1a17923a4c6": "Ŝanĝi la lingvon al {code}",
+  "3f96a7686163d260": {
+    "c": "Ŝatataĵoj",
+    "i": 1,
+    "t": "PageTitle"
+  },
+  "402715cd330d167a": "Komputiloj",
+  "4088fbaddc00d228": "Rigardu miajn malfermitkodajn projektojn kaj kontribuojn",
+  "40947665b1503ba3": {
+    "c": "404",
+    "i": 1,
+    "t": "h1"
+  },
+  "4156905e88354209": "Fahrenheit 451",
+  "41d2f4230d1d960e": {
+    "c": "Czech Case Cards",
+    "i": 1,
+    "t": "PageTitle"
+  },
+  "4269b54637152022": "The Queen's Thief-serio",
+  "428fedbd5fc2d3d1": "Pli malnovaj projektoj",
+  "42a56a68288e81c4": "Bibliotekoj, aplikaĵoj kaj eksperimentoj. Plej multaj estas malfermfontaj; kelkaj ankoraŭ formiĝas.",
+  "42b2c611d8c7f4e9": "Besta bieno",
+  "4314e052a3524c51": "Ŝatataĵoj",
+  "4373e32d3674bcd0": "Iloj kaj rimedoj por lerni lingvojn, inkluzive de aplikaĵoj por ekzerci deklinacion kaj pli.",
+  "44d427dcadeba046": "Alasko",
+  "44f5c9d3d83113f1": "Litovio",
+  "46258874be363668": "Brazilo",
+  "46612d7e43627fca": "Kameruno",
+  "46a7e9493b7e1ed9": "Florido",
+  "4700d882bc81855a": "Honduro",
+  "47ed76f7077e0280": "Rekomendo - Ben Gubler",
+  "480646ceb98c7163": "Fermi",
+  "4835968fd99ecdc2": {
+    "c": "Simpla klarigo",
+    "i": 1,
+    "t": "h4"
+  },
+  "4924b4629204feb3": "Vaŝingtonio",
+  "49378166463c2a95": "MX Master 3S Mouse",
+  "4a48758f8e4e06c2": "Redox OS",
+  "4a73344dd83b8f0e": {
+    "c": "Projektoj",
+    "i": 1,
+    "t": "PageTitle"
+  },
+  "4a75eedfccdf7c16": "Iovao",
+  "4a87671f82acf209": "NuPhy Air75 V3 Keyboard",
+  "4aacd3eca8e46bd9": "Novlando",
+  "4add1139ae8ec5c1": "Kontakto",
+  "4c9f5f6661d88e9b": "Aŭstralio",
+  "4d6c82c642c573cb": "La eta princo",
+  "4d99c304274d4897": "Nov-Zelando",
+  "4dbde0a18f4d9702": "Brave New World",
+  "4e56c17483677fa0": "Teksaso",
+  "4ea7e037ee1dab24": "Esperaboard",
+  "4fc74c7fb8c15459": "Konvertas HuggingFace-datumarojn al la MosaicML Streaming-formato (MDS) por efika nub-bazita trejnado.",
+  "50a296d921f6b849": "Tenesio",
+  "50cb50616fa9648e": "Israelo",
+  "513bae38f55f8565": "Papuo-Nov-Gvineo",
+  "51ca342c96cf6a4d": "Toki Pona en 18 minutoj",
+  "525ac3c303eb0e29": "Todoist",
+  "529a3d0a9cf9f5da": "Labortabla medio Cosmic Desktop",
+  "53b5f7c376481390": "Kopii kodon al la tondujo",
+  "542a09176cd8adb1": "Fedora Linux",
+  "54e4cb6967c66554": "Slovakio",
+  "5550a8e6774e8198": "Ĉiuj afiŝoj",
+  "5654bd3554e4cc06": {
+    "c": "Usona ŝtato",
+    "i": 1,
+    "t": "div"
+  },
+  "568af492f9a30333": "Anki",
+  "5739fd955e542e63": "Kipro",
+  "579689a0f509a8fc": "% de loĝ.",
+  "579a989363e7dd8c": "Via unua WebGPU-aplikaĵo",
+  "57df581328929c7a": {
+    "c": "Pardonu, la paĝo, kiun vi serĉas, ne ekzistas aŭ estis movita.",
+    "i": 1,
+    "t": "p"
+  },
+  "582c94a306553566": "Klarigu denove",
+  "58f2923fba07dbae": {
+    "c": "Vidi ĉiujn afiŝojn",
+    "i": 1,
+    "t": "Link"
+  },
+  "593dab95ec87fb1a": "Zed kun Vim-klavkombinoj",
+  "5ae7fd1fc9c3f5a9": "Sistema",
+  "5b0ea6350126478b": "Alacritty",
+  "5b3e6aef0a207a56": "Gvatemalo",
+  "5c09252a83b0de9b": {
+    "c": "Altnivela kazkarto",
+    "i": 1,
+    "t": "h2"
+  },
+  "5c24a8953aebc532": "bengubler.com",
+  "5c3cbf165903fcab": "Kanadaj provincoj",
+  "5c440aec9e8a9962": "Ruando",
+  "5d1a87ebd0ba9c9e": "Pri Ben Gubler",
+  "5d7a168f112ec5d5": "Mia persona retejo kaj blogo, kie mi skribas pri AI, distribuita trejnado kaj lingvolernado.",
+  "5d98c55cc5387153": "Teknologioj, aplikaĵoj kaj iloj, kiujn mi uzas por programado kaj produktiveco.",
+  "5e0781afaffab993": "squirrelly",
+  "5e33de9e7598af5c": "Fonto: Church of Jesus Christ Newsroom, World Population Review, Statistics Canada. 31 dec. 2024. La ciferoj por kanadaj provincoj estas taksoj bazitaj sur tio, ke Alberta konsistigas ĉirkaŭ 40% de la landa sumo de 205 mil.",
+  "600789898ab6a2f9": {
+    "c": [
+      "Eble vin ankaŭ interesos mia ",
+      {
+        "c": "retejo por ekzerci ĉeĥajn/rusajn deklinaciojn",
+        "i": 2,
+        "t": "Link"
+      },
+      " aŭ miaj ",
+      {
+        "c": "Russian Case Cards",
+        "i": 3,
+        "t": "Link"
+      },
+      "."
+    ],
+    "i": 1,
+    "t": "p"
+  },
+  "61213b3c0bb8433e": "Lernu X en Y minutoj",
+  "6223c45811e4bc71": "Kanado",
+  "631ee7e693a308c8": "Idaho",
+  "638d933fb5975d0e": "Italio",
+  "6455227309955661": "Pimsleur",
+  "64ade5006b5d1b36": "Decline App",
+  "64b566c08f7e0793": "Rumanio",
+  "652b57f474183439": "Centr-Afrika Respubliko",
+  "6601f653ec09b078": "Klasikaĵoj",
+  "6662bfef4fbe8763": "Malfermi menuon",
+  "67131f082395778d": "Kiel funkcias CPU-memoro kaj kaŝmemoroj - Computerphile",
+  "6742536cd5eab08a": "Vidi ĉiujn ▸",
+  "6823e8871ecb55cd": "Barato",
+  "686f913391efa52f": "tinylingo.com",
+  "68b9f83d614198b5": "Kroatio",
+  "68bcba9a5e5a1b44": "Miĉigano",
+  "69559c11d66b6a7d": "SQLBolt",
+  "698190aab8330166": "Okcidenta Virginio",
+  "69a38e8afebf5dd4": "Fermi menuon",
+  "6a2bbccfb878b796": "Jamajko",
+  "6a4e04c1621bc2cb": {
+    "c": "Vidi afiŝojn",
+    "i": 1,
+    "t": "Link"
+  },
+  "6a8c0b782ac8649f": "The Screwtape Letters",
+  "6a9f1df769ad433e": "Cosmic Desktop (fojfoje)",
+  "6aa37389c540a0b2": "npm-to-yarn",
+  "6ab453d6f14590c4": "Madagaskaro",
+  "6afaabc340379239": "Gujano",
+  "6b27c952e181188e": "La portreto de Dorian Gray",
+  "6c8c3ba17e59f0e3": "Esvatinio",
+  "6c9a671d69c064a9": "Alberto",
+  "6c9b9dc3b6bc4b97": "La afiŝo, kiun vi serĉas, ne ekzistas.",
+  "6cf3a79976b7d2d2": "Labortablo kaj terminalo",
+  "6d1c840177d6e865": {
+    "c": "Mi studas maŝinlernadon kaj (homajn) lingvojn. En mia libera tempo mi ŝatas krei retejojn kaj malfermfontajn bibliotekojn. Mi verŝajne de tempo al tempo afiŝos ankaŭ pri ĉio ĉi.",
+    "i": 1,
+    "t": "p"
+  },
+  "6e2c20dc4497d5db": "Salomon-Insuloj",
+  "6e71ec1bfb3ad539": "Disvolvado de programlingvoj kaj algebraj efektoj",
+  "6e8a4f1758b76948": "Profesia reto kaj diskutoj pri kariero",
+  "6ef8e80de2769a08": "Tajlando",
+  "6f3a3f8445a7104e": "Paragvajo",
+  "6f83fb5bebf33e82": "La ŝatataj libroj, filmoj kaj personaj rekomendoj de Ben Gubler.",
+  "6fa4fca04aedadba": "GNOME Desktop",
+  "70e12787aab9ee65": "Trejni rezonadan modelon per GRPO",
+  "716ee68d07cb169f": "Nov-Ĵerzejo",
+  "71824c83c2d53ee9": "Grekio",
+  "7224ad670aa82471": "Chrome-etendaĵo, kiu transformas vian novan langeton en agordeblan panelon.",
+  "723653dd8fec6fdc": "Hunt for the Wilderpeople",
+  "730dcee4f7598b16": "MacBook Pro (por laboro)",
+  "73ddaae9d7fad0d4": "Niĝerio",
+  "74816cbe74a8f193": "RSC Explorer",
+  "74f0083d6ef2943c": "Nov-Hampŝiro",
+  "762da2d8b92c643b": "Toki Pona",
+  "7653c554c5512d00": {
+    "c": "Ŝanĝi temon",
+    "i": 1,
+    "t": "span"
+  },
+  "772e15e4f2f20a76": "Teorema pruvado",
+  "77b037197feae42f": "Arkansaso",
+  "77d68abb75acf8cd": "Afiŝo ne trovita",
+  "78344b60f407928e": "Aliaj",
+  "7a87a6c41143b213": {
+    "c": "Neniu raportita ĉeesto",
+    "i": 1,
+    "t": "div"
+  },
+  "7b0b0fe89c1c0b3b": "Tajvano",
+  "7be30fc926cb3b77": "AI-a tri-en-vica roboto konstruita per TensorFlow.js. Kreita en mia adoleskeco dum mi lernis pri ML.",
+  "7c97ea9d706f9d23": "Zorge kompilita kolekto de utilaj ligiloj kaj rimedoj, kiujn mi trovis valoraj.",
+  "7cd96c52865feaa9": {
+    "c": "Russian Case Cards",
+    "i": 1,
+    "t": "PageTitle"
+  },
+  "7dd09fdd59c1c7cd": "Portugalio",
+  "7dd2d085f19452b5": "Belizo",
+  "7e74172900c60360": "Ligilo al sekcio",
+  "7f390daec7bf71b5": "hecto: Konstruu vian propran tekstredaktilon en Rust",
+  "7fe036ca5b1fef32": "Misurio",
+  "8010116bdc2581d5": "Zambio",
+  "8067f0bd58584c31": "Membreca varmomapo · 2024",
+  "810c1343f4ab57db": "The Hiding Place",
+  "814a904a77c7c0f5": "Neŭralaj retoj: de nulo ĝis heroo",
+  "81d4f577c1f1ff07": {
+    "c": "Kuriozaĵoj",
+    "i": 1,
+    "t": "h2"
+  },
+  "820298311342f8d7": "Ilaro por facile krei Small Language Models (SLMs), celita al esploristoj (evoluigata).",
+  "8206ee2d5fcace35": "Montenegro",
+  "8234751d76090b58": "Diversaĵoj",
+  "82d3a80413d6a1c3": "5 min legotempo",
+  "82f4c87f0265ae8b": "Irlando",
+  "8313f3c1e394a316": "Plej taŭga por komercaj demandoj kaj pli longaj interparoloj",
+  "84309ae7bef4da41": "Distrikto de Kolumbio",
+  "84cc5eb3f0ed0d22": "Urugvajo",
+  "84de340c2461f1e1": "Kunhavigi per {name}",
+  "84f949f44dd985cd": "Norvegio",
+  "8587d99cfeadb311": {
+    "c": [
+      {
+        "i": 2,
+        "k": "_gt_value_2",
+        "v": "v"
+      },
+      "% de la loĝantaro"
+    ],
+    "i": 1,
+    "t": "div"
+  },
+  "870932ff32fe810d": "Nand to Tetris",
+  "8779da9f65deb1b4": "filtri",
+  "880b21ecb28d7479": "Operaciumoj",
+  "88b7378582d9589a": "Argentino",
+  "88faef7e6d8b4e4e": "Zimbabvo",
+  "89809486109c2d37": "Tongo",
+  "899acbe0cb96edd5": "Interaga varmomapo de la tutmonda membreco de la Sanktuloj de la Lastaj Tagoj, laŭ lando, usona subŝtato kaj kanada provinco.",
+  "89da3fc9986ff790": "Ukrainio",
+  "8a5b42fae262c8d4": "La morto de Ivano Iljiĉ",
+  "8b7fcaab32fd3bc4": "(arkivita)",
+  "8c74857ecf98c255": "Programado",
+  "8d5bef805f152308": {
+    "c": [
+      "Rigardu ",
+      {
+        "c": "mian stakon",
+        "i": 2,
+        "t": "Link"
+      },
+      " de teknologioj kaj iloj, kiujn mi uzas, foliumu miajn ",
+      {
+        "c": "ŝatataĵojn",
+        "i": 3,
+        "t": "Link"
+      },
+      ", inter kiuj estas libroj kaj filmoj, kiujn mi amas, aŭ vidu, kion mi ",
+      {
+        "c": "rekomendas",
+        "i": 4,
+        "t": "Link"
+      },
+      " pri kursoj, artikoloj kaj lernoresursoj. Pri mia profesia sperto vi povas rigardi mian ",
+      {
+        "c": "CV",
+        "i": 5,
+        "t": "Link"
+      },
+      "."
+    ],
+    "i": 1,
+    "t": "p"
+  },
+  "8e6afde0f536eee2": {
+    "c": "Pri mi",
+    "i": 1,
+    "t": "PageTitle"
+  },
+  "8e96b87ad3aa0700": {
+    "c": [
+      "Eble vin ankaŭ interesos mia ",
+      {
+        "c": "retejo por ekzerci ĉeĥajn/rusajn deklinaciojn",
+        "i": 2,
+        "t": "Link"
+      },
+      " aŭ miaj ",
+      {
+        "c": "ĉeĥaj kazkartoj",
+        "i": 3,
+        "t": "Link"
+      },
+      "."
+    ],
+    "i": 1,
+    "t": "p"
+  },
+  "8f0d08612dc860db": "Kiel blinda modelo vidas la Teron?",
+  "9090d8c41e669be7": "Produktiveco kaj vivo",
+  "90c1b367e1e259e7": "eta",
+  "90ced2552874f076": "Havajo",
+  "920bb9308fb787be": {
+    "c": [
+      {
+        "c": "Mi pasias pri lingvolernado: mi parolas la anglan, la ĉeĥan kaj la slovakan, kaj nuntempe lernas la rusan kaj la araban.",
+        "i": 2,
+        "t": "li"
+      },
+      {
+        "c": "Mi tre ŝatas pasigi tempon en la naturo! Migrado kun dorsosako, fiŝkaptado kaj montobiciklado estas inter miaj plej ŝatataj hobioj.",
+        "i": 3,
+        "t": "li"
+      },
+      {
+        "c": "Mi ĝuas bonegan literaturon, kaj nuntempan kaj klasikan!",
+        "i": 4,
+        "t": "li"
+      }
+    ],
+    "i": 1,
+    "t": "ul"
+  },
+  "9263adc2beb9fc18": "AI kaj maŝinlernado",
+  "92747439a157d726": "helm",
+  "92d1b68f576a0d5f": "Pacifiko",
+  "959d0255998606b4": "CodeCrafters: Konstruu vian propran X en Rust",
+  "95aa988493b6ea8a": "Nov-Brunsviko",
+  "95e4c24a851ab7e3": "The Prestige",
+  "95f506e43b9b3265": "Afiŝo ne trovita - Ben Gubler",
+  "960b7dbf0379a1da": "Novjorkio",
+  "965afbdd105f4ab4": [
+    {
+      "c": "Projektoj",
+      "i": 1,
+      "t": "Link"
+    },
+    {
+      "c": "·",
+      "i": 2,
+      "t": "span"
+    },
+    {
+      "c": "Skribaĵoj",
+      "i": 3,
+      "t": "Link"
+    },
+    {
+      "c": "·",
+      "i": 4,
+      "t": "span"
+    },
+    {
+      "c": "CV",
+      "i": 5,
+      "t": "Link"
+    },
+    {
+      "c": "·",
+      "i": 6,
+      "t": "span"
+    },
+    {
+      "c": "GitHub",
+      "i": 7,
+      "t": "Link"
+    },
+    {
+      "c": "·",
+      "i": 8,
+      "t": "span"
+    },
+    {
+      "c": "X",
+      "i": 9,
+      "t": "Link"
+    }
+  ],
+  "97476e479398ea6b": "Islando",
+  "97bff47be7869dc3": "Haitio",
+  "97c326fd40fc8abd": "Presigeblaj kazkartoj por rapide kaj efike parkerigi rusajn substantivajn deklinaciajn ŝablonojn.",
+  "97f7dc350050087c": "macOS",
+  "98931a83736430a1": "Retejo bazita sur AI por lerni lingvojn per personigitaj lecionoj kaj interagaj ekzercsesioj.",
+  "99f1760751166004": "La persona retejo de Ben Gubler. Laboras ĉe General Translation, antaŭe staĝis ĉe Vercel. Studas AI kaj homajn lingvojn ĉe BYU.",
+  "9a1319fc4e39fee6": "Luiziano",
+  "9a5c9a18a1736a01": "Profila foto",
+  "9a806cc1e5ca8a4a": "Artefarita inteligenteco",
+  "9b362fb8f28b34d1": "Aŭstrio",
+  "9ba8db402e604791": "Jojo Rabbit",
+  "9bc7b69261332832": "Algebraj efektoj por ni ceteraj",
+  "9c2986fca82710b5": "The Founder",
+  "9cc58ceb8f936642": "Kostariko",
+  "9d902117f81037c5": "Suda Karolino",
+  "9dcaba5c9188af36": "Namibio",
+  "9e0e71048f2e77ca": "Arkivo",
+  "9ec680f43d9c06ad": "Svislando",
+  "9efcebb1c2c855e3": "Peruo",
+  "9f80b8935efc0330": [
+    "Neniuj afiŝoj kongruas kun la etikedo ",
+    {
+      "c": [
+        "#",
+        {
+          "i": 2,
+          "k": "_gt_value_2",
+          "v": "v"
+        }
+      ],
+      "i": 1,
+      "t": "span"
+    },
+    "."
+  ],
+  "9fd3c0201d2e4091": "Vajomingo",
+  "a040bdb90a115bab": "Verki interpretiston en Go",
+  "a04daf17e3be1edc": "Periferiaĵoj",
+  "a0c7b60e4bd05412": "RSS",
+  "a1f164c66500808a": "Fiĝioj",
+  "a20c7af31a16306f": "Teknologioj, aplikaĵoj kaj iloj, kiujn Ben Gubler uzas por programado kaj produktiveco.",
+  "a20f64ea291a4e8a": "44 Scotland Street",
+  "a2d1eaffb07f745f": "Norda Karolino",
+  "a4b99d2d2e59c99b": "Francio",
+  "a59f112c71cb1540": "Slovenio",
+  "a626d84d7422494e": "Bocvano",
+  "a64c6d2a941c060b": "LeetCode por GPU-oj",
+  "a65f36dea1c14299": "Belgio",
+  "a6fd277111c7cd66": "Nekonata",
+  "a838dfe826852e73": "AI-ilaro en TypeScript por „koda reĝimo“ kun permesoj kaj serĉo.",
+  "a9b1bb5ea856e25c": "Elstaraj",
+  "a9ccfb1510066ff2": "Zorge kompilita kolekto de utilaj ligiloj kaj rimedoj, kiujn Ben Gubler trovis valoraj.",
+  "aa2d9f8e9ea84f58": "Mi kreis kazkartojn por la rusa, por ke vi ne bezonu.",
+  "aa3f99e380d00c4f": "Sekvu min por rapidaj ĝisdatigoj kaj teknikaj diskutoj",
+  "aa451c4c207658fa": "Latvio",
+  "aa5bfb3c14b0a681": "Lerni la bazojn",
+  "aa600fbbd0a9d686": "Komenca Nix-agordo por macOS kun praktikaj defaŭltoj kaj dokumentado.",
+  "aab25fba56518455": "Lingvistiko",
+  "ab1992a83eca13be": "Arizono",
+  "abaacba7b0f79fe8": "Restarigi",
+  "abc7afca4ddb4c94": "A River Runs Through It",
+  "abf651cef8f7b7b2": "Inkheart-serio",
+  "ac8a4da43264f430": "Hungario",
+  "ac94723b2e9de669": "Beelinguapp",
+  "acd3df01d58f5765": "La tasko pri diverĝa asociado",
+  "ade50401b1396de9": "Afiŝoj",
+  "af3863609bbecf5b": "Retdisvolvado kaj React",
+  "afaa0561ba5a8ba7": {
+    "c": "Afiŝo ne trovita",
+    "i": 1,
+    "t": "h2"
+  },
+  "afd298096cfd8136": {
+    "c": "Klarigante ĝin per simplaj vortoj",
+    "i": 1,
+    "t": "p"
+  },
+  "b001897d730bf8b0": "Venezuelo",
+  "b06fe500b9dcc919": "Salvadoro",
+  "b09fa3fb65954f11": "Landoj",
+  "b104514dd0ff33a5": "Meksiko",
+  "b22acab22e51149b": "Japanio",
+  "b24c8ee92c656887": "Usono",
+  "b28cd0fa97a4537e": [
+    {
+      "i": 1,
+      "t": "Loader2"
+    },
+    "Klarigante…"
+  ],
+  "b305d06d0af683b4": "Paĝo ne trovita - Ben Gubler",
+  "b387818540cf9565": "Danio",
+  "b4c836e33738625a": "Luksemburgio",
+  "b50c41465e5408b3": "Retpoŝto",
+  "b563aee1e5fe12ee": "gom",
+  "b6679fa5d0ab6497": "Verki operaciumon en Rust",
+  "b710e73c5611e3f4": "Kontakto - Ben Gubler",
+  "b7ce1cee0fff76af": "Delavaro",
+  "b9ee30cd580736c2": "Rusio",
+  "ba1805140f3daec4": "Bulgario",
+  "ba2ee2289e8480fd": "Sud-Koreio",
+  "ba44feacbb90d4dd": "MILIONOJ",
+  "bc79b8827bd6278c": "Libroj",
+  "bc7adb2d75ca4f3e": "Afriko",
+  "bc959b56a841666f": "Ŝatataĵoj - Ben Gubler",
+  "bd4cbf79a8e9b868": "Linux From Scratch",
+  "be138224ecf6224a": "Libroj, filmoj kaj aliaj aferoj, kiujn mi tre ŝatas kaj rekomendas.",
+  "be7aef60733f8a31": "Czech Case Cards - Ben Gubler",
+  "bf93f69f8f64acb8": "Nebrasko",
+  "c0fa5428a2f6a612": "S. Ameriko",
+  "c145bf1755845240": "Ebur-Bordo",
+  "c18af923a81d97db": "Matematiko kaj formalaj metodoj",
+  "c24789fa6ee1226c": "shade",
+  "c399944bd45a8e59": "Suda Dakoto",
+  "c3ae9cdbdb6ac881": "Komenci klarigi",
+  "c3b8cdf27ab3c87a": "Majno",
+  "c3d75dccd88075f2": "Interstellar",
+  "c416e456567fdf39": "mokka",
+  "c480d98c240a3a0f": "Enhavo necesas",
+  "c4d382a9f7bcbeb9": [
+    "Sanktuloj de la Lastaj Tagoj ",
+    {
+      "c": "tutmonde",
+      "i": 1,
+      "t": "span"
+    }
+  ],
+  "c59720248f69d5aa": "Rekomendoj",
+  "c60bbea0759db02a": "Lingvolerna apo por plibonigi komprenon. Aŭskultu aŭtentikajn podkastojn de denaskaj parolantoj kun AI-generitaj transskriboj kaj tradukoj.",
+  "c62378275dc5c4f6": "miaj propraj iloj",
+  "c6ac6b7f87f34e3b": "Pensilvanio",
+  "c71006556cf1328e": {
+    "c": [
+      {
+        "i": 2,
+        "t": "Brain"
+      },
+      "Klarigu kiel al 5-jarulo"
+    ],
+    "i": 1,
+    "t": "DialogTitle"
+  },
+  "c772710e952c391c": "Filipinoj",
+  "c7a2323b7e48530a": "Mia Stako - Ben Gubler",
+  "c7ee1a20e25cdfe0": "Just Mercy",
+  "c8cdfc1fc3866c97": "Jukonio",
+  "c913a4cd1fdb059a": "GPU kaj tensoraj enigmoj",
+  "c96c6913115e475e": "Aparataro",
+  "c9c50f0332867e60": "Panamo",
+  "ca744e725e390110": "Czech Case Cards",
+  "ca767ad1f99bd854": "nuligi",
+  "cb10fe00fbfa4b87": "La ilaro por lingvokreado",
+  "cb3d390992c293e3": "Things Fall Apart",
+  "cbcec085bbae5d0d": "Readlang",
+  "cbef0cc8095d67c0": "Ekvadoro",
+  "cc0ddbf6a83c8fa4": "Russian Case Cards - Ben Gubler",
+  "cc77c2b66c79a626": "Splashpad",
+  "cc7e76bf9365389f": "Notoj pri programaro, lingvo kaj ilia intersekciĝo.",
+  "cc84bfe0ee5d0174": "Projektoj",
+  "cd2a68dbdbcbcab7": "Saskaĉevano",
+  "cd8ccd4b937873e1": "Malhela",
+  "cd8d0c77a410efb9": {
+    "c": [
+      "Noto: ĉi tio ne montriĝos ĝuste en poŝtelefono; iru ",
+      {
+        "c": "ĉi tien",
+        "i": 2,
+        "t": "Link"
+      },
+      " por vidi kaj elŝuti la PDF-on en nova fenestro."
+    ],
+    "i": 1,
+    "t": "p"
+  },
+  "cdceac6a8ba205a3": "La paĝo, kiun vi serĉas, ne ekzistas.",
+  "cddb5da9d378a573": "Kuvajto",
+  "ce4f5e5113604fa9": "Specialigitaj temoj kaj aplikoj",
+  "ce793a9070a24133": {
+    "c": [
+      "Mi klarigos \"",
+      {
+        "i": 2,
+        "k": "_gt_value_2",
+        "v": "v"
+      },
+      "\" per simplaj vortoj"
+    ],
+    "i": 1,
+    "t": "p"
+  },
+  "cf1dfa31f755ed76": "Mezuru kaj komparu tokenigilojn tra multaj lingvoj per interagaj bildigoj kaj analizoj.",
+  "cfb740b7462fab33": "Afiŝoj",
+  "d006c44856493996": "Komputiko",
+  "d0df80c39dbd6d64": {
+    "c": "En ĉi tiu artikolo",
+    "i": 1,
+    "t": "h3"
+  },
+  "d0ff6328bf959f14": "La mastro de l' ringoj",
+  "d1281a8f201c95ca": "Serbio",
+  "d13c837b74ef94a0": "Vanuatuo",
+  "d31ed8a36de506ed": "Svedio",
+  "d3c05da643a43453": "Indonezio",
+  "d3c64246988e1ab2": "Mongolio",
+  "d44b1428aec63e20": "Rod-Insulo",
+  "d486259b8271dcc6": "Malpeza JavaScript-ŝablonmotoro kun subteno por helpiloj, partaj ŝablonoj, filtriloj ktp. La projekto, kiu helpis min eniri la mondon de malfermfonta programaro.",
+  "d486d877a0d841e6": "Textual",
+  "d5ddfbc5b8cd23e4": "Iloj kaj rimedoj, kiujn mi kreis por helpi pri lingvolernado.",
+  "d6674c6b48b00bab": "Utaho",
+  "d7899ed4822e5ab1": "Mia ilaro",
+  "d7caa4d010633d49": "Jesuo la Kristo",
+  "d87f87ec78d92657": "Malajzio",
+  "d8951e11c475ea08": "Tanzanio",
+  "d8b46c0127d88a10": "Eksciu pli pri Ben Gubler, liaj studoj pri AI kaj lingvoj, kaj lia laboro kiel retprogramisto.",
+  "d9a4d6e70a27f799": "Pardonu, mi ne povas klarigi tion nun. Bonvolu reprovi!",
+  "da08f8c711ccf566": "Trinidado kaj Tobago",
+  "da70affac9781e55": "Lingvolernado",
+  "daad66bd542f4ac1": "nix-macos-starter",
+  "daf080584b6c4e5f": {
+    "c": "Fermi",
+    "i": 1,
+    "t": "span"
+  },
+  "db1fe4831da96145": {
+    "c": "Mi pasigis multajn horojn kreante ĉi tiujn! Presu ilin, kaj vi baldaŭ parkerigos la ĉeĥajn deklinaciajn ŝablonojn.",
+    "i": 1,
+    "t": "p"
+  },
+  "dc2756d11af8d057": "Les Misérables",
+  "dc94ea51cf0b8c7a": "Filmoj",
+  "dc9f1a12fca86efe": "Rapida JS-ŝablonmotoro. Vaste uzata, kun pli ol 1,5 mil steloj en GitHub kaj ĉirkaŭ 2 milionoj da semajnaj elŝutoj.",
+  "def93bda648985e9": "Klarigu kiel al 5-jarulo",
+  "df477c814cdcac4b": "Viskonsino",
+  "e0ec8b1ac98ca1d6": "Wispr Flow",
+  "e1753ab0ce7d5975": "LinkedIn",
+  "e395601b2a099d12": "Brita Kolumbio",
+  "e3960a55f71b6ffe": "Indianao",
+  "e46ea56cf3bd8f10": "Bolivio",
+  "e5cff5481ca8546c": "Amuzaj kaj interesaj",
+  "e69a14dc872a26c4": "Alabamo",
+  "e6a75c0aff68a540": "Minesoto",
+  "e6b4f76a07b162fd": "Barejno",
+  "e6d86a912aea1aa4": {
+    "c": "Lingvolernado",
+    "i": 1,
+    "t": "PageTitle"
+  },
+  "e7bf1a059cc646cb": "Liberio",
+  "e7c0553f70c9ca10": "Internaciaj",
+  "e8192d1f6f3b385a": "Nikaragvo",
+  "e9143d18038a1abb": "Day One Journal",
+  "e9a38127bc28b059": "Srilanko",
+  "e9fccbdf357946f4": "Nevado",
+  "ea11ad22a03140b8": "Nov-Skotio",
+  "ea3bb70a42a500de": "PWA por ekzerci ĉeĥajn, slovakajn kaj rusajn deklinaciajn ŝablonojn.",
+  "ea58be5aff64a6dc": "Kamboĝo",
+  "eafa3523b0b0171d": "Albanio",
+  "eb3a420030dfc079": "Ĉilio",
+  "eb4c23226464ede2": {
+    "c": [
+      "Mi nomiĝas Ben, sed eble vi konas min laŭ mia GitHub-uzantnomo, ",
+      {
+        "c": "@bgub",
+        "i": 2,
+        "t": "Link"
+      },
+      "."
+    ],
+    "i": 1,
+    "t": "p"
+  },
+  "eb7cdb322e2cac62": "Mozambiko",
+  "ec69ee288daa47b4": "Effekt",
+  "ec8e528936b96b22": "Sekureco",
+  "ec9fffcd5e011807": "Konektikuto",
+  "ecc721b6c3807c08": "Nov-Meksiko",
+  "ee39dc118c28042b": "Norda Dakoto",
+  "ee7fdad0f1376f93": "Moldavio",
+  "ef1e481ac2b7ac31": "Usonaj",
+  "ef8e91cb52a44f12": "Hispanio",
+  "f1c6f3c2d9e4a392": {
+    "c": "Baza kazkarto",
+    "i": 1,
+    "t": "h2"
+  },
+  "f41ea186c275b56e": "Pri mi",
+  "f4a62bd4d2559581": "Lesoto",
+  "f4f0914ef1d23a85": "Ontario",
+  "f52129a3f95b5597": "Lernorimedoj",
+  "f6a89728879f3df1": "La Biblio",
+  "f706057a0ef052ff": {
+    "c": "Mi pasigis multajn horojn kreante ĉi tion! Presu ĝin, kaj vi baldaŭ parkerigos la rusajn deklinaciajn ŝablonojn.",
+    "i": 1,
+    "t": "p"
+  },
+  "f832a4e628a98e51": "agentpane",
+  "f8352ccc2624f2bb": "Programado en OCaml: CS 3110",
+  "f8af7923602b2b3f": "Pollando",
+  "fa04175c4a6b1ba8": "Respubliko Kongo",
+  "faacfe0817aee2f5": {
+    "c": "Simpligante kompleksajn temojn",
+    "i": 1,
+    "t": "DialogDescription"
+  },
+  "fb28c7155cb1319a": [
+    {
+      "i": 1,
+      "k": "_gt_value_1",
+      "v": "v"
+    },
+    "× · rulumu / trenu"
+  ],
+  "fbbe6855ed44d65a": "Pelíšky",
+  "fbe4f10390c772d7": "Konlanga dezajno",
+  "fdd81c55ee7946f3": "Hela",
+  "fdd8a5b7dce4c10c": {
+    "c": "Kazkarto",
+    "i": 1,
+    "t": "h2"
+  },
+  "fe04975a9ca7df24": "PyTorch-simila komputa biblioteko por TS/JS kun WebGPU (evoluigata).",
+  "fe3e875a7e5fc2a3": "Kadro COMET",
+  "fe540c9b400cb583": "Siera-Leono",
+  "feb481b144af444a": "Pensoj pri retevoluigo, AI kaj kreado de aferoj, kiuj gravas.",
+  "hero_greeting": [
+    "Saluton, Ahoj, Привет, ",
+    {
+      "c": "مرحبا",
+      "i": 1,
+      "t": "span"
+    },
+    "."
+  ]
+}

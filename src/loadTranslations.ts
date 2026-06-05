@@ -4,6 +4,7 @@ const translationLoaders = {
   en: () => import("../public/_gt/en.json"),
   ru: () => import("../public/_gt/ru.json"),
   sk: () => import("../public/_gt/sk.json"),
+  eo: () => import("../public/_gt/eo.json"),
 };
 
 export async function loadTranslations(locale: string) {

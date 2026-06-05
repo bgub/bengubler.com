@@ -33,8 +33,8 @@ importers:
         specifier: ^5.2.1
         version: 5.2.1
       gt-next:
-        specifier: ^6.16.29
-        version: 6.16.29(next@16.2.6(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        specifier: ^6.16.31
+        version: 6.16.31(next@16.2.6(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       lucide-react:
         specifier: ^1.16.0
         version: 1.16.0(react@19.2.6)
@@ -709,8 +709,8 @@ packages:
   '@formatjs/intl-localematcher@0.6.2':
     resolution: {integrity: sha512-XOMO2Hupl0wdd172Y06h6kLpBz6Dv+J4okPLl4LPtzbr8f66WbIoy4ev98EBuZ6ZK4h5ydTN6XneT4QVpD7cdA==}
 
-  '@generaltranslation/compiler@1.3.23':
-    resolution: {integrity: sha512-7qhAGQ+TmeXXKrJu7Cpw4N+GiK5fDn4WOgveKWZc5ccKKoWyL4P/23nog7ZdNIdH3QYd1bU4g+4uRkvKWqYMNQ==}
+  '@generaltranslation/compiler@1.3.24':
+    resolution: {integrity: sha512-IgB2xGBvUuO9DfI+0DrNB/wHtW30+/mtmmpTbidPvaUzS2ewfxB1RgWCouSt+3J6OnSz7dFexxHuDJ1LItQ4+A==}
     engines: {node: '>=16.0.0'}
 
   '@generaltranslation/format@0.1.1':
@@ -727,13 +727,16 @@ packages:
     resolution: {integrity: sha512-MGnF/Csds3m70VIFQPRt7YNYUMeu4RuP2QQjugaOmrO+ekvNPkswbCima8WzehX10JDuismktD/z1TWB9Fzj6g==}
     engines: {node: '>=16.0.0'}
 
-  '@generaltranslation/react-core@1.8.20':
-    resolution: {integrity: sha512-AecI/FrYbSk5MQYlDFzeSzSYsVXkwER8bGo79dynlY5ghIQTDsmVBPB/Ku9uMW7d9GjQrNvZwIqTXE31s6nJ4Q==}
+  '@generaltranslation/react-core@1.8.21':
+    resolution: {integrity: sha512-sdforPKEdSRgzjukpivuv2zfXT01fxF8xry+Jl6Ll5MGlI+yeQ+RxrkXvcxj3FHFrUW8zEAOztD2FDkMpZg73A==}
     peerDependencies:
       react: '>=16.8.0'
 
   '@generaltranslation/supported-locales@2.1.0':
     resolution: {integrity: sha512-4/cSZ3HpP2Fibgw3BG6ZiNFL/FRXD7PMcIn1X83j2HTFOT38W0KERMB5mLvYCLCkDuMiyUJTRkk/6fW5/2PfyA==}
+
+  '@generaltranslation/supported-locales@2.1.1':
+    resolution: {integrity: sha512-tvtQldUnC53gK3H1I3jXOgW+Aa4w9BgnoKfnSFshodbVeNo3uOsRAF780/FUSq63M+XKZocRL4fKI3h8RHLg/w==}
 
   '@giscus/react@3.1.0':
     resolution: {integrity: sha512-0TCO2TvL43+oOdyVVGHDItwxD1UMKP2ZYpT6gXmhFOqfAJtZxTzJ9hkn34iAF/b6YzyJ4Um89QIt9z/ajmAEeg==}
@@ -1804,6 +1807,9 @@ packages:
   generaltranslation@8.2.15:
     resolution: {integrity: sha512-unjT3i8aoBV8x4YpWmRaE3zvWO3XCiQKW1uZOWYrkJQkp+urur1x+9rbeU3FOL2IlbIIgznzTH+gdo6aEvqH3w==}
 
+  generaltranslation@8.2.16:
+    resolution: {integrity: sha512-0N5Ke8TVUFkuvK51Tajr+2e67dCaUlPrnuX3ltpKOfyopD6QvvR8t3VN5RxhKmFpmsebNf0uXISg/QNDQPH0LA==}
+
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
@@ -1833,18 +1839,18 @@ packages:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
 
-  gt-i18n@0.9.4:
-    resolution: {integrity: sha512-BDHgFZTokrX67hOKUV+KeOnk6CHxcA7r7cP4dtbVktalnT32uyqRnUiD1uVTZZHLypbGgB7/O9W3kvoA9L/bkg==}
+  gt-i18n@0.9.5:
+    resolution: {integrity: sha512-gwt2rJhIm1+vmIBB5fD6JfCLlS5wd4yYgLShKQ+RUlU8j+M5d6kmx93Fo2vinJA04AyIQgV0ChUPib41eishbA==}
 
-  gt-next@6.16.29:
-    resolution: {integrity: sha512-+Np0K76oh15+J30guABH8+towgPYs3m40oYvMOmKhid5dnE6bG2qd5nr6uvEXWOoRyNwSPpDD2xv4wJ7sDzRaQ==}
+  gt-next@6.16.31:
+    resolution: {integrity: sha512-k1v51A0LqoeXXbx/r2LIPZwdLzcSlW1sTkjIDABMLq8lQGiAAyHzsD8NUwMEIVdm3X+at9kPnGBF9PRatAcmlQ==}
     peerDependencies:
       next: '>=13.0.0 <15.2.1 || >15.2.2'
       react: '>=16.8.0 <20.0.0'
       react-dom: '>=16.8.0 <20.0.0'
 
-  gt-react@10.19.18:
-    resolution: {integrity: sha512-prHE4LeQPwadT7Gf1vjwNtzJx03d53oO3estf/x/S5jq01BfT0S/09ImD3fIQlSQ65YZKkiBNJ5Ur/x8pw0wqA==}
+  gt-react@10.20.0:
+    resolution: {integrity: sha512-1dFIzQ+FQtJ6rrCk+XshHgPNguCrl/WBv0K5DvcSGLqo5gjRUAjeJWwUEvqX6ZDijBfwu2jOHxu9J4BKhFBkNA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -3437,14 +3443,14 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@generaltranslation/compiler@1.3.23':
+  '@generaltranslation/compiler@1.3.24':
     dependencies:
       '@babel/generator': 7.29.1
       '@babel/parser': 7.29.3
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.0
       '@generaltranslation/format': 0.1.1
-      generaltranslation: 8.2.15
+      generaltranslation: 8.2.16
       unplugin: 2.3.11
     transitivePeerDependencies:
       - supports-color
@@ -3467,17 +3473,21 @@ snapshots:
     transitivePeerDependencies:
       - tree-sitter
 
-  '@generaltranslation/react-core@1.8.20(react@19.2.6)':
+  '@generaltranslation/react-core@1.8.21(react@19.2.6)':
     dependencies:
       '@generaltranslation/format': 0.1.1
-      '@generaltranslation/supported-locales': 2.1.0
-      generaltranslation: 8.2.15
-      gt-i18n: 0.9.4
+      '@generaltranslation/supported-locales': 2.1.1
+      generaltranslation: 8.2.16
+      gt-i18n: 0.9.5
       react: 19.2.6
 
   '@generaltranslation/supported-locales@2.1.0':
     dependencies:
       generaltranslation: 8.2.15
+
+  '@generaltranslation/supported-locales@2.1.1':
+    dependencies:
+      generaltranslation: 8.2.16
 
   '@giscus/react@3.1.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
@@ -4507,6 +4517,12 @@ snapshots:
       '@generaltranslation/format': 0.1.1
       '@noble/hashes': 2.2.0
 
+  generaltranslation@8.2.16:
+    dependencies:
+      '@formatjs/icu-messageformat-parser': 2.11.4
+      '@generaltranslation/format': 0.1.1
+      '@noble/hashes': 2.2.0
+
   gensync@1.0.0-beta.2: {}
 
   get-east-asian-width@1.6.0: {}
@@ -4532,34 +4548,34 @@ snapshots:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
-  gt-i18n@0.9.4:
+  gt-i18n@0.9.5:
     dependencies:
       '@generaltranslation/format': 0.1.1
-      '@generaltranslation/supported-locales': 2.1.0
-      generaltranslation: 8.2.15
+      '@generaltranslation/supported-locales': 2.1.1
+      generaltranslation: 8.2.16
 
-  gt-next@6.16.29(next@16.2.6(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+  gt-next@6.16.31(next@16.2.6(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
-      '@generaltranslation/compiler': 1.3.23
+      '@generaltranslation/compiler': 1.3.24
       '@generaltranslation/format': 0.1.1
       '@generaltranslation/next-internal': 0.1.2(next@16.2.6(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      '@generaltranslation/supported-locales': 2.1.0
-      generaltranslation: 8.2.15
-      gt-i18n: 0.9.4
-      gt-react: 10.19.18(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      '@generaltranslation/supported-locales': 2.1.1
+      generaltranslation: 8.2.16
+      gt-i18n: 0.9.5
+      gt-react: 10.20.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       next: 16.2.6(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
     transitivePeerDependencies:
       - supports-color
 
-  gt-react@10.19.18(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+  gt-react@10.20.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
       '@generaltranslation/format': 0.1.1
-      '@generaltranslation/react-core': 1.8.20(react@19.2.6)
-      '@generaltranslation/supported-locales': 2.1.0
-      generaltranslation: 8.2.15
-      gt-i18n: 0.9.4
+      '@generaltranslation/react-core': 1.8.21(react@19.2.6)
+      '@generaltranslation/supported-locales': 2.1.1
+      generaltranslation: 8.2.16
+      gt-i18n: 0.9.5
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 
