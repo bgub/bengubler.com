@@ -26,7 +26,7 @@
     "next-themes": "^0.4.6",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-tweet": "^3.3.0",
+    "react-tweet": "^3.3.1",
     "rehype-pretty-code": "^0.14.3",
     "remark-capitalize-headings": "^3.0.0",
     "tailwind-merge": "^3.6.0"
