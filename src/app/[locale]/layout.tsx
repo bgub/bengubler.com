@@ -9,8 +9,8 @@ import { Sidebar } from "@/components/sidebar";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { GTProvider } from "gt-next";
-import { getGT, getLocale, getLocales } from "gt-next/server";
+import { GTProvider, getLocales } from "gt-next";
+import { getGT, getLocale } from "gt-next/server";
 
 const newsreader = Newsreader({
   variable: "--font-serif",

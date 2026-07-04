@@ -1,7 +1,6 @@
 "use client";
 
-import { useGT } from "gt-next";
-import { useLocaleSelector } from "gt-next/client";
+import { useGT, useLocaleSelector } from "gt-next";
 import { cn } from "@/lib/utils";
 
 type LocaleSwitcherProps = {
