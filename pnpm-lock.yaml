@@ -4,6 +4,8 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+packageExtensionsChecksum: sha256-kJrXj7vyMh+R3pAWlVTLfrxgPMxYCybPL2e3c0nnR28=
+
 importers:
 
   .:
@@ -4613,6 +4615,7 @@ snapshots:
       '@babel/parser': 7.29.7
       '@babel/plugin-transform-react-jsx': 7.28.6(@babel/core@7.28.4)
       '@babel/traverse': 7.29.7
+      '@babel/types': 7.29.7
       '@clack/prompts': 1.0.0-alpha.6
       '@formatjs/icu-messageformat-parser': 2.11.4
       '@generaltranslation/format': 0.1.1
