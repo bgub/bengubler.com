@@ -1,55 +1,55 @@
 ---
-title: "Dialektoj por homoj: Soni malsame ol LLM-oj"
-description: "Homoj evoluigas novajn lingvajn ŝablonojn por distingi sin disde AI-generita enhavo, kaj la rapideco de tiu ŝanĝo akceliĝos."
+title: "Dialektoj por homoj: soni malsame ol LLM-oj"
+description: "Homoj evoluigas novajn lingvajn trajtojn por distingi sin disde AI-generita enhavo, kaj la ŝanĝrapido akceliĝos."
 date: "2025-07-01"
 tags: [ml/ai, linguistics]
 ---
 
 ## Kiel formiĝas dialektoj
 
-Dialektoj ofte ekestas pro geografia izoliĝo (pensu pri aŭstralia angla kontraŭ brita angla). Sed ekzistas ankaŭ alia potenca movforto de dialekta formiĝo: la konscia aŭ nekonscia bezono montri apartenon al grupo kaj socian identecon.
+Dialektoj ofte ekestas pro geografia izoliteco (pensu pri Australian English kompare kun British English). Sed estas ankaŭ alia potenca forto malantaŭ la formiĝo de dialektoj: la konscia aŭ nekonscia bezono montri grupan apartenon kaj socian identecon.
 
-Pensu pri African American Vernacular English (AAVE), Southern American English, aŭ la parolmanieroj de „Valley Girl“. Tiuj dialektoj estiĝis pro sociaj dinamikoj, pro la homa bezono aparteni al grupo kaj distingi sin de aliaj. Nun ni atestas la naskiĝon de nova dialekta dividiĝo, inter homoj kaj LLM-oj.
+Pensu pri African American Vernacular English (AAVE), Southern American English aŭ la parolmaniero de „Valley Girl“. Tiuj dialektoj ekestis el sociaj dinamikoj, el la homa bezono aparteni al grupo kaj distingi nin de aliaj. Nun ni atestas la naskiĝon de nova dialekta dislimo, inter homoj kaj LLM-oj.
 
-## La LLM-dialekto estas reala
+## La LLM-dialekto vere ekzistas
 
-Ĉiu, kiu pasigas sufiĉe da tempo legante de AI generitan enhavon, povas tion rimarki. Grandaj lingvaj modeloj konverĝis al aparta skribstilo, kiu fariĝis ĉiam pli rekonebla por homaj legantoj. Rekonigaj signoj inkluzivas:
+Ĉiu, kiu pasigas multe da tempo legante AI-generitan enhavon, povas tion rimarki. Grandaj lingvomodeloj konverĝis al aparta skribstilo, kiu fariĝis ĉiam pli facile rekonebla por homaj legantoj. Malkaŝaj signoj inkluzivas:
 
 * Em-strekojn por dramaj paŭzoj
-* Formulaĵojn kiel „Ĝi ne estas nur X, ĝi estas Y“
+* Formelajn ŝablonojn kiel „Temas ne nur pri X, sed pri Y“
 * Vortojn kiel „delve“, „leverage“ kaj „nuanced“
-* Nombritajn listojn kaj punktolistojn
+* Numeritajn listojn kaj punktolistojn
 
-Tiu konverĝo inter malsamaj SOTA-modeloj tute ne surprizas. La enhavo, kiu plej forte influas tiujn modelojn (libroj, Vikipediaj artikoloj, novaĵoj, akademiaj artikoloj), multe koincidas inter trejnaj datumaroj kaj kreas komunan dialekton, kiun mi nomas „LLM English“.
+Tiu ĉi konverĝo inter malsamaj SOTA-modeloj tute ne surprizas. La enhavo, kiu plej forte formas ĉi tiujn modelojn (libroj, Vikipediaj artikoloj, novaĵoj, akademiaj tekstoj), signife interkovras inter trejnaroj kaj kreas komunan dialekton, kiun mi nomas „LLM-angla“.
 
 ## Homoj adaptiĝas
 
-Verkistoj kiel mi, kiuj antaŭe abunde uzis em-strekojn, nun ĉiam pli transiras al duoblaj strekoj (&quot;--&quot;) aŭ tute evitas tiun interpunkcian signon. La karakteriza apudmetada stilo de LLM subite ŝajnas artefarita, kiam ni mem tiel skribas. Numeritaj listoj kaj troa grasliterigo nun portas la stigmon de AI-generado.
+Verkistoj kiel mi, kiuj antaŭe malavare uzis em-strekojn, nun transiras al duoblaj streketoj (&quot;--&quot;) aŭ tute evitas tiun interpunkcian signon. La karakteriza LLM-stilo de apudmetado subite ŝajnas artefarita, kiam ni mem tiel skribas. Numeritaj listoj kaj troa grasigo nun portas la stigmon de AI-generita teksto.
 
 ## Nova dialekto: „Homa angla“
 
-LLM-oj generas enhavon antaŭdirante la plej verŝajnajn sekvajn tokenojn surbaze de siaj trejnaj datumoj. Ŝablonoj kaj frazoj, kiuj ne aperis en iliaj antaŭtrejnadaj datumoj, povas esti komprenataj kiam oni renkontas ilin, sed verŝajne ne estos spontane generataj.
+LLM-oj generas enhavon antaŭdirante la plej verŝajnajn sekvajn tokenojn laŭ siaj trejnaj datumoj. Ŝablonoj kaj frazoj, kiuj ne aperis en iliaj antaŭtrejnaj datumoj, povas esti komprenataj kiam la modeloj renkontas ilin, sed verŝajne ne estos spontanee generataj.
 
-Se homaj komunumoj povas rapide krei dialektajn novigojn kiel novan slangon, novajn gramatikajn konstruojn kaj freŝajn idiomajn esprimojn, ili povas resti unu paŝon antaŭ la trejnado. LLM-oj ĉiam laboros kun datumoj, kiuj postrestas je monatoj aŭ jaroj kompare kun la avangardo de homa lingva kreemo.
+Se homaj komunumoj povas rapide trapasi dialektajn novigojn kiel novan slangon, novajn gramatikajn konstruojn kaj freŝajn idiomaĵojn, ili povas resti antaŭ tio, kion la modeloj sukcesas lerni. LLM-oj ĉiam laboros kun datumoj, kiuj postrestas je monatoj aŭ jaroj kompare kun la plej nova pinto de homa lingva kreemo.
 
-Pensu, kiom rapide ŝanĝiĝas interreta slango. Kiam „yeet“ eniris en vortarojn, Generacio Z jam estis pluirinta al pli novaj esprimoj. Tiu rapida evoluo povus fariĝi eĉ pli akra kiel konscia strategio por konservi homan lingvan identecon.
+Pripensu, kiel rapide interreta slango ŝanĝiĝas. Kiam „yeet“ aperis en vortaroj, Generacio Z jam estis transirinta al pli novaj esprimoj. Tiu rapida evoluo povus fariĝi eĉ pli elstara kiel konscia strategio por konservi homan lingvan identecon.
 
 ## Teknikaj Defioj de Diferencigo
 
-Estas unu grava teknika malhelpo por ĉi tiu strategio: la longo de la kunteksto. Modernaj LLM-oj kiel Gemini povas trakti ekstreme longajn kuntekstojn, sufiĉajn por enŝargi milojn da lastatempaj tvitoj kiel few-shot-ekzemplojn. AI-sistemo povus teorie observi nuntempajn homajn dialektajn ŝablonojn en reala tempo kaj enkorpigi ilin en siajn respondojn.
+Estas unu grava teknika malhelpo al ĉi tiu strategio: kunteksta longo. Modernaj LLM-oj kiel Gemini povas trakti ekstreme longajn kuntekstojn, sufiĉajn por ŝargi milojn da lastatempaj tvitoj kiel `few-shot`-ekzemplojn. AI-sistemo povus teorie observi nuntempajn homajn dialektajn ŝablonojn en reala tempo kaj enkorpigi ilin en respondojn.
 
-Tamen, tia realtempa dialekta imitado estus kompute multekosta. Kvankam teknike ebla, la rilato inter kosto kaj utilo igas ĝin neverŝajna por plej multaj aplikoj.
+Tamen, tia realtempa dialekta imitado estus kompute multekosta. Kvankam tio estas teknike ebla, analizo de kostoj kaj utiloj montras, ke ĝi verŝajne ne taŭgus por plej multaj aplikoj.
 
 ## Resumo: La estonteco de la angla
 
-Dialektoj aperas kiam ekzistas fortaj sociaj instigoj signali grupan apartenon kaj distingi inter la propra grupo kaj eksteraj grupoj. La LLM-revolucio kreis ĝuste tiajn kondiĉojn.
+Dialektoj aperas kiam ekzistas fortaj sociaj instigoj por montri grupan apartenon kaj distingi inter internaj kaj eksteraj grupoj. La LLM-revolucio kreis ĝuste tiajn kondiĉojn.
 
-Nun estas klara socia valoro montri nian homecon per niaj komunikmanieroj. Konscie aŭ nekonscie, homoj ellaboras novajn manierojn signali „Mi estas homo“ per sia skribado kaj parolado.
+Nun ekzistas klara socia valoro en montri nian homecon per niaj komunikmanieroj. Konscie aŭ nekonscie, homoj disvolvas novajn manierojn signali „Mi estas homo“ per siaj skribaj kaj parolaj esprimmanieroj.
 
-Mi antaŭdiras, ke ni vidos la aperon de apartaj dialektoj de „homa angla“, kiuj rapide evoluos por resti antaŭ AI-kapabloj. Tiuj dialektoj inkluzivos eviti AI-similajn ŝablonojn, krom pozitivaj novaĵoj en slango, gramatiko kaj idiomoj.
+Mi antaŭvidas, ke ni vidos la aperon de apartaj dialektoj de „homa angla“, kiuj rapide evoluos por resti antaŭ la kapabloj de AI. Tiuj dialektoj inkluzivos evitadon de AI-similaj ŝablonoj, krom pozitivaj novaĵoj en slango, gramatiko kaj idiomoj.
 
 ## Esplordemandoj
 
-* Kiom sukcese AI-sistemoj povas reprodukti unikajn dialektajn variantojn, kiam ili ricevas relative malmultajn ekzemplojn?
-* En kiuj retaj komunumoj jam aperas &quot;homa angla&quot;? Ĉu ekzistas komunumoj de fruaj uzantoj, kiujn indas studi?
-* Kiel rapide homaj dialektaj novigoj disvastiĝas tra retaj komunumoj? (Mi certas, ke tio jam estis studita; mi simple ankoraŭ ne esploris ĝin ĝisfunde.)
+* Kiom sukcese AI-sistemoj povas reprodukti unikajn dialektajn variaĵojn surbaze de relative malgrandaj ekzemplaroj?
+* En kiuj retaj komunumoj jam ekaperas „homa angla“? Ĉu ekzistas komunumoj de fruaj adoptantoj por studi?
+* Kiom rapide homaj dialektaj novigoj disvastiĝas tra retaj komunumoj? (Mi certas, ke tion oni jam studis, mi simple ankoraŭ ne esploris ĝin ĝisfunde)

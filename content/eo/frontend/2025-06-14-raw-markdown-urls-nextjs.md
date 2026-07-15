@@ -1,17 +1,19 @@
 ---
-title: "Aldonante .md-URL-ojn por kruda Markdown-enhavo en Next.js"
-description: "Kiel aldoni .md-URL-ojn al via Next.js-blogo por servi krudan Markdown-enhavon, inspirite de la dokumentaro de Vercel."
+title: "Aldonado de .md-URL-oj por kruda markdown-enhavo en Next.js"
+description: "Kiel aldoni .md-URL-ojn al via Next.js-blogo por servi krudan markdown-enhavon, inspirite de la dokumentaro de Vercel."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-> **Ĝisdatigo**: Post la publikigo de ĉi tiu afiŝo, [Guillermo Rauch](https://twitter.com/rauchg) (ĉefoficisto de Vercel) sugestis uzi la Next.js-trajton `rewrites` anstataŭ middleware por ĉi tiu celo. Mi ĝisdatigis la ĉi-suban realigon — ĝi estas pli simpla kaj pli efika! 🚀
+> **Ĝisdatigo**: Post kiam mi publikigis ĉi tiun afiŝon, [Guillermo Rauch](https://twitter.com/rauchg) (CEO de Vercel) sugestis uzi reskribojn de Next.js anstataŭ middleware por ĉi tiu celo. Mi ĝisdatigis la suban efektivigon — ĝi estas pli simpla kaj pli efika! 🚀
 
-## Mallonge
 
-Inspirite de la dokumentaro de Vercel, ni aldonos la eblon simple aldoni `.md` al iu ajn URL de blogaĵo por ricevi la krudan Markdown-enhavon. Do `/posts/my-post` fariĝas `/posts/my-post.md` por la kruda fontoteksto. Mi lastatempe aldonis ĉi tiun funkcion al mia propra blogo — ĝi estas perfekta por kunhavigi kodajn ekzemplojn aŭ montri al homoj, kiel vi ion verkis.
 
-La [rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) de Next.js faras tion surprize facile efektivigebla en eleganta maniero.
+## TL;DR
+
+Inspirite de la dokumentaro de Vercel, ni aldonu la kapablon aldoni `.md` al ajna URL de afiŝo por ricevi la nerenditan markdown-enhavon. Do `/posts/my-post` fariĝas `/posts/my-post.md` por la kruda fonto. Mi lastatempe aldonis ĉi tiun funkcion al mia propra blogo — ĝi estas perfekta por dividi kodajn ekzemplojn aŭ por lasi homojn vidi kiel vi verkis ion.
+
+La [reskriboj](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) de Next.js igas tion surprize facile efektivigebla.
 
 {% tweet id="1930689104800518392" /%}
 
@@ -31,11 +33,13 @@ Aldonu `.content-collections` al via `.gitignore`:
 .content-collections
 ```
 
+
+
 ## Agordo de Content Collections
 
 [Content Collections](https://www.content-collections.dev/) estas bonega biblioteko por administri enhavon en Next.js — ĝi estas tipsekura, rapida kaj havas bonegan DX.
 
-Kreu `content-collections.ts` en la radika dosierujo de via projekto (ne en `src/`):
+Kreu `content-collections.ts` en la ĉefa dosierujo de via projekto (ne en src/):
 
 ```typescript
 import { defineCollection, defineConfig } from "@content-collections/core";
@@ -96,29 +100,37 @@ module.exports = withContentCollections(nextConfig);
 }
 ```
 
+
+
 ## Ekzempla enhavo
 
-Kreu la dosierujon `content/` en la radika dosierujo de via projekto kaj aldonu `content/hello-world.mdx`:
+Kreu la dosierujon `content/` en la radiko de via projekto kaj aldonu `content/hello-world.mdx`:
 
 ````markdown
 ---
 title: "Hello World"
-description: "Mia unua afiŝo kun subteno por krudforma markdown."
+description: "My first blog post with raw markdown support."
 date: "2024-12-20"
 ---
+```
+
+
 
 ## Bonvenon
 
-Ĉi tio estas mia unua afiŝo! Jen iom da **grasa teksto** kaj koda bloko:
+Ĉi tiu estas mia unua bloga afiŝo! Jen **grasa teksto** kaj kodbloko:
 
 ```javascript
 console.log("Hello, world!");
 ```
 
-Sufiĉe mojosa, ĉu ne?
+Mojose, ĉu ne?
+
 ````
 
-## Afiŝaj paĝoj
+
+
+## Paĝoj pri artikoloj
 
 Anstataŭigu `app/page.tsx`:
 
@@ -220,11 +232,13 @@ export function generateStaticParams() {
 }
 ```
 
-## La magio: Rewrites
 
-Ĉi tie la rewrites de Next.js vere brilas — ni povas elegante trakti reskribadon de URL-oj per nur kelkaj linioj da agordo.
 
-Ĝisdatigu `next.config.js` por aldoni la regulon por rewrites:
+## La magio: Reskriboj
+
+Ĝuste ĉi tie la reskriboj de Next.js vere brilas — ni povas elegante trakti URL-reskribadon per nur kelkaj linioj da agordo.
+
+Ĝisdatigu `next.config.js` por aldoni la reskriban regulon:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -244,7 +258,9 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-La reskriba regulo aŭtomate direktas ĉiun peton, kiu kongruas kun `/posts/:slug.md`, al `/api/posts/:slug/raw`. La parametro `:slug` estas prenita el la fonta URL kaj transdonita al la cela URL. La uzanto vidas `/posts/hello-world.md` en sia retumilo, sed Next.js liveras ĝin el `/api/posts/hello-world/raw`.
+La reskriba regulo aŭtomate plusendas ĉiun peton, kiu kongruas kun `/posts/:slug.md`, al `/api/posts/:slug/raw`. La parametro `:slug` estas prenita el la fonta URL kaj transdonita al la celloko. La uzanto vidas `/posts/hello-world.md` en sia retumilo, sed Next.js liveras ĝin el `/api/posts/hello-world/raw`.
+
+
 
 ## API-vojo por kruda enhavo
 
@@ -278,13 +294,15 @@ export function generateStaticParams() {
 }
 ```
 
-## Farite
 
-Lanĉu vian evoluigan servilon kaj testu ambaŭ URL-ojn:
 
-* `/posts/hello-world` - Bildigita MDX kun stiloj kaj komponantoj
-* `/posts/hello-world.md` - Kruda Markdown-fonto
+## Prete
 
-La kaŝmemoraj kaplinioj certigas, ke la kruda Markdown estas konservata en kaŝmemoro dum unu horo, kio malpliigas la ŝarĝon de la servilo por popularaj afiŝoj. En produkta medio, vi eble volos aldoni butonon „Vidi krudan version“ al viaj afiŝoj (kiel mi faris en mia propra blogo) anstataŭ simple montri la ligilon en la afiŝolisto.
+Lanĉu vian evoluan servilon kaj testu ambaŭ URL-ojn:
 
-Ĉi tiu funkcio estas perfekta por kunhavigi ekzemplojn, sencimigi enhavon aŭ permesi al aliaj studi vian Markdown-formatadon. Kaj la rewrites de Next.js faras la efektivigon klara kaj rendimenta - ne necesas kompleksa vojiga logiko.
+* `/posts/hello-world` - Rendigita MDX kun stiloj kaj komponantoj
+* `/posts/hello-world.md` - Kruda markdown-fonto
+
+La kaŝmemoraj kaplinioj certigas, ke la kruda markdown estas kaŝmemorata dum unu horo, tiel reduktante la servilan ŝarĝon por popularaj artikoloj. En produkta medio, vi eble volos aldoni butonon &quot;Vidi fonton&quot; al viaj artikoloj (kiel mi faris en mia propra blogo) anstataŭ simple montri la ligilon en la listo de artikoloj.
+
+Ĉi tiu funkcio estas perfekta por kundividi ekzemplojn, sencimigi enhavon aŭ lasi aliajn studi vian markdown-formatadon. Kaj la reskriboj de Next.js tenas la efektivigon simpla kaj rendimenta - ne necesas kompleksa vojiga logiko.

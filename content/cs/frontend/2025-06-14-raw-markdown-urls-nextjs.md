@@ -1,17 +1,19 @@
 ---
-title: "Přidání .md URL pro surový obsah Markdownu v Next.js"
-description: "Jak do blogu v Next.js přidat .md URL pro podávání surového obsahu Markdownu, inspirováno dokumentací Vercel."
+title: "Přidání URL s `.md` pro nezpracovaný obsah v Markdownu v Next.js"
+description: "Jak do svého blogu v Next.js přidat URL s `.md`, aby servíroval nezpracovaný obsah v Markdownu, inspirováno dokumentací Vercel."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-> **Aktualizace**: Po publikování tohoto příspěvku [Guillermo Rauch](https://twitter.com/rauchg) (CEO společnosti Vercel) navrhl pro tento případ použití místo middleware použít přepisování URL v Next.js. Implementaci níže jsem aktualizoval – je jednodušší a výkonnější! 🚀
+> **Aktualizace**: Po zveřejnění tohoto příspěvku [Guillermo Rauch](https://twitter.com/rauchg) (CEO Vercel) navrhl pro tento případ místo middleware použít přepisování v Next.js. Implementaci níže jsem proto aktualizoval — je jednodušší a výkonnější! 🚀
 
-## Stručně
 
-Inspirovali jsme se dokumentací Vercelu a přidáme možnost připojit `.md` k libovolné URL blogového příspěvku, abyste získali surový obsah v markdownu. Takže z `/posts/my-post` bude `/posts/my-post.md`, tedy surový zdroj. Tuhle funkci jsem nedávno přidal i na svůj blog — skvěle se hodí ke sdílení ukázek kódu nebo když chcete lidem ukázat, jak jste něco napsali.
 
-Next.js [přepisování](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) umožňují tohle řešení implementovat překvapivě jednoduše a čistě.
+## TL;DR
+
+Inspirováni dokumentací Vercelu přidáme možnost připojit `.md` k URL libovolného příspěvku a získat tak obsah v surovém markdownu. Takže z `/posts/my-post` se stane `/posts/my-post.md` pro zobrazení zdrojového textu. Nedávno jsem tuto funkci přidal do svého vlastního blogu – hodí se skvěle pro sdílení ukázek kódu nebo pro ty, kteří chtějí vidět, jak jste něco napsali.
+
+Next.js [přepisování](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) to překvapivě usnadňují a umožňují čistou implementaci.
 
 {% tweet id="1930689104800518392" /%}
 
@@ -25,17 +27,19 @@ pnpm install @content-collections/core @content-collections/mdx @content-collect
 
 Zvolte TypeScript, Tailwind CSS a App Router.
 
-Přidejte `.content-collections` do `.gitignore`:
+Do `.gitignore` přidejte `.content-collections`:
 
 ```
 .content-collections
 ```
 
+
+
 ## Nastavení Content Collections
 
-[Content Collections](https://www.content-collections.dev/) je skvělá knihovna pro správu obsahu v Next.js – je typově bezpečná, rychlá a má skvělou DX.
+[Content Collections](https://www.content-collections.dev/) je skvělá knihovna pro správu obsahu v Next.js – je typově bezpečná, rychlá a nabízí skvělé DX.
 
-V kořenovém adresáři projektu vytvořte `content-collections.ts` (ne v `src/`):
+V kořenovém adresáři projektu vytvořte `content-collections.ts` (ne do `src/`):
 
 ```typescript
 import { defineCollection, defineConfig } from "@content-collections/core";
@@ -69,7 +73,7 @@ export default defineConfig({
 });
 ```
 
-Aktualizujte `next.config.js`:
+Upravte `next.config.js`:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -96,6 +100,8 @@ Upravte cesty v `tsconfig.json`:
 }
 ```
 
+
+
 ## Ukázkový obsah
 
 V kořenovém adresáři projektu vytvořte složku `content/` a přidejte `content/hello-world.mdx`:
@@ -103,22 +109,28 @@ V kořenovém adresáři projektu vytvořte složku `content/` a přidejte `cont
 ````markdown
 ---
 title: "Hello World"
-description: "Můj první příspěvek na blogu s podporou čistého markdownu."
+description: "My first blog post with raw markdown support."
 date: "2024-12-20"
 ---
+```
 
-## Vítej
 
-Toto je můj první příspěvek na blogu! Tady je trochu **tučného textu** a blok kódu:
+
+## Vítejte
+
+Tohle je můj první příspěvek na blogu! Tady je **tučný text** a blok kódu:
 
 ```javascript
 console.log("Hello, world!");
 ```
 
-Docela super, že?
+Docela super, co?
+
 ````
 
-## Stránky pro příspěvky
+
+
+## Stránky s příspěvky
 
 Nahraďte `app/page.tsx`:
 
@@ -220,11 +232,13 @@ export function generateStaticParams() {
 }
 ```
 
-## Kouzlo: přepisování
 
-Tady přepisování v Next.js opravdu zazáří – elegantně zvládneme přepisování URL pomocí několika řádků konfigurace.
 
-Aktualizujte `next.config.js` a přidejte pravidlo pro přepisování:
+## Kouzlo přepisování
+
+Právě tady přepisování v Next.js opravdu vynikne – přepisování URL můžeme elegantně vyřešit pomocí několika řádků konfigurace.
+
+Aktualizujte `next.config.js` a přidejte pravidlo přepisování:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -244,7 +258,9 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-Pravidlo přepisu automaticky mapuje každý požadavek odpovídající `/posts/:slug.md` na `/api/posts/:slug/raw`. Parametr `:slug` se převezme ze zdrojové adresy URL a předá cílové adrese. Uživatel ve svém prohlížeči vidí `/posts/hello-world.md`, ale Next.js ho ve skutečnosti obslouží z `/api/posts/hello-world/raw`.
+Pravidlo přepisování automaticky mapuje každý požadavek, který odpovídá `/posts/:slug.md`, na `/api/posts/:slug/raw`. Parametr `:slug` se převezme ze zdrojové URL a předá cílové adrese. Uživatel ve svém prohlížeči vidí `/posts/hello-world.md`, ale Next.js ho ve skutečnosti obslouží z `/api/posts/hello-world/raw`.
+
+
 
 ## API route pro nezpracovaný obsah
 
@@ -268,7 +284,7 @@ export async function GET(
   return new NextResponse(post.content, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
-      "Cache-Control": "public, max-age=3600", // Mezipaměť na 1 hodinu
+      "Cache-Control": "public, max-age=3600", // Cache na 1 hodinu
     },
   });
 }
@@ -278,13 +294,15 @@ export function generateStaticParams() {
 }
 ```
 
+
+
 ## Hotovo
 
 Spusťte vývojový server a otestujte obě URL:
 
-* `/posts/hello-world` - Vyrenderované MDX se styly a komponentami
-* `/posts/hello-world.md` - Nezpracovaný zdrojový markdown
+* `/posts/hello-world` - vyrenderované MDX se styly a komponentami
+* `/posts/hello-world.md` - surový markdown
 
-Cache hlavičky zajišťují, že se nezpracovaný markdown ukládá na hodinu do mezipaměti, což snižuje zatížení serveru u populárních příspěvků. V produkčním prostředí možná budete chtít ke svým příspěvkům přidat tlačítko „Zobrazit raw verzi“ (jako jsem to udělal na vlastním blogu), místo toho, abyste odkaz jen zobrazovali v seznamu příspěvků.
+Cache hlavičky zajišťují, že se surový markdown ukládá na hodinu do mezipaměti, což snižuje zatížení serveru u populárních příspěvků. V produkci možná budete chtít ke svým příspěvkům přidat tlačítko „View raw“ (jako jsem to udělal na vlastním blogu), místo toho, abyste jen zobrazovali odkaz v seznamu příspěvků.
 
-Tahle funkce se skvěle hodí pro sdílení ukázek, ladění obsahu nebo když chcete ostatním umožnit prostudovat si formátování vašeho markdownu. A přepisovací pravidla v Next.js udržují implementaci čistou a výkonnou — bez potřeby složité routovací logiky.
+Tato funkce je ideální pro sdílení ukázek, ladění obsahu nebo když chcete ostatním umožnit, aby si prostudovali formátování vašeho markdownu. A přepisování v Next.js udržuje implementaci čistou a svižnou - bez potřeby složité logiky směrování.

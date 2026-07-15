@@ -1,30 +1,30 @@
 ---
-title: "Moja stáž vo Verceli"
-description: Moja skúsenosť zo stáže na Next.js vo Verceli.
+title: "Moja stáž vo Vercel"
+description: Moja skúsenosť zo stáže vo Vercel, kde som pracoval na Next.js.
 date: "2025-11-20"
 tags: [random]
 ---
 
-O [mojich osobných projektoch](./2025-09-19-summer-2025-in-review) z minulého leta som už písal, no povedal som si, že by som mal konečne napísať aj o svojej stáži vo Verceli! Tento príspevok mi už nejaký čas ležal medzi konceptmi, tak som sa ho rozhodol jednoducho publikovať. Podobne ako môj posledný príspevok bude aj tento znieť trochu ako zmes chválenkárskeho zoznamu a osobného blogu, takže sa vopred ospravedlňujem.
+Už som písal o [svojich osobných projektoch](./2025-09-19-summer-2025-in-review) z minulého leta, ale povedal som si, že by som mal konečne napísať aj o svojej stáži vo Vercel! Tento príspevok mi už nejaký čas ležal v konceptoch, tak som sa ho rozhodol jednoducho zverejniť. Podobne ako môj posledný príspevok, aj tento bude pôsobiť trochu ako zmes chválenkárskeho zoznamu a osobného blogu, takže sa vopred ospravedlňujem.
 
 ## Ako som získal stáž
 
-Keďže som na jeseň študoval v zahraničí v Maroku, s hľadaním stáže som bol v sklze. Ešte koncom apríla som stále nemal žiadnu ponuku, tak som sa ozval do Vercel a našťastie sa mi po niekoľkých kolách pohovorov podarilo jednu získať!
+Keďže som bol na jeseň na študijnom pobyte v Maroku, s hľadaním stáže som bol v sklze. Ešte ani koncom apríla som nemal žiadnu ponuku, tak som oslovil Vercel a našťastie sa mi po niekoľkých kolách pohovorov podarilo jednu získať!
 
-Pôvodne som dúfal, že sa pridám k tímu v0 alebo AI SDK, ale nakoniec som skončil v tíme Next.js/Turbopack, čo sa ukázalo ako skvelé (viac o tom za chvíľu). Všetko sa riešilo na poslednú chvíľu a bol okolo toho poriadny chaos, ale 1. júna som sa presťahoval do SF. Býval som v hosteli v Tenderloin, kým sa mi nepodarilo nájsť byt (nakoniec som našiel súkromnú izbu v Chinatown za 1200 dolárov — na Utah, odkiaľ pochádzam, nepredstaviteľne drahú, ale v porovnaní s ostatnými cenami v tejto oblasti nepredstaviteľne lacnú.)
+Pôvodne som dúfal, že sa pridám k tímu v0 alebo AI SDK, no nakoniec som sa dostal do tímu Next.js/Turbopack, čo sa ukázalo ako skvelé (o tom viac o chvíľu). Všetko sa zomlelo na poslednú chvíľu a bol z toho chaos, ale 1. júna som sa presťahoval do SF. Býval som v hosteli v Tenderloin, kým sa mi nepodarilo nájsť byt (nakoniec sa mi podarilo zohnať súkromnú izbu v Chinatown za 1 200 dolárov — na Utah, odkiaľ pochádzam, nepredstaviteľne drahé, ale v porovnaní s ostatnými cenami v okolí nepredstaviteľne lacné.)
 
 ## Na čom som pracoval
 
-Všetko sa riešilo na poslednú chvíľu, ale spolu s mojím vedúcim sme vybrali projekt pre stáž. Rozhodli sme sa, že budem pracovať na pridaní podpory pre typed routes v Next.js.
+Veci sa riešili na poslednú chvíľu, ale spolu s mojím manažérom sme vybrali stážový projekt. Rozhodli sme sa, že budem pracovať na pridaní podpory typovaných rout do Next.js.
 
-Nakoniec som sa v Next.js venoval podpore TypeScriptu vo všeobecnosti. Pridal som automatické generovanie typov pre routy, stabilizoval typed links + validáciu typov a oboje som priniesol aj do Turbopacku. Taktiež som vyradil príkaz `next lint`, pridal podporu pre Biome do Nextu a pracoval som aj na niekoľkých interných projektoch, napríklad na prehliadači traceov pre Turbopack.
+Nakoniec som v Next.js pracoval na podpore TypeScriptu vo všeobecnosti. Pridal som automatické generovanie typov rout, stabilizoval typované odkazy + validáciu typov a priniesol oboje do Turbopacku. Taktiež som označil príkaz `next lint` za zastaraný, pridal podporu Biome do Nextu a pracoval na niekoľkých interných projektoch, napríklad na prehliadači traces pre Turbopack.
 
-Okrem toho som vytvoril aj niekoľko projektov, ktoré sa mi nepodarilo včas dotiahnuť do konca, vrátane 7-kapitolového tutoriálu o tom, ako si vytvoriť vlastný React framework (ten som spomenul vo svojom letnom hodnotení a dúfam, že ho čoskoro publikujem!)
+Okrem toho som vytvoril aj niekoľko projektov, ktoré som nestihol včas dokončiť, vrátane 7-kapitolového tutoriálu o vytvorení vlastného React frameworku (ktorý som spomenul vo svojom letnom hodnotení a dúfam, že ho čoskoro zverejním!)
 
 ## Skúsenosť
 
-Kultúra vo Vercel sa mi naozaj páčila. Mali sme hackathon zameraný na AI s vysokou účasťou — vytvoril som chatbot so schopnosťou spúšťať kód pomocou Sandboxes. Vo všeobecnosti ľudia nie sú veľmi zhovorčiví a väčšinou sú dosť zahĺbení do práce, ale mal som aj skvelé príležitosti porozprávať sa s vedením firmy, ako sú Tom Occhino, Malte Ubl a Guillermo Rauch.
+Kultúra vo Verceli sa mi naozaj páčila. Mali sme hackathon zameraný na AI so širokou účasťou — vytvoril som chatbot so schopnosťou spúšťať kód pomocou Sandboxes. Vo všeobecnosti ľudia nie sú veľmi zhovorčiví a väčšinou sa naplno sústredia na prácu, ale mal som aj niekoľko skvelých príležitostí porozprávať sa s vedením firmy, napríklad s Tomom Occhinom, Maltem Ublom a Guillermom Rauchom.
 
-Najlepšie na tom bolo pracovať s kolegami, ktorí sú neuveriteľne talentovaní. Webovému vývoju sa venujem a React používam už viac ako 8 rokov, takže to bolo ako stretnúť svoju obľúbenú celebritu a zároveň pracovať po boku ľudí, ktorí pomáhali vytvoriť React alebo iné významné časti ekosystému!
+Najlepšie na tom bolo pracovať s kolegami, ktorí sú neuveriteľne talentovaní. Webovému vývoju sa venujem a React používam už viac ako 8 rokov, takže to bolo ako stretnúť svoju obľúbenú celebritu — rozprávať sa a pracovať po boku ľudí, ktorí pomohli vytvoriť React alebo iné významné časti ekosystému!
 
-Ak zvažuješ prácu alebo stáž vo Vercel, pokojne sa mi ozvi s otázkami! Pripravil som aj niekoľko dokumentov s tipmi, ktoré budú zdieľané s novými stážistami.
+Ak zvažujete prácu alebo stáž vo Verceli, pokojne sa mi ozvite s otázkami! Pripravil som aj niekoľko dokumentov s tipmi, o ktoré sa podelia s novými stážistami.

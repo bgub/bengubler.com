@@ -5,11 +5,11 @@ date: "2024-07-02"
 tags: [frontend]
 ---
 
-На моём сайте используется [shadcn Dropdown Menu](https://ui.shadcn.com/docs/components/dropdown-menu) (на основе `DropdownMenuPrimitive` от Radix), чтобы пользователи могли менять тему сайта.
+На моём сайте используется [shadcn Dropdown Menu](https://ui.shadcn.com/docs/components/dropdown-menu), основанное на `DropdownMenuPrimitive` из Radix, чтобы пользователи могли менять текущую тему сайта.
 
 По умолчанию содержимое выпадающего меню не совпадает по ширине с триггером. Меня это раздражало, поэтому я какое-то время искал решение. В итоге я нашёл ответ [в документации Radix](https://www.radix-ui.com/primitives/docs/components/dropdown-menu#constrain-the-contentsub-content-size)!
 
-Добавьте приведённый ниже код в ваш CSS-файл (если вы не используете Tailwind, обёртку `@layer utilities` можно убрать):
+Добавьте приведённый ниже код в свой CSS-файл (можно убрать обёртку `@layer utilities`, если вы не используете Tailwind):
 
 ```css
 @layer utilities {
@@ -26,4 +26,4 @@ tags: [frontend]
 <DropdownMenuContent align="end" className="dropdown-content-width-full">
 ```
 
-Вуаля! Контент и триггер теперь одной ширины. Пожалуйста.
+Вуаля! Содержимое и триггер теперь одной ширины. Пожалуйста.

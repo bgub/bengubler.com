@@ -5,17 +5,19 @@ date: "2025-06-14"
 tags: [frontend]
 ---
 
-> **Обновление**: После публикации этой публикации [Guillermo Rauch](https://twitter.com/rauchg) (CEO of Vercel) предложил использовать rewrites в Next.js вместо middleware для этой задачи. Я обновил реализацию ниже — так проще и производительнее! 🚀
+> **Обновление**: После публикации этой публикации [Guillermo Rauch](https://twitter.com/rauchg) (CEO Vercel) предложил использовать rewrites в Next.js вместо middleware для этой задачи. Я обновил реализацию ниже — она проще и производительнее! 🚀
 
-## Кратко
 
-Вдохновившись документацией Vercel, мы добавим возможность дописывать `.md` к URL любой публикации в блоге, чтобы получать исходный Markdown-контент. То есть `/posts/my-post` превращается в `/posts/my-post.md`, открывая доступ к исходнику. Недавно я добавил эту возможность в свой блог — она отлично подходит и для того, чтобы делиться примерами кода, и для того, чтобы показывать, как именно что-то написано.
 
-[rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) в Next.js позволяют реализовать это на удивление просто и аккуратно.
+## TL;DR
+
+Вдохновившись документацией Vercel, мы добавим возможность дописывать `.md` к URL любой публикации, чтобы получить исходный Markdown-контент. Таким образом, `/posts/my-post` превращается в `/posts/my-post.md` для просмотра исходника. Я недавно добавил эту функцию в свой блог — она отлично подходит для того, чтобы делиться примерами кода или показывать людям, как именно вы что-то написали.
+
+[Rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) в Next.js делают реализацию удивительно простой и аккуратной.
 
 {% tweet id="1930689104800518392" /%}
 
-## Настройка
+## Установка
 
 ```bash
 pnpx create-next-app@latest raw-markdown-blog
@@ -25,15 +27,17 @@ pnpm install @content-collections/core @content-collections/mdx @content-collect
 
 Выберите TypeScript, Tailwind CSS и App Router.
 
-Добавьте `.content-collections` в файл `.gitignore`:
+Добавьте `.content-collections` в `.gitignore`:
 
 ```
 .content-collections
 ```
 
+
+
 ## Настройка Content Collections
 
-[Content Collections](https://www.content-collections.dev/) — отличная библиотека для управления контентом в Next.js: она обеспечивает типобезопасность, работает быстро и даёт отличный DX.
+[Content Collections](https://www.content-collections.dev/) — отличная библиотека для управления контентом в Next.js: она типобезопасна, работает быстро и обеспечивает отличный DX.
 
 Создайте `content-collections.ts` в корне проекта (не в src/):
 
@@ -76,7 +80,7 @@ const { withContentCollections } = require("@content-collections/next");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ваша текущая конфигурация...
+  // ваша существующая конфигурация...
 };
 
 module.exports = withContentCollections(nextConfig);
@@ -96,9 +100,11 @@ module.exports = withContentCollections(nextConfig);
 }
 ```
 
+
+
 ## Пример содержимого
 
-Создайте каталог `content/` в корне проекта и добавьте файл `content/hello-world.mdx`:
+Создайте каталог `content/` в корневом каталоге проекта и добавьте `content/hello-world.mdx`:
 
 ````markdown
 ---
@@ -106,19 +112,25 @@ title: "Hello World"
 description: "My first blog post with raw markdown support."
 date: "2024-12-20"
 ---
+```
 
-## Welcome
 
-Это моя первая публикация! Вот немного **жирного текста** и блок кода:
+
+## Добро пожаловать
+
+Это моя первая публикация! Вот **полужирный текст** и блок кода:
 
 ```javascript
 console.log("Hello, world!");
 ```
 
-Pretty cool, right?
+Круто, правда?
+
 ````
 
-## Страницы с публикациями
+
+
+## Страницы «Публикации»
 
 Замените `app/page.tsx`:
 
@@ -163,7 +175,7 @@ export default function Home() {
 }
 ```
 
-Создайте файл `app/posts/[slug]/page.tsx`:
+Создайте `app/posts/[slug]/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -220,11 +232,13 @@ export function generateStaticParams() {
 }
 ```
 
+
+
 ## Магия: rewrites
 
-Вот где rewrites в Next.js действительно раскрываются: мы можем изящно настроить переписывание URL всего несколькими строками конфигурации.
+Именно здесь rewrites в Next.js проявляют себя во всей красе — всего несколькими строками конфигурации можно изящно настроить перезапись URL.
 
-Обновите `next.config.js`, добавив правило rewrite:
+Обновите `next.config.js`, чтобы добавить правило rewrite:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -244,9 +258,11 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-Правило перезаписи автоматически направляет любой запрос, соответствующий `/posts/:slug.md`, на `/api/posts/:slug/raw`. Параметр `:slug` берётся из исходного URL-адреса и передаётся в целевой адрес. Пользователь видит `/posts/hello-world.md` в своём браузере, но Next.js отдаёт его из `/api/posts/hello-world/raw`.
+Правило перезаписи автоматически направляет любой запрос, соответствующий `/posts/:slug.md`, на `/api/posts/:slug/raw`. Параметр `:slug` берётся из исходного URL и передаётся в целевой адрес. Пользователь видит в браузере `/posts/hello-world.md`, но Next.js отдаёт его с `/api/posts/hello-world/raw`.
 
-## API-маршрут для исходного содержимого
+
+
+## API-маршрут для необработанного содержимого
 
 Создайте `app/api/posts/[slug]/raw/route.ts`:
 
@@ -268,7 +284,7 @@ export async function GET(
   return new NextResponse(post.content, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
-      "Cache-Control": "public, max-age=3600", // Кэш на 1 час
+      "Cache-Control": "public, max-age=3600", // Кэшировать на 1 час
     },
   });
 }
@@ -278,13 +294,15 @@ export function generateStaticParams() {
 }
 ```
 
+
+
 ## Готово
 
-Запустите сервер разработки и проверьте оба URL:
+Запустите dev-сервер и проверьте оба URL:
 
 * `/posts/hello-world` - Отрендеренный MDX со стилями и компонентами
-* `/posts/hello-world.md` - Исходный markdown в сыром виде
+* `/posts/hello-world.md` - Исходный исходный Markdown
 
-Заголовки кэширования гарантируют, что исходный markdown будет кэшироваться в течение часа, снижая нагрузку на сервер для популярных публикаций. В продакшене, возможно, стоит добавить к своим публикациям кнопку &quot;View raw&quot; (как я сделал в своём блоге), а не просто показывать ссылку в списке публикаций.
+Заголовки кэширования позволяют кэшировать исходный Markdown на час, снижая нагрузку на сервер для популярных публикаций. В продакшене можно добавить в публикации кнопку &quot;View raw&quot; (как я сделал у себя в блоге), а не просто показывать ссылку в списке публикаций.
 
-Эта возможность отлично подходит для обмена примерами, отладки контента или для того, чтобы другие могли изучить форматирование вашего markdown. А rewrites в Next.js делают реализацию простой и производительной — без сложной логики маршрутизации.
+Эта возможность отлично подходит для того, чтобы делиться примерами, отлаживать контент или давать другим изучать форматирование вашего markdown. А rewrites в Next.js делают реализацию простой и производительной — без сложной логики маршрутизации.

@@ -1,6 +1,6 @@
 ---
 title: "Použití datasetů HuggingFace offline"
-description: Jak uložit dataset HuggingFace na disk a používat jej offline
+description: Jak uložit dataset HuggingFace na disk a používat ho offline
 date: "2024-07-16"
 tags: [ml/ai]
 ---
@@ -17,7 +17,7 @@ x = datasets.load_dataset("my_dataset")
 x.save_to_disk("./my_dataset_local")
 ```
 
-Poté v případě potřeby zkopírujte soubory do počítače, na kterém běží vaše úloha. Na tomto offline počítači pak datovou sadu snadno načtete!
+Potom v případě potřeby zkopírujte soubory na počítač, na kterém vaše úloha běží. Na tomto offline počítači pak datovou sadu snadno načtete!
 
 ```python
 y = datasets.load_from_disk("./hellaswag_local")

@@ -1,13 +1,15 @@
 ---
-title: "Plynulé prechody stránok v Next.js pomocou next-view-transitions"
-description: "Pridajte do Next.js plynulé prechody stránok pomocou rozhrania View Transitions API."
+title: "Plynulé prechody stránok v Next.js s next-view-transitions"
+description: "Pridajte do Next.js plynulé prechody stránok pomocou View Transitions API."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-## Stručne
 
-Balík [`next-view-transitions`](https://github.com/shuding/next-view-transitions) prináša do Next.js plynulé prechody medzi stránkami. Vytvoríme jednoduchý blog a pomocou vlastností `viewTransitionName` pridáme plynulé prechody prvkov, vďaka ktorým sa názvy a dátumy budú medzi stránkami plynule meniť. Tu je ukážka toho, čo budeme vytvárať:
+
+## TL;DR
+
+Balík [`next-view-transitions`](https://github.com/shuding/next-view-transitions) pridáva plynulé prechody stránok do Next.js. Vytvoríme jednoduchý blog a pomocou vlastností `viewTransitionName` pridáme plynulé prechody prvkov, vďaka ktorým sa nadpisy a dátumy budú plynulo transformovať medzi stránkami. Tu je ukážka toho, čo budeme vytvárať:
 
 {% tweet id="1934092246921671158" /%}
 
@@ -28,9 +30,11 @@ pnpx shadcn@latest init
 pnpx shadcn@latest add card badge
 ```
 
+
+
 ## Testovacie dáta
 
-Vytvorte súbor `lib/posts.ts`:
+Vytvorte `lib/posts.ts`:
 
 ```typescript
 export interface Post {
@@ -76,6 +80,8 @@ export const posts: Post[] = [
 ];
 ```
 
+
+
 ## Zoznam príspevkov
 
 Nahraďte `app/page.tsx`:
@@ -116,7 +122,9 @@ export default function PostsPage() {
 }
 ```
 
-## Stránky jednotlivých príspevkov
+
+
+## Samostatné stránky príspevkov
 
 Vytvorte `app/posts/[slug]/page.tsx`:
 
@@ -170,11 +178,13 @@ export function generateStaticParams() {
 }
 ```
 
-Teraz máte funkčný blog so štandardnou navigáciou medzi stránkami.
+Teraz máte funkčný blog s bežným prechádzaním medzi stránkami.
+
+
 
 ## Pridajte View Transitions
 
-Zabaľte aplikáciu do `app/layout.tsx`:
+V súbore `app/layout.tsx` obaľte svoju aplikáciu:
 
 ```tsx
 import { ViewTransitions } from "next-view-transitions";
@@ -208,12 +218,14 @@ import { Link } from "next-view-transitions";
 
 V tomto bode vyzerá navigácia rovnako ako predtým. Balík predvolene nepridáva žiadne prechody.
 
+
+
 ## Kúzlo: prechody zdieľaných prvkov
 
-Pridajte vlastnosti `viewTransitionName` prvkom, ktoré sa majú medzi stránkami plynulo transformovať:
+Prvkom, ktoré sa majú medzi stránkami plynulo transformovať, pridajte vlastnosť `viewTransitionName`:
 
 ```tsx
-// Vo výpise vašich príspevkov (app/page.tsx):
+// V zozname príspevkov (app/page.tsx):
 <CardTitle
   className="line-clamp-2"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -245,8 +257,10 @@ Pridajte vlastnosti `viewTransitionName` prvkom, ktoré sa majú medzi stránkam
 </Badge>
 ```
 
-Teraz sa názov a dátum plynulo presunú z karty na stránku príspevku. **Len takto možno prechody naozaj vidieť** – zladením hodnôt `viewTransitionName` medzi stránkami.
+Teraz sa titulok a dátum plynulo premenia z karty na stránku príspevku. **Len takto sa prechody dajú naozaj vidieť** – zosúladením hodnôt `viewTransitionName` medzi stránkami.
+
+
 
 ## Hotovo
 
-Tieto prechody zabezpečujú vizuálnu kontinuitu, aplikácia vďaka nim pôsobí svižnejšie a používateľom pomáhajú udržať si kontext. API View Transitions podporujú prehliadače Chrome, Edge a Opera, pričom v ostatných prehliadačoch sa bez problémov použije bežná navigácia.
+Tieto prechody zabezpečujú vizuálnu kontinuitu, aplikácia vďaka nim pôsobí svižnejšie a používateľom pomáhajú udržať si kontext. View Transitions API podporujú Chrome, Edge a Opera, pričom v ostatných prehliadačoch sa plynulo prejde na bežnú navigáciu.

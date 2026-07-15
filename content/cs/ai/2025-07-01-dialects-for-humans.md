@@ -1,55 +1,55 @@
 ---
 title: "Dialekty pro lidi: Jak znít jinak než velké jazykové modely"
-description: "Lidé si vytvářejí nové jazykové vzorce, aby se odlišili od obsahu generovaného AI, a tempo těchto změn bude jen zrychlovat."
+description: "Lidé si osvojují nové jazykové vzorce, aby se odlišili od obsahu generovaného AI, a tempo těchto změn se bude zrychlovat."
 date: "2025-07-01"
 tags: [ml/ai, linguistics]
 ---
 
 ## Jak vznikají dialekty
 
-Dialekty často vznikají v důsledku geografické izolace (představte si australskou angličtinu oproti britské angličtině). Existuje ale ještě další silný faktor vzniku dialektů: vědomá nebo nevědomá potřeba dávat najevo příslušnost ke skupině a sociální identitu.
+Dialekty často vznikají v důsledku geografické izolace (například australská angličtina oproti britské angličtině). Existuje ale i další silný faktor, který formuje dialekty: vědomá nebo nevědomá potřeba dát najevo příslušnost ke skupině a svou sociální identitu.
 
-Vezměte si afroamerickou vernakulární angličtinu (AAVE), jižanskou americkou angličtinu nebo mluvu typu „Valley Girl“. Tyto dialekty vznikly ze sociálních dynamik, z lidské potřeby někam patřit a odlišovat se od ostatních. Teď jsme svědky zrodu nového dialektálního předělu mezi lidmi a velkými jazykovými modely.
+Vezměte si African American Vernacular English (AAVE), jižanskou americkou angličtinu nebo způsob mluvy „Valley Girl“. Tyto dialekty vznikly ze sociálních vztahů a z lidské potřeby někam patřit a odlišit se od ostatních. Teď jsme svědky vzniku nového dialektového předělu — mezi lidmi a velkými jazykovými modely.
 
-## Dialekt LLM je skutečný
+## Dialekt velkého jazykového modelu opravdu existuje
 
-Každý, kdo tráví hodně času čtením obsahu generovaného AI, ho pozná. Velké jazykové modely postupně konvergují k osobitému stylu psaní, který je pro lidské čtenáře čím dál snadněji rozpoznatelný. Mezi typické znaky patří:
+Každý, kdo tráví hodně času čtením obsahu generovaného AI, ho dokáže rozpoznat. Velké jazykové modely se sbližují v osobitém stylu psaní, který je pro lidské čtenáře čím dál snadněji rozpoznatelný. Mezi typické znaky patří:
 
 * Dlouhé pomlčky pro dramatické pauzy
 * Šablonovité obraty jako „Není to jen X, je to Y“
-* Slova jako „delve“, „leverage“ a „nuanced“
+* Slova jako „proniknout“, „využít“ a „nuancovaný“
 * Číslované seznamy a odrážky
 
-To, že se různé SOTA modely sbližují právě tímto směrem, není žádné překvapení. Obsah, který má na formování těchto modelů největší vliv (knihy, články na Wikipedii, zpravodajství, odborné texty), se v trénovacích datech výrazně překrývá a vytváří sdílený dialekt, kterému říkám „LLM English“.
+To, že se různé SOTA modely sbližují právě tímto směrem, není žádné překvapení. Obsah, který tyto modely nejvíc formuje (knihy, články na Wikipedii, zpravodajské texty, odborné práce), se v trénovacích sadách výrazně překrývá a vytváří sdílený dialekt, kterému říkám „angličtina velkých jazykových modelů“."
 
 ## Lidé se přizpůsobují
 
-Autoři jako já, kteří dřív hojně používali dlouhé pomlčky, teď přecházejí na dvojité spojovníky (&quot;--&quot;) nebo se tomuto znaménku úplně vyhýbají. Pro LLM typický styl kladení protikladů vedle sebe najednou působí uměle, když tak píšeme sami. Číslované seznamy a nadměrné používání tučného písma teď nesou stigma textu vygenerovaného AI.
+Autoři jako já, kteří dříve hojně používali dlouhé pomlčky, teď přecházejí na dvojité spojovníky („--“) nebo se tomuto znaménku úplně vyhýbají. Pro velké jazykové modely typický styl stavění věcí vedle sebe najednou působí uměle, když ho používáme sami. Číslované seznamy a přehnané zvýrazňování tučným písmem teď nesou stigma textu vygenerovaného AI.
 
-## Nový dialekt: „lidská angličtina“
+## Nový dialekt: „Lidská angličtina“
 
-Velké jazykové modely generují obsah tím, že na základě svých trénovacích dat předpovídají nejpravděpodobnější další tokeny. Vzorce a fráze, které se v jejich předtrénovacích datech nevyskytovaly, sice dokážou po setkání pochopit, ale je nepravděpodobné, že by je samy od sebe začaly generovat.
+Velké jazykové modely generují obsah tak, že na základě svých trénovacích dat předpovídají nejpravděpodobnější další tokeny. Vzorce a obraty, které se v jejich datech pro předtrénování nevyskytovaly, sice při setkání s nimi dokážou pochopit, ale je nepravděpodobné, že by je samy od sebe spontánně vytvářely.
 
-Pokud lidské komunity dokážou rychle přicházet s dialektovými inovacemi, jako je nový slang, nové gramatické konstrukce a svěží idiomatické obraty, mohou si udržet náskok před trénovací křivkou. Velké jazykové modely budou vždy pracovat s daty, která budou o měsíce nebo roky za hranicí nejnovější lidské jazykové kreativity.
+Pokud lidské komunity dokážou rychle přicházet s jazykovými novinkami, jako je nový slang, neotřelé gramatické konstrukce a nové idiomatické obraty, mohou si udržet náskok před tím, na čem se modely stihnou natrénovat. Velké jazykové modely budou vždy pracovat s daty, která za špičkou lidské jazykové tvořivosti zaostávají o měsíce nebo roky.
 
-Stačí se podívat, jak rychle se mění internetový slang. Než se „yeet“ dostalo do slovníků, generace Z už přešla k novějším výrazům. Tento rychlý vývoj by se mohl ještě zrychlit jako vědomá strategie k zachování lidské jazykové identity.
+Stačí se podívat, jak rychle se mění internetový slang. Než se „yeet“ dostalo do slovníků, generace Z už dávno přešla k novějším výrazům. Tento rychlý vývoj by mohl být ještě výraznější jako vědomá strategie pro zachování lidské jazykové identity.
 
 ## Technické výzvy diferenciace
 
-Tato strategie má jednu zásadní technickou překážku: délku kontextu. Moderní velké jazykové modely, jako je Gemini, dokážou pracovat s mimořádně dlouhým kontextem — dost dlouhým na to, aby bylo možné načíst tisíce nedávných tweetů jako few-shot příklady. Systém AI by tak teoreticky mohl v reálném čase sledovat současné vzorce lidských dialektů a promítat je do svých odpovědí.
+Tato strategie má jednu zásadní technickou překážku: délku kontextu. Moderní velké jazykové modely, jako je Gemini, dokážou pracovat s mimořádně dlouhým kontextem — dostatečně dlouhým na to, aby se do něj daly načíst tisíce nedávných tweetů jako few-shot příklady. Systém AI by tak teoreticky mohl v reálném čase sledovat současné podoby lidských dialektů a promítat je do svých odpovědí.
 
-Tento typ dialektální mimikry v reálném čase by však byl výpočetně náročný. Ačkoli je to technicky možné, poměr nákladů a přínosů naznačuje, že pro většinu aplikací to není příliš pravděpodobné.
+Takové napodobování dialektů v reálném čase by však bylo výpočetně náročné. I když je to technicky možné, poměr nákladů a přínosů naznačuje, že pro většinu aplikací je to nepravděpodobné.
 
 ## Shrnutí: Budoucnost angličtiny
 
-Dialekty vznikají tehdy, když existují silné společenské motivace dávat najevo příslušnost ke skupině a odlišovat vlastní skupinu od těch ostatních. Revoluce kolem LLM vytvořila přesně takové podmínky.
+Dialekty vznikají tehdy, když existují silné společenské pobídky k vyjadřování příslušnosti ke skupině a k odlišování vlastních od cizích. Revoluce velkých jazykových modelů vytvořila přesně takové podmínky.
 
-V našich komunikačních zvyklostech teď má zřetelnou společenskou hodnotu projevovat vlastní lidskost. Vědomě i nevědomě lidé rozvíjejí nové způsoby, jak svým psaním a mluvou signalizovat „jsem člověk“.
+Dnes má zjevnou společenskou hodnotu dávat svými komunikačními návyky najevo vlastní lidskost. Lidé si vědomě i nevědomě osvojují nové způsoby, jak svým psaním a mluvením sdělit: „Jsem člověk.“
 
-Předpokládám, že se začnou objevovat výrazné dialekty „lidské angličtiny“, která se budou rychle vyvíjet, aby si udržela náskok před schopnostmi AI. Tyto dialekty budou zahrnovat jak vyhýbání se vzorcům typickým pro AI, tak nové prvky ve slangu, gramatice a idiomech.
+Předpovídám, že se objeví svébytné dialekty „lidské angličtiny“, které se budou rychle vyvíjet, aby si udržely náskok před schopnostmi AI. Tyto dialekty budou zahrnovat jak vyhýbání se vzorcům připomínajícím AI, tak i nové prvky ve slangu, gramatice a idiomech.
 
 ## Výzkumné otázky
 
-* Nakolik dokážou systémy AI věrně napodobit jedinečné dialektové varianty, když mají k dispozici jen relativně malý počet příkladů?
-* Ve kterých online komunitách se už začíná objevovat „lidská angličtina“? Existují komunity raných osvojitelů, které by stálo za to zkoumat?
-* Jak rychle se lidské dialektové inovace šíří v online komunitách? (Jsem si jistý, že to už někdo zkoumal, jen jsem si to zatím pořádně nenastudoval.)
+* Jak úspěšně dokážou systémy AI napodobit jedinečné dialektální varianty, když mají k dispozici jen poměrně malé sady příkladů?
+* Ve kterých online komunitách se už objevuje „lidská angličtina“? Existují komunity raných osvojitelů, které by stálo za to zkoumat?
+* Jak rychle se lidské dialektální inovace šíří v online komunitách? (Jsem si jistý, že už to někdo zkoumal, jen jsem si to zatím důkladně nenastudoval)

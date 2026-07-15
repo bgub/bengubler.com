@@ -1,20 +1,20 @@
 ---
-title: Rýchle a užitočné príkazy pre Slurm
-description: Stručný sprievodca používaním Slurmu na distribuované strojové učenie.
+title: Rýchle a užitočné príkazy Slurm
+description: Stručný sprievodca používaním Slurm na distribuované strojové učenie.
 date: "2023-09-08"
 tags: [ml/ai]
 ---
 
 V laboratóriu, kde pracujem, máme prístup k prostrediu High Performance Computing (HPC), ktoré používa [Slurm Workload Manager](https://slurm.schedmd.com/documentation.html).
 
-Používam ho už nejaký čas a vybral som pár príkazov, ktoré používam stále. Napadlo mi, že sa o ne tu podelím, ak by sa zišli aj niekomu ďalšiemu.
+Používam ho už nejaký čas a našiel som niekoľko príkazov, ktoré používam stále. Povedal som si, že sa o ne tu podelím pre prípad, že by sa mohli hodiť aj niekomu ďalšiemu.
 
 ## Kontrola stavu úlohy
 
 ```bash
 # Zobraziť všetky úlohy
 squeue
-# Skontrolovať stav iba svojich úloh
+# Skontrolovať stav iba vašich úloh
 squeue -u <username>
 # Skontrolovať stav úloh s konkrétnym QOS
 squeue -q <QOS>
@@ -39,9 +39,9 @@ salloc --nodes=1 --gpus=8 --qos=<QOS> --mem=2000G --time=72:00:00 --ntasks=1 --c
 
 ## Odoslanie úlohy
 
-Čo ak sú všetky vaše výpočtové uzly obsadené alebo nechcete, aby sa úloha ukončila hneď po zatvorení terminálu? V takom prípade môžete pomocou `sbatch` odoslať úlohu do frontu. Spustí sa automaticky, hneď ako sa pre ňu podarí prideliť potrebné zdroje.
+Čo ak sú už všetky vaše výpočtové uzly pridelené alebo nechcete, aby sa vaša úloha ukončila hneď po zatvorení terminálu? V takom prípade môžete pomocou `sbatch` odoslať úlohu do fronty. Automaticky sa spustí, hneď ako budú k dispozícii potrebné prostriedky.
 
-Toto si bude vyžadovať o niečo viac prípravy. Predpokladajme, že úloha, ktorú chceme v skutočnosti spustiť, je v `myjob.sh`. Aby sme tento skript odoslali ako úlohu, najprv vytvoríme Bash skript, ktorý potom spustí Slurm. Nazvime ho `run.sh`:
+Bude to vyžadovať o niečo viac prípravy. Predpokladajme, že úloha, ktorú chceme skutočne spustiť, je v `myjob.sh`. Aby sme tento skript odoslali ako úlohu, najprv vytvoríme Bash skript, ktorý spustí Slurm. Nazvime ho `run.sh`:
 
 ```bash
 #!/bin/bash
@@ -56,7 +56,7 @@ Toto si bude vyžadovať o niečo viac prípravy. Predpokladajme, že úloha, kt
 srun --nodes=1 myjob.sh
 ```
 
-Všimnite si, že používame direktívu `#SBATCH` na odovzdanie parametrov, ktoré by sme predtým zadali príkazu `salloc`. Na spustenie samotnej úlohy používame aj `srun`; ak budeme chcieť, postará sa aj o spustenie skriptu na viacerých uzloch.
+Všimnite si, že používame direktívu `#SBATCH` na odovzdanie parametrov, ktoré by sme predtým zadali príkazu `salloc`. Taktiež používame `srun` na spustenie samotnej úlohy; ak budeme chcieť, postará sa aj o spustenie skriptu na viacerých uzloch.
 
 Nakoniec náš skript spustíme takto:
 
@@ -66,6 +66,6 @@ sbatch run.sh
 
 ## Záver
 
-To je všetko! Dúfam, že to bolo užitočné. Ak máte nejaké otázky, môžete sa opýtať ChatGPT alebo Barda (buď vám dajú neuveriteľne užitočné odpovede, alebo budú úplne mimo, ale za pokus to stojí!)
+To je všetko! Dúfam, že vám to pomohlo. Ak máte nejaké otázky, môžete sa opýtať ChatGPT alebo Barda (dostanete od nich buď neuveriteľne užitočné, alebo úplne nesprávne odpovede, ale za pokus to stojí!)
 
-Viac informácií nájdete aj v [dokumentácii Slurmu](https://slurm.schedmd.com/documentation.html) alebo na stránke [Leove poznámky](https://leo.leung.xyz/wiki/Slurm) o Slurme.
+Viac informácií nájdete aj v [dokumentácii Slurm](https://slurm.schedmd.com/documentation.html) alebo na stránke [Leo&#39;s notes](https://leo.leung.xyz/wiki/Slurm) o Slurme.

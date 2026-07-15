@@ -1,15 +1,15 @@
 ---
-title: جعل قائمة Radix المنسدلة بنفس عرض الزر المُفعِّل
-description: كيفية جعل محتوى القائمة المنسدلة في Radix أو shadcn يطابق عرض الزر المُفعِّل.
+title: جعل قائمة Radix المنسدلة بنفس عرض المشغّل
+description: كيفية جعل محتوى القائمة المنسدلة في Radix أو shadcn يطابق عرض المشغّل.
 date: "2024-07-02"
 tags: [frontend]
 ---
 
 يستخدم موقعي [قائمة shadcn المنسدلة](https://ui.shadcn.com/docs/components/dropdown-menu) (المبنية على `DropdownMenuPrimitive` من Radix) لتمكين المستخدمين من تغيير سمة الموقع الحالية.
 
-بشكل افتراضي، لا يكون محتوى مكوّن القائمة المنسدلة بنفس عرض الزر المُفعِّل. وقد أزعجني ذلك، لذا قضيت بعض الوقت أبحث عن حل. وأخيرًا، وجدت الإجابة [في توثيق Radix](https://www.radix-ui.com/primitives/docs/components/dropdown-menu#constrain-the-contentsub-content-size)!
+بشكل افتراضي، لا يكون محتوى مكوّن القائمة المنسدلة بنفس عرض المشغّل. وقد أزعجني ذلك، لذا أمضيت بعض الوقت أبحث عن حل. وأخيرًا، وجدت الإجابة [في توثيق Radix](https://www.radix-ui.com/primitives/docs/components/dropdown-menu#constrain-the-contentsub-content-size)!
 
-ضع الكود أدناه في ملف CSS الخاص بك (ويمكنك إزالة الغلاف `@layer utilities` إذا لم تكن تستخدم Tailwind):
+ضع الكود أدناه في ملف CSS لديك (يمكنك إزالة غلاف `@layer utilities` إذا لم تكن تستخدم Tailwind):
 
 ```css
 @layer utilities {
@@ -26,4 +26,4 @@ tags: [frontend]
 <DropdownMenuContent align="end" className="dropdown-content-width-full">
 ```
 
-ها قد أصبح المحتوى والمُشغِّل بالعرض نفسه. العفو.
+ها قد تم! أصبح المحتوى والمُشغِّل بالعرض نفسه. على الرحب والسعة.

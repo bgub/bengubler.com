@@ -6,13 +6,13 @@ lastUpdated: "2024-06-24"
 tags: [ml/ai]
 ---
 
-*AKTUALIZÁCIA 2024: Tento článok som aktualizoval tak, aby vychádzal z obrazu `nvcr.io/nvidia/pytorch`, ktorý dnes používam prakticky vždy pre jeho skvelú podporu NVIDIA + NCCL + Infiniband. Súbor som tiež zjednodušil a upravil tak, aby na monitorovanie GPU používal `gom`.*
+*AKTUALIZÁCIA 2024: Tento článok som aktualizoval tak, aby bol založený na obraze `nvcr.io/nvidia/pytorch`, ktorý v poslednom čase používam stále pre jeho skvelú podporu NVIDIA + NCCL + Infiniband. Súbor som tiež zjednodušil a upravil tak, aby na monitorovanie GPU používal `gom`.*
 
-Tento článok je určený hlavne kolegom, ale môže byť užitočný aj pre ostatných. Podelím sa v ňom o Dockerfile, ktorý používam na nastavenie svojho prostredia pre strojové učenie. Vychádza z NVIDIA obrazu `pytorch`, ale pridal som doň niekoľko vecí (aktualizované balíčky Pip, GitHub CLI, prompt Starship, [monitorovanie GPU](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement) atď.), ktoré sa mi osvedčili.
+Tento článok je určený hlavne pre kolegov, ale môže byť užitočný aj pre ostatných. Podelím sa tu o Dockerfile, ktorý používam na nastavenie svojho prostredia pre strojové učenie. Je založený na obraze `pytorch` od NVIDIA, ale pridal som doň niekoľko vecí (aktualizované balíky Pip, GitHub CLI, Starship prompt, [monitorovanie GPU](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement) atď.), ktoré sa mi osvedčili.
 
 ## Nastavenie
 
-Skopírujte nižšie uvedený `Dockerfile` do nového adresára. Pokojne si pridajte alebo odstráňte, čo chcete — tento článok budem pravdepodobne aktualizovať podľa toho, ako budem upravovať svoje nastavenie.
+Skopírujte nižšie uvedený `Dockerfile` do nového adresára. Pokojne si v ňom pridajte alebo odstráňte čokoľvek chcete — tento článok budem pravdepodobne aktualizovať podľa toho, ako budem upravovať svoje nastavenie.
 
 ```dockerfile
 # Základný obraz s Ubuntu 22.04, Python 3.10, CUDA 12.4
@@ -38,7 +38,7 @@ RUN pip3 install --no-deps torchaudio
 RUN mv /usr/local/lib/python3.10/dist-packages/docker /usr/local/lib/python3.10/dist-packages/docker_old
 
 #####################
-# GH CLI & STARSHIP #
+# GH CLI A STARSHIP #
 #####################
 
 # GitHub CLI
@@ -50,7 +50,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
 
 RUN apt-get upgrade -y
 
-# Starship prompt
+# Starship Prompt
 RUN curl -sS https://starship.rs/install.sh -o starship-install.sh 
 RUN sh -posix starship-install.sh --yes
 RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
@@ -75,7 +75,7 @@ docker build -t YOUR_IMAGE_NAME_HERE .
 
 ## Spustenie obrazu
 
-Obraz môžete spustiť pomocou:
+Obraz spustíte pomocou:
 
 ```bash
 docker run -d --rm -it \

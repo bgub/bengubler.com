@@ -1,25 +1,25 @@
 ---
-title: Agordi Docker por maŝinlernado
-description: La Dockerfile, kiun mi uzas por agordi mian medion por maŝinlernado.
+title: Agordi Docker por maŝina lernado
+description: La Dockerfile, kiun mi uzas por agordi mian medion de maŝina lernado.
 date: "2023-09-08"
 lastUpdated: "2024-06-24"
 tags: [ml/ai]
 ---
 
-*ĜISDATIGO 2024: Mi ĝisdatigis ĉi tiun artikolon, por ke ĝi baziĝu sur la `nvcr.io/nvidia/pytorch` bildo, kiun mi nuntempe ĉiam uzas pro ĝia bonega subteno por NVIDIA + NCCL + Infiniband. Mi ankaŭ simpligis la dosieron kaj modifis ĝin por uzi `gom` por GPU-monitorado.*
+*ĜISDATIGO 2024: Mi ĝisdatigis ĉi tiun artikolon, por ke ĝi baziĝu sur la bildo `nvcr.io/nvidia/pytorch`, kiun mi nuntempe ĉiam uzas pro ĝia bonega subteno por NVIDIA + NCCL + Infiniband. Mi ankaŭ simpligis la dosieron kaj adaptis ĝin por uzi `gom` por GPU-monitorado.*
 
-Ĉi tiu artikolo estas ĉefe destinita al kunlaborantoj, sed ĝi eble utilos ankaŭ al aliaj. Mi dividos la Dockerfile, kiun mi uzas por agordi mian medion por maŝinlernado. Ĝi baziĝas sur la `pytorch` bildo de NVIDIA, sed mi aldonis kelkajn aferojn (ĝisdatigitajn Pip-pakaĵojn, GitHub CLI, Starship prompt, [GPU-monitoradon](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement) ktp.), kiujn mi trovas utilaj.
+Ĉi tiu artikolo estas ĉefe destinita al kunlaborantoj, sed ĝi eble utilos ankaŭ al aliaj. Mi dividos la Dockerfile, kiun mi uzas por agordi mian medion de maŝina lernado. Ĝi baziĝas sur la bildo `pytorch` de NVIDIA, sed mi aldonis kelkajn utilajn aferojn (ĝisdatigitaj Pip-pakaĵoj, GitHub CLI, Starship prompto, [GPU-monitorado](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement), ktp.).
 
 ## Agordo
 
-Kopiu kaj algluu la suban `Dockerfile` en novan dosierujon. Laŭvole aldonu aŭ forigu kion ajn vi volas — mi verŝajne ĝisdatigos ĉi tiun afiŝon dum mi faros ŝanĝojn al mia agordo.
+Kopiu kaj algluu la suban `Dockerfile` en novan dosierujon. Vi povas libere aldoni aŭ forigi ion ajn — mi verŝajne ĝisdatigos ĉi tiun afiŝon, dum mi faros ŝanĝojn al mia agordo.
 
 ```dockerfile
 # Baza bildo kun Ubuntu 22.04, Python 3.10, CUDA 12.4
 FROM nvcr.io/nvidia/pytorch:24.04-py3
 
 #####################
-# PYTHON-PAKAĴOJ    #
+# PYTHON-PAKAĴOJ   #
 #####################
 
 # Malaktivigi la avertmesaĝon "running pip as the 'root' user can..."
@@ -38,7 +38,7 @@ RUN pip3 install --no-deps torchaudio
 RUN mv /usr/local/lib/python3.10/dist-packages/docker /usr/local/lib/python3.10/dist-packages/docker_old
 
 #####################
-# GH CLI & STARSHIP #
+# GH CLI kaj STARSHIP #
 #####################
 
 # GitHub CLI
@@ -50,12 +50,12 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
 
 RUN apt-get upgrade -y
 
-# Starship-Prompt
+# Starship-prompto
 RUN curl -sS https://starship.rs/install.sh -o starship-install.sh 
 RUN sh -posix starship-install.sh --yes
 RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
 
-# Starship-Agordo
+# Starship-agordo
 RUN echo $'[character]\n\
     success_symbol = "[λ](bold green) "\n\
     error_symbol = "[λ](bold red) "\n\

@@ -1,19 +1,19 @@
 ---
-title: "Enroot na Slurmu pro distribuované ML: Část 2"
-description: Jak používat Enroot na Slurmu pro kontejnerizovaný víceuzlový trénink.
+title: "Enroot na Slurmu pro distribuované ML: část 2"
+description: Jak používat Enroot na Slurmu pro kontejnerizovaný trénink na více uzlech.
 date: "2023-09-11"
 tags: [ml/ai]
 ---
 
-*AKTUALIZACE 2024: Tuto metodu už nedoporučuji, protože jsem s ní narazil na několik problémů. Místo ní doporučuji [Pyxis](https://github.com/NVIDIA/pyxis), nástroj vyvinutý společností NVIDIA, který zjednodušuje spouštění kontejnerů na HPC systémech*.&#95;
+*AKTUALIZACE 2024: Tuto metodu už nedoporučuji, protože jsem s ní narazil na několik problémů. Místo ní doporučuji používat [Pyxis](https://github.com/NVIDIA/pyxis), nástroj vyvinutý společností NVIDIA, který zjednodušuje spouštění kontejnerů na systémech HPC*.&#95;
 
-*Toto je část 2 ze dvoudílné série. [Část 1](./enroot-on-slurm-for-distributed-ml-part-1) najdete zde.*
+*Toto je 2. část dvoudílné série. [Část 1](./enroot-on-slurm-for-distributed-ml-part-1) je k dispozici zde.*
 
-V [části 1](./enroot-on-slurm-for-distributed-ml-part-1) jsme si ukázali, jak používat Enroot na Slurmu pro kontejnerizovaný trénink na *jednom uzlu* pomocí `salloc`. V tomto článku si ukážeme, jak používat Enroot na Slurmu pro kontejnerizovaný trénink na *více uzlech* a přejdeme k používání `sbatch`.
+V [části 1](./enroot-on-slurm-for-distributed-ml-part-1) jsme si ukázali, jak používat Enroot na Slurmu pro kontejnerizovaný trénink na *jednom uzlu* pomocí `salloc`. V tomto článku se podíváme na to, jak používat Enroot na Slurmu pro kontejnerizovaný trénink na *více uzlech* a přejít na `sbatch`.
 
 ## Krok 1: Spouštěcí skript pro Slurm
 
-Nakonec vytvoříme několik souborů Bash, které by všechny měly být ve stejném adresáři jako váš trénovací skript. Prvním bude spouštěcí soubor pro Slurm, který spustíme pomocí `sbatch`. Tento soubor bude obsahovat stejné příkazy, jaké jsme spouštěli přes `salloc` v [části 1](../enroot-on-slurm-for-distributed-ml-part-1), ale zapsané pomocí direktiv `#SBATCH`.
+Nakonec vytvoříme několik souborů Bash, které by všechny měly být ve stejném adresáři jako váš trénovací skript. Prvním bude spouštěcí soubor pro Slurm, který spustíme pomocí `sbatch`. Tento soubor bude obsahovat stejné příkazy, které jsme spouštěli pomocí `salloc` v [části 1](../enroot-on-slurm-for-distributed-ml-part-1), ale zapsané pomocí direktiv `#SBATCH`.
 
 `launch.sh`
 
@@ -31,13 +31,13 @@ export CUR_DIR=$(pwd)
 srun --nodes=2 stage1.sh
 ```
 
-Všimněte si, že vytváříme proměnnou `CUR_DIR`, do které ukládáme aktuální pracovní adresář (adresář, ze kterého byl spuštěn příkaz `sbatch`). Tuto proměnnou používám ke sdílení umístění trénovacího adresáře mezi skripty, abych nemusel natvrdo zadávat cesty. Není to ale nutné.
+Všimněte si, že vytváříme proměnnou `CUR_DIR`, do které ukládáme aktuální pracovní adresář (adresář, ze kterého byl spuštěn příkaz `sbatch`). Tuto proměnnou používám ke sdílení umístění svého trénovacího adresáře mezi skripty, abych nemusel cesty zadávat napevno. Není to ale nutné.
 
 Slurm automaticky předá lokální proměnné prostředí příkazu `srun`, který na každém uzlu spustí skript `stage1.sh`.
 
 ## Krok 2. Spouštěcí skript Enroot
 
-Dále vytvoříme skript, který poběží na každém uzlu. Ten bude mít na starosti spuštění kontejneru a trénovacího skriptu. Budeme mu říkat `stage1.sh`.
+Dále vytvoříme skript, který poběží na každém uzlu. Tento skript bude sloužit ke spuštění kontejneru a trénovacího skriptu. Nazveme ho `stage1.sh`.
 
 `stage1.sh`
 
@@ -61,13 +61,13 @@ enroot start --env SLURM_NODEID \
              bash ${CUR_DIR}/stage2.sh
 ```
 
-Všimněte si, že do kontejneru předáváme několik důležitých proměnných prostředí, které poskytuje Slurm, spolu s `CUR_DIR`. Proměnné `MASTER_ADDR` a `MASTER_PORT` používá backend PyTorch pro distribuované trénování ke koordinaci komunikace mezi uzly.
+Všimněte si, že do kontejneru spolu s `CUR_DIR` předáváme několik důležitých proměnných prostředí, které poskytuje Slurm. Proměnné `MASTER_ADDR` a `MASTER_PORT` používá backend PyTorch pro distribuované trénování ke koordinaci komunikace mezi uzly.
 
-Do kontejneru také připojujeme lokální souborovou cestu (ujistěte se, že obsahuje váš trénovací skript!).
+Do kontejneru také připojujeme lokální cestu k souboru (ujistěte se, že obsahuje váš trénovací skript!).
 
 ## Krok 3. Trénovací skript
 
-Nakonec vytvoříme trénovací skript, který poběží uvnitř kontejneru. Nazveme ho `stage2.sh`.
+Nakonec vytvoříme trénovací skript, který poběží uvnitř kontejneru. Budeme mu říkat `stage2.sh`.
 
 `stage2.sh`
 
@@ -75,18 +75,18 @@ Nakonec vytvoříme trénovací skript, který poběží uvnitř kontejneru. Naz
 #!/bin/bash
 
 export NCCL_DEBUG=INFO # pokud chcete vidět logy NCCL
-export NODE_RANK=$SLURM_NODEID # nastavení ranku uzlu na ID uzlu (0, 1, 2, atd.)
-echo NODE_RANK: $NODE_RANK # výpis ranku uzlu pro účely ladění
+export NODE_RANK=$SLURM_NODEID # nastavte rank uzlu na ID uzlu (0, 1, 2, atd.)
+echo NODE_RANK: $NODE_RANK # vypište rank uzlu pro účely ladění
 
-# Spuštění trénovacího skriptu
-# POZNÁMKA: upravte podle potřeby, pokud nepoužíváte accelerate
+# Spusťte trénovací skript
+# POZNÁMKA: upravte dle potřeby, pokud nepoužíváte accelerate
 
 accelerate launch --config_file ./accelerate_config.yaml --main_process_ip=$MASTER_ADDR --main_process_port=$MASTER_PORT --machine_rank $NODE_RANK ${CUR_DIR}/loop.py
 ```
 
-Tady jsem [accelerate](https://huggingface.co/docs/accelerate) použil ke spuštění svého trénovacího skriptu pro distribuované trénování, ale můžete použít libovolný spouštěč. Jen se ujistěte, že předáte příslušné proměnné prostředí!
+Zde jsem jako spouštěč svého skriptu pro distribuované trénování použil [accelerate](https://huggingface.co/docs/accelerate), ale můžete použít libovolný spouštěč. Jen se ujistěte, že předáváte příslušné proměnné prostředí!
 
-Pro úplnost tady uvádím svůj soubor `accelerate_config.yaml`. Využívá FSDP (Fully Sharded Data Parallel) k rozdělení parametrů modelu a gradientů mezi procesy. Je to skvělý způsob, jak trénovat velké modely, které se nevejdou do jedné GPU.
+Pro úplnost sem přikládám svůj soubor `accelerate_config.yaml`. Využívá FSDP (Fully Sharded Data Parallel) k rozdělení parametrů modelu a gradientů mezi procesy. Je to skvělý způsob, jak trénovat velké modely, které by se na jedinou GPU nevešly.
 
 ```yaml
 compute_environment: LOCAL_MACHINE
@@ -107,16 +107,16 @@ num_processes: 16 # 8 GPU na uzel * 2 uzly = 16 procesů
 use_cpu: false
 ```
 
-## Krok 4. Odeslání úlohy
+## Krok 4. Odešlete úlohu
 
-Teď, když jsme vytvořili všechny potřebné skripty, můžeme úlohu odeslat do Slurmu pomocí `sbatch`! V adresáři se skripty spusťte:
+Teď, když už jsme vytvořili všechny potřebné skripty, můžeme úlohu do Slurmu odeslat pomocí `sbatch`! V adresáři se skripty spusťte:
 
 ```bash
 sbatch launch.sh
 ```
 
-Vaše úloha bude odeslána do Slurmu a spustí se, jakmile budou k dispozici výpočetní prostředky. Výstupní logy se uloží do souboru `slurm-<jobid>.out` v aktuálním adresáři.
+Vaše úloha bude odeslána do systému Slurm a spustí se, jakmile budou k dispozici prostředky. Výstupní logy se uloží jako `slurm-<jobid>.out` do aktuálního adresáře.
 
 ## Závěr
 
-Doufám, že vám to pomohlo! Zprovoznění distribuovaného trénování má mnoho částí, ale jakmile překonáte počáteční fázi učení, není to příliš složité.
+Doufám, že vám to pomohlo! Zprovoznění distribuovaného trénování má mnoho částí, ale jakmile překonáte úvodní fázi učení, není to zase tak složité.

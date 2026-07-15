@@ -1,12 +1,12 @@
 ---
-title: Sencimigado de Python en VSCode
-description: Uzi la funkcion code.interact() por lanĉi interagan Python-interpretilon
+title: Sencimigi Python en VSCode
+description: Uzado de la funkcio `code.interact()` por lanĉi interagan kodinterpretilon
 date: "2024-07-02"
-tags: [hazarda]
+tags: [random]
 ---
 
-Oni diras, ke oni lernas ion novan ĉiutage, sed mi vere ŝokiĝis, kiam mi eksciis pri mirinda trajto de Python, pri kiu mi tute ne sciis.
+Oni diras, ke oni lernas ion novan ĉiutage, sed mi estis ŝokita ekscii pri mirinda Python-trajto, pri kiu mi tute ne sciis.
 
-Ŝajne, eblas paŭzigi la plenumadon de Python-dosiero kaj malfermi interagan terminalon kun la lokaj variabloj! Mi malkovris tion dum spektado de la video de Andrej Karpathy pri [rekreado de GPT-2](https://www.youtube.com/watch?v=l8pRSuU81PU) (kompreneble Karpathy konas tiajn hazardajn lertaĵojn.)
+Ŝajne, vi povas paŭzigi la plenumon de Python-dosiero kaj malfermi interagan terminalon kun la lokaj variabloj! Mi malkovris tion dum mi spektis la filmeton de Andrej Karpathy pri [reproduktado de GPT-2](https://www.youtube.com/watch?v=l8pRSuU81PU) (kompreneble Karpathy konas tiajn hazardajn lertaĵojn.)
 
-Simple metu `import code` ĉe la supro de via dosiero, poste enmetu `code.interact(local=locals())` ie ajn en via kodo. Jen! Kiam la plenumado atingos tiun punkton, Python-interpretilo malfermiĝos en la terminalo kun aliro al ĉiuj lokaj variabloj. Vi povas premi `CTRL+D` por fermi la interpretilon kaj daŭrigi la plenumadon, aŭ tajpi `quit()` por fermi la terminalon kaj ĉesigi la plenumadon.
+Simple metu `import code` ĉe la supro de via dosiero, poste enmetu `code.interact(local=locals())` ie ajn en via kodo. Jen! Kiam la plenumo atingos tiun punkton, Python-interpretilo malfermiĝos en la terminalo kun aliro al ĉiuj lokaj variabloj. Vi povas premi `CTRL+D` por fermi la interpretilon kaj daŭrigi la plenumon, aŭ tajpi `quit()` por forlasi la interpretilon kaj ĉesigi la plenumon.

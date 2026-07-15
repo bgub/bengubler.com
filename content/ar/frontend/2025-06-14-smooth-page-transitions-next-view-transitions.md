@@ -1,13 +1,15 @@
 ---
 title: "انتقالات سلسة بين الصفحات في Next.js باستخدام next-view-transitions"
-description: "أضف انتقالات سلسة بين الصفحات في Next.js باستخدام واجهة View Transitions API."
+description: "أضف انتقالات سلسة بين الصفحات إلى Next.js باستخدام واجهة View Transitions API."
 date: "2025-06-14"
 tags: [frontend]
----"
+---
 
-## باختصار
 
-تضيف حزمة [`next-view-transitions`](https://github.com/shuding/next-view-transitions) انتقالات سلسة بين الصفحات إلى Next.js. سنبني مدونة بسيطة ونضيف انتقالات سلسة للعناصر باستخدام خصائص `viewTransitionName`، بحيث تتحول العناوين والتواريخ بانسيابية بين الصفحات. إليك عرضًا توضيحيًا لما سنبنيه:
+
+## TL;DR
+
+تُتيح حزمة [`next-view-transitions`](https://github.com/shuding/next-view-transitions) انتقالات سلسة بين الصفحات في Next.js. سنبني مدوّنة بسيطة ونضيف انتقالات سلسة للعناصر باستخدام خصائص `viewTransitionName` لجعل العناوين والتواريخ تنتقل بسلاسة بين الصفحات. إليك عرضًا توضيحيًا لما سنبنيه:
 
 {% tweet id="1934092246921671158" /%}
 
@@ -21,16 +23,18 @@ pnpm install next-view-transitions
 
 اختر TypeScript وTailwind CSS وApp Router.
 
-أضف shadcn/ui:
+أضِف shadcn/ui:
 
 ```bash
 pnpx shadcn@latest init
 pnpx shadcn@latest add card badge
 ```
 
-## بيانات تجريبية
 
-أنشئ `lib/posts.ts`:
+
+## بيانات وهمية
+
+أنشئ الملف `lib/posts.ts`:
 
 ```typescript
 export interface Post {
@@ -76,6 +80,8 @@ export const posts: Post[] = [
 ];
 ```
 
+
+
 ## قائمة المقالات
 
 استبدل `app/page.tsx`:
@@ -116,7 +122,9 @@ export default function PostsPage() {
 }
 ```
 
-## صفحات المقالات المنفصلة
+
+
+## صفحات كل مقال
 
 أنشئ `app/posts/[slug]/page.tsx`:
 
@@ -170,11 +178,13 @@ export function generateStaticParams() {
 }
 ```
 
-أصبح لديك الآن مدونة تعمل مع تنقّل عادي بين الصفحات.
+لديك الآن مدونة تعمل مع تنقّلٍ عادي بين الصفحات.
+
+
 
 ## أضف انتقالات العرض
 
-قم بتغليف تطبيقك داخل `app/layout.tsx`:
+غلّف تطبيقك داخل `app/layout.tsx`:
 
 ```tsx
 import { ViewTransitions } from "next-view-transitions";
@@ -196,7 +206,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 }
 ```
 
-استبدِل جميع استيرادات `next/link` بالإصدار الداعم للانتقالات:
+استبدل جميع عمليات استيراد `next/link` بالإصدار الذي يدعم انتقالات العرض:
 
 ```tsx
 // بدلاً من:
@@ -206,14 +216,16 @@ import Link from "next/link";
 import { Link } from "next-view-transitions";
 ```
 
-في هذه المرحلة، يبدو التنقّل مطابقًا تمامًا لما كان عليه سابقًا. لا تضيف الحزمة أي انتقالات تلقائيًا.
+في هذه المرحلة، يبدو التنقل كما كان تمامًا من قبل. لا تضيف الحزمة أي انتقالات بشكل افتراضي.
+
+
 
 ## السحر: انتقالات العناصر المشتركة
 
-أضِف خصائص `viewTransitionName` إلى العناصر التي يُفترض أن تتحول بين الصفحات:
+أضِف خصائص `viewTransitionName` إلى العناصر التي يُفترض أن تتحوّل بين الصفحات:
 
 ```tsx
-// في قائمة مقالاتك (app/page.tsx):
+// في قائمة المقالات (app/page.tsx):
 <CardTitle
   className="line-clamp-2"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -230,7 +242,7 @@ import { Link } from "next-view-transitions";
 ```
 
 ```tsx
-// في صفحة المقال الفردية (app/posts/[slug]/page.tsx):
+// في صفحة المقال المنفردة (app/posts/[slug]/page.tsx):
 <h1
   className="text-4xl font-bold mb-4"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -245,8 +257,10 @@ import { Link } from "next-view-transitions";
 </Badge>
 ```
 
-الآن ينتقل العنوان والتاريخ بسلاسة من البطاقة إلى صفحة المقال. **وهذه هي الطريقة الوحيدة لرؤية الانتقالات فعليًا** — وذلك بمطابقة قيم `viewTransitionName` بين الصفحات.
+الآن ينتقل العنوان والتاريخ بسلاسة من البطاقة إلى صفحة المقال. **هذه هي الطريقة الوحيدة لرؤية الانتقالات فعلاً** — وذلك بمطابقة قيم `viewTransitionName` بين الصفحات.
+
+
 
 ## تم
 
-توفر هذه الانتقالات استمرارية بصرية، وتجعل التطبيق يبدو أكثر سرعة في الاستجابة، وتساعد المستخدمين على الحفاظ على السياق. واجهة View Transitions API مدعومة في Chrome وEdge وOpera، مع انتقال سلس إلى التنقل العادي في المتصفحات الأخرى.
+توفر هذه الانتقالات استمرارية بصرية، وتجعل التطبيق يبدو أكثر سلاسة في الاستجابة، وتساعد المستخدمين على الحفاظ على سياقهم. وتدعم Chrome وEdge وOpera واجهة View Transitions API، مع العودة بسلاسة إلى التنقل العادي في المتصفحات الأخرى.

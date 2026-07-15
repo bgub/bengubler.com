@@ -5,9 +5,9 @@ date: "2024-07-16"
 tags: [ml/ai]
 ---
 
-Je to celkom jednoduché, ale veľmi užitočné, ak spúšťate úlohy na výpočtovom uzle bez prístupu na internet.
+Je to celkom jednoduché, ale veľmi užitočné, ak spúšťate joby na výpočtovom uzle bez prístupu na internet.
 
-Na prihlasovacom uzle alebo na inom počítači s prístupom na internet spustite nasledujúci kód v Pythone:
+Na prihlasovacom uzle alebo inom stroji s prístupom na internet spustite nasledujúci kód v Pythone:
 
 ```python
 import datasets

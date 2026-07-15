@@ -1,13 +1,15 @@
 ---
 title: "Glataj paĝtransiroj en Next.js per next-view-transitions"
-description: "Aldonu glatajn paĝtransirojn en Next.js per la View Transitions API."
+description: "Aldonu glatajn paĝtransirojn al Next.js per la View Transitions API."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-## Mallonge
 
-La pakaĵo [`next-view-transitions`](https://github.com/shuding/next-view-transitions) ebligas glatajn paĝtransirojn en Next.js. Ni konstruos simplan blogon kaj aldonos glatajn elementajn transirojn per ecoj `viewTransitionName`, por ke titoloj kaj datoj glate ŝanĝiĝu inter paĝoj. Jen demonstraĵo de tio, kion ni konstruos:
+
+## TL;DR
+
+La pako [`next-view-transitions`](https://github.com/shuding/next-view-transitions) aldonas glatajn paĝtransirojn al Next.js. Ni konstruos simplan blogon kaj aldos glatajn elementtransirojn per la propraĵoj `viewTransitionName`, por ke titoloj kaj datoj transformiĝu inter paĝoj. Jen demonstraĵo de tio, kion ni konstruos:
 
 {% tweet id="1934092246921671158" /%}
 
@@ -28,7 +30,9 @@ pnpx shadcn@latest init
 pnpx shadcn@latest add card badge
 ```
 
-## Testaj datumoj
+
+
+## Testaj Datumoj
 
 Kreu `lib/posts.ts`:
 
@@ -76,7 +80,9 @@ export const posts: Post[] = [
 ];
 ```
 
-## Listo de afiŝoj
+
+
+## Listigo de afiŝoj
 
 Anstataŭigu `app/page.tsx`:
 
@@ -115,6 +121,8 @@ export default function PostsPage() {
   );
 }
 ```
+
+
 
 ## Paĝoj por unuopaj afiŝoj
 
@@ -170,11 +178,13 @@ export function generateStaticParams() {
 }
 ```
 
-Vi nun havas funkciantan blogon kun ordinara navigado inter paĝoj.
+Vi nun havas funkciantan blogon kun kutima navigado inter paĝoj.
+
+
 
 ## Aldonu View Transitions
 
-En `app/layout.tsx`, ĉirkaŭu vian aplikaĵon:
+En `app/layout.tsx`, envolvu vian aplikaĵon:
 
 ```tsx
 import { ViewTransitions } from "next-view-transitions";
@@ -206,11 +216,13 @@ import Link from "next/link";
 import { Link } from "next-view-transitions";
 ```
 
-Je ĉi tiu etapo, la navigado aspektas same kiel antaŭe. La pakaĵo defaŭlte ne aldonas transirojn.
+Je ĉi tiu etapo, navigado aspektas same kiel antaŭe. La pakaĵo defaŭlte ne aldonas transirojn.
+
+
 
 ## La magio: transiroj de komunaj elementoj
 
-Aldonu ecojn `viewTransitionName` al elementoj, kiuj devus transformiĝi inter paĝoj:
+Aldonu atributojn `viewTransitionName` al elementoj, kiuj devus transformiĝi inter paĝoj:
 
 ```tsx
 // En via listo de afiŝoj (app/page.tsx):
@@ -245,8 +257,10 @@ Aldonu ecojn `viewTransitionName` al elementoj, kiuj devus transformiĝi inter p
 </Badge>
 ```
 
-Nun la titolo kaj dato glate transformiĝas de la karto al la paĝo de la afiŝo. **Tio estas efektive la sola maniero vidi transirojn** - kiam la valoroj de `viewTransitionName` kongruas inter la paĝoj.
+Nun la titolo kaj la dato glate transiras de la karto al la paĝo de la afiŝo. **Tio estas la sola maniero por efektive vidi la transirojn** - per kongruaj `viewTransitionName`-valoroj inter paĝoj.
 
-## Prete
 
-Ĉi tiuj transiroj donas vidan kontinuecon, igas la aplikaĵon pli respondema, kaj helpas al uzantoj konservi la kuntekston. La View Transitions API estas subtenata en Chrome, Edge kaj Opera, kaj en aliaj retumiloj ĝi simple uzas normalan navigadon.
+
+## Farite
+
+Ĉi tiuj transiroj donas vidan kontinuecon, igas la apon ŝajni pli respondeca, kaj helpas uzantojn konservi kuntekston. La View Transitions API estas subtenata en Chrome, Edge kaj Opera, kun glata transiro al normala navigado en aliaj retumiloj.

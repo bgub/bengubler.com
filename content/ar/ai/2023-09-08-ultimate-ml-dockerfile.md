@@ -6,20 +6,20 @@ lastUpdated: "2024-06-24"
 tags: [ml/ai]
 ---
 
-*تحديث 2024: حدّثت هذا المقال ليعتمد على صورة `nvcr.io/nvidia/pytorch`، وهي الصورة التي أستخدمها دائمًا هذه الأيام لما توفّره من دعم ممتاز لـ NVIDIA وNCCL وInfiniband. كما بسّطت الملف وعدّلته لاستخدام `GOM` لمراقبة الـ GPU.*
+*تحديث 2024: حدّثت هذا المقال ليعتمد على صورة `nvcr.io/nvidia/pytorch`، وهي الصورة التي أستخدمها دائمًا هذه الأيام لما توفّره من دعم ممتاز لـ NVIDIA وNCCL وInfiniband. كما بسّطت الملف وعدّلته لاستخدام `gom` لمراقبة الـ GPU.*
 
-هذا المقال موجّه أساسًا إلى زملاء العمل، لكنه قد يكون مفيدًا لغيرهم أيضًا. سأشارك ملف Dockerfile الذي أستخدمه لإعداد بيئة التعلّم الآلي الخاصة بي. وهو مبني على صورة `pytorch` من NVIDIA، لكنني أضفت إليه بعض الأمور التي أجدها مفيدة (مثل ترقية حزم Pip، وGitHub CLI، وموجّه Starship، و[مراقبة الـ GPU](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement)، وغيرها).
+هذا المقال موجّه أساسًا إلى زملاء العمل، لكنه قد يكون مفيدًا لغيرهم أيضًا. سأشارك هنا ملف Dockerfile الذي أستخدمه لإعداد بيئة التعلّم الآلي الخاصة بي. وهو مبني على صورة `pytorch` من NVIDIA، لكنني أضفت إليه بعض الأمور التي أجدها مفيدة (مثل ترقية حزم Pip، وواجهة سطر أوامر GitHub، وموجّه Starship، و[مراقبة الـ GPU](./2023-10-16-gom-gpu-monitor-nvidia-smi-replacement)، وغيرها).
 
 ## الإعداد
 
-انسخ والصق ملف `Dockerfile` أدناه في مجلد جديد. لا تتردد في إضافة أو إزالة أي شيء تريده — وعلى الأرجح سأحدّث هذا المقال كلما أجريت تغييرات على إعداداتي.
+انسخ والصق ملف `Dockerfile` أدناه في مجلد جديد. لا تتردد في إضافة أو حذف ما تشاء — ومن المرجّح أن أحدّث هذا المقال كلما أجريت تغييرات على إعدادي.
 
 ```dockerfile
 # الصورة الأساسية مع Ubuntu 22.04 وPython 3.10 وCUDA 12.4
 FROM nvcr.io/nvidia/pytorch:24.04-py3
 
 #####################
-# حزم PYTHON        #
+# حزم PYTHON   #
 #####################
 
 # تعطيل تحذير "تشغيل pip كمستخدم 'root' قد..."
@@ -31,14 +31,14 @@ RUN pip3 install --upgrade pip
 # تحديث وتثبيت حزم التعلّم الآلي المفيدة
 RUN pip3 install --upgrade transformers accelerate deepspeed fire tqdm openai numpy rouge_score wandb ipython emoji tokenizers evaluate matplotlib seaborn lm-eval jupyter nltk tiktoken aiolimiter swifter pytorch-lightning lightning sentencepiece jsonargparse[signatures] bitsandbytes datasets zstandard rich transformer_lens librosa soundfile gom git+https://github.com/stanfordnlp/pyvene.git git+https://github.com/stanfordnlp/pyreft.git
 
-# تثبيت الإصدار الليلي من TorchAudio
+# تثبيت إصدار TorchAudio الليلي
 RUN pip3 install --no-deps torchaudio
 
-# إصلاح حزمة Docker pip الخاطئة لكي يعمل GOM
+# إصلاح حزمة Docker pip الخاطئة حتى يعمل GOM
 RUN mv /usr/local/lib/python3.10/dist-packages/docker /usr/local/lib/python3.10/dist-packages/docker_old
 
 #####################
-# GH CLI و STARSHIP #
+# واجهة سطر أوامر GH وSTARSHIP #
 #####################
 
 # واجهة سطر أوامر GitHub
@@ -64,9 +64,9 @@ RUN echo $'[character]\n\
     disabled = true' > /root/.config/starship.toml
 ```
 
-## إنشاء الصورة
+## بناء الصورة
 
-بعد إنشاء الملفات، يمكنك إنشاء الصورة باستخدام:
+بعد إنشاء الملفات، يمكنك بناء الصورة باستخدام:
 
 ```bash
 cd /path/to/directory
@@ -75,7 +75,7 @@ docker build -t YOUR_IMAGE_NAME_HERE .
 
 ## تشغيل الصورة
 
-يمكنك تشغيلها باستخدام:
+يمكنك تشغيل الصورة باستخدام:
 
 ```bash
 docker run -d --rm -it \

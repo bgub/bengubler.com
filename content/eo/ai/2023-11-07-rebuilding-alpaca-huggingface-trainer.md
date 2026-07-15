@@ -1,31 +1,31 @@
 ---
-title: Rekreante Alpaca per la klaso Trainer de Hugging Face
+title: Rekonstruante Alpaca per la klaso Hugging Face Trainer
 description: Fajnagordado de Llama-2-7B per la datumaro Alpaca kaj Hugging Face Trainer
 date: "2023-11-07"
 tags: [ml/ai, open-source]
 ---
 
-*ĜISDATIGO 2024: La kodo en ĉi tiu artikolo eble estas malaktuala. Mi rekomendas kontroli la [dokumentaron de Hugging Face Trainer](https://huggingface.co/docs/transformers/v4.41.3/en/trainer) por la plej ĝisdataj informoj.*
+*ĜISDATIGO 2024: La kodo en ĉi tiu artikolo eble jam malaktualiĝis. Mi rekomendas kontroli la [dokumentaron de Hugging Face Trainer](https://huggingface.co/docs/transformers/v4.41.3/en/trainer) por la plej ĝisdataj informoj.*
 
 ## Enkonduko
 
-En marto de ĉi tiu jaro (2023), laboratorio de Stanford publikigis etan projekton, kiu rapide fariĝis ege influa — [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html). La aŭtoroj uzis `text-davinci-003` (modelo InstructGPT de OpenAI) por generi datumaron kun 52K ekzemploj de promtoj kaj respondoj, kaj poste fajnagordis Llama-7B per tiuj paroj de promtoj kaj respondoj.
+En marto de ĉi tiu jaro (2023), laboratorio ĉe Stanford publikigis malgrandan projekton, kiu rapide fariĝis ege influa — [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html). La aŭtoroj uzis `text-davinci-003` (modelo InstructGPT de OpenAI) por generi datumaron kun 52K ekzemploj de promptoj kaj respondoj, kaj poste fajnagordis Llama-7B per tiuj paroj de promptoj kaj respondoj.
 
-La rezulto estis surprize bona — Alpaca povis interagi kun uzantoj simile al la modeloj InstructGPT de OpenAI, kvankam ĝi estis malmultekosta por trejni kaj ne uzis homkreitan trejnan datumaron. En ĉi tiu blogartikolo, ni skribos kodon por trejni nian propran modelon ekde nulo uzante la datumaron Alpaca.
+La rezulto estis surprize bona — Alpaca povis interagi kun uzantoj simile al la modeloj InstructGPT de OpenAI, malgraŭ tio, ke ĝi estis malmultekosta por trejni kaj ne uzis homfaritan trejnan datumaron. En ĉi tiu blogartikolo, ni skribos kodon por trejni nian propran modelon ekde nulo per la datumaro Alpaca.
 
-*La kodo en ĉi tiu blogartikolo baziĝas sur tiu en la [Alpaca repo](https://github.com/tatsu-lab/stanford_alpaca), kvankam mi esperas, ke ĝi estos pli simpla kaj pli intuicia. Ĉiu merito apartenas al la originaj aŭtoroj de la artikolo.*
+*La kodo en ĉi tiu blogartikolo baziĝas sur tiu en la [Alpaca repo](https://github.com/tatsu-lab/stanford_alpaca), kvankam mi esperas, ke ĝi estos pli simpla kaj intuicia. Ĉiu merito apartenas al la originalaj aŭtoroj de la artikolo.*
 
 ## Agordo
 
-Vi bezonos instali `torch`, `transformers`, `datasets` kaj `accelerate`. `wandb` tre utilas, se vi volas spuri la trejnadan perdon laŭlonge de la tempo. Kaj, kompreneble, vi bezonos bonajn GPU-ojn, se vi volas, ke via modelo trejniĝu rapide.
+Vi devos instali `torch`, `transformers`, `datasets` kaj `accelerate`. `wandb` estas bonega, se vi volas spuri la trejnadan perdon tra la tempo. Kaj kompreneble vi bezonos bonajn GPU-ojn, se vi volas, ke via modelo trejniĝu rapide.
 
-Komence kreu unu ĉefdosierujon, `alpaca-repro`, kun du subdosierujoj: unu nomatan `trainer`, kie estos via trejna kodo, kaj unu nomatan `finetunes`, kie ni konservos vian fajnagorditan modelon.
+Komence kreu unu ĉefan dosierujon, `alpaca-repro`, kun du subdosierujoj: unu nomatan `trainer`, kie estos via trejna kodo, kaj unu nomatan `finetunes`, kie ni konservos vian fajnagorditan modelon.
 
-## Paŝo 1: Ŝargado kaj prilaborado de la datumoj
+## Paŝo 1: Ŝargi kaj prilabori la datumojn
 
 Metu la tutan kodon de ĉi tiu sekcio en `trainer/get_data.py`.
 
-Ni komencos per ŝargado de la [Alpaca-datumaro](https://huggingface.co/datasets/tatsu-lab/alpaca) el la Hugging Face Hub. Ĉiu demando/prompto-paro en la datumaro devas esti konvertita al unu sola ĉeno, per kiu ni povas trejni la modelon, sed ni fakte generas ankaŭ unu plian ĉenon: `source`, kiun ni uzas pli sube por ignori etikedojn, por ke nia modelo ne estu trejnata laŭ la instrukcioj.
+Ni komencos per ŝargado de la [Alpaca-datumaro](https://huggingface.co/datasets/tatsu-lab/alpaca) el la Hugging Face Hub. Ĉiu demando/prompta paro en la datumaro devas esti konvertita en unu solan ĉenon, per kiu ni povas trejni la modelon, sed ni fakte generas ankaŭ unu kroman ĉenon: `source`, kiun ni uzas pli sube por ignori etikedojn, por ke nia modelo ne lernu el la instrukcioj.
 
 ```python
 from datasets import load_dataset
@@ -73,7 +73,7 @@ dataset = original_dataset.map(
 ).remove_columns(['instruction', 'input', 'output'])
 ```
 
-Ĉi tie ni dividas la datumojn, por ke ni poste povu uzi 10% por taksado kaj testado.
+Ĉi tie ni dividas la datumojn, por ke poste ni povu uzi 10 % por evalui kaj testi.
 
 ```python
 processed_dataset = dataset.train_test_split(test_size=0.1)
@@ -82,7 +82,7 @@ train_dataset = processed_dataset["train"]
 eval_dataset = processed_dataset["test"]
 ```
 
-Fine, ni difinas datumkolaciilon por uzi en nia trejna buklo. Memoru, ke ĉiu `text`-ĉeno simple konsistas el `source` kaj la respondo. Do ni tokenigas la `source`-ĉenon por ekscii, kiom da etikedoj en la `text`-ĉeno oni ignoru.
+Laste, ni difinas datum-kunigilon por uzi en nia trejna ciklo. Memoru, ke ĉiu ĉeno `text` simple konsistas el la `source` kaj la respondo. Do ni tokenigas la ĉenon `source` por eltrovi, kiom da etikedoj en la ĉeno `text` devas esti ignorataj.
 
 ```python
 IGNORE_TOKEN = -100
@@ -121,11 +121,11 @@ def data_collator(features, tokenizer):
     return res
 ```
 
-## Paŝo 2: Verki nian trejnan buklon
+## Paŝo 2: Skribado de nia trejna buklo
 
 Metu la tutan kodon de ĉi tiu sekcio en `trainer/loop.py`.
 
-Ĉi tiu kodo estas sufiĉe memklariga, do mi nur aldonis komentojn al ĝi.
+Ĉi tiu kodo estas sufiĉe memkomprenebla, do mi simple aldonis al ĝi komentojn.
 
 ```python
 from transformers import LlamaForCausalLM, LlamaTokenizer, Trainer, TrainingArguments
@@ -173,7 +173,7 @@ model.save_pretrained(OUTPUT_DIR)
 tokenizer.save_pretrained(OUTPUT_DIR)
 ```
 
-## Paŝo 3: Ruligi nian trejnan buklon
+## Paŝo 3: Lanĉi nian trejnan buklon
 
 Kreu `trainer/accelerate_config.yaml`, kaj algluu en ĝin la jenan agordon:
 
@@ -192,17 +192,17 @@ num_processes: 1
 use_cpu: false
 ```
 
-Poste iru al `./trainer` per `cd` kaj rulu:
+Poste ŝanĝu al `./trainer` per `cd` kaj rulu:
 
 ```bash
 accelerate launch --config_file accelerate_config.yaml loop.py
 ```
 
-Konservado de la modelo kaj de la pezoj eble daŭros iom da tempo, do paciencu!
+Konservi la modelon kaj ĝiajn pezojn eble daŭros iom da tempo, do paciencu!
 
 ## Paŝo 4: Testado de nia fajnagordita modelo!
 
-Mi skribis simplan skripton por ŝargi nian fajnagorditan modelon kaj interagi kun ĝi! Ĝi ne subtenas kuntekstajn konversaciojn, sed ĝi estas bonega maniero vidi, kiel la modelo funkcias.
+Mi verkis simplan skripton por ŝargi nian fajnagorditan modelon kaj interagi kun ĝi! Ĝi ne subtenas kuntekstajn konversaciojn, sed ĝi estas bonega maniero vidi, kiel la modelo funkcias.
 
 Kreu novan dosieron nomatan `alpaca-repro/model_test.py`, poste rulu `python3 model_test.py`.
 
@@ -252,4 +252,4 @@ while True:
 
 Mi esperas, ke ĉi tiu artikolo estis utila kaj informa! Mi planas post kelkaj tagoj sekvi ĝin per klarigo pri tio, kiel uzi FSDP kun la Hugging Face Trainer.
 
-Se vi ie perdiĝis laŭvoje, jen Gist kun la fina kodo de la projekto: https://gist.github.com/bgub/1da2c0064d53decf197a304267799708
+Se vi ie perdiĝis dum la klarigo, jen Gist kun la fina kodo de la projekto: https://gist.github.com/bgub/1da2c0064d53decf197a304267799708

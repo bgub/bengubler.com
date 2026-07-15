@@ -1,23 +1,23 @@
 ---
 title: Inference na více GPU pomocí Accelerate
-description: Spouštějte inferenci rychleji tím, že budete prompty paralelně předávat více GPU.
+description: Zrychlete inference tím, že budete prompty předávat paralelně více GPU.
 date: "2023-06-12"
 lastUpdated: "2024-06-24"
 tags: [ml/ai]
 archived: true
 ---
 
-*AKTUALIZACE 2024: Informace v tomto článku mohou být zastaralé nebo nepřesné. Jak upozornil Alex Salinas v komentářích níže, tento kód by nejspíš měl používat torchpippy namísto split&#95;between&#95;processes.*
+*AKTUALIZACE 2024: Informace v tomto článku mohou být zastaralé nebo nepřesné. Jak Alex Salinas upozornil v komentářích níže, tento kód by nejspíš měl používat torchpippy místo split&#95;between&#95;processes.*
 
-Historicky se distribuovanému trénování věnovala větší pozornost než distribuované inferenci. Koneckonců, trénování je výpočetně náročnější. Větším a složitějším velkým jazykovým modelům však může plnění úloh doplňování textu trvat dlouho. Ať už jde o výzkum, nebo o produkční nasazení, inferenci se vyplatí paralelizovat, abyste maximalizovali výkon.
+Historicky se distribuovanému trénování věnovala větší pozornost než distribuované inferenci. Trénování je koneckonců výpočetně náročnější. U větších a složitějších velkých jazykových modelů ale může doplňování textu trvat dlouho. Ať už ve výzkumu, nebo v produkci, vyplatí se inference paralelizovat, aby se maximalizoval výkon.
 
-Je důležité si uvědomit, že je rozdíl mezi rozdělením vah jednoho modelu mezi více GPU a rozdělením promptů nebo vstupů mezi více modelů. První možnost je poměrně jednoduchá, zatímco druhá (na kterou se zaměřím) je o něco složitější.
+Je důležité si uvědomit, že je rozdíl mezi rozdělením vah jednoho modelu mezi více GPU a rozdělením promptů nebo vstupů mezi více modelů. První možnost je poměrně jednoduchá, zatímco druhá (na tu se zaměřím) je o něco složitější.
 
-Před týdnem v [HuggingFace Accelerate](https://huggingface.co/docs/accelerate/index) ve verzi 0.20.0 přibyla funkce, která inference na více GPU výrazně zjednodušuje: `Accelerator.split_between_processes()`. Je založená na `torch.distributed`, ale používá se mnohem jednodušeji.
+Před týdnem byla ve verzi 0.20.0 v [HuggingFace Accelerate](https://huggingface.co/docs/accelerate/index) vydána funkce, která inference na více GPU výrazně zjednodušuje: `Accelerator.split_between_processes()`. Je postavená na `torch.distributed`, ale používá se mnohem jednodušeji.
 
-Podívejme se, jak můžeme tuto novou funkci použít s LLaMA. Kód bude napsaný s předpokladem, že jste váhy LLaMA uložili ve [formátu Hugging Face Transformers](https://huggingface.co/docs/transformers/main/model_doc/llama).
+Podívejme se, jak můžeme tuto novou funkci použít s LLaMA. Kód bude napsán s předpokladem, že máte váhy LLaMA uložené ve [formátu Hugging Face Transformers](https://huggingface.co/docs/transformers/main/model_doc/llama).
 
-Nejprve naimportujte potřebné moduly a inicializujte tokenizér a model.
+Nejprve importujte potřebné moduly a inicializujte tokenizér a model.
 
 ```python
 from transformers import LlamaForCausalLM, LlamaTokenizer
@@ -34,7 +34,7 @@ model = LlamaForCausalLM.from_pretrained(MODEL_PATH, device_map="auto")
 
 Všimněte si, že předáváme `device_map="auto"`. To umožňuje knihovně Accelerate rovnoměrně rozložit váhy modelu mezi dostupná GPU.
 
-Kdybychom chtěli, mohli bychom zavolat `model.to(accelerator.device)`. Tím by se model přesunul na konkrétní GPU. `accelerator.device` bude pro každý paralelně běžící proces jiný, takže byste mohli mít jeden model načtený na GPU 0, jiný na GPU 1 atd. V tomto případě ale zůstaneme u `device_map="auto"`. Díky tomu můžeme používat větší modely, než jaké by se vešly na jednu GPU.
+Kdybychom chtěli, mohli bychom zavolat `model.to(accelerator.device)`. Tím by se model přesunul na konkrétní GPU. `accelerator.device` se bude u každého paralelně běžícího procesu lišit, takže byste mohli mít jeden model načtený na GPU 0, další na GPU 1 atd. V tomto případě ale zůstaneme u `device_map="auto"`. Díky tomu můžeme používat větší modely, než jaké by se vešly na jedno GPU.
 
 Dále napíšeme kód pro spuštění inference!
 
@@ -56,8 +56,8 @@ data = [
 ]
 
 # Accelerator automaticky rozdělí tato data mezi jednotlivé běžící procesy.
-# Výše uvedené pole má 12 položek. Kdybychom tedy měli 4 procesy, každému procesu
-# by byly přiřazeny 3 řetězce jako výzvy.
+# Výše uvedené pole má 12 položek. Takže kdybychom měli 4 procesy, každý proces
+# by dostal přiřazeny 3 řetězce jako prompty.
 
 with accelerator.split_between_processes(data,) as prompts:
     for prompt in prompts:
@@ -81,13 +81,13 @@ with accelerator.split_between_processes(data,) as prompts:
 
 ```
 
-Nakonec už jen zbývá spustit Accelerate pomocí nástroje Accelerate CLI:
+Nakonec už stačí jen spustit Accelerate přes Accelerate CLI:
 
 ```bash
 accelerate launch --num_processes=4 script.py
 ```
 
-Když spustíme výše uvedený kód, na dostupné GPU se načtou 4 kopie modelu. Naše prompty se rovnoměrně rozdělí mezi všechny 4 modely, což výrazně zlepší výkon.
+Když spustíme výše uvedený kód, na dostupná GPU se načtou 4 kopie modelu. Naše prompty se rovnoměrně rozdělí mezi tyto 4 modely, což výrazně zlepšuje výkon.
 
 Výstup výše uvedeného kódu (po výpisech z načítání modelů) by měl vypadat takto:
 
@@ -106,4 +106,4 @@ Process 2 - a sheep, a goat, a ram, a bullock, a he-lamb, a turtle-dove, and
 Process 3 - a chicken in every pot, a car in every garage, a house in every backyard, a job for every man, a college
 ```
 
-Doufám, že vám to pomohlo! Pokud vás to zajímá, víc o Accelerate a distribuované inferenci najdete v dokumentaci Accelerate [zde](https://huggingface.co/docs/accelerate/usage_guides/distributed_inference).
+Doufám, že to bylo užitečné! Pokud vás to zajímá, více o Accelerate a distribuované inferenci najdete v dokumentaci k Accelerate [zde](https://huggingface.co/docs/accelerate/usage_guides/distributed_inference).

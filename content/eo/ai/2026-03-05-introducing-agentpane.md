@@ -1,39 +1,39 @@
 ---
-title: "Prezentante agentpane"
-description: "Loka reta interfaco por AI-agentoj por programado. Plurpanela, plursesia, kun fluado — rulu Claude Code kaj Codex flank-al-flanke el via retumilo."
+title: "Konatiĝu kun agentpane"
+description: "Loka reta interfaco por AI-programadaj agentoj. Plurpanela, plursesia, kun fluado — rulu Claude Code kaj Codex flank-al-flanke en via retumilo."
 date: "2026-03-05"
-tags: [ml/ai, malfermitkoda, frontendo]
+tags: [ml/ai, open-source, frontend]
 ---
 
-# Jen agentpane
+# Konatiĝu kun agentpane
 
-agentpane estas loka reta interfaco por AI-agentoj por programado. Vi rulas `npx agentpane`, ĝi malfermiĝas en via retumilo, kaj vi povas paroli kun Claude Code, Codex aŭ iu ajn agento, kiu subtenas [ACP (Agent Client Protocol)](https://github.com/anthropics/agent-protocol) — ĉio per plurpanela interfaco kun fluado, persisto kaj seancoadministrado:
+agentpane estas loka reta interfaco por AI-kodaj agentoj. Vi rulas `npx agentpane`, ĝi malfermiĝas en via retumilo, kaj vi povas paroli kun Claude Code, Codex aŭ iu ajn agento, kiu subtenas [ACP (Agent Client Protocol)](https://github.com/anthropics/agent-protocol) — ĉio ĉi en plurpanela interfaco kun fluado, persisto kaj administrado de sesioj:
 
 ```bash
 npx agentpane
 # → http://localhost:6767
 ```
 
-Elektu agenton, elektu labordosierujon kaj komencu sesion. La agento funkcias kiel subprocezo sur via komputilo. Neniu nubo, neniu deplojo, neniuj kontoj.
+Elektu agenton, elektu labordosierujon kaj komencu sesion. La agento funkcias kiel subprocezo en via komputilo. Neniu nubo, neniu deplojo, neniuj kontoj.
 
-![La agorda ekrano de agentpane kun elekto de agento kaj dosierujo](/blog-images/agentpane-setup.png)
+![La agordekrano de agentpane kun elekto de agento kaj dosierujo](/blog-images/agentpane-setup.png)
 
-## Pluraj paneloj, pluraj agentoj
+## Plurpanela, Pluragenta
 
-La ĉefa afero, kiun mi deziris, estis la eblo samtempe funkciigi plurajn agentojn kaj vidi ilin unu apud la alia. agentpane ofertas ĝis kvar regrandigeblajn panelojn kun langetoj. Vi povas treni sesiojn el la flankobreto en iun ajn panelon, aŭ treni langeton por disigi ĝin en novan panelon. La aranĝo konserviĝas post reŝargoj.
+La ĉefa afero, kiun mi deziris, estis povi ruli plurajn agentojn samtempe kaj vidi ilin unu apud la alia. agentpane donas al vi ĝis kvar regrandigeblajn panelojn kun langetoj. Vi povas treni sesiojn el la flankobreto en iun ajn panelon, aŭ treni langeton por dividi ĝin en novan. La aranĝo restas konservita post reŝargoj.
 
-Tio signifas, ke vi povas havi Claude Code laborantan pri via backend en unu panelo kaj Codex refaktorantan vian frontend en alia — sama ekrano, sama aplikaĵo.
+Tio signifas, ke vi povas havi Claude Code laborantan pri via backendo en unu panelo kaj Codex restrukturantan vian frontendon en alia — sama ekrano, sama aplikaĵo.
 
-![Du sesioj unu apud la alia — Codex maldekstre, Claude Code dekstre](/blog-images/agentpane-hero.png)
+![Du sesioj rulataj unu apud la alia — Codex maldekstre, Claude Code dekstre](/blog-images/agentpane-hero.png)
 
 ## Arkitekturo
 
 La aplikaĵo konsistas el du procezoj:
 
-* **API-servilo** (Hono, pordo 3456) — kreas agentojn, administras sesiojn, prizorgas persiston
-* **Reteja frontendo** (Next.js, pordo 6767) — la UI, kun `/api`-vokoj alidirektataj al la backend
+* **API-servilo** (Hono, pordo 3456) — startigas agentojn, administras sesiojn, prizorgas persiston
+* **Reta frontendo** (Next.js, pordo 6767) — la interfaco, kun vokoj al `/api` plusendataj al la backend
 
-La backend estas konstruita per [Effect.ts](https://effect.website/) kaj uzas injekton de dependecoj per kunmeteblaj servotavoloj:
+La backendo estas konstruita per [Effect.ts](https://effect.website/) kaj uzas dependecinjekton per kunmeteblaj servotavoloj:
 
 ```
 SessionRepo (DB)
@@ -43,18 +43,18 @@ SessionRepo (DB)
   → WriteQueue (batched DB writes)
 ```
 
-Agentoj komunikas per ACP — JSON-RPC 2.0 per stdio. Kiam vi sendas prompton, la `PromptEngine` kreas registrojn de interagoj, plusendas la mesaĝon al la agenta subprocezo per ACP, kaj elsendas la rezultojn reen per Server-Sent Events.
+Agentoj komunikas per ACP — JSON-RPC 2.0 super stdio. Kiam vi sendas prompton, la `PromptEngine` kreas registrojn pri interagoj, plusendas la mesaĝon al la agenta subprocezo per ACP, kaj elsendas la rezultojn reen per Server-Sent Events.
 
 ### Fluado kun sekura rekonekto
 
-La frontendo abonas SSE-finpunkton por ĉiu sesio. Ĉiu evento ricevas monotonan identigilon. La `EventBroadcaster` tenas ringan bufron (512KB / 1000 eventoj), tiel ke se via retumilo malkonektiĝas kaj poste rekonektiĝas, ĝi reasendas la mankitajn eventojn uzante la kaplinion `Last-Event-ID`. Neniuj mankoj en la konversacio, kaj neniu mana reŝargo necesas.
+La frontendo abonas SSE-finpunkton por ĉiu sesio. Ĉiu evento ricevas monotonan ID-on. La `EventBroadcaster` tenas ciklan bufron (512KB / 1000 eventoj), por ke se via retumilo malkonektiĝas kaj rekonektiĝas, ĝi reliveru maltrafitajn eventojn per la kaplinio `Last-Event-ID`. Neniuj mankoj en la konversacio, neniu mana refreŝigo necesas.
 
-### Paneorezista persisto
+### Persisto sekura kontraŭ kraŝoj
 
-La tuta stato estas konservata en loka SQLite-datumbazo ĉe `~/.agentpane/agentpane.db`. Sed skriboj ne okazas tuj — la `WriteQueue` amasigas operaciojn kaj skribas ilin aro-post-are ĉiujn 50 ms. Antaŭ ol skribi la aron, la operacioj estas konservataj en reakira tabelo. Se la servilo paneas meze de la skribado, ĝi post rekomenco daŭrigas de kie ĝi ĉesis. Neniu mesaĝo perdiĝas.
+La tuta stato iras al loka SQLite-datumbazo ĉe `~/.agentpane/agentpane.db`. Sed skriboj ne okazas tuj — la `WriteQueue` amasigas operaciojn kaj enskribas ilin grupe ĉiujn 50 ms. Antaŭ tio, la operacioj estas konservataj en reakira tabelo. Se la servilo kraŝas meze de la enskribo, ĝi rekomencas de tie, kie ĝi ĉesis, post restartigo. Neniu mesaĝo perdiĝas.
 
 ```sql
--- La rekupera tabelo
+-- La reakirotabelo
 CREATE TABLE write_queue_ops (
   id TEXT PRIMARY KEY,
   session_id TEXT NOT NULL,
@@ -63,25 +63,25 @@ CREATE TABLE write_queue_ops (
 );
 ```
 
-## Kion agentoj vidas
+## Kion vidas la agentoj
 
-agentpane ne zorgas pri tio, kiu modelo funkciigas la agenton — ĝi parolas ACP-on. Kiam vi konektiĝas al sesio, la `ConnectionManager`:
+agentpane ne gravas, kiu modelo funkciigas la agenton — ĝi parolas ACP. Kiam vi konektiĝas al sesio, la `ConnectionManager`:
 
-1. Trovas la agentan programdosieron (traserĉas `node_modules/.bin/` por kongrueco kun npm)
-2. Lanĉas ĝin kiel idan procezon kun stdio-tuboj
-3. Intertraktas ACP-kapablojn (aŭtentigo, agordoj, reĝimoj, komandoj)
-4. Provas rekomenci sesion, se ĝi rekonektiĝas al antaŭa sesio
+1. Trovas la agentan binaraĵon (traserĉas `node_modules/.bin/` por kongrueco kun npm)
+2. Lanĉas ĝin kiel subprocezon kun stdio-tuboj
+3. Negocas ACP-kapablojn (aŭtentigo, agordo, reĝimoj, komandoj)
+4. Provas restarigi la sesion, se temas pri rekonekto al antaŭa sesio
 
-La interfaco adaptiĝas al tio, kion la agento subtenas. Se la agento disponigas agordajn opciojn, ili aperas kiel falmenuoj. Se ĝi subtenas oblikvostrekajn komandojn, vi ricevas aŭtomatan kompletigon. Se ĝi fluigas pensoblokojn, ili montriĝas kiel kunfaldeblaj sekcioj.
+La interfaco adaptiĝas al ĉio, kion la agento subtenas. Se la agento disponigas agordajn opciojn, ili aperas kiel falmenuoj. Se ĝi subtenas `slash commands`, vi ricevas aŭtomatan kompletigon. Se ĝi elsendas pensoblokojn, ili montriĝas kiel faldeblaj sekcioj.
 
 ## La frontendo
 
-La retaplikaĵo uzas Next.js 16 kun React 19 kaj la React Compiler — sen iu ajn mana `useMemo` aŭ `useCallback`. La stato estas dividita en du kuntekstajn tavolojn:
+La retaplikaĵo uzas Next.js 16 kun React 19 kaj la React Compiler — nenie necesas mana `useMemo` aŭ `useCallback`. La stato estas dividita en du kuntekstajn tavolojn:
 
-* **SessionProvider** — aktiva sesio, funkciokontroloj, CRUD de sesioj
-* **LayoutProvider** — panela agordo, ordo de langetoj, trenado kaj demetado
+* **SessionProvider** — aktiva sesio, sankontroloj, sesia CRUD
+* **LayoutProvider** — panela agordo, ordigo de langetoj, trenado kaj demetado
 
-Servila stato (sesioj, konversacioj, ĵetona uzado) estas administrata per TanStack React Query, malvalidigata okaze de SSE-eventoj. Markdown montriĝas dum ĝi alfluas per [Streamdown](https://github.com/anthropics/streamdown) kun sintaksa reliefigo de Shiki.
+Servila stato (sesioj, konversacioj, uzado de tokenoj) estas administrata per TanStack React Query kaj malvalidigata post SSE-okazaĵoj. Markdown bildiĝas dum ĝi alfluas per [Streamdown](https://github.com/anthropics/streamdown) kun sintaksa reliefigo de Shiki.
 
 ## Provu ĝin
 
@@ -89,4 +89,4 @@ Servila stato (sesioj, konversacioj, ĵetona uzado) estas administrata per TanSt
 npx agentpane
 ```
 
-La fontkodo troviĝas ĉe [GitHub](https://github.com/bgub/agentpane). La dokumentaro estas en `apps/docs`.
+La fontkodo estas sur [GitHub](https://github.com/bgub/agentpane). La dokumentaro estas ĉe `apps/docs`.
