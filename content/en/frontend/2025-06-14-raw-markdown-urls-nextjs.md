@@ -1,21 +1,21 @@
 ---
-title: "Добавление URL с .md для исходного Markdown-контента в Next.js"
-description: "Как добавить URL с .md в блог на Next.js, чтобы отдавать исходный Markdown-контент, вдохновившись документацией Vercel."
+title: "Adding .md URLs for Raw Markdown Content in Next.js"
+description: "How to add .md URLs to your Next.js blog to serve raw markdown content, inspired by Vercel's docs."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-> **Обновление**: После публикации этой публикации [Guillermo Rauch](https://twitter.com/rauchg) (CEO of Vercel) предложил использовать rewrites в Next.js вместо middleware для этой задачи. Я обновил реализацию ниже — так проще и производительнее! 🚀
+> **Update**: After publishing this post, [Guillermo Rauch](https://twitter.com/rauchg) (CEO of Vercel) suggested using Next.js rewrites instead of middleware for this use case. I've updated the implementation below - it's simpler and more performant! 🚀
 
-## Кратко
+## TL;DR
 
-Вдохновившись документацией Vercel, мы добавим возможность дописывать `.md` к URL любой публикации в блоге, чтобы получать исходный Markdown-контент. То есть `/posts/my-post` превращается в `/posts/my-post.md`, открывая доступ к исходнику. Недавно я добавил эту возможность в свой блог — она отлично подходит и для того, чтобы делиться примерами кода, и для того, чтобы показывать, как именно что-то написано.
+Inspired by Vercel's docs, we'll add the ability to append `.md` to any blog post URL to get the raw markdown content. So `/posts/my-post` becomes `/posts/my-post.md` for the raw source. I recently added this feature to my own blog - it's perfect for sharing code examples or letting people see how you wrote something.
 
-[rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) в Next.js позволяют реализовать это на удивление просто и аккуратно.
+Next.js [rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) make this surprisingly easy to implement cleanly.
 
-<Tweet id="1930689104800518392" />
+{% tweet id="1930689104800518392" /%}
 
-## Настройка
+## Setup
 
 ```bash
 pnpx create-next-app@latest raw-markdown-blog
@@ -23,19 +23,19 @@ cd raw-markdown-blog
 pnpm install @content-collections/core @content-collections/mdx @content-collections/next zod
 ```
 
-Выберите TypeScript, Tailwind CSS и App Router.
+Choose TypeScript, Tailwind CSS, and App Router.
 
-Добавьте `.content-collections` в файл `.gitignore`:
+Add `.content-collections` to your `.gitignore`:
 
 ```
 .content-collections
 ```
 
-## Настройка Content Collections
+## Content Collections Setup
 
-[Content Collections](https://www.content-collections.dev/) — отличная библиотека для управления контентом в Next.js: она обеспечивает типобезопасность, работает быстро и даёт отличный DX.
+[Content Collections](https://www.content-collections.dev/) is an excellent library for managing content in Next.js - it's type-safe, fast, and has great DX.
 
-Создайте `content-collections.ts` в корне проекта (не в src/):
+Create `content-collections.ts` in your project root (not in src/):
 
 ```typescript
 import { defineCollection, defineConfig } from "@content-collections/core";
@@ -69,25 +69,25 @@ export default defineConfig({
 });
 ```
 
-Обновите `next.config.js`:
+Update `next.config.js`:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ваша текущая конфигурация...
+  // your existing config...
 };
 
 module.exports = withContentCollections(nextConfig);
 ```
 
-Обновите пути в `tsconfig.json`:
+Update `tsconfig.json` paths:
 
 ```json
 {
   "compilerOptions": {
-    // ... другие параметры
+    // ... other options
     "paths": {
       "@/*": ["./src/*"],
       "content-collections": ["./.content-collections/generated"]
@@ -96,9 +96,9 @@ module.exports = withContentCollections(nextConfig);
 }
 ```
 
-## Пример содержимого
+## Sample Content
 
-Создайте каталог `content/` в корне проекта и добавьте файл `content/hello-world.mdx`:
+Create the `content/` directory in your project root and add `content/hello-world.mdx`:
 
 ````markdown
 ---
@@ -109,7 +109,7 @@ date: "2024-12-20"
 
 ## Welcome
 
-Это моя первая публикация! Вот немного **жирного текста** и блок кода:
+This is my first blog post! Here's some **bold text** and a code block:
 
 ```javascript
 console.log("Hello, world!");
@@ -118,9 +118,9 @@ console.log("Hello, world!");
 Pretty cool, right?
 ````
 
-## Страницы с публикациями
+## Posts Pages
 
-Замените `app/page.tsx`:
+Replace `app/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -163,7 +163,7 @@ export default function Home() {
 }
 ```
 
-Создайте файл `app/posts/[slug]/page.tsx`:
+Create `app/posts/[slug]/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -220,11 +220,11 @@ export function generateStaticParams() {
 }
 ```
 
-## Магия: rewrites
+## The Magic: Rewrites
 
-Вот где rewrites в Next.js действительно раскрываются: мы можем изящно настроить переписывание URL всего несколькими строками конфигурации.
+This is where Next.js rewrites shine - we can elegantly handle URL rewriting with just a few lines of configuration.
 
-Обновите `next.config.js`, добавив правило rewrite:
+Update `next.config.js` to add the rewrite rule:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -244,11 +244,11 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-Правило перезаписи автоматически направляет любой запрос, соответствующий `/posts/:slug.md`, на `/api/posts/:slug/raw`. Параметр `:slug` берётся из исходного URL-адреса и передаётся в целевой адрес. Пользователь видит `/posts/hello-world.md` в своём браузере, но Next.js отдаёт его из `/api/posts/hello-world/raw`.
+The rewrite rule automatically maps any request matching `/posts/:slug.md` to `/api/posts/:slug/raw`. The `:slug` parameter is captured from the source URL and passed to the destination. The user sees `/posts/hello-world.md` in their browser, but Next.js serves it from `/api/posts/hello-world/raw`.
 
-## API-маршрут для исходного содержимого
+## API Route for Raw Content
 
-Создайте `app/api/posts/[slug]/raw/route.ts`:
+Create `app/api/posts/[slug]/raw/route.ts`:
 
 ```typescript
 import { allPosts } from "content-collections";
@@ -268,7 +268,7 @@ export async function GET(
   return new NextResponse(post.content, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
-      "Cache-Control": "public, max-age=3600", // Кэш на 1 час
+      "Cache-Control": "public, max-age=3600", // Cache for 1 hour
     },
   });
 }
@@ -278,13 +278,13 @@ export function generateStaticParams() {
 }
 ```
 
-## Готово
+## Done
 
-Запустите сервер разработки и проверьте оба URL:
+Start your dev server and test both URLs:
 
-* `/posts/hello-world` - Отрендеренный MDX со стилями и компонентами
-* `/posts/hello-world.md` - Исходный markdown в сыром виде
+- `/posts/hello-world` - Rendered MDX with styling and components
+- `/posts/hello-world.md` - Raw markdown source
 
-Заголовки кэширования гарантируют, что исходный markdown будет кэшироваться в течение часа, снижая нагрузку на сервер для популярных публикаций. В продакшене, возможно, стоит добавить к своим публикациям кнопку &quot;View raw&quot; (как я сделал в своём блоге), а не просто показывать ссылку в списке публикаций.
+The cache headers ensure the raw markdown is cached for an hour, reducing server load for popular posts. In production, you might want to add a "View raw" button to your posts (like I did on my own blog) rather than just showing the link in the post listing.
 
-Эта возможность отлично подходит для обмена примерами, отладки контента или для того, чтобы другие могли изучить форматирование вашего markdown. А rewrites в Next.js делают реализацию простой и производительной — без сложной логики маршрутизации.
+This feature is perfect for sharing examples, debugging content, or letting others study your markdown formatting. And Next.js rewrites make the implementation clean and performant - no complex routing logic needed.

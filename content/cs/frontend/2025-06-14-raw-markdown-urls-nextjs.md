@@ -1,21 +1,21 @@
 ---
-title: "Adding .md URLs for Raw Markdown Content in Next.js"
-description: "How to add .md URLs to your Next.js blog to serve raw markdown content, inspired by Vercel's docs."
+title: "Přidání .md URL pro surový obsah Markdownu v Next.js"
+description: "Jak do blogu v Next.js přidat .md URL pro podávání surového obsahu Markdownu, inspirováno dokumentací Vercel."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-> **Update**: After publishing this post, [Guillermo Rauch](https://twitter.com/rauchg) (CEO of Vercel) suggested using Next.js rewrites instead of middleware for this use case. I've updated the implementation below - it's simpler and more performant! 🚀
+> **Aktualizace**: Po publikování tohoto příspěvku [Guillermo Rauch](https://twitter.com/rauchg) (CEO společnosti Vercel) navrhl pro tento případ použití místo middleware použít přepisování URL v Next.js. Implementaci níže jsem aktualizoval – je jednodušší a výkonnější! 🚀
 
-## TL;DR
+## Stručně
 
-Inspired by Vercel's docs, we'll add the ability to append `.md` to any blog post URL to get the raw markdown content. So `/posts/my-post` becomes `/posts/my-post.md` for the raw source. I recently added this feature to my own blog - it's perfect for sharing code examples or letting people see how you wrote something.
+Inspirovali jsme se dokumentací Vercelu a přidáme možnost připojit `.md` k libovolné URL blogového příspěvku, abyste získali surový obsah v markdownu. Takže z `/posts/my-post` bude `/posts/my-post.md`, tedy surový zdroj. Tuhle funkci jsem nedávno přidal i na svůj blog — skvěle se hodí ke sdílení ukázek kódu nebo když chcete lidem ukázat, jak jste něco napsali.
 
-Next.js [rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) make this surprisingly easy to implement cleanly.
+Next.js [přepisování](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) umožňují tohle řešení implementovat překvapivě jednoduše a čistě.
 
-<Tweet id="1930689104800518392" />
+{% tweet id="1930689104800518392" /%}
 
-## Setup
+## Nastavení
 
 ```bash
 pnpx create-next-app@latest raw-markdown-blog
@@ -23,19 +23,19 @@ cd raw-markdown-blog
 pnpm install @content-collections/core @content-collections/mdx @content-collections/next zod
 ```
 
-Choose TypeScript, Tailwind CSS, and App Router.
+Zvolte TypeScript, Tailwind CSS a App Router.
 
-Add `.content-collections` to your `.gitignore`:
+Přidejte `.content-collections` do `.gitignore`:
 
 ```
 .content-collections
 ```
 
-## Content Collections Setup
+## Nastavení Content Collections
 
-[Content Collections](https://www.content-collections.dev/) is an excellent library for managing content in Next.js - it's type-safe, fast, and has great DX.
+[Content Collections](https://www.content-collections.dev/) je skvělá knihovna pro správu obsahu v Next.js – je typově bezpečná, rychlá a má skvělou DX.
 
-Create `content-collections.ts` in your project root (not in src/):
+V kořenovém adresáři projektu vytvořte `content-collections.ts` (ne v `src/`):
 
 ```typescript
 import { defineCollection, defineConfig } from "@content-collections/core";
@@ -69,25 +69,25 @@ export default defineConfig({
 });
 ```
 
-Update `next.config.js`:
+Aktualizujte `next.config.js`:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // your existing config...
+  // vaše stávající konfigurace...
 };
 
 module.exports = withContentCollections(nextConfig);
 ```
 
-Update `tsconfig.json` paths:
+Upravte cesty v `tsconfig.json`:
 
 ```json
 {
   "compilerOptions": {
-    // ... other options
+    // ... ostatní možnosti
     "paths": {
       "@/*": ["./src/*"],
       "content-collections": ["./.content-collections/generated"]
@@ -96,31 +96,31 @@ Update `tsconfig.json` paths:
 }
 ```
 
-## Sample Content
+## Ukázkový obsah
 
-Create the `content/` directory in your project root and add `content/hello-world.mdx`:
+V kořenovém adresáři projektu vytvořte složku `content/` a přidejte `content/hello-world.mdx`:
 
 ````markdown
 ---
 title: "Hello World"
-description: "My first blog post with raw markdown support."
+description: "Můj první příspěvek na blogu s podporou čistého markdownu."
 date: "2024-12-20"
 ---
 
-## Welcome
+## Vítej
 
-This is my first blog post! Here's some **bold text** and a code block:
+Toto je můj první příspěvek na blogu! Tady je trochu **tučného textu** a blok kódu:
 
 ```javascript
 console.log("Hello, world!");
 ```
 
-Pretty cool, right?
+Docela super, že?
 ````
 
-## Posts Pages
+## Stránky pro příspěvky
 
-Replace `app/page.tsx`:
+Nahraďte `app/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -163,7 +163,7 @@ export default function Home() {
 }
 ```
 
-Create `app/posts/[slug]/page.tsx`:
+Vytvořte `app/posts/[slug]/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -220,11 +220,11 @@ export function generateStaticParams() {
 }
 ```
 
-## The Magic: Rewrites
+## Kouzlo: přepisování
 
-This is where Next.js rewrites shine - we can elegantly handle URL rewriting with just a few lines of configuration.
+Tady přepisování v Next.js opravdu zazáří – elegantně zvládneme přepisování URL pomocí několika řádků konfigurace.
 
-Update `next.config.js` to add the rewrite rule:
+Aktualizujte `next.config.js` a přidejte pravidlo pro přepisování:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -244,11 +244,11 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-The rewrite rule automatically maps any request matching `/posts/:slug.md` to `/api/posts/:slug/raw`. The `:slug` parameter is captured from the source URL and passed to the destination. The user sees `/posts/hello-world.md` in their browser, but Next.js serves it from `/api/posts/hello-world/raw`.
+Pravidlo přepisu automaticky mapuje každý požadavek odpovídající `/posts/:slug.md` na `/api/posts/:slug/raw`. Parametr `:slug` se převezme ze zdrojové adresy URL a předá cílové adrese. Uživatel ve svém prohlížeči vidí `/posts/hello-world.md`, ale Next.js ho ve skutečnosti obslouží z `/api/posts/hello-world/raw`.
 
-## API Route for Raw Content
+## API route pro nezpracovaný obsah
 
-Create `app/api/posts/[slug]/raw/route.ts`:
+Vytvořte `app/api/posts/[slug]/raw/route.ts`:
 
 ```typescript
 import { allPosts } from "content-collections";
@@ -268,7 +268,7 @@ export async function GET(
   return new NextResponse(post.content, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
-      "Cache-Control": "public, max-age=3600", // Cache for 1 hour
+      "Cache-Control": "public, max-age=3600", // Mezipaměť na 1 hodinu
     },
   });
 }
@@ -278,13 +278,13 @@ export function generateStaticParams() {
 }
 ```
 
-## Done
+## Hotovo
 
-Start your dev server and test both URLs:
+Spusťte vývojový server a otestujte obě URL:
 
-- `/posts/hello-world` - Rendered MDX with styling and components
-- `/posts/hello-world.md` - Raw markdown source
+* `/posts/hello-world` - Vyrenderované MDX se styly a komponentami
+* `/posts/hello-world.md` - Nezpracovaný zdrojový markdown
 
-The cache headers ensure the raw markdown is cached for an hour, reducing server load for popular posts. In production, you might want to add a "View raw" button to your posts (like I did on my own blog) rather than just showing the link in the post listing.
+Cache hlavičky zajišťují, že se nezpracovaný markdown ukládá na hodinu do mezipaměti, což snižuje zatížení serveru u populárních příspěvků. V produkčním prostředí možná budete chtít ke svým příspěvkům přidat tlačítko „Zobrazit raw verzi“ (jako jsem to udělal na vlastním blogu), místo toho, abyste odkaz jen zobrazovali v seznamu příspěvků.
 
-This feature is perfect for sharing examples, debugging content, or letting others study your markdown formatting. And Next.js rewrites make the implementation clean and performant - no complex routing logic needed.
+Tahle funkce se skvěle hodí pro sdílení ukázek, ladění obsahu nebo když chcete ostatním umožnit prostudovat si formátování vašeho markdownu. A přepisovací pravidla v Next.js udržují implementaci čistou a výkonnou — bez potřeby složité routovací logiky.

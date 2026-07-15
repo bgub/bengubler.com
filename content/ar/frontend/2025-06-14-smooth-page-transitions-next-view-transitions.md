@@ -1,17 +1,17 @@
 ---
-title: "Glataj paĝtransiroj en Next.js per next-view-transitions"
-description: "Aldonu glatajn paĝtransirojn en Next.js per la View Transitions API."
+title: "انتقالات سلسة بين الصفحات في Next.js باستخدام next-view-transitions"
+description: "أضف انتقالات سلسة بين الصفحات في Next.js باستخدام واجهة View Transitions API."
 date: "2025-06-14"
 tags: [frontend]
----
+---"
 
-## Mallonge
+## باختصار
 
-La pakaĵo [`next-view-transitions`](https://github.com/shuding/next-view-transitions) ebligas glatajn paĝtransirojn en Next.js. Ni konstruos simplan blogon kaj aldonos glatajn elementajn transirojn per ecoj `viewTransitionName`, por ke titoloj kaj datoj glate ŝanĝiĝu inter paĝoj. Jen demonstraĵo de tio, kion ni konstruos:
+تضيف حزمة [`next-view-transitions`](https://github.com/shuding/next-view-transitions) انتقالات سلسة بين الصفحات إلى Next.js. سنبني مدونة بسيطة ونضيف انتقالات سلسة للعناصر باستخدام خصائص `viewTransitionName`، بحيث تتحول العناوين والتواريخ بانسيابية بين الصفحات. إليك عرضًا توضيحيًا لما سنبنيه:
 
-<Tweet id="1934092246921671158" />
+{% tweet id="1934092246921671158" /%}
 
-## Agordo
+## الإعداد
 
 ```bash
 pnpx create-next-app@latest my-smooth-blog
@@ -19,18 +19,18 @@ cd my-smooth-blog
 pnpm install next-view-transitions
 ```
 
-Elektu TypeScript, Tailwind CSS kaj App Router.
+اختر TypeScript وTailwind CSS وApp Router.
 
-Aldonu shadcn/ui:
+أضف shadcn/ui:
 
 ```bash
 pnpx shadcn@latest init
 pnpx shadcn@latest add card badge
 ```
 
-## Testaj datumoj
+## بيانات تجريبية
 
-Kreu `lib/posts.ts`:
+أنشئ `lib/posts.ts`:
 
 ```typescript
 export interface Post {
@@ -76,9 +76,9 @@ export const posts: Post[] = [
 ];
 ```
 
-## Listo de afiŝoj
+## قائمة المقالات
 
-Anstataŭigu `app/page.tsx`:
+استبدل `app/page.tsx`:
 
 ```tsx
 import {
@@ -116,9 +116,9 @@ export default function PostsPage() {
 }
 ```
 
-## Paĝoj por unuopaj afiŝoj
+## صفحات المقالات المنفصلة
 
-Kreu `app/posts/[slug]/page.tsx`:
+أنشئ `app/posts/[slug]/page.tsx`:
 
 ```tsx
 import { posts } from "@/lib/posts";
@@ -170,11 +170,11 @@ export function generateStaticParams() {
 }
 ```
 
-Vi nun havas funkciantan blogon kun ordinara navigado inter paĝoj.
+أصبح لديك الآن مدونة تعمل مع تنقّل عادي بين الصفحات.
 
-## Aldonu View Transitions
+## أضف انتقالات العرض
 
-En `app/layout.tsx`, ĉirkaŭu vian aplikaĵon:
+قم بتغليف تطبيقك داخل `app/layout.tsx`:
 
 ```tsx
 import { ViewTransitions } from "next-view-transitions";
@@ -196,24 +196,24 @@ export default function RootLayout({ children }: RootLayoutProps) {
 }
 ```
 
-Anstataŭigu ĉiujn importojn de `next/link` per la versio kun ebligitaj transiroj:
+استبدِل جميع استيرادات `next/link` بالإصدار الداعم للانتقالات:
 
 ```tsx
-// Anstataŭ:
+// بدلاً من:
 import Link from "next/link";
 
-// Uzu:
+// استخدم:
 import { Link } from "next-view-transitions";
 ```
 
-Je ĉi tiu etapo, la navigado aspektas same kiel antaŭe. La pakaĵo defaŭlte ne aldonas transirojn.
+في هذه المرحلة، يبدو التنقّل مطابقًا تمامًا لما كان عليه سابقًا. لا تضيف الحزمة أي انتقالات تلقائيًا.
 
-## La magio: transiroj de komunaj elementoj
+## السحر: انتقالات العناصر المشتركة
 
-Aldonu ecojn `viewTransitionName` al elementoj, kiuj devus transformiĝi inter paĝoj:
+أضِف خصائص `viewTransitionName` إلى العناصر التي يُفترض أن تتحول بين الصفحات:
 
 ```tsx
-// En via listo de afiŝoj (app/page.tsx):
+// في قائمة مقالاتك (app/page.tsx):
 <CardTitle
   className="line-clamp-2"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -230,7 +230,7 @@ Aldonu ecojn `viewTransitionName` al elementoj, kiuj devus transformiĝi inter p
 ```
 
 ```tsx
-// En via individua afiŝpaĝo (app/posts/[slug]/page.tsx):
+// في صفحة المقال الفردية (app/posts/[slug]/page.tsx):
 <h1
   className="text-4xl font-bold mb-4"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -245,8 +245,8 @@ Aldonu ecojn `viewTransitionName` al elementoj, kiuj devus transformiĝi inter p
 </Badge>
 ```
 
-Nun la titolo kaj dato glate transformiĝas de la karto al la paĝo de la afiŝo. **Tio estas efektive la sola maniero vidi transirojn** - kiam la valoroj de `viewTransitionName` kongruas inter la paĝoj.
+الآن ينتقل العنوان والتاريخ بسلاسة من البطاقة إلى صفحة المقال. **وهذه هي الطريقة الوحيدة لرؤية الانتقالات فعليًا** — وذلك بمطابقة قيم `viewTransitionName` بين الصفحات.
 
-## Prete
+## تم
 
-Ĉi tiuj transiroj donas vidan kontinuecon, igas la aplikaĵon pli respondema, kaj helpas al uzantoj konservi la kuntekston. La View Transitions API estas subtenata en Chrome, Edge kaj Opera, kaj en aliaj retumiloj ĝi simple uzas normalan navigadon.
+توفر هذه الانتقالات استمرارية بصرية، وتجعل التطبيق يبدو أكثر سرعة في الاستجابة، وتساعد المستخدمين على الحفاظ على السياق. واجهة View Transitions API مدعومة في Chrome وEdge وOpera، مع انتقال سلس إلى التنقل العادي في المتصفحات الأخرى.

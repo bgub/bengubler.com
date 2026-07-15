@@ -1,21 +1,21 @@
 ---
-title: "إضافة روابط .md لمحتوى Markdown الخام في Next.js"
-description: "كيفية إضافة روابط .md إلى مدونتك في Next.js لتقديم محتوى Markdown الخام، استلهامًا من توثيق Vercel."
+title: "Pridanie URL adries .md pre surový obsah v Markdowne v Next.js"
+description: "Ako pridať URL adresy .md do blogu v Next.js, aby sprístupňoval surový obsah v Markdowne, inšpirované dokumentáciou Vercel."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-> **تحديث**: بعد نشر هذا المقال، اقترح [Guillermo Rauch](https://twitter.com/rauchg) (المدير التنفيذي لـ Vercel) استخدام إعادة كتابة في Next.js بدلًا من middleware في هذه الحالة. وقد حدّثت التطبيق أدناه — فهو أبسط وأعلى أداءً! 🚀
+> **Aktualizácia**: Po publikovaní tohto príspevku [Guillermo Rauch](https://twitter.com/rauchg) (CEO spoločnosti Vercel) navrhol použiť v Next.js `rewrites` namiesto middleware na tento účel. Implementáciu nižšie som aktualizoval — je jednoduchšia a výkonnejšia! 🚀
 
-## الخلاصة
+## Stručne
 
-استلهامًا من توثيق Vercel، سنضيف إمكانية إلحاق `.md` بأي رابط لمقال في المدونة للحصول على محتوى Markdown الخام. وبذلك يتحول `/posts/my-post` إلى `/posts/my-post.md` للوصول إلى المصدر الخام. أضفتُ هذه الميزة مؤخرًا إلى مدونتي، وهي مثالية لمشاركة أمثلة الشيفرة أو لتمكين الآخرين من الاطلاع على الطريقة التي كتبت بها شيئًا ما.
+Inšpirovaní dokumentáciou Vercelu pridáme možnosť pridať `.md` na koniec URL ľubovoľného blogového príspevku, čím získame surový obsah v Markdowne. Takže z `/posts/my-post` sa na zobrazenie surového zdroja stane `/posts/my-post.md`. Túto funkciu som nedávno pridal aj na svoj blog – je perfektná na zdieľanie ukážok kódu alebo keď chcete ľuďom ukázať, ako ste niečo napísali.
 
-تجعل [إعادة كتابة](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) في Next.js تنفيذ ذلك بشكل نظيف أسهل على نحو مفاجئ.
+Pomocou Next.js [rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) sa to dá implementovať prekvapivo jednoducho a elegantne.
 
-<Tweet id="1930689104800518392" />
+{% tweet id="1930689104800518392" /%}
 
-## الإعداد
+## Nastavenie
 
 ```bash
 pnpx create-next-app@latest raw-markdown-blog
@@ -23,19 +23,19 @@ cd raw-markdown-blog
 pnpm install @content-collections/core @content-collections/mdx @content-collections/next zod
 ```
 
-اختر TypeScript وTailwind CSS وApp Router.
+Zvoľte TypeScript, Tailwind CSS a App Router.
 
-أضف `.content-collections` إلى ملف `.gitignore`:
+Pridajte `.content-collections` do `.gitignore`:
 
 ```
 .content-collections
 ```
 
-## إعداد Content Collections
+## Nastavenie Content Collections
 
-تُعدّ [Content Collections](https://www.content-collections.dev/) مكتبة ممتازة لإدارة المحتوى في Next.js، فهي آمنة من حيث الأنواع، وسريعة، وتوفّر تجربة تطوير رائعة.
+[Content Collections](https://www.content-collections.dev/) je výborná knižnica na správu obsahu v Next.js – je typovo bezpečná, rýchla a má skvelý DX.
 
-أنشئ `content-collections.ts` في جذر مشروعك (وليس داخل src/):
+V koreňovom adresári projektu vytvorte `content-collections.ts` (nie v `src/`):
 
 ```typescript
 import { defineCollection, defineConfig } from "@content-collections/core";
@@ -69,25 +69,25 @@ export default defineConfig({
 });
 ```
 
-حدِّث `next.config.js`:
+Aktualizujte súbor `next.config.js`:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // إعداداتك الحالية...
+  // vaša existujúca konfigurácia...
 };
 
 module.exports = withContentCollections(nextConfig);
 ```
 
-حدّث المسارات في `tsconfig.json`:
+Aktualizujte cesty v súbore `tsconfig.json`:
 
 ```json
 {
   "compilerOptions": {
-    // ... خيارات أخرى
+    // ... ostatné možnosti
     "paths": {
       "@/*": ["./src/*"],
       "content-collections": ["./.content-collections/generated"]
@@ -96,31 +96,31 @@ module.exports = withContentCollections(nextConfig);
 }
 ```
 
-## محتوى تجريبي
+## Ukážkový obsah
 
-أنشئ المجلد `content/` في المجلد الجذر لمشروعك، ثم أضف `content/hello-world.mdx`:
+Vytvorte v koreňovom adresári projektu adresár `content/` a pridajte `content/hello-world.mdx`:
 
 ````markdown
 ---
 title: "Hello World"
-description: "مقالي الأول مع دعم Markdown الخام."
+description: "Môj prvý príspevok na blogu s podporou surového markdownu."
 date: "2024-12-20"
 ---
 
-## مرحباً
+## Vitajte
 
-هذا هو مقالي الأول! إليك بعض **النص العريض** وكتلة برمجية:
+Toto je môj prvý príspevok na blogu! Tu je nejaký **tučný text** a blok kódu:
 
 ```javascript
 console.log("Hello, world!");
 ```
 
-رائع، أليس كذلك؟
+Celkom super, nie?
 ````
 
-## صفحات المقالات
+## Stránky s príspevkami
 
-استبدل `app/page.tsx`:
+Nahraďte `app/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -163,7 +163,7 @@ export default function Home() {
 }
 ```
 
-أنشئ الملف `app/posts/[slug]/page.tsx`:
+Vytvorte súbor `app/posts/[slug]/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -220,11 +220,11 @@ export function generateStaticParams() {
 }
 ```
 
-## السحر: إعادة كتابة المسارات
+## Kúzlo: Rewrites
 
-هنا يبرز جمال ميزة إعادة الكتابة في Next.js — إذ يمكننا التعامل مع إعادة كتابة عناوين URL بأناقة عبر بضعة أسطر فقط من الإعدادات.
+Práve tu rewrites v Next.js skutočne vyniknú – prepisovanie URL adries vieme elegantne vyriešiť len niekoľkými riadkami konfigurácie.
 
-حدّث `next.config.js` لإضافة قاعدة إعادة الكتابة:
+Upravte `next.config.js` a pridajte pravidlo pre rewrite:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -244,11 +244,11 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-تعمل قاعدة إعادة الكتابة تلقائيًا على توجيه أي طلب يطابق `/posts/:slug.md` إلى `/api/posts/:slug/raw`. ويُلتقط المعامل `:slug` من عنوان URL المصدر ويُمرَّر إلى الوجهة. يرى المستخدم `/posts/hello-world.md` في المتصفح، لكن Next.js يقدّمه من `/api/posts/hello-world/raw`.
+Pravidlo prepisovania automaticky mapuje každú požiadavku, ktorá zodpovedá `/posts/:slug.md`, na `/api/posts/:slug/raw`. Parameter `:slug` sa prevezme zo zdrojovej URL a odovzdá sa cieľovej adrese. Používateľ vo svojom prehliadači vidí `/posts/hello-world.md`, ale Next.js ho v skutočnosti obsluhuje z `/api/posts/hello-world/raw`.
 
-## مسار API للمحتوى الخام
+## API trasa pre surový obsah
 
-أنشئ `app/api/posts/[slug]/raw/route.ts`:
+Vytvorte `app/api/posts/[slug]/raw/route.ts`:
 
 ```typescript
 import { allPosts } from "content-collections";
@@ -268,7 +268,7 @@ export async function GET(
   return new NextResponse(post.content, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
-      "Cache-Control": "public, max-age=3600", // تخزين مؤقت لمدة ساعة واحدة
+      "Cache-Control": "public, max-age=3600", // Uložiť do cache na 1 hodinu
     },
   });
 }
@@ -278,13 +278,13 @@ export function generateStaticParams() {
 }
 ```
 
-## تم
+## Hotovo
 
-شغّل خادم التطوير لديك واختبر كلا الرابطين:
+Spustite vývojový server a otestujte obe URL:
 
-* `/posts/hello-world` - محتوى MDX مُصيَّر مع التنسيق والمكوّنات
-* `/posts/hello-world.md` - مصدر markdown الخام
+* `/posts/hello-world` - Vyrenderované MDX so štýlmi a komponentmi
+* `/posts/hello-world.md` - Surový zdroj v Markdowne
 
-تضمن ترويسات التخزين المؤقت تخزين markdown الخام مؤقتًا لمدة ساعة، مما يقلّل الحمل على الخادم للمقالات الشائعة. في بيئة الإنتاج، قد ترغب في إضافة زر &quot;عرض المصدر الخام&quot; إلى مقالاتك (كما فعلتُ في مدونتي الشخصية) بدلًا من الاكتفاء بعرض الرابط في قائمة المقالات.
+Cache hlavičky zabezpečia, že sa surový Markdown bude ukladať do cache na hodinu, čím sa zníži zaťaženie servera pri populárnych príspevkoch. V produkcii možno budete chcieť do svojich príspevkov pridať tlačidlo „Zobraziť raw“ (ako som to spravil na vlastnom blogu), namiesto toho, aby sa odkaz len zobrazoval v zozname príspevkov.
 
-هذه الميزة مثالية لمشاركة الأمثلة، أو استكشاف مشكلات المحتوى وإصلاحها، أو إتاحة الفرصة للآخرين لدراسة تنسيق markdown لديك. كما أن عمليات إعادة الكتابة في Next.js تجعل التنفيذ نظيفًا وعالي الأداء - من دون الحاجة إلى منطق توجيه معقّد.
+Táto funkcia je ideálna na zdieľanie príkladov, ladenie obsahu alebo keď chcete ostatným umožniť preskúmať formátovanie vášho Markdownu. A rewrites v Next.js robia implementáciu čistou a výkonnou - bez potreby zložitej logiky smerovania.

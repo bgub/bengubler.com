@@ -13,7 +13,7 @@ Inspirite de la dokumentaro de Vercel, ni aldonos la eblon simple aldoni `.md` a
 
 La [rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) de Next.js faras tion surprize facile efektivigebla en eleganta maniero.
 
-<Tweet id="1930689104800518392" />
+{% tweet id="1930689104800518392" /%}
 
 ## Agordo
 

@@ -1,21 +1,21 @@
 ---
-title: "Přidání .md URL pro surový obsah Markdownu v Next.js"
-description: "Jak do blogu v Next.js přidat .md URL pro podávání surového obsahu Markdownu, inspirováno dokumentací Vercel."
+title: "إضافة روابط .md لمحتوى Markdown الخام في Next.js"
+description: "كيفية إضافة روابط .md إلى مدونتك في Next.js لتقديم محتوى Markdown الخام، استلهامًا من توثيق Vercel."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-> **Aktualizace**: Po publikování tohoto příspěvku [Guillermo Rauch](https://twitter.com/rauchg) (CEO společnosti Vercel) navrhl pro tento případ použití místo middleware použít přepisování URL v Next.js. Implementaci níže jsem aktualizoval – je jednodušší a výkonnější! 🚀
+> **تحديث**: بعد نشر هذا المقال، اقترح [Guillermo Rauch](https://twitter.com/rauchg) (المدير التنفيذي لـ Vercel) استخدام إعادة كتابة في Next.js بدلًا من middleware في هذه الحالة. وقد حدّثت التطبيق أدناه — فهو أبسط وأعلى أداءً! 🚀
 
-## Stručně
+## الخلاصة
 
-Inspirovali jsme se dokumentací Vercelu a přidáme možnost připojit `.md` k libovolné URL blogového příspěvku, abyste získali surový obsah v markdownu. Takže z `/posts/my-post` bude `/posts/my-post.md`, tedy surový zdroj. Tuhle funkci jsem nedávno přidal i na svůj blog — skvěle se hodí ke sdílení ukázek kódu nebo když chcete lidem ukázat, jak jste něco napsali.
+استلهامًا من توثيق Vercel، سنضيف إمكانية إلحاق `.md` بأي رابط لمقال في المدونة للحصول على محتوى Markdown الخام. وبذلك يتحول `/posts/my-post` إلى `/posts/my-post.md` للوصول إلى المصدر الخام. أضفتُ هذه الميزة مؤخرًا إلى مدونتي، وهي مثالية لمشاركة أمثلة الشيفرة أو لتمكين الآخرين من الاطلاع على الطريقة التي كتبت بها شيئًا ما.
 
-Next.js [přepisování](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) umožňují tohle řešení implementovat překvapivě jednoduše a čistě.
+تجعل [إعادة كتابة](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) في Next.js تنفيذ ذلك بشكل نظيف أسهل على نحو مفاجئ.
 
-<Tweet id="1930689104800518392" />
+{% tweet id="1930689104800518392" /%}
 
-## Nastavení
+## الإعداد
 
 ```bash
 pnpx create-next-app@latest raw-markdown-blog
@@ -23,19 +23,19 @@ cd raw-markdown-blog
 pnpm install @content-collections/core @content-collections/mdx @content-collections/next zod
 ```
 
-Zvolte TypeScript, Tailwind CSS a App Router.
+اختر TypeScript وTailwind CSS وApp Router.
 
-Přidejte `.content-collections` do `.gitignore`:
+أضف `.content-collections` إلى ملف `.gitignore`:
 
 ```
 .content-collections
 ```
 
-## Nastavení Content Collections
+## إعداد Content Collections
 
-[Content Collections](https://www.content-collections.dev/) je skvělá knihovna pro správu obsahu v Next.js – je typově bezpečná, rychlá a má skvělou DX.
+تُعدّ [Content Collections](https://www.content-collections.dev/) مكتبة ممتازة لإدارة المحتوى في Next.js، فهي آمنة من حيث الأنواع، وسريعة، وتوفّر تجربة تطوير رائعة.
 
-V kořenovém adresáři projektu vytvořte `content-collections.ts` (ne v `src/`):
+أنشئ `content-collections.ts` في جذر مشروعك (وليس داخل src/):
 
 ```typescript
 import { defineCollection, defineConfig } from "@content-collections/core";
@@ -69,25 +69,25 @@ export default defineConfig({
 });
 ```
 
-Aktualizujte `next.config.js`:
+حدِّث `next.config.js`:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // vaše stávající konfigurace...
+  // إعداداتك الحالية...
 };
 
 module.exports = withContentCollections(nextConfig);
 ```
 
-Upravte cesty v `tsconfig.json`:
+حدّث المسارات في `tsconfig.json`:
 
 ```json
 {
   "compilerOptions": {
-    // ... ostatní možnosti
+    // ... خيارات أخرى
     "paths": {
       "@/*": ["./src/*"],
       "content-collections": ["./.content-collections/generated"]
@@ -96,31 +96,31 @@ Upravte cesty v `tsconfig.json`:
 }
 ```
 
-## Ukázkový obsah
+## محتوى تجريبي
 
-V kořenovém adresáři projektu vytvořte složku `content/` a přidejte `content/hello-world.mdx`:
+أنشئ المجلد `content/` في المجلد الجذر لمشروعك، ثم أضف `content/hello-world.mdx`:
 
 ````markdown
 ---
 title: "Hello World"
-description: "Můj první příspěvek na blogu s podporou čistého markdownu."
+description: "مقالي الأول مع دعم Markdown الخام."
 date: "2024-12-20"
 ---
 
-## Vítej
+## مرحباً
 
-Toto je můj první příspěvek na blogu! Tady je trochu **tučného textu** a blok kódu:
+هذا هو مقالي الأول! إليك بعض **النص العريض** وكتلة برمجية:
 
 ```javascript
 console.log("Hello, world!");
 ```
 
-Docela super, že?
+رائع، أليس كذلك؟
 ````
 
-## Stránky pro příspěvky
+## صفحات المقالات
 
-Nahraďte `app/page.tsx`:
+استبدل `app/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -163,7 +163,7 @@ export default function Home() {
 }
 ```
 
-Vytvořte `app/posts/[slug]/page.tsx`:
+أنشئ الملف `app/posts/[slug]/page.tsx`:
 
 ```tsx
 import { allPosts } from "content-collections";
@@ -220,11 +220,11 @@ export function generateStaticParams() {
 }
 ```
 
-## Kouzlo: přepisování
+## السحر: إعادة كتابة المسارات
 
-Tady přepisování v Next.js opravdu zazáří – elegantně zvládneme přepisování URL pomocí několika řádků konfigurace.
+هنا يبرز جمال ميزة إعادة الكتابة في Next.js — إذ يمكننا التعامل مع إعادة كتابة عناوين URL بأناقة عبر بضعة أسطر فقط من الإعدادات.
 
-Aktualizujte `next.config.js` a přidejte pravidlo pro přepisování:
+حدّث `next.config.js` لإضافة قاعدة إعادة الكتابة:
 
 ```javascript
 const { withContentCollections } = require("@content-collections/next");
@@ -244,11 +244,11 @@ const nextConfig = {
 module.exports = withContentCollections(nextConfig);
 ```
 
-Pravidlo přepisu automaticky mapuje každý požadavek odpovídající `/posts/:slug.md` na `/api/posts/:slug/raw`. Parametr `:slug` se převezme ze zdrojové adresy URL a předá cílové adrese. Uživatel ve svém prohlížeči vidí `/posts/hello-world.md`, ale Next.js ho ve skutečnosti obslouží z `/api/posts/hello-world/raw`.
+تعمل قاعدة إعادة الكتابة تلقائيًا على توجيه أي طلب يطابق `/posts/:slug.md` إلى `/api/posts/:slug/raw`. ويُلتقط المعامل `:slug` من عنوان URL المصدر ويُمرَّر إلى الوجهة. يرى المستخدم `/posts/hello-world.md` في المتصفح، لكن Next.js يقدّمه من `/api/posts/hello-world/raw`.
 
-## API route pro nezpracovaný obsah
+## مسار API للمحتوى الخام
 
-Vytvořte `app/api/posts/[slug]/raw/route.ts`:
+أنشئ `app/api/posts/[slug]/raw/route.ts`:
 
 ```typescript
 import { allPosts } from "content-collections";
@@ -268,7 +268,7 @@ export async function GET(
   return new NextResponse(post.content, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
-      "Cache-Control": "public, max-age=3600", // Mezipaměť na 1 hodinu
+      "Cache-Control": "public, max-age=3600", // تخزين مؤقت لمدة ساعة واحدة
     },
   });
 }
@@ -278,13 +278,13 @@ export function generateStaticParams() {
 }
 ```
 
-## Hotovo
+## تم
 
-Spusťte vývojový server a otestujte obě URL:
+شغّل خادم التطوير لديك واختبر كلا الرابطين:
 
-* `/posts/hello-world` - Vyrenderované MDX se styly a komponentami
-* `/posts/hello-world.md` - Nezpracovaný zdrojový markdown
+* `/posts/hello-world` - محتوى MDX مُصيَّر مع التنسيق والمكوّنات
+* `/posts/hello-world.md` - مصدر markdown الخام
 
-Cache hlavičky zajišťují, že se nezpracovaný markdown ukládá na hodinu do mezipaměti, což snižuje zatížení serveru u populárních příspěvků. V produkčním prostředí možná budete chtít ke svým příspěvkům přidat tlačítko „Zobrazit raw verzi“ (jako jsem to udělal na vlastním blogu), místo toho, abyste odkaz jen zobrazovali v seznamu příspěvků.
+تضمن ترويسات التخزين المؤقت تخزين markdown الخام مؤقتًا لمدة ساعة، مما يقلّل الحمل على الخادم للمقالات الشائعة. في بيئة الإنتاج، قد ترغب في إضافة زر &quot;عرض المصدر الخام&quot; إلى مقالاتك (كما فعلتُ في مدونتي الشخصية) بدلًا من الاكتفاء بعرض الرابط في قائمة المقالات.
 
-Tahle funkce se skvěle hodí pro sdílení ukázek, ladění obsahu nebo když chcete ostatním umožnit prostudovat si formátování vašeho markdownu. A přepisovací pravidla v Next.js udržují implementaci čistou a výkonnou — bez potřeby složité routovací logiky.
+هذه الميزة مثالية لمشاركة الأمثلة، أو استكشاف مشكلات المحتوى وإصلاحها، أو إتاحة الفرصة للآخرين لدراسة تنسيق markdown لديك. كما أن عمليات إعادة الكتابة في Next.js تجعل التنفيذ نظيفًا وعالي الأداء - من دون الحاجة إلى منطق توجيه معقّد.

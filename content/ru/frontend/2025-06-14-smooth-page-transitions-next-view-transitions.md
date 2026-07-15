@@ -1,17 +1,17 @@
 ---
-title: "Plynulé prechody stránok v Next.js pomocou next-view-transitions"
-description: "Pridajte do Next.js plynulé prechody stránok pomocou rozhrania View Transitions API."
+title: "Плавные переходы между страницами в Next.js с next-view-transitions"
+description: "Добавьте плавные переходы между страницами в Next.js с использованием API View Transitions."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-## Stručne
+## Вкратце
 
-Balík [`next-view-transitions`](https://github.com/shuding/next-view-transitions) prináša do Next.js plynulé prechody medzi stránkami. Vytvoríme jednoduchý blog a pomocou vlastností `viewTransitionName` pridáme plynulé prechody prvkov, vďaka ktorým sa názvy a dátumy budú medzi stránkami plynule meniť. Tu je ukážka toho, čo budeme vytvárať:
+Пакет [`next-view-transitions`](https://github.com/shuding/next-view-transitions) добавляет в Next.js плавные переходы между страницами. Мы создадим простой блог и добавим плавные переходы элементов с помощью свойств `viewTransitionName`, чтобы заголовки и даты плавно переходили с одной страницы на другую. Вот демонстрация того, что мы будем делать:
 
-<Tweet id="1934092246921671158" />
+{% tweet id="1934092246921671158" /%}
 
-## Nastavenie
+## Настройка
 
 ```bash
 pnpx create-next-app@latest my-smooth-blog
@@ -19,18 +19,18 @@ cd my-smooth-blog
 pnpm install next-view-transitions
 ```
 
-Vyberte TypeScript, Tailwind CSS a App Router.
+Выберите TypeScript, Tailwind CSS и App Router.
 
-Pridajte shadcn/ui:
+Добавьте shadcn/ui:
 
 ```bash
 pnpx shadcn@latest init
 pnpx shadcn@latest add card badge
 ```
 
-## Testovacie dáta
+## Тестовые данные
 
-Vytvorte súbor `lib/posts.ts`:
+Создайте `lib/posts.ts`:
 
 ```typescript
 export interface Post {
@@ -76,9 +76,9 @@ export const posts: Post[] = [
 ];
 ```
 
-## Zoznam príspevkov
+## Список публикаций
 
-Nahraďte `app/page.tsx`:
+Замените `app/page.tsx`:
 
 ```tsx
 import {
@@ -116,9 +116,9 @@ export default function PostsPage() {
 }
 ```
 
-## Stránky jednotlivých príspevkov
+## Страница отдельной публикации
 
-Vytvorte `app/posts/[slug]/page.tsx`:
+Создайте `app/posts/[slug]/page.tsx`:
 
 ```tsx
 import { posts } from "@/lib/posts";
@@ -170,11 +170,11 @@ export function generateStaticParams() {
 }
 ```
 
-Teraz máte funkčný blog so štandardnou navigáciou medzi stránkami.
+Теперь у вас есть рабочий блог с обычной навигацией между страницами.
 
-## Pridajte View Transitions
+## Добавьте View Transitions
 
-Zabaľte aplikáciu do `app/layout.tsx`:
+Оберните приложение в `app/layout.tsx`:
 
 ```tsx
 import { ViewTransitions } from "next-view-transitions";
@@ -196,24 +196,24 @@ export default function RootLayout({ children }: RootLayoutProps) {
 }
 ```
 
-Nahraďte všetky importy `next/link` verziou s podporou prechodov:
+Замените все импорты `next/link` на вариант с поддержкой переходов:
 
 ```tsx
-// Namiesto:
+// Вместо:
 import Link from "next/link";
 
-// Použite:
+// Используйте:
 import { Link } from "next-view-transitions";
 ```
 
-V tomto bode vyzerá navigácia rovnako ako predtým. Balík predvolene nepridáva žiadne prechody.
+На этом этапе навигация выглядит точно так же, как и раньше. Пакет по умолчанию не добавляет никаких анимаций перехода.
 
-## Kúzlo: prechody zdieľaných prvkov
+## Магия: переходы общих элементов
 
-Pridajte vlastnosti `viewTransitionName` prvkom, ktoré sa majú medzi stránkami plynulo transformovať:
+Добавьте свойство `viewTransitionName` элементам, которые должны плавно переходить между страницами:
 
 ```tsx
-// Vo výpise vašich príspevkov (app/page.tsx):
+// В списке публикаций (app/page.tsx):
 <CardTitle
   className="line-clamp-2"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -230,7 +230,7 @@ Pridajte vlastnosti `viewTransitionName` prvkom, ktoré sa majú medzi stránkam
 ```
 
 ```tsx
-// Na stránke jednotlivého príspevku (app/posts/[slug]/page.tsx):
+// На странице отдельной публикации (app/posts/[slug]/page.tsx):
 <h1
   className="text-4xl font-bold mb-4"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -245,8 +245,8 @@ Pridajte vlastnosti `viewTransitionName` prvkom, ktoré sa majú medzi stránkam
 </Badge>
 ```
 
-Teraz sa názov a dátum plynulo presunú z karty na stránku príspevku. **Len takto možno prechody naozaj vidieť** – zladením hodnôt `viewTransitionName` medzi stránkami.
+Теперь заголовок и дата плавно переходят с карточки на страницу публикации. **Только так можно действительно увидеть переходы** — если значения `viewTransitionName` на страницах совпадают.
 
-## Hotovo
+## Готово
 
-Tieto prechody zabezpečujú vizuálnu kontinuitu, aplikácia vďaka nim pôsobí svižnejšie a používateľom pomáhajú udržať si kontext. API View Transitions podporujú prehliadače Chrome, Edge a Opera, pričom v ostatných prehliadačoch sa bez problémov použije bežná navigácia.
+Эти переходы обеспечивают визуальную целостность, делают приложение более отзывчивым и помогают пользователям не терять контекст. API View Transitions поддерживается в Chrome, Edge и Opera, а в других браузерах приложение просто использует обычную навигацию.

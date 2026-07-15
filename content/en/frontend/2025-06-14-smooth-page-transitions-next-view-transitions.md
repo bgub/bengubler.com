@@ -9,7 +9,7 @@ tags: [frontend]
 
 The [`next-view-transitions`](https://github.com/shuding/next-view-transitions) package brings smooth page transitions to Next.js. We'll build a simple blog and add smooth element transitions using `viewTransitionName` properties to make titles and dates morph between pages. Here's a demo of what we'll be building:
 
-<Tweet id="1934092246921671158" />
+{% tweet id="1934092246921671158" /%}
 
 ## Setup
 

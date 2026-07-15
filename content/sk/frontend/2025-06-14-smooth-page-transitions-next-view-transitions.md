@@ -1,17 +1,17 @@
 ---
-title: "Plynulé přechody mezi stránkami v Next.js pomocí next-view-transitions"
-description: "Přidejte do Next.js plynulé přechody mezi stránkami pomocí rozhraní View Transitions API."
+title: "Plynulé prechody stránok v Next.js pomocou next-view-transitions"
+description: "Pridajte do Next.js plynulé prechody stránok pomocou rozhrania View Transitions API."
 date: "2025-06-14"
 tags: [frontend]
 ---
 
-## Stručně
+## Stručne
 
-Balíček [`next-view-transitions`](https://github.com/shuding/next-view-transitions) přináší do Next.js plynulé přechody mezi stránkami. Vytvoříme jednoduchý blog a pomocí vlastností `viewTransitionName` přidáme plynulé přechody prvků, díky nimž se nadpisy a data mezi stránkami plynule promění. Tady je ukázka toho, co budeme vytvářet:
+Balík [`next-view-transitions`](https://github.com/shuding/next-view-transitions) prináša do Next.js plynulé prechody medzi stránkami. Vytvoríme jednoduchý blog a pomocou vlastností `viewTransitionName` pridáme plynulé prechody prvkov, vďaka ktorým sa názvy a dátumy budú medzi stránkami plynule meniť. Tu je ukážka toho, čo budeme vytvárať:
 
-<Tweet id="1934092246921671158" />
+{% tweet id="1934092246921671158" /%}
 
-## Nastavení
+## Nastavenie
 
 ```bash
 pnpx create-next-app@latest my-smooth-blog
@@ -21,16 +21,16 @@ pnpm install next-view-transitions
 
 Vyberte TypeScript, Tailwind CSS a App Router.
 
-Přidejte shadcn/ui:
+Pridajte shadcn/ui:
 
 ```bash
 pnpx shadcn@latest init
 pnpx shadcn@latest add card badge
 ```
 
-## Testovací data
+## Testovacie dáta
 
-Vytvořte `lib/posts.ts`:
+Vytvorte súbor `lib/posts.ts`:
 
 ```typescript
 export interface Post {
@@ -76,9 +76,9 @@ export const posts: Post[] = [
 ];
 ```
 
-## Přehled příspěvků
+## Zoznam príspevkov
 
-Nahraďte soubor `app/page.tsx`:
+Nahraďte `app/page.tsx`:
 
 ```tsx
 import {
@@ -116,9 +116,9 @@ export default function PostsPage() {
 }
 ```
 
-## Stránky jednotlivých příspěvků
+## Stránky jednotlivých príspevkov
 
-Vytvořte `app/posts/[slug]/page.tsx`:
+Vytvorte `app/posts/[slug]/page.tsx`:
 
 ```tsx
 import { posts } from "@/lib/posts";
@@ -170,11 +170,11 @@ export function generateStaticParams() {
 }
 ```
 
-Nyní už máte funkční blog s běžnou navigací mezi stránkami.
+Teraz máte funkčný blog so štandardnou navigáciou medzi stránkami.
 
-## Přidejte View Transitions
+## Pridajte View Transitions
 
-V `app/layout.tsx` obalte svou aplikaci:
+Zabaľte aplikáciu do `app/layout.tsx`:
 
 ```tsx
 import { ViewTransitions } from "next-view-transitions";
@@ -196,24 +196,24 @@ export default function RootLayout({ children }: RootLayoutProps) {
 }
 ```
 
-Nahraďte všechny importy `next/link` verzí, která podporuje přechody:
+Nahraďte všetky importy `next/link` verziou s podporou prechodov:
 
 ```tsx
-// Místo:
+// Namiesto:
 import Link from "next/link";
 
-// Použijte:
+// Použite:
 import { Link } from "next-view-transitions";
 ```
 
-Navigace zatím vypadá stejně jako dřív. Balíček ve výchozím nastavení nepřidává žádné přechody.
+V tomto bode vyzerá navigácia rovnako ako predtým. Balík predvolene nepridáva žiadne prechody.
 
-## Kouzlo: přechody sdílených prvků
+## Kúzlo: prechody zdieľaných prvkov
 
-Přidejte prvkům, které se mají mezi stránkami plynule proměňovat, vlastnosti `viewTransitionName`:
+Pridajte vlastnosti `viewTransitionName` prvkom, ktoré sa majú medzi stránkami plynulo transformovať:
 
 ```tsx
-// Ve výpisu příspěvků (app/page.tsx):
+// Vo výpise vašich príspevkov (app/page.tsx):
 <CardTitle
   className="line-clamp-2"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -230,7 +230,7 @@ Přidejte prvkům, které se mají mezi stránkami plynule proměňovat, vlastno
 ```
 
 ```tsx
-// Na stránce jednotlivého příspěvku (app/posts/[slug]/page.tsx):
+// Na stránke jednotlivého príspevku (app/posts/[slug]/page.tsx):
 <h1
   className="text-4xl font-bold mb-4"
   style={{ viewTransitionName: `title-${post.slug}` }}
@@ -245,8 +245,8 @@ Přidejte prvkům, které se mají mezi stránkami plynule proměňovat, vlastno
 </Badge>
 ```
 
-Teď se název a datum plynule přenesou z karty na stránku příspěvku. **Tohle je jediný způsob, jak přechody opravdu uvidět** – hodnoty `viewTransitionName` se mezi stránkami musí shodovat.
+Teraz sa názov a dátum plynulo presunú z karty na stránku príspevku. **Len takto možno prechody naozaj vidieť** – zladením hodnôt `viewTransitionName` medzi stránkami.
 
 ## Hotovo
 
-Tyto přechody zajišťují vizuální kontinuitu, aplikace díky nim působí pohotověji a uživatelům pomáhají neztratit kontext. View Transitions API podporují prohlížeče Chrome, Edge a Opera, zatímco v ostatních prohlížečích se elegantně přepne na běžnou navigaci.
+Tieto prechody zabezpečujú vizuálnu kontinuitu, aplikácia vďaka nim pôsobí svižnejšie a používateľom pomáhajú udržať si kontext. API View Transitions podporujú prehliadače Chrome, Edge a Opera, pričom v ostatných prehliadačoch sa bez problémov použije bežná navigácia.
