@@ -46,13 +46,11 @@ export type TocNode = {
 export type HighlightedToken = {
   content: string;
   dark: string;
-  fontStyle: number;
+  fontStyle?: number;
   light: string;
-  offset: number;
 };
 
 export type HighlightedLine = {
-  offset: number;
   tokens: HighlightedToken[];
 };
 
@@ -244,24 +242,20 @@ async function highlightCodeFences(
         },
       });
 
-      let lineOffset = 0;
-      fence.attributes.highlightedLines = lines.map((line) => {
-        const highlightedLine: HighlightedLine = {
-          offset: lineOffset,
-          tokens: line.map((token) => ({
-            content: token.content,
-            light: token.variants.light.color ?? "#24292e",
-            dark: token.variants.dark.color ?? "#adbac7",
-            fontStyle: token.variants.light.fontStyle ?? 0,
-            offset: token.offset,
-          })),
-        };
-        lineOffset += line.reduce(
-          (length, token) => length + token.content.length,
-          1,
-        );
-        return highlightedLine;
-      });
+      fence.attributes.highlightedLines = lines.map(
+        (line): HighlightedLine => ({
+          tokens: line.map((token) => {
+            const fontStyle = token.variants.light.fontStyle;
+
+            return {
+              content: token.content,
+              light: token.variants.light.color ?? "#24292e",
+              dark: token.variants.dark.color ?? "#adbac7",
+              ...(fontStyle ? { fontStyle } : {}),
+            };
+          }),
+        }),
+      );
     }),
   );
 }

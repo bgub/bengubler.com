@@ -1,6 +1,5 @@
 pre.shiki {
   color: #24292e;
-  background-color: #fff;
 }
 
 .shiki-token {
@@ -9,7 +8,6 @@ pre.shiki {
 
 .dark pre.shiki {
   color: #adbac7;
-  background-color: #22272e;
 }
 
 .dark .shiki-token {

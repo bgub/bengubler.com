@@ -8,18 +8,12 @@
     "sk",
     "eo"
   ],
-  "src": [],
   "defaultLocale": "en",
-  "options": {
-    "skipFileValidation": {
-      "mdx": true
-    }
-  },
   "files": {
     "gt": {
       "output": "public/_gt/[locale].json"
     },
-    "mdx": {
+    "md": {
       "include": [
         "content/[locale]/**/*.md"
       ]

@@ -80,6 +80,44 @@ interface HighlightedTokenStyle extends CSSProperties {
 }
 
 function Fence({ content, highlightedLines, language }: FenceProps) {
+  let lineOffset = 0;
+  const renderedLines = highlightedLines?.map((line, lineIndex) => {
+    const currentLineOffset = lineOffset;
+    lineOffset += line.tokens.reduce(
+      (length, token) => length + token.content.length,
+      1,
+    );
+    let tokenOffset = currentLineOffset;
+
+    return (
+      <Fragment key={currentLineOffset}>
+        {line.tokens.map((token) => {
+          const currentTokenOffset = tokenOffset;
+          tokenOffset += token.content.length;
+          const fontStyle = token.fontStyle ?? 0;
+          const style: HighlightedTokenStyle = {
+            "--shiki-dark": token.dark,
+            "--shiki-light": token.light,
+            fontStyle: fontStyle & 1 ? "italic" : undefined,
+            fontWeight: fontStyle & 2 ? 700 : undefined,
+            textDecoration: fontStyle & 4 ? "underline" : undefined,
+          };
+
+          return (
+            <span
+              className="shiki-token"
+              key={currentTokenOffset}
+              style={style}
+            >
+              {token.content}
+            </span>
+          );
+        })}
+        {lineIndex < highlightedLines.length - 1 ? "\n" : null}
+      </Fragment>
+    );
+  });
+
   return (
     <div className="relative">
       <CopyButton text={content} />
@@ -87,35 +125,7 @@ function Fence({ content, highlightedLines, language }: FenceProps) {
         className={highlightedLines ? "shiki" : undefined}
         data-language={language}
       >
-        <code>
-          {highlightedLines
-            ? highlightedLines.map((line, lineIndex) => (
-                <Fragment key={line.offset}>
-                  {line.tokens.map((token) => {
-                    const style: HighlightedTokenStyle = {
-                      "--shiki-dark": token.dark,
-                      "--shiki-light": token.light,
-                      fontStyle: token.fontStyle & 1 ? "italic" : undefined,
-                      fontWeight: token.fontStyle & 2 ? 700 : undefined,
-                      textDecoration:
-                        token.fontStyle & 4 ? "underline" : undefined,
-                    };
-
-                    return (
-                      <span
-                        className="shiki-token"
-                        key={token.offset}
-                        style={style}
-                      >
-                        {token.content}
-                      </span>
-                    );
-                  })}
-                  {lineIndex < highlightedLines.length - 1 ? "\n" : null}
-                </Fragment>
-              ))
-            : content}
-        </code>
+        <code>{renderedLines ?? content}</code>
       </pre>
     </div>
   );

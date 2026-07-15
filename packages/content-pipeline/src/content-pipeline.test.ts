@@ -34,6 +34,7 @@ test("compiles portable content, navigation, and highlighted code", async () => 
 
   const serialized = JSON.stringify(compiled.body);
   assert.doesNotMatch(serialized, /\$\$mdtype|highlightedHtml/);
+  assert.doesNotMatch(serialized, /"offset"|"fontStyle":0/);
   assert.match(serialized, /highlightedLines/);
   assert.match(serialized, /ContentLink/);
   assert.match(serialized, /Tweet/);
