@@ -48,7 +48,7 @@ export default async function HomePage() {
       {/* Hero Section */}
       <section>
         <h1 className="font-serif font-normal text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-tight text-foreground mb-4">
-          <T id="hero_greeting">
+          <T>
             Hello, Ahoj, Привет, <span dir="rtl">مرحبا</span>.
           </T>
         </h1>
