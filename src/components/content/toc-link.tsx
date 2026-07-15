@@ -1,30 +1,31 @@
 "use client";
 
+import type { TocNode } from "content-pipeline";
 import { cn } from "@/lib/utils";
-import type { TOCNode } from "./remark-toc";
 
 interface TOCLinkProps {
-  node: TOCNode;
+  node: TocNode;
   activeSection?: string;
 }
 
 export function TOCLink({ node, activeSection }: TOCLinkProps) {
   const isActive = activeSection === node.id;
 
-  const scrollToHeading = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const scrollToHeading = (event: React.MouseEvent) => {
+    event.preventDefault();
     if (!node.id) return;
+
     const element = document.getElementById(node.id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-      window.history.replaceState(null, "", `#${node.id}`);
-    }
+    if (!element) return;
+
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    window.history.replaceState(null, "", `#${node.id}`);
   };
 
-  const isSubHeading = (node.depth || 2) >= 3;
+  const isSubHeading = (node.depth ?? 2) >= 3;
 
   return (
     <a

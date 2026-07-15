@@ -36,7 +36,7 @@ You register "skills" — groups of related operations — with a builder patter
 
 helm ships with built-in skills for the things agents do every day: `fs`, `git`, `grep`, `edit`, `shell`, `http`. You can define custom skills and they get types, search, and permissions for free.
 
-## The demo
+## The Demo
 
 I built a chatbot where the agent has exactly two tools: `search` and `execute`.
 
@@ -60,7 +60,7 @@ Two tools in context, regardless of how many skills are registered. The agent di
 
 ![The helm demo app listing files in the current directory](/blog-images/helm-demo-app-list-files.png)
 
-### Sandboxing untrusted code
+### Sandboxing Untrusted Code
 
 The `execute` tool runs whatever JavaScript the LLM writes. To make that safe, the demo sandboxes it using [SES (Secure ECMAScript)](https://github.com/endojs/endo/tree/master/packages/ses) in a child process.
 
@@ -70,7 +70,7 @@ The `agent` inside the sandbox isn't the real helm agent — it's a recursive `P
 
 The sandboxed code has no idea any of this is happening. It just sees its `await` resolve with a value. The only way to interact with the outside world is through helm's permission-gated operations.
 
-### The permission UI
+### The Permission UI
 
 The chat UI has a sidebar listing every registered skill and operation, each with an allow/ask/deny toggle. Changing a permission takes effect on the next message.
 
@@ -86,7 +86,7 @@ If the user denies, `PermissionDeniedError` propagates all the way back and the 
 
 This architecture — giving the agent a code execution tool instead of dozens of individual tools — was inspired by Cloudflare's [code mode](https://blog.cloudflare.com/code-mode-mcp/) for their MCP server, where they reduced token usage by 99.9% by replacing 2,500+ API endpoint tools with `search` + `execute`. [Rhys Sullivan's similar idea](https://x.com/RhysSullivan/status/2019819177473933404) crystalized the idea for me: the combination of code execution, discoverability, and a granular permission model means the agent can do anything but can't go off the rails.
 
-## Try it
+## Try It
 
 ```bash
 npm install @bgub/helm

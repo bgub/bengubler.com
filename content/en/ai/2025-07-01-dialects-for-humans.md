@@ -11,7 +11,7 @@ Dialects often emerge through geographical isolation (think Australian English v
 
 Consider African American Vernacular English (AAVE), Southern American English, or "Valley Girl" speech patterns. These dialects emerged from social dynamics, the human need to belong to a group and distinguish ourselves from others. Now we're witnessing the birth of a new dialect divide, between humans and LLMs.
 
-## The LLM Dialect is Real
+## The LLM Dialect Is Real
 
 Anyone who spends significant time reading AI-generated content can spot it. Large Language Models have converged on a distinctive writing style that's become increasingly recognizable to human readers. Telltale signs include:
 

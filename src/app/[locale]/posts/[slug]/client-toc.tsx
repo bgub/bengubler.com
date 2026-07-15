@@ -1,19 +1,19 @@
 "use client";
 
+import type { TocNode } from "content-pipeline";
 import { T } from "gt-next";
-import { useEffect, useState } from "react";
-import type { TOCNode } from "@/components/mdx/remark-toc";
-import { TOCLink } from "@/components/mdx/toc-link";
+import { useCallback, useState } from "react";
+import { TOCLink } from "@/components/content/toc-link";
 
 interface ClientTOCProps {
-  tree: TOCNode;
+  tree: TocNode;
 }
 
 function TOCNodeList({
   nodes,
   activeSection,
 }: {
-  nodes: TOCNode[];
+  nodes: TocNode[];
   activeSection: string;
 }) {
   return (
@@ -38,7 +38,7 @@ function TOCNodeList({
 export function ClientTOC({ tree }: ClientTOCProps) {
   const [activeSection, setActiveSection] = useState<string>("");
 
-  useEffect(() => {
+  const observeHeadings = useCallback(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -68,7 +68,7 @@ export function ClientTOC({ tree }: ClientTOCProps) {
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2" ref={observeHeadings}>
       <T>
         <h3 className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
           In this entry

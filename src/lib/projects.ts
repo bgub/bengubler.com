@@ -127,7 +127,7 @@ export const projectsData: ProjectSection[] = [
         description: msg(
           "My personal website and blog where I write about AI, distributed training, and language learning.",
         ),
-        tech: "Next.js 15, Tailwind, MDX",
+        tech: "Next.js 16, Tailwind, Markdoc",
         links: {
           demo: "https://bengubler.com",
           github: "https://github.com/nebrelbug/bengubler.com",

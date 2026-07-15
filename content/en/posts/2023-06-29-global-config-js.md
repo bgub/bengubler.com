@@ -8,13 +8,13 @@ was_llm_utilized: slightly
 
 Modern web development involves working with multiple JS build tools and frameworks, each requiring their own configuration files. Managing these configuration files, such as `.eslintrc`, `next.config.js`, and `tailwind.config.js`, can become cumbersome and time-consuming. In this blog post, I'll explore the idea of combining these configuration files into a single file called `global.config.js`, centralizing project configuration and reducing distractions.
 
-## Config files everywhere
+## Config Files Everywhere
 
 As I'm writing this blog post, my project root contains an `.eslintrc.json`, `next.config.js`, `postcss.config.js`, `tailwind.config.js`, and `tsconfig.json`. Although my configuration is pretty out-of-the-box and each file is less than 30 lines, those files take up valuable space in my VSCode sidebar and distract from what's important: my source code.
 
 My case is far from exceptional. Some other projects use far more configuration files. Imagine how cluttered a project can get when you add a `.babelrc`, `prettier.config.js`, `jest.config.js`, `cypress.json`, etc.
 
-## The solution: `global.config.js`
+## The Solution: `global.config.js`
 
 I'd like to propose a simple solution: consolidating configuration files in a file called `global.config.js`. The configuration for each tool would be stored in the exported object, under a key with the name of the npm package.
 
@@ -47,7 +47,7 @@ module.exports = {
 }
 ```
 
-## But what about types?
+## But What about Types?
 
 Type completion can be easily enabled for `global.config.js` by adding type definitions in comments, like Tailwind and NextJS already do in their config files.
 
@@ -70,7 +70,6 @@ module.exports = {
 }
 ```
 
-## Next steps
+## Next Steps
 
 If you like this idea, submit a PR to your favorite build tool! If you don't, let me know why on Twitter. Or don't and just keep going about your life.
-

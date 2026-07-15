@@ -1,9 +1,13 @@
-import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
 import { Feed } from "feed";
 import { getGT, registerLocale } from "gt-next/server";
 import { NextResponse } from "next/server";
+import { createElement, type ReactNode } from "react";
 import type ReactDOMServer from "react-dom/server";
+import {
+  type ContentComponents,
+  ContentRenderer,
+} from "@/components/content/render-content";
 import { getBaseUrl } from "@/lib/utils";
 
 const baseUrl = getBaseUrl();
@@ -17,6 +21,39 @@ function RssTweet({ id }: { id?: string }) {
     </p>
   );
 }
+
+function RssHeading({
+  id,
+  level,
+  children,
+}: {
+  id?: string;
+  level: number;
+  children?: ReactNode;
+}) {
+  return createElement(`h${level}`, { id }, children);
+}
+
+function RssFence({ content }: { content: string }) {
+  return (
+    <pre>
+      <code>{content}</code>
+    </pre>
+  );
+}
+
+function RssInlineCode({ content }: { content: string }) {
+  return <code>{content}</code>;
+}
+
+const rssContentComponents = {
+  Blockquote: "blockquote",
+  ContentLink: "a",
+  Fence: RssFence,
+  Heading: RssHeading,
+  InlineCode: RssInlineCode,
+  Tweet: RssTweet,
+} satisfies ContentComponents;
 
 const createFeed = async (
   renderToString: typeof ReactDOMServer.renderToString,
@@ -55,7 +92,7 @@ const createFeed = async (
   for (const post of posts) {
     try {
       const html = renderToString(
-        <MDXContent code={post.mdx} components={{ Tweet: RssTweet }} />,
+        <ContentRenderer body={post.body} components={rssContentComponents} />,
       );
 
       feed.addItem({

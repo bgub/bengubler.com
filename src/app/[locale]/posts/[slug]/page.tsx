@@ -1,5 +1,5 @@
-import { MDXContent } from "@content-collections/mdx/react";
 import { allPosts } from "content-collections";
+import type { TocNode } from "content-pipeline";
 import { DateTime, T } from "gt-next";
 import { getGT, getLocale } from "gt-next/server";
 import Link from "next/link";
@@ -7,9 +7,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next/types";
 import { ViewTransition } from "react";
 import { Comments } from "@/components/comments";
+import { PostContent } from "@/components/content/post-content";
 import { FloatingELI5 } from "@/components/floating-eli5";
-import type { TOCNode } from "@/components/mdx/remark-toc";
-import { mdxComponents } from "@/components/mdx-components";
 import { PageTitle } from "@/components/page-title";
 import { RawMarkdown } from "@/components/raw-markdown";
 import { Social } from "@/components/social";
@@ -103,7 +102,7 @@ export default async function PostPage({
   }
 
   const _colors = getPostColors(post.slug);
-  const toc: TOCNode = JSON.parse(post.toc);
+  const toc: TocNode = JSON.parse(post.toc);
   const hasTOC = toc.children.length > 0;
   const base = post.url.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
 
@@ -184,7 +183,7 @@ export default async function PostPage({
       <div className="grid lg:grid-cols-[1fr_180px] gap-8">
         <main className="min-w-0">
           <Typography className="text-lg">
-            <MDXContent code={post.mdx} components={mdxComponents} />
+            <PostContent body={post.body} />
           </Typography>
 
           {/* Mobile Social */}

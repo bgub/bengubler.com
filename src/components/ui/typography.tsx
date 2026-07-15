@@ -31,7 +31,7 @@ export function Typography({ children, className }: TypographyProps) {
         // Inline code
         "[&_code]:relative [&_code]:rounded-sm [&_code]:bg-muted [&_code]:px-[0.3rem] [&_code]:py-[0.1rem] [&_code]:font-mono [&_code]:text-[0.85em] [&_code]:font-normal",
         // Code blocks — accent left border
-        "[&_pre]:relative [&_pre]:mt-6 [&_pre]:mb-6 [&_pre]:overflow-x-auto [&_pre]:rounded-sm [&_pre]:bg-muted [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:border-l-[3px] [&_pre]:border-l-lavender-deep",
+        "[&_pre]:relative [&_pre]:mt-6 [&_pre]:mb-6 [&_pre]:overflow-x-auto [&_pre]:rounded-sm [&_pre]:border [&_pre]:border-border [&_pre]:bg-muted [&_pre]:p-4 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:border-l-[3px] [&_pre]:border-l-lavender-deep",
         "[&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:font-normal [&_pre_code]:text-sm",
         // Tables
         "[&_table]:w-full [&_table]:my-6 [&_table]:overflow-y-auto [&_table]:border-collapse",

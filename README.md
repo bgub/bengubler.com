@@ -5,10 +5,10 @@ Welcome to my personal website!
 **Built with:**
 
 - https://v0.dev (UI design)
-- Next.js 15 + React 19
+- Next.js 16 + React 19
 - Tailwind CSS v4
 - TypeScript
-- Content Collections + MDX
+- Content Collections + `content-pipeline` (Markdoc + Shiki)
 - shadcn/ui + Radix UI
 - Turbopack dev builds
 
@@ -19,4 +19,4 @@ Welcome to my personal website!
 - Giscus comments
 - RSS feeds
 - Reading time + auto TOC
-- Syntax highlighting (Shiki)
+- Validated custom content tags

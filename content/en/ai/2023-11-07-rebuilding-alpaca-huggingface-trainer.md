@@ -121,7 +121,7 @@ def data_collator(features, tokenizer):
     return res
 ```
 
-## Step 2: Writing our Training Loop
+## Step 2: Writing Our Training Loop
 
 Put all of the code in this section into `trainer/loop.py`.
 
@@ -173,7 +173,7 @@ model.save_pretrained(OUTPUT_DIR)
 tokenizer.save_pretrained(OUTPUT_DIR)
 ```
 
-## Step 3: Running our Training Loop
+## Step 3: Running Our Training Loop
 
 Create `trainer/accelerate_config.yaml`, and paste in the following configuration:
 
@@ -200,7 +200,7 @@ accelerate launch --config_file accelerate_config.yaml loop.py
 
 Saving the model and weights might take a while, so be patient!
 
-## Step 4: Testing our Fine-Tuned Model!
+## Step 4: Testing Our Fine-Tuned Model!
 
 I wrote a simple script to load up our fine-tuned model and interact with it! It doesn't support conversations with context, but it's a great way to see how the model is working.
 

@@ -141,17 +141,3 @@
     cursor: pointer;
   }
 }
-
-/* Shiki code highlighting styles */
-@layer components {
-  /* Shiki token styles */
-  code[data-theme] {
-    color: var(--shiki-light);
-    background-color: transparent;
-  }
-
-  .dark code[data-theme] {
-    color: var(--shiki-dark);
-    background-color: transparent;
-  }
-}

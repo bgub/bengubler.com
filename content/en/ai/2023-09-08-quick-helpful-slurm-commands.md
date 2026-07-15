@@ -9,7 +9,7 @@ In the lab I work in, we have access to a High Performance Computing (HPC) envir
 
 I've been using it for a while now, and I've found a few commands that I use all the time. I thought I'd share them here in case they're useful to anyone else.
 
-## Checking job status
+## Checking Job Status
 
 ```bash
 # View all jobs
@@ -20,7 +20,7 @@ squeue -u <username>
 squeue -q <QOS>
 ```
 
-## Cancelling jobs
+## Cancelling Jobs
 
 ```bash
 # Cancel a specific job
@@ -29,7 +29,7 @@ scancel <job_id>
 scancel -u <username>
 ```
 
-## Requesting a node interactively
+## Requesting a Node Interactively
 
 ```bash
 # Requesting a single node (this will open it up interactively in your terminal)
@@ -37,7 +37,7 @@ scancel -u <username>
 salloc --nodes=1 --gpus=8 --qos=<QOS> --mem=2000G --time=72:00:00 --ntasks=1 --cpus-per-task=128
 ```
 
-## Submitting a job
+## Submitting a Job
 
 What if all of your compute nodes are allocated, or you don't want your job to exit as soon as your terminal connection is closed? In that case, you can use `sbatch` to submit a job to the queue. It will automatically run as soon as it can allocate the resources.
 
@@ -69,4 +69,3 @@ sbatch run.sh
 That's it! I hope this was helpful. If you have any questions, you can ask ChatGPT or Bard (they'll give either incredibly helpful or completely incorrect answers, but it's worth a shot!)
 
 You can also look through the [Slurm documentation](https://slurm.schedmd.com/documentation.html) or the [Leo's notes](https://leo.leung.xyz/wiki/Slurm) page on Slurm for more information.
-

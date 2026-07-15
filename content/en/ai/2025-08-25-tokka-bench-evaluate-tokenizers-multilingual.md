@@ -92,7 +92,7 @@ This allows you to easily select combinations of languages and tokenizers to com
 - **Character-based languages** (e.g., Chinese, Japanese, Thai): tokens per character (excluding whitespace)
 - **Syllable-based languages** (e.g., Tibetan): tokens per syllable (tsheg-separated units, with fallback methods)
 
-## Per-language Metrics and Results
+## Per-Language Metrics and Results
 
 Let's compare GPT-2, Llama 3, and Kimi K2 on a subset of popular languages to illustrate the kinds of insights tokka-bench can reveal. I've chosen these three to show the evolution of tokenization approaches over time.
 
@@ -149,7 +149,7 @@ In Mandarin, Kimi K2 has the lowest continued word rate! Only 4% of tokens are c
 
 In Mandarin, Kimi K2 has the lowest subword fertility! The fertility is below 1, meaning on average each token represents more than 1 character.
 
-## Vocabulary Metrics (Aggregated Across All Languages)
+## Vocabulary Metrics (Aggregated across All Languages)
 
 Calculated by sampling tokens from the tokenizer’s vocabulary, then decoding them:
 

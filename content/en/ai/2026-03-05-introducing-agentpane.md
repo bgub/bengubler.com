@@ -18,7 +18,7 @@ Pick an agent, pick a working directory, and start a session. The agent runs as 
 
 ![The agentpane setup screen with agent and directory selection](/blog-images/agentpane-setup.png)
 
-## Multi-pane, multi-agent
+## Multi-Pane, Multi-Agent
 
 The main thing I wanted was the ability to run multiple agents at once and see them side by side. agentpane gives you up to four resizable panes with tabs. You can drag sessions from the sidebar into any pane, or drag a tab to split into a new one. Layout persists across refreshes.
 
@@ -45,11 +45,11 @@ SessionRepo (DB)
 
 Agents communicate over ACP — JSON-RPC 2.0 over stdio. When you send a prompt, the `PromptEngine` creates turn records, passes the message to the agent subprocess via ACP, and streams results back through Server-Sent Events.
 
-### Streaming with reconnection safety
+### Streaming with Reconnection Safety
 
 The frontend subscribes to an SSE endpoint per session. Each event gets a monotonic ID. The `EventBroadcaster` keeps a ring buffer (512KB / 1000 events) so that if your browser disconnects and reconnects, it replays missed events using the `Last-Event-ID` header. No gaps in the conversation, no manual refresh needed.
 
-### Crash-safe persistence
+### Crash-Safe Persistence
 
 All state goes to a local SQLite database at `~/.agentpane/agentpane.db`. But writes don't happen inline — the `WriteQueue` accumulates operations and flushes them in a batch every 50ms. Before flushing, ops are persisted to a recovery table. If the server crashes mid-flush, it picks up where it left off on restart. No message loss.
 
@@ -63,7 +63,7 @@ CREATE TABLE write_queue_ops (
 );
 ```
 
-## What agents see
+## What Agents See
 
 agentpane doesn't care what model powers the agent — it talks ACP. When you connect to a session, the `ConnectionManager`:
 
@@ -74,7 +74,7 @@ agentpane doesn't care what model powers the agent — it talks ACP. When you co
 
 The UI adapts to whatever the agent supports. If the agent exposes configuration options, they show up as dropdowns. If it supports slash commands, you get autocomplete. If it streams thought blocks, they render as collapsible sections.
 
-## The frontend
+## The Frontend
 
 The web app is Next.js 16 with React 19 and the React Compiler — no manual `useMemo` or `useCallback` anywhere. State is split into two context layers:
 
@@ -83,7 +83,7 @@ The web app is Next.js 16 with React 19 and the React Compiler — no manual `us
 
 Server state (sessions, conversations, token usage) is managed with TanStack React Query, invalidated on SSE events. Markdown renders as it streams in using [Streamdown](https://github.com/anthropics/streamdown) with Shiki syntax highlighting.
 
-## Try it
+## Try It
 
 ```bash
 npx agentpane

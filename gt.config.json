@@ -15,7 +15,7 @@
     },
     "mdx": {
       "include": [
-        "content/[locale]/**/*.mdx"
+        "content/[locale]/**/*.md"
       ]
     }
   },

@@ -13,7 +13,7 @@ Just look at the `package.json` "exports" field evolution if you want a headache
 
 That's why I built [**ts-base**](https://github.com/bgub/ts-base) — a modern TypeScript library starter template that handles all of this complexity for you. It's opinionated, battle-tested, and designed to work out-of-the-box with every major JavaScript runtime.
 
-## What is ts-base?
+## What Is ts-base?
 
 ts-base is a TypeScript library template that embraces modern tooling and automated workflows. Instead of starting from scratch or copying outdated boilerplate, you get a complete development environment that includes linting, testing, building, releasing, and publishing — all pre-configured and ready to go.
 
