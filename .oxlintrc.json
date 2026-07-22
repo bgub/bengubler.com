@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "categories": {
+    "correctness": "error"
+  },
+  "plugins": ["react", "jsx-a11y", "import"],
+  "rules": {
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/prefer-tag-over-role": "off"
+  },
+  "ignorePatterns": ["content/**"]
+}

@@ -1,6 +1,6 @@
-import dmMono400Url from "@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?url";
 import newsreaderItalicUrl from "@fontsource-variable/newsreader/files/newsreader-latin-wght-italic.woff2?url";
 import newsreaderUrl from "@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url";
+import dmMono400Url from "@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?url";
 import {
   createRootRoute,
   HeadContent,
@@ -26,8 +26,8 @@ import {
 } from "@/lib/locales";
 import { getPageMetadata } from "@/lib/metadata";
 import { loadTranslations } from "@/loadTranslations";
-import appCss from "@/styles/globals.css?url";
 import gtConfig from "../../gt.config.json";
+import appCss from "@/styles/globals.css?url";
 
 initializeGT({ ...gtConfig, loadTranslations, localeCookieName });
 
