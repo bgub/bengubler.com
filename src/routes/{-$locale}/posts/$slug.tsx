@@ -88,7 +88,7 @@ function PostPage() {
         <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
           <ViewTransition name={`date-${base}`}>
             <time dateTime={post.date.toISOString()}>
-              <DateTime>{post.date}</DateTime>
+              <DateTime options={{ timeZone: "UTC" }}>{post.date}</DateTime>
             </time>
           </ViewTransition>
           <span className="mx-1.5">&middot;</span>

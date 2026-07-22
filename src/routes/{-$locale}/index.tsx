@@ -166,6 +166,7 @@ function HomePage() {
               <ViewTransition name={`date-${sanitize(post.url)}`}>
                 <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
                   {post.date.toLocaleDateString(locale, {
+                    timeZone: "UTC",
                     month: "numeric",
                     day: "numeric",
                     year: "numeric",
