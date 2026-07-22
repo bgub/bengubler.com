@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { getGT } from "gt-tanstack-start/server";
-import { LdsHeatmapPage } from "@/app/[locale]/lds-heatmap/page";
-import type { Topology } from "@/app/[locale]/lds-heatmap/topojson";
+import { Heatmap } from "@/components/lds-heatmap/heatmap";
+import type { Topology } from "@/components/lds-heatmap/topojson";
 import { resolveLocale } from "@/lib/locales";
 import { getPageMetadata } from "@/lib/metadata";
 
@@ -41,12 +41,14 @@ export const Route = createFileRoute("/{-$locale}/lds-heatmap")({
         })
       : [],
   }),
-  component: HeatmapRoute,
+  component: LdsHeatmapPage,
 });
 
-function HeatmapRoute() {
+function LdsHeatmapPage() {
   const { worldTopology, usTopology } = Route.useLoaderData();
   return (
-    <LdsHeatmapPage worldTopology={worldTopology} usTopology={usTopology} />
+    <div className="-mx-4 sm:-mx-6 lg:-mx-8 -my-8 md:-my-12">
+      <Heatmap worldTopology={worldTopology} usTopology={usTopology} />
+    </div>
   );
 }

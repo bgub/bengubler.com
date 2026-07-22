@@ -16,7 +16,6 @@ import {
   parseLocale,
 } from "gt-tanstack-start";
 import type { ReactNode } from "react";
-import appCss from "@/app/globals.css?url";
 import { PageNotFound } from "@/components/not-found-page";
 import { Providers } from "@/components/providers";
 import { SiteLayout } from "@/components/site-layout";
@@ -28,6 +27,7 @@ import {
 } from "@/lib/locales";
 import { getPageMetadata } from "@/lib/metadata";
 import { loadTranslations } from "@/loadTranslations";
+import appCss from "@/styles/globals.css?url";
 import gtConfig from "../../gt.config.json";
 
 initializeGT({ ...gtConfig, loadTranslations, localeCookieName });
