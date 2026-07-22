@@ -14,7 +14,6 @@ import {
   initializeGT,
   T,
 } from "gt-tanstack-start";
-import type { ReactNode } from "react";
 import { Link } from "@/components/link";
 import { SiteLayout } from "@/components/site-layout/site-layout";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -25,6 +24,7 @@ import {
   localeCookieName,
   resolveLocale,
 } from "@/lib/locales";
+import type { Locale } from "@/lib/locales";
 import { getPageMetadata } from "@/lib/metadata";
 import { loadTranslations } from "@/loadTranslations";
 import gtConfig from "../../gt.config.json";
@@ -38,7 +38,7 @@ function reloadForLocale({ locale: nextLocale }: { locale: string }) {
   );
 }
 
-const initializedGtConfig = {
+const runtimeGtConfig = {
   ...gtConfig,
   loadTranslations,
   localeCookieName,
@@ -46,7 +46,7 @@ const initializedGtConfig = {
   _reload: reloadForLocale,
 };
 
-initializeGT(initializedGtConfig);
+initializeGT(runtimeGtConfig);
 
 export const Route = createRootRoute({
   loader: async () => {
@@ -81,7 +81,7 @@ export const Route = createRootRoute({
   notFoundComponent: NotFound,
 });
 
-function getPrimaryFontUrl(locale: string | undefined): string {
+function getPrimaryFontUrl(locale: Locale | undefined): string {
   if (locale === "ar") return notoNaskhArabicUrl;
   if (locale === "ru") return piazzollaCyrillicUrl;
   if (locale && locale !== defaultLocale) return piazzollaLatinExtUrl;
@@ -89,14 +89,6 @@ function getPrimaryFontUrl(locale: string | undefined): string {
 }
 
 function RootComponent() {
-  return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
-  );
-}
-
-function RootDocument({ children }: { children: ReactNode }) {
   const { locale, translations } = Route.useLoaderData();
 
   return (
@@ -110,7 +102,9 @@ function RootDocument({ children }: { children: ReactNode }) {
       </head>
       <body>
         <GTProvider locale={locale} translations={translations}>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <Outlet />
+          </ThemeProvider>
         </GTProvider>
         <Scripts />
       </body>
