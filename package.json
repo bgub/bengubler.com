@@ -10,8 +10,7 @@
     "test": "node --test src/lib/request-routing.test.ts && pnpm --filter content-pipeline test",
     "translate": "gtx-cli translate",
     "lint": "biome check",
-    "format": "biome format --write",
-    "analyze": "𝚗𝚎𝚡𝚝 𝚎𝚡𝚙𝚎𝚛𝚒𝚖𝚎𝚗𝚝𝚊𝚕-𝚊𝚗𝚊𝚕𝚢𝚣𝚎"
+    "format": "biome format --write"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
