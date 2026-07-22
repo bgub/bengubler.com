@@ -5,7 +5,7 @@ import { type ContentElement, createContentCompiler } from "content-pipeline";
 const compiler = createContentCompiler();
 
 test("compiles portable content, navigation, and highlighted code", async () => {
-  const compiled = await compiler.compile({
+  const compiled = await compiler({
     source: [
       "## Build `fast`",
       "",
@@ -45,7 +45,7 @@ test("compiles portable content, navigation, and highlighted code", async () => 
 });
 
 test("deduplicates heading IDs", async () => {
-  const compiled = await compiler.compile({
+  const compiled = await compiler({
     source: "## Same\n\n## Same",
     title: "Example Post",
     filePath: "post.md",
@@ -58,7 +58,7 @@ test("deduplicates heading IDs", async () => {
 
 test("reports invalid component attributes with their source file", async () => {
   await assert.rejects(
-    compiler.compile({
+    compiler({
       source: "{% tweet /%}",
       title: "Example Post",
       filePath: "post.md",
@@ -76,7 +76,7 @@ test("validates configured capitalization", async () => {
   });
 
   await assert.rejects(
-    validatingCompiler.compile({
+    validatingCompiler({
       source: "## building with AI",
       title: "an example post",
       filePath: "en/post.md",
@@ -85,7 +85,7 @@ test("validates configured capitalization", async () => {
   );
 
   await assert.doesNotReject(
-    validatingCompiler.compile({
+    validatingCompiler({
       source: "## minuskulový nadpis",
       title: "preložený príspevok",
       filePath: "sk/post.md",

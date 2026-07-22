@@ -26,4 +26,4 @@ export const specialCases = [
   "Math",
   "Up",
   "HuggingFace",
-] as const;
+];

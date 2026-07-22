@@ -24,18 +24,7 @@ export const Route = createFileRoute("/{-$locale}/about/my-stack")({
   component: MyStackPage,
 });
 
-type FavoriteSection = {
-  category: string;
-  subsections: Array<{
-    title: string;
-    items: Array<{
-      name: string;
-      link?: string;
-    }>;
-  }>;
-};
-
-const stack: FavoriteSection[] = [
+const stack = [
   {
     category: msg("Hardware"),
     subsections: [
@@ -145,7 +134,7 @@ function MyStackPage() {
                     const displayName = m(item.name);
                     return (
                       <span key={m(item.name)}>
-                        {item.link ? (
+                        {"link" in item && item.link ? (
                           <Link
                             href={item.link}
                             target="_blank"

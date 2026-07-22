@@ -87,22 +87,12 @@
     "t": "div"
   },
   "11e7d0209a9c3db8": "Massachusetts",
-  "12458c3d207c8c39": {
-    "c": "Čítam tvoj príspevok…",
-    "i": 1,
-    "t": "p"
-  },
   "12c1578756fefe6b": "Oregon",
   "138f1c228519cc2b": "Angola",
   "13a2644fbe7bbb85": "Mississippi",
   "140cc6c1b8358650": "Archív búrkového svetla",
   "14951deeb9fd1a80": "učenie jazykov",
   "1684d5043a96121e": "Etiópia",
-  "1758b3d1d63f639f": {
-    "c": "Prepáčte, príspevok, ktorý hľadáte, neexistuje alebo bol presunutý.",
-    "i": 1,
-    "t": "p"
-  },
   "184e745d7d13c743": "Malawi",
   "189d7db07ea44187": "Kazachstan",
   "18b7ac2e269cb726": [
@@ -122,11 +112,6 @@
   "1fce2ea0cc5f056e": "Osobná webová stránka Bena Gublera. Úvahy o webovom vývoji, AI a tvorbe vecí, na ktorých záleží.",
   "2096e678e9ff17b6": "Open-source nástroje",
   "20bba13e9a5287ac": "Konžská demokratická republika",
-  "217a321934b935db": {
-    "c": "Stránka nenájdená",
-    "i": 1,
-    "t": "h2"
-  },
   "23386a6bcb41d5c5": "An Infinitely Large Napkin",
   "233fe71d46008091": "Ozvite sa mi, ak máte záujem o spoluprácu, otázky alebo sa chcete len pozdraviť.",
   "239e1d076b1e9abe": "Rozšírenie pre Chrome, ktoré pri písaní prevádza znaky napísané v esperantskom „x-systéme“ na esperantské písmená.",
@@ -184,7 +169,6 @@
     "i": 1,
     "t": "Link"
   },
-  "356fdf32f4af59c1": "Si expert na vysvetľovanie zložitých tém jednoduchým a zábavným spôsobom.\n\nVysvetli nasledujúci príspevok tak, akoby si sa rozprával s 5-ročným dieťaťom:\n- Používaj jednoduché slová a krátke vety\n- Pridaj zábavné analógie a prirovnania, ktorým bude rozumieť\n- Buď nadšený a povzbudzujúci\n- Rozdeľ zložité myšlienky na malé, ľahko pochopiteľné časti\n- Urob to pútavé, ale presné\n\nNázov: „{title}“",
   "35e47f78c1abf14b": "Kniha Mormonova",
   "365eecb4547061ff": "Brave Browser",
   "369eb3a697023921": "Turecko",
@@ -209,11 +193,6 @@
     "t": "h3"
   },
   "3cd1510ae2089fd7": "Dominikánska republika",
-  "3da0fce6cf767642": {
-    "c": "Pripravené na jednoduché vysvetlenie!",
-    "i": 1,
-    "t": "p"
-  },
   "3e784d336673b7ec": "Česko",
   "3f90a1a17923a4c6": "Prepnúť jazyk na {code}",
   "3f96a7686163d260": {
@@ -223,11 +202,6 @@
   },
   "402715cd330d167a": "Počítače",
   "4088fbaddc00d228": "Pozrite si moje open-source projekty a príspevky",
-  "40947665b1503ba3": {
-    "c": "404",
-    "i": 1,
-    "t": "h1"
-  },
   "4156905e88354209": "Fahrenheit 451",
   "41d2f4230d1d960e": {
     "c": "Czech Case Cards – kartičky českých pádov",
@@ -247,12 +221,6 @@
   "46a7e9493b7e1ed9": "Florida",
   "4700d882bc81855a": "Honduras",
   "47ed76f7077e0280": "Odporúčané – Ben Gubler",
-  "480646ceb98c7163": "Zavrieť",
-  "4835968fd99ecdc2": {
-    "c": "Jednoduché vysvetlenie",
-    "i": 1,
-    "t": "h4"
-  },
   "4924b4629204feb3": "Washington",
   "49378166463c2a95": "Myš MX Master 3S",
   "4a48758f8e4e06c2": "Redox OS",
@@ -291,12 +259,6 @@
   "5739fd955e542e63": "Cyprus",
   "579689a0f509a8fc": "% populácie",
   "579a989363e7dd8c": "Vaša prvá aplikácia vo WebGPU",
-  "57df581328929c7a": {
-    "c": "Prepáčte, stránka, ktorú hľadáte, neexistuje alebo bola presunutá.",
-    "i": 1,
-    "t": "p"
-  },
-  "582c94a306553566": "Vysvetliť znova",
   "58f2923fba07dbae": {
     "c": "Prehliadať všetky príspevky",
     "i": 1,
@@ -667,29 +629,12 @@
   "acd3df01d58f5765": "The Divergent Association Task",
   "ade50401b1396de9": "Príspevky",
   "af3863609bbecf5b": "Webový vývoj a React",
-  "afaa0561ba5a8ba7": {
-    "c": "Príspevok nenájdený",
-    "i": 1,
-    "t": "h2"
-  },
-  "afd298096cfd8136": {
-    "c": "Rozkladám to na jednoduché pojmy",
-    "i": 1,
-    "t": "p"
-  },
   "b001897d730bf8b0": "Venezuela",
   "b06fe500b9dcc919": "Salvádor",
   "b09fa3fb65954f11": "Krajiny",
   "b104514dd0ff33a5": "Mexiko",
   "b22acab22e51149b": "Japonsko",
   "b24c8ee92c656887": "USA",
-  "b28cd0fa97a4537e": [
-    {
-      "i": 1,
-      "t": "Loader2"
-    },
-    "Vysvetľujem…"
-  ],
   "b305d06d0af683b4": "Stránka nenájdená - Ben Gubler",
   "b387818540cf9565": "Dánsko",
   "b4c836e33738625a": "Luxembursko",
@@ -714,11 +659,9 @@
   "c18af923a81d97db": "Matematika a formálne metódy",
   "c24789fa6ee1226c": "shade",
   "c399944bd45a8e59": "Južná Dakota",
-  "c3ae9cdbdb6ac881": "Začať vysvetľovať",
   "c3b8cdf27ab3c87a": "Maine",
   "c3d75dccd88075f2": "Interstellar",
   "c416e456567fdf39": "mokka",
-  "c480d98c240a3a0f": "Obsah je povinný",
   "c4d382a9f7bcbeb9": [
     "Svätí neskorších dní ",
     {
@@ -731,22 +674,10 @@
   "c60bbea0759db02a": "Aplikácia na učenie jazykov na zlepšenie porozumenia. Počúvajte autentické podcasty rodených hovoriacich s transkripciami a prekladmi generovanými AI.",
   "c62378275dc5c4f6": "moje vlastné nástroje",
   "c6ac6b7f87f34e3b": "Pensylvánia",
-  "c71006556cf1328e": {
-    "c": [
-      {
-        "i": 2,
-        "t": "Brain"
-      },
-      "Vysvetli mi to, akoby som mal 5 rokov"
-    ],
-    "i": 1,
-    "t": "DialogTitle"
-  },
   "c772710e952c391c": "Filipíny",
   "c7a2323b7e48530a": "Môj stack - Ben Gubler",
   "c7ee1a20e25cdfe0": "Just Mercy",
   "c8cdfc1fc3866c97": "Yukon",
-  "c8d07954aba03c4d": "Prosím, vysvetli tento príspevok jednoducho:\n\n{content}",
   "c913a4cd1fdb059a": "GPU a tenzorové hádanky",
   "c96c6913115e475e": "Hardvér",
   "c9c50f0332867e60": "Panama",
@@ -778,19 +709,6 @@
   "cdceac6a8ba205a3": "Stránka, ktorú hľadáte, neexistuje.",
   "cddb5da9d378a573": "Kuvajt",
   "ce4f5e5113604fa9": "Špecializované témy a aplikácie",
-  "ce793a9070a24133": {
-    "c": [
-      "Vysvetlím \"",
-      {
-        "i": 2,
-        "k": "_gt_value_2",
-        "v": "v"
-      },
-      "\" jednoducho"
-    ],
-    "i": 1,
-    "t": "p"
-  },
   "cf1dfa31f755ed76": "Porovnávajte tokenizéry v mnohých jazykoch pomocou interaktívnych vizualizácií a analýzy.",
   "cfb740b7462fab33": "Príspevky",
   "d006c44856493996": "Informatika",
@@ -815,15 +733,9 @@
   "d87f87ec78d92657": "Malajzia",
   "d8951e11c475ea08": "Tanzánia",
   "d8b46c0127d88a10": "Zistite viac o Benovi Gublerovi, jeho štúdiu AI a jazykov a jeho práci webového vývojára.",
-  "d9a4d6e70a27f799": "Prepáčte, toto sa mi teraz nepodarilo vysvetliť. Skúste to, prosím, znova!",
   "da08f8c711ccf566": "Trinidad a Tobago",
   "da70affac9781e55": "Učenie jazykov",
   "daad66bd542f4ac1": "nix-macos-starter",
-  "daf080584b6c4e5f": {
-    "c": "Zavrieť",
-    "i": 1,
-    "t": "span"
-  },
   "db1fe4831da96145": {
     "c": "Strávil som tvorbou týchto materiálov mnoho hodín! Vytlačte si ich a české skloňovacie vzory si osvojíte raz-dva.",
     "i": 1,
@@ -832,7 +744,23 @@
   "dc2756d11af8d057": "Bedári",
   "dc94ea51cf0b8c7a": "Filmy",
   "dc9f1a12fca86efe": "Rýchly vstavaný JS nástroj. Široko používaný, s viac ako 1,5 tis. hviezdičkami na GitHube a ~2 mil. stiahnutí týždenne.",
-  "def93bda648985e9": "Vysvetli mi to, akoby som mal 5 rokov",
+  "deb60b6c5c7c7e83": [
+    {
+      "c": "404",
+      "i": 1,
+      "t": "h1"
+    },
+    {
+      "c": "Stránka nenájdená",
+      "i": 2,
+      "t": "h2"
+    },
+    {
+      "c": "Prepáčte, stránka, ktorú hľadáte, neexistuje alebo bola presunutá.",
+      "i": 3,
+      "t": "p"
+    }
+  ],
   "df477c814cdcac4b": "Wisconsin",
   "e0ec8b1ac98ca1d6": "Wispr Flow",
   "e1753ab0ce7d5975": "LinkedIn",
@@ -888,6 +816,23 @@
   },
   "f41ea186c275b56e": "O mne",
   "f4a62bd4d2559581": "Lesotho",
+  "f4d07f6eb70aee90": [
+    {
+      "c": "404",
+      "i": 1,
+      "t": "h1"
+    },
+    {
+      "c": "Príspevok nenájdený",
+      "i": 2,
+      "t": "h2"
+    },
+    {
+      "c": "Prepáčte, príspevok, ktorý hľadáte, neexistuje alebo bol presunutý.",
+      "i": 3,
+      "t": "p"
+    }
+  ],
   "f4f0914ef1d23a85": "Ontário",
   "f52129a3f95b5597": "Študijné zdroje",
   "f6a89728879f3df1": "Biblia",
@@ -900,11 +845,6 @@
   "f8352ccc2624f2bb": "OCaml Programming: CS 3110",
   "f8af7923602b2b3f": "Poľsko",
   "fa04175c4a6b1ba8": "Konžská rep.",
-  "faacfe0817aee2f5": {
-    "c": "Zložité témy jednoducho",
-    "i": 1,
-    "t": "DialogDescription"
-  },
   "fb28c7155cb1319a": [
     {
       "i": 1,

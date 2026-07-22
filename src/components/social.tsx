@@ -72,25 +72,21 @@ export function Social({ title, className }: SocialProps) {
   const shares = [
     {
       name: "X",
-      shortName: "X",
       url: `https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
       icon: XIcon,
     },
     {
       name: "LinkedIn",
-      shortName: "LN",
       url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
       icon: LinkedInIcon,
     },
     {
       name: "Reddit",
-      shortName: "RD",
       url: `https://reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`,
       icon: RedditIcon,
     },
     {
       name: "Hacker News",
-      shortName: "HN",
       url: `https://news.ycombinator.com/submitlink?u=${encodedUrl}&t=${encodedTitle}`,
       icon: HackerNewsIcon,
     },

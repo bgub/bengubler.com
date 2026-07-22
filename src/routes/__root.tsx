@@ -14,9 +14,10 @@ import {
   getTranslationsSnapshot,
   initializeGT,
   parseLocale,
+  T,
 } from "gt-tanstack-start";
 import type { ReactNode } from "react";
-import { PageNotFound } from "@/components/not-found-page";
+import { Link } from "@/components/link";
 import { Providers } from "@/components/providers";
 import { SiteLayout } from "@/components/site-layout";
 import {
@@ -117,7 +118,41 @@ function RootDocument({ children }: { children: ReactNode }) {
 function NotFound() {
   return (
     <SiteLayout>
-      <PageNotFound />
+      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-y-6 text-center">
+        <div className="space-y-4">
+          <T>
+            <h1 className="font-serif text-6xl font-medium text-muted-foreground">
+              404
+            </h1>
+            <h2 className="font-serif text-3xl font-medium tracking-tight text-foreground">
+              Page Not Found
+            </h2>
+            <p className="mx-auto max-w-md font-serif text-lg font-light leading-relaxed text-ink-soft">
+              Sorry, the page you're looking for doesn't exist or has been
+              moved.
+            </p>
+          </T>
+        </div>
+        <div className="flex items-center gap-4 font-mono text-[11.5px]">
+          <T>
+            <Link
+              href="/"
+              className="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
+            >
+              Go Home
+            </Link>
+          </T>
+          <span className="text-ink-faint">&middot;</span>
+          <T>
+            <Link
+              href="/posts"
+              className="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
+            >
+              View Posts
+            </Link>
+          </T>
+        </div>
+      </div>
     </SiteLayout>
   );
 }

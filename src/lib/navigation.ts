@@ -10,17 +10,7 @@ import {
   Star,
   User,
 } from "lucide-react";
-import type React from "react";
-
-export type NavigationItem = {
-  name: string;
-  href: string;
-  icon: React.ComponentType<{ className?: string }>;
-  isSubItem?: boolean;
-  parent?: string;
-};
-
-export const navigation: NavigationItem[] = [
+export const navigation = [
   { name: msg("Home"), href: "/", icon: Home },
   { name: msg("About"), href: "/about", icon: User },
   {
@@ -28,14 +18,12 @@ export const navigation: NavigationItem[] = [
     href: "/about/my-stack",
     icon: Code,
     isSubItem: true,
-    parent: "About",
   },
   {
     name: msg("Favorites"),
     href: "/about/favorites",
     icon: Star,
     isSubItem: true,
-    parent: "About",
   },
   { name: msg("Projects"), href: "/projects", icon: FolderOpen },
   {
@@ -43,7 +31,6 @@ export const navigation: NavigationItem[] = [
     href: "/language-learning",
     icon: Languages,
     isSubItem: true,
-    parent: "Projects",
   },
   { name: msg("Posts"), href: "/posts", icon: FileText },
   { name: msg("Recommended"), href: "/recommended", icon: Link2 },

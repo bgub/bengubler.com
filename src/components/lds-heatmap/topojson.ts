@@ -1,36 +1,38 @@
 import type * as d3 from "d3";
 
-export interface TopoGeometry {
-  type: string;
+type Position = [number, number];
+
+type TopoGeometryBase = {
   id?: string | number;
   properties?: Record<string, unknown>;
-  arcs: number[][] | number[][][];
-}
+};
+
+export type TopoGeometry =
+  | (TopoGeometryBase & { type: "Polygon"; arcs: number[][] })
+  | (TopoGeometryBase & { type: "MultiPolygon"; arcs: number[][][] });
 
 export interface TopoObject {
   geometries: TopoGeometry[];
 }
 
 export interface Topology {
-  arcs: number[][][];
-  transform: { scale: [number, number]; translate: [number, number] };
+  arcs: Position[][];
+  transform: { scale: Position; translate: Position };
   objects: Record<string, TopoObject>;
 }
 
-export interface GeoFeature {
-  type: "Feature";
-  id?: string | number;
-  properties: Record<string, unknown>;
-  geometry: {
-    type: string;
-    coordinates: number[][][] | number[][][][];
-  };
-}
+type GeoGeometry =
+  | { type: "Polygon"; coordinates: Position[][] }
+  | { type: "MultiPolygon"; coordinates: Position[][][] };
 
-export function decodeTopo(
-  topo: Topology,
-  obj: TopoObject,
-): d3.GeoPermissibleObjects & { features: GeoFeature[] } {
+export type GeoFeature = d3.ExtendedFeature<
+  GeoGeometry,
+  Record<string, unknown>
+>;
+
+export type DecodedTopology = d3.ExtendedFeatureCollection<GeoFeature>;
+
+export function decodeTopo(topo: Topology, obj: TopoObject): DecodedTopology {
   const {
     arcs,
     transform: {
@@ -39,46 +41,46 @@ export function decodeTopo(
     },
   } = topo;
 
-  const decodeArc = (ai: number) => {
-    const a = arcs[ai < 0 ? ~ai : ai];
-    const coords: [number, number][] = [];
+  const decodeArc = (arcIndex: number) => {
+    const arc = arcs[arcIndex < 0 ? ~arcIndex : arcIndex];
+    const coordinates: Position[] = [];
     let x = 0;
     let y = 0;
-    for (const [dx, dy] of a) {
+    for (const [dx, dy] of arc) {
       x += dx;
       y += dy;
-      coords.push([x * sx + tx, y * sy + ty]);
+      coordinates.push([x * sx + tx, y * sy + ty]);
     }
-    return ai < 0 ? coords.reverse() : coords;
+    return arcIndex < 0 ? coordinates.reverse() : coordinates;
   };
 
-  const ring = (r: number[]) => {
-    let coords: [number, number][] = [];
-    r.forEach((ai, i) => {
-      const a = decodeArc(ai);
-      if (i) a.shift();
-      coords = coords.concat(a);
+  const decodeRing = (ring: number[]) => {
+    const coordinates: Position[] = [];
+    ring.forEach((arcIndex, index) => {
+      const arc = decodeArc(arcIndex);
+      if (index > 0) arc.shift();
+      coordinates.push(...arc);
     });
-    return coords;
+    return coordinates;
   };
 
   return {
-    type: "FeatureCollection" as const,
-    features: obj.geometries.map((g) => ({
-      type: "Feature" as const,
-      id: g.id,
-      properties: g.properties || {},
-      geometry:
-        g.type === "Polygon"
-          ? { type: "Polygon", coordinates: (g.arcs as number[][]).map(ring) }
-          : g.type === "MultiPolygon"
-            ? {
+    type: "FeatureCollection",
+    features: obj.geometries.map(
+      (geometry): GeoFeature => ({
+        type: "Feature",
+        id: geometry.id,
+        properties: geometry.properties ?? {},
+        geometry:
+          geometry.type === "Polygon"
+            ? { type: "Polygon", coordinates: geometry.arcs.map(decodeRing) }
+            : {
                 type: "MultiPolygon",
-                coordinates: (g.arcs as number[][][]).map((p) => p.map(ring)),
-              }
-            : (g as unknown as { type: string; coordinates: number[][][] }),
-    })),
-  } as d3.GeoPermissibleObjects & { features: GeoFeature[] };
+                coordinates: geometry.arcs.map((polygon) =>
+                  polygon.map(decodeRing),
+                ),
+              },
+      }),
+    ),
+  };
 }
-
-export type DecodedTopology = ReturnType<typeof decodeTopo>;

@@ -11,7 +11,7 @@ const compiler = createContentCompiler({
   },
 });
 
-const { body, toc, readingTime } = await compiler.compile({
+const { body, toc, readingTime } = await compiler({
   source,
   title,
   filePath,

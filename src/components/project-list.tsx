@@ -1,7 +1,7 @@
 import { useGT, useMessages } from "gt-tanstack-start";
 import { Link } from "@/components/link";
 import { GitHubIcon } from "@/components/social";
-import { getColorByIndex } from "@/lib/colors";
+import { getStripeColorByIndex } from "@/lib/colors";
 import type { Project } from "@/lib/projects";
 
 interface ProjectListProps {
@@ -15,14 +15,14 @@ export function ProjectList({ projects, compact = false }: ProjectListProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {projects.map((project, i) => {
-        const colors = getColorByIndex(i);
+        const stripeColor = getStripeColorByIndex(i);
         return (
           <div
             key={project.name}
             className="bg-card border border-border rounded-sm relative overflow-hidden transition-all duration-200 hover:shadow-md group"
           >
             <div
-              className={`absolute top-0 left-0 right-0 h-1.5 ${colors.stripe}`}
+              className={`absolute top-0 left-0 right-0 h-1.5 ${stripeColor}`}
             />
             <div className="p-4 pt-5">
               <div className="flex items-start justify-between gap-2 mb-1.5">

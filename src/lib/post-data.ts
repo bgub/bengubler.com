@@ -1,19 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { allPosts } from "content-collections";
 
-export type Post = (typeof allPosts)[number];
-export type PostSummary = Pick<
-  Post,
-  | "archived"
-  | "date"
-  | "description"
-  | "readingTime"
-  | "slug"
-  | "tags"
-  | "title"
-  | "url"
->;
-
 export const getPostsForLocale = createServerFn({ method: "GET" })
   .validator((data: { locale: string }) => data)
   .handler(({ data }) =>
@@ -29,7 +16,7 @@ export const getPostsForLocale = createServerFn({ method: "GET" })
           tags,
           title,
           url,
-        }): PostSummary => ({
+        }) => ({
           archived,
           date,
           description,

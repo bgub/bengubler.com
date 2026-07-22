@@ -9,13 +9,6 @@ export interface TipData {
   state?: boolean;
 }
 
-export interface RankedItem {
-  n: string;
-  m: number;
-  p: number;
-  pv: number;
-}
-
 // ── UTILS ─────────────────────────────────────────────────────
 
 export const fmt = (n: number) =>

@@ -1,21 +1,6 @@
 import { msg } from "gt-tanstack-start";
 
-export type Project = {
-  name: string;
-  description: string;
-  tech: string;
-  links: {
-    demo?: string;
-    github?: string;
-  };
-};
-
-export type ProjectSection = {
-  category: string;
-  projects: Project[];
-};
-
-export const projectsData: ProjectSection[] = [
+export const projectsData = [
   {
     category: msg("Featured"),
     projects: [
@@ -223,3 +208,5 @@ export const projectsData: ProjectSection[] = [
     ],
   },
 ];
+
+export type Project = (typeof projectsData)[number]["projects"][number];

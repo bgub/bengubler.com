@@ -1,9 +1,7 @@
 import { type ClassNameValue, twMerge } from "tailwind-merge";
 
-export function cn(...inputs: unknown[]) {
-  return twMerge(
-    inputs.filter((v) => typeof v === "string") as ClassNameValue[],
-  );
+export function cn(...inputs: ClassNameValue[]) {
+  return twMerge(...inputs);
 }
 
 export const getBaseUrl = () => {

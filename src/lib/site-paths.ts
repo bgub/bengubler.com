@@ -11,4 +11,4 @@ export const sitePaths = [
   "/language-learning/czech-declensions",
   "/language-learning/russian-declensions",
   "/lds-heatmap",
-] as const;
+];

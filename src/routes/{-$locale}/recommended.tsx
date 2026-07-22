@@ -24,18 +24,7 @@ export const Route = createFileRoute("/{-$locale}/recommended")({
   component: RecommendedPage,
 });
 
-type RecommendationSection = {
-  category: string;
-  subsections: Array<{
-    title: string;
-    items: Array<{
-      name: string;
-      url: string;
-    }>;
-  }>;
-};
-
-const recommendations: RecommendationSection[] = [
+const recommendations = [
   {
     category: msg("Computer Science"),
     subsections: [

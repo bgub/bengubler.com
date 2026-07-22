@@ -21,66 +21,6 @@
     "i": 1,
     "c": "View Posts"
   },
-  "d9a4d6e70a27f799": "Sorry, I couldn't explain this right now. Please try again!",
-  "def93bda648985e9": "Explain Like I'm 5",
-  "582c94a306553566": "Explain Again",
-  "c3ae9cdbdb6ac881": "Start Explaining",
-  "c71006556cf1328e": {
-    "t": "DialogTitle",
-    "i": 1,
-    "c": [
-      {
-        "t": "Brain",
-        "i": 2
-      },
-      "Explain Like I'm 5"
-    ]
-  },
-  "faacfe0817aee2f5": {
-    "t": "DialogDescription",
-    "i": 1,
-    "c": "Making complex topics simple"
-  },
-  "4835968fd99ecdc2": {
-    "t": "h4",
-    "i": 1,
-    "c": "Simple Explanation"
-  },
-  "ceb6ba0f86d976c1": {
-    "t": "p",
-    "i": 1,
-    "c": "Reading your blog post..."
-  },
-  "afd298096cfd8136": {
-    "t": "p",
-    "i": 1,
-    "c": "Breaking it down into simple terms"
-  },
-  "3da0fce6cf767642": {
-    "t": "p",
-    "i": 1,
-    "c": "Ready to Simplify!"
-  },
-  "ce793a9070a24133": {
-    "t": "p",
-    "i": 1,
-    "c": [
-      "I'll explain \"",
-      {
-        "i": 2,
-        "k": "_gt_value_2",
-        "v": "v"
-      },
-      "\" in simple terms"
-    ]
-  },
-  "ae22c9e36cd4543e": [
-    {
-      "t": "Loader2",
-      "i": 1
-    },
-    "Explaining..."
-  ],
   "7e74172900c60360": "Link to section",
   "69a38e8afebf5dd4": "Close menu",
   "6662bfef4fbe8763": "Open menu",
@@ -567,9 +507,6 @@
     "i": 1,
     "c": "Recommended"
   },
-  "c480d98c240a3a0f": "Content is required",
-  "356fdf32f4af59c1": "You are an expert at explaining complex topics in simple, fun terms.\n\nExplain the following blog post as if you're talking to a 5-year-old child:\n- Use simple words and short sentences\n- Include fun analogies and comparisons they can relate to\n- Be enthusiastic and encouraging\n- Break complex ideas into bite-sized pieces\n- Make it engaging but accurate\n\nTitle: \"{title}\"",
-  "23833883c2b7d83b": "Please explain this blog post in simple terms:\\n\\n{content}",
   "bc79b8827bd6278c": "Books",
   "6601f653ec09b078": "Classics",
   "00d3991449447669": "The Brothers Karamazov",

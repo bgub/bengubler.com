@@ -4,7 +4,7 @@ import { msg, T, useGT, useMessages } from "gt-tanstack-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
-import { getColorByIndex } from "@/lib/colors";
+import { getStripeColorByIndex } from "@/lib/colors";
 import { getRouteMetadata } from "@/lib/metadata";
 
 const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
@@ -62,7 +62,7 @@ const languageTools = [
     href: "/language-learning/russian-declensions",
     isExternal: false,
   },
-] as const;
+];
 
 function LanguageLearningPage() {
   const m = useMessages();
@@ -83,7 +83,7 @@ function LanguageLearningPage() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         {languageTools.map((tool, index) => {
-          const colors = getColorByIndex(index);
+          const stripeColor = getStripeColorByIndex(index);
           return (
             <Link
               key={tool.id}
@@ -93,7 +93,7 @@ function LanguageLearningPage() {
               className="bg-card border border-border rounded-sm relative overflow-hidden transition-all duration-200 hover:shadow-md group block no-underline"
             >
               <div
-                className={`absolute top-0 left-0 right-0 h-1.5 ${colors.stripe}`}
+                className={`absolute top-0 left-0 right-0 h-1.5 ${stripeColor}`}
               />
               <div className="p-4 pt-5">
                 <div className="flex items-center justify-between mb-2">

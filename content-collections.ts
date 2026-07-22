@@ -24,7 +24,7 @@ const posts = defineCollection({
     content: z.string(),
   }),
   transform: async (document) => {
-    const compiled = await compiler.compile({
+    const compiled = await compiler({
       source: document.content,
       title: document.title,
       filePath: document._meta.path,
@@ -34,8 +34,7 @@ const posts = defineCollection({
     const fileName =
       document._meta.path.split("/").pop()?.replace(/\.md$/, "") || "";
 
-    // Derive locale and top-level folder from path: <locale>/<folder>/...
-    const [locale, folder] = document._meta.path.split("/");
+    const [locale] = document._meta.path.split("/");
 
     return {
       ...document,
@@ -45,7 +44,6 @@ const posts = defineCollection({
       slug: fileName,
       url: `/posts/${fileName}`,
       locale,
-      folder,
     };
   },
 });

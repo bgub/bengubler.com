@@ -87,22 +87,12 @@
     "t": "div"
   },
   "11e7d0209a9c3db8": "Masaĉuseco",
-  "12458c3d207c8c39": {
-    "c": "Legante vian blogan afiŝon…",
-    "i": 1,
-    "t": "p"
-  },
   "12c1578756fefe6b": "Oregono",
   "138f1c228519cc2b": "Angolo",
   "13a2644fbe7bbb85": "Misisipio",
   "140cc6c1b8358650": "The Stormlight Archive",
   "14951deeb9fd1a80": "Lingvolernado",
   "1684d5043a96121e": "Etiopio",
-  "1758b3d1d63f639f": {
-    "c": "Pardonu, la afiŝo, kiun vi serĉas, ne ekzistas aŭ estis translokita.",
-    "i": 1,
-    "t": "p"
-  },
   "184e745d7d13c743": "Malavio",
   "189d7db07ea44187": "Kazaĥstano",
   "18b7ac2e269cb726": [
@@ -122,11 +112,6 @@
   "1fce2ea0cc5f056e": "La persona retejo de Ben Gubler. Pensoj pri reta programado, AI kaj konstruado de aferoj, kiuj gravas.",
   "2096e678e9ff17b6": "Malfermfontaj iloj",
   "20bba13e9a5287ac": "DR Kongo",
-  "217a321934b935db": {
-    "c": "Paĝo ne trovita",
-    "i": 1,
-    "t": "h2"
-  },
   "23386a6bcb41d5c5": "An Infinitely Large Napkin",
   "233fe71d46008091": "Kontaktu min por kunlaboroj, demandoj aŭ simple por saluti.",
   "239e1d076b1e9abe": "Chrome-etendaĵo por transformi signojn skribitajn per la Esperanta 'x-sistemo' en Esperantajn signojn dum tajpado.",
@@ -184,7 +169,6 @@
     "i": 1,
     "t": "Link"
   },
-  "356fdf32f4af59c1": "Vi estas fakulo pri klarigado de kompleksaj temoj per simplaj, amuzaj vortoj.\n\nKlarigu la jenan blogaĵon kvazaŭ vi parolus al 5-jara infano:\n- Uzu simplajn vortojn kaj mallongajn frazojn\n- Enmetu amuzajn analogiojn kaj komparojn, kiujn ĝi povas kompreni\n- Estu entuziasma kaj kuraĝiga\n- Disigu kompleksajn ideojn en etajn, facile kompreneblajn partojn\n- Faru ĝin alloga sed preciza\n\nTitolo: \"{title}\"",
   "35e47f78c1abf14b": "La Libro de Mormono",
   "365eecb4547061ff": "Brave-retumilo",
   "369eb3a697023921": "Turkio",
@@ -209,11 +193,6 @@
     "t": "h3"
   },
   "3cd1510ae2089fd7": "Dominika Respubliko",
-  "3da0fce6cf767642": {
-    "c": "Pretas simpligi!",
-    "i": 1,
-    "t": "p"
-  },
   "3e784d336673b7ec": "Ĉeĥio",
   "3f90a1a17923a4c6": "Ŝanĝi la lingvon al {code}",
   "3f96a7686163d260": {
@@ -223,11 +202,6 @@
   },
   "402715cd330d167a": "Komputiloj",
   "4088fbaddc00d228": "Rigardu miajn malfermfontajn projektojn kaj kontribuojn",
-  "40947665b1503ba3": {
-    "c": "404",
-    "i": 1,
-    "t": "h1"
-  },
   "4156905e88354209": "Fahrenheit 451",
   "41d2f4230d1d960e": {
     "c": "Czech kazkartoj",
@@ -247,12 +221,6 @@
   "46a7e9493b7e1ed9": "Florido",
   "4700d882bc81855a": "Honduro",
   "47ed76f7077e0280": "Rekomendata - Ben Gubler",
-  "480646ceb98c7163": "Fermi",
-  "4835968fd99ecdc2": {
-    "c": "Simpla klarigo",
-    "i": 1,
-    "t": "h4"
-  },
   "4924b4629204feb3": "Vaŝingtonio",
   "49378166463c2a95": "MX Master 3S Mouse",
   "4a48758f8e4e06c2": "Redox OS",
@@ -291,12 +259,6 @@
   "5739fd955e542e63": "Kipro",
   "579689a0f509a8fc": "% de loĝ.",
   "579a989363e7dd8c": "Via unua WebGPU-aplikaĵo",
-  "57df581328929c7a": {
-    "c": "Bedaŭrinde, la paĝo, kiun vi serĉas, ne ekzistas aŭ estis movita.",
-    "i": 1,
-    "t": "p"
-  },
-  "582c94a306553566": "Klarigu denove",
   "58f2923fba07dbae": {
     "c": "Foliumi ĉiujn afiŝojn",
     "i": 1,
@@ -667,29 +629,12 @@
   "acd3df01d58f5765": "La tasko de diverĝa asociado",
   "ade50401b1396de9": "Afiŝoj",
   "af3863609bbecf5b": "Retdisvolvado kaj React",
-  "afaa0561ba5a8ba7": {
-    "c": "Afiŝo ne trovita",
-    "i": 1,
-    "t": "h2"
-  },
-  "afd298096cfd8136": {
-    "c": "Disigante ĝin en simplajn vortojn",
-    "i": 1,
-    "t": "p"
-  },
   "b001897d730bf8b0": "Venezuelo",
   "b06fe500b9dcc919": "Salvadoro",
   "b09fa3fb65954f11": "Landoj",
   "b104514dd0ff33a5": "Meksiko",
   "b22acab22e51149b": "Japanio",
   "b24c8ee92c656887": "Usono",
-  "b28cd0fa97a4537e": [
-    {
-      "i": 1,
-      "t": "Loader2"
-    },
-    "Klarigante…"
-  ],
   "b305d06d0af683b4": "Paĝo ne trovita - Ben Gubler",
   "b387818540cf9565": "Danio",
   "b4c836e33738625a": "Luksemburgio",
@@ -714,11 +659,9 @@
   "c18af923a81d97db": "Matematiko kaj formalaj metodoj",
   "c24789fa6ee1226c": "shade",
   "c399944bd45a8e59": "Suda Dakoto",
-  "c3ae9cdbdb6ac881": "Komenci klarigi",
   "c3b8cdf27ab3c87a": "Majno",
   "c3d75dccd88075f2": "Interstellar",
   "c416e456567fdf39": "mokka",
-  "c480d98c240a3a0f": "Enhavo necesas",
   "c4d382a9f7bcbeb9": [
     "Sanktuloj de la Lastaj Tagoj ",
     {
@@ -731,22 +674,10 @@
   "c60bbea0759db02a": "Lingvolerna apo por plibonigi komprenon. Aŭskultu aŭtentikajn podkastojn de denaskaj parolantoj kun AI-generitaj transskriboj kaj tradukoj.",
   "c62378275dc5c4f6": "miaj propraj iloj",
   "c6ac6b7f87f34e3b": "Pensilvanio",
-  "c71006556cf1328e": {
-    "c": [
-      {
-        "i": 2,
-        "t": "Brain"
-      },
-      "Klarigu kvazaŭ mi havus 5 jarojn"
-    ],
-    "i": 1,
-    "t": "DialogTitle"
-  },
   "c772710e952c391c": "Filipinoj",
   "c7a2323b7e48530a": "Mia stako - Ben Gubler",
   "c7ee1a20e25cdfe0": "Just Mercy",
   "c8cdfc1fc3866c97": "Jukonio",
-  "c8d07954aba03c4d": "Bonvolu klarigi ĉi tiun blogaĵon per simplaj vortoj:\n\n{content}",
   "c913a4cd1fdb059a": "GPU kaj tensoraj enigmoj",
   "c96c6913115e475e": "Aparataro",
   "c9c50f0332867e60": "Panamo",
@@ -778,19 +709,6 @@
   "cdceac6a8ba205a3": "La paĝo, kiun vi serĉas, ne ekzistas.",
   "cddb5da9d378a573": "Kuvajto",
   "ce4f5e5113604fa9": "Specialigitaj temoj kaj aplikoj",
-  "ce793a9070a24133": {
-    "c": [
-      "Mi klarigos \"",
-      {
-        "i": 2,
-        "k": "_gt_value_2",
-        "v": "v"
-      },
-      "\" per simplaj vortoj"
-    ],
-    "i": 1,
-    "t": "p"
-  },
   "cf1dfa31f755ed76": "Mezuru kaj komparu tokenigilojn tra multaj lingvoj per interagaj bildigoj kaj analizoj.",
   "cfb740b7462fab33": "Afiŝoj",
   "d006c44856493996": "Komputiko",
@@ -815,15 +733,9 @@
   "d87f87ec78d92657": "Malajzio",
   "d8951e11c475ea08": "Tanzanio",
   "d8b46c0127d88a10": "Lernu pli pri Ben Gubler, liaj studoj pri AI kaj lingvoj, kaj lia laboro kiel retprogramisto.",
-  "d9a4d6e70a27f799": "Pardonu, mi ne povis klarigi tion nun. Bonvolu reprovi!",
   "da08f8c711ccf566": "Trinidado kaj Tobago",
   "da70affac9781e55": "Lingvolernado",
   "daad66bd542f4ac1": "nix-macos-starter",
-  "daf080584b6c4e5f": {
-    "c": "Fermi",
-    "i": 1,
-    "t": "span"
-  },
   "db1fe4831da96145": {
     "c": "Mi dediĉis multajn horojn al ilia kreado! Presu ilin, kaj vi baldaŭ parkerigos la ĉeĥajn deklinaciajn ŝablonojn.",
     "i": 1,
@@ -832,7 +744,23 @@
   "dc2756d11af8d057": "Les Misérables",
   "dc94ea51cf0b8c7a": "Filmoj",
   "dc9f1a12fca86efe": "Rapida JS-ŝablonmotoro. Vaste uzata, kun pli ol 1,5 mil steloj en GitHub kaj ĉirkaŭ 2 milionoj da semajnaj elŝutoj.",
-  "def93bda648985e9": "Klarigu kvazaŭ mi havus 5 jarojn",
+  "deb60b6c5c7c7e83": [
+    {
+      "c": "404",
+      "i": 1,
+      "t": "h1"
+    },
+    {
+      "c": "Paĝo ne trovita",
+      "i": 2,
+      "t": "h2"
+    },
+    {
+      "c": "Bedaŭrinde, la paĝo, kiun vi serĉas, ne ekzistas aŭ estis translokita.",
+      "i": 3,
+      "t": "p"
+    }
+  ],
   "df477c814cdcac4b": "Viskonsino",
   "e0ec8b1ac98ca1d6": "Wispr Flow",
   "e1753ab0ce7d5975": "LinkedIn",
@@ -888,6 +816,23 @@
   },
   "f41ea186c275b56e": "Pri mi",
   "f4a62bd4d2559581": "Lesoto",
+  "f4d07f6eb70aee90": [
+    {
+      "c": "404",
+      "i": 1,
+      "t": "h1"
+    },
+    {
+      "c": "Afiŝo ne trovita",
+      "i": 2,
+      "t": "h2"
+    },
+    {
+      "c": "Bedaŭrinde, la afiŝo, kiun vi serĉas, ne ekzistas aŭ estis translokita.",
+      "i": 3,
+      "t": "p"
+    }
+  ],
   "f4f0914ef1d23a85": "Ontario",
   "f52129a3f95b5597": "Lernaj rimedoj",
   "f6a89728879f3df1": "La Biblio",
@@ -900,11 +845,6 @@
   "f8352ccc2624f2bb": "Programado en OCaml: CS 3110",
   "f8af7923602b2b3f": "Pollando",
   "fa04175c4a6b1ba8": "Respubliko Kongo",
-  "faacfe0817aee2f5": {
-    "c": "Simpligante kompleksajn temojn",
-    "i": 1,
-    "t": "DialogDescription"
-  },
   "fb28c7155cb1319a": [
     {
       "i": 1,

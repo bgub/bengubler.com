@@ -5,7 +5,6 @@ import { getGT } from "gt-tanstack-start/server";
 import { Link } from "@/components/link";
 import { ProjectList } from "@/components/project-list";
 import { ViewTransition } from "@/components/view-transition";
-import { getColorByIndex } from "@/lib/colors";
 import { resolveLocale } from "@/lib/locales";
 import { getRouteMetadata } from "@/lib/metadata";
 import { getPostsForLocale } from "@/lib/post-data";
@@ -48,10 +47,7 @@ function HomePage() {
     .filter((post) => !post.archived)
     .toSorted((a, b) => b.date.getTime() - a.date.getTime());
 
-  const recentPosts = sortedPosts.slice(0, 4).map((post, index) => {
-    const colors = getColorByIndex(index);
-    return { ...post, ...colors };
-  });
+  const recentPosts = sortedPosts.slice(0, 4);
 
   const featuredProjects =
     projectsData.find((section) => decodeMsg(section.category) === "Featured")

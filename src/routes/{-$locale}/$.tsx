@@ -1,13 +1,7 @@
 import { createFileRoute, isNotFound, notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { getGT } from "gt-tanstack-start/server";
-import { PageNotFound } from "@/components/not-found-page";
 import { getRouteMetadata } from "@/lib/metadata";
-
-type NotFoundMetadata = {
-  description: string;
-  title: string;
-};
 
 const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
   const gt = await getGT();
@@ -17,21 +11,15 @@ const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
   };
 });
 
-function getNotFoundMetadata(error: unknown) {
-  if (!isNotFound(error)) return undefined;
-  return error.data as NotFoundMetadata | undefined;
-}
-
 export const Route = createFileRoute("/{-$locale}/$")({
   loader: async () => {
     const metadata = await getMetadata();
     throw notFound({ data: metadata });
   },
-  head: ({ match, params }) => {
-    const metadata = getNotFoundMetadata(match.error);
-    return {
-      meta: getRouteMetadata(metadata, params.locale),
-    };
-  },
-  notFoundComponent: PageNotFound,
+  head: ({ match, params }) => ({
+    meta: getRouteMetadata(
+      isNotFound(match.error) ? match.error.data : undefined,
+      params.locale,
+    ),
+  }),
 });

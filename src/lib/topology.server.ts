@@ -13,12 +13,14 @@ type TopologyData = {
 let cachedTopology: Promise<TopologyData> | undefined;
 let cacheExpiresAt = 0;
 
-async function loadTopology(url: string) {
+async function loadTopology(url: string): Promise<Topology> {
   let lastError: unknown;
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
       const response = await fetch(url);
-      if (response.ok) return response.json() as Promise<Topology>;
+      if (response.ok) {
+        return (await response.json()) as Topology;
+      }
       lastError = new Error(
         `Failed to load topology data from ${url}: ${response.status}`,
       );

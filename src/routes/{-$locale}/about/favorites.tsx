@@ -23,17 +23,7 @@ export const Route = createFileRoute("/{-$locale}/about/favorites")({
   component: FavoritesPage,
 });
 
-type FavoriteSection = {
-  category: string;
-  subsections: Array<{
-    title: string;
-    items: Array<{
-      name: string;
-    }>;
-  }>;
-};
-
-const favorites: FavoriteSection[] = [
+const favorites = [
   {
     category: msg("Books"),
     subsections: [

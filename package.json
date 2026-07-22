@@ -23,7 +23,6 @@
     "@vercel/analytics": "^2.0.1",
     "@vercel/og": "^0.11.1",
     "@vercel/speed-insights": "^2.0.0",
-    "ai": "beta",
     "class-variance-authority": "^0.7.1",
     "d3": "^7.9.0",
     "feed": "^5.2.1",

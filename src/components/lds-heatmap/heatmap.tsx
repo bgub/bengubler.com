@@ -8,7 +8,6 @@ import {
   FIPS_TO_STATE,
   fmt,
   pct,
-  type RankedItem,
   type TipData,
   US_STATES,
 } from "./data";
@@ -245,7 +244,6 @@ function HeatmapMap({
 }) {
   const gt = useGT();
   const isPct = mode === "pct";
-  const palette = isPct ? PALETTE_PCT : PALETTE_TOTAL;
   const proj = d3.geoNaturalEarth1().fitSize([W, H], { type: "Sphere" });
   const geoPath = d3.geoPath().projection(proj);
   const strokeWidth = Math.max(0.06, 0.25 / Math.sqrt(zoom));
@@ -288,9 +286,7 @@ function HeatmapMap({
               // biome-ignore lint/a11y/noStaticElementInteractions: SVG path used for tooltip hover
               <path
                 key={countryKey}
-                d={
-                  geoPath(feature as unknown as d3.GeoPermissibleObjects) || ""
-                }
+                d={geoPath(feature) || ""}
                 fill={id ? countryColor(id, isPct) : BG}
                 stroke={id && COUNTRIES[id] ? "#c0c8d4" : "#dde1e7"}
                 strokeWidth={strokeWidth}
@@ -318,9 +314,7 @@ function HeatmapMap({
             const name = FIPS_TO_STATE[fips];
             if (!name) return null;
 
-            const path = geoPath(
-              feature as unknown as d3.GeoPermissibleObjects,
-            );
+            const path = geoPath(feature);
             if (!path) return null;
 
             return (
@@ -351,14 +345,15 @@ function HeatmapMap({
           })}
         </g>
       </svg>
-      <MapLegend isPct={isPct} palette={palette} />
+      <MapLegend isPct={isPct} />
       <ZoomBadge zoom={zoom} />
     </div>
   );
 }
 
-function MapLegend({ isPct, palette }: { isPct: boolean; palette: string[] }) {
+function MapLegend({ isPct }: { isPct: boolean }) {
   const gt = useGT();
+  const palette = isPct ? PALETTE_PCT : PALETTE_TOTAL;
 
   return (
     <div
@@ -425,23 +420,11 @@ function HeatmapSidebar({ mode }: { mode: Mode }) {
         background: "#fff",
       }}
     >
-      <Rank
-        title={gt("Countries")}
-        items={ranked}
-        max={topVal(ranked, mode)}
-        mode={mode}
-      />
-      <Rank
-        title={gt("US States")}
-        items={stateRanked}
-        max={topVal(stateRanked, mode)}
-        mode={mode}
-        hasBorder
-      />
+      <Rank title={gt("Countries")} items={ranked} mode={mode} />
+      <Rank title={gt("US States")} items={stateRanked} mode={mode} hasBorder />
       <Rank
         title={gt("Canadian Provinces")}
         items={caRanked}
-        max={topVal(caRanked, mode)}
         mode={mode}
         hasBorder
       />
@@ -524,16 +507,19 @@ function HeatmapTooltip({
 function Rank({
   title,
   items,
-  max,
   mode,
   hasBorder,
 }: {
   title: string;
   items: RankedItem[];
-  max: number;
   mode: Mode;
   hasBorder?: boolean;
 }) {
+  const max =
+    mode === "pct"
+      ? Math.max(...items.map((item) => item.pv))
+      : items[0]?.m || 1;
+
   return (
     <div
       style={
@@ -666,14 +652,9 @@ function rankItems(
     .map(([key, [members, population]]) => ({
       n: names ? names[key] || key : key,
       m: members,
-      p: population,
       pv: pct(members, population),
     }))
     .sort((a, b) => (mode === "pct" ? b.pv - a.pv : b.m - a.m));
 }
 
-function topVal(items: RankedItem[], mode: Mode) {
-  return mode === "pct"
-    ? Math.max(...items.map((item) => item.pv))
-    : items[0]?.m || 1;
-}
+type RankedItem = ReturnType<typeof rankItems>[number];

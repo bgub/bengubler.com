@@ -84,10 +84,6 @@ export type ContentCompilerOptions = {
   };
 };
 
-export type ContentCompiler = {
-  compile: (input: CompileContentInput) => Promise<CompiledContent>;
-};
-
 const tokenizer = new Markdoc.Tokenizer({ linkify: true });
 
 const markdocConfig: Config = {
@@ -148,12 +144,8 @@ const markdocConfig: Config = {
   },
 };
 
-export function createContentCompiler(
-  options: ContentCompilerOptions = {},
-): ContentCompiler {
-  return {
-    compile: (input) => compileContent(input, options),
-  };
+export function createContentCompiler(options: ContentCompilerOptions = {}) {
+  return (input: CompileContentInput) => compileContent(input, options);
 }
 
 async function compileContent(

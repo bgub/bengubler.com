@@ -6,9 +6,7 @@ import { getGT } from "gt-tanstack-start/server";
 import { Comments } from "@/components/comments";
 import { ClientTOC } from "@/components/content/client-toc";
 import { PostContent } from "@/components/content/post-content";
-import { FloatingELI5 } from "@/components/floating-eli5";
 import { Link } from "@/components/link";
-import { PostNotFound } from "@/components/not-found-page";
 import { PageTitle } from "@/components/page-title";
 import { RawMarkdown } from "@/components/raw-markdown";
 import { Social } from "@/components/social";
@@ -19,12 +17,7 @@ import { resolveLocale } from "@/lib/locales";
 import { getPostMetadata, getRouteMetadata } from "@/lib/metadata";
 import { getPost } from "@/lib/post-data";
 
-type NotFoundMetadata = {
-  description: string;
-  title: string;
-};
-
-const getNotFoundMetadata = createServerFn({ method: "GET" }).handler(
+const getPostNotFoundMetadata = createServerFn({ method: "GET" }).handler(
   async () => {
     const gt = await getGT();
     return {
@@ -34,18 +27,13 @@ const getNotFoundMetadata = createServerFn({ method: "GET" }).handler(
   },
 );
 
-function getErrorMetadata(error: unknown) {
-  if (!isNotFound(error)) return undefined;
-  return error.data as NotFoundMetadata | undefined;
-}
-
 export const Route = createFileRoute("/{-$locale}/posts/$slug")({
   loader: async ({ params }) => {
     const post = await getPost({
       data: { locale: resolveLocale(params.locale), slug: params.slug },
     });
     if (!post) {
-      const metadata = await getNotFoundMetadata();
+      const metadata = await getPostNotFoundMetadata();
       throw notFound({ data: metadata });
     }
     return { post };
@@ -53,9 +41,11 @@ export const Route = createFileRoute("/{-$locale}/posts/$slug")({
   head: ({ loaderData, match }) => {
     const post = loaderData?.post;
     if (!post) {
-      const metadata = getErrorMetadata(match.error);
       return {
-        meta: getRouteMetadata(metadata, match.params.locale),
+        meta: getRouteMetadata(
+          isNotFound(match.error) ? match.error.data : undefined,
+          match.params.locale,
+        ),
       };
     }
     return {
@@ -183,9 +173,45 @@ function PostPage() {
           </div>
         </aside>
       </div>
+    </div>
+  );
+}
 
-      {/* Floating ELI5 Button */}
-      <FloatingELI5 content={post.content} title={post.title} />
+function PostNotFound() {
+  return (
+    <div className="flex min-h-[60vh] flex-col items-center justify-center gap-y-6 text-center">
+      <div className="space-y-4">
+        <T>
+          <h1 className="font-serif text-6xl font-medium text-muted-foreground">
+            404
+          </h1>
+          <h2 className="font-serif text-3xl font-medium tracking-tight text-foreground">
+            Post Not Found
+          </h2>
+          <p className="mx-auto max-w-md font-serif text-lg font-light leading-relaxed text-ink-soft">
+            Sorry, the post you're looking for doesn't exist or has been moved.
+          </p>
+        </T>
+      </div>
+      <div className="flex items-center gap-4 font-mono text-[11.5px]">
+        <T>
+          <Link
+            href="/posts"
+            className="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
+          >
+            Browse All Posts
+          </Link>
+        </T>
+        <span className="text-ink-faint">&middot;</span>
+        <T>
+          <Link
+            href="/"
+            className="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
+          >
+            Go Home
+          </Link>
+        </T>
+      </div>
     </div>
   );
 }
