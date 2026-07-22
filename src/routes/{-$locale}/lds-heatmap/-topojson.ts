@@ -4,7 +4,6 @@ type Position = [number, number];
 
 type TopoGeometryBase = {
   id?: string | number;
-  properties?: Record<string, unknown>;
 };
 
 export type TopoGeometry =
@@ -70,7 +69,7 @@ export function decodeTopo(topo: Topology, obj: TopoObject): DecodedTopology {
       (geometry): GeoFeature => ({
         type: "Feature",
         id: geometry.id,
-        properties: geometry.properties ?? {},
+        properties: {},
         geometry:
           geometry.type === "Polygon"
             ? { type: "Polygon", coordinates: geometry.arcs.map(decodeRing) }
