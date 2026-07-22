@@ -23,11 +23,14 @@ const posts = defineCollection({
     tags: z.array(z.string()).default([]),
     content: z.string(),
   }),
-  transform: async (document) => {
-    const compiled = await compiler({
+  transform: async (document, { cache }) => {
+    const compileInput = {
       source: document.content,
       title: document.title,
       filePath: document._meta.path,
+    };
+    const compiled = await cache(compileInput, compiler, {
+      key: "content-pipeline-v1",
     });
 
     // Generate clean slug without folder prefixes

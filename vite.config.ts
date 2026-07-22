@@ -97,7 +97,6 @@ const config = defineConfig({
       pages: prerenderPages,
       prerender: {
         autoStaticPathsDiscovery: false,
-        concurrency: 1,
         enabled: true,
         crawlLinks: false,
         failOnError: true,
