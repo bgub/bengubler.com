@@ -1,5 +1,4 @@
 import { useGT } from "gt-tanstack-start";
-import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 
 export function CopyButton({ text }: { text: string }) {
@@ -21,9 +20,15 @@ export function CopyButton({ text }: { text: string }) {
       aria-label={gt("Copy code to clipboard")}
     >
       {copied ? (
-        <Check className="size-4 text-green-500" />
+        <span
+          className="icon-[lucide--check] size-4 text-green-500"
+          aria-hidden="true"
+        />
       ) : (
-        <Copy className="size-4 text-muted-foreground hover:text-foreground" />
+        <span
+          className="icon-[lucide--copy] size-4 text-muted-foreground hover:text-foreground"
+          aria-hidden="true"
+        />
       )}
     </button>
   );

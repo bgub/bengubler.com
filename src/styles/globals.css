@@ -4,6 +4,8 @@
 @import "@fontsource-variable/newsreader/wght-italic.css";
 @import "@fontsource/dm-mono/400.css";
 
+@plugin "@iconify/tailwind4";
+
 @font-face {
   font-family: "Newsreader Fallback";
   src: local("Times New Roman");

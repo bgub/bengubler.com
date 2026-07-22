@@ -1,7 +1,6 @@
 import { ClientOnly } from "@tanstack/react-router";
 import type { HighlightedLine } from "content-pipeline";
 import { msg, useMessages } from "gt-tanstack-start";
-import { LinkIcon } from "lucide-react";
 import {
   type CSSProperties,
   createElement,
@@ -41,8 +40,9 @@ function Heading({ id, level, children }: HeadingProps) {
             "opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground ms-2 inline-block align-baseline",
           "aria-label": m(LINK_TO_SECTION_LABEL),
         },
-        createElement(LinkIcon, {
-          className: "size-4 flex-shrink-0",
+        createElement("span", {
+          className: "icon-[lucide--link] size-4 flex-shrink-0",
+          "aria-hidden": "true",
         }),
       ),
   );

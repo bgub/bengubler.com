@@ -61,8 +61,8 @@ export function Sidebar() {
                           : "text-ink-soft hover:bg-rule-soft"
                       }`}
                     >
-                      <item.icon
-                        className="size-3.75 shrink-0 opacity-75"
+                      <span
+                        className={`${item.icon} size-3.75 shrink-0 opacity-75`}
                         aria-hidden="true"
                       />
                       {m(item.name)}

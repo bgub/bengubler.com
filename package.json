@@ -24,7 +24,6 @@
     "d3": "^7.9.0",
     "feed": "^5.2.1",
     "gt-tanstack-start": "^11.0.12",
-    "lucide-react": "^1.16.0",
     "nitro": "^3.0.260610-beta",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
@@ -35,6 +34,8 @@
   "devDependencies": {
     "@content-collections/core": "^0.15.0",
     "@content-collections/vite": "^0.3.0",
+    "@iconify-json/lucide": "^1.2.118",
+    "@iconify/tailwind4": "^1.2.3",
     "@tailwindcss/vite": "^4.3.3",
     "@types/d3": "^7.4.3",
     "@types/node": "^25.9.1",

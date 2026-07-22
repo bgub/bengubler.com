@@ -1,5 +1,4 @@
 import { useGT } from "gt-tanstack-start";
-import { Moon, Sun } from "lucide-react";
 import { isTheme, useTheme } from "@/components/theme-provider";
 
 export function ThemeToggle() {
@@ -8,8 +7,14 @@ export function ThemeToggle() {
 
   return (
     <div className="relative inline-flex size-9 shrink-0 items-center justify-center rounded-[min(var(--radius-md),10px)] border border-transparent bg-clip-padding transition-colors hover:bg-muted hover:text-foreground focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50">
-      <Sun className="pointer-events-none size-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="pointer-events-none absolute size-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <span
+        className="icon-[lucide--sun] pointer-events-none size-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+        aria-hidden="true"
+      />
+      <span
+        className="icon-[lucide--moon] pointer-events-none absolute size-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+        aria-hidden="true"
+      />
       <select
         className="absolute inset-0 size-full cursor-pointer appearance-none opacity-0"
         aria-label={gt("Theme")}

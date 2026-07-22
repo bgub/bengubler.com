@@ -1,5 +1,4 @@
 import { useGT, useMessages } from "gt-tanstack-start";
-import { Menu, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { Link } from "@/components/link";
 import { LocaleSwitcher } from "@/components/locale-switcher";
@@ -31,7 +30,12 @@ export function MobileNav() {
         aria-label={isOpen ? gt("Close menu") : gt("Open menu")}
         popoverTarget="mobile-menu-popover"
       >
-        {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+        <span
+          className={
+            isOpen ? "icon-[lucide--x] size-5" : "icon-[lucide--menu] size-5"
+          }
+          aria-hidden="true"
+        />
       </button>
 
       <div
@@ -71,8 +75,8 @@ export function MobileNav() {
                   }`}
                   onClick={closeMenu}
                 >
-                  <item.icon
-                    className="size-3.75 shrink-0 opacity-75"
+                  <span
+                    className={`${item.icon} size-3.75 shrink-0 opacity-75`}
                     aria-hidden="true"
                   />
                   {m(item.name)}
