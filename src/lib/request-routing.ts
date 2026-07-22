@@ -1,31 +1,12 @@
 import {
   defaultLocale,
-  getLocalizedPath,
   getPathLocale,
-  getUnlocalizedPath,
   type Locale,
   localeCookieName,
 } from "./locales.ts";
 
-export function isDocumentRequest(request: Request) {
-  const url = new URL(request.url);
-  return url.searchParams.has("__raw") || /\.[^/]+$/.test(url.pathname);
-}
-
-export function getDefaultLocaleRedirect(request: Request) {
-  const url = new URL(request.url);
-  if (getPathLocale(url.pathname) !== defaultLocale) return undefined;
-  url.pathname = getUnlocalizedPath(url.pathname);
-  return url;
-}
-
-export function getLocaleRedirect(request: Request, locale: Locale) {
-  if (isDocumentRequest(request)) return undefined;
-  const url = new URL(request.url);
-  if (getPathLocale(url.pathname)) return undefined;
-  if (locale === defaultLocale) return undefined;
-  url.pathname = getLocalizedPath(url.pathname, locale);
-  return url;
+export function isDirectContentPath(pathname: string, search = "") {
+  return new URLSearchParams(search).has("__raw") || /\.[^/]+$/.test(pathname);
 }
 
 function applyLocaleToRequest(request: Request, locale: Locale) {
@@ -40,12 +21,13 @@ function applyLocaleToRequest(request: Request, locale: Locale) {
 }
 
 export function applyRouteLocaleToRequest(request: Request) {
-  const locale = getPathLocale(new URL(request.url).pathname);
-  const documentRequest = isDocumentRequest(request);
-  if (locale || documentRequest) {
+  const url = new URL(request.url);
+  const locale = getPathLocale(url.pathname);
+  const directContentRequest = isDirectContentPath(url.pathname, url.search);
+  if (locale || directContentRequest) {
     applyLocaleToRequest(request, locale ?? defaultLocale);
   }
-  return documentRequest;
+  return directContentRequest;
 }
 
 type CookieHeaders = Pick<Headers, "append" | "delete" | "getSetCookie">;

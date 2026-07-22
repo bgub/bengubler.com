@@ -41,7 +41,7 @@ function sanitize(slug: string) {
 
 function HomePage() {
   const { posts } = Route.useLoaderData();
-  const locale = useLocale() || "en";
+  const locale = useLocale();
 
   const sortedPosts = posts
     .filter((post) => !post.archived)

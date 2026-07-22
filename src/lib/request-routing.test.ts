@@ -7,8 +7,7 @@ import {
 } from "./locales.ts";
 import {
   applyRouteLocaleToRequest,
-  getDefaultLocaleRedirect,
-  getLocaleRedirect,
+  isDirectContentPath,
   removeLocaleCookie,
 } from "./request-routing.ts";
 
@@ -50,27 +49,10 @@ test("pins unprefixed document requests to the default locale", () => {
   );
 });
 
-test("redirects an explicit default-locale prefix", () => {
-  assert.equal(
-    getDefaultLocaleRedirect(request("/en/rss.xml?from=test"))?.toString(),
-    "https://bengubler.com/rss.xml?from=test",
-  );
-  assert.equal(getDefaultLocaleRedirect(request("/ru/about")), undefined);
-});
-
-test("redirects unprefixed pages to the preferred locale", () => {
-  assert.equal(
-    getLocaleRedirect(request("/about?from=test"), "ru")?.toString(),
-    "https://bengubler.com/ru/about?from=test",
-  );
-});
-
-test("does not redirect default-locale or document requests", () => {
-  assert.equal(getLocaleRedirect(request("/about"), "en"), undefined);
-  assert.equal(
-    getLocaleRedirect(request("/posts/example.md"), "ru"),
-    undefined,
-  );
+test("identifies direct content paths", () => {
+  assert.equal(isDirectContentPath("/rss.xml"), true);
+  assert.equal(isDirectContentPath("/posts/example", "?__raw"), true);
+  assert.equal(isDirectContentPath("/about"), false);
 });
 
 test("removes only the GT locale cookie from document responses", () => {

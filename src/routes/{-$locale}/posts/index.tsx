@@ -44,7 +44,7 @@ function sanitize(slug: string) {
 function PostsPage() {
   const { tag: selectedTag } = Route.useSearch();
   const { posts } = Route.useLoaderData();
-  const locale = useLocale() || "en";
+  const locale = useLocale();
 
   const sortedPosts = posts.toSorted(
     (a, b) => b.date.getTime() - a.date.getTime(),

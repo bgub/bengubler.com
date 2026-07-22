@@ -9,8 +9,6 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
   const { locale, locales, setLocale } = useLocaleSelector();
   const gt = useGT();
 
-  if (!locales?.length) return null;
-
   return (
     <div className={cn("grid grid-cols-4 gap-1.5 w-full", className)}>
       {locales
