@@ -43,7 +43,7 @@ function ProjectsPage() {
       </header>
 
       {projectsData.map((section) => (
-        <section key={section.category} className="space-y-3">
+        <section key={section.id} className="space-y-3">
           <div className="flex items-baseline gap-3.5">
             <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
               {m(section.category)}

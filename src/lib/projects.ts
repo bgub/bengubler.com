@@ -2,6 +2,7 @@ import { msg } from "gt-tanstack-start";
 
 export const projectsData = [
   {
+    id: "featured",
     category: msg("Featured"),
     projects: [
       {
@@ -50,6 +51,7 @@ export const projectsData = [
     ],
   },
   {
+    id: "ai-machine-learning",
     category: msg("AI & Machine Learning"),
     projects: [
       {
@@ -104,6 +106,7 @@ export const projectsData = [
     ],
   },
   {
+    id: "open-source-tools",
     category: msg("Open Source Tools"),
     projects: [
       {
@@ -162,6 +165,7 @@ export const projectsData = [
     ],
   },
   {
+    id: "legacy-projects",
     category: msg("Legacy Projects"),
     projects: [
       {

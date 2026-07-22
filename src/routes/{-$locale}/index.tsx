@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { decodeMsg, T } from "gt-tanstack-start";
+import { T } from "gt-tanstack-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Link } from "@/components/link";
 import { PostRow } from "@/components/post-row";
@@ -39,8 +39,7 @@ function HomePage() {
   const { hasMorePosts, recentPosts } = Route.useLoaderData();
 
   const featuredProjects =
-    projectsData.find((section) => decodeMsg(section.category) === "Featured")
-      ?.projects || [];
+    projectsData.find((section) => section.id === "featured")?.projects ?? [];
 
   return (
     <div className="space-y-10">
