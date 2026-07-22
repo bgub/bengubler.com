@@ -12,8 +12,7 @@ export function ProfileImage({
   const gt = useGT();
   return (
     <img
-      src="/bengubler-avatar-52.jpg"
-      srcSet="/bengubler-avatar-52.jpg 1x, /bengubler-avatar-104.jpg 2x"
+      src="/bengubler-avatar-104.jpg"
       alt={gt("Profile photo")}
       width={size}
       height={size}
