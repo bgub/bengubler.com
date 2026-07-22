@@ -21,6 +21,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import {
   defaultLocale,
   getLocalizedPath,
+  isLocale,
   localeCookieName,
   resolveLocale,
 } from "@/lib/locales";
@@ -29,7 +30,23 @@ import { loadTranslations } from "@/loadTranslations";
 import gtConfig from "../../gt.config.json";
 import appCss from "@/styles/globals.css?url";
 
-initializeGT({ ...gtConfig, loadTranslations, localeCookieName });
+function reloadForLocale({ locale: nextLocale }: { locale: string }) {
+  if (!isLocale(nextLocale)) return;
+  const path = getLocalizedPath(window.location.pathname, nextLocale);
+  window.location.assign(
+    `${path}${window.location.search}${window.location.hash}`,
+  );
+}
+
+const initializedGtConfig = {
+  ...gtConfig,
+  loadTranslations,
+  localeCookieName,
+  // TanStack Start creates the browser condition store during initialization.
+  _reload: reloadForLocale,
+};
+
+initializeGT(initializedGtConfig);
 
 export const Route = createRootRoute({
   loader: async () => {
@@ -92,19 +109,7 @@ function RootDocument({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <GTProvider
-          locale={locale}
-          translations={translations}
-          _reload={() => {
-            const path = getLocalizedPath(
-              window.location.pathname,
-              resolveLocale(),
-            );
-            window.location.assign(
-              `${path}${window.location.search}${window.location.hash}`,
-            );
-          }}
-        >
+        <GTProvider locale={locale} translations={translations}>
           <ThemeProvider>{children}</ThemeProvider>
         </GTProvider>
         <Scripts />
