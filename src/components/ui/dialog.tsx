@@ -1,7 +1,5 @@
-"use client";
-
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
-import { T } from "gt-next";
+import { T } from "gt-react";
 import { XIcon } from "lucide-react";
 import type * as React from "react";
 import { Button } from "@/components/ui/button";

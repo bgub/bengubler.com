@@ -1,6 +1,4 @@
-"use client";
-
-import { useGT, useLocaleSelector } from "gt-next";
+import { useGT, useLocaleSelector } from "gt-react";
 import { cn } from "@/lib/utils";
 
 type LocaleSwitcherProps = {

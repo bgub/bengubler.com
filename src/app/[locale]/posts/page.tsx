@@ -1,42 +1,27 @@
-import { allPosts } from "content-collections";
-import { DateTime, T, Var } from "gt-next";
-import { getGT, getLocale } from "gt-next/server";
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ViewTransition } from "react";
+import { DateTime, T, useLocale, Var } from "gt-react";
+import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
+import { ViewTransition } from "@/components/view-transition";
+import { getLocalizedPath, resolveLocale } from "@/lib/locales";
+import type { PostSummary } from "@/lib/post-data";
 
 function sanitize(slug: string) {
   return slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
 }
 
-export const dynamic = "force-dynamic";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const gt = await getGT();
-  return {
-    title: gt("Posts - Ben Gubler"),
-    description: gt(
-      "Thoughts on web development, AI, and building things that matter.",
-    ),
-  };
-}
-
 interface PostsPageProps {
-  searchParams: Promise<{ tag?: string }>;
+  posts: PostSummary[];
+  selectedTag?: string;
 }
 
-export default async function PostsPage({ searchParams }: PostsPageProps) {
-  const { tag: selectedTag } = await searchParams;
-  const locale = (await getLocale()) || "en";
+export function PostsPage({ posts, selectedTag }: PostsPageProps) {
+  const locale = useLocale() || "en";
 
-  const localePosts = allPosts.filter((p) => p.locale === locale);
-
-  const sortedPosts = localePosts.sort(
+  const sortedPosts = posts.toSorted(
     (a, b) => b.date.getTime() - a.date.getTime(),
   );
 
-  const tagCounts = localePosts
+  const tagCounts = posts
     .flatMap((post) => post.tags)
     .reduce(
       (counts, tag) => {
@@ -68,7 +53,7 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
             <T>Posts</T>
           </PageTitle>
           <Link
-            href={`/${locale}/rss.xml`}
+            href={getLocalizedPath("/rss.xml", resolveLocale(locale))}
             className="inline-flex items-center gap-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-sm hover:bg-rule-soft"
             target="_blank"
             rel="noopener noreferrer"

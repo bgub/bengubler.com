@@ -16,12 +16,14 @@ node_modules/
 # testing
 /coverage
 
-# next.js
+# generated routes
+/src/routeTree.gen.ts
 /.next/
-/out/
 
 # production
 /build
+/.output
+/dist
 
 # misc
 .DS_Store

@@ -1,107 +1,22 @@
-import { allPosts } from "content-collections";
 import type { TocNode } from "content-pipeline";
-import { DateTime, T } from "gt-next";
-import { getGT, getLocale } from "gt-next/server";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import type { Metadata } from "next/types";
-import { ViewTransition } from "react";
+import { DateTime, T, useGT } from "gt-react";
 import { Comments } from "@/components/comments";
 import { PostContent } from "@/components/content/post-content";
 import { FloatingELI5 } from "@/components/floating-eli5";
+import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 import { RawMarkdown } from "@/components/raw-markdown";
 import { Social } from "@/components/social";
 import { Squiggle } from "@/components/squiggle";
 import { Typography } from "@/components/ui/typography";
-import { getPostColors } from "@/lib/colors";
+import { ViewTransition } from "@/components/view-transition";
+import type { Post } from "@/lib/post-data";
 
 import { ClientTOC } from "./client-toc";
 
-// Generate static params with unique slugs (dedup across locales)
-export function generateStaticParams() {
-  const seen = new Set<string>();
-  const params: { slug: string }[] = [];
+export function PostPage({ post }: { post: Post }) {
+  const gt = useGT();
 
-  for (const post of allPosts) {
-    if (seen.has(post.slug)) continue;
-    seen.add(post.slug);
-    params.push({ slug: post.slug });
-  }
-
-  return params;
-}
-
-// Generate metadata for each post
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const locale = (await getLocale()) || "en";
-  const post = allPosts.find((p) => p.slug === slug && p.locale === locale);
-  const gt = await getGT();
-
-  if (!post) {
-    return {
-      title: gt("Post Not Found"),
-    };
-  }
-
-  const ogParams = new URLSearchParams({
-    title: post.title,
-    description: post.description,
-    type: "post",
-  });
-  const ogImageUrl = `/${locale}/og?${ogParams.toString()}`;
-
-  return {
-    title: post.title,
-    description: post.description,
-    authors: [{ name: "Ben Gubler", url: "https://bengubler.com" }],
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      type: "article",
-      publishedTime: post.date.toISOString(),
-      modifiedTime: post.lastUpdated?.toISOString() || post.date.toISOString(),
-      authors: ["Ben Gubler"],
-      tags: post.tags,
-      images: [
-        {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-      creator: "@bgub_",
-      images: [ogImageUrl],
-    },
-  };
-}
-
-export default async function PostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const locale = (await getLocale()) || "en";
-  const post = allPosts.find((p) => p.slug === slug && p.locale === locale);
-  const gt = await getGT();
-
-  if (!post) {
-    notFound();
-  }
-
-  const _colors = getPostColors(post.slug);
   const toc: TocNode = JSON.parse(post.toc);
   const hasTOC = toc.children.length > 0;
   const base = post.url.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");

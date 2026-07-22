@@ -1,7 +1,5 @@
-"use client";
-
-import { T, useGT } from "gt-next";
-import { usePathname } from "next/navigation";
+import { T, useGT } from "gt-react";
+import { usePathname } from "@/lib/router";
 import { cn } from "@/lib/utils";
 
 interface SocialProps {

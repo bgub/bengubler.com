@@ -1,19 +1,7 @@
-import { T, useGT } from "gt-next";
-import { getGT } from "gt-next/server";
-import type { Metadata } from "next";
+import { T, useGT } from "gt-react";
 import { PageTitle } from "@/components/page-title";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const gt = await getGT();
-  return {
-    title: gt("Contact - Ben Gubler"),
-    description: gt(
-      "Get in touch with me for collaborations, questions, or just to say hello.",
-    ),
-  };
-}
-
-export default function ContactPage() {
+export function ContactPage() {
   const gt = useGT();
   const contactMethods = [
     {

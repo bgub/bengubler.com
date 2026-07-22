@@ -1,13 +1,12 @@
-import { msg } from "gt-next";
-import type { Route } from "next";
+import { msg } from "gt-react";
 
 export type Project = {
   name: string;
   description: string;
   tech: string;
   links: {
-    demo?: Route;
-    github?: Route;
+    demo?: string;
+    github?: string;
   };
 };
 

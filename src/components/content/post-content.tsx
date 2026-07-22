@@ -1,8 +1,7 @@
+import { ClientOnly } from "@tanstack/react-router";
 import type { HighlightedLine } from "content-pipeline";
-import { msg, useMessages } from "gt-next";
+import { msg, useMessages } from "gt-react";
 import { LinkIcon } from "lucide-react";
-import type { Route } from "next";
-import Link from "next/link";
 import {
   type CSSProperties,
   createElement,
@@ -10,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { Tweet as ReactTweet } from "react-tweet";
+import { Link } from "@/components/link";
 import { CopyButton } from "./copy-button";
 import "./content-styles.css";
 import { type ContentComponents, ContentRenderer } from "./render-content";
@@ -53,6 +53,8 @@ interface ContentLinkProps extends ChildrenProps {
 }
 
 function ContentLink({ href, children, ...props }: ContentLinkProps) {
+  if (!href) return <>{children}</>;
+
   if (href?.startsWith("http") || href?.startsWith("mailto:")) {
     return (
       <a href={href} {...props} target="_blank" rel="noopener noreferrer">
@@ -62,7 +64,7 @@ function ContentLink({ href, children, ...props }: ContentLinkProps) {
   }
 
   return (
-    <Link href={href as Route} {...props}>
+    <Link href={href} {...props}>
       {children}
     </Link>
   );
@@ -136,7 +138,18 @@ function InlineCode({ content }: { content: string }) {
 }
 
 function Tweet({ id }: { id?: string }) {
-  return id ? <ReactTweet id={id} /> : null;
+  if (!id) return null;
+  return (
+    <ClientOnly
+      fallback={
+        <a href={`https://x.com/i/status/${id}`} rel="noreferrer">
+          View post on X
+        </a>
+      }
+    >
+      <ReactTweet id={id} />
+    </ClientOnly>
+  );
 }
 
 const contentComponents = {

@@ -1,4 +1,4 @@
-import { msg } from "gt-next";
+import { msg } from "gt-react";
 import {
   Code,
   FileText,
@@ -10,12 +10,11 @@ import {
   Star,
   User,
 } from "lucide-react";
-import type { Route } from "next";
 import type React from "react";
 
 export type NavigationItem = {
   name: string;
-  href: Route;
+  href: string;
   icon: React.ComponentType<{ className?: string }>;
   isSubItem?: boolean;
   parent?: string;

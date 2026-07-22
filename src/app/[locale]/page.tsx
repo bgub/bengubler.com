@@ -1,11 +1,9 @@
-import { allPosts } from "content-collections";
-import { decodeMsg, T } from "gt-next";
-import { getGT, getLocale } from "gt-next/server";
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ViewTransition } from "react";
+import { decodeMsg, T, useLocale } from "gt-react";
+import { Link } from "@/components/link";
 import { ProjectList } from "@/components/project-list";
-import { getPostColors } from "@/lib/colors";
+import { ViewTransition } from "@/components/view-transition";
+import { getColorByIndex } from "@/lib/colors";
+import type { PostSummary } from "@/lib/post-data";
 
 function sanitize(slug: string) {
   return slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
@@ -13,29 +11,15 @@ function sanitize(slug: string) {
 
 import { projectsData } from "@/lib/projects";
 
-type Post = (typeof allPosts)[0];
+export function HomePage({ posts }: { posts: PostSummary[] }) {
+  const locale = useLocale() || "en";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const gt = await getGT();
-  return {
-    title: {
-      absolute: "Ben Gubler",
-    },
-    description: gt(
-      "Ben Gubler's personal website. Working at General Translation, previously interned at Vercel. Studying AI and human languages at BYU.",
-    ),
-  };
-}
+  const sortedPosts = posts
+    .filter((post) => !post.archived)
+    .toSorted((a, b) => b.date.getTime() - a.date.getTime());
 
-export default async function HomePage() {
-  const locale = (await getLocale()) || "en";
-
-  const sortedPosts = allPosts
-    .filter((post: Post) => post.locale === locale && !post.archived)
-    .sort((a: Post, b: Post) => b.date.getTime() - a.date.getTime());
-
-  const recentPosts = sortedPosts.slice(0, 4).map((post) => {
-    const colors = getPostColors(post.slug);
+  const recentPosts = sortedPosts.slice(0, 4).map((post, index) => {
+    const colors = getColorByIndex(index);
     return { ...post, ...colors };
   });
 

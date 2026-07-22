@@ -1,6 +1,4 @@
-"use client";
-
-import { T, useGT, useLocale, Var } from "gt-next";
+import { T, useGT, useLocale, Var } from "gt-react";
 import { Brain, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -14,6 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 
 interface FloatingELI5Props {
   content: string;
@@ -32,13 +31,16 @@ export function FloatingELI5({ content, title }: FloatingELI5Props) {
     setExplanation("");
 
     try {
-      const response = await fetch(`/${locale}/api/eli5`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        getLocalizedPath("/api/eli5", resolveLocale(locale)),
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ content, title }),
         },
-        body: JSON.stringify({ content, title }),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Failed to get explanation");

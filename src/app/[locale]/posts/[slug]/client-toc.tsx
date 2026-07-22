@@ -1,7 +1,5 @@
-"use client";
-
 import type { TocNode } from "content-pipeline";
-import { T } from "gt-next";
+import { T } from "gt-react";
 import { useCallback, useState } from "react";
 import { TOCLink } from "@/components/content/toc-link";
 

@@ -1,5 +1,5 @@
-import { useGT, useMessages } from "gt-next";
-import Link from "next/link";
+import { useGT, useMessages } from "gt-react";
+import { Link } from "@/components/link";
 import { GitHubIcon } from "@/components/social";
 import { getColorByIndex } from "@/lib/colors";
 import type { Project } from "@/lib/projects";

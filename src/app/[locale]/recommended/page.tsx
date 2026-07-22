@@ -1,7 +1,5 @@
-import { msg, T, useGT, useMessages } from "gt-next";
-import { getGT } from "gt-next/server";
-import type { Metadata, Route } from "next";
-import Link from "next/link";
+import { msg, T, useGT, useMessages } from "gt-react";
+import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 
 type RecommendationSection = {
@@ -10,20 +8,10 @@ type RecommendationSection = {
     title: string;
     items: Array<{
       name: string;
-      url: Route;
+      url: string;
     }>;
   }>;
 };
-
-export async function generateMetadata(): Promise<Metadata> {
-  const gt = await getGT();
-  return {
-    title: gt("Recommended - Ben Gubler"),
-    description: gt(
-      "A curated collection of useful links and resources that Ben Gubler has found valuable.",
-    ),
-  };
-}
 
 const recommendations: RecommendationSection[] = [
   {
@@ -260,7 +248,7 @@ const recommendations: RecommendationSection[] = [
   },
 ];
 
-export default function RecommendedPage() {
+export function RecommendedPage() {
   const m = useMessages();
   const gt = useGT();
   return (

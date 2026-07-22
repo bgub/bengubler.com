@@ -11,7 +11,7 @@
   "defaultLocale": "en",
   "files": {
     "gt": {
-      "output": "public/_gt/[locale].json"
+      "output": "src/_gt/[locale].json"
     },
     "md": {
       "include": [
@@ -19,6 +19,6 @@
       ]
     }
   },
-  "framework": "next-app",
-  "_versionId": "20a7e81602480a125cf8043ca8c435434a21bd885e971a8b64dbdb5b8578ac17"
+  "framework": "react",
+  "_versionId": "449c1b070c53590b6efead139b14f94446533535f99d012b6cb11b183025c88c"
 }

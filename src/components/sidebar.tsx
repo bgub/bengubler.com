@@ -1,13 +1,11 @@
-"use client";
-
-import { useGT, useLocale, useMessages } from "gt-next";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useLocale, useMessages } from "gt-react";
+import { Link } from "@/components/link";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { ProfileImage } from "@/components/profile-image";
 import { Squiggle } from "@/components/squiggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { navigation } from "@/lib/navigation";
+import { usePathname } from "@/lib/router";
 
 export function Sidebar() {
   const rawPathname = usePathname();
@@ -15,7 +13,6 @@ export function Sidebar() {
   const pathname =
     rawPathname.replace(new RegExp(`^/${locale}(?=/|$)`), "") || "/";
   const m = useMessages();
-  const gt = useGT();
 
   return (
     <div className="hidden md:fixed md:inset-y-0 md:z-50 md:flex md:w-64 md:flex-col">
@@ -24,14 +21,7 @@ export function Sidebar() {
           {/* Profile Section */}
           <Link href="/" className="flex items-center gap-3.5 group px-1">
             <div className="relative size-13 rounded-full overflow-hidden shrink-0 border border-border">
-              <Image
-                src="/bengubler.jpg"
-                alt={gt("Profile photo")}
-                width={52}
-                height={52}
-                className="object-cover"
-                priority
-              />
+              <ProfileImage size={52} className="object-cover" priority />
             </div>
             <div>
               <div className="font-serif text-xl font-medium text-foreground leading-tight tracking-tight group-hover:text-foreground/80 transition-colors">

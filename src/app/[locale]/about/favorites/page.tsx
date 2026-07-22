@@ -1,6 +1,4 @@
-import { msg, T, useGT, useMessages } from "gt-next";
-import { getGT } from "gt-next/server";
-import type { Metadata } from "next";
+import { msg, T, useGT, useMessages } from "gt-react";
 import { PageTitle } from "@/components/page-title";
 
 type FavoriteSection = {
@@ -12,17 +10,6 @@ type FavoriteSection = {
     }>;
   }>;
 };
-
-export async function generateMetadata(): Promise<Metadata> {
-  const gt = await getGT();
-
-  return {
-    title: gt("Favorites - Ben Gubler"),
-    description: gt(
-      "Ben Gubler's favorite books, movies, and personal recommendations.",
-    ),
-  };
-}
 
 const favorites: FavoriteSection[] = [
   {
@@ -97,7 +84,7 @@ const favorites: FavoriteSection[] = [
   },
 ];
 
-export default function FavoritesPage() {
+export function FavoritesPage() {
   const m = useMessages();
   const gt = useGT();
   return (

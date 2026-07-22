@@ -1,19 +1,7 @@
-import { msg, T, useGT, useMessages } from "gt-next";
-import { getGT } from "gt-next/server";
-import type { Metadata } from "next";
-import Link from "next/link";
+import { msg, T, useGT, useMessages } from "gt-react";
+import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 import { getColorByIndex } from "@/lib/colors";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const gt = await getGT();
-  return {
-    title: gt("Language Learning - Ben Gubler"),
-    description: gt(
-      "Tools and resources for learning languages, including declension practice apps and more.",
-    ),
-  };
-}
 
 const languageTools = [
   {
@@ -54,7 +42,7 @@ const languageTools = [
   },
 ] as const;
 
-export default function LanguageLearningPage() {
+export function LanguageLearningPage() {
   const m = useMessages();
   const gt = useGT();
   return (

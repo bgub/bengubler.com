@@ -1,21 +1,8 @@
-import { T } from "gt-next";
-import { getGT } from "gt-next/server";
-import type { Metadata } from "next";
-import Link from "next/link";
+import { T } from "gt-react";
+import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const gt = await getGT();
-
-  return {
-    title: gt("About Ben Gubler"),
-    description: gt(
-      "Learn more about Ben Gubler, his studies in AI, languages, and his work as a web developer.",
-    ),
-  };
-}
-
-export default function AboutPage() {
+export function AboutPage() {
   return (
     <div className="space-y-10">
       <header>

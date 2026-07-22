@@ -1,5 +1,28 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@fontsource-variable/newsreader/wght.css";
+@import "@fontsource-variable/newsreader/wght-italic.css";
+@import "@fontsource/dm-mono/300.css";
+@import "@fontsource/dm-mono/400.css";
+@import "@fontsource/dm-mono/500.css";
+
+@font-face {
+  font-family: "Newsreader Fallback";
+  src: local("Times New Roman");
+  ascent-override: 69.68%;
+  descent-override: 25.12%;
+  line-gap-override: 0%;
+  size-adjust: 105.48%;
+}
+
+@font-face {
+  font-family: "DM Mono Fallback";
+  src: local("Arial");
+  ascent-override: 73.71%;
+  descent-override: 23.03%;
+  line-gap-override: 0%;
+  size-adjust: 134.59%;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -48,6 +71,8 @@
 }
 
 :root {
+  --font-serif: "Newsreader Variable", "Newsreader Fallback", Georgia, serif;
+  --font-geist-mono: "DM Mono", "DM Mono Fallback", ui-monospace, monospace;
   --radius: 0.25rem;
   /* Warm editorial palette — light */
   --background: #faf6ef;

@@ -1,7 +1,5 @@
-"use client";
-
 import * as d3 from "d3";
-import { msg, Num, T, useGT, useMessages, Var } from "gt-next";
+import { msg, Num, T, useGT, useMessages, Var } from "gt-react";
 import { useCallback, useMemo, useRef, useState } from "react";
 import {
   CA_PROVINCES,

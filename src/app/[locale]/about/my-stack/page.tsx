@@ -1,7 +1,5 @@
-import { msg, T, useGT, useMessages } from "gt-next";
-import { getGT } from "gt-next/server";
-import type { Metadata, Route } from "next";
-import Link from "next/link";
+import { msg, T, useGT, useMessages } from "gt-react";
+import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 
 type FavoriteSection = {
@@ -10,21 +8,10 @@ type FavoriteSection = {
     title: string;
     items: Array<{
       name: string;
-      link?: Route;
+      link?: string;
     }>;
   }>;
 };
-
-export async function generateMetadata(): Promise<Metadata> {
-  const gt = await getGT();
-
-  return {
-    title: gt("My Stack - Ben Gubler"),
-    description: gt(
-      "Technologies, apps, and tools that Ben Gubler uses for development and productivity.",
-    ),
-  };
-}
 
 const stack: FavoriteSection[] = [
   {
@@ -97,7 +84,7 @@ const stack: FavoriteSection[] = [
   },
 ];
 
-export default function MyStackPage() {
+export function MyStackPage() {
   const m = useMessages();
   const gt = useGT();
   return (

@@ -1,7 +1,6 @@
-"use client";
-
-import { Branch, T, useLocale } from "gt-next";
+import { Branch, T, useLocale } from "gt-react";
 import { useState } from "react";
+import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 
 interface RawMarkdownProps {
   slug: string;
@@ -32,7 +31,7 @@ export function RawMarkdown({ slug, content }: RawMarkdownProps) {
       <div className="font-serif text-[12.5px] text-ink-soft font-light leading-relaxed space-y-1">
         <T>
           <a
-            href={`/${locale}/posts/${slug}.md`}
+            href={getLocalizedPath(`/posts/${slug}.md`, resolveLocale(locale))}
             target="_blank"
             rel="noopener noreferrer"
             className="block text-foreground no-underline border-b border-border w-fit hover:border-ink-mute transition-colors"

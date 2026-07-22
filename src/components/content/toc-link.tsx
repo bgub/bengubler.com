@@ -1,5 +1,3 @@
-"use client";
-
 import type { TocNode } from "content-pipeline";
 import { cn } from "@/lib/utils";
 

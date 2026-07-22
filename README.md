@@ -5,12 +5,12 @@ Welcome to my personal website!
 **Built with:**
 
 - https://v0.dev (UI design)
-- Next.js 16 + React 19
+- TanStack Start + React 19
 - Tailwind CSS v4
 - TypeScript
 - Content Collections + `content-pipeline` (Markdoc + Shiki)
 - shadcn/ui + Radix UI
-- Turbopack dev builds
+- Vite dev and production builds
 
 **Features:**
 

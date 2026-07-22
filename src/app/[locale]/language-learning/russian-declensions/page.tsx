@@ -1,20 +1,9 @@
-import { T, useGT } from "gt-next";
-import { getGT } from "gt-next/server";
-import type { Metadata } from "next";
-import Link from "next/link";
+import { T, useGT } from "gt-react";
 import { Comments } from "@/components/comments";
+import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const gt = await getGT();
-
-  return {
-    title: gt("Russian Case Cards - Ben Gubler"),
-    description: gt("I built case cards for Russian so you don't have to."),
-  };
-}
-
-export default function RussianCaseCardsPage() {
+export function RussianCaseCardsPage() {
   const gt = useGT();
 
   return (
