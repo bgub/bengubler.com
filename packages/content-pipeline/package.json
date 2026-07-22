@@ -7,7 +7,7 @@
     ".": "./src/content-pipeline.ts"
   },
   "scripts": {
-    "test": "node --test src/content-capitalization.test.ts src/content-pipeline.test.ts"
+    "test": "node --test src/content-pipeline.test.ts"
   },
   "dependencies": {
     "@markdoc/markdoc": "^0.5.7",

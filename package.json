@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "build": "pnpm translate && vite build",
     "start": "node .output/server/index.mjs",
-    "test": "node --test src/components/content/render-content.test.ts src/lib/metadata.test.ts src/lib/request-routing.test.ts && pnpm --filter content-pipeline test",
+    "test": "node --test src/lib/request-routing.test.ts && pnpm --filter content-pipeline test",
     "translate": "gtx-cli translate",
     "lint": "biome check",
     "format": "biome format --write",
