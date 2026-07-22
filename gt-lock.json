@@ -1,1519 +1,1062 @@
 {
-  "version": 1,
-  "entries": {
-    "cf3bc0c6b405768fe2773a50067861a5": {
-      "04557205f1a4d7ac0c45d96196727f2eb6b0d7a22c02bbd12f2827d8b78f8453": {
-        "a00c1105e5732addf1c07282d34cc2b837530a4fbe1e62b3c826edf7705e0ab0": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.690Z",
-            "postProcessHash": "c188a5b822c5387a8f2e6bce213e1269593584ce47682f05f8a6150bb412d1c4"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.693Z",
-            "postProcessHash": "bbf3c41d89d9668b6962f07e8be434dac6a5f784a18eb26819c40d82c3896847"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.678Z",
-            "postProcessHash": "c1c6db8b8b097e331a6f430eb4e4db6ebb2319849cb0e70f6137d03524f2bafc"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.692Z",
-            "postProcessHash": "22030541608acfa0f7315d0705d33dd5a63a4f73ae20049bb3f516c54ab0bb2c"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.455Z",
-            "postProcessHash": "26d65aa0fee653f9feca1d964f36bbdf5857c32080b6340019f38a4e30cb2eb4"
-          }
+  "version": 2,
+  "branchId": "cf3bc0c6b405768fe2773a50067861a5",
+  "entries": [
+    {
+      "fileId": "0fadda289aeb9d430dd2245af4d871aa026ef21f7100f5f91f8b9759cb721b0c",
+      "versionId": "a00c1105e5732addf1c07282d34cc2b837530a4fbe1e62b3c826edf7705e0ab0",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.307Z",
+          "fileName": "content/ar/ai/2023-06-12-multi-gpu-inference-with-accelerate.md",
+          "postProcessHash": "dea0d343446a1d38501796d43f3395d200d8a3145ad197d9ad537e343e892b32"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.308Z",
+          "fileName": "content/ru/ai/2023-06-12-multi-gpu-inference-with-accelerate.md",
+          "postProcessHash": "3d4b16d260bf7b76289d4d89582b07cca213e18996a97cf13c1a5aab17140af4"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.308Z",
+          "fileName": "content/cs/ai/2023-06-12-multi-gpu-inference-with-accelerate.md",
+          "postProcessHash": "9f62aaef95f8d3087fecbd1456f32d4257cd83e600abd7270b7d55b564a2365a"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.309Z",
+          "fileName": "content/sk/ai/2023-06-12-multi-gpu-inference-with-accelerate.md",
+          "postProcessHash": "6a1dc64c498c27581df380660dedb0b8632c39697ea83cb893027af28357cefa"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.309Z",
+          "fileName": "content/eo/ai/2023-06-12-multi-gpu-inference-with-accelerate.md",
+          "postProcessHash": "8fb094cf12e03382842c2fbffc422cb0dbc19a1584b8825facc980f7950e1ab6"
         }
       },
-      "1642a70c81ebf8cf5bfd930fb2c30ba74a47f8065caa22ea0917c1804804e657": {
-        "0fa7a4281e07930f15af22cbf2eb2cdd7b28d81eb2177643812d32ac0c937c02": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.671Z",
-            "postProcessHash": "3669a3986ffc2d37b6202a97b97ec1e02c9864625e09b0c4168479b4aa835ecd"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.685Z",
-            "postProcessHash": "b956ead28ff493181784be72bb110745011cfc730f0a9aca56ee1e183696da1f"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.672Z",
-            "postProcessHash": "90d1c5a2e592a1cd3a5213fa29307d2a22fe500e88393e9b501cba0a200d9761"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.670Z",
-            "postProcessHash": "c118d6564fd1b32a102402e52b6ce8279ea0e1d47299f8a1f5834f1a323a80eb"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.454Z",
-            "postProcessHash": "7052fd53766aa17370b7b370d47330caddb9253948bb60bd23e694b75a57f70d"
-          }
+      "fileName": "content/en/ai/2023-06-12-multi-gpu-inference-with-accelerate.md",
+      "staged": false
+    },
+    {
+      "fileId": "f1d3abd0087e1ae0ffef01d6fc3da3e169f405cf90daf785774d3ccaaeac8a49",
+      "versionId": "c6f05aa9b26c7ac6eea7ee6d5dbfe8432f1334b473e7eef3803808a6d0686580",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.309Z",
+          "fileName": "content/ar/ai/2023-08-23-llms-limitation-recursion.md",
+          "postProcessHash": "58deed401477c7002d099c85b79a99c3178755f3d3213823111fc2ea83584fc9"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.309Z",
+          "fileName": "content/ru/ai/2023-08-23-llms-limitation-recursion.md",
+          "postProcessHash": "6b963fa691f373fb45365aa1f9b5e1e865d1513e5805f2b5bde526db1e2d48f4"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.310Z",
+          "fileName": "content/cs/ai/2023-08-23-llms-limitation-recursion.md",
+          "postProcessHash": "f34c3f848c1aeba040fd88d73211bf22608de638c2243f8c5ba677fa15da6e4b"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.311Z",
+          "fileName": "content/sk/ai/2023-08-23-llms-limitation-recursion.md",
+          "postProcessHash": "b38094922ecf187c498dec8411a09ba2eb30ca9efc0e9144a6ed5faa423a70d6"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.311Z",
+          "fileName": "content/eo/ai/2023-08-23-llms-limitation-recursion.md",
+          "postProcessHash": "5227388f8e072f43dd8771b38719dba521f1e55cd40ba324f0ca73d10f3b21c0"
         }
       },
-      "85692cd34c2f038929ff6ed61005f74c67f83ee8a8f74f11f54f0a4231b01c6a": {
-        "0d7eaada714d70a19d0fb6e165a612804a94be0a21667d30cf0786f26977b421": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.688Z",
-            "postProcessHash": "3d2920a811c6f7f92eb7ff9ccc6219831cc5304b2b181ed7e888a33f153a1a6d"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.694Z",
-            "postProcessHash": "c726290fc922e786ba4bfceb0d671bd2d2e37e3d5648415391097dcc252e7c86"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.679Z",
-            "postProcessHash": "02fe6c677635f3c7a621a1150d1bf59a6c1e257a797e658989a1c63bc37ff4f4"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.691Z",
-            "postProcessHash": "3691abd97a4462b6edefbcb6a00f501dc7384ae4fd50523248256422bf18a19d"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.457Z",
-            "postProcessHash": "fbc4474062e3c0d7f4b5dacafed5ee2bc4350db711ab4e9eb3981a897d1978b6"
-          }
+      "fileName": "content/en/ai/2023-08-23-llms-limitation-recursion.md",
+      "staged": false
+    },
+    {
+      "fileId": "b4770eff97d825b38c99285a5a703bed4d3f0f469c43431f8a1079d0876eaf83",
+      "versionId": "ed829f93198e8d5a3ab491587e7e1ab531ad2559f55d044c8b96ac1bccec558b",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.311Z",
+          "fileName": "content/ar/ai/2023-08-29-accelerate-deepspeed-fsdp.md",
+          "postProcessHash": "f344412915f5e4c5daf7323bce88a9a42f28484f366ed1419b7a828a46d488f2"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.311Z",
+          "fileName": "content/ru/ai/2023-08-29-accelerate-deepspeed-fsdp.md",
+          "postProcessHash": "61fd3de29d4f4ce85f399476a30fc90fe07dd9ab9c06ea110901973e86d48fcc"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.311Z",
+          "fileName": "content/cs/ai/2023-08-29-accelerate-deepspeed-fsdp.md",
+          "postProcessHash": "9cc194c56c658c5327f5f0e32512082c28b364d34a6e5690ed4d9b1fccc45f5a"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.312Z",
+          "fileName": "content/sk/ai/2023-08-29-accelerate-deepspeed-fsdp.md",
+          "postProcessHash": "f717fc7190092effa6bd63bc50e75d8e8c7566c5a7d16eaf465c8919f7706396"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.312Z",
+          "fileName": "content/eo/ai/2023-08-29-accelerate-deepspeed-fsdp.md",
+          "postProcessHash": "dde0c67e4ca1654d692558cd36cb7e7b5811911c2049c9ed08b3b8cc074446e6"
         }
       },
-      "89a6a72546df97c2239a0b25b91602a439979d358c81e7a65617231be5cce600": {
-        "a8e414ef5fe40b382e7ddb4ad66be027a47c23f40cb124e4fe7903624a35369b": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.685Z",
-            "postProcessHash": "57474a1ab3c89946d3db75d1371e994c05eb8e50127a2506741405c17fefc1b1"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.679Z",
-            "postProcessHash": "3d88711a6e839231517aac777610ea9e5139e290cecd974346036e87ef79ebbc"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.695Z",
-            "postProcessHash": "3140429bbd3a36a5396bffca28372d761293346408d6ee48ce59aa9432664781"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.708Z",
-            "postProcessHash": "9a39f3a9259da2b16c43559ef5f1c7b7b825a3b2a839dc74857bb008f2832002"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.457Z",
-            "postProcessHash": "bf8f73dfdcb60d361fa175356a8282a8b82b6631e5c60f79b740468602bb8a0f"
-          }
+      "fileName": "content/en/ai/2023-08-29-accelerate-deepspeed-fsdp.md",
+      "staged": false
+    },
+    {
+      "fileId": "ae6caafc38a3397b452ff0d7004b607adf9afbfd0f397a2703298676d2426a67",
+      "versionId": "a8e414ef5fe40b382e7ddb4ad66be027a47c23f40cb124e4fe7903624a35369b",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.312Z",
+          "fileName": "content/ar/ai/2023-09-08-enroot-on-slurm-for-distributed-ml-part-1.md",
+          "postProcessHash": "0c4dd29538a9b636ab1269f00ea55ce11ab29f550b6442f026c0924cd9d9d6ff"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.312Z",
+          "fileName": "content/ru/ai/2023-09-08-enroot-on-slurm-for-distributed-ml-part-1.md",
+          "postProcessHash": "94355ae453196cc07d92cf9283ec2edc66a40a0fbef6ed03a09093d047e426c2"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.312Z",
+          "fileName": "content/cs/ai/2023-09-08-enroot-on-slurm-for-distributed-ml-part-1.md",
+          "postProcessHash": "f2cf310670bec64fac022c9c287a79083d8d73fed622e3bc45beda91c4a3f296"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.313Z",
+          "fileName": "content/sk/ai/2023-09-08-enroot-on-slurm-for-distributed-ml-part-1.md",
+          "postProcessHash": "df19569cfb70613a7a486e98b0aee87ade5fd2a82de16d080ad87f6f13a1a7ee"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.313Z",
+          "fileName": "content/eo/ai/2023-09-08-enroot-on-slurm-for-distributed-ml-part-1.md",
+          "postProcessHash": "17ccf41a75f6de55c4191c1e90ab1af78fb97434d57af1b51572f98c4603e323"
         }
       },
-      "904de8749559894d22672085b2880767b8368a48856ee92793e7d1f96e277ce9": {
-        "9d0b36ea5773ebd7043b516255cc8858c5e2b4e0fc11f6b20badef63363a29f4": {
-          "sk": {
-            "updatedAt": "2026-04-28T21:40:27.745Z",
-            "postProcessHash": "ebfde88b4fb41196c1b7dca95f0f90dcee292bed34b2a55bdf6abd6f6ac2441e"
-          },
-          "ru": {
-            "updatedAt": "2026-04-28T21:40:27.748Z",
-            "postProcessHash": "b9582fbc156bd765f17ac176cc16779374a5053044010e9282e562fcb4ec0c72"
-          },
-          "cs": {
-            "updatedAt": "2026-04-28T21:40:27.749Z",
-            "postProcessHash": "111a30380e97572c1b04ef0aa280e0f563282f882b6d9c8e82c4458bc178d4e9"
-          },
-          "ar": {
-            "updatedAt": "2026-04-28T21:40:27.750Z",
-            "postProcessHash": "97415322ff21d035d16907324953c9d6c01548b33d9f27fa0be1d1e016e90940"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.456Z",
-            "postProcessHash": "a79bc365408267d09449082e1327a4aaa35ae89088fb5b9d601218601a5a1746"
-          }
+      "fileName": "content/en/ai/2023-09-08-enroot-on-slurm-for-distributed-ml-part-1.md",
+      "staged": false
+    },
+    {
+      "fileId": "38774f3a634be90353a0d368f7e17191c76fcb7bf6a3c7394a756ff82babb694",
+      "versionId": "e42c5ed26ecec1da7681b4dafcdc5c373b14cf654c2e176a75cf84609053f53c",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.313Z",
+          "fileName": "content/ar/ai/2023-09-08-quick-helpful-slurm-commands.md",
+          "postProcessHash": "2b2bef8d8a37e51fdb985237f1a4ba260e634b33c1c58a505b37647aeab3c00d"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.313Z",
+          "fileName": "content/ru/ai/2023-09-08-quick-helpful-slurm-commands.md",
+          "postProcessHash": "5870b97f38155de6212af23ab46b41e30954ec7da9e2c15e8ee4776a3a243142"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.313Z",
+          "fileName": "content/cs/ai/2023-09-08-quick-helpful-slurm-commands.md",
+          "postProcessHash": "305963ea2688fed9dadf0cd5cfd461905919fe24cad083c9bc2b98899d0640ed"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.314Z",
+          "fileName": "content/sk/ai/2023-09-08-quick-helpful-slurm-commands.md",
+          "postProcessHash": "7ff7d179ee483330a3bc5321adc143664c7a4201871f52353de964d15e43a12b"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.314Z",
+          "fileName": "content/eo/ai/2023-09-08-quick-helpful-slurm-commands.md",
+          "postProcessHash": "f5b73eb455538e9fcb1ef2d9f24e5018923616e4d73029817acf7cb5099d6180"
         }
       },
-      "925eca8c6ee44cd1c1f15c15dcc64a232e038a48c414a58deb12d71ec8f1449a": {
-        "81f54368db68445663e68e38ff69c2f7cb82348a68cd518a6dfb5aa7fed65e0d": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.683Z",
-            "postProcessHash": "5e1dd677a8d3483ed6677eae80f263f0944ce5c04956ae50f67cd586a1fc5ffd"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.674Z",
-            "postProcessHash": "3de74c4baea7749a6fec2bef7572dde22368867199c1e0dc490a23811e2108d5"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.686Z",
-            "postProcessHash": "c3d907ef0ccec137a4cb1487e4910bc7196c9ab248e084d2a4baef7e7b8995f9"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.682Z",
-            "postProcessHash": "80adb0590e40a0a0be81938059288dad70be8d47a32cddea214c25de1b4b7ec5"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.456Z",
-            "postProcessHash": "40a84a3d1d79f20a067a3ecc6b0b29cbbca5d68a1a0b298af7922ffba77d97c6"
-          }
+      "fileName": "content/en/ai/2023-09-08-quick-helpful-slurm-commands.md",
+      "staged": false
+    },
+    {
+      "fileId": "7050a3b097ca7414f5fd18d4a9cee5f5f983592aba44469a1b36b3f1923af1eb",
+      "versionId": "9d0b36ea5773ebd7043b516255cc8858c5e2b4e0fc11f6b20badef63363a29f4",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.314Z",
+          "fileName": "content/ar/ai/2023-09-08-ultimate-ml-dockerfile.md",
+          "postProcessHash": "cb3504ec92aee5536972d221b939869757051d222dd8e74316ca0f6d7e0f4eec"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.314Z",
+          "fileName": "content/ru/ai/2023-09-08-ultimate-ml-dockerfile.md",
+          "postProcessHash": "19652a39882012895589446d3ba3dea584b99a279444d461a1fef40d06b3f1c3"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.314Z",
+          "fileName": "content/cs/ai/2023-09-08-ultimate-ml-dockerfile.md",
+          "postProcessHash": "898322f146daa4a305df82c664e1c50b244688fa7324f7a2c24db33d28d16702"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.314Z",
+          "fileName": "content/sk/ai/2023-09-08-ultimate-ml-dockerfile.md",
+          "postProcessHash": "e31b6476718dc5ab1678e1cd859f9f20e5b06f3fa2dfdc22b4f09f3a2fd9e124"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.315Z",
+          "fileName": "content/eo/ai/2023-09-08-ultimate-ml-dockerfile.md",
+          "postProcessHash": "40aafba76277642826ca35b3ae7e883b24af31534fa6e12a0126c6fae129c15b"
         }
       },
-      "99786e8336b3a574aeba0f09978b3e19179e33de14622e9600c3a1aab1890332": {
-        "eb5a884bb1cf0b8e727900cbca9f727c79c1450839e68a539242128a17c2715d": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.692Z",
-            "postProcessHash": "e7fc62eea09fc9e030767bce91981477a507f6b7a6eea45da4ec63602d2137bd"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.696Z",
-            "postProcessHash": "b99c2a16fe565748a35a40d9fe1b6d271074ee6e96810a84b8dac87e88d43bba"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.693Z",
-            "postProcessHash": "afc4e940d57d512fe0a945a736cb8cc89f51f8c52263aa8f73b3c1eae45c5e7f"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.697Z",
-            "postProcessHash": "9507b9e17808903e4a3798b6653697fb3419da428aa48c6b61525f355a487618"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.458Z",
-            "postProcessHash": "78435ad33ad0f62ca3787075000897c3b307cf5ee290255436f31e01e9cc8a5f"
-          }
+      "fileName": "content/en/ai/2023-09-08-ultimate-ml-dockerfile.md",
+      "staged": false
+    },
+    {
+      "fileId": "38def257f9a093182b0602520a435964c17fd739a76ff116fd08f3c7e7aa8cc2",
+      "versionId": "fd456f4eef64f72c0fc7008bb8c03d3bf24a9497b2691f6929fc1d8cb6e1a692",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.315Z",
+          "fileName": "content/ar/ai/2023-09-11-enroot-on-slurm-for-distributed-ml-part-2.md",
+          "postProcessHash": "676278a34337e2f7d2e7a0c6e365efb1700047b81d046124225209c78763440a"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.315Z",
+          "fileName": "content/ru/ai/2023-09-11-enroot-on-slurm-for-distributed-ml-part-2.md",
+          "postProcessHash": "0b564d7877adbf6c476fe8b9ecbf0a356fa28795e851d623f49812e51095fc53"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.315Z",
+          "fileName": "content/cs/ai/2023-09-11-enroot-on-slurm-for-distributed-ml-part-2.md",
+          "postProcessHash": "0cdd40dce477372ac74f70bb8f437ae2e75f92055bd3f265ae501c82b9ad4a01"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.315Z",
+          "fileName": "content/sk/ai/2023-09-11-enroot-on-slurm-for-distributed-ml-part-2.md",
+          "postProcessHash": "aae8304ef978b2cd17d3b94b9e4906c85799d9869d54783b7aab92833dbd80f3"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.316Z",
+          "fileName": "content/eo/ai/2023-09-11-enroot-on-slurm-for-distributed-ml-part-2.md",
+          "postProcessHash": "82b67f13ac1115f434a06f6be1ee69c055c3d3c912c3ef4057fa10187c17e748"
         }
       },
-      "af25e9ad76f6ddbdcaea569db5c55de0c5fc9ea8967361d91a890653fc3090b3": {
-        "3a7ed09df06da123a31fd1bad8c56a0c6410fda2701c5f379a72f4be29f895eb": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.685Z",
-            "postProcessHash": "42d9e5241ab6a13394ac97ccc67aaea5f529b4fbc0f6d6b90c2f67c2bdb7aa02"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.686Z",
-            "postProcessHash": "fdb026c14a5fb7912ea70f28421f5b44d8b0104886a175656f8144b3560d5d30"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.682Z",
-            "postProcessHash": "56ad2f5b12644b153ebf521ca88d8ff4a23244978835ffb6be60624660cb77f0"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.686Z",
-            "postProcessHash": "4ea8bf5a677e6d75811ff84c3454bca25da4baeb422ea591602f5dd5038a55b8"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.455Z",
-            "postProcessHash": "113cc9b796765d21cfedd7a5332ed2d9bb73356802890cb8b8e64161fff68481"
-          }
+      "fileName": "content/en/ai/2023-09-11-enroot-on-slurm-for-distributed-ml-part-2.md",
+      "staged": false
+    },
+    {
+      "fileId": "daf3401aed652940cd143760540c2fd353b5abbf9cfa62c348c5f53e7ef899d5",
+      "versionId": "3a7ed09df06da123a31fd1bad8c56a0c6410fda2701c5f379a72f4be29f895eb",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.316Z",
+          "fileName": "content/ar/ai/2023-10-16-gom-gpu-monitor-nvidia-smi-replacement.md",
+          "postProcessHash": "68f1fb9d6661c17a0d106cb8bb17bc6e57cfa5f40e156768906b7ad878b8aaef"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.316Z",
+          "fileName": "content/ru/ai/2023-10-16-gom-gpu-monitor-nvidia-smi-replacement.md",
+          "postProcessHash": "498912cee2ab755ffa6b6a4168efcd72b82d66ce162248a0d3e5bfb2edd51ef8"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.316Z",
+          "fileName": "content/cs/ai/2023-10-16-gom-gpu-monitor-nvidia-smi-replacement.md",
+          "postProcessHash": "6560163cceacf03f7133f0fe71715e0ff96781607770637dd1a07f80f121b8b0"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.316Z",
+          "fileName": "content/sk/ai/2023-10-16-gom-gpu-monitor-nvidia-smi-replacement.md",
+          "postProcessHash": "17f165030e16f382346da793622d73cd237a9f7b0d72b2e6e8f38f4671131b3a"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.317Z",
+          "fileName": "content/eo/ai/2023-10-16-gom-gpu-monitor-nvidia-smi-replacement.md",
+          "postProcessHash": "37b90722927b3d0b0f0281c1eeb2a12a1f613c77ac6ee5372183686dee8b1d22"
         }
       },
-      "bf24175f3ab415822b9da0f86b84a1979efe901895eee796358665a1acd631ce": {
-        "fd456f4eef64f72c0fc7008bb8c03d3bf24a9497b2691f6929fc1d8cb6e1a692": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.696Z",
-            "postProcessHash": "9d963df9ef19d2328c7a8a40586c3c59295bc8f2d41b2fffaae855dee28d9dad"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.685Z",
-            "postProcessHash": "75a5073784ae08185bd94d974f9ee7e6dff7d2901d423625081c95a3684aceed"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.705Z",
-            "postProcessHash": "0f74df3a23fc3da3e33a3fa01115d973ffd8f29a5b95d14795a16051c8cbe949"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.695Z",
-            "postProcessHash": "8621359bbd1747a5f724b079a2b89f4f6a996ed54fe7725a05374f2184bf9764"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.456Z",
-            "postProcessHash": "6c039c78091451b868a402a445325cd638b242c410535111935318f453fee1c7"
-          }
+      "fileName": "content/en/ai/2023-10-16-gom-gpu-monitor-nvidia-smi-replacement.md",
+      "staged": false
+    },
+    {
+      "fileId": "719dad66fda6044d47812d391d7d57d37d1f58c982150eb4a7473436a886e3f3",
+      "versionId": "dd95969e3dbea978415321567415c8506ae449ea25a1f8a5934a8e56e5a5857a",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.317Z",
+          "fileName": "content/ar/ai/2023-11-07-rebuilding-alpaca-huggingface-trainer.md",
+          "postProcessHash": "0c38f59544c0b7366cbcbf7173351d1d3f7ad85a6dfefd092df4f524d913e9bd"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.317Z",
+          "fileName": "content/ru/ai/2023-11-07-rebuilding-alpaca-huggingface-trainer.md",
+          "postProcessHash": "fb1c6bbf80000d2afee1b3c8ba6c84f2a2002ae1cf2f253638c8ddbd95f7473d"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.318Z",
+          "fileName": "content/cs/ai/2023-11-07-rebuilding-alpaca-huggingface-trainer.md",
+          "postProcessHash": "9573e3fbc3c5f1764f11a2cd80401c9526cdcc22143ef92e64e3d6799f401a7d"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.318Z",
+          "fileName": "content/sk/ai/2023-11-07-rebuilding-alpaca-huggingface-trainer.md",
+          "postProcessHash": "6c4f011ede891476c3f530cc8a4f32f5906a93fcbee3b36cfdb953009cba1fb1"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.318Z",
+          "fileName": "content/eo/ai/2023-11-07-rebuilding-alpaca-huggingface-trainer.md",
+          "postProcessHash": "e9e4a2706198e4a30d9d693d0d76d388bfb0b5a7ef4285114daf18c95edd20aa"
         }
       },
-      "c95be8617bd78f421176f6b05316941feac39ae506855405f2312afecad5fd9a": {
-        "26359cf6eb645b4f14be17c005abe64f2da0e5fb261c5310ec74273167b3e60d": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.697Z",
-            "postProcessHash": "62185a06b7252168279882f1681546137d47ce1bc5e55378b2459e55745fa1fc"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.698Z",
-            "postProcessHash": "80cfd05c93e70d4f7d0a0bfcc3a189422bb1af4028c5be65cd71fcd0ee02b26f"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.698Z",
-            "postProcessHash": "77d9e017796659beb4817a4822d3bc606171aaac0900112ebfa122a85aeb740a"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.695Z",
-            "postProcessHash": "b65a05cfc9d0e12ce6a9838f5c6e1d55f48c3ee65ed4d4f86505d33dfffc7d60"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.459Z",
-            "postProcessHash": "6b20f7f55504186d111b5d85f303b99becf5f9f6342f9ac14de641f42079299f"
-          }
+      "fileName": "content/en/ai/2023-11-07-rebuilding-alpaca-huggingface-trainer.md",
+      "staged": false
+    },
+    {
+      "fileId": "3d8e30c1c76ff2fc0b4a1ed7c2e42beae84d3bc026da02b8017ebafc06ad43f4",
+      "versionId": "ce5ddbcbedc55e8c3c5ba623c47b2220c11924fb1c4ffd01a850eae2843be9ba",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.319Z",
+          "fileName": "content/ar/ai/2024-07-16-hf-datasets-offline.md",
+          "postProcessHash": "027aba4e94b8b966686e209b35b31139e77fa3b70ef6fa818f62fb908fa08d37"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.319Z",
+          "fileName": "content/ru/ai/2024-07-16-hf-datasets-offline.md",
+          "postProcessHash": "e657c9e868e88d2f957a3fa61287d82b35bd35209a732ab6a47b784736235b38"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.319Z",
+          "fileName": "content/cs/ai/2024-07-16-hf-datasets-offline.md",
+          "postProcessHash": "c0093099f60b3aa9a9b34a96eeeff037fc7dfa8b02af7ba61659f486dac35e67"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.319Z",
+          "fileName": "content/sk/ai/2024-07-16-hf-datasets-offline.md",
+          "postProcessHash": "58e2f031094847cda1351497ac47522e8fee6bbdb4b69837796908b4ee14436a"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.319Z",
+          "fileName": "content/eo/ai/2024-07-16-hf-datasets-offline.md",
+          "postProcessHash": "894f8b2d76fe42521ce53acdec5a83571e4d08751621d4b42f085ce57e6e996c"
         }
       },
-      "de971af556d1aa1e74d36788c5783cee503a370724f2a6776fb060f8883c0070": {
-        "e291054b1c47b69f939929019c0f6ec2ba283a163a7487d6fe4e3f476381cf2e": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.680Z",
-            "postProcessHash": "54db05fa5d66b7faaf8067ce96b400c1e65bcd8764d156ead19c4b7dffe26e87"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.693Z",
-            "postProcessHash": "481de4e923ec0cf4cad069cdf0f54d01714befe9526f386a603391eac1c609b8"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.681Z",
-            "postProcessHash": "fc59334fef5c62d599408dbb72eddd78d369d026e365506ca2605f838b2d5314"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.688Z",
-            "postProcessHash": "681ec41fb07395106af80952bb4f75467a41d672a139814e7e882f128eceb561"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.455Z",
-            "postProcessHash": "5b3de7b8189f60bf92f3b102fb7bbc2c69b410eade4dd8d7d481863f7699943d"
-          }
+      "fileName": "content/en/ai/2024-07-16-hf-datasets-offline.md",
+      "staged": false
+    },
+    {
+      "fileId": "439b8ebd84adf7ad88ea1474eeeaaafd44200e106abbcf0e17139adb52037d2c",
+      "versionId": "f13a1ea7d45608962ba724b4d649ccaafaeaaea7909709b21487073ed732ae52",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.319Z",
+          "fileName": "content/ar/ai/2025-07-01-dialects-for-humans.md",
+          "postProcessHash": "caa9613aed5b75473d65c4026930c7d7801677612ced4a47942fa0405cdf076e"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.319Z",
+          "fileName": "content/ru/ai/2025-07-01-dialects-for-humans.md",
+          "postProcessHash": "eb9b3b8d759ac6d0f7a1857ad45a397c37f784ee0215065525bf6770c763d277"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.320Z",
+          "fileName": "content/cs/ai/2025-07-01-dialects-for-humans.md",
+          "postProcessHash": "ac55222df1127e6210a59821af544648e8408814fecbeb562aa0243c741fe1fd"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.320Z",
+          "fileName": "content/sk/ai/2025-07-01-dialects-for-humans.md",
+          "postProcessHash": "523c943788c2b2eb7e044028a0ac50a3788ffd9071a0058bc2f0eaf9e39d200f"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.320Z",
+          "fileName": "content/eo/ai/2025-07-01-dialects-for-humans.md",
+          "postProcessHash": "aa397a09191977f119fb1913674ef8dda2c4e74e13d92845df4ad8be457b0dc0"
         }
       },
-      "e347532128b95b16dc02158d08531673cc6de0e01f82c8f10bf54cb1f65bc307": {
-        "faef2c5fd67146c2f6726c3e91171f9568d6c64c30a15373466f9626649c5c79": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.689Z",
-            "postProcessHash": "1d6a80266fb7beefca01bed9254a89138e3a520feedfe8b098432112c6078d6a"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.691Z",
-            "postProcessHash": "c77f27465f755b599a3b58f59022a27205fd4b04e75634aee66d487b35d8c768"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.689Z",
-            "postProcessHash": "744fb255a9b0fb5990f3a0706367c7e4ab632017c1d94bd355e2d3cc4aa68dee"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.694Z",
-            "postProcessHash": "19bc21c6a125ad0ddde037c495df9c3f54364d98d6c7baf5ccbdd36608dc14e5"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.457Z",
-            "postProcessHash": "63115e444a187a232b1b7cee075cdb29fb937f75f515b1840117e4378e5f6e90"
-          }
+      "fileName": "content/en/ai/2025-07-01-dialects-for-humans.md",
+      "staged": false
+    },
+    {
+      "fileId": "82b7536e2761d503ba0d4ee4d6d10b71079a1d7f5a4c190f3666cafa265d3c47",
+      "versionId": "72be424af7e4480c778911a3af251d8dc07f01102302d535fc2d059f2f2057ee",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.321Z",
+          "fileName": "content/ar/ai/2025-08-25-tokka-bench-evaluate-tokenizers-multilingual.md",
+          "postProcessHash": "1bb51e555e14f1b763eca58e2a924d355a2dbc73240dc87d940596492053519c"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.321Z",
+          "fileName": "content/ru/ai/2025-08-25-tokka-bench-evaluate-tokenizers-multilingual.md",
+          "postProcessHash": "d2ecfa6f00996e41071d4344a1ea0624a460be5808ec47a4a368e54a27e7cc08"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.321Z",
+          "fileName": "content/cs/ai/2025-08-25-tokka-bench-evaluate-tokenizers-multilingual.md",
+          "postProcessHash": "9cd45414064776bfd2c7d91d747d8c574fb22afee128d73a0c6d29d78495f3f4"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.322Z",
+          "fileName": "content/sk/ai/2025-08-25-tokka-bench-evaluate-tokenizers-multilingual.md",
+          "postProcessHash": "69431da92cb24e38c742394072ef09dc7c11095a3a0ab621e2995a1e12dda4d0"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.322Z",
+          "fileName": "content/eo/ai/2025-08-25-tokka-bench-evaluate-tokenizers-multilingual.md",
+          "postProcessHash": "82a14f7c4c422231b6e68caa94143885df9564380b63d59a033391ac2f6755c0"
         }
       },
-      "e71b13efac28e601df87758e4c23c16fd5a70c3f4650bc85e3bcec94ad787d40": {
-        "ce5ddbcbedc55e8c3c5ba623c47b2220c11924fb1c4ffd01a850eae2843be9ba": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.667Z",
-            "postProcessHash": "83aeba60ae812d2327def5d36c500d5e694aef104dc0f403e7ff0b41c345f6e0"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.663Z",
-            "postProcessHash": "fce67abc064ddb09198d29194b4a547143137f4bffa5283a444676195cba3c7c"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.653Z",
-            "postProcessHash": "73fdd5e2f4846db995b4855e66dbd007b37c476668e676d95fcd82ab639d7c94"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.671Z",
-            "postProcessHash": "6c8bd9c41676c622a8668fb293a2facd61e618a61c2ecbc508f3478549188691"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.454Z",
-            "postProcessHash": "1ffd87e8a9db60b39695ea5317a38ec72483ec9ce76dad1185cd34d588605ab7"
-          }
+      "fileName": "content/en/ai/2025-08-25-tokka-bench-evaluate-tokenizers-multilingual.md",
+      "staged": false
+    },
+    {
+      "fileId": "b97e593c84f7c209189551a73819b0c7ea5ac703c6b7c07ee2ae5e19e4265609",
+      "versionId": "89060b58e950ab2fe814bcb99fec8b33857e4e615697b684a84ebce8b0365fbc",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.322Z",
+          "fileName": "content/ar/ai/2026-02-25-introducing-helm.md",
+          "postProcessHash": "5c1e5fda92feb6e44cd051aa54bee0fe9c3ebb8de47dda9adc73fdc064d8c974"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.322Z",
+          "fileName": "content/ru/ai/2026-02-25-introducing-helm.md",
+          "postProcessHash": "f11ee34424fa7e068323c61d6081c6801aa2b9554681fd9bf10e31fdb8862b00"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.323Z",
+          "fileName": "content/cs/ai/2026-02-25-introducing-helm.md",
+          "postProcessHash": "27d70bd68b8224ae79135612ef02ad0cfda475c43c9898522aae70f2f5c50b0f"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.323Z",
+          "fileName": "content/sk/ai/2026-02-25-introducing-helm.md",
+          "postProcessHash": "6c108b44923a97325aa63da5984dc2625eaf6c45a2e37421e1c28e50ecada43e"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.323Z",
+          "fileName": "content/eo/ai/2026-02-25-introducing-helm.md",
+          "postProcessHash": "4a308df71288081c03850c904b14b9616c89d819d0da1b0fa232fbbf6b94639e"
         }
       },
-      "ecf82c38ecd6a62ef2d954bd3f9af4dcffce0c7b0c550ae12942e40a590ba2ac": {
-        "36979d06d6fbc4229a7694f418d590936c0d64973bb9be5984589c66d937ce70": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.692Z",
-            "postProcessHash": "a434ea5b2fcfdf814a2510033c8048c3175263b8efffab8d5e6466b817af881d"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.684Z",
-            "postProcessHash": "e4e82f8ebfb4697cf3b29477d2d79706a9440ab1cf6f8852b2eca793c51a5ba0"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.707Z",
-            "postProcessHash": "7d45c85adadc2ae2367f8063b9470f46b94ae4f1a9696e590acfc99e71573cf8"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.690Z",
-            "postProcessHash": "e740b425c75203ec9feb3cde442a59a6d3388aff7ff94face1bec39496c9ed74"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.458Z",
-            "postProcessHash": "12a9447718a5fa11d6fb98d1b948ec98018d77dd85a147bdf89b395d97fdeed8"
-          }
+      "fileName": "content/en/ai/2026-02-25-introducing-helm.md",
+      "staged": false
+    },
+    {
+      "fileId": "743d74e9ed883d6331d2b4df8c10866a015be87c2226353d3e3173f12e13d0b0",
+      "versionId": "c5aeb01cbda885f8d0afbff3dbab36a115e22629c6c194aefc74dc2774bc5117",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.323Z",
+          "fileName": "content/ar/ai/2026-03-05-introducing-agentpane.md",
+          "postProcessHash": "89218682c2acf74cb642b3b338908aefc4a38dcb0ed0a623549a0f9f55440ab0"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.323Z",
+          "fileName": "content/ru/ai/2026-03-05-introducing-agentpane.md",
+          "postProcessHash": "44bca6920f3229659e7112dcbc4553702bcd96e80a5e31dcf16506ecb8b8b398"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.324Z",
+          "fileName": "content/cs/ai/2026-03-05-introducing-agentpane.md",
+          "postProcessHash": "5c3c1e67a2286dc181aaa0dc2e9d878c8f67f6de0d901baaf35a5f27ee725a85"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.324Z",
+          "fileName": "content/sk/ai/2026-03-05-introducing-agentpane.md",
+          "postProcessHash": "18b8c1cbce03121cd343ecb1966f23b6a12749616b7211ebad9b3a4de2a4e7f3"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.324Z",
+          "fileName": "content/eo/ai/2026-03-05-introducing-agentpane.md",
+          "postProcessHash": "81c4cb3b5ec89014727e66240d1d4591e1ecc9fcd7bae8d9095f7451074301f3"
         }
       },
-      "edadb9c2eee99cc61514df5ad7d2552429521eb5a0216f5eb14d99d35b1b3f09": {
-        "c6f05aa9b26c7ac6eea7ee6d5dbfe8432f1334b473e7eef3803808a6d0686580": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.676Z",
-            "postProcessHash": "367e4a9478175b2c8c0540d90e611ad71bba1cf2563d21790dea5a3f391e9c23"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.683Z",
-            "postProcessHash": "5690ae4b5acef4e331418a8bb838e5fdfab726216e9614e88843cacfee71a224"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.681Z",
-            "postProcessHash": "4e315afe9a66bf2edcf1849f739bc3f5662ab552239585b0f6f6b5afcb61a399"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.682Z",
-            "postProcessHash": "b9c0d7b4ccd3f6c0332f7af943b9769c222970b8b4b29235e158b41fe95ce618"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.456Z",
-            "postProcessHash": "a845d57d59e9b03def5c2950a0db1d399943ce998223a170143ae390c21e547a"
-          }
+      "fileName": "content/en/ai/2026-03-05-introducing-agentpane.md",
+      "staged": false
+    },
+    {
+      "fileId": "948293fa43daf30318d7e089e481bfa24d65bc920a2ad28e234c6f08bb06b218",
+      "versionId": "0fa7a4281e07930f15af22cbf2eb2cdd7b28d81eb2177643812d32ac0c937c02",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.324Z",
+          "fileName": "content/ar/frontend/2024-07-02-radix-shadcn-dropdown-trigger-width.md",
+          "postProcessHash": "893e6aee1b113b82dd5ca737dd2f46a207d2af48cbf891920feded39933fe8c1"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.324Z",
+          "fileName": "content/ru/frontend/2024-07-02-radix-shadcn-dropdown-trigger-width.md",
+          "postProcessHash": "2e4e813e5de52cbfccb85b2dea159fbc48c0af1de386bad819bffa546a05caaf"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.324Z",
+          "fileName": "content/cs/frontend/2024-07-02-radix-shadcn-dropdown-trigger-width.md",
+          "postProcessHash": "aa45df612272b95429e68c8991a567958736a48f56502436eff501eb47262d7d"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.324Z",
+          "fileName": "content/sk/frontend/2024-07-02-radix-shadcn-dropdown-trigger-width.md",
+          "postProcessHash": "db99969a6e83417762efcf480802347090733b79f2727367701ee1befdca1c21"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.325Z",
+          "fileName": "content/eo/frontend/2024-07-02-radix-shadcn-dropdown-trigger-width.md",
+          "postProcessHash": "a08f19bb0ecd897dc38387cbbdc644f1823b7b2ccba75657884551a7480c3a25"
         }
       },
-      "ffcee69fdd3763277f0e428b7b1c0dc87bde650f6229eb12cef8ab8914f07023": {
-        "ed829f93198e8d5a3ab491587e7e1ab531ad2559f55d044c8b96ac1bccec558b": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.692Z",
-            "postProcessHash": "e0d70c21eef83d094ba2481d98ec8c63add77889216aae0559017d7972a3339b"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.682Z",
-            "postProcessHash": "348f1545d5065929c645a21b44e5ee9bb5d3cb107ad4123c256221ed187ca582"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.680Z",
-            "postProcessHash": "65f0a00cd72d2733e776d3e3949a097db01a63e4d80cf7c77238e9a9fe851990"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.685Z",
-            "postProcessHash": "31e3584b7d39492a8c64aad27b040aaffe297e6480c76f612815936441c91067"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.457Z",
-            "postProcessHash": "1e9652074a8f6ee0613110234b2c4d3e61d1b2841dd5c1da0fa18a36c3505513"
-          }
+      "fileName": "content/en/frontend/2024-07-02-radix-shadcn-dropdown-trigger-width.md",
+      "staged": false
+    },
+    {
+      "fileId": "aeeffc6ed873bf30b9b9ea2f7cad8e8281ece64462b929ff1ab4c26d242a8cca",
+      "versionId": "ebb5323d966035a1bfb73ce96521e863df12a72bb07766080eeabdf7c7fdb769",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.325Z",
+          "fileName": "content/ar/frontend/2025-06-14-raw-markdown-urls-nextjs.md",
+          "postProcessHash": "d79eb47bc8443697a39ac47063655b8e3be44656eac345224af5aeb4d420fc98"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.325Z",
+          "fileName": "content/ru/frontend/2025-06-14-raw-markdown-urls-nextjs.md",
+          "postProcessHash": "031b2d3a75a654fead9f0aa28bb3ca6007774b2fd1551f746baecb1cc3fc3a0f"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.325Z",
+          "fileName": "content/cs/frontend/2025-06-14-raw-markdown-urls-nextjs.md",
+          "postProcessHash": "285c998d6cca992a60fe703ae98568acfcf134c349a0d6ab0ee74184573f8a18"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.326Z",
+          "fileName": "content/sk/frontend/2025-06-14-raw-markdown-urls-nextjs.md",
+          "postProcessHash": "7b321659383fd02d46f8fc708e1d89445a34b1a82899823007415dad8749870f"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.326Z",
+          "fileName": "content/eo/frontend/2025-06-14-raw-markdown-urls-nextjs.md",
+          "postProcessHash": "f074e4563217ec9ca5cbd4c8411db0e3c3fb2dc42417a60cae1be65d9c51082e"
         }
       },
-      "1b285a831639f18b2d2250ec5d49caf45950593327831e40df6155f2c09f043a": {
-        "ad093a4101fea5e52fcaf1b535cfd943ccc7b228765bc0dce04e15814d25ee97": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.683Z",
-            "postProcessHash": "08f5d7f04f5cbee79a088f03da8c745e6caa8e414eedd57e6aba1809270eabde"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.652Z",
-            "postProcessHash": "539d23cbab8591829bc5585ee7f22bc5dca0502f1156aab9bde27a81b256ed35"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.661Z",
-            "postProcessHash": "e20e4406bdc4fca9106b452cbab4df6ca9d632c30c0a8b08d59ef81f7b582796"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.665Z",
-            "postProcessHash": "617f8f9c215df571e3d87500e4b712d290b9393e2413d3ce758c3158d3525802"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.453Z",
-            "postProcessHash": "f9508ad6e2fcc51d5a9efc6fdf6ee30820bed8907dcf5122162b200c24c27e4d"
-          }
+      "fileName": "content/en/frontend/2025-06-14-raw-markdown-urls-nextjs.md",
+      "staged": false
+    },
+    {
+      "fileId": "fe594feb9c59917157cafd61c48e95222825e5604db7ce87e3c397739c1005b3",
+      "versionId": "865f601ed28724dfd0b4c01985910e7316247e76d8d23d80c5416714d86bc24b",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.326Z",
+          "fileName": "content/ar/frontend/2025-06-14-smooth-page-transitions-next-view-transitions.md",
+          "postProcessHash": "006999367aa2d21d8f3a108a383d3f94a826ec4c2e30dd6866397596a24ea707"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.326Z",
+          "fileName": "content/ru/frontend/2025-06-14-smooth-page-transitions-next-view-transitions.md",
+          "postProcessHash": "580b0ed2419725aab33a8e574c3c5f331827a7b8e94265ff363210789ec2f10b"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.327Z",
+          "fileName": "content/cs/frontend/2025-06-14-smooth-page-transitions-next-view-transitions.md",
+          "postProcessHash": "195752b6cba99a2852c145979dbfe87367b8fa4f3e4a2ce01bba41f75d7e6d7d"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.327Z",
+          "fileName": "content/sk/frontend/2025-06-14-smooth-page-transitions-next-view-transitions.md",
+          "postProcessHash": "bd4ed772294e21fc5f066571a3c20ed23efdbea8bc05e0316442c1ca477cbe0b"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.327Z",
+          "fileName": "content/eo/frontend/2025-06-14-smooth-page-transitions-next-view-transitions.md",
+          "postProcessHash": "d7c0ea3507998dff19a10f7580e9bd14fab66a0ff23fef899226f67356dc606f"
         }
       },
-      "2a2e59be7e807711835936da41aa6d3dfd1d8645fce7b1cc9eaa97e4a966f300": {
-        "0204d14e6506bad827532fc5e30fc723642f26b27a6a05203d348051c36db0b2": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.699Z",
-            "postProcessHash": "6941108d742500894faa26d4bac09e9efb0559ecfb0c85c11c13271258bc7ade"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.678Z",
-            "postProcessHash": "6831fc3c8631d9dec0ab4031dc50bc1fc84e2ff7897c3d02ef2baa7e232ca74b"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.690Z",
-            "postProcessHash": "bc95390da3955b39ad4d4f6e4d289989b0c83e63dc606d17038f035b8cd63766"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.684Z",
-            "postProcessHash": "61df04683d08677b19df33899e09dbce643e2e9ab781d9645af22eb5f247fecd"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.456Z",
-            "postProcessHash": "ce6b4b5f8417806eaa4e7fe9adffcd05083496a515ac696a1ad0eb87150558ca"
-          }
+      "fileName": "content/en/frontend/2025-06-14-smooth-page-transitions-next-view-transitions.md",
+      "staged": false
+    },
+    {
+      "fileId": "088552738872211626c07c4c766ddad2ac2c83cc53247c0648b29acfed2facb4",
+      "versionId": "7b49508fa9dbca16b42ddfe536aa80eec86245d7d836330a7c929d1d452502dd",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.327Z",
+          "fileName": "content/ar/frontend/2025-09-17-ts-base-typescript-library-template.md",
+          "postProcessHash": "860a0ceef2df59c509017e007d8f6993e44fff71de1db926033d19a2c409ecf8"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.328Z",
+          "fileName": "content/ru/frontend/2025-09-17-ts-base-typescript-library-template.md",
+          "postProcessHash": "11d64a5b8bb21e911d531f7b29229accdaa81f1dbb9cd948df165df7c7441332"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.328Z",
+          "fileName": "content/cs/frontend/2025-09-17-ts-base-typescript-library-template.md",
+          "postProcessHash": "3aa12b3d429b8bfee51a8e24975e7dbf232d00fad7819ef1401af77d85b13bf7"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.328Z",
+          "fileName": "content/sk/frontend/2025-09-17-ts-base-typescript-library-template.md",
+          "postProcessHash": "7eeb55e54dd3bd5453d09f246cbe6f7355ede9cb4d816ebf524ecd9296539f1a"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.328Z",
+          "fileName": "content/eo/frontend/2025-09-17-ts-base-typescript-library-template.md",
+          "postProcessHash": "423bd0011184121b62825ab2ca0269bedb81d75bbdb961442660f91aae3bd1b5"
         }
       },
-      "3177c388f43b90f3427d5017d6ac96686720b40fc338e78aab58ba6036ddfc5a": {
-        "4fd0e9388ae33d404a82435e9dca67e5e588260dca73956ab29a3a9a1b3c8f08": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.692Z",
-            "postProcessHash": "f4e5163631656a35651a30f708cc1c965f18afff4555b42ef91ea2893ad497db"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.687Z",
-            "postProcessHash": "b056e8421a58eff15a5f6e48d18f647fb5a35879a9bc00d41ca32dd366d42762"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.687Z",
-            "postProcessHash": "48e4b7ce5aef5fb0e87764f2b4b8d4aa1881d26910c5a7a57c5b889549845d89"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.687Z",
-            "postProcessHash": "ac64177872f414bf1e0f03ea74a08d1a91c0ccc1dd3c5dacbad93beb26c095bd"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.458Z",
-            "postProcessHash": "c794a50853f3c987ed684a63cfb7b1c3d427a8884b7b5db251a0d8bb19edc5bd"
-          }
+      "fileName": "content/en/frontend/2025-09-17-ts-base-typescript-library-template.md",
+      "staged": false
+    },
+    {
+      "fileId": "5ea2ef866d0cb35c73771390c36b580637db7aec9739e78412a26bcc5846a469",
+      "versionId": "74e93d0538ff1e0f0cbb4b4c28592fec7db2067b792c789d6c9151e997efe72e",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.329Z",
+          "fileName": "content/ar/microblog/2024-07-01-on-microblogging.md",
+          "postProcessHash": "3ad0289cb272fe9c4cf033844cd6b834a9564cf5b4e80cf550afb7d2cd1b840b"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.329Z",
+          "fileName": "content/ru/microblog/2024-07-01-on-microblogging.md",
+          "postProcessHash": "81991b5722ebb76d306ef59d662128e384eb8daf9a77ae739bb510f66a9eb9b1"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.329Z",
+          "fileName": "content/cs/microblog/2024-07-01-on-microblogging.md",
+          "postProcessHash": "e4d28e21d4e965cc07a5ff677dccc33ffa25ef3a773f2f081c6cfae4f628ddd7"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.329Z",
+          "fileName": "content/sk/microblog/2024-07-01-on-microblogging.md",
+          "postProcessHash": "75b85bca5832599d71f0422e2633b3020401de8de3fe0c7787887149db166097"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.329Z",
+          "fileName": "content/eo/microblog/2024-07-01-on-microblogging.md",
+          "postProcessHash": "2f02d41ea91bc67f2556d5a159f52cc09300302408a0a083c200e6c2d0ea72cb"
         }
       },
-      "366edf8b8d4e1999ea2e6db157e44dabe5135c3473c4b61b9ebbcb95533944d4": {
-        "368a6f12894edb101cebb97206cd346186cc287ce7c19c244e53785cfac39411": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.691Z",
-            "postProcessHash": "52b317c2911a7f100c45bd5c8a8574ca7e1ae368264285e69ea413b44d6f1869"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.696Z",
-            "postProcessHash": "be7211283d33a05bf0ee2ae2fb0d9a238748ffb45b9c1e19a4ff8b011bac83e5"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.684Z",
-            "postProcessHash": "ff839421218f712fdc2fcf0df72266f82b5510ebc085c3d38945c1ad95f6691e"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.688Z",
-            "postProcessHash": "979d1b41e15c52b05040d1dc5fdc6e132e97960cbcaab677b35c2d27e15c436b"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.458Z",
-            "postProcessHash": "5d71b6e16b2261bcc759010a34d3373b0f918fc8940c92c004e3e50f2901cb74"
-          }
+      "fileName": "content/en/microblog/2024-07-01-on-microblogging.md",
+      "staged": false
+    },
+    {
+      "fileId": "ced17357eea37a976879190d5a08d604978c80e7f75d022d1537296c1e79dae5",
+      "versionId": "cacd1ae9a08fa7a9db5db85c3d4af6dcd5cda70aedfffc8589db89c6de32e8b9",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.329Z",
+          "fileName": "content/ar/microblog/2024-07-02-debugging-python-vscode.md",
+          "postProcessHash": "e66ef3552aca21e3fce0cd7c4431856db5bec16c4a3a43e26e521f6baf2822d6"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.329Z",
+          "fileName": "content/ru/microblog/2024-07-02-debugging-python-vscode.md",
+          "postProcessHash": "cbd4738486dc449dde89c7839852a057559bc094c0fd038dccf2ec6193a1693a"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.330Z",
+          "fileName": "content/cs/microblog/2024-07-02-debugging-python-vscode.md",
+          "postProcessHash": "694ace45c9f17e490f32d68485794dc60f86ad10b7f71ee380985235ac5644d6"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.330Z",
+          "fileName": "content/sk/microblog/2024-07-02-debugging-python-vscode.md",
+          "postProcessHash": "966c84b48a94aa0965c6d9d9d4850a08aa008b0fd71c0f3ed9ec36afc1157d89"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.330Z",
+          "fileName": "content/eo/microblog/2024-07-02-debugging-python-vscode.md",
+          "postProcessHash": "c12b893be1b016b061cdb71b37aec4d18bd0596409c99072e15ca14cd1edf560"
         }
       },
-      "3e2f92a016bea97ac9407b517ba406ee0f749f37165d2f70fa42cdd4d7485b7c": {
-        "26161f3782e7ff69daa037a1e307326bf2e46a87d7b306da0aac92f6a6c76f5b": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.707Z",
-            "postProcessHash": "069cc17983d5c23bec6825d6dd379bffaf7b7ff04a506fb03fa8fc9b351436fb"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.699Z",
-            "postProcessHash": "f64ebf737f130bbf9f243306b39460b2967e5fe8a8d8787fb739b4291982a04d"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.686Z",
-            "postProcessHash": "e2f28d3167787b2d007b164d135a67ba511e2871e40cd65fdf314f1b2795bfb0"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.683Z",
-            "postProcessHash": "e9c97cb872ad9bb47e1d82d44780e37d7bc6c94371d6c170b9458c7b107e54b1"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.457Z",
-            "postProcessHash": "d69e35fe004c6b29713fbc044469df1bb360e59386231b5b5e6b8f877d9d790b"
-          }
+      "fileName": "content/en/microblog/2024-07-02-debugging-python-vscode.md",
+      "staged": false
+    },
+    {
+      "fileId": "d164e0a4ae9b7d83f9162bf80743544bb2abdf552934e4ddd3f4519708679569",
+      "versionId": "ad093a4101fea5e52fcaf1b535cfd943ccc7b228765bc0dce04e15814d25ee97",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.330Z",
+          "fileName": "content/ar/microblog/2024-07-16-tips-1.md",
+          "postProcessHash": "30f9a684e7dbff5c378545ac96865dcc9e55bda57a5ace668731abfc5e63ae58"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.330Z",
+          "fileName": "content/ru/microblog/2024-07-16-tips-1.md",
+          "postProcessHash": "bec020c884308fbadc5c83cbd408764e2b1b8fc82278d5a29408dc4437a2d67a"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.330Z",
+          "fileName": "content/cs/microblog/2024-07-16-tips-1.md",
+          "postProcessHash": "5aea044cb0516df3fc824b5a4aaf15bd5c46257603d8dadbb00943e4c6011bf0"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.330Z",
+          "fileName": "content/sk/microblog/2024-07-16-tips-1.md",
+          "postProcessHash": "a39cd2be154558b2b50dd8ee78b4b8d3f5990aa060a5795965ebd896544fed4a"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.331Z",
+          "fileName": "content/eo/microblog/2024-07-16-tips-1.md",
+          "postProcessHash": "dda467d59783cbb6a422b7333a7f91d236f377695dae8807623eb46b353c0b9e"
         }
       },
-      "469ea5f59d70667190097674369acdc557ddce8e418eaaaae1ca14d5ab54f2fd": {
-        "95cfd80dd8a4a9dae0dba917c34f3569496b4bf084d1fccbaa3349747554731c": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.688Z",
-            "postProcessHash": "d9ddedd197fed8b68cc2748db7d7524a4c1cb18e7d9797c174787e682a3249b7"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.681Z",
-            "postProcessHash": "89c1889c262737a4bdcec70e2e1ff1a767a1d0a2bca4970613b0c07dea528fa6"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.689Z",
-            "postProcessHash": "4c2ce766b4a6815fcd6d8cc9c6660f5e35ce83b5aaf9d22e731a78faa2408c0c"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.680Z",
-            "postProcessHash": "b795619eb0731ceb5950bd11e4a6a6dcb3c3210ba0dcf20ae2649f5683ba37d9"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.456Z",
-            "postProcessHash": "e6b9678ed54a4fbf9cf2c0b3bcde122af073b1a94ba841639928c9a51b8fcbbe"
-          }
+      "fileName": "content/en/microblog/2024-07-16-tips-1.md",
+      "staged": false
+    },
+    {
+      "fileId": "c2c216fd991bc55140059d4b7a6487d439bfb6a40a2878f5816d6f7c13f2b2a8",
+      "versionId": "3d3924581811e5a0d3f088d9fdce8f20b7907f743cff2c571eb67de102d6e23c",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.331Z",
+          "fileName": "content/ar/microblog/2024-08-14-links-1.md",
+          "postProcessHash": "b8c744b8d1d5edc582c541fcdf8dae8760191deb57beeee2344e8627066739bb"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.331Z",
+          "fileName": "content/ru/microblog/2024-08-14-links-1.md",
+          "postProcessHash": "1724b899da4e0401ea3dafd421e9b349ee64ef7746e9577a431f6ffa70c8dba4"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.331Z",
+          "fileName": "content/cs/microblog/2024-08-14-links-1.md",
+          "postProcessHash": "71dd1e2af8318ee9f844d1c2afa89a7bb0927c3706a677414ec1a4a1c49e394e"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.331Z",
+          "fileName": "content/sk/microblog/2024-08-14-links-1.md",
+          "postProcessHash": "04561c920f794493a0d6d184e02b0bd98056768850eb9c88afcab77a53e7557a"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.331Z",
+          "fileName": "content/eo/microblog/2024-08-14-links-1.md",
+          "postProcessHash": "ba24bec825571557e860a61676291af45cf5b1f5514af4305ad89c865af0afca"
         }
       },
-      "57f9cab70f8db93452b2a21b41a9e445ecfc882a8a09d06a9299e2fc695a6971": {
-        "1da760aa45a6d8f71d9d8feba0a947d77915088bdf0bad12250e1a6f772dbad7": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.684Z",
-            "postProcessHash": "f010d9b7eedae5c1ad333d75015a1633c01e8156af0213fca3813599b5c721d0"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.673Z",
-            "postProcessHash": "a2a22c85b609c37b0debbcce39aaf92a9aaad24cf4dfccfeb5999fb5dad562dc"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.668Z",
-            "postProcessHash": "39501ef1c0ef6e2ccd6265d90c9ef193e836c90d780b6504074252feeea91119"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.685Z",
-            "postProcessHash": "de1819cc3f57a9a2df3375b908c75b88e6e876c38789561e65116c4079b47526"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.454Z",
-            "postProcessHash": "522693e8e9ed3ba3bf27f3d83339e49c3c68301fa613b8391cb45e7472a4bfaf"
-          }
+      "fileName": "content/en/microblog/2024-08-14-links-1.md",
+      "staged": false
+    },
+    {
+      "fileId": "6b8a9db55ac6d74fbbbc691de86d60211fac90e9365cba1c8ac3d030b91154b2",
+      "versionId": "95cfd80dd8a4a9dae0dba917c34f3569496b4bf084d1fccbaa3349747554731c",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.331Z",
+          "fileName": "content/ar/microblog/2024-08-22-children-arent-naturally-better-at-languages.md",
+          "postProcessHash": "34ec1b39c413ad0bb78d6c20a4f4daab7c9b16138c7c7649ff76377cc9380f8f"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.332Z",
+          "fileName": "content/ru/microblog/2024-08-22-children-arent-naturally-better-at-languages.md",
+          "postProcessHash": "306228fe4c454628e9c71820f893779389e7e6250f6c50421cff7e2928822f0f"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.332Z",
+          "fileName": "content/cs/microblog/2024-08-22-children-arent-naturally-better-at-languages.md",
+          "postProcessHash": "8b88d902eb028d4f8c7dee1e288ac2f55634fab39abf3bdaada8cc06a33a0d26"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.332Z",
+          "fileName": "content/sk/microblog/2024-08-22-children-arent-naturally-better-at-languages.md",
+          "postProcessHash": "50bee6195d430a20b5bfe795bf48bef264b26f69479f56024ca66eff0c039b66"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.332Z",
+          "fileName": "content/eo/microblog/2024-08-22-children-arent-naturally-better-at-languages.md",
+          "postProcessHash": "eb47963e3b4435f0d7f65a84e840b80bad98d2f700b2d3354f0031e0f01d90bc"
         }
       },
-      "77fd558a04d657eb5bfbfc5d393bf58673ee3f1395c0c5ed9617dc4ebbb3d529": {
-        "3d3924581811e5a0d3f088d9fdce8f20b7907f743cff2c571eb67de102d6e23c": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.694Z",
-            "postProcessHash": "0e7fa2a341254593672dcef1d2276c8210ef2da47d9d89731340bff9772b0598"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.684Z",
-            "postProcessHash": "76b3a7114819f2df180fd3f751888d6074daeef9bfea291b518d0e4368552867"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.684Z",
-            "postProcessHash": "3561df6330d9d8441aab8faddd74405bef7d3438301e2e9bc6c0768918b84942"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.687Z",
-            "postProcessHash": "08b064fe5dced2d1965c9f0c2b49dbd004e8ab03da17f859cb46b26ab7256fdd"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.458Z",
-            "postProcessHash": "373798b3b1dfb8cee551ee17353d1805786459619fc5a01a961fc48ca0df0878"
-          }
+      "fileName": "content/en/microblog/2024-08-22-children-arent-naturally-better-at-languages.md",
+      "staged": false
+    },
+    {
+      "fileId": "cddf22a321f01ed8f04cda5c2eb9752a216a2508adfcd84de207f37597f52659",
+      "versionId": "666b64fcdfdcbebaae91f48a4cb60b0decd82dd8def880c14758427635cea177",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.332Z",
+          "fileName": "content/ar/microblog/2024-08-22-more-language-thoughts.md",
+          "postProcessHash": "4747d453281c6883b08671e634524a17c5d77b7d04848d7f34cb124a0e7f58a9"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.332Z",
+          "fileName": "content/ru/microblog/2024-08-22-more-language-thoughts.md",
+          "postProcessHash": "dabc1074907bf61a390324b797a27fe068776758f4cbd3219477f064362f1b28"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.332Z",
+          "fileName": "content/cs/microblog/2024-08-22-more-language-thoughts.md",
+          "postProcessHash": "ae0d0af38cffdd7221d41d0d0342fb6a451fa3f5725c711bf16071a3b29c6520"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.332Z",
+          "fileName": "content/sk/microblog/2024-08-22-more-language-thoughts.md",
+          "postProcessHash": "601d1dd1fe6145cb86a21312f5099cd591bb084727299032ea9a5a6ed22732b8"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.333Z",
+          "fileName": "content/eo/microblog/2024-08-22-more-language-thoughts.md",
+          "postProcessHash": "c8e50a3061081bb332f4e51940e98e8dd9e003c774243b8ee80bb8bee7637ef7"
         }
       },
-      "879f3a5f954ee8b75bf1e91f4ea9916b41c933e5beba7eb6362647a637c9c66d": {
-        "22920a86d8a8e0a69c90da25a7d0f48f5b7737b5970aaabfc2b2946d45506e12": {
-          "ar": {
-            "updatedAt": "2026-07-22T18:06:50.743Z",
-            "postProcessHash": "36cdb7933c12e0faf669a4ac90b4472cdbf67b6d6b4dbbeb474283cdd94ed406"
-          },
-          "ru": {
-            "updatedAt": "2026-07-22T18:06:50.746Z",
-            "postProcessHash": "1b6d7c33f34424c2d16518cb793595ef404e64f338c925ba2d069acb6e36166e"
-          },
-          "cs": {
-            "updatedAt": "2026-07-22T18:06:50.747Z",
-            "postProcessHash": "73cc3955774a0362764ad8e6dc0b1b9adbf1b941f47ded7910cafe292e5913b8"
-          },
-          "sk": {
-            "updatedAt": "2026-07-22T18:06:50.749Z",
-            "postProcessHash": "18a2cf8e3453ff127be076abfcfa344749a2fc6ab4bb553b7d750ce05348c5e7"
-          },
-          "eo": {
-            "updatedAt": "2026-07-22T18:06:50.750Z",
-            "postProcessHash": "36e9ab4e9787a20ed1c4502ef3ec3bf5e13e3a741fe6a55f6c9d5847f9de798d"
-          }
+      "fileName": "content/en/microblog/2024-08-22-more-language-thoughts.md",
+      "staged": false
+    },
+    {
+      "fileId": "b569dc3845ebb7415ae21b7ea96b0685e4be4c90ec3bb6fd194b9c31cd20b874",
+      "versionId": "4fd0e9388ae33d404a82435e9dca67e5e588260dca73956ab29a3a9a1b3c8f08",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.333Z",
+          "fileName": "content/ar/microblog/2025-09-19-summer-2025-in-review.md",
+          "postProcessHash": "b5acbd00ae1f467e1407528dccec50d5b3f15369ec5a895f03211b701b2ecd94"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.333Z",
+          "fileName": "content/ru/microblog/2025-09-19-summer-2025-in-review.md",
+          "postProcessHash": "3f87cd169788076b162a8013d54625759ccc0164dc54fafec2c547f3c407a678"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.333Z",
+          "fileName": "content/cs/microblog/2025-09-19-summer-2025-in-review.md",
+          "postProcessHash": "728b3f3b21e65a626f5e0cf14f9d2a62d23e57e1e0542eb44969a1f4b2b4bc36"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.333Z",
+          "fileName": "content/sk/microblog/2025-09-19-summer-2025-in-review.md",
+          "postProcessHash": "fe5e46d2080a40e0836f4ff0bd2802a91158e0dd94e965ce270792bec4b5833d"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.333Z",
+          "fileName": "content/eo/microblog/2025-09-19-summer-2025-in-review.md",
+          "postProcessHash": "3c49705bbe0a98e5adc57ebcd7011fa07bf94bf9e5840e121023675560e3958d"
         }
       },
-      "9a279dc45cec6d0801853b18e2df62b77eb80339c991e34aafef788c1ca78f24": {
-        "666b64fcdfdcbebaae91f48a4cb60b0decd82dd8def880c14758427635cea177": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.679Z",
-            "postProcessHash": "475457530b89fbbfbdc3fe7b8aa1eb96ef10f508a7006144b0185d131304b84c"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.681Z",
-            "postProcessHash": "d7265256549fc08ff08aa61a598e1db26882398c840e45a53607dc250b57e41d"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.677Z",
-            "postProcessHash": "e22c5673bcefa68c5464cc408cd8cb45825fc4387520fd609faf425520b4483c"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.680Z",
-            "postProcessHash": "f885ff82098342db3e49f899a25ed530411b15d96ec3d4dfd63b39337061459a"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.456Z",
-            "postProcessHash": "d88f1b56c35aa52878c2680ae7fd10d69634f3c39b6fd344a18316bc5fb341e3"
-          }
+      "fileName": "content/en/microblog/2025-09-19-summer-2025-in-review.md",
+      "staged": false
+    },
+    {
+      "fileId": "912a50aeb0bd191ed54ffbeceab37fc91328b236c77bfd5a6588a94be3f8ee3f",
+      "versionId": "a836e0308ee00e5934ebadff32fe2dae41218c2232f5083e7063c779330025bf",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.334Z",
+          "fileName": "content/ar/microblog/2025-11-20-interning-at-vercel.md",
+          "postProcessHash": "f8a94171b4016742e930ef633f304fd1e3b2d0571830efc960310635fc66e91f"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.334Z",
+          "fileName": "content/ru/microblog/2025-11-20-interning-at-vercel.md",
+          "postProcessHash": "afc734acb40b11414441b0db9a11bbc8c7180719cec1e678938c0438dc3bddb5"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.334Z",
+          "fileName": "content/cs/microblog/2025-11-20-interning-at-vercel.md",
+          "postProcessHash": "b5bdb33ef0215a5780e3944dd4354dcf39d24a9bf186e49a8a25ec9570014c45"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.334Z",
+          "fileName": "content/sk/microblog/2025-11-20-interning-at-vercel.md",
+          "postProcessHash": "9a4c93483fee3699f1f3c5e1a5e5ca18d0b4d097bb216cb5965b991a2e2da205"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.334Z",
+          "fileName": "content/eo/microblog/2025-11-20-interning-at-vercel.md",
+          "postProcessHash": "ea43a9b3b1005d786cc70510d2d28bc1b9b23dbcb76133812f4277bc9c9f5d28"
         }
       },
-      "9acd72a93184246d1ac5a3e4b6857c7d01fdd6040508cef43a6dcfe0b59bc17e": {
-        "cacd1ae9a08fa7a9db5db85c3d4af6dcd5cda70aedfffc8589db89c6de32e8b9": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.669Z",
-            "postProcessHash": "db1a779f0fffffcae6fe27ba396916b6d65207b0b7ea12b3fbe36a542464a2f2"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.676Z",
-            "postProcessHash": "3ba445fd2be2221949e315b96c3fe84745ba6166bb3a0f2968c97cfb06d2c104"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.685Z",
-            "postProcessHash": "469899358eb00c0508d575da64aa7dfbf3dab4b04e167fe0c616a6739e4b4d68"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.682Z",
-            "postProcessHash": "2a211c811527128b6d04c031c513ba1d12b62bc5f698da8ce830abf08c6ac893"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.454Z",
-            "postProcessHash": "cb63cc8a2a622ed5589c0427572ecfeaa75f832628ad0484e07e8dd64517c41f"
-          }
+      "fileName": "content/en/microblog/2025-11-20-interning-at-vercel.md",
+      "staged": false
+    },
+    {
+      "fileId": "cab1aed824af076acf090a7faccc3deaf06128cf20391de36f582c30dece30c5",
+      "versionId": "1da760aa45a6d8f71d9d8feba0a947d77915088bdf0bad12250e1a6f772dbad7",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.334Z",
+          "fileName": "content/ar/posts/2023-05-06-my-new-website.md",
+          "postProcessHash": "687c45399411e87d21ae1f4fea588280bef07fe481d3f5f3932ed48f2df60af7"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.334Z",
+          "fileName": "content/ru/posts/2023-05-06-my-new-website.md",
+          "postProcessHash": "0ce45df69a8dfeada6fcb3317fcc93fa3cd8005c25e477f62a3ca611b3abb8cd"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.334Z",
+          "fileName": "content/cs/posts/2023-05-06-my-new-website.md",
+          "postProcessHash": "b45cc49ce9cc85c7e0bd8d934a1c203557867f984542f3e8790fda59b18fc6c9"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.335Z",
+          "fileName": "content/sk/posts/2023-05-06-my-new-website.md",
+          "postProcessHash": "183eb6bd0e074c20b421e2da83d81b685f012d5ca5867beaab78983fa09c8136"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.335Z",
+          "fileName": "content/eo/posts/2023-05-06-my-new-website.md",
+          "postProcessHash": "321ffcf2de64916b08a4c63b2cead1949ab1315c413f463d25d046400ae5f2ca"
         }
       },
-      "ac66e58d4d969bd28bbfd335a3347a11e4e4ab53c3f8526d1fa6c5d64a16c8a4": {
-        "ec7f229f0ccde211a010c77354eca7d1f46cfcb35d305405d9f4d5a751a69551": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.675Z",
-            "postProcessHash": "40d48dc27bcfa80b7be52f9627a07139e35c225cd8aa3e711d96e97694187842"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.679Z",
-            "postProcessHash": "075cd9dafa00b324df1b31b828bcaea40bf35c8da68b9a870400a08c014040c1"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.679Z",
-            "postProcessHash": "4a91bbe53c9926135754c2ad40b0ba1da2ac98d763a9482a8f49c68663c80f84"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.689Z",
-            "postProcessHash": "c41919d00f8a37f36b9e752a42886d6e4d644601d13377e33c719b3dca4459c5"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.455Z",
-            "postProcessHash": "0b0d115815c8ee365c64405521532cf549942dfd29ea198cf3e97ea9de3378ee"
-          }
+      "fileName": "content/en/posts/2023-05-06-my-new-website.md",
+      "staged": false
+    },
+    {
+      "fileId": "24fcd98131d4e027ad9f6b07ea5787f68a0b61bccf4998482ffb6e2620eab15d",
+      "versionId": "368a6f12894edb101cebb97206cd346186cc287ce7c19c244e53785cfac39411",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.335Z",
+          "fileName": "content/ar/posts/2023-06-22-introducing-eta-v3.md",
+          "postProcessHash": "31014fb0671a54d5258392860c9bde820a3274cbb783d9703408dfffc9973806"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.335Z",
+          "fileName": "content/ru/posts/2023-06-22-introducing-eta-v3.md",
+          "postProcessHash": "8ee1c5411e0bffdafe6ea1afd0e545c56e06d30cdfdd46650707551c436d4a21"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.335Z",
+          "fileName": "content/cs/posts/2023-06-22-introducing-eta-v3.md",
+          "postProcessHash": "c6c90dff49621addd8001b2c5e414f6c149d4b23896e3b2a9359990b9225c71a"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.335Z",
+          "fileName": "content/sk/posts/2023-06-22-introducing-eta-v3.md",
+          "postProcessHash": "3387057b70ae67ab0d5fdbacab158b5e5433384a9b3f4ae8cd366e066786125f"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.335Z",
+          "fileName": "content/eo/posts/2023-06-22-introducing-eta-v3.md",
+          "postProcessHash": "d5efd56fc7251b177c368a96a8897475ce7d5604f2c2f185ea3080cc7af276fc"
         }
       },
-      "c65ba9a5cc835aa771af7b710786107a7bdc933f6e518a4841f577974683bd8b": {
-        "74e93d0538ff1e0f0cbb4b4c28592fec7db2067b792c789d6c9151e997efe72e": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.691Z",
-            "postProcessHash": "1c7eb5564e112e0fab1362a052f01c9553eddfe1bb6ab86fc0197b5f3b280b90"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.678Z",
-            "postProcessHash": "1b0434d45980d061f019073def7093e46e2ba72b1f6121709c07898faf7d7472"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.680Z",
-            "postProcessHash": "daf047ed556454efa4e5d5caec3fd1ad3450c827755582605f78d8a9f5e98c61"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.678Z",
-            "postProcessHash": "b57d0a29b35f8a8ace516fa47acdf6f06fb986969995d15965dbf4ba8bcf849e"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.455Z",
-            "postProcessHash": "b5918f1df37656c212379f8cd92f878426c4cb9cda4dd1ff92569b23039c395b"
-          }
+      "fileName": "content/en/posts/2023-06-22-introducing-eta-v3.md",
+      "staged": false
+    },
+    {
+      "fileId": "cd4b5912f4e53b661233cbd04a999ab8dfe5439aa350b1423d6cbc045d79e460",
+      "versionId": "caa21e886a0f68a328bddd4d648056690a98f6d35b445e6337cfc7abaa03476a",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.336Z",
+          "fileName": "content/ar/posts/2023-06-29-global-config-js.md",
+          "postProcessHash": "b522306fbe07bd56f2f3d84f780afea62ed5f40059150e95a53cff724e094619"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.336Z",
+          "fileName": "content/ru/posts/2023-06-29-global-config-js.md",
+          "postProcessHash": "f8b68c56243d34eeb5876128981ccaf007b7865a97159a310df530af32f43bcc"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.336Z",
+          "fileName": "content/cs/posts/2023-06-29-global-config-js.md",
+          "postProcessHash": "2a2e830f3798ef5325897db0e4270566e8da34a35bf92577f02d8a0aca9d9cd1"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.336Z",
+          "fileName": "content/sk/posts/2023-06-29-global-config-js.md",
+          "postProcessHash": "2ddce51faec5003fa20a5a13654dcb1b528f63a4ae5c7d146121472a870c2b5e"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.336Z",
+          "fileName": "content/eo/posts/2023-06-29-global-config-js.md",
+          "postProcessHash": "45ea11bb875fb43d496585715b2ecc46f70d2bebc019cc11ef48d28791aa7df6"
         }
       },
-      "c725ab62f0b9e5a958960144a920da38bf3f2cc78721ec2d3ced21ea164bd3b8": {
-        "a836e0308ee00e5934ebadff32fe2dae41218c2232f5083e7063c779330025bf": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.681Z",
-            "postProcessHash": "687b8068298079907a46534d8a08bbf8b9c0c86fa7060112b6c07e7cb7dd7c4b"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.681Z",
-            "postProcessHash": "9ccbcec2e8222c66a241faf1a429c4b9d3e020ec02fb4fee1d359b57b8f08892"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.690Z",
-            "postProcessHash": "f915c902c900ebfb4ccbf009c52be938306d62e723564f3bd9bcfccdb6ccab7e"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.695Z",
-            "postProcessHash": "f05759b677a7308e2d43008a1a6d31ffc4baf928c478faf7faacebf1b5596703"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.456Z",
-            "postProcessHash": "55d971a0f1ac5c2a9d1e8af148dcb396d39d94eee77a5933dfbd6ac3ee2b2672"
-          }
+      "fileName": "content/en/posts/2023-06-29-global-config-js.md",
+      "staged": false
+    },
+    {
+      "fileId": "b6f2713998883e45d26e6cfecd56a92b9c3c461821f8faa5fef1dfafedbbc1c2",
+      "versionId": "26161f3782e7ff69daa037a1e307326bf2e46a87d7b306da0aac92f6a6c76f5b",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.336Z",
+          "fileName": "content/ar/posts/2025-07-08-nix-macos-starter-mise.md",
+          "postProcessHash": "e56fa9a254520be61c26184d7fa39cb63f5d11b1c9fe0b45a616332a447dc818"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.336Z",
+          "fileName": "content/ru/posts/2025-07-08-nix-macos-starter-mise.md",
+          "postProcessHash": "a2576ed9df9cd685afb9ea686c7e55292f831b432cec5f5e10557354ea183cac"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.336Z",
+          "fileName": "content/cs/posts/2025-07-08-nix-macos-starter-mise.md",
+          "postProcessHash": "0ecaff1db5edfa613e600ef6ec5a302954748013f1bbd4b93eded9d291d38f2f"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.336Z",
+          "fileName": "content/sk/posts/2025-07-08-nix-macos-starter-mise.md",
+          "postProcessHash": "ec205c6d2b28732611fb652bcfcab4bb7153407a04876824f1fd46decc08af0f"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.337Z",
+          "fileName": "content/eo/posts/2025-07-08-nix-macos-starter-mise.md",
+          "postProcessHash": "3bc65d7131da60de0698b021d82c5cabdc641066e1ad67686c42927f8f061187"
         }
       },
-      "a09c2bc92e27ad0e4ec868d1cd922b3e045f956d877b7f25f7f886a37fbbbfd8": {
-        "b9c35626b4edc54fb580340cb9694a4d8321f4e629454295eeaf32dea6176887": {
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.691Z",
-            "postProcessHash": "671e65db85913d7a6ea7af0dd5a482e4d9de3438b51b3aa1906d606a417d1191"
-          },
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.697Z",
-            "postProcessHash": "52fbbcb7905243103bb7dd2514fa8391e4bdf6bbf87f8af58b2cc667d12909d2"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.696Z",
-            "postProcessHash": "a23c40588b0bea9ee2e1dd97dd27ed783116610aac6e8e282af91e0a2c62b61e"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.695Z",
-            "postProcessHash": "5b4d815b62c1f3570aa4fc21a65110f6d99b53fba4129d40a5d1a5d4835527e2"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.457Z",
-            "postProcessHash": "be6e56fa352300029706926a44ca06faab8898694ffbdcbe80f9022216c3b7ff"
-          }
+      "fileName": "content/en/posts/2025-07-08-nix-macos-starter-mise.md",
+      "staged": false
+    },
+    {
+      "fileId": "59585dc4bff9b2a7b7b76ee1e5bd45f591dcb8f6168fdc6af4a01118476fcd0f",
+      "versionId": "ec7f229f0ccde211a010c77354eca7d1f46cfcb35d305405d9f4d5a751a69551",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.337Z",
+          "fileName": "content/ar/posts/2025-09-17-introducing-eta-v4.md",
+          "postProcessHash": "f6a17ae8ccbc2176a377aa81ffadabb274debd18ef3ce58612dd8de3e5cb217f"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.337Z",
+          "fileName": "content/ru/posts/2025-09-17-introducing-eta-v4.md",
+          "postProcessHash": "2347d8152ceeacb0a8571bafce5c6c1a7d3c9587fc65b82abb16fff4aec653fa"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.337Z",
+          "fileName": "content/cs/posts/2025-09-17-introducing-eta-v4.md",
+          "postProcessHash": "bf9bcf67c0d78cbc90d1f70bab6f5b62aae6ac1a9d7f22a94b12b10d60a60d63"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.337Z",
+          "fileName": "content/sk/posts/2025-09-17-introducing-eta-v4.md",
+          "postProcessHash": "e899d468a1e62f91708905299ff3e84cad00cbccc39a1d03ae62a66cc16e78d0"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.337Z",
+          "fileName": "content/eo/posts/2025-09-17-introducing-eta-v4.md",
+          "postProcessHash": "6200a4c0fab5b2f1cc5b22b6027efd8cd84842d19f5b803d9000bf6da2366c8a"
         }
       },
-      "9fc13a01d5f9f8e418232169a7a7618ec6c2a268bdb8f4809e4adf1143ba9f55": {
-        "1e62f09a843f47673e169f40d2c27b9b94a31c0bc25375ad7e65326f90497d6d": {
-          "cs": {
-            "updatedAt": "2026-04-18T22:32:21.690Z",
-            "postProcessHash": "29f1bdc79d0c0ba7398a8eaeb7592ff2c479f67868f18c5f105079804adc91a8"
-          },
-          "ru": {
-            "updatedAt": "2026-04-18T22:32:21.698Z",
-            "postProcessHash": "26c725b8b1d00cb06208dbe3b465d3745289b72e0dc1a30d0290a0d3a22829e6"
-          },
-          "sk": {
-            "updatedAt": "2026-04-18T22:32:21.686Z",
-            "postProcessHash": "7f7a3ab6e5f9f4daa28cfe5ddaeab2f3817d67fefe729608a644cf55ab67b7ff"
-          },
-          "ar": {
-            "updatedAt": "2026-04-18T22:32:21.694Z",
-            "postProcessHash": "0a0b836efe617838515219881c3816b1da5dab285834ddee6b0cbb54b62553f4"
-          },
-          "eo": {
-            "updatedAt": "2026-06-05T22:02:50.458Z",
-            "postProcessHash": "4ca586b9eb301487f352ce62a550f6d462162ea1f423c8bf8d820ff4a676a60d"
-          }
+      "fileName": "content/en/posts/2025-09-17-introducing-eta-v4.md",
+      "staged": false
+    },
+    {
+      "fileId": "879f3a5f954ee8b75bf1e91f4ea9916b41c933e5beba7eb6362647a637c9c66d",
+      "versionId": "22920a86d8a8e0a69c90da25a7d0f48f5b7737b5970aaabfc2b2946d45506e12",
+      "translations": {
+        "ar": {
+          "updatedAt": "2026-07-22T18:18:28.339Z",
+          "fileName": "src/_gt/ar.json",
+          "postProcessHash": "36cdb7933c12e0faf669a4ac90b4472cdbf67b6d6b4dbbeb474283cdd94ed406"
+        },
+        "ru": {
+          "updatedAt": "2026-07-22T18:18:28.340Z",
+          "fileName": "src/_gt/ru.json",
+          "postProcessHash": "1b6d7c33f34424c2d16518cb793595ef404e64f338c925ba2d069acb6e36166e"
+        },
+        "cs": {
+          "updatedAt": "2026-07-22T18:18:28.341Z",
+          "fileName": "src/_gt/cs.json",
+          "postProcessHash": "73cc3955774a0362764ad8e6dc0b1b9adbf1b941f47ded7910cafe292e5913b8"
+        },
+        "sk": {
+          "updatedAt": "2026-07-22T18:18:28.342Z",
+          "fileName": "src/_gt/sk.json",
+          "postProcessHash": "18a2cf8e3453ff127be076abfcfa344749a2fc6ab4bb553b7d750ce05348c5e7"
+        },
+        "eo": {
+          "updatedAt": "2026-07-22T18:18:28.342Z",
+          "fileName": "src/_gt/eo.json",
+          "postProcessHash": "36e9ab4e9787a20ed1c4502ef3ec3bf5e13e3a741fe6a55f6c9d5847f9de798d"
         }
       },
-      "cab1aed824af076acf090a7faccc3deaf06128cf20391de36f582c30dece30c5": {
-        "1da760aa45a6d8f71d9d8feba0a947d77915088bdf0bad12250e1a6f772dbad7": {
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:58.998Z",
-            "postProcessHash": "b45cc49ce9cc85c7e0bd8d934a1c203557867f984542f3e8790fda59b18fc6c9"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:58.999Z",
-            "postProcessHash": "687c45399411e87d21ae1f4fea588280bef07fe481d3f5f3932ed48f2df60af7"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:58.996Z",
-            "postProcessHash": "0ce45df69a8dfeada6fcb3317fcc93fa3cd8005c25e477f62a3ca611b3abb8cd"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:58.998Z",
-            "postProcessHash": "321ffcf2de64916b08a4c63b2cead1949ab1315c413f463d25d046400ae5f2ca"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:58.999Z",
-            "postProcessHash": "183eb6bd0e074c20b421e2da83d81b685f012d5ca5867beaab78983fa09c8136"
-          }
-        }
-      },
-      "7050a3b097ca7414f5fd18d4a9cee5f5f983592aba44469a1b36b3f1923af1eb": {
-        "9d0b36ea5773ebd7043b516255cc8858c5e2b4e0fc11f6b20badef63363a29f4": {
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.000Z",
-            "postProcessHash": "e31b6476718dc5ab1678e1cd859f9f20e5b06f3fa2dfdc22b4f09f3a2fd9e124"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:58.999Z",
-            "postProcessHash": "19652a39882012895589446d3ba3dea584b99a279444d461a1fef40d06b3f1c3"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.000Z",
-            "postProcessHash": "cb3504ec92aee5536972d221b939869757051d222dd8e74316ca0f6d7e0f4eec"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.028Z",
-            "postProcessHash": "40aafba76277642826ca35b3ae7e883b24af31534fa6e12a0126c6fae129c15b"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.000Z",
-            "postProcessHash": "898322f146daa4a305df82c664e1c50b244688fa7324f7a2c24db33d28d16702"
-          }
-        }
-      },
-      "daf3401aed652940cd143760540c2fd353b5abbf9cfa62c348c5f53e7ef899d5": {
-        "3a7ed09df06da123a31fd1bad8c56a0c6410fda2701c5f379a72f4be29f895eb": {
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.001Z",
-            "postProcessHash": "17f165030e16f382346da793622d73cd237a9f7b0d72b2e6e8f38f4671131b3a"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.028Z",
-            "postProcessHash": "68f1fb9d6661c17a0d106cb8bb17bc6e57cfa5f40e156768906b7ad878b8aaef"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.001Z",
-            "postProcessHash": "498912cee2ab755ffa6b6a4168efcd72b82d66ce162248a0d3e5bfb2edd51ef8"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.001Z",
-            "postProcessHash": "37b90722927b3d0b0f0281c1eeb2a12a1f613c77ac6ee5372183686dee8b1d22"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.002Z",
-            "postProcessHash": "6560163cceacf03f7133f0fe71715e0ff96781607770637dd1a07f80f121b8b0"
-          }
-        }
-      },
-      "38def257f9a093182b0602520a435964c17fd739a76ff116fd08f3c7e7aa8cc2": {
-        "fd456f4eef64f72c0fc7008bb8c03d3bf24a9497b2691f6929fc1d8cb6e1a692": {
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.028Z",
-            "postProcessHash": "0b564d7877adbf6c476fe8b9ecbf0a356fa28795e851d623f49812e51095fc53"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.002Z",
-            "postProcessHash": "0cdd40dce477372ac74f70bb8f437ae2e75f92055bd3f265ae501c82b9ad4a01"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.002Z",
-            "postProcessHash": "82b67f13ac1115f434a06f6be1ee69c055c3d3c912c3ef4057fa10187c17e748"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.003Z",
-            "postProcessHash": "676278a34337e2f7d2e7a0c6e365efb1700047b81d046124225209c78763440a"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.003Z",
-            "postProcessHash": "aae8304ef978b2cd17d3b94b9e4906c85799d9869d54783b7aab92833dbd80f3"
-          }
-        }
-      },
-      "c2c216fd991bc55140059d4b7a6487d439bfb6a40a2878f5816d6f7c13f2b2a8": {
-        "3d3924581811e5a0d3f088d9fdce8f20b7907f743cff2c571eb67de102d6e23c": {
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.003Z",
-            "postProcessHash": "b8c744b8d1d5edc582c541fcdf8dae8760191deb57beeee2344e8627066739bb"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.004Z",
-            "postProcessHash": "71dd1e2af8318ee9f844d1c2afa89a7bb0927c3706a677414ec1a4a1c49e394e"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.028Z",
-            "postProcessHash": "1724b899da4e0401ea3dafd421e9b349ee64ef7746e9577a431f6ffa70c8dba4"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.004Z",
-            "postProcessHash": "ba24bec825571557e860a61676291af45cf5b1f5514af4305ad89c865af0afca"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.004Z",
-            "postProcessHash": "04561c920f794493a0d6d184e02b0bd98056768850eb9c88afcab77a53e7557a"
-          }
-        }
-      },
-      "b569dc3845ebb7415ae21b7ea96b0685e4be4c90ec3bb6fd194b9c31cd20b874": {
-        "4fd0e9388ae33d404a82435e9dca67e5e588260dca73956ab29a3a9a1b3c8f08": {
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.028Z",
-            "postProcessHash": "3c49705bbe0a98e5adc57ebcd7011fa07bf94bf9e5840e121023675560e3958d"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.028Z",
-            "postProcessHash": "728b3f3b21e65a626f5e0cf14f9d2a62d23e57e1e0542eb44969a1f4b2b4bc36"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.004Z",
-            "postProcessHash": "3f87cd169788076b162a8013d54625759ccc0164dc54fafec2c547f3c407a678"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.005Z",
-            "postProcessHash": "fe5e46d2080a40e0836f4ff0bd2802a91158e0dd94e965ce270792bec4b5833d"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.005Z",
-            "postProcessHash": "b5acbd00ae1f467e1407528dccec50d5b3f15369ec5a895f03211b701b2ecd94"
-          }
-        }
-      },
-      "59585dc4bff9b2a7b7b76ee1e5bd45f591dcb8f6168fdc6af4a01118476fcd0f": {
-        "ec7f229f0ccde211a010c77354eca7d1f46cfcb35d305405d9f4d5a751a69551": {
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.006Z",
-            "postProcessHash": "6200a4c0fab5b2f1cc5b22b6027efd8cd84842d19f5b803d9000bf6da2366c8a"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.005Z",
-            "postProcessHash": "2347d8152ceeacb0a8571bafce5c6c1a7d3c9587fc65b82abb16fff4aec653fa"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.006Z",
-            "postProcessHash": "e899d468a1e62f91708905299ff3e84cad00cbccc39a1d03ae62a66cc16e78d0"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.006Z",
-            "postProcessHash": "bf9bcf67c0d78cbc90d1f70bab6f5b62aae6ac1a9d7f22a94b12b10d60a60d63"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.006Z",
-            "postProcessHash": "f6a17ae8ccbc2176a377aa81ffadabb274debd18ef3ce58612dd8de3e5cb217f"
-          }
-        }
-      },
-      "912a50aeb0bd191ed54ffbeceab37fc91328b236c77bfd5a6588a94be3f8ee3f": {
-        "a836e0308ee00e5934ebadff32fe2dae41218c2232f5083e7063c779330025bf": {
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.007Z",
-            "postProcessHash": "ea43a9b3b1005d786cc70510d2d28bc1b9b23dbcb76133812f4277bc9c9f5d28"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.007Z",
-            "postProcessHash": "9a4c93483fee3699f1f3c5e1a5e5ca18d0b4d097bb216cb5965b991a2e2da205"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.028Z",
-            "postProcessHash": "b5bdb33ef0215a5780e3944dd4354dcf39d24a9bf186e49a8a25ec9570014c45"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.007Z",
-            "postProcessHash": "f8a94171b4016742e930ef633f304fd1e3b2d0571830efc960310635fc66e91f"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.029Z",
-            "postProcessHash": "afc734acb40b11414441b0db9a11bbc8c7180719cec1e678938c0438dc3bddb5"
-          }
-        }
-      },
-      "088552738872211626c07c4c766ddad2ac2c83cc53247c0648b29acfed2facb4": {
-        "7b49508fa9dbca16b42ddfe536aa80eec86245d7d836330a7c929d1d452502dd": {
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.010Z",
-            "postProcessHash": "7eeb55e54dd3bd5453d09f246cbe6f7355ede9cb4d816ebf524ecd9296539f1a"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.010Z",
-            "postProcessHash": "3aa12b3d429b8bfee51a8e24975e7dbf232d00fad7819ef1401af77d85b13bf7"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.011Z",
-            "postProcessHash": "860a0ceef2df59c509017e007d8f6993e44fff71de1db926033d19a2c409ecf8"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.029Z",
-            "postProcessHash": "423bd0011184121b62825ab2ca0269bedb81d75bbdb961442660f91aae3bd1b5"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.029Z",
-            "postProcessHash": "11d64a5b8bb21e911d531f7b29229accdaa81f1dbb9cd948df165df7c7441332"
-          }
-        }
-      },
-      "b6f2713998883e45d26e6cfecd56a92b9c3c461821f8faa5fef1dfafedbbc1c2": {
-        "26161f3782e7ff69daa037a1e307326bf2e46a87d7b306da0aac92f6a6c76f5b": {
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.011Z",
-            "postProcessHash": "0ecaff1db5edfa613e600ef6ec5a302954748013f1bbd4b93eded9d291d38f2f"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.011Z",
-            "postProcessHash": "3bc65d7131da60de0698b021d82c5cabdc641066e1ad67686c42927f8f061187"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.012Z",
-            "postProcessHash": "ec205c6d2b28732611fb652bcfcab4bb7153407a04876824f1fd46decc08af0f"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.029Z",
-            "postProcessHash": "e56fa9a254520be61c26184d7fa39cb63f5d11b1c9fe0b45a616332a447dc818"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.012Z",
-            "postProcessHash": "a2576ed9df9cd685afb9ea686c7e55292f831b432cec5f5e10557354ea183cac"
-          }
-        }
-      },
-      "0fadda289aeb9d430dd2245af4d871aa026ef21f7100f5f91f8b9759cb721b0c": {
-        "a00c1105e5732addf1c07282d34cc2b837530a4fbe1e62b3c826edf7705e0ab0": {
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.012Z",
-            "postProcessHash": "3d4b16d260bf7b76289d4d89582b07cca213e18996a97cf13c1a5aab17140af4"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.013Z",
-            "postProcessHash": "6a1dc64c498c27581df380660dedb0b8632c39697ea83cb893027af28357cefa"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.013Z",
-            "postProcessHash": "9f62aaef95f8d3087fecbd1456f32d4257cd83e600abd7270b7d55b564a2365a"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.014Z",
-            "postProcessHash": "8fb094cf12e03382842c2fbffc422cb0dbc19a1584b8825facc980f7950e1ab6"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.029Z",
-            "postProcessHash": "dea0d343446a1d38501796d43f3395d200d8a3145ad197d9ad537e343e892b32"
-          }
-        }
-      },
-      "948293fa43daf30318d7e089e481bfa24d65bc920a2ad28e234c6f08bb06b218": {
-        "0fa7a4281e07930f15af22cbf2eb2cdd7b28d81eb2177643812d32ac0c937c02": {
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.014Z",
-            "postProcessHash": "2e4e813e5de52cbfccb85b2dea159fbc48c0af1de386bad819bffa546a05caaf"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.014Z",
-            "postProcessHash": "aa45df612272b95429e68c8991a567958736a48f56502436eff501eb47262d7d"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.015Z",
-            "postProcessHash": "a08f19bb0ecd897dc38387cbbdc644f1823b7b2ccba75657884551a7480c3a25"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.015Z",
-            "postProcessHash": "db99969a6e83417762efcf480802347090733b79f2727367701ee1befdca1c21"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.015Z",
-            "postProcessHash": "893e6aee1b113b82dd5ca737dd2f46a207d2af48cbf891920feded39933fe8c1"
-          }
-        }
-      },
-      "6b8a9db55ac6d74fbbbc691de86d60211fac90e9365cba1c8ac3d030b91154b2": {
-        "95cfd80dd8a4a9dae0dba917c34f3569496b4bf084d1fccbaa3349747554731c": {
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.016Z",
-            "postProcessHash": "8b88d902eb028d4f8c7dee1e288ac2f55634fab39abf3bdaada8cc06a33a0d26"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.016Z",
-            "postProcessHash": "306228fe4c454628e9c71820f893779389e7e6250f6c50421cff7e2928822f0f"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.016Z",
-            "postProcessHash": "50bee6195d430a20b5bfe795bf48bef264b26f69479f56024ca66eff0c039b66"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.017Z",
-            "postProcessHash": "eb47963e3b4435f0d7f65a84e840b80bad98d2f700b2d3354f0031e0f01d90bc"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.017Z",
-            "postProcessHash": "34ec1b39c413ad0bb78d6c20a4f4daab7c9b16138c7c7649ff76377cc9380f8f"
-          }
-        }
-      },
-      "ced17357eea37a976879190d5a08d604978c80e7f75d022d1537296c1e79dae5": {
-        "cacd1ae9a08fa7a9db5db85c3d4af6dcd5cda70aedfffc8589db89c6de32e8b9": {
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.017Z",
-            "postProcessHash": "cbd4738486dc449dde89c7839852a057559bc094c0fd038dccf2ec6193a1693a"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.017Z",
-            "postProcessHash": "e66ef3552aca21e3fce0cd7c4431856db5bec16c4a3a43e26e521f6baf2822d6"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.018Z",
-            "postProcessHash": "966c84b48a94aa0965c6d9d9d4850a08aa008b0fd71c0f3ed9ec36afc1157d89"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.017Z",
-            "postProcessHash": "694ace45c9f17e490f32d68485794dc60f86ad10b7f71ee380985235ac5644d6"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.018Z",
-            "postProcessHash": "c12b893be1b016b061cdb71b37aec4d18bd0596409c99072e15ca14cd1edf560"
-          }
-        }
-      },
-      "cddf22a321f01ed8f04cda5c2eb9752a216a2508adfcd84de207f37597f52659": {
-        "666b64fcdfdcbebaae91f48a4cb60b0decd82dd8def880c14758427635cea177": {
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.018Z",
-            "postProcessHash": "c8e50a3061081bb332f4e51940e98e8dd9e003c774243b8ee80bb8bee7637ef7"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.019Z",
-            "postProcessHash": "ae0d0af38cffdd7221d41d0d0342fb6a451fa3f5725c711bf16071a3b29c6520"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.019Z",
-            "postProcessHash": "4747d453281c6883b08671e634524a17c5d77b7d04848d7f34cb124a0e7f58a9"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.019Z",
-            "postProcessHash": "dabc1074907bf61a390324b797a27fe068776758f4cbd3219477f064362f1b28"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.020Z",
-            "postProcessHash": "601d1dd1fe6145cb86a21312f5099cd591bb084727299032ea9a5a6ed22732b8"
-          }
-        }
-      },
-      "3d8e30c1c76ff2fc0b4a1ed7c2e42beae84d3bc026da02b8017ebafc06ad43f4": {
-        "ce5ddbcbedc55e8c3c5ba623c47b2220c11924fb1c4ffd01a850eae2843be9ba": {
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.021Z",
-            "postProcessHash": "894f8b2d76fe42521ce53acdec5a83571e4d08751621d4b42f085ce57e6e996c"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.021Z",
-            "postProcessHash": "027aba4e94b8b966686e209b35b31139e77fa3b70ef6fa818f62fb908fa08d37"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.021Z",
-            "postProcessHash": "c0093099f60b3aa9a9b34a96eeeff037fc7dfa8b02af7ba61659f486dac35e67"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.021Z",
-            "postProcessHash": "58e2f031094847cda1351497ac47522e8fee6bbdb4b69837796908b4ee14436a"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.021Z",
-            "postProcessHash": "e657c9e868e88d2f957a3fa61287d82b35bd35209a732ab6a47b784736235b38"
-          }
-        }
-      },
-      "719dad66fda6044d47812d391d7d57d37d1f58c982150eb4a7473436a886e3f3": {
-        "dd95969e3dbea978415321567415c8506ae449ea25a1f8a5934a8e56e5a5857a": {
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.032Z",
-            "postProcessHash": "fb1c6bbf80000d2afee1b3c8ba6c84f2a2002ae1cf2f253638c8ddbd95f7473d"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.022Z",
-            "postProcessHash": "e9e4a2706198e4a30d9d693d0d76d388bfb0b5a7ef4285114daf18c95edd20aa"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.032Z",
-            "postProcessHash": "0c38f59544c0b7366cbcbf7173351d1d3f7ad85a6dfefd092df4f524d913e9bd"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.022Z",
-            "postProcessHash": "9573e3fbc3c5f1764f11a2cd80401c9526cdcc22143ef92e64e3d6799f401a7d"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.022Z",
-            "postProcessHash": "6c4f011ede891476c3f530cc8a4f32f5906a93fcbee3b36cfdb953009cba1fb1"
-          }
-        }
-      },
-      "743d74e9ed883d6331d2b4df8c10866a015be87c2226353d3e3173f12e13d0b0": {
-        "c5aeb01cbda885f8d0afbff3dbab36a115e22629c6c194aefc74dc2774bc5117": {
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.032Z",
-            "postProcessHash": "e57eb923b116a0fe54c0a51e918cc922b51552d1753b86c8f0c412b3a073250d"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.033Z",
-            "postProcessHash": "c08799d65c216f512a9338d6cb4f5ade6120a2de778f7da1558a4ff150268d6b"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.033Z",
-            "postProcessHash": "7997ce56608fc9f05e40e69032054ec4f4e32dfeb2cd8ed9a3079413ce251f6b"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.033Z",
-            "postProcessHash": "a3ad0a157bc26d1b1d9230aede49105b89e45c32b1a3e244e728e7891c9f28db"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.033Z",
-            "postProcessHash": "c6b62b511178ad93d467cb599a45d83aa25d0f9bf6cb87e8566e4f56dca9dafb"
-          }
-        }
-      },
-      "b4770eff97d825b38c99285a5a703bed4d3f0f469c43431f8a1079d0876eaf83": {
-        "ed829f93198e8d5a3ab491587e7e1ab531ad2559f55d044c8b96ac1bccec558b": {
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.033Z",
-            "postProcessHash": "dde0c67e4ca1654d692558cd36cb7e7b5811911c2049c9ed08b3b8cc074446e6"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.033Z",
-            "postProcessHash": "9cc194c56c658c5327f5f0e32512082c28b364d34a6e5690ed4d9b1fccc45f5a"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.034Z",
-            "postProcessHash": "f344412915f5e4c5daf7323bce88a9a42f28484f366ed1419b7a828a46d488f2"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.034Z",
-            "postProcessHash": "61fd3de29d4f4ce85f399476a30fc90fe07dd9ab9c06ea110901973e86d48fcc"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.034Z",
-            "postProcessHash": "f717fc7190092effa6bd63bc50e75d8e8c7566c5a7d16eaf465c8919f7706396"
-          }
-        }
-      },
-      "cd4b5912f4e53b661233cbd04a999ab8dfe5439aa350b1423d6cbc045d79e460": {
-        "caa21e886a0f68a328bddd4d648056690a98f6d35b445e6337cfc7abaa03476a": {
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.023Z",
-            "postProcessHash": "2ddce51faec5003fa20a5a13654dcb1b528f63a4ae5c7d146121472a870c2b5e"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.034Z",
-            "postProcessHash": "b522306fbe07bd56f2f3d84f780afea62ed5f40059150e95a53cff724e094619"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.034Z",
-            "postProcessHash": "2a2e830f3798ef5325897db0e4270566e8da34a35bf92577f02d8a0aca9d9cd1"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.034Z",
-            "postProcessHash": "45ea11bb875fb43d496585715b2ecc46f70d2bebc019cc11ef48d28791aa7df6"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.023Z",
-            "postProcessHash": "f8b68c56243d34eeb5876128981ccaf007b7865a97159a310df530af32f43bcc"
-          }
-        }
-      },
-      "24fcd98131d4e027ad9f6b07ea5787f68a0b61bccf4998482ffb6e2620eab15d": {
-        "368a6f12894edb101cebb97206cd346186cc287ce7c19c244e53785cfac39411": {
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.035Z",
-            "postProcessHash": "d5efd56fc7251b177c368a96a8897475ce7d5604f2c2f185ea3080cc7af276fc"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.035Z",
-            "postProcessHash": "3387057b70ae67ab0d5fdbacab158b5e5433384a9b3f4ae8cd366e066786125f"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.035Z",
-            "postProcessHash": "c6c90dff49621addd8001b2c5e414f6c149d4b23896e3b2a9359990b9225c71a"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.035Z",
-            "postProcessHash": "73d51e4e869e2ced2d13c9e39b81b89a38bf78e4cbec86f74c145879f9213312"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.024Z",
-            "postProcessHash": "8ee1c5411e0bffdafe6ea1afd0e545c56e06d30cdfdd46650707551c436d4a21"
-          }
-        }
-      },
-      "ae6caafc38a3397b452ff0d7004b607adf9afbfd0f397a2703298676d2426a67": {
-        "a8e414ef5fe40b382e7ddb4ad66be027a47c23f40cb124e4fe7903624a35369b": {
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.025Z",
-            "postProcessHash": "f2cf310670bec64fac022c9c287a79083d8d73fed622e3bc45beda91c4a3f296"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.035Z",
-            "postProcessHash": "17ccf41a75f6de55c4191c1e90ab1af78fb97434d57af1b51572f98c4603e323"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.025Z",
-            "postProcessHash": "94355ae453196cc07d92cf9283ec2edc66a40a0fbef6ed03a09093d047e426c2"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.036Z",
-            "postProcessHash": "702c9ddf363e435165501f1cb8d4f2502de01d8033152c42d0c38d9a5da48889"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.025Z",
-            "postProcessHash": "df19569cfb70613a7a486e98b0aee87ade5fd2a82de16d080ad87f6f13a1a7ee"
-          }
-        }
-      },
-      "f1d3abd0087e1ae0ffef01d6fc3da3e169f405cf90daf785774d3ccaaeac8a49": {
-        "c6f05aa9b26c7ac6eea7ee6d5dbfe8432f1334b473e7eef3803808a6d0686580": {
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.037Z",
-            "postProcessHash": "f34c3f848c1aeba040fd88d73211bf22608de638c2243f8c5ba677fa15da6e4b"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.036Z",
-            "postProcessHash": "5227388f8e072f43dd8771b38719dba521f1e55cd40ba324f0ca73d10f3b21c0"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.037Z",
-            "postProcessHash": "b38094922ecf187c498dec8411a09ba2eb30ca9efc0e9144a6ed5faa423a70d6"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.037Z",
-            "postProcessHash": "58deed401477c7002d099c85b79a99c3178755f3d3213823111fc2ea83584fc9"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.027Z",
-            "postProcessHash": "6b963fa691f373fb45365aa1f9b5e1e865d1513e5805f2b5bde526db1e2d48f4"
-          }
-        }
-      },
-      "82b7536e2761d503ba0d4ee4d6d10b71079a1d7f5a4c190f3666cafa265d3c47": {
-        "72be424af7e4480c778911a3af251d8dc07f01102302d535fc2d059f2f2057ee": {
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.030Z",
-            "postProcessHash": "69431da92cb24e38c742394072ef09dc7c11095a3a0ab621e2995a1e12dda4d0"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.030Z",
-            "postProcessHash": "d2ecfa6f00996e41071d4344a1ea0624a460be5808ec47a4a368e54a27e7cc08"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.030Z",
-            "postProcessHash": "9cd45414064776bfd2c7d91d747d8c574fb22afee128d73a0c6d29d78495f3f4"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.031Z",
-            "postProcessHash": "1bb51e555e14f1b763eca58e2a924d355a2dbc73240dc87d940596492053519c"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.031Z",
-            "postProcessHash": "82a14f7c4c422231b6e68caa94143885df9564380b63d59a033391ac2f6755c0"
-          }
-        }
-      },
-      "38774f3a634be90353a0d368f7e17191c76fcb7bf6a3c7394a756ff82babb694": {
-        "e42c5ed26ecec1da7681b4dafcdc5c373b14cf654c2e176a75cf84609053f53c": {
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.024Z",
-            "postProcessHash": "5870b97f38155de6212af23ab46b41e30954ec7da9e2c15e8ee4776a3a243142"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.024Z",
-            "postProcessHash": "2b2bef8d8a37e51fdb985237f1a4ba260e634b33c1c58a505b37647aeab3c00d"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.035Z",
-            "postProcessHash": "f5b73eb455538e9fcb1ef2d9f24e5018923616e4d73029817acf7cb5099d6180"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.024Z",
-            "postProcessHash": "7ff7d179ee483330a3bc5321adc143664c7a4201871f52353de964d15e43a12b"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.024Z",
-            "postProcessHash": "305963ea2688fed9dadf0cd5cfd461905919fe24cad083c9bc2b98899d0640ed"
-          }
-        }
-      },
-      "b97e593c84f7c209189551a73819b0c7ea5ac703c6b7c07ee2ae5e19e4265609": {
-        "89060b58e950ab2fe814bcb99fec8b33857e4e615697b684a84ebce8b0365fbc": {
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.036Z",
-            "postProcessHash": "6c108b44923a97325aa63da5984dc2625eaf6c45a2e37421e1c28e50ecada43e"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.025Z",
-            "postProcessHash": "27d70bd68b8224ae79135612ef02ad0cfda475c43c9898522aae70f2f5c50b0f"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.026Z",
-            "postProcessHash": "f11ee34424fa7e068323c61d6081c6801aa2b9554681fd9bf10e31fdb8862b00"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.036Z",
-            "postProcessHash": "4a308df71288081c03850c904b14b9616c89d819d0da1b0fa232fbbf6b94639e"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.036Z",
-            "postProcessHash": "5c1e5fda92feb6e44cd051aa54bee0fe9c3ebb8de47dda9adc73fdc064d8c974"
-          }
-        }
-      },
-      "d164e0a4ae9b7d83f9162bf80743544bb2abdf552934e4ddd3f4519708679569": {
-        "ad093a4101fea5e52fcaf1b535cfd943ccc7b228765bc0dce04e15814d25ee97": {
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.026Z",
-            "postProcessHash": "bec020c884308fbadc5c83cbd408764e2b1b8fc82278d5a29408dc4437a2d67a"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.026Z",
-            "postProcessHash": "5aea044cb0516df3fc824b5a4aaf15bd5c46257603d8dadbb00943e4c6011bf0"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.026Z",
-            "postProcessHash": "a39cd2be154558b2b50dd8ee78b4b8d3f5990aa060a5795965ebd896544fed4a"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.026Z",
-            "postProcessHash": "30f9a684e7dbff5c378545ac96865dcc9e55bda57a5ace668731abfc5e63ae58"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.026Z",
-            "postProcessHash": "dda467d59783cbb6a422b7333a7f91d236f377695dae8807623eb46b353c0b9e"
-          }
-        }
-      },
-      "5ea2ef866d0cb35c73771390c36b580637db7aec9739e78412a26bcc5846a469": {
-        "74e93d0538ff1e0f0cbb4b4c28592fec7db2067b792c789d6c9151e997efe72e": {
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.027Z",
-            "postProcessHash": "81991b5722ebb76d306ef59d662128e384eb8daf9a77ae739bb510f66a9eb9b1"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.027Z",
-            "postProcessHash": "75b85bca5832599d71f0422e2633b3020401de8de3fe0c7787887149db166097"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.036Z",
-            "postProcessHash": "2f02d41ea91bc67f2556d5a159f52cc09300302408a0a083c200e6c2d0ea72cb"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.027Z",
-            "postProcessHash": "e4d28e21d4e965cc07a5ff677dccc33ffa25ef3a773f2f081c6cfae4f628ddd7"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.036Z",
-            "postProcessHash": "3ad0289cb272fe9c4cf033844cd6b834a9564cf5b4e80cf550afb7d2cd1b840b"
-          }
-        }
-      },
-      "439b8ebd84adf7ad88ea1474eeeaaafd44200e106abbcf0e17139adb52037d2c": {
-        "f13a1ea7d45608962ba724b4d649ccaafaeaaea7909709b21487073ed732ae52": {
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.027Z",
-            "postProcessHash": "eb9b3b8d759ac6d0f7a1857ad45a397c37f784ee0215065525bf6770c763d277"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.037Z",
-            "postProcessHash": "523c943788c2b2eb7e044028a0ac50a3788ffd9071a0058bc2f0eaf9e39d200f"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.037Z",
-            "postProcessHash": "caa9613aed5b75473d65c4026930c7d7801677612ced4a47942fa0405cdf076e"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.038Z",
-            "postProcessHash": "ac55222df1127e6210a59821af544648e8408814fecbeb562aa0243c741fe1fd"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.037Z",
-            "postProcessHash": "aa397a09191977f119fb1913674ef8dda2c4e74e13d92845df4ad8be457b0dc0"
-          }
-        }
-      },
-      "fe594feb9c59917157cafd61c48e95222825e5604db7ce87e3c397739c1005b3": {
-        "865f601ed28724dfd0b4c01985910e7316247e76d8d23d80c5416714d86bc24b": {
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.008Z",
-            "postProcessHash": "580b0ed2419725aab33a8e574c3c5f331827a7b8e94265ff363210789ec2f10b"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.008Z",
-            "postProcessHash": "006999367aa2d21d8f3a108a383d3f94a826ec4c2e30dd6866397596a24ea707"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.009Z",
-            "postProcessHash": "d7c0ea3507998dff19a10f7580e9bd14fab66a0ff23fef899226f67356dc606f"
-          },
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.009Z",
-            "postProcessHash": "195752b6cba99a2852c145979dbfe87367b8fa4f3e4a2ce01bba41f75d7e6d7d"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.009Z",
-            "postProcessHash": "bd4ed772294e21fc5f066571a3c20ed23efdbea8bc05e0316442c1ca477cbe0b"
-          }
-        }
-      },
-      "aeeffc6ed873bf30b9b9ea2f7cad8e8281ece64462b929ff1ab4c26d242a8cca": {
-        "ebb5323d966035a1bfb73ce96521e863df12a72bb07766080eeabdf7c7fdb769": {
-          "cs": {
-            "updatedAt": "2026-07-15T20:34:59.031Z",
-            "postProcessHash": "285c998d6cca992a60fe703ae98568acfcf134c349a0d6ab0ee74184573f8a18"
-          },
-          "ar": {
-            "updatedAt": "2026-07-15T20:34:59.032Z",
-            "postProcessHash": "d79eb47bc8443697a39ac47063655b8e3be44656eac345224af5aeb4d420fc98"
-          },
-          "ru": {
-            "updatedAt": "2026-07-15T20:34:59.020Z",
-            "postProcessHash": "031b2d3a75a654fead9f0aa28bb3ca6007774b2fd1551f746baecb1cc3fc3a0f"
-          },
-          "eo": {
-            "updatedAt": "2026-07-15T20:34:59.032Z",
-            "postProcessHash": "f074e4563217ec9ca5cbd4c8411db0e3c3fb2dc42417a60cae1be65d9c51082e"
-          },
-          "sk": {
-            "updatedAt": "2026-07-15T20:34:59.020Z",
-            "postProcessHash": "7b321659383fd02d46f8fc708e1d89445a34b1a82899823007415dad8749870f"
-          }
-        }
-      }
+      "fileName": "__INTERNAL_GT_TEMPLATE_NAME__",
+      "staged": false
     }
-  }
+  ]
 }
