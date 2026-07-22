@@ -1,6 +1,6 @@
 import Giscus from "@giscus/react";
 import { ClientOnly } from "@tanstack/react-router";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 
 export function Comments() {
   const { resolvedTheme } = useTheme(); // "dark" | "light"

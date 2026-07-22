@@ -1,6 +1,6 @@
 import { useGT } from "gt-tanstack-start";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { isTheme, useTheme } from "@/components/theme-provider";
 
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme();
@@ -13,8 +13,10 @@ export function ThemeToggle() {
       <select
         className="absolute inset-0 size-full cursor-pointer appearance-none opacity-0"
         aria-label={gt("Theme")}
-        value={theme ?? "system"}
-        onChange={(event) => setTheme(event.target.value)}
+        value={theme}
+        onChange={(event) => {
+          if (isTheme(event.target.value)) setTheme(event.target.value);
+        }}
       >
         <option value="light">{gt("Light")}</option>
         <option value="dark">{gt("Dark")}</option>

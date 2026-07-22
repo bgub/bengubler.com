@@ -16,8 +16,8 @@ import {
 } from "gt-tanstack-start";
 import type { ReactNode } from "react";
 import { Link } from "@/components/link";
-import { Providers } from "@/components/providers";
 import { SiteLayout } from "@/components/site-layout";
+import { ThemeProvider } from "@/components/theme-provider";
 import {
   defaultLocale,
   getLocalizedPath,
@@ -99,7 +99,7 @@ function RootDocument({ children }: { children: ReactNode }) {
             );
           }}
         >
-          <Providers>{children}</Providers>
+          <ThemeProvider>{children}</ThemeProvider>
         </GTProvider>
         <Scripts />
       </body>
