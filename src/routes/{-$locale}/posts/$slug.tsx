@@ -3,6 +3,7 @@ import { createServerFn } from "@tanstack/react-start";
 import type { TocNode } from "content-pipeline";
 import { DateTime, T, useGT } from "gt-tanstack-start";
 import { getGT } from "gt-tanstack-start/server";
+import { useMemo } from "react";
 import { Comments } from "@/components/comments";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
@@ -11,7 +12,7 @@ import { resolveLocale } from "@/lib/locales";
 import { getPostMetadata, getRouteMetadata } from "@/lib/metadata";
 import { getPost } from "@/lib/post-data";
 import { getPostTransitionName } from "@/lib/view-transitions";
-import { ClientTOC } from "./-components/client-toc";
+import { ClientTOC, useTOCScrollspy } from "./-components/client-toc";
 import { PostContent } from "./-components/post-content";
 import { RawMarkdown } from "./-components/raw-markdown";
 import { Social } from "./-components/social";
@@ -67,10 +68,12 @@ function PostPage() {
   const { post } = Route.useLoaderData();
   const gt = useGT();
 
-  const toc: TocNode = JSON.parse(post.toc);
+  const toc = useMemo<TocNode>(() => JSON.parse(post.toc), [post.toc]);
   const hasTOC = toc.children.length > 0;
+  const { activeSection, onNavigate, scrollspyRef } = useTOCScrollspy(toc);
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" ref={scrollspyRef}>
       <header className="space-y-4">
         {/* Breadcrumb */}
         <nav className="font-mono text-[11px] text-muted-foreground tracking-wide">
@@ -157,7 +160,11 @@ function PostPage() {
       <div className="lg:hidden space-y-4">
         {hasTOC && (
           <div className="border border-border rounded-sm p-4 bg-card">
-            <ClientTOC tree={toc} />
+            <ClientTOC
+              tree={toc}
+              activeSection={activeSection}
+              onNavigate={onNavigate}
+            />
           </div>
         )}
         <div className="border border-border rounded-sm p-4 bg-card">
@@ -188,7 +195,13 @@ function PostPage() {
         {/* Desktop sidebar */}
         <aside className="hidden lg:block">
           <div className="sticky top-24 space-y-6 border-l border-dotted border-border pl-4">
-            {hasTOC && <ClientTOC tree={toc} />}
+            {hasTOC && (
+              <ClientTOC
+                tree={toc}
+                activeSection={activeSection}
+                onNavigate={onNavigate}
+              />
+            )}
             <Social title={post.title} />
             <RawMarkdown slug={post.slug} content={post.content} />
           </div>
