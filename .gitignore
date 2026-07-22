@@ -1,10 +1,12 @@
 # added manually
 .content-collections
+/.locadex/
 /drafts
 TODO.md
 
 # dependencies
 node_modules/
+/.pnpm-store/
 /.pnp
 .pnp.*
 .yarn/*
@@ -18,6 +20,7 @@ node_modules/
 
 # generated routes
 /src/routeTree.gen.ts
+/.tanstack/
 /.next/
 
 # production
