@@ -2,9 +2,7 @@
 @import "tw-animate-css";
 @import "@fontsource-variable/newsreader/wght.css";
 @import "@fontsource-variable/newsreader/wght-italic.css";
-@import "@fontsource/dm-mono/300.css";
 @import "@fontsource/dm-mono/400.css";
-@import "@fontsource/dm-mono/500.css";
 
 @font-face {
   font-family: "Newsreader Fallback";

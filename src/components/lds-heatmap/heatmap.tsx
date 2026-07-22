@@ -177,7 +177,7 @@ function HeatmapHeader({
         <h1
           style={{
             fontSize: 20,
-            fontWeight: 600,
+            fontWeight: 400,
             margin: "2px 0 0",
             color: "#1a1a2e",
           }}
@@ -204,7 +204,7 @@ function HeatmapHeader({
               style={{
                 background: mode === key ? "#fff" : "transparent",
                 color: mode === key ? "#1a1a2e" : "#999",
-                fontWeight: mode === key ? 600 : 400,
+                fontWeight: 400,
                 boxShadow: mode === key ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
               }}
             >
@@ -554,7 +554,7 @@ function Rank({
                 fontSize: 12,
                 color: index < 3 ? "#1d4e89" : "#ccc",
                 width: 14,
-                fontWeight: index < 3 ? 600 : 400,
+                fontWeight: 400,
               }}
             >
               {index + 1}
