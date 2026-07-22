@@ -1,4 +1,4 @@
-import { useGT } from "gt-react";
+import { useGT } from "gt-tanstack-start";
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 

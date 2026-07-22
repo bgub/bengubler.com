@@ -1,6 +1,6 @@
 import { ClientOnly } from "@tanstack/react-router";
 import type { HighlightedLine } from "content-pipeline";
-import { msg, useMessages } from "gt-react";
+import { msg, useMessages } from "gt-tanstack-start";
 import { LinkIcon } from "lucide-react";
 import {
   type CSSProperties,

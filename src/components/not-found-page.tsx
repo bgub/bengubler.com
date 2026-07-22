@@ -1,4 +1,4 @@
-import { T } from "gt-react";
+import { T } from "gt-tanstack-start";
 import type { ReactNode } from "react";
 import { Link } from "@/components/link";
 

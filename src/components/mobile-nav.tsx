@@ -1,5 +1,5 @@
 import { Popover } from "@base-ui/react/popover";
-import { useGT, useLocale, useMessages } from "gt-react";
+import { useGT, useMessages } from "gt-tanstack-start";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "@/components/link";
@@ -7,15 +7,14 @@ import { LocaleSwitcher } from "@/components/locale-switcher";
 import { Squiggle } from "@/components/squiggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
+import { getUnlocalizedPath } from "@/lib/locales";
 import { navigation } from "@/lib/navigation";
 import { usePathname } from "@/lib/router";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const rawPathname = usePathname();
-  const locale = useLocale();
-  const pathname =
-    rawPathname.replace(new RegExp(`^/${locale}(?=/|$)`), "") || "/";
+  const pathname = getUnlocalizedPath(rawPathname);
   const m = useMessages();
   const gt = useGT();
 

@@ -1,17 +1,16 @@
-import { useLocale, useMessages } from "gt-react";
+import { useMessages } from "gt-tanstack-start";
 import { Link } from "@/components/link";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { ProfileImage } from "@/components/profile-image";
 import { Squiggle } from "@/components/squiggle";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { getUnlocalizedPath } from "@/lib/locales";
 import { navigation } from "@/lib/navigation";
 import { usePathname } from "@/lib/router";
 
 export function Sidebar() {
   const rawPathname = usePathname();
-  const locale = useLocale();
-  const pathname =
-    rawPathname.replace(new RegExp(`^/${locale}(?=/|$)`), "") || "/";
+  const pathname = getUnlocalizedPath(rawPathname);
   const m = useMessages();
 
   return (

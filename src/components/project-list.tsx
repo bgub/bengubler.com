@@ -1,4 +1,4 @@
-import { useGT, useMessages } from "gt-react";
+import { useGT, useMessages } from "gt-tanstack-start";
 import { Link } from "@/components/link";
 import { GitHubIcon } from "@/components/social";
 import { getColorByIndex } from "@/lib/colors";

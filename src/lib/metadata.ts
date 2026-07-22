@@ -1,4 +1,4 @@
-import { getLocalizedPath, type Locale } from "./locales.ts";
+import { getLocalizedPath, type Locale, resolveLocale } from "./locales.ts";
 
 const siteName = "Ben Gubler";
 const siteUrl = "https://bengubler.com";
@@ -45,6 +45,15 @@ export function getPageMetadata(options: PageMetadataOptions) {
       content: "max-video-preview:-1, max-image-preview:large, max-snippet:-1",
     },
   ];
+}
+
+export function getRouteMetadata(
+  options: Omit<PageMetadataOptions, "locale"> | undefined,
+  locale: string | undefined,
+) {
+  return options
+    ? getPageMetadata({ ...options, locale: resolveLocale(locale) })
+    : [];
 }
 
 export function getPostMetadata(options: PostMetadataOptions) {

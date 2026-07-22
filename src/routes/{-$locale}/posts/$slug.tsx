@@ -1,7 +1,7 @@
 import { createFileRoute, isNotFound, notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import type { TocNode } from "content-pipeline";
-import { DateTime, T, useGT } from "gt-react";
+import { DateTime, T, useGT } from "gt-tanstack-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Comments } from "@/components/comments";
 import { ClientTOC } from "@/components/content/client-toc";
@@ -16,7 +16,7 @@ import { Squiggle } from "@/components/squiggle";
 import { Typography } from "@/components/ui/typography";
 import { ViewTransition } from "@/components/view-transition";
 import { resolveLocale } from "@/lib/locales";
-import { getPageMetadata, getPostMetadata } from "@/lib/metadata";
+import { getPostMetadata, getRouteMetadata } from "@/lib/metadata";
 import { getPost } from "@/lib/post-data";
 
 type NotFoundMetadata = {
@@ -55,12 +55,7 @@ export const Route = createFileRoute("/{-$locale}/posts/$slug")({
     if (!post) {
       const metadata = getErrorMetadata(match.error);
       return {
-        meta: metadata
-          ? getPageMetadata({
-              ...metadata,
-              locale: resolveLocale(match.params.locale),
-            })
-          : [],
+        meta: getRouteMetadata(metadata, match.params.locale),
       };
     }
     return {

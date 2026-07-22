@@ -1,4 +1,4 @@
-import { T, useGT } from "gt-react";
+import { T, useGT } from "gt-tanstack-start";
 import { usePathname } from "@/lib/router";
 import { cn } from "@/lib/utils";
 

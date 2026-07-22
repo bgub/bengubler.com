@@ -1,4 +1,4 @@
-import { Branch, T, useLocale } from "gt-react";
+import { Branch, T, useLocale } from "gt-tanstack-start";
 import { useState } from "react";
 import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 

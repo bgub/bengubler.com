@@ -1,4 +1,4 @@
-import { useGT, useLocaleSelector } from "gt-react";
+import { useGT, useLocaleSelector } from "gt-tanstack-start";
 import { cn } from "@/lib/utils";
 
 type LocaleSwitcherProps = {

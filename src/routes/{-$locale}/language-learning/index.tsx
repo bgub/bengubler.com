@@ -1,12 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { msg, T, useGT, useMessages } from "gt-react";
+import { msg, T, useGT, useMessages } from "gt-tanstack-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 import { getColorByIndex } from "@/lib/colors";
-import { resolveLocale } from "@/lib/locales";
-import { getPageMetadata } from "@/lib/metadata";
+import { getRouteMetadata } from "@/lib/metadata";
 
 const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
   const gt = await getGT();
@@ -21,12 +20,7 @@ const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
 export const Route = createFileRoute("/{-$locale}/language-learning/")({
   loader: () => getMetadata(),
   head: ({ loaderData, params }) => ({
-    meta: loaderData
-      ? getPageMetadata({
-          ...loaderData,
-          locale: resolveLocale(params.locale),
-        })
-      : [],
+    meta: getRouteMetadata(loaderData, params.locale),
   }),
   component: LanguageLearningPage,
 });

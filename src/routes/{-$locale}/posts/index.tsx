@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { DateTime, T, useLocale, Var } from "gt-react";
+import { DateTime, T, useLocale, Var } from "gt-tanstack-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 import { ViewTransition } from "@/components/view-transition";
 import { getLocalizedPath, resolveLocale } from "@/lib/locales";
-import { getPageMetadata } from "@/lib/metadata";
+import { getRouteMetadata } from "@/lib/metadata";
 import { getPostsForLocale } from "@/lib/post-data";
 
 const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
@@ -32,12 +32,7 @@ export const Route = createFileRoute("/{-$locale}/posts/")({
     return { posts, metadata };
   },
   head: ({ loaderData, params }) => ({
-    meta: loaderData
-      ? getPageMetadata({
-          ...loaderData.metadata,
-          locale: resolveLocale(params.locale),
-        })
-      : [],
+    meta: getRouteMetadata(loaderData?.metadata, params.locale),
   }),
   component: PostsPage,
 });

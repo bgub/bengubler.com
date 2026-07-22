@@ -1,4 +1,4 @@
-import { T, useGT, useLocale, Var } from "gt-react";
+import { T, useGT, useLocale, Var } from "gt-tanstack-start";
 import { Brain, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";

@@ -3,8 +3,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Heatmap } from "@/components/lds-heatmap/heatmap";
 import type { Topology } from "@/components/lds-heatmap/topojson";
-import { resolveLocale } from "@/lib/locales";
-import { getPageMetadata } from "@/lib/metadata";
+import { getRouteMetadata } from "@/lib/metadata";
 
 const getTopology = createServerFn({ method: "GET" }).handler(async () => {
   const { getTopologyData } = await import("@/lib/topology.server");
@@ -34,12 +33,7 @@ export const Route = createFileRoute("/{-$locale}/lds-heatmap")({
     return { ...topology, metadata };
   },
   head: ({ loaderData, params }) => ({
-    meta: loaderData
-      ? getPageMetadata({
-          ...loaderData.metadata,
-          locale: resolveLocale(params.locale),
-        })
-      : [],
+    meta: getRouteMetadata(loaderData?.metadata, params.locale),
   }),
   component: LdsHeatmapPage,
 });

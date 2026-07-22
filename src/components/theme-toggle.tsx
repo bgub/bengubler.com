@@ -1,4 +1,4 @@
-import { T } from "gt-react";
+import { T } from "gt-tanstack-start";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";

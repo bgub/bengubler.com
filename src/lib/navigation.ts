@@ -1,4 +1,4 @@
-import { msg } from "gt-react";
+import { msg } from "gt-tanstack-start";
 import {
   Code,
   FileText,

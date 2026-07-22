@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { decodeMsg, T, useLocale } from "gt-react";
+import { decodeMsg, T, useLocale } from "gt-tanstack-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Link } from "@/components/link";
 import { ProjectList } from "@/components/project-list";
 import { ViewTransition } from "@/components/view-transition";
 import { getColorByIndex } from "@/lib/colors";
 import { resolveLocale } from "@/lib/locales";
-import { getPageMetadata } from "@/lib/metadata";
+import { getRouteMetadata } from "@/lib/metadata";
 import { getPostsForLocale } from "@/lib/post-data";
 import { projectsData } from "@/lib/projects";
 
@@ -31,12 +31,7 @@ export const Route = createFileRoute("/{-$locale}/")({
     return { posts, metadata };
   },
   head: ({ loaderData, params }) => ({
-    meta: loaderData
-      ? getPageMetadata({
-          ...loaderData.metadata,
-          locale: resolveLocale(params.locale),
-        })
-      : [],
+    meta: getRouteMetadata(loaderData?.metadata, params.locale),
   }),
   component: HomePage,
 });

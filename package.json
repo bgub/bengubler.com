@@ -27,8 +27,6 @@
     "class-variance-authority": "^0.7.1",
     "d3": "^7.9.0",
     "feed": "^5.2.1",
-    "gt-i18n": "^1.0.7",
-    "gt-react": "^11.0.12",
     "gt-tanstack-start": "^11.0.12",
     "lucide-react": "^1.16.0",
     "next-themes": "^0.4.6",
