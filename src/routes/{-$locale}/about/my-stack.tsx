@@ -1,26 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { msg, T, useGT, useMessages } from "gt-tanstack-start";
-import { getGT } from "gt-tanstack-start/server";
+import { getGT, msg, T, useGT, useMessages } from "gt-tanstack-start";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
-import { getRouteMetadata } from "@/lib/metadata";
-
-const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
-  const gt = await getGT();
-  return {
-    title: gt("My Stack - Ben Gubler"),
-    description: gt(
-      "Technologies, apps, and tools that Ben Gubler uses for development and productivity.",
-    ),
-  };
-});
+import { getPageMetadata } from "@/lib/metadata";
 
 export const Route = createFileRoute("/{-$locale}/about/my-stack")({
-  loader: () => getMetadata(),
-  head: ({ loaderData, params }) => ({
-    meta: getRouteMetadata(loaderData, params.locale),
-  }),
+  head: async () => {
+    const gt = await getGT();
+    return {
+      meta: getPageMetadata({
+        title: gt("My Stack - Ben Gubler"),
+        description: gt(
+          "Technologies, apps, and tools that Ben Gubler uses for development and productivity.",
+        ),
+      }),
+    };
+  },
   component: MyStackPage,
 });
 

@@ -1,4 +1,4 @@
-import { Branch, T, useLocale } from "gt-tanstack-start";
+import { Branch, T } from "gt-tanstack-start";
 import { useState } from "react";
 import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 
@@ -8,7 +8,6 @@ interface RawMarkdownProps {
 }
 
 export function RawMarkdown({ slug, content }: RawMarkdownProps) {
-  const locale = useLocale();
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = async () => {
@@ -31,7 +30,7 @@ export function RawMarkdown({ slug, content }: RawMarkdownProps) {
       <div className="font-serif text-[12.5px] text-ink-soft font-light leading-relaxed space-y-1">
         <T>
           <a
-            href={getLocalizedPath(`/posts/${slug}.md`, resolveLocale(locale))}
+            href={getLocalizedPath(`/posts/${slug}.md`, resolveLocale())}
             target="_blank"
             rel="noopener noreferrer"
             className="block text-foreground no-underline border-b border-border w-fit hover:border-ink-mute transition-colors"

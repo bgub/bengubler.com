@@ -6,7 +6,7 @@ export const Route = createFileRoute("/{-$locale}/api/posts/$slug/raw")({
   server: {
     handlers: {
       GET: ({ params }) => {
-        return getRawPostResponse(resolveLocale(params.locale), params.slug);
+        return getRawPostResponse(resolveLocale(), params.slug);
       },
     },
   },

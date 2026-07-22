@@ -12,7 +12,6 @@ import {
   GTProvider,
   getTranslationsSnapshot,
   initializeGT,
-  parseLocale,
   T,
 } from "gt-tanstack-start";
 import type { ReactNode } from "react";
@@ -34,7 +33,7 @@ initializeGT({ ...gtConfig, loadTranslations, localeCookieName });
 
 export const Route = createRootRoute({
   loader: async () => {
-    const locale = resolveLocale(parseLocale());
+    const locale = resolveLocale();
     return {
       locale,
       translations: await getTranslationsSnapshot(locale),
@@ -47,7 +46,6 @@ export const Route = createRootRoute({
       ...getPageMetadata({
         title: "Page Not Found - Ben Gubler",
         description: "The page you're looking for doesn't exist.",
-        locale: defaultLocale,
       }),
     ],
     links: [
@@ -97,10 +95,10 @@ function RootDocument({ children }: { children: ReactNode }) {
         <GTProvider
           locale={locale}
           translations={translations}
-          _reload={({ locale: nextLocale }) => {
+          _reload={() => {
             const path = getLocalizedPath(
               window.location.pathname,
-              resolveLocale(nextLocale),
+              resolveLocale(),
             );
             window.location.assign(
               `${path}${window.location.search}${window.location.hash}`,

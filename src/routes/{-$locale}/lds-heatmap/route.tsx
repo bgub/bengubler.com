@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { getGT } from "gt-tanstack-start/server";
-import { getRouteMetadata } from "@/lib/metadata";
+import { getGT } from "gt-tanstack-start";
+import { getPageMetadata } from "@/lib/metadata";
 import { Heatmap } from "./-heatmap";
 
 const getTopology = createServerFn({ method: "GET" }).handler(async () => {
@@ -9,27 +9,19 @@ const getTopology = createServerFn({ method: "GET" }).handler(async () => {
   return getTopologyData();
 });
 
-const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
-  const gt = await getGT();
-  return {
-    title: `${gt("LDS Membership Heat Map — 2024")} - Ben Gubler`,
-    description: gt(
-      "Interactive heat map of Latter-day Saint membership worldwide, by country, US state, and Canadian province.",
-    ),
-  };
-});
-
 export const Route = createFileRoute("/{-$locale}/lds-heatmap")({
-  loader: async () => {
-    const [topology, metadata] = await Promise.all([
-      getTopology(),
-      getMetadata(),
-    ]);
-    return { ...topology, metadata };
+  loader: () => getTopology(),
+  head: async () => {
+    const gt = await getGT();
+    return {
+      meta: getPageMetadata({
+        title: `${gt("LDS Membership Heat Map — 2024")} - Ben Gubler`,
+        description: gt(
+          "Interactive heat map of Latter-day Saint membership worldwide, by country, US state, and Canadian province.",
+        ),
+      }),
+    };
   },
-  head: ({ loaderData, params }) => ({
-    meta: getRouteMetadata(loaderData?.metadata, params.locale),
-  }),
   component: LdsHeatmapPage,
 });
 

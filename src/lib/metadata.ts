@@ -1,11 +1,10 @@
-import { getLocalizedPath, type Locale, resolveLocale } from "./locales.ts";
+import { getLocalizedPath, resolveLocale } from "./locales.ts";
 
 const siteName = "Ben Gubler";
 const siteUrl = "https://bengubler.com";
 
 type PageMetadataOptions = {
   description: string;
-  locale: Locale;
   title: string;
 };
 
@@ -15,9 +14,10 @@ type PostMetadataOptions = PageMetadataOptions & {
   tags: string[];
 };
 
-function getImageUrl({ description, locale, title }: PageMetadataOptions) {
+function getImageUrl({ description, title }: PageMetadataOptions) {
   const params = new URLSearchParams({ title, description });
-  return `${siteUrl}${getLocalizedPath("/og", locale)}?${params.toString()}`;
+  const path = getLocalizedPath("/og", resolveLocale());
+  return `${siteUrl}${path}?${params.toString()}`;
 }
 
 export function getPageMetadata(options: PageMetadataOptions) {
@@ -45,15 +45,6 @@ export function getPageMetadata(options: PageMetadataOptions) {
       content: "max-video-preview:-1, max-image-preview:large, max-snippet:-1",
     },
   ];
-}
-
-export function getRouteMetadata(
-  options: Omit<PageMetadataOptions, "locale"> | undefined,
-  locale: string | undefined,
-) {
-  return options
-    ? getPageMetadata({ ...options, locale: resolveLocale(locale) })
-    : [];
 }
 
 export function getPostMetadata(options: PostMetadataOptions) {

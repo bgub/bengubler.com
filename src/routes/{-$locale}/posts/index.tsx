@@ -1,46 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { T, useLocale, Var } from "gt-tanstack-start";
-import { getGT } from "gt-tanstack-start/server";
+import { getGT, T, Var } from "gt-tanstack-start";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 import { PostRow } from "@/components/post-row";
 import { getLocalizedPath, resolveLocale } from "@/lib/locales";
-import { getRouteMetadata } from "@/lib/metadata";
+import { getPageMetadata } from "@/lib/metadata";
 import { getPostsForLocale } from "@/lib/post-data";
-
-const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
-  const gt = await getGT();
-  return {
-    title: gt("Posts - Ben Gubler"),
-    description: gt(
-      "Thoughts on web development, AI, and building things that matter.",
-    ),
-  };
-});
 
 export const Route = createFileRoute("/{-$locale}/posts/")({
   validateSearch: (search: Record<string, unknown>) => ({
     tag: typeof search.tag === "string" ? search.tag : undefined,
   }),
-  loader: async ({ params }) => {
-    const locale = resolveLocale(params.locale);
-    const [posts, metadata] = await Promise.all([
-      getPostsForLocale({ data: { locale } }),
-      getMetadata(),
-    ]);
-    return { posts, metadata };
+  loader: async () => {
+    const posts = await getPostsForLocale({
+      data: { locale: resolveLocale() },
+    });
+    return { posts };
   },
-  head: ({ loaderData, params }) => ({
-    meta: getRouteMetadata(loaderData?.metadata, params.locale),
-  }),
+  head: async () => {
+    const gt = await getGT();
+    return {
+      meta: getPageMetadata({
+        title: gt("Posts - Ben Gubler"),
+        description: gt(
+          "Thoughts on web development, AI, and building things that matter.",
+        ),
+      }),
+    };
+  },
   component: PostsPage,
 });
 
 function PostsPage() {
   const { tag: selectedTag } = Route.useSearch();
   const { posts } = Route.useLoaderData();
-  const locale = useLocale();
 
   const sortedPosts = posts.toSorted(
     (a, b) => b.date.getTime() - a.date.getTime(),
@@ -78,7 +71,7 @@ function PostsPage() {
             <T>Posts</T>
           </PageTitle>
           <Link
-            href={getLocalizedPath("/rss.xml", resolveLocale(locale))}
+            href={getLocalizedPath("/rss.xml", resolveLocale())}
             className="inline-flex items-center gap-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-sm hover:bg-rule-soft"
             target="_blank"
             rel="noopener noreferrer"

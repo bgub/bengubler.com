@@ -1,6 +1,6 @@
-import { Link as RouterLink, useParams } from "@tanstack/react-router";
+import { Link as RouterLink } from "@tanstack/react-router";
 import type { AnchorHTMLAttributes, ReactNode } from "react";
-import { defaultLocale, getLocalizedPath, isLocale } from "@/lib/locales";
+import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 
 type LinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
   children?: ReactNode;
@@ -12,9 +12,6 @@ function isDocumentLink(href: string) {
 }
 
 export function Link({ href, children, ...props }: LinkProps) {
-  const params = useParams({ strict: false });
-  const routeLocale = typeof params.locale === "string" ? params.locale : "";
-  const locale = isLocale(routeLocale) ? routeLocale : defaultLocale;
   const external = /^(?:[a-z]+:|#)/i.test(href);
 
   if (external || isDocumentLink(href)) {
@@ -25,7 +22,7 @@ export function Link({ href, children, ...props }: LinkProps) {
     );
   }
 
-  const localizedHref = getLocalizedPath(href, locale);
+  const localizedHref = getLocalizedPath(href, resolveLocale());
 
   return (
     <RouterLink

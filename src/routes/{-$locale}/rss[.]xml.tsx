@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { allPosts } from "content-collections";
 import { Feed } from "feed";
-import { getGT } from "gt-tanstack-start/server";
+import { getGT } from "gt-tanstack-start";
 import { createElement, type ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
@@ -43,9 +43,9 @@ const rssComponents = {
 export const Route = createFileRoute("/{-$locale}/rss.xml")({
   server: {
     handlers: {
-      GET: async ({ params }) => {
+      GET: async () => {
         const baseUrl = getBaseUrl();
-        const locale = resolveLocale(params.locale);
+        const locale = resolveLocale();
         const gt = await getGT();
         const localePath = getLocalizedPath("/", locale);
         const localeBaseUrl = `${baseUrl}${localePath === "/" ? "" : localePath}`;

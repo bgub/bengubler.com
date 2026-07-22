@@ -1,37 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { T } from "gt-tanstack-start";
-import { getGT } from "gt-tanstack-start/server";
+import { getGT, T } from "gt-tanstack-start";
 import { Link } from "@/components/link";
 import { PostRow } from "@/components/post-row";
 import { ProjectList } from "@/components/project-list";
 import { resolveLocale } from "@/lib/locales";
-import { getRouteMetadata } from "@/lib/metadata";
+import { getPageMetadata } from "@/lib/metadata";
 import { getRecentPostsForLocale } from "@/lib/post-data";
 import { projectsData } from "@/lib/projects";
 
-const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
-  const gt = await getGT();
-  return {
-    title: "Ben Gubler",
-    description: gt(
-      "Ben Gubler's personal website. Working at General Translation, previously interned at Vercel. Studying AI and human languages at BYU.",
-    ),
-  };
-});
-
 export const Route = createFileRoute("/{-$locale}/")({
-  loader: async ({ params }) => {
-    const locale = resolveLocale(params.locale);
-    const [postData, metadata] = await Promise.all([
-      getRecentPostsForLocale({ data: { locale } }),
-      getMetadata(),
-    ]);
-    return { ...postData, metadata };
+  loader: () =>
+    getRecentPostsForLocale({
+      data: { locale: resolveLocale() },
+    }),
+  head: async () => {
+    const gt = await getGT();
+    return {
+      meta: getPageMetadata({
+        title: "Ben Gubler",
+        description: gt(
+          "Ben Gubler's personal website. Working at General Translation, previously interned at Vercel. Studying AI and human languages at BYU.",
+        ),
+      }),
+    };
   },
-  head: ({ loaderData, params }) => ({
-    meta: getRouteMetadata(loaderData?.metadata, params.locale),
-  }),
   component: HomePage,
 });
 

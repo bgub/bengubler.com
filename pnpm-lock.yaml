@@ -39,8 +39,8 @@ importers:
         specifier: ^5.2.1
         version: 5.2.1
       gt-tanstack-start:
-        specifier: ^11.0.12
-        version: 11.0.12(@tanstack/react-start@1.168.30(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rolldown@1.2.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        specifier: ^11.0.13
+        version: 11.0.13(@tanstack/react-start@1.168.30(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rolldown@1.2.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       nitro:
         specifier: ^3.0.260610-beta
         version: 3.0.260610-beta(chokidar@5.0.0)(dotenv@16.6.1)(jiti@2.7.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
@@ -623,8 +623,8 @@ packages:
     resolution: {integrity: sha512-rPeyj6s0GokCELVi4AMqk6eSEsA03lg9k5jmo1Ho6chgolaYZRlkmihaxzpnVmKw9ma9V7eRtrljJQaVZe/wkA==}
     engines: {node: '>=16.0.0'}
 
-  '@generaltranslation/react-core@11.0.12':
-    resolution: {integrity: sha512-9ZS9dtdJs4C5oYlhNSe2TXM5PIsu5ezDevlpchtCHhB3dIQAeWnAZa25WIek1tdpqU/fXoc71uAEGWoDia3kNA==}
+  '@generaltranslation/react-core@11.0.13':
+    resolution: {integrity: sha512-DbXfW71NYfBhVJgEYNlxZ1336oDgLLIQz5jT5c+QkeFFPISB1qtq/75BgfrPk4Br3TxKxwNg1rK2N3RSJjgmaA==}
     peerDependencies:
       react: '>=18.0.0'
 
@@ -1902,6 +1902,11 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  baseline-browser-mapping@2.11.1:
+    resolution: {integrity: sha512-HYXq73DDpCtNzOmrFsm9eSwCvWCql0RzqjpDzXN9EadiLJ4DNat0nsZ/Bzmy+Ud12mb4/zKDY0cQ805ZzN+i0A==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
@@ -1927,6 +1932,9 @@ packages:
 
   caniuse-lite@1.0.30001793:
     resolution: {integrity: sha512-iwSsYWaCOoh26cV8NwNRViHlrfUvYsHDfRVcbtmw0Kg6PJIZZXwMkj1442FYLBGkeUf1juAsU3DTfxW579mrPA==}
+
+  caniuse-lite@1.0.30001806:
+    resolution: {integrity: sha512-72Cuvd95zbSYPKq6Fhg8eDJRlzgWDf7/mtoZv6Qe/DYNCEBdNxoA3+rZAU2ZhGCpZlns3EssFavaZomckT5Uuw==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -2470,8 +2478,8 @@ packages:
   gt-i18n@1.0.7:
     resolution: {integrity: sha512-IB7Ol5BLAaDAHNKXA8qrJPUHoOTowAYqnwG4Tg/KiT/r/nwe0yCQXD/Ufq4kngNfbPpsxLlNVQeN/ZM6Dz+Hcw==}
 
-  gt-react@11.0.12:
-    resolution: {integrity: sha512-GjBtneJV2amZtyn3xTCBTLG8YF8TiWIZUU5bCWgCckpdJ8jcoalfogOrFFDecDcD9daYFn/x09TSFu+dEZ8XUQ==}
+  gt-react@11.0.13:
+    resolution: {integrity: sha512-jmBhUOYfknlxAa1+ii0/5dqTQngJGf/g1WfG1uaOwAgAKR+Zi053hnXAFLIwt5vR0xStKuaOkn+trQkjY0ebyw==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
@@ -2479,8 +2487,8 @@ packages:
   gt-remark@1.0.11:
     resolution: {integrity: sha512-1Z1m/4XfGWp8MNqoTa3cvwn3LX7WCwmgjgdFpiLif5TmG5LluHSR/ygG0F6gqibKAmBRYKK1Pgl3vqm6ziuZjg==}
 
-  gt-tanstack-start@11.0.12:
-    resolution: {integrity: sha512-dL2EpRBbLJvLsApY5+414GULMVWOCviXTjGG82XQvdC/ydUzopkm2Gkf8yAfk4XY+OGthjIF+TizFcYpI8+7lQ==}
+  gt-tanstack-start@11.0.13:
+    resolution: {integrity: sha512-w9YqA37bxXUQ5jXzx4nD2I18pO8uvVi3WB/8fHsuob/ATzzdUAoA1cWOHd9sOKrOfDSdqQG1YdPaCExF5DR60Q==}
     peerDependencies:
       '@tanstack/react-start': '>=1.159.0'
       react: '>=16.8.0'
@@ -2977,6 +2985,11 @@ packages:
 
   nanoid@3.3.12:
     resolution: {integrity: sha512-ZB9RH/39qpq5Vu6Y+NmUaFhQR6pp+M2Xt76XBnEwDaGcVAqhlvxrl3B2bKS5D3NH3QR76v3aSrKaF/Kiy7lEtQ==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
+  nanoid@3.3.16:
+    resolution: {integrity: sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -4261,7 +4274,7 @@ snapshots:
     transitivePeerDependencies:
       - tree-sitter
 
-  '@generaltranslation/react-core@11.0.12(react@19.2.6)':
+  '@generaltranslation/react-core@11.0.13(react@19.2.6)':
     dependencies:
       '@generaltranslation/format': 0.1.2
       generaltranslation: 9.0.3
@@ -5326,6 +5339,9 @@ snapshots:
 
   baseline-browser-mapping@2.10.34: {}
 
+  baseline-browser-mapping@2.11.1:
+    optional: true
+
   boolbase@1.0.0: {}
 
   braces@3.0.3:
@@ -5349,6 +5365,9 @@ snapshots:
   camelize@1.0.1: {}
 
   caniuse-lite@1.0.30001793: {}
+
+  caniuse-lite@1.0.30001806:
+    optional: true
 
   ccount@2.0.1: {}
 
@@ -5888,9 +5907,9 @@ snapshots:
       '@generaltranslation/format': 0.1.2
       generaltranslation: 9.0.3
 
-  gt-react@11.0.12(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+  gt-react@11.0.13(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
-      '@generaltranslation/react-core': 11.0.12(react@19.2.6)
+      '@generaltranslation/react-core': 11.0.13(react@19.2.6)
       generaltranslation: 9.0.3
       gt-i18n: 1.0.7
       react: 19.2.6
@@ -5910,13 +5929,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  gt-tanstack-start@11.0.12(@tanstack/react-start@1.168.30(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rolldown@1.2.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+  gt-tanstack-start@11.0.13(@tanstack/react-start@1.168.30(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rolldown@1.2.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
-      '@generaltranslation/react-core': 11.0.12(react@19.2.6)
+      '@generaltranslation/react-core': 11.0.13(react@19.2.6)
       '@tanstack/react-start': 1.168.30(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rolldown@1.2.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
       generaltranslation: 9.0.3
       gt-i18n: 1.0.7
-      gt-react: 11.0.12(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      gt-react: 11.0.13(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 
@@ -6684,12 +6703,15 @@ snapshots:
 
   nanoid@3.3.12: {}
 
+  nanoid@3.3.16:
+    optional: true
+
   next@16.2.6(@babel/core@7.29.7)(@opentelemetry/api@1.9.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
       '@next/env': 16.2.6
       '@swc/helpers': 0.5.15
-      baseline-browser-mapping: 2.10.34
-      caniuse-lite: 1.0.30001793
+      baseline-browser-mapping: 2.11.1
+      caniuse-lite: 1.0.30001806
       postcss: 8.4.31
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
@@ -6924,7 +6946,7 @@ snapshots:
 
   postcss@8.4.31:
     dependencies:
-      nanoid: 3.3.12
+      nanoid: 3.3.16
       picocolors: 1.1.1
       source-map-js: 1.2.1
     optional: true

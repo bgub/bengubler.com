@@ -6,7 +6,7 @@ export const Route = createFileRoute("/{-$locale}/posts/{$slug}.md")({
   server: {
     handlers: {
       GET: ({ params }) => {
-        return getRawPostResponse(resolveLocale(params.locale), params.slug);
+        return getRawPostResponse(resolveLocale(), params.slug);
       },
     },
   },

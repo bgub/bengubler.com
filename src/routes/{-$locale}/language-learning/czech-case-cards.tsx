@@ -4,11 +4,11 @@ import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 export const Route = createFileRoute(
   "/{-$locale}/language-learning/czech-case-cards",
 )({
-  beforeLoad: ({ params }) => {
+  beforeLoad: () => {
     throw redirect({
       to: getLocalizedPath(
         "/language-learning/czech-declensions",
-        resolveLocale(params.locale),
+        resolveLocale(),
       ) as never,
       statusCode: 308,
     });

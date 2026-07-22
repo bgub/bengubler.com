@@ -1,15 +1,13 @@
-import { createFileRoute, isNotFound, notFound } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import type { TocNode } from "content-pipeline";
-import { DateTime, T, useGT } from "gt-tanstack-start";
-import { getGT } from "gt-tanstack-start/server";
+import { DateTime, getGT, T, useGT } from "gt-tanstack-start";
 import { useMemo } from "react";
 import { Comments } from "@/components/comments";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 import { Squiggle } from "@/components/squiggle";
 import { resolveLocale } from "@/lib/locales";
-import { getPostMetadata, getRouteMetadata } from "@/lib/metadata";
+import { getPageMetadata, getPostMetadata } from "@/lib/metadata";
 import { getPost } from "@/lib/post-data";
 import { getPostTransitionName } from "@/lib/view-transitions";
 import { ClientTOC, useTOCScrollspy } from "./-components/client-toc";
@@ -18,42 +16,31 @@ import { RawMarkdown } from "./-components/raw-markdown";
 import { Social } from "./-components/social";
 import { Typography } from "./-components/typography";
 
-const getPostNotFoundMetadata = createServerFn({ method: "GET" }).handler(
-  async () => {
-    const gt = await getGT();
-    return {
-      title: gt("Post Not Found - Ben Gubler"),
-      description: gt("The post you're looking for doesn't exist."),
-    };
-  },
-);
-
 export const Route = createFileRoute("/{-$locale}/posts/$slug")({
   loader: async ({ params }) => {
     const post = await getPost({
-      data: { locale: resolveLocale(params.locale), slug: params.slug },
+      data: { locale: resolveLocale(), slug: params.slug },
     });
     if (!post) {
-      const metadata = await getPostNotFoundMetadata();
-      throw notFound({ data: metadata });
+      throw notFound();
     }
     return { post };
   },
-  head: ({ loaderData, match }) => {
+  head: async ({ loaderData }) => {
     const post = loaderData?.post;
     if (!post) {
+      const gt = await getGT();
       return {
-        meta: getRouteMetadata(
-          isNotFound(match.error) ? match.error.data : undefined,
-          match.params.locale,
-        ),
+        meta: getPageMetadata({
+          title: gt("Post Not Found - Ben Gubler"),
+          description: gt("The post you're looking for doesn't exist."),
+        }),
       };
     }
     return {
       meta: getPostMetadata({
         title: post.title,
         description: post.description,
-        locale: resolveLocale(match.params.locale),
         date: post.date,
         lastUpdated: post.lastUpdated,
         tags: post.tags,

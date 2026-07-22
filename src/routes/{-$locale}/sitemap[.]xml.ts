@@ -16,8 +16,8 @@ function escapeXml(value: string) {
 export const Route = createFileRoute("/{-$locale}/sitemap.xml")({
   server: {
     handlers: {
-      GET: ({ params }) => {
-        const locale = resolveLocale(params.locale);
+      GET: () => {
+        const locale = resolveLocale();
         const localePath = getLocalizedPath("/", locale);
         const localeBaseUrl = `${getBaseUrl()}${localePath === "/" ? "" : localePath}`;
         const urls = sitePaths.map((path) => ({

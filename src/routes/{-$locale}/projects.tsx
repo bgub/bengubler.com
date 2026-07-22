@@ -1,27 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { T, useGT, useMessages } from "gt-tanstack-start";
-import { getGT } from "gt-tanstack-start/server";
+import { getGT, T, useGT, useMessages } from "gt-tanstack-start";
 import { PageTitle } from "@/components/page-title";
 import { ProjectList } from "@/components/project-list";
-import { getRouteMetadata } from "@/lib/metadata";
+import { getPageMetadata } from "@/lib/metadata";
 import { projectsData } from "@/lib/projects";
 
-const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
-  const gt = await getGT();
-  return {
-    title: gt("Projects - Ben Gubler"),
-    description: gt(
-      "A collection of Ben Gubler's projects, from featured work to experimental builds.",
-    ),
-  };
-});
-
 export const Route = createFileRoute("/{-$locale}/projects")({
-  loader: () => getMetadata(),
-  head: ({ loaderData, params }) => ({
-    meta: getRouteMetadata(loaderData, params.locale),
-  }),
+  head: async () => {
+    const gt = await getGT();
+    return {
+      meta: getPageMetadata({
+        title: gt("Projects - Ben Gubler"),
+        description: gt(
+          "A collection of Ben Gubler's projects, from featured work to experimental builds.",
+        ),
+      }),
+    };
+  },
   component: ProjectsPage,
 });
 

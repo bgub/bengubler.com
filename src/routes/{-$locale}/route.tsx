@@ -4,7 +4,6 @@ import {
   Outlet,
   redirect,
 } from "@tanstack/react-router";
-import { parseLocale } from "gt-tanstack-start";
 import { SiteLayout } from "@/components/site-layout/site-layout";
 import {
   defaultLocale,
@@ -31,7 +30,7 @@ export const Route = createFileRoute("/{-$locale}")({
       !params.locale &&
       !isDirectContentPath(location.pathname, location.searchStr)
     ) {
-      const locale = resolveLocale(parseLocale());
+      const locale = resolveLocale();
       if (locale !== defaultLocale) {
         throw redirect({
           href: location.href.replace(

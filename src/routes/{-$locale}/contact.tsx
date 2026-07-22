@@ -1,25 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { T, useGT } from "gt-tanstack-start";
-import { getGT } from "gt-tanstack-start/server";
+import { getGT, T, useGT } from "gt-tanstack-start";
 import { PageTitle } from "@/components/page-title";
-import { getRouteMetadata } from "@/lib/metadata";
-
-const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
-  const gt = await getGT();
-  return {
-    title: gt("Contact - Ben Gubler"),
-    description: gt(
-      "Get in touch with me for collaborations, questions, or just to say hello.",
-    ),
-  };
-});
+import { getPageMetadata } from "@/lib/metadata";
 
 export const Route = createFileRoute("/{-$locale}/contact")({
-  loader: () => getMetadata(),
-  head: ({ loaderData, params }) => ({
-    meta: getRouteMetadata(loaderData, params.locale),
-  }),
+  head: async () => {
+    const gt = await getGT();
+    return {
+      meta: getPageMetadata({
+        title: gt("Contact - Ben Gubler"),
+        description: gt(
+          "Get in touch with me for collaborations, questions, or just to say hello.",
+        ),
+      }),
+    };
+  },
   component: ContactPage,
 });
 

@@ -12,8 +12,8 @@ import {
   getLocalizedPath,
   getUnlocalizedPath,
   isLocale,
+  type Locale,
   locales,
-  resolveLocale,
 } from "./src/lib/locales";
 import { sitePaths } from "./src/lib/site-paths";
 
@@ -50,7 +50,7 @@ function rawMarkdownDevRewrite(): Plugin {
           return;
         }
 
-        const locale = resolveLocale(routeLocale);
+        const locale = (routeLocale as Locale | undefined) ?? defaultLocale;
         const apiPath = getLocalizedPath(`/api/posts/${slug}/raw`, locale);
         url.pathname = apiPath;
         url.searchParams.set("__raw", "1");

@@ -1,25 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { msg, T, useGT, useMessages } from "gt-tanstack-start";
-import { getGT } from "gt-tanstack-start/server";
+import { getGT, msg, T, useGT, useMessages } from "gt-tanstack-start";
 import { PageTitle } from "@/components/page-title";
-import { getRouteMetadata } from "@/lib/metadata";
-
-const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
-  const gt = await getGT();
-  return {
-    title: gt("Favorites - Ben Gubler"),
-    description: gt(
-      "Ben Gubler's favorite books, movies, and personal recommendations.",
-    ),
-  };
-});
+import { getPageMetadata } from "@/lib/metadata";
 
 export const Route = createFileRoute("/{-$locale}/about/favorites")({
-  loader: () => getMetadata(),
-  head: ({ loaderData, params }) => ({
-    meta: getRouteMetadata(loaderData, params.locale),
-  }),
+  head: async () => {
+    const gt = await getGT();
+    return {
+      meta: getPageMetadata({
+        title: gt("Favorites - Ben Gubler"),
+        description: gt(
+          "Ben Gubler's favorite books, movies, and personal recommendations.",
+        ),
+      }),
+    };
+  },
   component: FavoritesPage,
 });
 

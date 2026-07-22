@@ -1,3 +1,5 @@
+import { getLocale } from "gt-tanstack-start";
+
 export const locales = ["en", "ar", "ru", "cs", "sk", "eo"] as const;
 export const defaultLocale = "en";
 export const localeCookieName = "generaltranslation.locale";
@@ -8,8 +10,8 @@ export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
 }
 
-export function resolveLocale(value?: string): Locale {
-  return value && isLocale(value) ? value : defaultLocale;
+export function resolveLocale(): Locale {
+  return getLocale() as Locale;
 }
 
 export function getPathLocale(pathname: string) {
