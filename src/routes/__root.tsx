@@ -1,4 +1,3 @@
-import newsreaderItalicUrl from "@fontsource-variable/newsreader/files/newsreader-latin-wght-italic.woff2?url";
 import newsreaderUrl from "@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url";
 import dmMono400Url from "@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?url";
 import {
@@ -51,7 +50,7 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      ...[newsreaderUrl, newsreaderItalicUrl, dmMono400Url].map((href) => ({
+      ...[newsreaderUrl, dmMono400Url].map((href) => ({
         rel: "preload",
         href,
         as: "font",

@@ -7,7 +7,7 @@ import { ProjectList } from "@/components/project-list";
 import { ViewTransition } from "@/components/view-transition";
 import { resolveLocale } from "@/lib/locales";
 import { getRouteMetadata } from "@/lib/metadata";
-import { getPostsForLocale } from "@/lib/post-data";
+import { getRecentPostsForLocale } from "@/lib/post-data";
 import { projectsData } from "@/lib/projects";
 
 const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
@@ -23,11 +23,11 @@ const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
 export const Route = createFileRoute("/{-$locale}/")({
   loader: async ({ params }) => {
     const locale = resolveLocale(params.locale);
-    const [posts, metadata] = await Promise.all([
-      getPostsForLocale({ data: { locale } }),
+    const [postData, metadata] = await Promise.all([
+      getRecentPostsForLocale({ data: { locale } }),
       getMetadata(),
     ]);
-    return { posts, metadata };
+    return { ...postData, metadata };
   },
   head: ({ loaderData, params }) => ({
     meta: getRouteMetadata(loaderData?.metadata, params.locale),
@@ -40,14 +40,8 @@ function sanitize(slug: string) {
 }
 
 function HomePage() {
-  const { posts } = Route.useLoaderData();
+  const { hasMorePosts, recentPosts } = Route.useLoaderData();
   const locale = useLocale();
-
-  const sortedPosts = posts
-    .filter((post) => !post.archived)
-    .toSorted((a, b) => b.date.getTime() - a.date.getTime());
-
-  const recentPosts = sortedPosts.slice(0, 4);
 
   const featuredProjects =
     projectsData.find((section) => decodeMsg(section.category) === "Featured")
@@ -147,7 +141,7 @@ function HomePage() {
           <h2 className="font-serif font-medium text-[28px] tracking-tight text-foreground">
             <T>Recent Posts</T>
           </h2>
-          {sortedPosts.length > 4 && (
+          {hasMorePosts && (
             <Link
               href="/posts"
               className="font-mono text-[11px] text-muted-foreground hover:text-foreground no-underline transition-colors"
