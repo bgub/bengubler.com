@@ -1,13 +1,20 @@
+import type { CSSProperties, ReactNode } from "react";
+
 export function PageTitle({
   children,
+  style,
   subtitle,
 }: {
-  children: React.ReactNode;
-  subtitle?: React.ReactNode;
+  children: ReactNode;
+  style?: CSSProperties;
+  subtitle?: ReactNode;
 }) {
   return (
     <>
-      <h1 className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]">
+      <h1
+        className="font-serif font-medium text-4xl sm:text-5xl tracking-tight text-foreground leading-[1.02]"
+        style={style}
+      >
         {children}
       </h1>
       {subtitle && (

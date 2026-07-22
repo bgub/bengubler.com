@@ -7,10 +7,10 @@ import { Comments } from "@/components/comments";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 import { Squiggle } from "@/components/squiggle";
-import { ViewTransition } from "@/components/view-transition";
 import { resolveLocale } from "@/lib/locales";
 import { getPostMetadata, getRouteMetadata } from "@/lib/metadata";
 import { getPost } from "@/lib/post-data";
+import { getPostTransitionName } from "@/lib/view-transitions";
 import { ClientTOC } from "./-components/client-toc";
 import { PostContent } from "./-components/post-content";
 import { RawMarkdown } from "./-components/raw-markdown";
@@ -69,8 +69,6 @@ function PostPage() {
 
   const toc: TocNode = JSON.parse(post.toc);
   const hasTOC = toc.children.length > 0;
-  const base = post.url.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
-
   return (
     <div className="space-y-8">
       <header className="space-y-4">
@@ -86,35 +84,50 @@ function PostPage() {
 
         {/* Date + reading time */}
         <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
-          <ViewTransition name={`date-${base}`}>
-            <time dateTime={post.date.toISOString()}>
-              <DateTime options={{ timeZone: "UTC" }}>{post.date}</DateTime>
-            </time>
-          </ViewTransition>
+          <time
+            dateTime={post.date.toISOString()}
+            style={{
+              viewTransitionName: getPostTransitionName("date", post.url),
+            }}
+          >
+            <DateTime options={{ timeZone: "UTC" }}>{post.date}</DateTime>
+          </time>
           <span className="mx-1.5">&middot;</span>
-          <ViewTransition name={`reading-time-${base}`}>
-            <span>{post.readingTime || gt("5 min read")}</span>
-          </ViewTransition>
+          <span
+            style={{
+              viewTransitionName: getPostTransitionName(
+                "reading-time",
+                post.url,
+              ),
+            }}
+          >
+            {post.readingTime || gt("5 min read")}
+          </span>
         </div>
 
         {/* Title */}
-        <ViewTransition name={`title-${base}`}>
-          <PageTitle>
-            {post.title}
-            {post.archived && (
-              <span className="text-muted-foreground">
-                {" "}
-                <T>(archived)</T>
-              </span>
-            )}
-          </PageTitle>
-        </ViewTransition>
+        <PageTitle
+          style={{
+            viewTransitionName: getPostTransitionName("title", post.url),
+          }}
+        >
+          {post.title}
+          {post.archived && (
+            <span className="text-muted-foreground">
+              {" "}
+              <T>(archived)</T>
+            </span>
+          )}
+        </PageTitle>
 
-        <ViewTransition name={`description-${base}`}>
-          <p className="font-serif text-lg leading-relaxed text-ink-soft font-light">
-            {post.description}
-          </p>
-        </ViewTransition>
+        <p
+          className="font-serif text-lg leading-relaxed text-ink-soft font-light"
+          style={{
+            viewTransitionName: getPostTransitionName("description", post.url),
+          }}
+        >
+          {post.description}
+        </p>
 
         <Squiggle className="text-lavender w-24" height={6} />
 
@@ -122,11 +135,19 @@ function PostPage() {
         {post.tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {post.tags.map((tag) => (
-              <ViewTransition key={tag} name={`tag-${base}-${tag}`}>
-                <span className="font-mono text-[11px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
-                  #{tag.toLowerCase()}
-                </span>
-              </ViewTransition>
+              <span
+                key={tag}
+                className="font-mono text-[11px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card"
+                style={{
+                  viewTransitionName: getPostTransitionName(
+                    "tag",
+                    post.url,
+                    tag,
+                  ),
+                }}
+              >
+                #{tag.toLowerCase()}
+              </span>
             ))}
           </div>
         )}
