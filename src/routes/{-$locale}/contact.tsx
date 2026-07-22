@@ -81,7 +81,7 @@ function ContactPage() {
             <Component
               key={method.name}
               {...linkProps}
-              className={`grid grid-cols-[1fr] sm:grid-cols-[120px_1fr] gap-x-4 gap-y-1 py-4 border-b border-dotted border-border group ${
+              className={`grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-x-4 gap-y-1 py-4 border-b border-dotted border-border group ${
                 method.href
                   ? "hover:bg-rule-soft/30 -mx-2 px-2 rounded-sm cursor-pointer"
                   : ""

@@ -6,7 +6,7 @@ export function ThemeToggle() {
   const gt = useGT();
 
   return (
-    <div className="relative inline-flex size-9 shrink-0 items-center justify-center rounded-[min(var(--radius-md),10px)] border border-transparent bg-clip-padding transition-colors hover:bg-muted hover:text-foreground focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50">
+    <div className="relative inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding transition-colors hover:bg-muted hover:text-foreground focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50">
       <span
         className="icon-[lucide--sun] pointer-events-none size-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
         aria-hidden="true"

@@ -239,7 +239,7 @@ function HeatmapHeader({
             type="button"
             key={label}
             onClick={() => onFly(x, y, scale)}
-            className="rounded border border-[#dde1e7] bg-white px-[9px] py-[3px] font-mono text-xs text-[#666] cursor-pointer"
+            className="rounded border border-[#dde1e7] bg-white px-2.25 py-0.75 font-mono text-xs text-[#666] cursor-pointer"
           >
             {m(label)}
           </button>
@@ -483,7 +483,7 @@ function HeatmapTooltip({
   return (
     <div
       ref={tooltipRef}
-      className="absolute pointer-events-none z-30 min-w-[120px] rounded-lg border border-[#dde1e7] bg-white px-3 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
+      className="absolute pointer-events-none z-30 min-w-30 rounded-lg border border-[#dde1e7] bg-white px-3 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
       style={{ left, top }}
     >
       <div style={{ fontWeight: 700, fontSize: 12, color: "#1a1a2e" }}>

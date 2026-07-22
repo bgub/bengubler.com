@@ -288,7 +288,7 @@ function RecommendedPage() {
             {section.subsections.map((subsection) => (
               <div
                 key={m(subsection.title)}
-                className="grid grid-cols-[1fr] sm:grid-cols-[auto_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border"
+                className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border"
               >
                 <span className="font-serif font-medium text-foreground whitespace-nowrap">
                   {m(subsection.title)}
