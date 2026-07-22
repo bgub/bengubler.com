@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { DateTime, T, useLocale, Var } from "gt-tanstack-start";
+import { T, useLocale, Var } from "gt-tanstack-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
-import { ViewTransition } from "@/components/view-transition";
+import { PostRow } from "@/components/post-row";
 import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 import { getRouteMetadata } from "@/lib/metadata";
 import { getPostsForLocale } from "@/lib/post-data";
@@ -36,10 +36,6 @@ export const Route = createFileRoute("/{-$locale}/posts/")({
   }),
   component: PostsPage,
 });
-
-function sanitize(slug: string) {
-  return slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
-}
 
 function PostsPage() {
   const { tag: selectedTag } = Route.useSearch();
@@ -87,14 +83,7 @@ function PostsPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <svg
-              className="size-3.5"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z" />
-            </svg>
+            <span className="icon-[lucide--rss] size-3.5" aria-hidden="true" />
             <T>RSS</T>
           </Link>
         </div>
@@ -142,48 +131,7 @@ function PostsPage() {
       <section>
         <div>
           {filteredPosts.map((post) => (
-            <Link
-              key={post.slug}
-              href={post.url}
-              className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
-            >
-              <ViewTransition name={`date-${sanitize(post.url)}`}>
-                <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
-                  <DateTime options={{ timeZone: "UTC" }}>{post.date}</DateTime>
-                </div>
-              </ViewTransition>
-              <div>
-                <ViewTransition name={`title-${sanitize(post.url)}`}>
-                  <h3 className="font-serif text-[22px] font-medium text-foreground leading-tight mb-1">
-                    {post.title}
-                  </h3>
-                </ViewTransition>
-                <ViewTransition name={`description-${sanitize(post.url)}`}>
-                  <p className="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light">
-                    {post.description}
-                  </p>
-                </ViewTransition>
-                {post.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mt-2">
-                    {post.tags.map((tag) => (
-                      <ViewTransition
-                        key={tag}
-                        name={`tag-${sanitize(post.url)}-${tag}`}
-                      >
-                        <span className="font-mono text-[11px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
-                          #{tag.toLowerCase()}
-                        </span>
-                      </ViewTransition>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div className="hidden sm:block font-mono text-[11px] text-muted-foreground text-right whitespace-nowrap">
-                <ViewTransition name={`reading-time-${sanitize(post.url)}`}>
-                  <span>{post.readingTime}</span>
-                </ViewTransition>
-              </div>
-            </Link>
+            <PostRow key={post.slug} post={post} variant="full" />
           ))}
         </div>
         {filteredPosts.length === 0 && selectedTag && (
@@ -214,30 +162,7 @@ function PostsPage() {
           </div>
           <div>
             {archivedPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={post.url}
-                className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
-              >
-                <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
-                  <DateTime options={{ timeZone: "UTC" }}>{post.date}</DateTime>
-                </div>
-                <div>
-                  <h3 className="font-serif text-[22px] font-medium text-foreground leading-tight mb-1">
-                    {post.title}
-                  </h3>
-                  <p className="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light">
-                    {post.description}
-                  </p>
-                </div>
-                <div className="hidden sm:block font-mono text-[11px] text-muted-foreground text-right whitespace-nowrap">
-                  {post.readingTime}
-                  <br />
-                  <span className="text-muted-foreground text-[11px]">
-                    {post.tags.map((t) => `#${t}`).join(" ")}
-                  </span>
-                </div>
-              </Link>
+              <PostRow key={post.slug} post={post} variant="archived" />
             ))}
           </div>
         </section>

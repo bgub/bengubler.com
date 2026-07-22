@@ -1,18 +1,11 @@
-import { useMessages } from "gt-tanstack-start";
 import { Link } from "@/components/link";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { NavigationLinks } from "@/components/navigation-links";
 import { ProfileImage } from "@/components/profile-image";
 import { Squiggle } from "@/components/squiggle";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { getUnlocalizedPath } from "@/lib/locales";
-import { navigation } from "@/lib/navigation";
-import { usePathname } from "@/lib/router";
 
 export function Sidebar() {
-  const rawPathname = usePathname();
-  const pathname = getUnlocalizedPath(rawPathname);
-  const m = useMessages();
-
   return (
     <div className="hidden md:fixed md:inset-y-0 md:z-50 md:flex md:w-64 md:flex-col">
       <div className="flex grow flex-col overflow-y-auto bg-shell border-r border-border">
@@ -36,41 +29,7 @@ export function Sidebar() {
 
           {/* Navigation */}
           <nav className="flex flex-1 flex-col">
-            <ul className="flex flex-1 flex-col gap-y-0.5">
-              {navigation.map((item) => {
-                const isActive =
-                  pathname === item.href ||
-                  (item.href === "/posts" && pathname.startsWith("/posts/")) ||
-                  (item.href === "/language-learning" &&
-                    pathname.startsWith("/language-learning"));
-                return (
-                  <li key={item.name} className="relative">
-                    {item.isSubItem && (
-                      <div className="absolute inset-s-2 top-0 h-1/2 w-px bg-border/70" />
-                    )}
-                    {item.isSubItem && (
-                      <div className="absolute inset-s-2 top-1/2 w-4 h-px bg-border/70" />
-                    )}
-                    <Link
-                      href={item.href}
-                      className={`group flex items-center gap-x-2.5 rounded-sm px-2.5 py-2 text-sm font-sans leading-tight transition-all duration-100 ${
-                        item.isSubItem ? "ms-4" : ""
-                      } ${
-                        isActive
-                          ? "bg-card text-foreground shadow-[inset_0_0_0_1px_var(--border)]"
-                          : "text-ink-soft hover:bg-rule-soft"
-                      }`}
-                    >
-                      <span
-                        className={`${item.icon} size-3.75 shrink-0 opacity-75`}
-                        aria-hidden="true"
-                      />
-                      {m(item.name)}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+            <NavigationLinks className="flex flex-1 flex-col gap-y-0.5" />
           </nav>
         </div>
         {/* Theme Toggle & Locale Selector */}

@@ -46,21 +46,6 @@
   "0ee81746110ea465": "Preseblaj kazkartoj por rapide kaj efike parkerigi ĉeĥajn substantivajn deklinaciajn ŝablonojn.",
   "0efb3da8c7e035a1": "Monarch Money",
   "10c587eefc060c58": "Omarchy",
-  "10d511e621addb81": [
-    "Mi estas Ben, studento ĉe BYU, kiu studas komputikon kaj la araban. Mi kreas malfermfontajn bibliotekojn, retaplikaĵojn kaj AI-ilojn. Nuntempe mi laboras ĉe ",
-    {
-      "c": "General Translation",
-      "i": 1,
-      "t": "span"
-    },
-    ", kaj antaŭe mi staĝis ĉe ",
-    {
-      "c": "Vercel",
-      "i": 2,
-      "t": "span"
-    },
-    "."
-  ],
   "1115207f8bc4ea29": "OverTheWire Wargames",
   "116ab3333ed53b2d": "Tic-Tac-Too",
   "11762cb8a1cf14fb": {
@@ -95,15 +80,6 @@
   "1684d5043a96121e": "Etiopio",
   "184e745d7d13c743": "Malavio",
   "189d7db07ea44187": "Kazaĥstano",
-  "18b7ac2e269cb726": [
-    "Saluton, Ahoj, Привет, ",
-    {
-      "c": "مرحبا",
-      "i": 1,
-      "t": "span"
-    },
-    "."
-  ],
   "1947f94eeedb8b9c": "Kolekto de la projektoj de Ben Gubler, de elstaraj verkoj ĝis eksperimentaj versioj.",
   "1acba9df1061bebd": "Kenjo",
   "1b684898471c9e88": "Surinamo",
@@ -192,6 +168,7 @@
     "i": 1,
     "t": "h3"
   },
+  "3be2cafd0279329c": "Naviga menuo",
   "3cd1510ae2089fd7": "Dominika Respubliko",
   "3e784d336673b7ec": "Ĉeĥio",
   "3f90a1a17923a4c6": "Ŝanĝi la lingvon al {code}",
@@ -265,7 +242,6 @@
     "t": "Link"
   },
   "593dab95ec87fb1a": "Zed kun Vim-klavligoj",
-  "5ae7fd1fc9c3f5a9": "Laŭsistema",
   "5b0ea6350126478b": "Alacritty",
   "5b3e6aef0a207a56": "Gvatemalo",
   "5c09252a83b0de9b": {
@@ -358,11 +334,6 @@
   "74816cbe74a8f193": "RSC Explorer",
   "74f0083d6ef2943c": "Nov-Hampŝiro",
   "762da2d8b92c643b": "Toki Pona",
-  "7653c554c5512d00": {
-    "c": "Ŝanĝi temon",
-    "i": 1,
-    "t": "span"
-  },
   "772e15e4f2f20a76": "Teorempruvado",
   "77b037197feae42f": "Arkansaso",
   "77d68abb75acf8cd": "Afiŝo ne trovita",
@@ -426,6 +397,7 @@
   "89da3fc9986ff790": "Ukrainio",
   "8a5b42fae262c8d4": "The Death of Ivan Ilyich",
   "8b7fcaab32fd3bc4": "(arkivite)",
+  "8bf65a425f50d140": "Hela",
   "8c74857ecf98c255": "Programado",
   "8d5bef805f152308": {
     "c": [
@@ -598,6 +570,7 @@
     "."
   ],
   "9fd3c0201d2e4091": "Vajomingo",
+  "a03e4c1348ad9ba8": "Sistema",
   "a040bdb90a115bab": "Verki interpretilon en Go",
   "a04daf17e3be1edc": "Aldonaĵoj",
   "a0c7b60e4bd05412": "RSS",
@@ -635,6 +608,21 @@
   "b104514dd0ff33a5": "Meksiko",
   "b22acab22e51149b": "Japanio",
   "b24c8ee92c656887": "Usono",
+  "b2a7525892b232a8": [
+    "Mi estas studento ĉe BYU, kie mi specialiĝas pri CS/ML kaj samtempe havas du kromfakojn en la araba kaj matematiko. Mi konstruas malfermfontajn bibliotekojn, retajn aplikaĵojn kaj AI-ilojn. Nuntempe mi laboras ĉe ",
+    {
+      "c": "General Translation",
+      "i": 1,
+      "t": "span"
+    },
+    ", antaŭe mi staĝis ĉe ",
+    {
+      "c": "Vercel",
+      "i": 2,
+      "t": "span"
+    },
+    "."
+  ],
   "b305d06d0af683b4": "Paĝo ne trovita - Ben Gubler",
   "b387818540cf9565": "Danio",
   "b4c836e33738625a": "Luksemburgio",
@@ -677,6 +665,7 @@
   "c772710e952c391c": "Filipinoj",
   "c7a2323b7e48530a": "Mia stako - Ben Gubler",
   "c7ee1a20e25cdfe0": "Just Mercy",
+  "c8a9256abe8bd55a": "Hej, mi estas Ben",
   "c8cdfc1fc3866c97": "Jukonio",
   "c913a4cd1fdb059a": "GPU kaj tensoraj enigmoj",
   "c96c6913115e475e": "Aparataro",
@@ -692,7 +681,6 @@
   "cc7e76bf9365389f": "Notoj pri programaro, lingvoj kaj ilia intersekco.",
   "cc84bfe0ee5d0174": "Projektoj",
   "cd2a68dbdbcbcab7": "Saskaĉevano",
-  "cd8ccd4b937873e1": "Malhela",
   "cd8d0c77a410efb9": {
     "c": [
       "Noto: ĉi tio ne montriĝos ĝuste sur poŝtelefono: iru ",
@@ -727,6 +715,7 @@
   "d486259b8271dcc6": "Malpeza JavaScript-ŝablonmotoro kun subteno por helpiloj, partaj ŝablonoj, filtriloj ktp. La projekto, kiu helpis min eniri la mondon de malfermfonta programaro.",
   "d486d877a0d841e6": "Textual",
   "d5ddfbc5b8cd23e4": "Iloj kaj rimedoj, kiujn mi kreis por helpi pri lingvolernado.",
+  "d604bc5cf3386f00": "Malhela",
   "d6674c6b48b00bab": "Utaho",
   "d7899ed4822e5ab1": "Mia ilaro",
   "d7caa4d010633d49": "Jesuo, la Kristo",
@@ -855,7 +844,6 @@
   ],
   "fbbe6855ed44d65a": "Pelíšky",
   "fbe4f10390c772d7": "Konlanga dezajno",
-  "fdd81c55ee7946f3": "Hela",
   "fdd8a5b7dce4c10c": {
     "c": "Kazkarto",
     "i": 1,
@@ -864,5 +852,6 @@
   "fe04975a9ca7df24": "PyTorch-simila komputa biblioteko por TS/JS kun WebGPU (evoluigata).",
   "fe3e875a7e5fc2a3": "Kadro COMET",
   "fe540c9b400cb583": "Siera-Leono",
+  "fe5ee6266a8106e0": "Temo",
   "feb481b144af444a": "Pensoj pri retevoluigo, AI kaj kreado de aferoj, kiuj gravas."
 }

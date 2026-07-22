@@ -2,12 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Heatmap } from "@/components/lds-heatmap/heatmap";
-import type { Topology } from "@/components/lds-heatmap/topojson";
 import { getRouteMetadata } from "@/lib/metadata";
 
 const getTopology = createServerFn({ method: "GET" }).handler(async () => {
   const { getTopologyData } = await import("@/lib/topology.server");
-  return JSON.stringify(await getTopologyData());
+  return getTopologyData();
 });
 
 const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
@@ -22,14 +21,10 @@ const getMetadata = createServerFn({ method: "GET" }).handler(async () => {
 
 export const Route = createFileRoute("/{-$locale}/lds-heatmap")({
   loader: async () => {
-    const [topologyJson, metadata] = await Promise.all([
+    const [topology, metadata] = await Promise.all([
       getTopology(),
       getMetadata(),
     ]);
-    const topology = JSON.parse(topologyJson) as {
-      usTopology: Topology;
-      worldTopology: Topology;
-    };
     return { ...topology, metadata };
   },
   head: ({ loaderData, params }) => ({

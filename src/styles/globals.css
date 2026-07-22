@@ -1,28 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@fontsource-variable/newsreader/wght.css";
-@import "@fontsource-variable/newsreader/wght-italic.css";
-@import "@fontsource/dm-mono/400.css";
+@import "@fontsource-variable/piazzolla/wght.css";
+@import "@fontsource-variable/piazzolla/wght-italic.css";
+@import "@fontsource/noto-naskh-arabic/400.css";
 
 @plugin "@iconify/tailwind4";
-
-@font-face {
-  font-family: "Newsreader Fallback";
-  src: local("Times New Roman");
-  ascent-override: 69.68%;
-  descent-override: 25.12%;
-  line-gap-override: 0%;
-  size-adjust: 105.48%;
-}
-
-@font-face {
-  font-family: "DM Mono Fallback";
-  src: local("Arial");
-  ascent-override: 73.71%;
-  descent-override: 23.03%;
-  line-gap-override: 0%;
-  size-adjust: 134.59%;
-}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -33,7 +15,7 @@
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, sans-serif;
   --font-serif: var(--font-serif);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-mono-family);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -71,8 +53,10 @@
 }
 
 :root {
-  --font-serif: "Newsreader Variable", "Newsreader Fallback", Georgia, serif;
-  --font-geist-mono: "DM Mono", "DM Mono Fallback", ui-monospace, monospace;
+  --font-serif: "Piazzolla Variable", Georgia, serif;
+  --font-mono-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    monospace;
   --radius: 0.25rem;
   /* Warm editorial palette — light */
   --background: #faf6ef;
@@ -108,6 +92,11 @@
   --ink-faint: #b5ab9b;
   --rule: #e5ddcd;
   --rule-soft: #efe7d6;
+}
+
+html[lang="ar"] {
+  --font-serif: "Noto Naskh Arabic", serif;
+  font-synthesis: weight;
 }
 
 .dark {

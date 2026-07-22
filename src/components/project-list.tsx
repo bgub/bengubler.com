@@ -1,6 +1,5 @@
 import { useGT, useMessages } from "gt-tanstack-start";
 import { Link } from "@/components/link";
-import { GitHubIcon } from "@/components/social";
 import { getStripeColorByIndex } from "@/lib/colors";
 import type { Project } from "@/lib/projects";
 
@@ -50,7 +49,10 @@ export function ProjectList({ projects, compact = false }: ProjectListProps) {
                       name: m(project.name),
                     })}
                   >
-                    <GitHubIcon className="size-4" />
+                    <span
+                      className="icon-[simple-icons--github] size-4"
+                      aria-hidden="true"
+                    />
                   </Link>
                 )}
               </div>

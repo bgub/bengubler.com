@@ -46,21 +46,6 @@
   "0ee81746110ea465": "Vytisknutelné kartičky pádů pro rychlé a efektivní zapamatování vzorů skloňování českých podstatných jmen.",
   "0efb3da8c7e035a1": "Monarch Money",
   "10c587eefc060c58": "Omarchy",
-  "10d511e621addb81": [
-    "Jsem Ben, student BYU, kde studuji informatiku a arabštinu. Vytvářím open-source knihovny, webové aplikace a AI nástroje. Momentálně pracuji ve ",
-    {
-      "c": "General Translation",
-      "i": 1,
-      "t": "span"
-    },
-    ", dříve jsem byl na stáži ve ",
-    {
-      "c": "Vercel",
-      "i": 2,
-      "t": "span"
-    },
-    "."
-  ],
   "1115207f8bc4ea29": "OverTheWire Wargames",
   "116ab3333ed53b2d": "Tic-Tac-Too",
   "11762cb8a1cf14fb": {
@@ -95,15 +80,6 @@
   "1684d5043a96121e": "Etiopie",
   "184e745d7d13c743": "Malawi",
   "189d7db07ea44187": "Kazachstán",
-  "18b7ac2e269cb726": [
-    "Hello, Ahoj, Привет, ",
-    {
-      "c": "مرحبا",
-      "i": 1,
-      "t": "span"
-    },
-    "."
-  ],
   "1947f94eeedb8b9c": "Přehled projektů Bena Gublera, od hlavních prací po experimentální verze.",
   "1acba9df1061bebd": "Keňa",
   "1b684898471c9e88": "Surinam",
@@ -192,6 +168,7 @@
     "i": 1,
     "t": "h3"
   },
+  "3be2cafd0279329c": "Navigační nabídka",
   "3cd1510ae2089fd7": "Dominikánská rep.",
   "3e784d336673b7ec": "Česko",
   "3f90a1a17923a4c6": "Přepnout jazyk na {code}",
@@ -265,7 +242,6 @@
     "t": "Link"
   },
   "593dab95ec87fb1a": "Zed s vimovskými klávesovými zkratkami",
-  "5ae7fd1fc9c3f5a9": "Systém",
   "5b0ea6350126478b": "Alacritty",
   "5b3e6aef0a207a56": "Guatemala",
   "5c09252a83b0de9b": {
@@ -358,11 +334,6 @@
   "74816cbe74a8f193": "RSC Explorer",
   "74f0083d6ef2943c": "New Hampshire",
   "762da2d8b92c643b": "Toki Pona",
-  "7653c554c5512d00": {
-    "c": "Přepnout motiv",
-    "i": 1,
-    "t": "span"
-  },
   "772e15e4f2f20a76": "Dokazování teorémů",
   "77b037197feae42f": "Arkansas",
   "77d68abb75acf8cd": "Příspěvek nebyl nalezen",
@@ -426,6 +397,7 @@
   "89da3fc9986ff790": "Ukrajina",
   "8a5b42fae262c8d4": "Smrt Ivana Iljiče",
   "8b7fcaab32fd3bc4": "(archivováno)",
+  "8bf65a425f50d140": "Světlý",
   "8c74857ecf98c255": "Vývoj",
   "8d5bef805f152308": {
     "c": [
@@ -598,6 +570,7 @@
     "."
   ],
   "9fd3c0201d2e4091": "Wyoming",
+  "a03e4c1348ad9ba8": "Systémový",
   "a040bdb90a115bab": "Jak napsat interpreter v Go",
   "a04daf17e3be1edc": "Příslušenství",
   "a0c7b60e4bd05412": "RSS",
@@ -635,6 +608,21 @@
   "b104514dd0ff33a5": "Mexiko",
   "b22acab22e51149b": "Japonsko",
   "b24c8ee92c656887": "USA",
+  "b2a7525892b232a8": [
+    "Studuji na BYU obor CS/ML a vedle toho mám dva vedlejší obory: arabštinu a matematiku. Vytvářím open-source knihovny, webové aplikace a AI nástroje. Aktuálně pracuji v ",
+    {
+      "c": "General Translation",
+      "i": 1,
+      "t": "span"
+    },
+    ", dříve jsem byl na stáži ve ",
+    {
+      "c": "Vercel",
+      "i": 2,
+      "t": "span"
+    },
+    "."
+  ],
   "b305d06d0af683b4": "Stránka nebyla nalezena - Ben Gubler",
   "b387818540cf9565": "Dánsko",
   "b4c836e33738625a": "Lucembursko",
@@ -677,6 +665,7 @@
   "c772710e952c391c": "Filipíny",
   "c7a2323b7e48530a": "můj stack - Ben Gubler",
   "c7ee1a20e25cdfe0": "Just Mercy",
+  "c8a9256abe8bd55a": "Ahoj, jsem Ben",
   "c8cdfc1fc3866c97": "Yukon",
   "c913a4cd1fdb059a": "GPU a tensorové úlohy",
   "c96c6913115e475e": "Hardware",
@@ -692,7 +681,6 @@
   "cc7e76bf9365389f": "Poznámky o softwaru, jazyce a průniku mezi nimi.",
   "cc84bfe0ee5d0174": "Projekty",
   "cd2a68dbdbcbcab7": "Saskatchewan",
-  "cd8ccd4b937873e1": "Tmavý",
   "cd8d0c77a410efb9": {
     "c": [
       "Poznámka: na mobilu se to nebude zobrazovat správně. Pro zobrazení a stažení PDF v novém okně klikněte ",
@@ -727,6 +715,7 @@
   "d486259b8271dcc6": "Lehký šablonovací engine pro JavaScript s podporou helperů, partialů, filtrů atd. Projekt, který mi pomohl proniknout do open‑source světa.",
   "d486d877a0d841e6": "Textual",
   "d5ddfbc5b8cd23e4": "Nástroje a zdroje, které jsem vytvořil, aby pomohly s učením jazyků.",
+  "d604bc5cf3386f00": "Tmavý",
   "d6674c6b48b00bab": "Utah",
   "d7899ed4822e5ab1": "Moje nástroje",
   "d7caa4d010633d49": "Ježíš Kristus",
@@ -855,7 +844,6 @@
   ],
   "fbbe6855ed44d65a": "Pelíšky",
   "fbe4f10390c772d7": "Tvorba umělých jazyků",
-  "fdd81c55ee7946f3": "Světlý",
   "fdd8a5b7dce4c10c": {
     "c": "Kartička pádů",
     "i": 1,
@@ -864,5 +852,6 @@
   "fe04975a9ca7df24": "Výpočetní knihovna pro TS/JS podobná PyTorch s využitím WebGPU (ve vývoji).",
   "fe3e875a7e5fc2a3": "Framework COMET",
   "fe540c9b400cb583": "Sierra Leone",
+  "fe5ee6266a8106e0": "Vzhled",
   "feb481b144af444a": "Úvahy o webovém vývoji, AI a tvorbě věcí, na kterých záleží."
 }

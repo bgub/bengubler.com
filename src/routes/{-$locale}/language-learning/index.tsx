@@ -101,35 +101,15 @@ function LanguageLearningPage() {
                     {m(tool.title)}
                   </h3>
                   {tool.isExternal ? (
-                    <svg
-                      className="size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                    <span
+                      className="icon-[lucide--external-link] size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
                       aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
+                    />
                   ) : (
-                    <svg
-                      className="size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                    <span
+                      className="icon-[lucide--chevron-right] size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
                       aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                    />
                   )}
                 </div>
                 <p className="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light">

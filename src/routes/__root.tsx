@@ -1,5 +1,7 @@
-import newsreaderUrl from "@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url";
-import dmMono400Url from "@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?url";
+import piazzollaCyrillicUrl from "@fontsource-variable/piazzolla/files/piazzolla-cyrillic-wght-normal.woff2?url";
+import piazzollaLatinExtUrl from "@fontsource-variable/piazzolla/files/piazzolla-latin-ext-wght-normal.woff2?url";
+import piazzollaLatinUrl from "@fontsource-variable/piazzolla/files/piazzolla-latin-wght-normal.woff2?url";
+import notoNaskhArabicUrl from "@fontsource/noto-naskh-arabic/files/noto-naskh-arabic-arabic-400-normal.woff2?url";
 import {
   createRootRoute,
   HeadContent,
@@ -38,7 +40,7 @@ export const Route = createRootRoute({
       translations: await getTranslationsSnapshot(locale),
     };
   },
-  head: () => ({
+  head: ({ loaderData }) => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -50,19 +52,26 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      ...[newsreaderUrl, dmMono400Url].map((href) => ({
+      {
         rel: "preload",
-        href,
+        href: getPrimaryFontUrl(loaderData?.locale),
         as: "font",
         type: "font/woff2",
         crossOrigin: "anonymous" as const,
-      })),
+      },
       { rel: "icon", href: "/icon.png", type: "image/png" },
     ],
   }),
   component: RootComponent,
   notFoundComponent: NotFound,
 });
+
+function getPrimaryFontUrl(locale: string | undefined): string {
+  if (locale === "ar") return notoNaskhArabicUrl;
+  if (locale === "ru") return piazzollaCyrillicUrl;
+  if (locale && locale !== defaultLocale) return piazzollaLatinExtUrl;
+  return piazzollaLatinUrl;
+}
 
 function RootComponent() {
   return (

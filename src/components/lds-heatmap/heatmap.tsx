@@ -37,6 +37,10 @@ const PALETTE_PCT = [
 
 const W = 960;
 const H = 500;
+const projection = d3.geoNaturalEarth1().fitSize([W, H], { type: "Sphere" });
+const geoPath = d3.geoPath().projection(projection);
+const spherePath = geoPath({ type: "Sphere" }) || "";
+const graticulePath = geoPath(d3.geoGraticule10()) || "";
 
 const FLY_TARGETS: [string, number, number, number][] = [
   [msg("Reset"), 0, 0, 1],
@@ -65,8 +69,9 @@ export function Heatmap({ worldTopology, usTopology }: HeatmapProps) {
     unknown
   > | null>(null);
   const boxRef = useRef<HTMLDivElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const mouseRef = useRef({ x: 0, y: 0 });
   const [tip, setTip] = useState<TipData | null>(null);
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [mode, setMode] = useState<Mode>("total");
   const world = useMemo(
@@ -121,10 +126,20 @@ export function Heatmap({ worldTopology, usTopology }: HeatmapProps) {
       onMouseMove={(event) => {
         const rect = boxRef.current?.getBoundingClientRect();
         if (rect) {
-          setMouse({
+          const mouse = {
             x: event.clientX - rect.left,
             y: event.clientY - rect.top,
-          });
+          };
+          mouseRef.current = mouse;
+
+          if (tooltipRef.current) {
+            const { left, top } = getTooltipPosition(
+              mouse,
+              boxRef.current?.clientWidth ?? 800,
+            );
+            tooltipRef.current.style.left = `${left}px`;
+            tooltipRef.current.style.top = `${top}px`;
+          }
         }
       }}
       className="relative flex flex-col overflow-hidden select-none"
@@ -146,7 +161,14 @@ export function Heatmap({ worldTopology, usTopology }: HeatmapProps) {
         />
         <HeatmapSidebar mode={mode} />
       </div>
-      {tip && <HeatmapTooltip tip={tip} mouse={mouse} boxRef={boxRef} />}
+      {tip && (
+        <HeatmapTooltip
+          tip={tip}
+          mouse={mouseRef.current}
+          boxWidth={boxRef.current?.clientWidth ?? 800}
+          tooltipRef={tooltipRef}
+        />
+      )}
     </div>
   );
 }
@@ -244,8 +266,6 @@ function HeatmapMap({
 }) {
   const gt = useGT();
   const isPct = mode === "pct";
-  const proj = d3.geoNaturalEarth1().fitSize([W, H], { type: "Sphere" });
-  const geoPath = d3.geoPath().projection(proj);
   const strokeWidth = Math.max(0.06, 0.25 / Math.sqrt(zoom));
   const stateStrokeWidth = Math.max(0.04, 0.18 / Math.sqrt(zoom));
 
@@ -263,13 +283,13 @@ function HeatmapMap({
         <rect width={W} height={H} fill="#eef2f6" />
         <g id="g">
           <path
-            d={geoPath({ type: "Sphere" }) || ""}
+            d={spherePath}
             fill="#f8f9fb"
             stroke="#dde1e7"
             strokeWidth={0.5}
           />
           <path
-            d={geoPath(d3.geoGraticule10()) || ""}
+            d={graticulePath}
             fill="none"
             stroke="#e8ecf0"
             strokeWidth={0.3}
@@ -450,22 +470,21 @@ function HeatmapSidebar({ mode }: { mode: Mode }) {
 function HeatmapTooltip({
   tip,
   mouse,
-  boxRef,
+  boxWidth,
+  tooltipRef,
 }: {
   tip: TipData;
   mouse: { x: number; y: number };
-  boxRef: React.RefObject<HTMLDivElement | null>;
+  boxWidth: number;
+  tooltipRef: React.RefObject<HTMLDivElement | null>;
 }) {
+  const { left, top } = getTooltipPosition(mouse, boxWidth);
+
   return (
     <div
+      ref={tooltipRef}
       className="absolute pointer-events-none z-30 min-w-[120px] rounded-lg border border-[#dde1e7] bg-white px-3 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
-      style={{
-        left: Math.min(
-          mouse.x + 14,
-          (boxRef.current?.clientWidth || 800) - 195,
-        ),
-        top: Math.max(mouse.y - 55, 10),
-      }}
+      style={{ left, top }}
     >
       <div style={{ fontWeight: 700, fontSize: 12, color: "#1a1a2e" }}>
         {tip.name}
@@ -502,6 +521,13 @@ function HeatmapTooltip({
       )}
     </div>
   );
+}
+
+function getTooltipPosition(mouse: { x: number; y: number }, boxWidth: number) {
+  return {
+    left: Math.min(mouse.x + 14, boxWidth - 195),
+    top: Math.max(mouse.y - 55, 10),
+  };
 }
 
 function Rank({
@@ -604,43 +630,48 @@ function Rank({
   );
 }
 
-function heat(
-  val: number,
+function createHeatScale(
   lo: number,
   hi: number,
   palette: string[],
   exp: number,
 ) {
-  if (!val) return BG;
-  const t = d3
+  const valueScale = d3
     .scalePow()
     .exponent(exp)
     .domain([lo, hi])
     .range([0, 1])
-    .clamp(true)(val);
+    .clamp(true);
   const n = palette.length - 1;
-  return d3
+  const colorScale = d3
     .scaleLinear<string>()
     .domain(palette.map((_, i) => i / n))
     .range(palette)
-    .clamp(true)(t);
+    .clamp(true);
+
+  return (value: number) => (value ? colorScale(valueScale(value)) : BG);
 }
+
+const countryPctColor = createHeatScale(0.01, 65, PALETTE_PCT, 0.5);
+const countryTotalColor = createHeatScale(50, 7e6, PALETTE_TOTAL, 0.15);
+const statePctColor = createHeatScale(0.3, 68, PALETTE_PCT, 0.5);
+const stateTotalColor = createHeatScale(2000, 2.2e6, PALETTE_TOTAL, 0.2);
 
 function countryColor(id: string, isPct: boolean) {
   const data = COUNTRIES[id];
   if (!data) return BG;
   if (id === "840") return "#eef2f6";
   return isPct
-    ? heat(pct(data[0], data[1]), 0.01, 65, PALETTE_PCT, 0.5)
-    : heat(data[0], 50, 7e6, PALETTE_TOTAL, 0.15);
+    ? countryPctColor(pct(data[0], data[1]))
+    : countryTotalColor(data[0]);
 }
 
 function stateColor(name: string, isPct: boolean) {
   const data = US_STATES[name];
   if (!data) return BG;
   return isPct
-    ? heat(pct(data[0], data[1]), 0.3, 68, PALETTE_PCT, 0.5)
-    : heat(data[0], 2000, 2.2e6, PALETTE_TOTAL, 0.2);
+    ? statePctColor(pct(data[0], data[1]))
+    : stateTotalColor(data[0]);
 }
 
 function rankItems(

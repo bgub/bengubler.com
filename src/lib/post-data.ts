@@ -1,7 +1,19 @@
 import { createServerFn } from "@tanstack/react-start";
 import { allPosts } from "content-collections";
 
-function getPostSummaries(locale: string) {
+export type PostSummary = Pick<
+  (typeof allPosts)[number],
+  | "archived"
+  | "date"
+  | "description"
+  | "readingTime"
+  | "slug"
+  | "tags"
+  | "title"
+  | "url"
+>;
+
+function getPostSummaries(locale: string): PostSummary[] {
   return allPosts
     .filter((post) => post.locale === locale)
     .map(

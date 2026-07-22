@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import { decodeMsg, T, useLocale } from "gt-tanstack-start";
+import { decodeMsg, T } from "gt-tanstack-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Link } from "@/components/link";
+import { PostRow } from "@/components/post-row";
 import { ProjectList } from "@/components/project-list";
-import { ViewTransition } from "@/components/view-transition";
 import { resolveLocale } from "@/lib/locales";
 import { getRouteMetadata } from "@/lib/metadata";
 import { getRecentPostsForLocale } from "@/lib/post-data";
@@ -35,13 +35,8 @@ export const Route = createFileRoute("/{-$locale}/")({
   component: HomePage,
 });
 
-function sanitize(slug: string) {
-  return slug.replace(/[^\w\s\-/]/gi, "").replace(/[\s/]/g, "-");
-}
-
 function HomePage() {
   const { hasMorePosts, recentPosts } = Route.useLoaderData();
-  const locale = useLocale();
 
   const featuredProjects =
     projectsData.find((section) => decodeMsg(section.category) === "Featured")
@@ -52,16 +47,14 @@ function HomePage() {
       {/* Hero Section */}
       <section>
         <h1 className="font-serif font-normal text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-tight text-foreground mb-4">
-          <T>
-            Hello, Ahoj, Привет, <span dir="rtl">مرحبا</span>.
-          </T>
+          <T>Hey, I'm Ben</T>
         </h1>
 
         <p className="font-serif text-lg sm:text-xl leading-relaxed text-ink-soft font-light mb-2.5">
           <T>
-            I'm Ben, a student at BYU studying CS and Arabic. I build
-            open-source libraries, web applications, and AI tools. Currently
-            working at{" "}
+            I'm a student at BYU, where I'm majoring in CS/ML and
+            double-minoring in Arabic + Math. I build open-source libraries, web
+            applications, and AI tools. Currently working at{" "}
             <span className="bg-buttercream px-1.5 py-0.5 rounded-sm text-foreground font-normal">
               General Translation
             </span>
@@ -152,39 +145,7 @@ function HomePage() {
         </div>
         <div>
           {recentPosts.map((post) => (
-            <Link
-              key={post.slug}
-              href={post.url as string}
-              className="grid grid-cols-[1fr] sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
-            >
-              <ViewTransition name={`date-${sanitize(post.url)}`}>
-                <div className="font-mono text-[11px] text-muted-foreground tracking-wide">
-                  {post.date.toLocaleDateString(locale, {
-                    timeZone: "UTC",
-                    month: "numeric",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </div>
-              </ViewTransition>
-              <div>
-                <ViewTransition name={`title-${sanitize(post.url)}`}>
-                  <div className="font-serif text-xl font-medium text-foreground leading-tight mb-1">
-                    {post.title}
-                  </div>
-                </ViewTransition>
-                <ViewTransition name={`description-${sanitize(post.url)}`}>
-                  <div className="font-serif text-sm leading-relaxed text-ink-soft font-light">
-                    {post.description}
-                  </div>
-                </ViewTransition>
-              </div>
-              <div className="hidden sm:block font-mono text-[11px] text-muted-foreground text-right whitespace-nowrap">
-                <ViewTransition name={`reading-time-${sanitize(post.url)}`}>
-                  <span>{post.readingTime}</span>
-                </ViewTransition>
-              </div>
-            </Link>
+            <PostRow key={post.slug} post={post} variant="compact" />
           ))}
         </div>
       </section>
