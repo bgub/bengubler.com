@@ -2,9 +2,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import type { ReactNode } from "react";
 import { Link } from "@/components/link";
-import { MobileNav } from "@/components/mobile-nav";
-import { ProfileImage } from "@/components/profile-image";
-import { Sidebar } from "@/components/sidebar";
+import { MobileNav } from "./mobile-nav";
+import { ProfileImage } from "./profile-image";
+import { Sidebar } from "./sidebar";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
@@ -17,7 +17,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               <div className="flex h-14 items-center justify-between px-4 sm:px-6">
                 <Link href="/" className="flex items-center gap-3">
                   <div className="relative size-9 rounded-full overflow-hidden border border-border shrink-0">
-                    <ProfileImage size={36} className="object-cover" priority />
+                    <ProfileImage size={36} className="object-cover" />
                   </div>
                   <span className="font-serif text-xl font-medium translate-y-px">
                     Ben Gubler

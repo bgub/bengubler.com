@@ -17,7 +17,7 @@ import {
 } from "gt-tanstack-start";
 import type { ReactNode } from "react";
 import { Link } from "@/components/link";
-import { SiteLayout } from "@/components/site-layout";
+import { SiteLayout } from "@/components/site-layout/site-layout";
 import { ThemeProvider } from "@/components/theme-provider";
 import {
   defaultLocale,

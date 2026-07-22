@@ -1,4 +1,4 @@
-import type { Topology } from "@/components/lds-heatmap/topojson";
+import type { Topology } from "./-topojson";
 
 const cacheDuration = 60 * 60 * 24 * 30 * 1000;
 const worldTopologyUrl =

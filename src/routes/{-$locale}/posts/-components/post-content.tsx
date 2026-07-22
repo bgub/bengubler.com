@@ -8,10 +8,13 @@ import {
   type ReactNode,
 } from "react";
 import { Tweet as ReactTweet } from "react-tweet";
+import {
+  type ContentComponents,
+  ContentRenderer,
+} from "@/components/content/render-content";
 import { Link } from "@/components/link";
 import { CopyButton } from "./copy-button";
 import "./content-styles.css";
-import { type ContentComponents, ContentRenderer } from "./render-content";
 
 const LINK_TO_SECTION_LABEL = msg("Link to section");
 
@@ -82,43 +85,27 @@ interface HighlightedTokenStyle extends CSSProperties {
 }
 
 function Fence({ content, highlightedLines, language }: FenceProps) {
-  let lineOffset = 0;
-  const renderedLines = highlightedLines?.map((line, lineIndex) => {
-    const currentLineOffset = lineOffset;
-    lineOffset += line.tokens.reduce(
-      (length, token) => length + token.content.length,
-      1,
-    );
-    let tokenOffset = currentLineOffset;
+  const renderedLines = highlightedLines?.map((line, lineIndex) => (
+    <Fragment key={lineIndex}>
+      {line.tokens.map((token, tokenIndex) => {
+        const fontStyle = token.fontStyle ?? 0;
+        const style: HighlightedTokenStyle = {
+          "--shiki-dark": token.dark,
+          "--shiki-light": token.light,
+          fontStyle: fontStyle & 1 ? "italic" : undefined,
+          fontWeight: fontStyle & 2 ? 700 : undefined,
+          textDecoration: fontStyle & 4 ? "underline" : undefined,
+        };
 
-    return (
-      <Fragment key={currentLineOffset}>
-        {line.tokens.map((token) => {
-          const currentTokenOffset = tokenOffset;
-          tokenOffset += token.content.length;
-          const fontStyle = token.fontStyle ?? 0;
-          const style: HighlightedTokenStyle = {
-            "--shiki-dark": token.dark,
-            "--shiki-light": token.light,
-            fontStyle: fontStyle & 1 ? "italic" : undefined,
-            fontWeight: fontStyle & 2 ? 700 : undefined,
-            textDecoration: fontStyle & 4 ? "underline" : undefined,
-          };
-
-          return (
-            <span
-              className="shiki-token"
-              key={currentTokenOffset}
-              style={style}
-            >
-              {token.content}
-            </span>
-          );
-        })}
-        {lineIndex < highlightedLines.length - 1 ? "\n" : null}
-      </Fragment>
-    );
-  });
+        return (
+          <span className="shiki-token" key={tokenIndex} style={style}>
+            {token.content}
+          </span>
+        );
+      })}
+      {lineIndex < highlightedLines.length - 1 ? "\n" : null}
+    </Fragment>
+  ));
 
   return (
     <div className="relative">

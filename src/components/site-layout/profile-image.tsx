@@ -2,11 +2,9 @@ import { useGT } from "gt-tanstack-start";
 
 export function ProfileImage({
   className,
-  priority,
   size,
 }: {
   className?: string;
-  priority?: boolean;
   size: number;
 }) {
   const gt = useGT();
@@ -17,8 +15,8 @@ export function ProfileImage({
       width={size}
       height={size}
       className={className}
-      fetchPriority={priority ? "high" : undefined}
-      loading={priority ? "eager" : "lazy"}
+      fetchPriority="high"
+      loading="eager"
     />
   );
 }

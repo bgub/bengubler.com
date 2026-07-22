@@ -5,7 +5,7 @@ import {
   redirect,
 } from "@tanstack/react-router";
 import { parseLocale } from "gt-tanstack-start";
-import { SiteLayout } from "@/components/site-layout";
+import { SiteLayout } from "@/components/site-layout/site-layout";
 import {
   defaultLocale,
   getLocalizedPath,

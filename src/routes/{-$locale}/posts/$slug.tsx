@@ -4,18 +4,18 @@ import type { TocNode } from "content-pipeline";
 import { DateTime, T, useGT } from "gt-tanstack-start";
 import { getGT } from "gt-tanstack-start/server";
 import { Comments } from "@/components/comments";
-import { ClientTOC } from "@/components/content/client-toc";
-import { PostContent } from "@/components/content/post-content";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
-import { RawMarkdown } from "@/components/raw-markdown";
-import { Social } from "@/components/social";
 import { Squiggle } from "@/components/squiggle";
-import { Typography } from "@/components/ui/typography";
 import { ViewTransition } from "@/components/view-transition";
 import { resolveLocale } from "@/lib/locales";
 import { getPostMetadata, getRouteMetadata } from "@/lib/metadata";
 import { getPost } from "@/lib/post-data";
+import { ClientTOC } from "./-components/client-toc";
+import { PostContent } from "./-components/post-content";
+import { RawMarkdown } from "./-components/raw-markdown";
+import { Social } from "./-components/social";
+import { Typography } from "./-components/typography";
 
 const getPostNotFoundMetadata = createServerFn({ method: "GET" }).handler(
   async () => {
@@ -147,7 +147,7 @@ function PostPage() {
       {/* Main Content */}
       <div className="grid lg:grid-cols-[1fr_180px] gap-8">
         <main className="min-w-0">
-          <Typography className="text-lg">
+          <Typography>
             <PostContent body={post.body} />
           </Typography>
 

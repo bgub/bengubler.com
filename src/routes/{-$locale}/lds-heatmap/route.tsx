@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 import { getGT } from "gt-tanstack-start/server";
-import { Heatmap } from "@/components/lds-heatmap/heatmap";
 import { getRouteMetadata } from "@/lib/metadata";
+import { Heatmap } from "./-heatmap";
 
 const getTopology = createServerFn({ method: "GET" }).handler(async () => {
-  const { getTopologyData } = await import("@/lib/topology.server");
+  const { getTopologyData } = await import("./-topology.server");
   return getTopologyData();
 });
 

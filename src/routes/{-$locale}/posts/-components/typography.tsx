@@ -1,17 +1,15 @@
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
 
 interface TypographyProps {
   children: ReactNode;
-  className?: string;
 }
 
-export function Typography({ children, className }: TypographyProps) {
+export function Typography({ children }: TypographyProps) {
   return (
     <div
-      className={cn(
+      className={[
         // Base typography styles — editorial serif
-        "text-foreground font-serif",
+        "text-lg text-foreground font-serif",
         // Headings — serif, medium weight
         "[&_h1]:scroll-m-20 [&_h1]:text-3xl [&_h1]:sm:text-4xl [&_h1]:font-medium [&_h1]:tracking-tight [&_h1]:mt-12 [&_h1]:mb-6 [&_h1:first-child]:mt-0",
         "[&_h2]:scroll-m-20 [&_h2]:border-b [&_h2]:border-dotted [&_h2]:border-border [&_h2]:pb-2 [&_h2]:text-[26px] [&_h2]:font-medium [&_h2]:tracking-tight [&_h2]:mt-10 [&_h2]:mb-4 [&_h2:first-child]:mt-0",
@@ -52,8 +50,7 @@ export function Typography({ children, className }: TypographyProps) {
         "[&_small]:text-sm [&_small]:font-medium [&_small]:leading-none",
         // Max width for readability
         "max-w-none",
-        className,
-      )}
+      ].join(" ")}
     >
       {children}
     </div>

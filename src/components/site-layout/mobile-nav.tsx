@@ -1,9 +1,9 @@
 import { useGT } from "gt-tanstack-start";
 import { useRef, useState } from "react";
-import { LocaleSwitcher } from "@/components/locale-switcher";
-import { NavigationLinks } from "@/components/navigation-links";
 import { Squiggle } from "@/components/squiggle";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { LocaleSwitcher } from "./locale-switcher";
+import { NavigationLinks } from "./navigation-links";
+import { ThemeToggle } from "./theme-toggle";
 
 export function MobileNav() {
   const popoverRef = useRef<HTMLDivElement>(null);

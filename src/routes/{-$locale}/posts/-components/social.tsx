@@ -1,13 +1,11 @@
 import { T, useGT } from "gt-tanstack-start";
 import { usePathname } from "@/lib/router";
-import { cn } from "@/lib/utils";
 
 interface SocialProps {
   title: string;
-  className?: string;
 }
 
-export function Social({ title, className }: SocialProps) {
+export function Social({ title }: SocialProps) {
   const gt = useGT();
   const pathname = usePathname();
   const currentUrl = `https://bengubler.com${pathname}`;
@@ -38,7 +36,7 @@ export function Social({ title, className }: SocialProps) {
   ];
 
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className="space-y-2">
       <T>
         <h3 className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
           Pass along

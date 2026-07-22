@@ -3,6 +3,7 @@ import { Link } from "@/components/link";
 import { getUnlocalizedPath } from "@/lib/locales";
 import { navigation } from "@/lib/navigation";
 import { usePathname } from "@/lib/router";
+import { cn } from "@/lib/utils";
 
 interface NavigationLinksProps {
   className?: string;
@@ -39,13 +40,13 @@ export function NavigationLinks({
             )}
             <Link
               href={item.href}
-              className={`group flex items-center gap-x-2.5 rounded-sm px-2.5 py-2 text-sm font-sans leading-tight transition-all duration-100 ${
-                item.isSubItem ? "ms-4" : ""
-              } ${
+              className={cn(
+                "group flex items-center gap-x-2.5 rounded-sm px-2.5 py-2 text-sm font-sans leading-tight transition-all duration-100",
+                item.isSubItem && "ms-4",
                 isActive
                   ? "bg-card text-foreground shadow-[inset_0_0_0_1px_var(--border)]"
-                  : "text-ink-soft hover:bg-rule-soft"
-              }`}
+                  : "text-ink-soft hover:bg-rule-soft",
+              )}
               onClick={onNavigate}
             >
               <span

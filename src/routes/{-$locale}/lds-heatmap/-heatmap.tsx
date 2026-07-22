@@ -10,8 +10,8 @@ import {
   pct,
   type TipData,
   US_STATES,
-} from "./data";
-import { type DecodedTopology, decodeTopo, type Topology } from "./topojson";
+} from "./-data";
+import { type DecodedTopology, decodeTopo, type Topology } from "./-topojson";
 
 // ColorBrewer Blues-7 (total members) and YlOrRd-7 (% of pop.)
 // Using scalePow instead of scaleLog; log compressed the upper range too much.

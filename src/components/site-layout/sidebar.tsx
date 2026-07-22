@@ -1,9 +1,9 @@
 import { Link } from "@/components/link";
-import { LocaleSwitcher } from "@/components/locale-switcher";
-import { NavigationLinks } from "@/components/navigation-links";
-import { ProfileImage } from "@/components/profile-image";
 import { Squiggle } from "@/components/squiggle";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { LocaleSwitcher } from "./locale-switcher";
+import { NavigationLinks } from "./navigation-links";
+import { ProfileImage } from "./profile-image";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Sidebar() {
   return (
@@ -13,7 +13,7 @@ export function Sidebar() {
           {/* Profile Section */}
           <Link href="/" className="flex items-center gap-3.5 group px-1">
             <div className="relative size-13 rounded-full overflow-hidden shrink-0 border border-border">
-              <ProfileImage size={52} className="object-cover" priority />
+              <ProfileImage size={52} className="object-cover" />
             </div>
             <div>
               <div className="font-serif text-xl font-medium text-foreground leading-tight tracking-tight group-hover:text-foreground/80 transition-colors">
@@ -34,9 +34,7 @@ export function Sidebar() {
         </div>
         {/* Theme Toggle & Locale Selector */}
         <div className="px-5 pb-5 space-y-3">
-          <div className="hidden md:block">
-            <LocaleSwitcher className="mx-auto" />
-          </div>
+          <LocaleSwitcher className="mx-auto" />
           <div className="border-t border-dotted border-border pt-3 flex items-center justify-between">
             <span className="font-mono text-[11px] text-muted-foreground tracking-wider">
               &copy; Ben Gubler
