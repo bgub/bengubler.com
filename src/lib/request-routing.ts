@@ -20,14 +20,15 @@ function applyLocaleToRequest(request: Request, locale: Locale) {
   );
 }
 
-export function applyRouteLocaleToRequest(request: Request) {
+export function prepareDirectContentRequest(request: Request) {
   const url = new URL(request.url);
-  const locale = getPathLocale(url.pathname);
   const directContentRequest = isDirectContentPath(url.pathname, url.search);
-  if (locale || directContentRequest) {
-    applyLocaleToRequest(request, locale ?? defaultLocale);
+  if (!directContentRequest) return false;
+
+  if (!getPathLocale(url.pathname)) {
+    applyLocaleToRequest(request, defaultLocale);
   }
-  return directContentRequest;
+  return true;
 }
 
 type CookieHeaders = Pick<Headers, "append" | "delete" | "getSetCookie">;

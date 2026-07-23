@@ -39,8 +39,8 @@ importers:
         specifier: ^5.2.1
         version: 5.2.1
       gt-tanstack-start:
-        specifier: ^11.0.13
-        version: 11.0.13(@tanstack/react-start@1.168.30(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rolldown@1.2.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        specifier: ^11.1.0
+        version: 11.1.0(@tanstack/react-start@1.168.30(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rolldown@1.2.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       nitro:
         specifier: ^3.0.260610-beta
         version: 3.0.260610-beta(chokidar@5.0.0)(dotenv@16.6.1)(jiti@2.7.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
@@ -619,12 +619,18 @@ packages:
   '@generaltranslation/format@0.1.2':
     resolution: {integrity: sha512-wsUW5khdtOtUhPiXODj68RM4fHutuNqMHpw/pdJcRY5LDrEJ5e7LESEgmOZokUzLQ7uVNf5Fu03zZOrQ/dJvDA==}
 
+  '@generaltranslation/format@0.1.3':
+    resolution: {integrity: sha512-yhJfsdJ/Pujga8O3SvFXatHtUn8yetWjvcHmal1yzpiVltTrdVbDlFmXdCvLxDBoPgrgvuCHW5RMA0YqKzkfFA==}
+
+  '@generaltranslation/icu@0.1.0':
+    resolution: {integrity: sha512-PUyLfkuNAhNjkuz6+dFxw4CxNdRv9WFeY8vWPW33cA5+WRCtqKpomFEtPhMFZjfQbbicQxiy/XyKz6BCPo9t3g==}
+
   '@generaltranslation/python-extractor@0.2.27':
     resolution: {integrity: sha512-rPeyj6s0GokCELVi4AMqk6eSEsA03lg9k5jmo1Ho6chgolaYZRlkmihaxzpnVmKw9ma9V7eRtrljJQaVZe/wkA==}
     engines: {node: '>=16.0.0'}
 
-  '@generaltranslation/react-core@11.0.13':
-    resolution: {integrity: sha512-DbXfW71NYfBhVJgEYNlxZ1336oDgLLIQz5jT5c+QkeFFPISB1qtq/75BgfrPk4Br3TxKxwNg1rK2N3RSJjgmaA==}
+  '@generaltranslation/react-core@11.1.0':
+    resolution: {integrity: sha512-uGRYIR+PSLvffBSWnjNARG/n/J1uePX9yNX3fiGSGbq6KSgnPCnvr+9Yfg44XakWARFXSqBsd0tKvQdn+pxl3Q==}
     peerDependencies:
       react: '>=18.0.0'
 
@@ -2443,8 +2449,8 @@ packages:
   generaltranslation@9.0.0:
     resolution: {integrity: sha512-HgUDsTaayBInd3TUvfq2g8SqJBtzAC74/jp3oUz7Dc+hfQKdMkhcgvBGzE+T71ZGzi6W7AbXCp6fplhoj4jpyQ==}
 
-  generaltranslation@9.0.3:
-    resolution: {integrity: sha512-E5/lcxLTpv4lOPt69sa6s8ydjPPLTibPxvyEydWihw3VJaFuvKvRLumb0xNjpHJuuRxUShVMoJYKu0aQp9LYWA==}
+  generaltranslation@9.0.4:
+    resolution: {integrity: sha512-VrQ7mdurLVqVqle/Sr/g182oVyi3mMCNlI6qe/gt/K1wEV3nliNuwqo2c+1fRGKteSaafpi1oeJF3VeEpZowqw==}
 
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
@@ -2475,11 +2481,11 @@ packages:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
 
-  gt-i18n@1.0.7:
-    resolution: {integrity: sha512-IB7Ol5BLAaDAHNKXA8qrJPUHoOTowAYqnwG4Tg/KiT/r/nwe0yCQXD/Ufq4kngNfbPpsxLlNVQeN/ZM6Dz+Hcw==}
+  gt-i18n@1.0.8:
+    resolution: {integrity: sha512-BDxuEec6CqoGY1sew62NAqbwzJH8ZHkG9qNU028pTJh4ubuywP1UmTfrKlojpB0kKUEjzr3aTRExPnrzS+Evmw==}
 
-  gt-react@11.0.13:
-    resolution: {integrity: sha512-jmBhUOYfknlxAa1+ii0/5dqTQngJGf/g1WfG1uaOwAgAKR+Zi053hnXAFLIwt5vR0xStKuaOkn+trQkjY0ebyw==}
+  gt-react@11.1.0:
+    resolution: {integrity: sha512-8sTeErPy3JRTiolk+4peoLyuIoClbBVPcB9IIp6s8Y81IqfQ5LkYSWTFhxoSkQtZ60n7C5ABiSEqebQzstjXPw==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
@@ -2487,8 +2493,8 @@ packages:
   gt-remark@1.0.11:
     resolution: {integrity: sha512-1Z1m/4XfGWp8MNqoTa3cvwn3LX7WCwmgjgdFpiLif5TmG5LluHSR/ygG0F6gqibKAmBRYKK1Pgl3vqm6ziuZjg==}
 
-  gt-tanstack-start@11.0.13:
-    resolution: {integrity: sha512-w9YqA37bxXUQ5jXzx4nD2I18pO8uvVi3WB/8fHsuob/ATzzdUAoA1cWOHd9sOKrOfDSdqQG1YdPaCExF5DR60Q==}
+  gt-tanstack-start@11.1.0:
+    resolution: {integrity: sha512-j1b6XmDm3udqcaNNXXKf/vVc2OQCC1bfjtEXRORBup7D+NYZuGz4GHEexp9OFUk4BfidEpvAXoDQNUxAqQE+5Q==}
     peerDependencies:
       '@tanstack/react-start': '>=1.159.0'
       react: '>=16.8.0'
@@ -4266,6 +4272,12 @@ snapshots:
     dependencies:
       intl-messageformat: 10.7.18
 
+  '@generaltranslation/format@0.1.3':
+    dependencies:
+      '@generaltranslation/icu': 0.1.0
+
+  '@generaltranslation/icu@0.1.0': {}
+
   '@generaltranslation/python-extractor@0.2.27':
     dependencies:
       generaltranslation: 9.0.0
@@ -4274,11 +4286,11 @@ snapshots:
     transitivePeerDependencies:
       - tree-sitter
 
-  '@generaltranslation/react-core@11.0.13(react@19.2.6)':
+  '@generaltranslation/react-core@11.1.0(react@19.2.6)':
     dependencies:
-      '@generaltranslation/format': 0.1.2
-      generaltranslation: 9.0.3
-      gt-i18n: 1.0.7
+      '@generaltranslation/format': 0.1.3
+      generaltranslation: 9.0.4
+      gt-i18n: 1.0.8
       react: 19.2.6
 
   '@generaltranslation/supported-locales@2.1.7':
@@ -5871,10 +5883,10 @@ snapshots:
       '@generaltranslation/format': 0.1.2
       '@noble/hashes': 2.2.0
 
-  generaltranslation@9.0.3:
+  generaltranslation@9.0.4:
     dependencies:
-      '@formatjs/icu-messageformat-parser': 2.11.4
-      '@generaltranslation/format': 0.1.2
+      '@generaltranslation/format': 0.1.3
+      '@generaltranslation/icu': 0.1.0
       '@noble/hashes': 2.2.0
 
   gensync@1.0.0-beta.2: {}
@@ -5902,16 +5914,16 @@ snapshots:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
-  gt-i18n@1.0.7:
+  gt-i18n@1.0.8:
     dependencies:
-      '@generaltranslation/format': 0.1.2
-      generaltranslation: 9.0.3
+      '@generaltranslation/format': 0.1.3
+      generaltranslation: 9.0.4
 
-  gt-react@11.0.13(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+  gt-react@11.1.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
-      '@generaltranslation/react-core': 11.0.13(react@19.2.6)
-      generaltranslation: 9.0.3
-      gt-i18n: 1.0.7
+      '@generaltranslation/react-core': 11.1.0(react@19.2.6)
+      generaltranslation: 9.0.4
+      gt-i18n: 1.0.8
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 
@@ -5929,13 +5941,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  gt-tanstack-start@11.0.13(@tanstack/react-start@1.168.30(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rolldown@1.2.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+  gt-tanstack-start@11.1.0(@tanstack/react-start@1.168.30(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rolldown@1.2.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0)))(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
-      '@generaltranslation/react-core': 11.0.13(react@19.2.6)
+      '@generaltranslation/react-core': 11.1.0(react@19.2.6)
       '@tanstack/react-start': 1.168.30(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(rolldown@1.2.0)(vite@8.1.5(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
-      generaltranslation: 9.0.3
-      gt-i18n: 1.0.7
-      gt-react: 11.0.13(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+      generaltranslation: 9.0.4
+      gt-i18n: 1.0.8
+      gt-react: 11.1.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 

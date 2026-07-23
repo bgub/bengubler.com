@@ -17,36 +17,18 @@ import {
 import { Link } from "@/components/link";
 import { SiteLayout } from "@/components/site-layout/site-layout";
 import { ThemeProvider } from "@/components/theme-provider";
-import {
-  defaultLocale,
-  getLocalizedPath,
-  isLocale,
-  localeCookieName,
-  resolveLocale,
-} from "@/lib/locales";
+import { defaultLocale, localeCookieName, resolveLocale } from "@/lib/locales";
 import type { Locale } from "@/lib/locales";
 import { getPageMetadata } from "@/lib/metadata";
 import { loadTranslations } from "@/loadTranslations";
 import gtConfig from "../../gt.config.json";
 import appCss from "@/styles/globals.css?url";
 
-function reloadForLocale({ locale: nextLocale }: { locale: string }) {
-  if (!isLocale(nextLocale)) return;
-  const path = getLocalizedPath(window.location.pathname, nextLocale);
-  window.location.assign(
-    `${path}${window.location.search}${window.location.hash}`,
-  );
-}
-
-const runtimeGtConfig = {
+initializeGT({
   ...gtConfig,
   loadTranslations,
   localeCookieName,
-  // TanStack Start creates the browser condition store during initialization.
-  _reload: reloadForLocale,
-};
-
-initializeGT(runtimeGtConfig);
+});
 
 export const Route = createRootRoute({
   loader: async () => {

@@ -6,8 +6,8 @@ import {
   getUnlocalizedPath,
 } from "./locales.ts";
 import {
-  applyRouteLocaleToRequest,
   isDirectContentPath,
+  prepareDirectContentRequest,
   removeLocaleCookie,
 } from "./request-routing.ts";
 
@@ -27,14 +27,14 @@ test("replaces an existing locale path prefix", () => {
   assert.equal(getLocalizedPath("/ru/about", "en"), "/about");
 });
 
-test("copies an explicit path locale into the request for GT", () => {
+test("leaves page locale resolution to GT", () => {
   const localizedRequest = request("/ru/about", {
     cookie: "session=value; generaltranslation.locale=cs",
   });
-  applyRouteLocaleToRequest(localizedRequest);
+  assert.equal(prepareDirectContentRequest(localizedRequest), false);
   assert.equal(
     localizedRequest.headers.get("cookie"),
-    "generaltranslation.locale=ru; session=value",
+    "session=value; generaltranslation.locale=cs",
   );
 });
 
@@ -42,10 +42,21 @@ test("pins unprefixed document requests to the default locale", () => {
   const documentRequest = request("/rss.xml", {
     cookie: "generaltranslation.locale=ru",
   });
-  assert.equal(applyRouteLocaleToRequest(documentRequest), true);
+  assert.equal(prepareDirectContentRequest(documentRequest), true);
   assert.equal(
     documentRequest.headers.get("cookie"),
     "generaltranslation.locale=en",
+  );
+});
+
+test("leaves prefixed document locales to GT", () => {
+  const documentRequest = request("/ru/rss.xml", {
+    cookie: "generaltranslation.locale=cs",
+  });
+  assert.equal(prepareDirectContentRequest(documentRequest), true);
+  assert.equal(
+    documentRequest.headers.get("cookie"),
+    "generaltranslation.locale=cs",
   );
 });
 

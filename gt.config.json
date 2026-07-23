@@ -9,6 +9,7 @@
     "eo"
   ],
   "defaultLocale": "en",
+  "localeRouting": true,
   "files": {
     "gt": {
       "output": "src/_gt/[locale].json"
