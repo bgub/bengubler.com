@@ -1,5 +1,5 @@
 import { allPosts } from "content-collections";
-import { getGT } from "gt-tanstack-start";
+import { getGT } from "gt-fig-tanstack-start";
 import type { Locale } from "@/lib/locales";
 
 export async function getRawPostResponse(locale: Locale, slug: string) {

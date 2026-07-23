@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/react-start";
+import { createServerFn } from "@bgub/fig-tanstack-start";
 import { allPosts } from "content-collections";
 
 export type PostSummary = Pick<

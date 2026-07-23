@@ -1,5 +1,6 @@
-import { Branch, T } from "gt-tanstack-start";
-import { useState } from "react";
+import { useState } from "@bgub/fig";
+import { on } from "@bgub/fig-dom";
+import { Branch, T } from "gt-fig-tanstack-start";
 import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 
 interface RawMarkdownProps {
@@ -21,27 +22,27 @@ export function RawMarkdown({ slug, content }: RawMarkdownProps) {
   };
 
   return (
-    <div className="space-y-2">
+    <div class="space-y-2">
       <T>
-        <h3 className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
+        <h3 class="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
           Raw (for LLMs)
         </h3>
       </T>
-      <div className="font-serif text-[12.5px] text-ink-soft font-light leading-relaxed space-y-1">
+      <div class="font-serif text-[12.5px] text-ink-soft font-light leading-relaxed space-y-1">
         <T>
           <a
             href={getLocalizedPath(`/posts/${slug}.md`, resolveLocale())}
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-foreground no-underline border-b border-border w-fit hover:border-ink-mute transition-colors"
+            class="block text-foreground no-underline border-b border-border w-fit hover:border-ink-mute transition-colors"
           >
             View Markdown
           </a>
         </T>
         <button
-          onClick={copyToClipboard}
+          mix={on("click", copyToClipboard)}
           type="button"
-          className="block text-foreground no-underline border-b border-border hover:border-ink-mute transition-colors"
+          class="block text-foreground no-underline border-b border-border hover:border-ink-mute transition-colors"
         >
           <T>
             <Branch

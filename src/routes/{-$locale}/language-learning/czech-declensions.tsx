@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { getGT, T, useGT } from "gt-tanstack-start";
+import { createFileRoute } from "@tanstack/solid-router";
+import { getGT, T, useGT } from "gt-fig-tanstack-start";
 import { Comments } from "@/components/comments";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
@@ -24,12 +24,12 @@ function CzechCaseCardsPage() {
   const gt = useGT();
 
   return (
-    <div className="space-y-8">
-      <header className="space-y-3">
-        <nav className="font-mono text-[11px] text-muted-foreground tracking-wide">
+    <div class="space-y-8">
+      <header class="space-y-3">
+        <nav class="font-mono text-[11px] text-muted-foreground tracking-wide">
           <Link
             href="/language-learning"
-            className="hover:text-foreground transition-colors no-underline"
+            class="hover:text-foreground transition-colors no-underline"
           >
             &lsaquo; <T>Language Learning</T>
           </Link>
@@ -37,12 +37,12 @@ function CzechCaseCardsPage() {
         <T>
           <PageTitle>Czech Case Cards</PageTitle>
         </T>
-        <p className="font-serif text-lg text-ink-soft font-light">
+        <p class="font-serif text-lg text-ink-soft font-light">
           {gt("I built case cards for Czech so you don't have to.")}
         </p>
       </header>
 
-      <div className="space-y-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
+      <div class="space-y-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
         <T>
           <p>
             I spent many hours creating these! Print these out and you'll
@@ -55,14 +55,14 @@ function CzechCaseCardsPage() {
             You may also be interested in my{" "}
             <Link
               href="https://decline.vercel.app/"
-              className="text-foreground hover:underline font-medium"
+              class="text-foreground hover:underline font-medium"
             >
               website for practicing Czech/Russian declensions
             </Link>{" "}
             or my{" "}
             <Link
               href="/language-learning/russian-declensions"
-              className="text-foreground hover:underline font-medium"
+              class="text-foreground hover:underline font-medium"
             >
               Russian case cards
             </Link>
@@ -71,18 +71,18 @@ function CzechCaseCardsPage() {
         </T>
       </div>
 
-      <section className="space-y-4">
+      <section class="space-y-4">
         <T>
-          <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
+          <h2 class="font-serif font-medium text-2xl tracking-tight text-foreground">
             Basic Case Card
           </h2>
         </T>
         <T>
-          <p className="font-serif text-ink-soft font-light">
+          <p class="font-serif text-ink-soft font-light">
             Note: this won't display properly on mobile: go{" "}
             <Link
               href="/declensions/czech-cases-card-basic.pdf"
-              className="text-foreground hover:underline font-medium"
+              class="text-foreground hover:underline font-medium"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -91,29 +91,29 @@ function CzechCaseCardsPage() {
             to view and download the PDF in a new window.
           </p>
         </T>
-        <div className="w-full border border-border rounded-sm overflow-hidden">
+        <div class="w-full border border-border rounded-sm overflow-hidden">
           <embed
             src="/declensions/czech-cases-card-basic.pdf"
             width="100%"
             height="800px"
             type="application/pdf"
-            className="w-full"
+            class="w-full"
           />
         </div>
       </section>
 
-      <section className="space-y-4">
+      <section class="space-y-4">
         <T>
-          <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
+          <h2 class="font-serif font-medium text-2xl tracking-tight text-foreground">
             Advanced Case Card
           </h2>
         </T>
         <T>
-          <p className="font-serif text-ink-soft font-light">
+          <p class="font-serif text-ink-soft font-light">
             Note: this won't display properly on mobile: go{" "}
             <Link
               href="/declensions/czech-cases-card-advanced.pdf"
-              className="text-foreground hover:underline font-medium"
+              class="text-foreground hover:underline font-medium"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -122,13 +122,13 @@ function CzechCaseCardsPage() {
             to view and download the PDF in a new window.
           </p>
         </T>
-        <div className="w-full border border-border rounded-sm overflow-hidden">
+        <div class="w-full border border-border rounded-sm overflow-hidden">
           <embed
             src="/declensions/czech-cases-card-advanced.pdf"
             width="100%"
             height="800px"
             type="application/pdf"
-            className="w-full"
+            class="w-full"
           />
         </div>
       </section>

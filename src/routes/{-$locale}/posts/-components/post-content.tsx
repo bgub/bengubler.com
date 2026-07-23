@@ -1,53 +1,56 @@
-import { ClientOnly } from "@tanstack/react-router";
+import type { FigNode } from "@bgub/fig";
 import type { HighlightedLine } from "content-pipeline";
-import { msg, useMessages } from "gt-tanstack-start";
-import {
-  type CSSProperties,
-  createElement,
-  Fragment,
-  type ReactNode,
-} from "react";
-import { Tweet as ReactTweet } from "react-tweet";
+import { msg, useMessages } from "gt-fig-tanstack-start";
+import { ClientOnly } from "@/components/client-only";
 import {
   type ContentComponents,
   ContentRenderer,
 } from "@/components/content/render-content";
 import { Link } from "@/components/link";
+import { useTheme } from "@/components/theme-provider";
 import { CopyButton } from "./copy-button";
 import "./content-styles.css";
 
 const LINK_TO_SECTION_LABEL = msg("Link to section");
 
 interface ChildrenProps {
-  children?: ReactNode;
+  children?: FigNode;
 }
 
 interface HeadingProps extends ChildrenProps {
   id?: string;
-  level: number;
+  level: keyof typeof headingTags;
 }
+
+const headingTags = {
+  1: "h1",
+  2: "h2",
+  3: "h3",
+  4: "h4",
+  5: "h5",
+  6: "h6",
+} as const;
 
 function Heading({ id, level, children }: HeadingProps) {
   const m = useMessages();
+  const HeadingTag = headingTags[level];
 
-  return createElement(
-    `h${level}`,
-    { id, className: "group scroll-mt-20 relative" },
-    children,
-    id &&
-      createElement(
-        "a",
-        {
-          href: `#${id}`,
-          className:
-            "opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground ms-2 inline-block align-baseline",
-          "aria-label": m(LINK_TO_SECTION_LABEL),
-        },
-        createElement("span", {
-          className: "icon-[lucide--link] size-4 flex-shrink-0",
-          "aria-hidden": "true",
-        }),
-      ),
+  return (
+    <HeadingTag id={id} class="group scroll-mt-20 relative">
+      {children}
+      {id && (
+        <a
+          href={`#${id}`}
+          class="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground ms-2 inline-block align-baseline"
+          aria-label={m(LINK_TO_SECTION_LABEL)}
+        >
+          <span
+            class="icon-[lucide--link] size-4 flex-shrink-0"
+            aria-hidden="true"
+          />
+        </a>
+      )}
+    </HeadingTag>
   );
 }
 
@@ -79,39 +82,42 @@ interface FenceProps {
   language?: string;
 }
 
-interface HighlightedTokenStyle extends CSSProperties {
+interface HighlightedTokenStyle {
+  [key: string]: string | null | undefined;
   "--shiki-dark": string;
   "--shiki-light": string;
 }
 
 function Fence({ content, highlightedLines, language }: FenceProps) {
-  const renderedLines = highlightedLines?.map((line, lineIndex) => (
-    <Fragment key={lineIndex}>
-      {line.tokens.map((token, tokenIndex) => {
-        const fontStyle = token.fontStyle ?? 0;
-        const style: HighlightedTokenStyle = {
-          "--shiki-dark": token.dark,
-          "--shiki-light": token.light,
-          fontStyle: fontStyle & 1 ? "italic" : undefined,
-          fontWeight: fontStyle & 2 ? 700 : undefined,
-          textDecoration: fontStyle & 4 ? "underline" : undefined,
-        };
+  const renderedLines = highlightedLines?.flatMap((line, lineIndex) => [
+    ...line.tokens.map((token, tokenIndex) => {
+      const fontStyle = token.fontStyle ?? 0;
+      const style: HighlightedTokenStyle = {
+        "--shiki-dark": token.dark,
+        "--shiki-light": token.light,
+        fontStyle: fontStyle & 1 ? "italic" : undefined,
+        fontWeight: fontStyle & 2 ? "700" : undefined,
+        textDecoration: fontStyle & 4 ? "underline" : undefined,
+      };
 
-        return (
-          <span className="shiki-token" key={tokenIndex} style={style}>
-            {token.content}
-          </span>
-        );
-      })}
-      {lineIndex < highlightedLines.length - 1 ? "\n" : null}
-    </Fragment>
-  ));
+      return (
+        <span
+          class="shiki-token"
+          key={`${lineIndex}-${tokenIndex}`}
+          style={style}
+        >
+          {token.content}
+        </span>
+      );
+    }),
+    lineIndex < highlightedLines.length - 1 ? "\n" : null,
+  ]);
 
   return (
-    <div className="relative">
+    <div class="relative">
       <CopyButton text={content} />
       <pre
-        className={highlightedLines ? "shiki" : undefined}
+        class={highlightedLines ? "shiki" : undefined}
         data-language={language}
       >
         <code>{renderedLines ?? content}</code>
@@ -125,6 +131,7 @@ function InlineCode({ content }: { content: string }) {
 }
 
 function Tweet({ id }: { id?: string }) {
+  const { resolvedTheme } = useTheme();
   if (!id) return null;
   return (
     <ClientOnly
@@ -134,7 +141,16 @@ function Tweet({ id }: { id?: string }) {
         </a>
       }
     >
-      <ReactTweet id={id} />
+      <div class="mx-auto w-full max-w-[550px]">
+        <blockquote class="twitter-tweet" data-theme={resolvedTheme}>
+          <a href={`https://x.com/i/status/${id}`}>View post on X</a>
+        </blockquote>
+        <script
+          async
+          charset="utf-8"
+          src="https://platform.twitter.com/widgets.js"
+        />
+      </div>
     </ClientOnly>
   );
 }

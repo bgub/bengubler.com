@@ -13,10 +13,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "@bgub/fig-dom",
     "types": ["vite/client"],
     "paths": {
       "@/*": ["./src/*"],
-      "content-collections": ["./.content-collections/generated"]
+      "content-collections": ["./.content-collections/generated"],
+      "@tanstack/solid-router": [
+        "./node_modules/@bgub/fig-tanstack-router"
+      ],
+      "@tanstack/solid-start": ["./node_modules/@bgub/fig-tanstack-start"]
     }
   },
   "include": [

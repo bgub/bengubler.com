@@ -1,10 +1,10 @@
-import { useGT } from "gt-tanstack-start";
+import { useGT } from "gt-fig-tanstack-start";
 
 export function ProfileImage({
-  className,
+  class: classValue,
   size,
 }: {
-  className?: string;
+  class?: string;
   size: number;
 }) {
   const gt = useGT();
@@ -14,8 +14,8 @@ export function ProfileImage({
       alt={gt("Profile photo")}
       width={size}
       height={size}
-      className={className}
-      fetchPriority="high"
+      class={classValue}
+      fetchpriority="high"
       loading="eager"
     />
   );

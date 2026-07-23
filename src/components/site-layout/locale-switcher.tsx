@@ -1,16 +1,17 @@
-import { useGT, useLocaleSelector } from "gt-tanstack-start";
+import { on } from "@bgub/fig-dom";
+import { useGT, useLocaleSelector } from "gt-fig-tanstack-start";
 import { cn } from "@/lib/utils";
 
 type LocaleSwitcherProps = {
-  className?: string;
+  class?: string;
 };
 
-export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
+export function LocaleSwitcher({ class: classValue }: LocaleSwitcherProps) {
   const { locale, locales, setLocale } = useLocaleSelector();
   const gt = useGT();
 
   return (
-    <div className={cn("grid grid-cols-4 gap-1.5 w-full", className)}>
+    <div class={cn("grid grid-cols-4 gap-1.5 w-full", classValue)}>
       {locales
         .toSorted((a, b) => a.localeCompare(b))
         .map((code) => {
@@ -19,8 +20,8 @@ export function LocaleSwitcher({ className }: LocaleSwitcherProps) {
             <button
               key={code}
               type="button"
-              onClick={() => setLocale(code)}
-              className={cn(
+              mix={on("click", () => setLocale(code))}
+              class={cn(
                 "font-mono text-[11px] tracking-wide py-1 rounded-sm border border-dashed transition-colors text-center",
                 active
                   ? "border-foreground text-foreground bg-peach"

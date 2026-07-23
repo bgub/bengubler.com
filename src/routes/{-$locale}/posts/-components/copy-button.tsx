@@ -1,5 +1,6 @@
-import { useGT } from "gt-tanstack-start";
-import { useState } from "react";
+import { useState } from "@bgub/fig";
+import { on } from "@bgub/fig-dom";
+import { useGT } from "gt-fig-tanstack-start";
 
 export function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -14,19 +15,19 @@ export function CopyButton({ text }: { text: string }) {
 
   return (
     <button
-      onClick={copy}
+      mix={on("click", copy)}
       type="button"
-      className="absolute top-3 inset-e-3 z-10 p-2 rounded-md bg-background/80 hover:bg-background border transition-all duration-200 shadow-sm backdrop-blur-sm"
+      class="absolute top-3 inset-e-3 z-10 p-2 rounded-md bg-background/80 hover:bg-background border transition-all duration-200 shadow-sm backdrop-blur-sm"
       aria-label={gt("Copy code to clipboard")}
     >
       {copied ? (
         <span
-          className="icon-[lucide--check] size-4 text-green-500"
+          class="icon-[lucide--check] size-4 text-green-500"
           aria-hidden="true"
         />
       ) : (
         <span
-          className="icon-[lucide--copy] size-4 text-muted-foreground hover:text-foreground"
+          class="icon-[lucide--copy] size-4 text-muted-foreground hover:text-foreground"
           aria-hidden="true"
         />
       )}

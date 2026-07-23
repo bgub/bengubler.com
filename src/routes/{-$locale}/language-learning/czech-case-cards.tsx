@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/solid-router";
 import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 
 export const Route = createFileRoute(
@@ -6,10 +6,10 @@ export const Route = createFileRoute(
 )({
   beforeLoad: () => {
     throw redirect({
-      to: getLocalizedPath(
+      href: getLocalizedPath(
         "/language-learning/czech-declensions",
         resolveLocale(),
-      ) as never,
+      ),
       statusCode: 308,
     });
   },

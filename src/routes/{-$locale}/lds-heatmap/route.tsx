@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { getGT } from "gt-tanstack-start";
+import { dataResource, readData } from "@bgub/fig";
+import { createServerFn } from "@bgub/fig-tanstack-start";
+import { createFileRoute } from "@tanstack/solid-router";
+import { getGT } from "gt-fig-tanstack-start";
 import { getPageMetadata } from "@/lib/metadata";
 import { Heatmap } from "./-heatmap";
 
@@ -9,8 +10,15 @@ const getTopology = createServerFn({ method: "GET" }).handler(async () => {
   return getTopologyData();
 });
 
+const topologyResource = dataResource({
+  key: () => ["lds-heatmap-topology"],
+  load: () => getTopology(),
+});
+
 export const Route = createFileRoute("/{-$locale}/lds-heatmap")({
-  loader: () => getTopology(),
+  loader: async ({ context }) => {
+    await context.data.ensureData(topologyResource);
+  },
   head: async () => {
     const gt = await getGT();
     return {
@@ -26,9 +34,9 @@ export const Route = createFileRoute("/{-$locale}/lds-heatmap")({
 });
 
 function LdsHeatmapPage() {
-  const { worldTopology, usTopology } = Route.useLoaderData();
+  const { worldTopology, usTopology } = readData(topologyResource);
   return (
-    <div className="-mx-4 sm:-mx-6 lg:-mx-8 -my-8 md:-my-12">
+    <div class="-mx-4 sm:-mx-6 lg:-mx-8 -my-8 md:-my-12">
       <Heatmap worldTopology={worldTopology} usTopology={usTopology} />
     </div>
   );

@@ -1,13 +1,13 @@
-import type { ReactNode } from "react";
+import type { FigNode } from "@bgub/fig";
 
 interface TypographyProps {
-  children: ReactNode;
+  children: FigNode;
 }
 
 export function Typography({ children }: TypographyProps) {
   return (
     <div
-      className={[
+      class={[
         // Base typography styles — editorial serif
         "text-lg text-foreground font-serif",
         // Headings — serif, medium weight

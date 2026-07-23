@@ -1,9 +1,6 @@
-import {
-  createFileRoute,
-  notFound,
-  Outlet,
-  redirect,
-} from "@tanstack/react-router";
+import { ViewTransition } from "@bgub/fig";
+import { createFileRoute } from "@tanstack/solid-router";
+import { notFound, Outlet, redirect } from "@tanstack/solid-router";
 import { SiteLayout } from "@/components/site-layout/site-layout";
 import {
   defaultLocale,
@@ -48,7 +45,9 @@ export const Route = createFileRoute("/{-$locale}")({
 function LocaleLayout() {
   return (
     <SiteLayout>
-      <Outlet />
+      <ViewTransition name="route-content" update="auto">
+        <Outlet />
+      </ViewTransition>
     </SiteLayout>
   );
 }

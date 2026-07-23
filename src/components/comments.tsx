@@ -1,28 +1,28 @@
-import Giscus from "@giscus/react";
-import { ClientOnly } from "@tanstack/react-router";
+import { type FigNode, useCallback } from "@bgub/fig";
+import { ClientOnly } from "@/components/client-only";
 import { useTheme } from "@/components/theme-provider";
+import { mountGiscus } from "@/lib/giscus";
 
-export function Comments() {
+export function Comments(): FigNode {
   const { resolvedTheme } = useTheme(); // "dark" | "light"
 
   return (
-    <div className="mt-10">
+    <div class="mt-10">
       <ClientOnly fallback={null}>
-        <Giscus
-          repo="bgub/bengubler.com"
-          repoId="R_kgDOMDxe6w"
-          category="Comments"
-          categoryId="DIC_kwDOMDxe684CrcJf"
-          mapping="pathname"
-          strict="1"
-          reactionsEnabled="1"
-          emitMetadata="0"
-          inputPosition="top"
-          theme={resolvedTheme}
-          lang="en"
-          loading="lazy"
-        />
+        <Giscus theme={resolvedTheme} />
       </ClientOnly>
     </div>
   );
+}
+
+function Giscus({ theme }: { theme: "dark" | "light" }): FigNode {
+  const bindGiscus = useCallback(
+    (element: HTMLDivElement, signal: AbortSignal) => {
+      mountGiscus(element, theme, signal);
+      return undefined;
+    },
+    [theme],
+  );
+
+  return <div bind={bindGiscus} />;
 }

@@ -1,13 +1,13 @@
+import { type ComponentType, createElement, type FigNode } from "@bgub/fig";
 import type {
   ContentComponentName,
   ContentNode,
   ContentTree,
 } from "content-pipeline";
-import { createElement, type ElementType, type ReactNode } from "react";
 
 export type ContentComponents = Readonly<
-  Record<ContentComponentName, ElementType> &
-    Partial<Record<string, ElementType>>
+  Record<ContentComponentName, ComponentType<any> | string> &
+    Partial<Record<string, ComponentType<any> | string>>
 >;
 
 export function ContentRenderer({
@@ -16,7 +16,7 @@ export function ContentRenderer({
 }: {
   body: string;
   components: ContentComponents;
-}) {
+}): FigNode {
   const tree = JSON.parse(body) as ContentTree;
   return tree.map((node, index) =>
     renderNode(node, `content.${index}`, components),
@@ -27,7 +27,7 @@ function renderNode(
   node: ContentNode,
   key: string,
   components: ContentComponents,
-): ReactNode {
+): FigNode {
   if (typeof node === "string" || typeof node === "number") return node;
 
   const Component = resolveComponent(node.name, components);
@@ -41,7 +41,7 @@ function renderNode(
 function resolveComponent(
   name: string,
   components: ContentComponents,
-): ElementType | string {
+): ComponentType<any> | string {
   const Component = components[name];
   if (Component) return Component;
 

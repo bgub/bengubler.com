@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { getGT, msg, T, useGT, useMessages } from "gt-tanstack-start";
+import { createFileRoute } from "@tanstack/solid-router";
+import { getGT, msg, T, useGT, useMessages } from "gt-fig-tanstack-start";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 import { getStripeColorByIndex } from "@/lib/colors";
@@ -63,8 +63,8 @@ function LanguageLearningPage() {
   const m = useMessages();
   const gt = useGT();
   return (
-    <div className="space-y-10">
-      <header className="space-y-3">
+    <div class="space-y-10">
+      <header class="space-y-3">
         <T>
           <PageTitle
             subtitle={gt(
@@ -76,7 +76,7 @@ function LanguageLearningPage() {
         </T>
       </header>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div class="grid gap-4 sm:grid-cols-2">
         {languageTools.map((tool, index) => {
           const stripeColor = getStripeColorByIndex(index);
           return (
@@ -85,29 +85,29 @@ function LanguageLearningPage() {
               href={tool.href}
               target={tool.isExternal ? "_blank" : undefined}
               rel={tool.isExternal ? "noopener noreferrer" : undefined}
-              className="bg-card border border-border rounded-sm relative overflow-hidden transition-all duration-200 hover:shadow-md group block no-underline"
+              class="bg-card border border-border rounded-sm relative overflow-hidden transition-all duration-200 hover:shadow-md group block no-underline"
             >
               <div
-                className={`absolute top-0 left-0 right-0 h-1.5 ${stripeColor}`}
+                class={`absolute top-0 left-0 right-0 h-1.5 ${stripeColor}`}
               />
-              <div className="p-4 pt-5">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-serif text-xl font-medium text-foreground group-hover:text-foreground/80 transition-colors">
+              <div class="p-4 pt-5">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-serif text-xl font-medium text-foreground group-hover:text-foreground/80 transition-colors">
                     {m(tool.title)}
                   </h3>
                   {tool.isExternal ? (
                     <span
-                      className="icon-[lucide--external-link] size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
+                      class="icon-[lucide--external-link] size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
                       aria-hidden="true"
                     />
                   ) : (
                     <span
-                      className="icon-[lucide--chevron-right] size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
+                      class="icon-[lucide--chevron-right] size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
                       aria-hidden="true"
                     />
                   )}
                 </div>
-                <p className="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light">
+                <p class="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light">
                   {m(tool.description)}
                 </p>
               </div>

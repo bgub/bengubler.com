@@ -1,6 +1,7 @@
+import { useCallback, useMemo, useState } from "@bgub/fig";
+import { on } from "@bgub/fig-dom";
 import * as d3 from "d3";
-import { msg, Num, T, useGT, useMessages, Var } from "gt-tanstack-start";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { msg, Num, T, useGT, useMessages, Var } from "gt-fig-tanstack-start";
 import {
   CA_PROVINCES,
   COUNTRIES,
@@ -63,14 +64,22 @@ interface HeatmapProps {
 }
 
 export function Heatmap({ worldTopology, usTopology }: HeatmapProps) {
-  const svgRef = useRef<SVGSVGElement | null>(null);
-  const zoomBehaviorRef = useRef<d3.ZoomBehavior<
-    SVGSVGElement,
-    unknown
-  > | null>(null);
-  const boxRef = useRef<HTMLDivElement>(null);
-  const tooltipRef = useRef<HTMLDivElement>(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const svgRef = useMemo<{ current: SVGSVGElement | null }>(
+    () => ({ current: null }),
+    [],
+  );
+  const zoomBehaviorRef = useMemo<{
+    current: d3.ZoomBehavior<SVGSVGElement, unknown> | null;
+  }>(() => ({ current: null }), []);
+  const boxRef = useMemo<{ current: HTMLDivElement | null }>(
+    () => ({ current: null }),
+    [],
+  );
+  const tooltipRef = useMemo<{ current: HTMLDivElement | null }>(
+    () => ({ current: null }),
+    [],
+  );
+  const mouseRef = useMemo(() => ({ current: { x: 0, y: 0 } }), []);
   const [tip, setTip] = useState<TipData | null>(null);
   const [zoom, setZoom] = useState(1);
   const [mode, setMode] = useState<Mode>("total");
@@ -83,29 +92,30 @@ export function Heatmap({ worldTopology, usTopology }: HeatmapProps) {
     [usTopology],
   );
 
-  const setSvgNode = useCallback((node: SVGSVGElement | null) => {
-    if (svgRef.current) {
-      d3.select(svgRef.current).on(".zoom", null);
-    }
+  const setSvgNode = useCallback(
+    (node: SVGSVGElement) => {
+      if (svgRef.current) {
+        d3.select(svgRef.current).on(".zoom", null);
+      }
 
-    svgRef.current = node;
-    zoomBehaviorRef.current = null;
+      svgRef.current = node;
+      zoomBehaviorRef.current = null;
 
-    if (!node) return;
+      const svg = d3.select(node);
+      const g = svg.select<SVGGElement>("#g");
+      const zoomBehavior = d3
+        .zoom<SVGSVGElement, unknown>()
+        .scaleExtent([1, 30])
+        .on("zoom", (event) => {
+          g.attr("transform", event.transform);
+          setZoom(event.transform.k);
+        });
 
-    const svg = d3.select(node);
-    const g = svg.select<SVGGElement>("#g");
-    const zoomBehavior = d3
-      .zoom<SVGSVGElement, unknown>()
-      .scaleExtent([1, 30])
-      .on("zoom", (event) => {
-        g.attr("transform", event.transform);
-        setZoom(event.transform.k);
-      });
-
-    svg.call(zoomBehavior);
-    zoomBehaviorRef.current = zoomBehavior;
-  }, []);
+      svg.call(zoomBehavior);
+      zoomBehaviorRef.current = zoomBehavior;
+    },
+    [svgRef, zoomBehaviorRef],
+  );
 
   const fly = (tx: number, ty: number, scale: number) => {
     if (!svgRef.current || !zoomBehaviorRef.current) return;
@@ -121,9 +131,12 @@ export function Heatmap({ worldTopology, usTopology }: HeatmapProps) {
 
   return (
     <div
-      ref={boxRef}
+      bind={(element) => {
+        boxRef.current = element;
+        return undefined;
+      }}
       role="application"
-      onMouseMove={(event) => {
+      mix={on("mousemove", (event) => {
         const rect = boxRef.current?.getBoundingClientRect();
         if (rect) {
           const mouse = {
@@ -141,8 +154,8 @@ export function Heatmap({ worldTopology, usTopology }: HeatmapProps) {
             tooltipRef.current.style.top = `${top}px`;
           }
         }
-      }}
-      className="relative flex flex-col overflow-hidden select-none"
+      })}
+      class="relative flex flex-col overflow-hidden select-none"
       style={{
         background: "#f8f9fb",
         color: "#1a1a2e",
@@ -150,7 +163,7 @@ export function Heatmap({ worldTopology, usTopology }: HeatmapProps) {
       }}
     >
       <HeatmapHeader mode={mode} onModeChange={setMode} onFly={fly} />
-      <div className="flex flex-1 min-h-0">
+      <div class="flex flex-1 min-h-0">
         <HeatmapMap
           world={world}
           us={us}
@@ -186,47 +199,49 @@ function HeatmapHeader({
 
   return (
     <div
-      className="flex flex-wrap items-end justify-between gap-2"
+      class="flex flex-wrap items-end justify-between gap-2"
       style={{ padding: "12px 18px 8px", borderBottom: "1px solid #e5e8ed" }}
     >
       <div>
         <div
-          className="font-mono uppercase"
-          style={{ fontSize: 12, letterSpacing: 0.5, color: "#888" }}
+          class="font-mono uppercase"
+          style={{ fontSize: "12px", letterSpacing: "0.5px", color: "#888" }}
         >
           <T>Membership Heat Map &middot; 2024</T>
         </div>
         <h1
           style={{
-            fontSize: 20,
-            fontWeight: 400,
+            fontSize: "20px",
+            fontWeight: "400",
             margin: "2px 0 0",
             color: "#1a1a2e",
           }}
         >
           <T>
             Latter-day Saints{" "}
-            <span style={{ fontWeight: 400, color: "#888", fontSize: 15 }}>
+            <span
+              style={{ fontWeight: "400", color: "#888", fontSize: "15px" }}
+            >
               Worldwide
             </span>
           </T>
         </h1>
       </div>
-      <div className="flex flex-wrap items-center gap-1 pb-0.5">
+      <div class="flex flex-wrap items-center gap-1 pb-0.5">
         <div
-          className="flex mr-2"
-          style={{ background: "#eef1f5", borderRadius: 6, padding: 2 }}
+          class="flex mr-2"
+          style={{ background: "#eef1f5", borderRadius: "6px", padding: "2px" }}
         >
           {MODE_LABELS.map(([key, label]) => (
             <button
               type="button"
               key={key}
-              onClick={() => onModeChange(key)}
-              className="rounded-[5px] border-0 px-3 py-1 font-mono text-xs cursor-pointer transition-[background,color,box-shadow] duration-150"
+              mix={on("click", () => onModeChange(key))}
+              class="rounded-[5px] border-0 px-3 py-1 font-mono text-xs cursor-pointer transition-[background,color,box-shadow] duration-150"
               style={{
                 background: mode === key ? "#fff" : "transparent",
                 color: mode === key ? "#1a1a2e" : "#999",
-                fontWeight: 400,
+                fontWeight: "400",
                 boxShadow: mode === key ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
               }}
             >
@@ -238,8 +253,8 @@ function HeatmapHeader({
           <button
             type="button"
             key={label}
-            onClick={() => onFly(x, y, scale)}
-            className="rounded border border-[#dde1e7] bg-white px-2.25 py-0.75 font-mono text-xs text-[#666] cursor-pointer"
+            mix={on("click", () => onFly(x, y, scale))}
+            class="rounded border border-[#dde1e7] bg-white px-2.25 py-0.75 font-mono text-xs text-[#666] cursor-pointer"
           >
             {m(label)}
           </button>
@@ -261,7 +276,7 @@ function HeatmapMap({
   us: DecodedTopology;
   zoom: number;
   mode: Mode;
-  onSvgMount: (node: SVGSVGElement | null) => void;
+  onSvgMount: (node: SVGSVGElement) => void;
   onTipChange: (tip: TipData | null) => void;
 }) {
   const gt = useGT();
@@ -271,28 +286,31 @@ function HeatmapMap({
 
   return (
     <div
-      className="relative flex-1 overflow-hidden"
+      class="relative flex-1 overflow-hidden"
       style={{ background: "#eef2f6" }}
     >
       <svg
-        ref={onSvgMount}
+        bind={(element) => {
+          onSvgMount(element);
+          return undefined;
+        }}
         viewBox={`0 0 ${W} ${H}`}
-        className="w-full h-full cursor-grab"
+        class="w-full h-full cursor-grab"
         aria-label={gt("LDS membership heat map")}
       >
-        <rect width={W} height={H} fill="#eef2f6" />
+        <rect width={String(W)} height={String(H)} fill="#eef2f6" />
         <g id="g">
           <path
             d={spherePath}
             fill="#f8f9fb"
             stroke="#dde1e7"
-            strokeWidth={0.5}
+            stroke-width="0.5"
           />
           <path
             d={graticulePath}
             fill="none"
             stroke="#e8ecf0"
-            strokeWidth={0.3}
+            stroke-width="0.3"
           />
           {world.features.map((feature, index) => {
             const id =
@@ -309,23 +327,25 @@ function HeatmapMap({
                 d={geoPath(feature) || ""}
                 fill={id ? countryColor(id, isPct) : BG}
                 stroke={id && COUNTRIES[id] ? "#c0c8d4" : "#dde1e7"}
-                strokeWidth={strokeWidth}
-                className="cursor-pointer"
-                onMouseEnter={() => {
-                  if (id && !isUS) {
-                    const data = COUNTRIES[id];
-                    onTipChange(
-                      data
-                        ? {
-                            name: COUNTRY_NAMES[id],
-                            m: data[0],
-                            pv: pct(data[0], data[1]),
-                          }
-                        : { name: COUNTRY_NAMES[id] || gt("Unknown") },
-                    );
-                  }
-                }}
-                onMouseLeave={() => onTipChange(null)}
+                stroke-width={String(strokeWidth)}
+                class="cursor-pointer"
+                mix={[
+                  on("mouseenter", () => {
+                    if (id && !isUS) {
+                      const data = COUNTRIES[id];
+                      onTipChange(
+                        data
+                          ? {
+                              name: COUNTRY_NAMES[id],
+                              m: data[0],
+                              pv: pct(data[0], data[1]),
+                            }
+                          : { name: COUNTRY_NAMES[id] || gt("Unknown") },
+                      );
+                    }
+                  }),
+                  on("mouseleave", () => onTipChange(null)),
+                ]}
               />
             );
           })}
@@ -344,22 +364,24 @@ function HeatmapMap({
                 d={path}
                 fill={stateColor(name, isPct)}
                 stroke="#c0c8d4"
-                strokeWidth={stateStrokeWidth}
-                className="cursor-pointer"
-                onMouseEnter={() => {
-                  const data = US_STATES[name];
-                  onTipChange(
-                    data
-                      ? {
-                          name,
-                          m: data[0],
-                          pv: pct(data[0], data[1]),
-                          state: true,
-                        }
-                      : { name },
-                  );
-                }}
-                onMouseLeave={() => onTipChange(null)}
+                stroke-width={String(stateStrokeWidth)}
+                class="cursor-pointer"
+                mix={[
+                  on("mouseenter", () => {
+                    const data = US_STATES[name];
+                    onTipChange(
+                      data
+                        ? {
+                            name,
+                            m: data[0],
+                            pv: pct(data[0], data[1]),
+                            state: true,
+                          }
+                        : { name },
+                    );
+                  }),
+                  on("mouseleave", () => onTipChange(null)),
+                ]}
               />
             );
           })}
@@ -377,27 +399,27 @@ function MapLegend({ isPct }: { isPct: boolean }) {
 
   return (
     <div
-      className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5"
+      class="absolute bottom-2.5 left-2.5 flex items-center gap-1.5"
       style={{
         background: "rgba(255,255,255,0.92)",
         padding: "5px 10px",
-        borderRadius: 6,
+        borderRadius: "6px",
         border: "1px solid #dde1e7",
         backdropFilter: "blur(6px)",
       }}
     >
-      <span className="font-mono" style={{ fontSize: 12, color: "#999" }}>
+      <span class="font-mono" style={{ fontSize: "12px", color: "#999" }}>
         {isPct ? "0%" : gt("FEW")}
       </span>
       <div
         style={{
-          width: 80,
-          height: 7,
-          borderRadius: 3,
+          width: "80px",
+          height: "7px",
+          borderRadius: "3px",
           background: `linear-gradient(90deg,${palette.join(",")})`,
         }}
       />
-      <span className="font-mono" style={{ fontSize: 12, color: "#999" }}>
+      <span class="font-mono" style={{ fontSize: "12px", color: "#999" }}>
         {isPct ? "65%+" : gt("MILLIONS")}
       </span>
     </div>
@@ -407,13 +429,13 @@ function MapLegend({ isPct }: { isPct: boolean }) {
 function ZoomBadge({ zoom }: { zoom: number }) {
   return (
     <div
-      className="absolute bottom-2.5 right-2.5 font-mono"
+      class="absolute bottom-2.5 right-2.5 font-mono"
       style={{
         background: "rgba(255,255,255,0.92)",
         padding: "3px 8px",
-        borderRadius: 4,
+        borderRadius: "4px",
         border: "1px solid #dde1e7",
-        fontSize: 12,
+        fontSize: "12px",
         color: "#aaa",
       }}
     >
@@ -432,9 +454,9 @@ function HeatmapSidebar({ mode }: { mode: Mode }) {
 
   return (
     <div
-      className="shrink-0 overflow-y-auto"
+      class="shrink-0 overflow-y-auto"
       style={{
-        width: 225,
+        width: "225px",
         padding: "6px 14px 14px 10px",
         borderLeft: "1px solid #e5e8ed",
         background: "#fff",
@@ -449,12 +471,12 @@ function HeatmapSidebar({ mode }: { mode: Mode }) {
         hasBorder
       />
       <div
-        className="font-mono"
+        class="font-mono"
         style={{
-          marginTop: 12,
-          fontSize: 12,
+          marginTop: "12px",
+          fontSize: "12px",
           color: "#bbb",
-          lineHeight: 1.5,
+          lineHeight: "1.5",
         }}
       >
         <T>
@@ -476,37 +498,42 @@ function HeatmapTooltip({
   tip: TipData;
   mouse: { x: number; y: number };
   boxWidth: number;
-  tooltipRef: React.RefObject<HTMLDivElement | null>;
+  tooltipRef: { current: HTMLDivElement | null };
 }) {
   const { left, top } = getTooltipPosition(mouse, boxWidth);
 
   return (
     <div
-      ref={tooltipRef}
-      className="absolute pointer-events-none z-30 min-w-30 rounded-lg border border-[#dde1e7] bg-white px-3 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
-      style={{ left, top }}
+      bind={(element) => {
+        tooltipRef.current = element;
+        return undefined;
+      }}
+      class="absolute pointer-events-none z-30 min-w-30 rounded-lg border border-[#dde1e7] bg-white px-3 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
+      style={{ left: `${left}px`, top: `${top}px` }}
     >
-      <div style={{ fontWeight: 700, fontSize: 12, color: "#1a1a2e" }}>
+      <div style={{ fontWeight: "700", fontSize: "12px", color: "#1a1a2e" }}>
         {tip.name}
       </div>
       {tip.m ? (
         <>
           <T>
             <div
-              className="font-mono"
-              style={{ fontSize: 12, color: "#2d7fc0" }}
+              class="font-mono"
+              style={{ fontSize: "12px", color: "#2d7fc0" }}
             >
               <Num>{tip.m}</Num> members
             </div>
           </T>
           <T>
-            <div className="font-mono" style={{ fontSize: 12, color: "#666" }}>
+            <div class="font-mono" style={{ fontSize: "12px", color: "#666" }}>
               <Var>{tip.pv?.toFixed(2)}</Var>% of population
             </div>
           </T>
           {tip.state && (
             <T>
-              <div style={{ fontSize: 12, color: "#bbb", marginTop: 1 }}>
+              <div
+                style={{ fontSize: "12px", color: "#bbb", marginTop: "1px" }}
+              >
                 U.S. State
               </div>
             </T>
@@ -514,7 +541,7 @@ function HeatmapTooltip({
         </>
       ) : (
         <T>
-          <div style={{ fontSize: 12, color: "#bbb" }}>
+          <div style={{ fontSize: "12px", color: "#bbb" }}>
             No reported presence
           </div>
         </T>
@@ -550,17 +577,21 @@ function Rank({
     <div
       style={
         hasBorder
-          ? { marginTop: 10, borderTop: "1px solid #eef1f5", paddingTop: 8 }
+          ? {
+              marginTop: "10px",
+              borderTop: "1px solid #eef1f5",
+              paddingTop: "8px",
+            }
           : undefined
       }
     >
       <div
-        className="font-mono uppercase"
+        class="font-mono uppercase"
         style={{
-          fontSize: 12,
-          letterSpacing: 0.5,
+          fontSize: "12px",
+          letterSpacing: "0.5px",
           color: "#aaa",
-          marginBottom: 6,
+          marginBottom: "6px",
         }}
       >
         {title}
@@ -571,41 +602,49 @@ function Rank({
         return (
           <div
             key={item.n}
-            className="flex items-center gap-1.5"
+            class="flex items-center gap-1.5"
             style={{ padding: "2.5px 0" }}
           >
             <span
-              className="font-mono text-right"
+              class="font-mono text-right"
               style={{
-                fontSize: 12,
+                fontSize: "12px",
                 color: index < 3 ? "#1d4e89" : "#ccc",
-                width: 14,
-                fontWeight: 400,
+                width: "14px",
+                fontWeight: "400",
               }}
             >
               {index + 1}
             </span>
-            <div className="flex-1 min-w-0">
-              <div className="flex justify-between" style={{ marginBottom: 1 }}>
+            <div class="flex-1 min-w-0">
+              <div class="flex justify-between" style={{ marginBottom: "1px" }}>
                 <span
-                  className="overflow-hidden text-ellipsis whitespace-nowrap"
+                  class="overflow-hidden text-ellipsis whitespace-nowrap"
                   style={{
                     color: index < 3 ? "#1a1a2e" : "#666",
-                    fontSize: 12,
+                    fontSize: "12px",
                   }}
                 >
                   {item.n}
                 </span>
                 <span
-                  className="font-mono whitespace-nowrap"
-                  style={{ fontSize: 12, color: "#1d4e89", marginLeft: 3 }}
+                  class="font-mono whitespace-nowrap"
+                  style={{
+                    fontSize: "12px",
+                    color: "#1d4e89",
+                    marginLeft: "3px",
+                  }}
                 >
                   {mode === "pct" ? `${item.pv.toFixed(1)}%` : fmt(item.m)}
                 </span>
               </div>
               <div
-                className="overflow-hidden"
-                style={{ height: 2.5, background: "#f0f2f5", borderRadius: 2 }}
+                class="overflow-hidden"
+                style={{
+                  height: "2.5px",
+                  background: "#f0f2f5",
+                  borderRadius: "2px",
+                }}
               >
                 <div
                   style={{
@@ -617,8 +656,8 @@ function Rank({
                         : index < 5
                           ? "#2d7fc0"
                           : "#1d4e89",
-                    borderRadius: 2,
-                    opacity: index < 3 ? 1 : 0.6,
+                    borderRadius: "2px",
+                    opacity: index < 3 ? "1" : "0.6",
                   }}
                 />
               </div>

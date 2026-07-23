@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import type { FigNode } from "@bgub/fig";
+import { prerender } from "@bgub/fig-server";
+import { createFileRoute } from "@tanstack/solid-router";
 import { allPosts } from "content-collections";
 import { Feed } from "feed";
-import { getGT } from "gt-tanstack-start";
-import { createElement, type ReactNode } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
+import { getGT } from "gt-fig-tanstack-start";
 import {
   type ContentComponents,
   ContentRenderer,
@@ -21,11 +21,21 @@ function RssHeading({
   children,
 }: {
   id?: string;
-  level: number;
-  children?: ReactNode;
+  level: keyof typeof headingTags;
+  children?: FigNode;
 }) {
-  return createElement(`h${level}`, { id }, children);
+  const HeadingTag = headingTags[level];
+  return <HeadingTag id={id}>{children}</HeadingTag>;
 }
+
+const headingTags = {
+  1: "h1",
+  2: "h2",
+  3: "h3",
+  4: "h4",
+  5: "h5",
+  6: "h6",
+} as const;
 
 const rssComponents = {
   Blockquote: "blockquote",
@@ -75,14 +85,15 @@ export const Route = createFileRoute("/{-$locale}/rss.xml")({
           .sort((a, b) => b.date.getTime() - a.date.getTime());
 
         for (const post of posts) {
+          const content = await prerender(
+            <ContentRenderer body={post.body} components={rssComponents} />,
+          );
           feed.addItem({
             title: post.title,
             id: `${localeBaseUrl}/posts/${post.slug}`,
             link: `${localeBaseUrl}/posts/${post.slug}?utm_campaign=feed&utm_source=rss`,
             description: post.description,
-            content: renderToStaticMarkup(
-              <ContentRenderer body={post.body} components={rssComponents} />,
-            ),
+            content: content.html,
             date: post.date,
             category: post.tags.map((tag) => ({ name: tag })),
             author: [{ name: "Ben Gubler", link: baseUrl }],

@@ -1,10 +1,15 @@
-import { Link as RouterLink } from "@tanstack/react-router";
-import type { AnchorHTMLAttributes, ReactNode } from "react";
+import type { FigNode } from "@bgub/fig";
+import type { JSX } from "@bgub/fig-dom/jsx-runtime";
+import { Link as RouterLink } from "@bgub/fig-tanstack-router";
 import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 
-type LinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
-  children?: ReactNode;
+type LinkProps = Omit<
+  JSX.IntrinsicElements["a"],
+  "children" | "href" | "target"
+> & {
+  children?: FigNode;
   href: string;
+  target?: string;
 };
 
 function isDocumentLink(href: string) {
@@ -26,9 +31,9 @@ export function Link({ href, children, ...props }: LinkProps) {
 
   return (
     <RouterLink
-      to={localizedHref as never}
       activeOptions={{ exact: true, includeSearch: false }}
       {...props}
+      to={localizedHref}
     >
       {children}
     </RouterLink>

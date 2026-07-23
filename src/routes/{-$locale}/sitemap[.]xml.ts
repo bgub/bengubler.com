@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/solid-router";
 import { allPosts } from "content-collections";
 import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 import { sitePaths } from "@/lib/site-paths";

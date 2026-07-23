@@ -1,4 +1,4 @@
-import { T, useGT } from "gt-tanstack-start";
+import { T, useGT } from "gt-fig-tanstack-start";
 import { usePathname } from "@/lib/router";
 
 interface SocialProps {
@@ -36,24 +36,24 @@ export function Social({ title }: SocialProps) {
   ];
 
   return (
-    <div className="space-y-2">
+    <div class="space-y-2">
       <T>
-        <h3 className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
+        <h3 class="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
           Pass along
         </h3>
       </T>
-      <div className="flex gap-2">
+      <div class="flex gap-2">
         {shares.map((share) => (
           <a
             key={share.name}
             href={share.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="size-9 rounded-sm border border-border flex items-center justify-center text-ink-soft hover:bg-rule-soft hover:text-foreground transition-colors"
+            class="size-9 rounded-sm border border-border flex items-center justify-center text-ink-soft hover:bg-rule-soft hover:text-foreground transition-colors"
             title={gt("Share on {name}", { name: share.name })}
             aria-label={gt("Share on {name}", { name: share.name })}
           >
-            <span className={`${share.icon} size-3.5`} aria-hidden="true" />
+            <span class={`${share.icon} size-3.5`} aria-hidden="true" />
           </a>
         ))}
       </div>

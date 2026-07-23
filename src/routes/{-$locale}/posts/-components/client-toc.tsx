@@ -1,6 +1,7 @@
+import { useMemo, useReactive, useState } from "@bgub/fig";
+import { on } from "@bgub/fig-dom";
 import type { TocNode } from "content-pipeline";
-import { T } from "gt-tanstack-start";
-import { type MouseEvent, useCallback, useMemo, useState } from "react";
+import { T } from "gt-fig-tanstack-start";
 import { cn } from "@/lib/utils";
 
 interface ClientTOCProps {
@@ -21,7 +22,7 @@ function TOCLink({
   const isActive = activeSection === node.id;
   const isSubHeading = (node.depth ?? 2) >= 3;
 
-  const scrollToHeading = (event: MouseEvent<HTMLAnchorElement>) => {
+  const scrollToHeading = (event: MouseEvent) => {
     event.preventDefault();
     if (!node.id) return;
 
@@ -37,8 +38,8 @@ function TOCLink({
     <a
       href={`#${node.id}`}
       aria-current={isActive ? "location" : undefined}
-      onClick={scrollToHeading}
-      className={cn(
+      mix={on("click", scrollToHeading)}
+      class={cn(
         "block py-0.5 font-serif text-[13px] leading-relaxed transition-colors hover:text-foreground no-underline",
         isSubHeading && "pl-2.5 text-ink-mute",
         isActive
@@ -64,7 +65,7 @@ function TOCNodeList({
   onNavigate: (id: string) => void;
 }) {
   return (
-    <ul className="space-y-0.5">
+    <ul class="space-y-0.5">
       {nodes.map((node) => (
         <li key={node.id}>
           <TOCLink
@@ -73,7 +74,7 @@ function TOCNodeList({
             onNavigate={onNavigate}
           />
           {node.children.length > 0 && (
-            <div className="mt-0.5">
+            <div class="mt-0.5">
               <TOCNodeList
                 nodes={node.children}
                 activeSection={activeSection}
@@ -112,48 +113,51 @@ export function useTOCScrollspy(tree: TocNode) {
   const [activeSection, setActiveSection] = useState<string>("");
   const headingIds = useMemo(() => getHeadingIds(tree.children), [tree]);
 
-  const scrollspyRef = useCallback(() => {
-    const headings = headingIds
-      .map((id) => document.getElementById(id))
-      .filter((heading): heading is HTMLElement => heading !== null);
-    if (headings.length === 0) return;
+  useReactive(
+    (signal) => {
+      const headings = headingIds
+        .map((id) => document.getElementById(id))
+        .filter((heading): heading is HTMLElement => heading !== null);
+      if (headings.length === 0) return;
 
-    let animationFrame = 0;
+      let animationFrame = 0;
 
-    const updateActiveHeading = () => {
-      animationFrame = 0;
+      const updateActiveHeading = () => {
+        animationFrame = 0;
 
-      const activationOffset =
-        Number.parseFloat(getComputedStyle(headings[0]).scrollMarginTop) || 0;
-      const isAtDocumentEnd =
-        window.scrollY + window.innerHeight >=
-        document.documentElement.scrollHeight - 1;
+        const activationOffset =
+          Number.parseFloat(getComputedStyle(headings[0]).scrollMarginTop) || 0;
+        const isAtDocumentEnd =
+          window.scrollY + window.innerHeight >=
+          document.documentElement.scrollHeight - 1;
 
-      setActiveSection(
-        getActiveHeadingId(headings, activationOffset, isAtDocumentEnd),
-      );
-    };
+        setActiveSection(
+          getActiveHeadingId(headings, activationOffset, isAtDocumentEnd),
+        );
+      };
 
-    const scheduleUpdate = () => {
-      if (animationFrame) return;
-      animationFrame = window.requestAnimationFrame(updateActiveHeading);
-    };
+      const scheduleUpdate = () => {
+        if (animationFrame) return;
+        animationFrame = window.requestAnimationFrame(updateActiveHeading);
+      };
 
-    updateActiveHeading();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
-
-    return () => {
-      window.cancelAnimationFrame(animationFrame);
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-    };
-  }, [headingIds]);
+      updateActiveHeading();
+      signal.addEventListener("abort", () => {
+        window.cancelAnimationFrame(animationFrame);
+      });
+      window.addEventListener("scroll", scheduleUpdate, {
+        passive: true,
+        signal,
+      });
+      window.addEventListener("resize", scheduleUpdate, { signal });
+      return undefined;
+    },
+    [headingIds],
+  );
 
   return {
     activeSection,
     onNavigate: setActiveSection,
-    scrollspyRef,
   };
 }
 
@@ -163,9 +167,9 @@ export function ClientTOC({ tree, activeSection, onNavigate }: ClientTOCProps) {
   }
 
   return (
-    <div className="space-y-2">
+    <div class="space-y-2">
       <T>
-        <h3 className="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
+        <h3 class="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
           In this entry
         </h3>
       </T>

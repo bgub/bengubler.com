@@ -1,7 +1,7 @@
-import { DateTime } from "gt-tanstack-start";
+import { DateTime } from "gt-fig-tanstack-start";
 import { Link } from "@/components/link";
+import { PostViewTransition } from "@/components/post-view-transition";
 import type { PostSummary } from "@/lib/post-data";
-import { getPostTransitionName } from "@/lib/view-transitions";
 
 type PostRowVariant = "archived" | "compact" | "full";
 
@@ -13,115 +13,90 @@ interface PostRowProps {
 export function PostRow({ post, variant }: PostRowProps) {
   const archived = variant === "archived";
   const compact = variant === "compact";
-  const date = (
-    <div
-      className="font-mono text-[11px] text-muted-foreground tracking-wide"
-      style={
-        archived
-          ? undefined
-          : { viewTransitionName: getPostTransitionName("date", post.url) }
-      }
-    >
+  const dateContent = (
+    <div class="font-mono text-[11px] text-muted-foreground tracking-wide">
       <DateTime options={{ timeZone: "UTC" }}>{post.date}</DateTime>
     </div>
   );
-  const title = compact ? (
-    <div
-      className="font-serif text-xl font-medium text-foreground leading-tight mb-1"
-      style={{
-        viewTransitionName: getPostTransitionName("title", post.url),
-      }}
-    >
+  const date = archived ? (
+    dateContent
+  ) : (
+    <PostViewTransition kind="date" postUrl={post.url}>
+      {dateContent}
+    </PostViewTransition>
+  );
+  const titleContent = compact ? (
+    <div class="font-serif text-xl font-medium text-foreground leading-tight mb-1">
       {post.title}
     </div>
   ) : (
-    <h3
-      className="font-serif text-[22px] font-medium text-foreground leading-tight mb-1"
-      style={
-        archived
-          ? undefined
-          : { viewTransitionName: getPostTransitionName("title", post.url) }
-      }
-    >
+    <h3 class="font-serif text-[22px] font-medium text-foreground leading-tight mb-1">
       {post.title}
     </h3>
   );
-  const description = compact ? (
-    <div
-      className="font-serif text-sm leading-relaxed text-ink-soft font-light"
-      style={{
-        viewTransitionName: getPostTransitionName("description", post.url),
-      }}
-    >
+  const title = archived ? (
+    titleContent
+  ) : (
+    <PostViewTransition kind="title" postUrl={post.url}>
+      {titleContent}
+    </PostViewTransition>
+  );
+  const descriptionContent = compact ? (
+    <div class="font-serif text-sm leading-relaxed text-ink-soft font-light">
       {post.description}
     </div>
   ) : (
-    <p
-      className="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light"
-      style={
-        archived
-          ? undefined
-          : {
-              viewTransitionName: getPostTransitionName(
-                "description",
-                post.url,
-              ),
-            }
-      }
-    >
+    <p class="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light">
       {post.description}
     </p>
+  );
+  const description = archived ? (
+    descriptionContent
+  ) : (
+    <PostViewTransition kind="description" postUrl={post.url}>
+      {descriptionContent}
+    </PostViewTransition>
   );
 
   return (
     <Link
       href={post.url}
-      className="grid grid-cols-1 sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
+      class="grid grid-cols-1 sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
     >
       {date}
       <div>
         {title}
         {description}
         {variant === "full" && post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mt-2">
+          <div class="flex flex-wrap gap-1.5 mt-2">
             {post.tags.map((tag) => (
-              <span
+              <PostViewTransition
                 key={tag}
-                className="font-mono text-[11px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card"
-                style={{
-                  viewTransitionName: getPostTransitionName(
-                    "tag",
-                    post.url,
-                    tag,
-                  ),
-                }}
+                kind="tag"
+                postUrl={post.url}
+                suffix={tag}
               >
-                #{tag.toLowerCase()}
-              </span>
+                <span class="font-mono text-[11px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
+                  #{tag.toLowerCase()}
+                </span>
+              </PostViewTransition>
             ))}
           </div>
         )}
       </div>
-      <div className="hidden sm:block font-mono text-[11px] text-muted-foreground text-right whitespace-nowrap">
+      <div class="hidden sm:block font-mono text-[11px] text-muted-foreground text-right whitespace-nowrap">
         {archived ? (
           <>
             {post.readingTime}
             <br />
-            <span className="text-muted-foreground text-[11px]">
+            <span class="text-muted-foreground text-[11px]">
               {post.tags.map((tag) => `#${tag}`).join(" ")}
             </span>
           </>
         ) : (
-          <span
-            style={{
-              viewTransitionName: getPostTransitionName(
-                "reading-time",
-                post.url,
-              ),
-            }}
-          >
-            {post.readingTime}
-          </span>
+          <PostViewTransition kind="reading-time" postUrl={post.url}>
+            <span>{post.readingTime}</span>
+          </PostViewTransition>
         )}
       </div>
     </Link>

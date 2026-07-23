@@ -1,0 +1,30 @@
+{
+  "name": "gt-fig-tanstack-start",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "browser": "./src/index.client.ts",
+      "import": "./src/index.server.ts",
+      "default": "./src/index.server.ts"
+    },
+    "./server": "./src/server.ts"
+  },
+  "peerDependencies": {
+    "@bgub/fig": "*",
+    "@bgub/fig-tanstack-start": "*"
+  },
+  "dependencies": {
+    "@generaltranslation/format": "0.1.3",
+    "@tanstack/start-server-core": "1.169.17",
+    "generaltranslation": "9.0.4",
+    "gt-i18n": "1.0.8"
+  },
+  "devDependencies": {
+    "@bgub/fig": "link:../../../fig/packages/fig",
+    "@bgub/fig-server": "link:../../../fig/packages/fig-server",
+    "@bgub/fig-tanstack-start": "link:../../../fig/packages/fig-tanstack-start"
+  }
+}

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/solid-router";
 import { resolveLocale } from "@/lib/locales";
 import { getRawPostResponse } from "@/lib/raw-post.server";
 

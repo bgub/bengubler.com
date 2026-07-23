@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { getGT, T, useGT } from "gt-tanstack-start";
+import { createFileRoute } from "@tanstack/solid-router";
+import { getGT, T, useGT } from "gt-fig-tanstack-start";
 import { PageTitle } from "@/components/page-title";
 import { getPageMetadata } from "@/lib/metadata";
 
@@ -48,8 +48,8 @@ function ContactPage() {
   ];
 
   return (
-    <div className="space-y-10">
-      <header className="space-y-3">
+    <div class="space-y-10">
+      <header class="space-y-3">
         <T>
           <PageTitle
             subtitle={gt(
@@ -76,23 +76,23 @@ function ContactPage() {
             <Component
               key={method.name}
               {...linkProps}
-              className={`grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-x-4 gap-y-1 py-4 border-b border-dotted border-border group ${
+              class={`grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-x-4 gap-y-1 py-4 border-b border-dotted border-border group ${
                 method.href
                   ? "hover:bg-rule-soft/30 -mx-2 px-2 rounded-sm cursor-pointer"
                   : ""
               } block no-underline`}
             >
-              <div className="font-serif text-base font-medium text-foreground group-hover:text-foreground/80 transition-colors">
+              <div class="font-serif text-base font-medium text-foreground group-hover:text-foreground/80 transition-colors">
                 {method.name}
               </div>
               <div>
-                <div className="font-mono text-sm text-foreground">
+                <div class="font-mono text-sm text-foreground">
                   {method.value}
                   {method.href && (
-                    <span className="text-ink-faint ml-1">&#x25B8;</span>
+                    <span class="text-ink-faint ml-1">&#x25B8;</span>
                   )}
                 </div>
-                <div className="font-serif text-sm text-ink-soft font-light mt-0.5">
+                <div class="font-serif text-sm text-ink-soft font-light mt-0.5">
                   {method.description}
                 </div>
               </div>

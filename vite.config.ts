@@ -1,10 +1,9 @@
 import { readdirSync } from "node:fs";
 import { basename, extname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { tanstackStart } from "@bgub/fig-tanstack-start/plugin/vite";
 import contentCollections from "@content-collections/vite";
 import tailwindcss from "@tailwindcss/vite";
-import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-import react from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
 import { defineConfig, type Plugin } from "vite";
 import {
@@ -79,7 +78,12 @@ const prerenderPages = [...new Set([...pagePaths, ...postPaths])].map(
 );
 
 const config = defineConfig({
-  ssr: { noExternal: ["react-tweet"] },
+  define: {
+    __FIG_DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
+    "process.env.NODE_ENV": JSON.stringify(
+      process.env.NODE_ENV === "production" ? "production" : "development",
+    ),
+  },
   resolve: {
     alias: [
       {
@@ -111,7 +115,6 @@ const config = defineConfig({
         "tslib",
       ],
     }),
-    react(),
     tailwindcss(),
     contentCollections(),
   ],

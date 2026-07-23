@@ -1,12 +1,16 @@
-import { useGT } from "gt-tanstack-start";
-import { useRef, useState } from "react";
+import { type FigNode, useMemo, useState } from "@bgub/fig";
+import { on } from "@bgub/fig-dom";
+import { useGT } from "gt-fig-tanstack-start";
 import { Squiggle } from "@/components/squiggle";
 import { LocaleSwitcher } from "./locale-switcher";
 import { NavigationLinks } from "./navigation-links";
 import { ThemeToggle } from "./theme-toggle";
 
-export function MobileNav() {
-  const popoverRef = useRef<HTMLDivElement>(null);
+export function MobileNav(): FigNode {
+  const popoverRef = useMemo<{ current: HTMLDivElement | null }>(
+    () => ({ current: null }),
+    [],
+  );
   const [isOpen, setIsOpen] = useState(false);
   const gt = useGT();
 
@@ -18,14 +22,14 @@ export function MobileNav() {
     <>
       <button
         type="button"
-        className="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-sm font-medium transition-colors outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+        class="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-sm font-medium transition-colors outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         aria-expanded={isOpen}
         aria-controls="mobile-menu-popover"
         aria-label={isOpen ? gt("Close menu") : gt("Open menu")}
-        popoverTarget="mobile-menu-popover"
+        popovertarget="mobile-menu-popover"
       >
         <span
-          className={
+          class={
             isOpen ? "icon-[lucide--x] size-5" : "icon-[lucide--menu] size-5"
           }
           aria-hidden="true"
@@ -33,29 +37,32 @@ export function MobileNav() {
       </button>
 
       <div
-        ref={popoverRef}
+        bind={(element) => {
+          popoverRef.current = element;
+          return undefined;
+        }}
         id="mobile-menu-popover"
-        className="fixed inset-auto top-16 end-4 m-0 w-72 rounded-sm border border-border bg-shell p-4 text-foreground shadow-lg"
+        class="fixed inset-auto top-16 end-4 m-0 w-72 rounded-sm border border-border bg-shell p-4 text-foreground shadow-lg"
         popover="auto"
         role="dialog"
         aria-label={gt("Navigation menu")}
-        onToggle={(event) => {
+        mix={on("toggle", (event) => {
           setIsOpen(event.newState === "open");
-        }}
+        })}
       >
         <nav>
           <NavigationLinks
-            className="flex flex-col gap-y-0.5"
+            class="flex flex-col gap-y-0.5"
             onNavigate={closeMenu}
           />
         </nav>
 
-        <Squiggle className="text-ink-faint my-3" />
+        <Squiggle class="text-ink-faint my-3" />
 
         <LocaleSwitcher />
 
-        <div className="border-t border-dotted border-border mt-3 pt-3 flex items-center justify-between">
-          <span className="font-mono text-[11px] text-muted-foreground tracking-wider">
+        <div class="border-t border-dotted border-border mt-3 pt-3 flex items-center justify-between">
+          <span class="font-mono text-[11px] text-muted-foreground tracking-wider">
             &copy; Ben Gubler
           </span>
           <ThemeToggle />

@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { getGT, T } from "gt-tanstack-start";
+import { createFileRoute } from "@tanstack/solid-router";
+import { getGT, T } from "gt-fig-tanstack-start";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 import { getPageMetadata } from "@/lib/metadata";
@@ -21,14 +21,14 @@ export const Route = createFileRoute("/{-$locale}/about/")({
 
 function AboutPage() {
   return (
-    <div className="space-y-10">
+    <div class="space-y-10">
       <header>
         <T>
           <PageTitle>About Me</PageTitle>
         </T>
       </header>
 
-      <section className="space-y-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
+      <section class="space-y-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
         <T>
           <p>
             My name's Ben, but you might know me by my GitHub username,{" "}
@@ -36,7 +36,7 @@ function AboutPage() {
               href="https://github.com/bgub"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-foreground hover:underline"
+              class="font-medium text-foreground hover:underline"
             >
               @bgub
             </Link>
@@ -55,21 +55,21 @@ function AboutPage() {
             Check out{" "}
             <Link
               href="/about/my-stack"
-              className="font-medium text-foreground hover:underline"
+              class="font-medium text-foreground hover:underline"
             >
               my stack
             </Link>{" "}
             of technologies and tools I use, browse my{" "}
             <Link
               href="/about/favorites"
-              className="font-medium text-foreground hover:underline"
+              class="font-medium text-foreground hover:underline"
             >
               favorites
             </Link>{" "}
             including books and movies I love, or see what I've{" "}
             <Link
               href="/recommended"
-              className="font-medium text-foreground hover:underline"
+              class="font-medium text-foreground hover:underline"
             >
               recommended
             </Link>{" "}
@@ -79,7 +79,7 @@ function AboutPage() {
               href="/ben-gubler-resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-foreground hover:underline"
+              class="font-medium text-foreground hover:underline"
             >
               résumé
             </Link>
@@ -98,15 +98,15 @@ function AboutPage() {
         </T>
       </section>
 
-      <section className="space-y-5">
+      <section class="space-y-5">
         <T>
-          <h2 className="font-serif font-medium text-2xl tracking-tight text-foreground">
+          <h2 class="font-serif font-medium text-2xl tracking-tight text-foreground">
             Fun Facts
           </h2>
         </T>
-        <div className="border border-border rounded-sm p-6 bg-card">
+        <div class="border border-border rounded-sm p-6 bg-card">
           <T>
-            <ul className="list-disc space-y-3 pl-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
+            <ul class="list-disc space-y-3 pl-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
               <li>
                 I'm passionate about language learning: I speak English, Czech,
                 and Slovak, and am currently learning Russian and Arabic.

@@ -1,4 +1,5 @@
-import { msg, useMessages } from "gt-tanstack-start";
+import { on } from "@bgub/fig-dom";
+import { msg, useMessages } from "gt-fig-tanstack-start";
 import { Link } from "@/components/link";
 import { getUnlocalizedPath } from "@/lib/locales";
 import { usePathname } from "@/lib/router";
@@ -40,7 +41,7 @@ const navigation = [
 ];
 
 interface NavigationLinksProps {
-  className?: string;
+  class?: string;
   onNavigate?: () => void;
 }
 
@@ -53,38 +54,38 @@ function isActivePath(pathname: string, href: string) {
 }
 
 export function NavigationLinks({
-  className,
+  class: classValue,
   onNavigate,
 }: NavigationLinksProps) {
   const pathname = getUnlocalizedPath(usePathname());
   const m = useMessages();
 
   return (
-    <ul className={className}>
+    <ul class={classValue}>
       {navigation.map((item) => {
         const isActive = isActivePath(pathname, item.href);
 
         return (
-          <li key={item.name} className="relative">
+          <li key={item.name} class="relative">
             {item.isSubItem && (
               <>
-                <div className="absolute inset-s-2 top-0 h-1/2 w-px bg-border/70" />
-                <div className="absolute inset-s-2 top-1/2 w-4 h-px bg-border/70" />
+                <div class="absolute inset-s-2 top-0 h-1/2 w-px bg-border/70" />
+                <div class="absolute inset-s-2 top-1/2 w-4 h-px bg-border/70" />
               </>
             )}
             <Link
               href={item.href}
-              className={cn(
+              class={cn(
                 "group flex items-center gap-x-2.5 rounded-sm px-2.5 py-2 text-sm font-sans leading-tight transition-all duration-100",
                 item.isSubItem && "ms-4",
                 isActive
                   ? "bg-card text-foreground shadow-[inset_0_0_0_1px_var(--border)]"
                   : "text-ink-soft hover:bg-rule-soft",
               )}
-              onClick={onNavigate}
+              mix={onNavigate ? on("click", onNavigate) : undefined}
             >
               <span
-                className={`${item.icon} size-3.75 shrink-0 opacity-75`}
+                class={`${item.icon} size-3.75 shrink-0 opacity-75`}
                 aria-hidden="true"
               />
               {m(item.name)}

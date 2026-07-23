@@ -2,9 +2,9 @@ import {
   createCsrfMiddleware,
   createMiddleware,
   createStart,
-} from "@tanstack/react-start";
-import { getResponseHeaders } from "@tanstack/react-start/server";
-import { gtMiddleware } from "gt-tanstack-start/server";
+} from "@bgub/fig-tanstack-start";
+import { getResponseHeaders } from "@tanstack/start-server-core";
+import { gtMiddleware } from "gt-fig-tanstack-start/server";
 import {
   prepareDirectContentRequest,
   removeLocaleCookie,

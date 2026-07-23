@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+/** @jsxImportSource react */
+import { createFileRoute } from "@tanstack/solid-router";
 import { ImageResponse } from "@vercel/og";
 
 export const Route = createFileRoute("/{-$locale}/og")({

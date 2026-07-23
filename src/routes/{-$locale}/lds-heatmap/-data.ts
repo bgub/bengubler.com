@@ -1,4 +1,4 @@
-import { msg } from "gt-tanstack-start";
+import { msg } from "gt-fig-tanstack-start";
 
 // ── TYPES ─────────────────────────────────────────────────────
 

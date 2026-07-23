@@ -1,10 +1,9 @@
-import { ScriptOnce } from "@tanstack/react-router";
 import {
   createContext,
-  type ReactNode,
-  useContext,
+  type FigNode,
+  readContext,
   useSyncExternalStore,
-} from "react";
+} from "@bgub/fig";
 
 export type Theme = "dark" | "light" | "system";
 type ResolvedTheme = Exclude<Theme, "system">;
@@ -87,7 +86,7 @@ function setTheme(theme: Theme) {
   window.dispatchEvent(new Event(themeChangeEvent));
 }
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
+export function ThemeProvider({ children }: { children: FigNode }): FigNode {
   const snapshot = useSyncExternalStore(
     subscribe,
     getThemeSnapshot,
@@ -101,15 +100,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     snapshot === "dark" || snapshot === "system-dark" ? "dark" : "light";
 
   return (
-    <ThemeContext.Provider value={{ resolvedTheme, setTheme, theme }}>
-      <ScriptOnce>{themeScript}</ScriptOnce>
+    <ThemeContext value={{ resolvedTheme, setTheme, theme }}>
+      <script unsafeHTML={themeScript} />
       {children}
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext);
+  const context = readContext(ThemeContext);
   if (!context) {
     throw new Error("useTheme must be used within ThemeProvider");
   }
