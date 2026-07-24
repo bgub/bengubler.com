@@ -10,12 +10,11 @@ export function ProfileImage({
   const gt = useGT();
   return (
     <img
-      src="/bengubler-avatar-104.jpg"
+      src="/bengubler-avatar-104.webp"
       alt={gt("Profile photo")}
       width={size}
       height={size}
       class={classValue}
-      fetchpriority="high"
       loading="eager"
     />
   );
