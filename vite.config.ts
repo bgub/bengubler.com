@@ -76,31 +76,9 @@ const pagePaths = locales.flatMap((locale) =>
 const prerenderPages = [...new Set([...pagePaths, ...postPaths])].map(
   (path) => ({ path }),
 );
-const figPackages = [
-  "@bgub/fig",
-  "@bgub/fig-dom",
-  "@bgub/fig-reconciler",
-  "@bgub/fig-server",
-  "@bgub/fig-tanstack-router",
-  "@bgub/fig-tanstack-start",
-] as const;
 
 const config = defineConfig({
-  define: {
-    __FIG_DEV__: JSON.stringify(process.env.NODE_ENV !== "production"),
-    "process.env.NODE_ENV": JSON.stringify(
-      process.env.NODE_ENV === "production" ? "production" : "development",
-    ),
-  },
-  optimizeDeps: {
-    exclude: [
-      ...figPackages,
-      "@tanstack/solid-router",
-      "@tanstack/solid-start",
-    ],
-  },
   resolve: {
-    dedupe: [...figPackages],
     alias: [
       {
         find: /^tslib$/,
@@ -110,9 +88,6 @@ const config = defineConfig({
       },
     ],
     tsconfigPaths: true,
-  },
-  ssr: {
-    noExternal: [/^@bgub\/fig/],
   },
   plugins: [
     rawMarkdownDevRewrite(),
