@@ -7,6 +7,37 @@ export function mountGiscus(
 ): void {
   element.replaceChildren();
 
+  let observer: IntersectionObserver | undefined;
+  const load = () => {
+    if (signal.aborted) return;
+    observer?.disconnect();
+    appendGiscus(element, theme);
+  };
+  const Observer = element.ownerDocument.defaultView?.IntersectionObserver;
+
+  if (Observer === undefined) {
+    load();
+  } else {
+    observer = new Observer(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) load();
+      },
+      { rootMargin: "800px 0px" },
+    );
+    observer.observe(element);
+  }
+
+  signal.addEventListener(
+    "abort",
+    () => {
+      observer?.disconnect();
+      element.replaceChildren();
+    },
+    { once: true },
+  );
+}
+
+function appendGiscus(element: HTMLElement, theme: GiscusTheme): void {
   const script = element.ownerDocument.createElement("script");
   Object.assign(script.dataset, {
     category: "Comments",
@@ -26,8 +57,4 @@ export function mountGiscus(
   script.crossOrigin = "anonymous";
   script.src = "https://giscus.app/client.js";
   element.append(script);
-
-  signal.addEventListener("abort", () => element.replaceChildren(), {
-    once: true,
-  });
 }
