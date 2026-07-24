@@ -12,12 +12,12 @@
     "lint:fix": "oxlint --fix --deny-warnings && oxfmt"
   },
   "dependencies": {
-    "@bgub/fig": "0.1.0-alpha.1",
-    "@bgub/fig-dom": "0.1.0-alpha.1",
-    "@bgub/fig-reconciler": "0.1.0-alpha.1",
-    "@bgub/fig-server": "0.1.0-alpha.1",
-    "@bgub/fig-tanstack-router": "0.1.0-alpha.1",
-    "@bgub/fig-tanstack-start": "0.1.0-alpha.1",
+    "@bgub/fig": "0.1.0-alpha.2",
+    "@bgub/fig-dom": "0.1.0-alpha.2",
+    "@bgub/fig-reconciler": "0.1.0-alpha.2",
+    "@bgub/fig-server": "0.1.0-alpha.2",
+    "@bgub/fig-tanstack-router": "0.1.0-alpha.2",
+    "@bgub/fig-tanstack-start": "0.1.0-alpha.2",
     "@fontsource-variable/piazzolla": "^5.3.0",
     "@fontsource/noto-naskh-arabic": "^5.3.0",
     "@tanstack/history": "1.162.0",

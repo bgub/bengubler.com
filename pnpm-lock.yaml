@@ -9,23 +9,23 @@ importers:
   .:
     dependencies:
       '@bgub/fig':
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2
       '@bgub/fig-dom':
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)
       '@bgub/fig-reconciler':
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1)
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2)
       '@bgub/fig-server':
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1)
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2)
       '@bgub/fig-tanstack-router':
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1(@bgub/fig-dom@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(@bgub/fig-dom@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)
       '@bgub/fig-tanstack-start':
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1(@bgub/fig-dom@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig-server@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig-tanstack-router@0.1.0-alpha.1(@bgub/fig-dom@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(rolldown@1.2.0)(vite@8.1.4(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(@bgub/fig-dom@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig-server@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig-tanstack-router@0.1.0-alpha.2(@bgub/fig-dom@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(rolldown@1.2.0)(vite@8.1.4(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
       '@fontsource-variable/piazzolla':
         specifier: ^5.3.0
         version: 5.3.0
@@ -164,14 +164,14 @@ importers:
         version: 1.0.8
     devDependencies:
       '@bgub/fig':
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2
       '@bgub/fig-server':
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1)
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2)
       '@bgub/fig-tanstack-start':
-        specifier: 0.1.0-alpha.1
-        version: 0.1.0-alpha.1(@bgub/fig-dom@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig-server@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig-tanstack-router@0.1.0-alpha.1(@bgub/fig-dom@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(rolldown@1.2.0)(vite@8.1.4(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(@bgub/fig-dom@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig-server@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig-tanstack-router@0.1.0-alpha.2(@bgub/fig-dom@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(rolldown@1.2.0)(vite@8.1.4(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
 
 packages:
 
@@ -398,54 +398,54 @@ packages:
     resolution: {integrity: sha512-eY+Yn3dCqTGmyiq2QRU66lA5FL8lqqqvecHt0fF3uHONIa7ToYsaCiWV8lOKqAs0Rb2SjixiKFROngnulPtt2g==}
     engines: {node: ^22.18.0 || >=24.11.0}
 
-  '@bgub/fig-dom@0.1.0-alpha.1':
-    resolution: {integrity: sha512-sHyzjdXDMTOL/7ZvSaL2cDk3+odzd+DxqRfs6NdPhBt74mjAhlXTXJ/kV86QjzzlReu+FprIid9pySlktycyiA==}
+  '@bgub/fig-dom@0.1.0-alpha.2':
+    resolution: {integrity: sha512-RKxqP8/pdLVb71swfYeDr/91ZxNKLapiW5qBwcyCc0wL2DDfeehYbRDvq3kzr379Fc8sQgsV92vwu4RXVetDIg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
-      '@bgub/fig': 0.1.0-alpha.1
-      '@bgub/fig-reconciler': 0.1.0-alpha.1
+      '@bgub/fig': 0.1.0-alpha.2
+      '@bgub/fig-reconciler': 0.1.0-alpha.2
 
-  '@bgub/fig-reconciler@0.1.0-alpha.1':
-    resolution: {integrity: sha512-0ESW3FTrFxzcAQRwWrjCeQI0dkdPCsluKngdit3lCtgj2oEr9H5n/q9espdeE7y4drrOCvMeLOt2I6TG4i8vUQ==}
+  '@bgub/fig-reconciler@0.1.0-alpha.2':
+    resolution: {integrity: sha512-TkSX6zjHM0112SkhoBvXUZZ8eDWqqAM6Ghy6wHwD9ivVN47vXXvFR3i3gse9/Y23RIh2w25u0R85e+hUlukX0A==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
-      '@bgub/fig': 0.1.0-alpha.1
+      '@bgub/fig': 0.1.0-alpha.2
 
-  '@bgub/fig-refresh@0.1.0-alpha.1':
-    resolution: {integrity: sha512-1B99XFX4dGNM7j4UeYH0svGerOyBozFDKO8urcSCqkrsFMaMtr9ImWp/dTy13/gwt+bMK23YUuwW8Ay0XT39JQ==}
+  '@bgub/fig-refresh@0.1.0-alpha.2':
+    resolution: {integrity: sha512-zakYMBbSVNUcaC1VIuilU+3ax8XBYfPky+dPzmWVPbmp8TScXW6QZuQLWwQrUF2YpbBx6gsnXrFHDPlCTBZOag==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
-      '@bgub/fig-reconciler': 0.1.0-alpha.1
+      '@bgub/fig-reconciler': 0.1.0-alpha.2
 
-  '@bgub/fig-server@0.1.0-alpha.1':
-    resolution: {integrity: sha512-PApQe62Gp1Nzl3HuCQMF4gu0e/QFwFZzuh/GSUiQ+xyToijKDjJYDBK7RkCY5popC4WbaU2EbLT3TujIjf7WYw==}
+  '@bgub/fig-server@0.1.0-alpha.2':
+    resolution: {integrity: sha512-2yAO8sN2GmpcSSBMLoCvVd80tYcWZihk9Yp9seJe//+X38nVFE8ED6zrj6m/QkxRMsTFut2ESm5flaObE6BeCA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
-      '@bgub/fig': 0.1.0-alpha.1
+      '@bgub/fig': 0.1.0-alpha.2
 
-  '@bgub/fig-tanstack-router@0.1.0-alpha.1':
-    resolution: {integrity: sha512-R72b2NnYCoDL7g6WSCGQqu5WLs8TmoFHgEClal7pjS2PSCwFjpvZCbzDJGjRZyld/r4AyBCpNMdMxIni+lV7Zg==}
+  '@bgub/fig-tanstack-router@0.1.0-alpha.2':
+    resolution: {integrity: sha512-yKtf0iyq1Apyl2+aDWqvWTKYL2p4ztZJwZmANFT1fzZ2GAOMZgzRrRCZztsRWscnLCuqktgabURkGok98uj0tw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
-      '@bgub/fig': 0.1.0-alpha.1
-      '@bgub/fig-dom': 0.1.0-alpha.1
+      '@bgub/fig': 0.1.0-alpha.2
+      '@bgub/fig-dom': 0.1.0-alpha.2
 
-  '@bgub/fig-tanstack-start@0.1.0-alpha.1':
-    resolution: {integrity: sha512-OwIThYHWxqmD1eDFi6DPKIfrCvpSOCxcdv2uVweN44wgkQRXacGypMR+8pqiJkb+rPV7fZMp5RphPpR8GzTycg==}
+  '@bgub/fig-tanstack-start@0.1.0-alpha.2':
+    resolution: {integrity: sha512-XpeF9lKR1+r6T4iblCN7KO2YbY2GpirF9EDCEOdEZz+ihMw687V98xtnJiXSiOYg3OPt6KsJYNmRe4mGGOalZw==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
-      '@bgub/fig': 0.1.0-alpha.1
-      '@bgub/fig-dom': 0.1.0-alpha.1
-      '@bgub/fig-server': 0.1.0-alpha.1
-      '@bgub/fig-tanstack-router': 0.1.0-alpha.1
+      '@bgub/fig': 0.1.0-alpha.2
+      '@bgub/fig-dom': 0.1.0-alpha.2
+      '@bgub/fig-server': 0.1.0-alpha.2
+      '@bgub/fig-tanstack-router': 0.1.0-alpha.2
       vite: '>=7.0.0'
 
-  '@bgub/fig-vite@0.1.0-alpha.1':
-    resolution: {integrity: sha512-yLhaHX9zD8aPKCGyX2YN1U2mdDQmOe3NGchlVhVAML3WOzoSawtWEeDzoL9IA3aFvYsKNKSM/T3Hy3E8kXwOfQ==}
+  '@bgub/fig-vite@0.1.0-alpha.2':
+    resolution: {integrity: sha512-2s98pckEEeW6TR0FdXAVBZaulw35e0ji993NXBrVG3do0+WEsnz6kq5/SdIzZF+EkpHXXoPjW1IHnJ1sKRE10Q==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
-  '@bgub/fig@0.1.0-alpha.1':
-    resolution: {integrity: sha512-6Wn1I2ICfxktgtD99Nm4bahR48ig7JZxgepB39TS7hYSBVm92CqpHO3e+S++31Av88KLi5ai1qG+GF4HdG1jig==}
+  '@bgub/fig@0.1.0-alpha.2':
+    resolution: {integrity: sha512-j2k1PDYZg1oV6yrTQZn+cZlD+6qMx40gk1zAfZnW8W/rQbt1xNow9IcgyTiCvgHI2gksvAm/bvyGcogUqUUTNg==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
   '@clack/core@1.0.0-alpha.6':
@@ -4209,40 +4209,40 @@ snapshots:
       '@babel/helper-string-parser': 8.0.0
       '@babel/helper-validator-identifier': 8.0.4
 
-  '@bgub/fig-dom@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)':
+  '@bgub/fig-dom@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)':
     dependencies:
-      '@bgub/fig': 0.1.0-alpha.1
-      '@bgub/fig-reconciler': 0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1)
+      '@bgub/fig': 0.1.0-alpha.2
+      '@bgub/fig-reconciler': 0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2)
 
-  '@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1)':
+  '@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2)':
     dependencies:
-      '@bgub/fig': 0.1.0-alpha.1
+      '@bgub/fig': 0.1.0-alpha.2
 
-  '@bgub/fig-refresh@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))':
+  '@bgub/fig-refresh@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))':
     dependencies:
-      '@bgub/fig-reconciler': 0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1)
+      '@bgub/fig-reconciler': 0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2)
 
-  '@bgub/fig-server@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1)':
+  '@bgub/fig-server@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2)':
     dependencies:
-      '@bgub/fig': 0.1.0-alpha.1
+      '@bgub/fig': 0.1.0-alpha.2
 
-  '@bgub/fig-tanstack-router@0.1.0-alpha.1(@bgub/fig-dom@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)':
+  '@bgub/fig-tanstack-router@0.1.0-alpha.2(@bgub/fig-dom@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)':
     dependencies:
-      '@bgub/fig': 0.1.0-alpha.1
-      '@bgub/fig-dom': 0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)
+      '@bgub/fig': 0.1.0-alpha.2
+      '@bgub/fig-dom': 0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)
       '@tanstack/history': 1.162.0
       '@tanstack/router-core': 1.171.15
       '@tanstack/store': 0.9.3
 
-  '@bgub/fig-tanstack-start@0.1.0-alpha.1(@bgub/fig-dom@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig-server@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig-tanstack-router@0.1.0-alpha.1(@bgub/fig-dom@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(rolldown@1.2.0)(vite@8.1.4(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))':
+  '@bgub/fig-tanstack-start@0.1.0-alpha.2(@bgub/fig-dom@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig-server@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig-tanstack-router@0.1.0-alpha.2(@bgub/fig-dom@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(rolldown@1.2.0)(vite@8.1.4(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))':
     dependencies:
       '@babel/core': 8.0.1
       '@babel/preset-typescript': 8.0.1(@babel/core@8.0.1)
-      '@bgub/fig': 0.1.0-alpha.1
-      '@bgub/fig-dom': 0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)
-      '@bgub/fig-server': 0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1)
-      '@bgub/fig-tanstack-router': 0.1.0-alpha.1(@bgub/fig-dom@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)
-      '@bgub/fig-vite': 0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)
+      '@bgub/fig': 0.1.0-alpha.2
+      '@bgub/fig-dom': 0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)
+      '@bgub/fig-server': 0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2)
+      '@bgub/fig-tanstack-router': 0.1.0-alpha.2(@bgub/fig-dom@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)
+      '@bgub/fig-vite': 0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)
       '@tanstack/router-core': 1.171.15
       '@tanstack/start-client-core': 1.170.14
       '@tanstack/start-plugin-core': 1.171.22(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(rolldown@1.2.0)(vite@8.1.4(@types/node@25.9.1)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
@@ -4264,17 +4264,17 @@ snapshots:
       - vite-plugin-solid
       - webpack
 
-  '@bgub/fig-vite@0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)':
+  '@bgub/fig-vite@0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)':
     dependencies:
       '@babel/core': 8.0.1
       '@babel/preset-typescript': 8.0.1(@babel/core@8.0.1)
-      '@bgub/fig-dom': 0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))(@bgub/fig@0.1.0-alpha.1)
-      '@bgub/fig-refresh': 0.1.0-alpha.1(@bgub/fig-reconciler@0.1.0-alpha.1(@bgub/fig@0.1.0-alpha.1))
+      '@bgub/fig-dom': 0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))(@bgub/fig@0.1.0-alpha.2)
+      '@bgub/fig-refresh': 0.1.0-alpha.2(@bgub/fig-reconciler@0.1.0-alpha.2(@bgub/fig@0.1.0-alpha.2))
     transitivePeerDependencies:
       - '@bgub/fig'
       - '@bgub/fig-reconciler'
 
-  '@bgub/fig@0.1.0-alpha.1': {}
+  '@bgub/fig@0.1.0-alpha.2': {}
 
   '@clack/core@1.0.0-alpha.6':
     dependencies:
