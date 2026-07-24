@@ -1,4 +1,5 @@
 import { ViewTransition } from "@bgub/fig";
+import { enableViewTransitions } from "@bgub/fig-dom/view-transitions";
 import { createFileRoute } from "@tanstack/solid-router";
 import { notFound, Outlet, redirect } from "@tanstack/solid-router";
 import { SiteLayout } from "@/components/site-layout/site-layout";
@@ -10,6 +11,8 @@ import {
   resolveLocale,
 } from "@/lib/locales";
 import { isDirectContentPath } from "@/lib/request-routing";
+
+enableViewTransitions();
 
 export const Route = createFileRoute("/{-$locale}")({
   beforeLoad: ({ params, location }) => {

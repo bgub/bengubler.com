@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "../fig/node_modules/.bin/vite dev",
+    "dev": "vite dev",
     "build": "vite build",
     "start": "node .output/server/index.mjs",
     "translate": "gtx-cli translate",
@@ -12,12 +12,12 @@
     "lint:fix": "oxlint --fix --deny-warnings && oxfmt"
   },
   "dependencies": {
-    "@bgub/fig": "link:../fig/packages/fig",
-    "@bgub/fig-dom": "link:../fig/packages/fig-dom",
-    "@bgub/fig-reconciler": "link:../fig/packages/fig-reconciler",
-    "@bgub/fig-server": "link:../fig/packages/fig-server",
-    "@bgub/fig-tanstack-router": "link:../fig/packages/fig-tanstack-router",
-    "@bgub/fig-tanstack-start": "link:../fig/packages/fig-tanstack-start",
+    "@bgub/fig": "0.1.0-alpha.1",
+    "@bgub/fig-dom": "0.1.0-alpha.1",
+    "@bgub/fig-reconciler": "0.1.0-alpha.1",
+    "@bgub/fig-server": "0.1.0-alpha.1",
+    "@bgub/fig-tanstack-router": "0.1.0-alpha.1",
+    "@bgub/fig-tanstack-start": "0.1.0-alpha.1",
     "@fontsource-variable/piazzolla": "^5.3.0",
     "@fontsource/noto-naskh-arabic": "^5.3.0",
     "@tanstack/history": "1.162.0",
