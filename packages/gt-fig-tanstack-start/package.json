@@ -23,8 +23,8 @@
     "gt-i18n": "1.0.8"
   },
   "devDependencies": {
-    "@bgub/fig": "0.1.0-alpha.4",
-    "@bgub/fig-server": "0.1.0-alpha.4",
-    "@bgub/fig-tanstack-start": "0.1.0-alpha.4"
+    "@bgub/fig": "0.1.0-alpha.5",
+    "@bgub/fig-server": "0.1.0-alpha.5",
+    "@bgub/fig-tanstack-start": "0.1.0-alpha.5"
   }
 }
