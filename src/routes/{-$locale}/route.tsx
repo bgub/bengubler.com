@@ -48,7 +48,7 @@ export const Route = createFileRoute("/{-$locale}")({
 function LocaleLayout() {
   return (
     <SiteLayout>
-      <ViewTransition name="route-content" update="auto">
+      <ViewTransition name="route-content" update="none">
         <Outlet />
       </ViewTransition>
     </SiteLayout>
