@@ -26,7 +26,7 @@ export function SiteLayout({ children }: { children: FigNode }): FigNode {
                 <MobileNav />
               </div>
             </header>
-            <main class="flex-1 w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+            <main class="flex-1 w-full px-4 sm:px-6 lg:px-8 py-10">
               <div class="mb-16">{children}</div>
             </main>
           </div>

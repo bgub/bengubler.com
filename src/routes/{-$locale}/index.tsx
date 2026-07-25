@@ -54,15 +54,20 @@ function HomePage() {
           <T>
             I'm a student at BYU, where I'm majoring in CS/ML and
             double-minoring in Arabic + Math. I build open-source libraries, web
-            applications, and AI tools. Currently working at{" "}
+            applications, and AI tools.
+          </T>
+        </p>
+
+        <p class="font-serif text-lg sm:text-xl leading-relaxed text-ink-soft font-light">
+          <T>
+            Currently @
             <span class="bg-buttercream px-1.5 py-0.5 rounded-sm text-foreground font-normal">
               General Translation
             </span>
-            , previously interned at{" "}
+            , prev intern @
             <span class="bg-buttercream px-1.5 py-0.5 rounded-sm text-foreground font-normal">
               Vercel
             </span>
-            .
           </T>
         </p>
 
@@ -125,7 +130,7 @@ function HomePage() {
             <T>See All &#x25B8;</T>
           </Link>
         </div>
-        <ProjectList projects={featuredProjects} compact />
+        <ProjectList projects={featuredProjects} />
       </section>
 
       {/* Recent Posts Section */}

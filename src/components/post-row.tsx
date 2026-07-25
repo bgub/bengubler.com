@@ -57,13 +57,31 @@ export function PostRow({ post, variant }: PostRowProps) {
       {descriptionContent}
     </PostViewTransition>
   );
+  const readingTime = archived ? (
+    <span>{post.readingTime}</span>
+  ) : (
+    <PostViewTransition kind="reading-time" postUrl={post.url}>
+      <span>{post.readingTime}</span>
+    </PostViewTransition>
+  );
 
   return (
     <Link
       href={post.url}
-      class="grid grid-cols-1 sm:grid-cols-[100px_1fr_auto] gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
+      class={`grid grid-cols-1 gap-x-5 gap-y-1 py-4 border-b border-dotted border-border items-baseline no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm ${
+        compact ? "sm:grid-cols-[100px_1fr]" : "sm:grid-cols-[100px_1fr_auto]"
+      }`}
     >
-      {date}
+      {compact ? (
+        <div>
+          {date}
+          <div class="hidden sm:block font-mono text-[11px] text-muted-foreground tracking-wide mt-1">
+            {readingTime}
+          </div>
+        </div>
+      ) : (
+        date
+      )}
       <div>
         {title}
         {description}
@@ -84,21 +102,19 @@ export function PostRow({ post, variant }: PostRowProps) {
           </div>
         )}
       </div>
-      <div class="hidden sm:block font-mono text-[11px] text-muted-foreground text-right whitespace-nowrap">
-        {archived ? (
-          <>
-            {post.readingTime}
-            <br />
-            <span class="text-muted-foreground text-[11px]">
-              {post.tags.map((tag) => `#${tag}`).join(" ")}
-            </span>
-          </>
-        ) : (
-          <PostViewTransition kind="reading-time" postUrl={post.url}>
-            <span>{post.readingTime}</span>
-          </PostViewTransition>
-        )}
-      </div>
+      {!compact && (
+        <div class="hidden sm:block font-mono text-[11px] text-muted-foreground text-right whitespace-nowrap">
+          {readingTime}
+          {archived && (
+            <>
+              <br />
+              <span class="text-muted-foreground text-[11px]">
+                {post.tags.map((tag) => `#${tag}`).join(" ")}
+              </span>
+            </>
+          )}
+        </div>
+      )}
     </Link>
   );
 }

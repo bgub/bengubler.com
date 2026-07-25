@@ -1,5 +1,4 @@
 import { Link } from "@/components/link";
-import { Squiggle } from "@/components/squiggle";
 import { LocaleSwitcher } from "./locale-switcher";
 import { NavigationLinks } from "./navigation-links";
 import { ProfileImage } from "./profile-image";
@@ -9,7 +8,7 @@ export function Sidebar() {
   return (
     <div class="hidden md:fixed md:inset-y-0 md:z-50 md:flex md:w-64 md:flex-col">
       <div class="flex grow flex-col overflow-y-auto bg-shell border-r border-border">
-        <div class="flex grow flex-col gap-y-5 px-5 py-8 md:py-10">
+        <div class="flex grow flex-col gap-y-8 px-5 py-10">
           {/* Profile Section */}
           <Link href="/" class="flex items-center gap-3.5 group px-1">
             <div class="relative size-13 rounded-full overflow-hidden shrink-0 border border-border">
@@ -19,13 +18,11 @@ export function Sidebar() {
               <div class="font-serif text-xl font-medium text-foreground leading-tight tracking-tight group-hover:text-foreground/80 transition-colors">
                 Ben Gubler
               </div>
-              <div class="font-mono text-sm text-muted-foreground mt-0">
+              <div class="font-mono text-[11px] leading-4 text-ink-mute">
                 @bgub
               </div>
             </div>
           </Link>
-
-          <Squiggle class="text-ink-faint" />
 
           {/* Navigation */}
           <nav class="flex flex-1 flex-col">

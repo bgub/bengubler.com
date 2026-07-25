@@ -25,9 +25,15 @@ export function ThemeToggle() {
           if (isTheme(value)) setTheme(value);
         })}
       >
-        <option value="light">{gt("Light")}</option>
-        <option value="dark">{gt("Dark")}</option>
-        <option value="system">{gt("System")}</option>
+        <option value="light" selected={theme === "light"}>
+          {gt("Light")}
+        </option>
+        <option value="dark" selected={theme === "dark"}>
+          {gt("Dark")}
+        </option>
+        <option value="system" selected={theme === "system"}>
+          {gt("System")}
+        </option>
       </select>
     </div>
   );

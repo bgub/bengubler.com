@@ -6,11 +6,34 @@ export const projectsData = [
     category: msg("Featured"),
     projects: [
       {
+        name: msg("fig"),
+        description: msg(
+          "small TypeScript UI runtime for apps and metaframeworks",
+        ),
+        links: {
+          github: "https://github.com/bgub/fig",
+        },
+      },
+      {
+        name: msg("helm"),
+        description: msg('AI "code mode" toolkit for TypeScript'),
+        links: {
+          github: "https://github.com/bgub/helm",
+        },
+      },
+      {
+        name: msg("jikei"),
+        description: msg("RISC-V microkernel built from scratch in Rust"),
+        links: {
+          demo: "https://jikei.vercel.app",
+          github: "https://github.com/bgub/jikei",
+        },
+      },
+      {
         name: msg("eta"),
         description: msg(
-          "A fast embedded JS template engine. Widely used with 1.5K+ GitHub stars and ~2M weekly downloads.",
+          "fast embedded JS template engine, ~1.7k stars, ~6m downloads/week",
         ),
-        tech: "TypeScript, microbundle, Jest, GitHub Actions",
         links: {
           demo: "https://eta.js.org",
           github: "https://github.com/eta-dev/eta",
@@ -18,34 +41,19 @@ export const projectsData = [
       },
       {
         name: msg("tokka-bench"),
-        description: msg(
-          "Benchmark and compare tokenizers across many languages with interactive visualizations and analysis.",
-        ),
-        tech: "tokenizers, streamlit",
+        description: msg("compare tokenizers across languages"),
         links: {
           demo: "https://tokka-bench.streamlit.app/",
           github: "https://github.com/bgub/tokka-bench",
         },
       },
       {
-        name: msg("helm"),
-        description: msg(
-          'TypeScript AI "code mode" toolkit with permissions and search.',
-        ),
-        tech: "TypeScript",
-        links: {
-          github: "https://github.com/bgub/helm",
-        },
-      },
-      {
         name: msg("tinylingo.com"),
         description: msg(
-          "A language learning app for improving comprehension. Listen to authentic native podcasts with AI-generated transcriptions and translations.",
+          "language learning with native podcasts and AI transcripts",
         ),
-        tech: "Next.js 15, Convex, Clerk, shadcn/ui, OpenRouter",
         links: {
           demo: "https://tinylingo.com",
-          github: "https://github.com/nebrelbug/tinylingo",
         },
       },
     ],
@@ -56,10 +64,7 @@ export const projectsData = [
     projects: [
       {
         name: msg("tokka"),
-        description: msg(
-          "Toolkit for training BPE tokenizers on custom data splits with advanced configuration options.",
-        ),
-        tech: "tokenizers, datasets, mosaicml-streaming",
+        description: msg("train BPE tokenizers on custom data mixes"),
         links: {
           github: "https://github.com/bgub/tokka",
         },
@@ -67,37 +72,29 @@ export const projectsData = [
       {
         name: msg("hf_to_mds"),
         description: msg(
-          "Convert HuggingFace datasets to MosaicML Streaming format (MDS) for efficient cloud-based training.",
+          "convert Hugging Face datasets to MosaicML Streaming format",
         ),
-        tech: "datasets, mosaicml-streaming",
         links: {
           github: "https://github.com/bgub/hf_to_mds",
         },
       },
       {
         name: msg("mokka"),
-        description: msg(
-          "Toolkit for creating Small Language Models (SLMs) easily, targeted towards researchers (Work in Progress).",
-        ),
-        tech: "PyTorch, OmegaConf, WandB",
+        description: msg("toolkit for building small language models"),
         links: {
           github: "https://github.com/bgub/mokka",
         },
       },
       {
         name: msg("agentpane"),
-        description: msg("Web interface for AI coding agents."),
-        tech: "TypeScript",
+        description: msg("web interface for AI coding agents"),
         links: {
           github: "https://github.com/bgub/agentpane",
         },
       },
       {
         name: msg("gom"),
-        description: msg(
-          "Pip package with CLI tool to monitor GPU usage across Docker containers. A minimalistic alternative to 'nvidia-smi'.",
-        ),
-        tech: "Python, Docker, CLI",
+        description: msg("minimal GPU monitor for Docker containers"),
         links: {
           demo: "https://pypi.org/project/gom/",
           github: "https://github.com/bgub/gom",
@@ -111,10 +108,7 @@ export const projectsData = [
     projects: [
       {
         name: msg("bengubler.com"),
-        description: msg(
-          "My personal website and blog where I write about AI, distributed training, and language learning.",
-        ),
-        tech: "Next.js 16, Tailwind, Markdoc",
+        description: msg("personal website and blog"),
         links: {
           demo: "https://bengubler.com",
           github: "https://github.com/nebrelbug/bengubler.com",
@@ -122,10 +116,7 @@ export const projectsData = [
       },
       {
         name: msg("Decline App"),
-        description: msg(
-          "PWA for practicing Czech, Slovak, and Russian declension patterns.",
-        ),
-        tech: "Next.js, Tailwind, PWA",
+        description: msg("practice Czech, Slovak, and Russian declensions"),
         links: {
           demo: "https://decline.vercel.app/",
           github: "https://github.com/bgub/declension-practice",
@@ -133,30 +124,21 @@ export const projectsData = [
       },
       {
         name: msg("nix-macos-starter"),
-        description: msg(
-          "Starter Nix config for macOS with sensible defaults and documentation.",
-        ),
-        tech: "nix-darwin, home-manager, homebrew, mise",
+        description: msg("starter Nix config for macOS"),
         links: {
           github: "https://github.com/nebrelbug/nix-macos-starter",
         },
       },
       {
         name: msg("shade"),
-        description: msg(
-          "PyTorch-like computation library for TS/JS using WebGPU (Work in Progress).",
-        ),
-        tech: "Deno, WGSL",
+        description: msg("PyTorch-like WebGPU library for TypeScript"),
         links: {
           github: "https://github.com/bgub/shade",
         },
       },
       {
         name: msg("npm-to-yarn"),
-        description: msg(
-          "Converts between npm/Yarn/pnpm/bun CLI commands with support for all major package managers.",
-        ),
-        tech: "TypeScript, Jest",
+        description: msg("convert commands between npm, Yarn, pnpm, and Bun"),
         links: {
           demo: "https://www.npmjs.com/package/npm-to-yarn",
           github: "https://github.com/bgub/npm-to-yarn",
@@ -170,10 +152,7 @@ export const projectsData = [
     projects: [
       {
         name: msg("squirrelly"),
-        description: msg(
-          "A lightweight JavaScript template engine with support for helpers, partials, filters, etc. The project that helped me get into open source.",
-        ),
-        tech: "JavaScript, Template Engine",
+        description: msg("lightweight JavaScript template engine"),
         links: {
           demo: "https://squirrelly.js.org",
           github: "https://github.com/squirrellyjs/squirrelly",
@@ -181,30 +160,21 @@ export const projectsData = [
       },
       {
         name: msg("Splashpad"),
-        description: msg(
-          "A Chrome extension that turns your new tab page into a customizable dashboard.",
-        ),
-        tech: "JavaScript, Chrome Extension",
+        description: msg("customizable new-tab dashboard for Chrome"),
         links: {
           demo: "https://chrome.google.com/webstore/detail/splashpad/fainejfmhojphdbbfmpomeknplpdnndb",
         },
       },
       {
         name: msg("Esperaboard"),
-        description: msg(
-          "A Chrome extension to transform characters written in the Esperanto 'x-system' into Esperanto characters while typing.",
-        ),
-        tech: "JavaScript, Chrome Extension",
+        description: msg("type Esperanto characters with the x-system"),
         links: {
           demo: "https://chrome.google.com/webstore/detail/esperaboard-esperanto-x-s/nkgbomaneihlabdhjihdhpdlehahahoc",
         },
       },
       {
         name: msg("Tic-Tac-Too"),
-        description: msg(
-          "AI tic-tac-toe bot built with TensorFlow.js. Built as a teenager while learning about ML.",
-        ),
-        tech: "JavaScript, TensorFlow.js, AI",
+        description: msg("TensorFlow.js tic-tac-toe bot"),
         links: {
           demo: "https://tictactoe.bengubler.com/",
         },
