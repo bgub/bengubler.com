@@ -1027,36 +1027,35 @@
     },
     {
       "fileId": "879f3a5f954ee8b75bf1e91f4ea9916b41c933e5beba7eb6362647a637c9c66d",
-      "versionId": "22920a86d8a8e0a69c90da25a7d0f48f5b7737b5970aaabfc2b2946d45506e12",
+      "versionId": "7a0761606f57db4d02f1aceea86b617d221610ae8ea449e7ddf08516be6dfaf6",
       "translations": {
-        "ar": {
-          "updatedAt": "2026-07-22T18:18:28.339Z",
-          "fileName": "src/_gt/ar.json",
-          "postProcessHash": "36cdb7933c12e0faf669a4ac90b4472cdbf67b6d6b4dbbeb474283cdd94ed406"
-        },
-        "ru": {
-          "updatedAt": "2026-07-22T18:18:28.340Z",
-          "fileName": "src/_gt/ru.json",
-          "postProcessHash": "1b6d7c33f34424c2d16518cb793595ef404e64f338c925ba2d069acb6e36166e"
+        "sk": {
+          "updatedAt": "2026-07-31T18:49:22.278Z",
+          "fileName": "src/_gt/sk.json",
+          "postProcessHash": "85df1906122199f8efb7846cfb75dbfc9e3ae4c8f11138ea906a31acc6a88d4e"
         },
         "cs": {
-          "updatedAt": "2026-07-22T18:18:28.341Z",
+          "updatedAt": "2026-07-31T18:49:22.282Z",
           "fileName": "src/_gt/cs.json",
-          "postProcessHash": "73cc3955774a0362764ad8e6dc0b1b9adbf1b941f47ded7910cafe292e5913b8"
+          "postProcessHash": "799ac4b6e1bf4c5e85be61d0e69187d41f6ceec8b82f787a17c7d6d8a009b240"
         },
-        "sk": {
-          "updatedAt": "2026-07-22T18:18:28.342Z",
-          "fileName": "src/_gt/sk.json",
-          "postProcessHash": "18a2cf8e3453ff127be076abfcfa344749a2fc6ab4bb553b7d750ce05348c5e7"
+        "ar": {
+          "updatedAt": "2026-07-31T18:49:22.285Z",
+          "fileName": "src/_gt/ar.json",
+          "postProcessHash": "9b9d9a2404540f8647343d1a45701badf59f736260dbcc1c6e6c4672094b4b7e"
+        },
+        "ru": {
+          "updatedAt": "2026-07-31T18:49:22.287Z",
+          "fileName": "src/_gt/ru.json",
+          "postProcessHash": "b687a2844936865db63815f753fee5b59075937b9db4f19f79043511da18aa9a"
         },
         "eo": {
-          "updatedAt": "2026-07-22T18:18:28.342Z",
+          "updatedAt": "2026-07-31T18:49:22.288Z",
           "fileName": "src/_gt/eo.json",
-          "postProcessHash": "36e9ab4e9787a20ed1c4502ef3ec3bf5e13e3a741fe6a55f6c9d5847f9de798d"
+          "postProcessHash": "ca65d4e02adb79f9912254f3987504aaf50f6042aba571adf94c13b271f74272"
         }
       },
-      "fileName": "__INTERNAL_GT_TEMPLATE_NAME__",
-      "staged": false
+      "fileName": "__INTERNAL_GT_TEMPLATE_NAME__"
     }
   ]
 }
