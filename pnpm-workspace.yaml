@@ -2,6 +2,6 @@ packages:
   - packages/*
 
 packageExtensions:
-  gt@2.14.61:
+  gt@2.16.0:
     dependencies:
       "@babel/core": ^7.29.0
