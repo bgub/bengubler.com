@@ -1,41 +1,16 @@
 import { createServerFn } from "@bgub/fig-tanstack-start";
-import { allPosts } from "content-collections";
+import { posts } from "fig-content:data";
 
-export type PostSummary = Pick<
-  (typeof allPosts)[number],
-  | "archived"
-  | "date"
-  | "description"
-  | "readingTime"
-  | "slug"
-  | "tags"
-  | "title"
-  | "url"
+export type PostSummary = Omit<
+  (typeof posts.summaries)[number],
+  "lastUpdated" | "locale"
 >;
 
 function getPostSummaries(locale: string): PostSummary[] {
-  return allPosts
+  return posts.summaries
     .filter((post) => post.locale === locale)
     .map(
-      ({
-        archived,
-        date,
-        description,
-        readingTime,
-        slug,
-        tags,
-        title,
-        url,
-      }) => ({
-        archived,
-        date,
-        description,
-        readingTime,
-        slug,
-        tags,
-        title,
-        url,
-      }),
+      ({ lastUpdated: _lastUpdated, locale: _locale, ...summary }) => summary,
     );
 }
 
@@ -58,8 +33,9 @@ export const getRecentPostsForLocale = createServerFn({ method: "GET" })
 
 export const getPost = createServerFn({ method: "GET" })
   .validator((data: { locale: string; slug: string }) => data)
-  .handler(({ data }) =>
-    allPosts.find(
-      (post) => post.locale === data.locale && post.slug === data.slug,
-    ),
-  );
+  .handler(async ({ data }) => {
+    const post = await posts.load(`${data.locale}/${data.slug}`);
+    if (!post) return undefined;
+    const { content: _content, ...pageData } = post;
+    return pageData;
+  });

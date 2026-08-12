@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/solid-router";
-import { allPosts } from "content-collections";
+import { posts } from "fig-content:data";
 import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 import { sitePaths } from "@/lib/site-paths";
 import { getBaseUrl } from "@/lib/utils";
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/{-$locale}/sitemap.xml")({
           priority: path === "" ? 1 : 0.6,
         }));
 
-        for (const post of allPosts) {
+        for (const post of posts.summaries) {
           if (post.locale !== locale || post.archived) continue;
           urls.push({
             url: `${localeBaseUrl}/posts/${post.slug}`,

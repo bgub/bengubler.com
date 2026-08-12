@@ -1,8 +1,8 @@
 import type { FigNode } from "@bgub/fig";
 import { prerender } from "@bgub/fig-server";
 import { createFileRoute } from "@tanstack/solid-router";
-import { allPosts } from "content-collections";
 import { Feed } from "feed";
+import { posts as postCollection } from "fig-content:data";
 import { getGT } from "gt-fig-tanstack-start";
 import {
   type ContentComponents,
@@ -39,14 +39,14 @@ const headingTags = {
 
 const rssComponents = {
   Blockquote: "blockquote",
-  ContentLink: "a",
-  Fence: ({ content }: { content: string }) => (
+  CodeBlock: ({ content }: { content: string }) => (
     <pre>
       <code>{content}</code>
     </pre>
   ),
   Heading: RssHeading,
   InlineCode: ({ content }: { content: string }) => <code>{content}</code>,
+  Link: "a",
   Tweet: RssTweet,
 } satisfies ContentComponents;
 
@@ -80,11 +80,17 @@ export const Route = createFileRoute("/{-$locale}/rss.xml")({
           generator: "TanStack Start",
         });
 
-        const posts = allPosts
+        const summaries = postCollection.summaries
           .filter((post) => post.locale === locale && !post.archived)
           .sort((a, b) => b.date.getTime() - a.date.getTime());
+        const posts = await Promise.all(
+          summaries.map((post) =>
+            postCollection.load(`${post.locale}/${post.slug}`),
+          ),
+        );
 
         for (const post of posts) {
+          if (!post) continue;
           const content = await prerender(
             <ContentRenderer body={post.body} components={rssComponents} />,
           );

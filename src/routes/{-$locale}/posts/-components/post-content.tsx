@@ -157,10 +157,10 @@ function Tweet({ id }: { id?: string }) {
 
 const contentComponents = {
   Blockquote: "blockquote",
-  ContentLink,
-  Fence,
+  CodeBlock: Fence,
   Heading,
   InlineCode,
+  Link: ContentLink,
   Tweet,
 } satisfies ContentComponents;
 

@@ -1,8 +1,8 @@
 import { readdirSync } from "node:fs";
 import { basename, extname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { figContent } from "@bgub/fig-content/vite";
 import { tanstackStart } from "@bgub/fig-tanstack-start/plugin/vite";
-import contentCollections from "@content-collections/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { nitro } from "nitro/vite";
 import { defineConfig, type Plugin } from "vite";
@@ -13,8 +13,8 @@ import {
   isLocale,
   type Locale,
   locales,
-} from "./src/lib/locales";
-import { sitePaths } from "./src/lib/site-paths";
+} from "./src/lib/locales.ts";
+import { sitePaths } from "./src/lib/site-paths.ts";
 
 function walkFiles(directory: string): string[] {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -110,7 +110,7 @@ const config = defineConfig({
       ],
     }),
     tailwindcss(),
-    contentCollections(),
+    figContent({ config: "content.ts" }),
   ],
 });
 

@@ -17,7 +17,7 @@
     "types": ["vite/client"],
     "paths": {
       "@/*": ["./src/*"],
-      "content-collections": ["./.content-collections/generated"],
+      "fig-content:data": ["./.fig-content/generated"],
       "@tanstack/solid-router": [
         "./node_modules/@bgub/fig-tanstack-router"
       ],
@@ -27,7 +27,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    ".content-collections/generated/**/*.ts"
+    ".fig-content/generated/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

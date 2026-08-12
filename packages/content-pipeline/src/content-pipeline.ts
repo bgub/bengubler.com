@@ -1,21 +1,21 @@
 import Markdoc, {
   type Config,
   type Node,
-  type RenderableTreeNode,
   type RenderableTreeNodes,
-  type Tag,
 } from "@markdoc/markdoc";
 import GithubSlugger from "github-slugger";
-import readingTime from "reading-time";
+import type { HighlightCode } from "./content-highlighter.ts";
 import {
-  type BundledLanguage,
-  bundledLanguages,
-  codeToTokensWithThemes,
-} from "shiki";
-import {
-  lintDocumentCapitalization,
-  type TitleCapitalizationOptions,
-} from "./content-capitalization.ts";
+  getReadingTime,
+  type ReadingTime,
+  type ReadingTimeOptions,
+} from "./content-reading-time.ts";
+
+export type {
+  HighlightedLine,
+  HighlightedToken,
+} from "./content-highlighter.ts";
+export type { ReadingTime } from "./content-reading-time.ts";
 
 export type ContentValue =
   | boolean
@@ -43,328 +43,237 @@ export type TocNode = {
   type: "heading" | "root";
 };
 
-export type HighlightedToken = {
-  content: string;
-  dark: string;
-  fontStyle?: number;
-  light: string;
-};
-
-export type HighlightedLine = {
-  tokens: HighlightedToken[];
-};
-
 export type CompiledContent = {
   body: ContentTree;
-  readingTime: string;
+  readingTime: ReadingTime;
   toc: TocNode;
 };
 
 export const contentComponentNames = {
   blockquote: "Blockquote",
-  fence: "Fence",
+  codeBlock: "CodeBlock",
   heading: "Heading",
   inlineCode: "InlineCode",
-  link: "ContentLink",
-  tweet: "Tweet",
+  link: "Link",
 } as const;
 
 export type ContentComponentName =
   (typeof contentComponentNames)[keyof typeof contentComponentNames];
 
-export type CompileContentInput = {
-  filePath: string;
+export type CompileContentInput<Metadata = unknown> = {
+  filePath?: string;
+  metadata?: Metadata;
   source: string;
-  title: string;
 };
 
-export type ContentCompilerOptions = {
-  lintCapitalization?: TitleCapitalizationOptions & {
-    shouldLint?: (context: { filePath: string }) => boolean;
-  };
+export type ContentDiagnostic = {
+  line?: number;
+  message: string;
+};
+
+export type ContentValidationContext<Metadata = unknown> = {
+  ast: Node;
+  input: CompileContentInput<Metadata>;
+};
+
+export type ContentCompilerOptions<Metadata = unknown> = {
+  highlight?: HighlightCode;
+  markdoc?: Config;
+  readingTime?: ReadingTimeOptions;
+  validate?: (
+    context: ContentValidationContext<Metadata>,
+  ) => readonly ContentDiagnostic[];
 };
 
 const tokenizer = new Markdoc.Tokenizer({ linkify: true });
 
-const markdocConfig: Config = {
-  nodes: {
-    heading: {
-      children: ["inline"],
-      attributes: {
-        level: { type: Number, required: true, render: true },
-      },
-      transform(node, markdocConfig) {
-        return new Markdoc.Tag(
-          contentComponentNames.heading,
-          node.transformAttributes(markdocConfig),
-          node.transformChildren(markdocConfig),
-        );
-      },
+const defaultNodes: NonNullable<Config["nodes"]> = {
+  heading: {
+    children: ["inline"],
+    attributes: {
+      level: { type: Number, required: true, render: true },
     },
-    link: {
-      ...Markdoc.nodes.link,
-      render: contentComponentNames.link,
-    },
-    fence: {
-      ...Markdoc.nodes.fence,
-      transform(node) {
-        return new Markdoc.Tag(
-          contentComponentNames.fence,
-          {
-            content: node.attributes.content,
-            language: node.attributes.language,
-          },
-          [],
-        );
-      },
-    },
-    blockquote: {
-      ...Markdoc.nodes.blockquote,
-      render: contentComponentNames.blockquote,
-    },
-    code: {
-      ...Markdoc.nodes.code,
-      transform(node) {
-        return new Markdoc.Tag(
-          contentComponentNames.inlineCode,
-          { content: node.attributes.content },
-          [],
-        );
-      },
+    transform(node, config) {
+      return new Markdoc.Tag(
+        contentComponentNames.heading,
+        node.transformAttributes(config),
+        node.transformChildren(config),
+      );
     },
   },
-  tags: {
-    tweet: {
-      render: contentComponentNames.tweet,
-      selfClosing: true,
-      attributes: {
-        id: { type: String, required: true },
-      },
+  link: {
+    ...Markdoc.nodes.link,
+    render: contentComponentNames.link,
+  },
+  fence: {
+    ...Markdoc.nodes.fence,
+    transform(node) {
+      return new Markdoc.Tag(
+        contentComponentNames.codeBlock,
+        {
+          content: node.attributes.content,
+          language: node.attributes.language,
+        },
+        [],
+      );
+    },
+  },
+  blockquote: {
+    ...Markdoc.nodes.blockquote,
+    render: contentComponentNames.blockquote,
+  },
+  code: {
+    ...Markdoc.nodes.code,
+    transform(node) {
+      return new Markdoc.Tag(
+        contentComponentNames.inlineCode,
+        { content: node.attributes.content },
+        [],
+      );
     },
   },
 };
 
-export function createContentCompiler(options: ContentCompilerOptions = {}) {
-  return (input: CompileContentInput) => compileContent(input, options);
-}
+export function createContentCompiler<Metadata = unknown>(
+  options: ContentCompilerOptions<Metadata> = {},
+) {
+  const config: Config = {
+    ...options.markdoc,
+    nodes: {
+      ...defaultNodes,
+      ...options.markdoc?.nodes,
+    },
+  };
 
-async function compileContent(
-  { filePath, source, title }: CompileContentInput,
-  options: ContentCompilerOptions,
-): Promise<CompiledContent> {
-  const ast = Markdoc.parse(tokenizer.tokenize(source), filePath);
-  assertValidCapitalization({ ast, filePath, title }, options);
-  const errors = Markdoc.validate(ast, markdocConfig).filter(
-    ({ error }) => error.level === "error" || error.level === "critical",
-  );
+  return (input: CompileContentInput<Metadata>): CompiledContent => {
+    const filePath = input.filePath ?? "content.md";
+    const ast = Markdoc.parse(tokenizer.tokenize(input.source), filePath);
+    const diagnostics = [...(options.validate?.({ ast, input }) ?? [])];
 
-  if (errors.length > 0) {
-    const details = errors
-      .map(({ error }) => {
-        const line = error.location?.start.line;
-        const location =
-          line === undefined ? filePath : `${filePath}:${line + 1}`;
-        return `${location} ${error.message}`;
-      })
-      .join("\n");
-    throw new Error(`Invalid content:\n${details}`);
-  }
+    for (const { error } of Markdoc.validate(ast, config)) {
+      if (error.level !== "error" && error.level !== "critical") continue;
+      diagnostics.push({
+        line:
+          error.location?.start.line === undefined
+            ? undefined
+            : error.location.start.line + 1,
+        message: error.message,
+      });
+    }
 
-  const renderable = Markdoc.transform(ast, markdocConfig);
-  await highlightCodeFences(renderable);
-  const toc = addHeadingIdsAndCollectToc(renderable);
+    if (diagnostics.length > 0) {
+      const details = diagnostics
+        .map(({ line, message }) =>
+          line === undefined
+            ? `${filePath} ${message}`
+            : `${filePath}:${line} ${message}`,
+        )
+        .join("\n");
+      throw new Error(`Invalid content:\n${details}`);
+    }
 
-  return {
-    body: toContentTree(renderable),
-    toc,
-    readingTime: readingTime(source).text,
+    const { body, toc } = compileTree(
+      Markdoc.transform(ast, config),
+      options.highlight,
+    );
+
+    return {
+      body,
+      toc,
+      readingTime: getReadingTime(input.source, options.readingTime),
+    };
   };
 }
 
-function assertValidCapitalization(
-  { ast, filePath, title }: { ast: Node; filePath: string; title: string },
-  { lintCapitalization }: ContentCompilerOptions,
-): void {
-  if (!lintCapitalization) return;
-  if (
-    lintCapitalization.shouldLint &&
-    !lintCapitalization.shouldLint({ filePath })
-  ) {
-    return;
-  }
-
-  const issues = lintDocumentCapitalization(
-    { ast, title },
-    { specialCases: lintCapitalization.specialCases },
-  );
-  if (issues.length === 0) return;
-
-  const details = issues
-    .map(({ actual, expected, kind }) => {
-      const label = kind === "heading" ? "Heading" : "Frontmatter title";
-      return [
-        `${filePath} ${label} should use title case`,
-        `  Actual:   ${actual}`,
-        `  Expected: ${expected}`,
-      ].join("\n");
-    })
-    .join("\n");
-
-  throw new Error(`Invalid content:\n${details}`);
-}
-
-async function highlightCodeFences(
-  content: RenderableTreeNodes,
-): Promise<void> {
-  const fences: Tag[] = [];
-
-  visitTags(content, (tag) => {
-    if (tag.name === "Fence") fences.push(tag);
-  });
-
-  await Promise.all(
-    fences.map(async (fence) => {
-      const source = String(fence.attributes.content ?? "");
-      const language = normalizeLanguage(fence.attributes.language);
-      const lines = await codeToTokensWithThemes(source, {
-        lang: language,
-        themes: {
-          light: "github-light",
-          dark: "github-dark-dimmed",
-        },
-      });
-
-      fence.attributes.highlightedLines = lines.map(
-        (line): HighlightedLine => ({
-          tokens: line.map((token) => {
-            const fontStyle = token.variants.light.fontStyle;
-
-            return {
-              content: token.content,
-              light: token.variants.light.color ?? "#24292e",
-              dark: token.variants.dark.color ?? "#adbac7",
-              ...(fontStyle ? { fontStyle } : {}),
-            };
-          }),
-        }),
-      );
-    }),
-  );
-}
-
-function normalizeLanguage(language: unknown): BundledLanguage | "text" {
-  const normalized = String(language ?? "text").toLowerCase();
-
-  if (["text", "txt", "plaintext", "plain"].includes(normalized)) {
-    return "text";
-  }
-
-  if (normalized === "eta") return "html";
-
-  return normalized in bundledLanguages
-    ? (normalized as BundledLanguage)
-    : "text";
-}
-
-function addHeadingIdsAndCollectToc(content: RenderableTreeNodes): TocNode {
-  const root: TocNode = { type: "root", children: [] };
-  const stack = [root];
+function compileTree(
+  tree: RenderableTreeNodes,
+  highlight?: HighlightCode,
+): { body: ContentTree; toc: TocNode } {
+  const toc: TocNode = { type: "root", children: [] };
+  const headings = [toc];
   const slugger = new GithubSlugger();
 
-  visitTags(content, (tag) => {
-    if (tag.name !== "Heading") return;
+  function serialize(nodes: RenderableTreeNodes): ContentTree {
+    const output: ContentTree = [];
+    append(nodes, output);
+    return output;
+  }
 
-    const level = tag.attributes.level;
-    if (typeof level !== "number") return;
-
-    const title = extractText(tag.children);
-    const id = slugger.slug(title);
-    tag.attributes.id = id;
-
-    const heading: TocNode = {
-      type: "heading",
-      depth: level,
-      title,
-      id,
-      children: [],
-    };
-
-    while (stack.length > 1 && (stack[stack.length - 1].depth ?? 0) >= level) {
-      stack.pop();
+  function append(nodes: RenderableTreeNodes, output: ContentTree): void {
+    if (Array.isArray(nodes)) {
+      for (const node of nodes) append(node, output);
+      return;
     }
 
-    stack[stack.length - 1].children.push(heading);
-    stack.push(heading);
-  });
-
-  return root;
-}
-
-function visitTags(
-  node: RenderableTreeNodes,
-  visitor: (tag: Tag) => void,
-): void {
-  if (Array.isArray(node)) {
-    for (const child of node) visitTags(child, visitor);
-    return;
-  }
-
-  if (!Markdoc.Tag.isTag(node)) return;
-  visitor(node);
-  visitTags(node.children, visitor);
-}
-
-function extractText(nodes: RenderableTreeNode[]): string {
-  let text = "";
-
-  for (const node of nodes) {
-    if (typeof node === "string" || typeof node === "number") {
-      text += String(node);
-    } else if (Array.isArray(node)) {
-      text += extractText(node);
-    } else if (Markdoc.Tag.isTag(node)) {
-      text +=
-        node.name === "InlineCode"
-          ? String(node.attributes.content ?? "")
-          : extractText(node.children);
+    if (typeof nodes === "string" || typeof nodes === "number") {
+      output.push(nodes);
+      return;
     }
+
+    if (!Markdoc.Tag.isTag(nodes)) {
+      throw new Error("Markdoc produced an unsupported content node");
+    }
+
+    if (nodes.name === contentComponentNames.codeBlock && highlight) {
+      nodes.attributes.highlightedLines = highlight(
+        String(nodes.attributes.content ?? ""),
+        nodes.attributes.language,
+      );
+    } else if (nodes.name === contentComponentNames.heading) {
+      const depth = nodes.attributes.level;
+
+      if (typeof depth === "number") {
+        const title = extractText(nodes.children);
+        const heading: TocNode = {
+          type: "heading",
+          children: [],
+          depth,
+          id: slugger.slug(title),
+          title,
+        };
+        nodes.attributes.id = heading.id;
+
+        while (
+          headings.length > 1 &&
+          (headings[headings.length - 1].depth ?? 0) >= depth
+        ) {
+          headings.pop();
+        }
+
+        headings[headings.length - 1].children.push(heading);
+        headings.push(heading);
+      }
+    }
+
+    output.push({
+      type: "element",
+      name: nodes.name,
+      attributes: serializeAttributes(nodes.attributes),
+      children: serialize(nodes.children),
+    });
   }
 
-  return text;
+  return { body: serialize(tree), toc };
 }
 
-function toContentTree(nodes: RenderableTreeNodes): ContentTree {
-  const list = Array.isArray(nodes) ? nodes : [nodes];
-  return list.flatMap((node) =>
-    Array.isArray(node) ? toContentTree(node) : [toContentNode(node)],
-  );
-}
-
-function toContentNode(node: RenderableTreeNode): ContentNode {
-  if (typeof node === "string" || typeof node === "number") return node;
-
-  if (Array.isArray(node)) throw new Error("Unexpected nested content array");
-
-  if (!Markdoc.Tag.isTag(node)) {
-    throw new Error("Markdoc produced an unsupported content node");
+function extractText(nodes: RenderableTreeNodes): string {
+  if (Array.isArray(nodes)) return nodes.map(extractText).join("");
+  if (typeof nodes === "string" || typeof nodes === "number") {
+    return String(nodes);
   }
+  if (!Markdoc.Tag.isTag(nodes)) return "";
 
-  return {
-    type: "element",
-    name: node.name,
-    attributes: toContentAttributes(node.attributes),
-    children: toContentTree(node.children),
-  };
+  return nodes.name === contentComponentNames.inlineCode
+    ? String(nodes.attributes.content ?? "")
+    : extractText(nodes.children);
 }
 
-function toContentAttributes(
+function serializeAttributes(
   attributes: Record<string, unknown>,
 ): Record<string, ContentValue> {
   return Object.fromEntries(
     Object.entries(attributes).filter(
-      (entry): entry is [string, ContentValue] => {
-        return entry[1] !== undefined;
-      },
+      (entry): entry is [string, ContentValue] => entry[1] !== undefined,
     ),
   );
 }

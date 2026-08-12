@@ -1,11 +1,9 @@
-import { allPosts } from "content-collections";
+import { posts } from "fig-content:data";
 import { getGT } from "gt-fig-tanstack-start";
 import type { Locale } from "@/lib/locales";
 
 export async function getRawPostResponse(locale: Locale, slug: string) {
-  const post = allPosts.find(
-    (item) => item.slug === slug && item.locale === locale,
-  );
+  const post = await posts.load(`${locale}/${slug}`);
 
   if (!post) {
     const gt = await getGT();

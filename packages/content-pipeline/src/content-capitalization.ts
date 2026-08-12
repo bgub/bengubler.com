@@ -25,11 +25,9 @@ export function lintDocumentCapitalization(
   content: DocumentContent,
   options: TitleCapitalizationOptions = {},
 ): TitleCapitalizationIssue[] {
-  const configuredSpecialCases = [...(options.specialCases ?? [])];
+  const specialCases = [...(options.specialCases ?? [])];
   const issues: TitleCapitalizationIssue[] = [];
-  const expectedTitle = title(content.title, {
-    special: configuredSpecialCases,
-  });
+  const expectedTitle = title(content.title, { special: specialCases });
 
   if (content.title !== expectedTitle) {
     issues.push({
@@ -39,30 +37,15 @@ export function lintDocumentCapitalization(
     });
   }
 
-  issues.push(...lintMarkdownHeadings(content.ast, configuredSpecialCases));
-
-  return issues;
-}
-
-function lintMarkdownHeadings(
-  ast: Node,
-  configuredSpecialCases: string[],
-): TitleCapitalizationIssue[] {
-  const issues: TitleCapitalizationIssue[] = [];
-
-  for (const node of ast.walk()) {
+  for (const node of content.ast.walk()) {
     if (node.type !== "heading") continue;
 
     const { text: actual, preservedRanges } = extractHeadingText(node);
-    const expected = capitalizeHeading(
-      actual,
-      preservedRanges,
-      configuredSpecialCases,
-    );
+    const expected = capitalizeHeading(actual, preservedRanges, specialCases);
 
-    if (actual === expected) continue;
-
-    issues.push({ actual, expected, kind: "heading" });
+    if (actual !== expected) {
+      issues.push({ actual, expected, kind: "heading" });
+    }
   }
 
   return issues;
@@ -78,7 +61,8 @@ function capitalizeHeading(
 
   if (actual.length !== expected.length) return expected;
 
-  for (const range of preservedRanges.toReversed()) {
+  for (let index = preservedRanges.length - 1; index >= 0; index--) {
+    const range = preservedRanges[index];
     expected =
       expected.slice(0, range.start) +
       actual.slice(range.start, range.end) +

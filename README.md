@@ -8,7 +8,7 @@ Welcome to my personal website!
 - TanStack Start + React 19
 - Tailwind CSS v4
 - TypeScript
-- Content Collections + `content-pipeline` (Markdoc + Shiki)
+- `fig-content` + `content-pipeline` (Markdoc + Highlight.js)
 - shadcn/ui + Radix UI
 - Vite dev and production builds
 

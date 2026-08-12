@@ -5,14 +5,18 @@ import { getLocalizedPath, resolveLocale } from "@/lib/locales";
 
 interface RawMarkdownProps {
   slug: string;
-  content: string;
 }
 
-export function RawMarkdown({ slug, content }: RawMarkdownProps) {
+export function RawMarkdown({ slug }: RawMarkdownProps) {
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = async () => {
     try {
+      const response = await fetch(
+        getLocalizedPath(`/posts/${slug}.md`, resolveLocale()),
+      );
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+      const content = await response.text();
       await navigator.clipboard.writeText(content);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);

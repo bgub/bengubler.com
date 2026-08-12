@@ -150,7 +150,7 @@ function PostPage() {
           </div>
         )}
         <div class="border border-border rounded-sm p-4 bg-card">
-          <RawMarkdown slug={post.slug} content={post.content} />
+          <RawMarkdown slug={post.slug} />
         </div>
       </div>
 
@@ -185,7 +185,7 @@ function PostPage() {
               />
             )}
             <Social title={post.title} />
-            <RawMarkdown slug={post.slug} content={post.content} />
+            <RawMarkdown slug={post.slug} />
           </div>
         </aside>
       </div>

@@ -4,13 +4,17 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/content-pipeline.ts"
+    ".": "./src/content-pipeline.ts",
+    "./highlight": "./src/content-highlighter.ts",
+    "./title-case": "./src/content-capitalization.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.ts"
   },
   "dependencies": {
     "@markdoc/markdoc": "^0.5.8",
     "github-slugger": "^2.0.0",
-    "reading-time": "^1.5.0",
-    "shiki": "^4.4.1",
+    "highlight.js": "^11.11.1",
     "title": "^4.0.1"
   }
 }
