@@ -150,7 +150,7 @@ function HomePage() {
         </div>
         <div>
           {recentPosts.map((post) => (
-            <PostRow key={post.slug} post={post} variant="compact" />
+            <PostRow key={post.slug} post={post} showTags={false} />
           ))}
         </div>
       </section>

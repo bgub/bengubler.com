@@ -4,6 +4,7 @@ import { getGT, T, Var } from "gt-fig-tanstack-start";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
 import { PostRow } from "@/components/post-row";
+import { PostTag } from "@/components/post-tag";
 import { getLocalizedPath, type Locale, resolveLocale } from "@/lib/locales";
 import { getPageMetadata } from "@/lib/metadata";
 import { getPostsForLocale } from "@/lib/post-data";
@@ -100,13 +101,9 @@ function PostsPage() {
                 href={
                   isActive ? "/posts" : `/posts?tag=${encodeURIComponent(tag)}`
                 }
-                class={`font-mono text-[11px] px-2.5 py-0.5 rounded-sm border transition-colors ${
-                  isActive
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-transparent text-ink-soft border-border hover:border-ink-mute"
-                }`}
+                class="no-underline"
               >
-                #{tag.toLowerCase()}
+                <PostTag tag={tag} selected={isActive} />
               </Link>
             );
           })}
@@ -125,7 +122,7 @@ function PostsPage() {
       <section>
         <div>
           {filteredPosts.map((post) => (
-            <PostRow key={post.slug} post={post} variant="full" />
+            <PostRow key={post.slug} post={post} />
           ))}
         </div>
         {filteredPosts.length === 0 && selectedTag && (
@@ -144,11 +141,17 @@ function PostsPage() {
       {/* Archived Posts */}
       {archivedPosts.length > 0 && !selectedTag && (
         <section>
-          <div class="mb-5">
-            <h2 class="font-serif font-medium text-2xl tracking-tight text-foreground mb-2">
-              <T>Archived</T>
-            </h2>
-            <p class="font-serif text-ink-soft font-light">
+          <div class="mb-4">
+            <div class="mb-2 flex items-center gap-3">
+              <h2 class="shrink-0 font-serif text-[28px] font-medium tracking-tight text-foreground">
+                <T>Archived</T>
+              </h2>
+              <div
+                class="flex-1 border-t border-dotted border-border"
+                aria-hidden="true"
+              />
+            </div>
+            <p class="font-serif text-sm text-ink-soft font-light italic">
               <T>
                 Older posts that might be outdated but still have some value.
               </T>
@@ -156,7 +159,7 @@ function PostsPage() {
           </div>
           <div>
             {archivedPosts.map((post) => (
-              <PostRow key={post.slug} post={post} variant="archived" />
+              <PostRow key={post.slug} post={post} />
             ))}
           </div>
         </section>

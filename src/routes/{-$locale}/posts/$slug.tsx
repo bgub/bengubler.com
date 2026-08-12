@@ -6,6 +6,7 @@ import { DateTime, getGT, T, useGT } from "gt-fig-tanstack-start";
 import { Comments } from "@/components/comments";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
+import { PostTag } from "@/components/post-tag";
 import { PostViewTransition } from "@/components/post-view-transition";
 import { Squiggle } from "@/components/squiggle";
 import { type Locale, resolveLocale } from "@/lib/locales";
@@ -129,9 +130,12 @@ function PostPage() {
                 postUrl={post.url}
                 suffix={tag}
               >
-                <span class="font-mono text-[11px] text-ink-soft px-2 py-0.5 border border-border rounded-sm bg-card">
-                  #{tag.toLowerCase()}
-                </span>
+                <Link
+                  href={`/posts?tag=${encodeURIComponent(tag)}`}
+                  class="no-underline"
+                >
+                  <PostTag tag={tag} />
+                </Link>
               </PostViewTransition>
             ))}
           </div>
