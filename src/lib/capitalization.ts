@@ -8,6 +8,7 @@ export const specialCases = [
   "DeepSpeed",
   "HPC",
   "ML",
+  "DOM",
   "gom",
   "nvidia-smi",
   "TL;DR",
