@@ -5,8 +5,6 @@ date: "2026-08-14"
 tags: [frontend, open-source]
 ---
 
-# Introducing Fig
-
 ## Quick Intro
 
 [Fig](https://github.com/bgub/fig) is a TypeScript UI runtime based on React. Quick pitch:
