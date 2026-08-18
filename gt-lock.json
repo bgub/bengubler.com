@@ -1056,6 +1056,38 @@
         }
       },
       "fileName": "__INTERNAL_GT_TEMPLATE_NAME__"
+    },
+    {
+      "fileId": "57da2c5e5c5f0fa7a38283d449269f12f76f7aa3d92d314c26e3d51f4554b3a3",
+      "versionId": "23151fa964e07d3bcc0eeb8d9e9e4c764280616840ccc67e05b8f476cbe8816f",
+      "translations": {
+        "cs": {
+          "updatedAt": "2026-08-15T03:49:02.599Z",
+          "fileName": "content/cs/frontend/2026-08-14-introducing-fig-ui-runtime.md",
+          "postProcessHash": "4fd1e70adaf57b1d14cad63c5f4ed3387b5fe634c50335c046ae81d613b94fab"
+        },
+        "ru": {
+          "updatedAt": "2026-08-15T03:49:02.600Z",
+          "fileName": "content/ru/frontend/2026-08-14-introducing-fig-ui-runtime.md",
+          "postProcessHash": "f25f70708b569b743b1313c4b1a091b0e200d9863936171bd03355fbe108f946"
+        },
+        "eo": {
+          "updatedAt": "2026-08-15T03:49:02.600Z",
+          "fileName": "content/eo/frontend/2026-08-14-introducing-fig-ui-runtime.md",
+          "postProcessHash": "49960cadb7cad37f437bf59c8fff3f32ee08f5cb6341afe65cdbed295c9ef53d"
+        },
+        "sk": {
+          "updatedAt": "2026-08-15T03:49:02.601Z",
+          "fileName": "content/sk/frontend/2026-08-14-introducing-fig-ui-runtime.md",
+          "postProcessHash": "ff1f587711e8f9e87b57d01436b6b52111d187fa3fc0020819c185877d9a10f7"
+        },
+        "ar": {
+          "updatedAt": "2026-08-15T03:49:02.601Z",
+          "fileName": "content/ar/frontend/2026-08-14-introducing-fig-ui-runtime.md",
+          "postProcessHash": "0ee2ebf8ae07c3544e137a4fe497946756a8e54e3745ce111c500b45e8f0ac52"
+        }
+      },
+      "fileName": "content/en/frontend/2026-08-14-introducing-fig-ui-runtime.md"
     }
   ]
 }
