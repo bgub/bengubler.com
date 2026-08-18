@@ -1,12 +1,21 @@
 import {
-  localizePathname,
+  getLocaleRedirectPath,
   resolveRequestLocale,
   serializeLocaleCookie,
-} from "gt-fig-tanstack-start/routing";
-import gtConfig from "./gt.config.json" with { type: "json" };
+} from "./packages/gt-fig-tanstack-start/src/locale-routing.ts";
+import {
+  defaultLocale,
+  localeCookieName,
+  localeRouting,
+  locales,
+} from "./src/lib/locale-config.ts";
 
-const localeCookieName = "generaltranslation.locale";
-const routingConfig = { ...gtConfig, localeCookieName };
+const routingConfig = {
+  defaultLocale,
+  localeCookieName,
+  localeRouting,
+  locales,
+};
 
 export const config = {
   matcher: [
@@ -23,16 +32,20 @@ export const config = {
 
 export function localeMiddleware(request: Request): Response | undefined {
   const url = new URL(request.url);
-  if (url.searchParams.has("__raw") || /\.[^/]+$/.test(url.pathname)) return;
-
   const locale = resolveRequestLocale(routingConfig, {
     acceptLanguage: request.headers.get("accept-language"),
     cookie: request.headers.get("cookie"),
     pathname: url.pathname,
   });
-  if (locale === routingConfig.defaultLocale) return;
+  const location = getLocaleRedirectPath(routingConfig, {
+    accept: request.headers.get("accept"),
+    locale,
+    method: request.method,
+    pathname: url.pathname,
+    search: url.search,
+  });
+  if (!location) return;
 
-  const location = `${localizePathname(routingConfig, url.pathname, locale)}${url.search}`;
   return new Response(null, {
     status: 307,
     headers: {

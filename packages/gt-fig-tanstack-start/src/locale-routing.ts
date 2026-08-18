@@ -1,5 +1,3 @@
-import { getCookieValue, parseAcceptLanguage } from "gt-i18n/internal";
-
 export interface LocaleRoutingConfig {
   defaultLocale: string;
   localeCookieName: string;
@@ -11,6 +9,14 @@ interface LocaleRequest {
   acceptLanguage?: string | null;
   cookie?: string | null;
   pathname: string;
+}
+
+interface LocaleRedirectRequest {
+  accept?: string | null;
+  locale: string;
+  method: string;
+  pathname: string;
+  search?: string;
 }
 
 export function resolveRequestLocale(
@@ -55,6 +61,34 @@ export function localizePathname(
     : `/${locale}${unlocalizedPath === "/" ? "" : unlocalizedPath}`;
 }
 
+export function getLocaleRedirectPath(
+  config: LocaleRoutingConfig,
+  request: LocaleRedirectRequest,
+): string | undefined {
+  const isDocumentRequest = request.accept?.toLowerCase().includes("text/html");
+  const isDirectContentRequest =
+    new URLSearchParams(request.search).has("__raw") ||
+    /\.[^/]+$/.test(request.pathname);
+  const hasPathLocale = findSupportedLocale(
+    config.locales,
+    request.pathname.split("/")[1],
+  );
+
+  if (
+    !config.localeRouting ||
+    request.locale === config.defaultLocale ||
+    hasPathLocale ||
+    (request.method !== "GET" && request.method !== "HEAD") ||
+    request.pathname.startsWith("/api/") ||
+    !isDocumentRequest ||
+    isDirectContentRequest
+  ) {
+    return;
+  }
+
+  return `${localizePathname(config, request.pathname, request.locale)}${request.search ?? ""}`;
+}
+
 export function serializeLocaleCookie(
   config: LocaleRoutingConfig,
   locale: string,
@@ -77,4 +111,43 @@ function findSupportedLocale(
   return locales.find(
     (locale) => locale.split("-")[0]?.toLowerCase() === language,
   );
+}
+
+function getCookieValue(
+  cookieHeader: string | null | undefined,
+  cookieName: string,
+): string | undefined {
+  const cookie = cookieHeader
+    ?.split(";")
+    .map((value) => value.trim())
+    .find((value) => value.startsWith(`${cookieName}=`));
+  if (!cookie) return;
+
+  const value = cookie.slice(cookieName.length + 1);
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
+function parseAcceptLanguage(header: string | null | undefined): string[] {
+  return (header?.split(",") ?? [])
+    .map((entry, index) => {
+      const [locale = "", ...parameters] = entry
+        .split(";")
+        .map((value) => value.trim());
+      const quality = Number(
+        parameters
+          .find((parameter) => parameter.toLowerCase().startsWith("q="))
+          ?.slice(2) ?? 1,
+      );
+      return { index, locale, quality };
+    })
+    .filter(
+      ({ locale, quality }) =>
+        locale !== "" && locale !== "*" && quality > 0 && quality <= 1,
+    )
+    .sort((a, b) => b.quality - a.quality || a.index - b.index)
+    .map(({ locale }) => locale);
 }

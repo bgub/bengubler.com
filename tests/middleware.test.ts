@@ -3,11 +3,15 @@ import test from "node:test";
 import { localeMiddleware } from "../middleware.ts";
 
 const localeCookieName = "generaltranslation.locale";
+const documentHeaders = { Accept: "text/html" };
 
 test("redirects an unprefixed page using the saved locale", () => {
   const response = localeMiddleware(
     new Request("https://www.bengubler.com/about?from=test", {
-      headers: { Cookie: `${localeCookieName}=cs` },
+      headers: {
+        ...documentHeaders,
+        Cookie: `${localeCookieName}=cs`,
+      },
     }),
   );
 
@@ -22,7 +26,10 @@ test("redirects an unprefixed page using the saved locale", () => {
 test("uses Accept-Language when there is no saved locale", () => {
   const response = localeMiddleware(
     new Request("https://www.bengubler.com/", {
-      headers: { "Accept-Language": "en;q=0.8, cs-CZ;q=0.9" },
+      headers: {
+        ...documentHeaders,
+        "Accept-Language": "en;q=0.8, cs-CZ;q=0.9",
+      },
     }),
   );
 
@@ -33,6 +40,7 @@ test("the saved locale takes precedence over Accept-Language", () => {
   const response = localeMiddleware(
     new Request("https://www.bengubler.com/", {
       headers: {
+        ...documentHeaders,
         "Accept-Language": "cs-CZ,cs;q=0.9",
         Cookie: `${localeCookieName}=en`,
       },
@@ -45,12 +53,18 @@ test("the saved locale takes precedence over Accept-Language", () => {
 test("leaves direct content requests unchanged", () => {
   const markdownResponse = localeMiddleware(
     new Request("https://www.bengubler.com/posts/example.md", {
-      headers: { Cookie: `${localeCookieName}=cs` },
+      headers: {
+        ...documentHeaders,
+        Cookie: `${localeCookieName}=cs`,
+      },
     }),
   );
   const rawResponse = localeMiddleware(
     new Request("https://www.bengubler.com/posts/example?__raw=1", {
-      headers: { Cookie: `${localeCookieName}=cs` },
+      headers: {
+        ...documentHeaders,
+        Cookie: `${localeCookieName}=cs`,
+      },
     }),
   );
 

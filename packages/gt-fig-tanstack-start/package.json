@@ -10,7 +10,6 @@
       "import": "./src/index.server.ts",
       "default": "./src/index.server.ts"
     },
-    "./routing": "./src/locale-routing.ts",
     "./server": "./src/server.ts"
   },
   "scripts": {

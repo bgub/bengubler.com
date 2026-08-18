@@ -1,8 +1,7 @@
 import { getLocale } from "gt-fig-tanstack-start";
+import { defaultLocale, localeCookieName, locales } from "./locale-config.ts";
 
-export const locales = ["en", "ar", "ru", "cs", "sk", "eo"] as const;
-export const defaultLocale = "en";
-export const localeCookieName = "generaltranslation.locale";
+export { defaultLocale, localeCookieName, locales };
 
 export type Locale = (typeof locales)[number];
 
