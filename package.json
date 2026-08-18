@@ -8,6 +8,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "start": "node .output/server/index.mjs",
+    "test": "pnpm --filter gt-fig-tanstack-start test && node --experimental-strip-types --test tests/*.test.ts",
     "translate": "gtx-cli translate",
     "lint": "oxlint --deny-warnings && oxfmt --check",
     "lint:fix": "oxlint --fix --deny-warnings && oxfmt"

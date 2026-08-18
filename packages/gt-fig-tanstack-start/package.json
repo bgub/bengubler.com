@@ -10,7 +10,11 @@
       "import": "./src/index.server.ts",
       "default": "./src/index.server.ts"
     },
+    "./routing": "./src/locale-routing.ts",
     "./server": "./src/server.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.ts"
   },
   "peerDependencies": {
     "@bgub/fig": "*",

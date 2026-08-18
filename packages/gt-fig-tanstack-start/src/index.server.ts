@@ -1,24 +1,10 @@
 import { AsyncLocalStorage } from "node:async_hooks";
-import {
-  createGTFunction,
-  GTProvider,
-  useGT,
-  useLocaleSelector,
-  useMessages,
-  T,
-  Var,
-  Num,
-  DateTime,
-  Branch,
-  msg,
-} from "./shared.ts";
+import { createGTFunction } from "./shared.ts";
 import {
   configureGT,
   getGTConfig,
-  loadCatalog,
-  type GTState,
   type InitializeGTParams,
-  type TranslationSnapshot,
+  loadGTState,
 } from "./state.ts";
 
 export {
@@ -32,32 +18,18 @@ export {
   useLocaleSelector,
   useMessages,
   Var,
-};
+} from "./shared.ts";
 export type { InitializeGTParams };
 
-export const requestState = new AsyncLocalStorage<GTState>();
-
-export function initializeGT(config: InitializeGTParams): void {
-  configureGT(config);
-}
+export const requestLocale = new AsyncLocalStorage<string>();
+export { configureGT as initializeGT };
 
 export function getLocale(): string {
-  return requestState.getStore()?.locale ?? getGTConfig().defaultLocale;
+  return requestLocale.getStore() ?? getGTConfig().defaultLocale;
 }
 
 export async function getGT() {
-  const locale = getLocale();
-  const config = getGTConfig();
-  return createGTFunction({
-    catalog: await loadCatalog(locale),
-    defaultLocale: config.defaultLocale,
-    locale,
-    locales: config.locales,
-  });
+  return createGTFunction(await loadGTState(getLocale()));
 }
 
-export async function getTranslationsSnapshot(
-  locale: string,
-): Promise<TranslationSnapshot> {
-  return { [locale]: await loadCatalog(locale) };
-}
+export { loadTranslationsSnapshot as getTranslationsSnapshot } from "./state.ts";

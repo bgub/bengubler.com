@@ -4,6 +4,7 @@ import type {
   JsxElement,
   Variable,
 } from "@generaltranslation/format/types";
+import type { LocaleRoutingConfig } from "./locale-routing.ts";
 
 export type Translation = JsxChildren;
 export type TranslationElement = JsxElement & Partial<Variable>;
@@ -19,19 +20,13 @@ export interface InitializeGTParams {
   [key: string]: unknown;
 }
 
-export interface GTConfig {
-  defaultLocale: string;
+export interface GTConfig extends LocaleRoutingConfig {
   loadTranslations?: (locale: string) => Promise<TranslationCatalog>;
-  localeCookieName: string;
-  localeRouting: boolean;
-  locales: readonly string[];
 }
 
 export interface GTState {
   catalog: TranslationCatalog;
-  defaultLocale: string;
   locale: string;
-  locales: readonly string[];
 }
 
 export interface GTProviderProps {
@@ -48,12 +43,6 @@ const defaultConfig: GTConfig = {
 };
 
 let config = defaultConfig;
-let clientState: GTState = {
-  catalog: {},
-  defaultLocale: config.defaultLocale,
-  locale: config.defaultLocale,
-  locales: config.locales,
-};
 
 export function configureGT(params: InitializeGTParams): void {
   const defaultLocale = params.defaultLocale ?? defaultConfig.defaultLocale;
@@ -64,45 +53,26 @@ export function configureGT(params: InitializeGTParams): void {
     localeRouting: params.localeRouting ?? defaultConfig.localeRouting,
     locales: [...new Set([defaultLocale, ...(params.locales ?? [])])],
   };
-  clientState = {
-    ...clientState,
-    defaultLocale,
-    locale: resolveSupportedLocale(clientState.locale),
-    locales: config.locales,
-  };
 }
 
 export function getGTConfig(): GTConfig {
   return config;
 }
 
-export function getClientState(): GTState {
-  return clientState;
-}
-
-export function setClientState(state: GTState): void {
-  clientState = state;
-}
-
-export function resolveSupportedLocale(
-  value: string | readonly string[] | undefined,
-): string {
-  const candidates = typeof value === "string" ? [value] : (value ?? []);
-  for (const candidate of candidates) {
-    const exact = config.locales.find(
-      (locale) => locale.toLowerCase() === candidate.toLowerCase(),
-    );
-    if (exact) return exact;
-    const language = candidate.split("-")[0]?.toLowerCase();
-    const languageMatch = config.locales.find(
-      (locale) => locale.split("-")[0]?.toLowerCase() === language,
-    );
-    if (languageMatch) return languageMatch;
-  }
-  return config.defaultLocale;
-}
-
 export async function loadCatalog(locale: string): Promise<TranslationCatalog> {
   if (locale === config.defaultLocale || !config.loadTranslations) return {};
   return config.loadTranslations(locale);
+}
+
+export async function loadGTState(locale: string): Promise<GTState> {
+  return {
+    catalog: await loadCatalog(locale),
+    locale,
+  };
+}
+
+export async function loadTranslationsSnapshot(
+  locale: string,
+): Promise<TranslationSnapshot> {
+  return { [locale]: await loadCatalog(locale) };
 }

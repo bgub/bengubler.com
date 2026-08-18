@@ -9,13 +9,11 @@ import { hashMessage, interpolateMessage } from "gt-i18n/internal";
 import type { GTTranslationOptions } from "gt-i18n/types";
 import { translateJsx, type JsxTranslationOptions } from "./jsx-translation.ts";
 import {
-  getClientState,
-  getGTConfig,
-  type GTProviderProps,
-  type GTState,
+  localizePathname,
   resolveSupportedLocale,
-  setClientState,
-} from "./state.ts";
+  serializeLocaleCookie,
+} from "./locale-routing.ts";
+import { getGTConfig, type GTProviderProps, type GTState } from "./state.ts";
 
 type GTFunction = (message: string, options?: GTTranslationOptions) => string;
 
@@ -24,21 +22,23 @@ type MessageFunction = <T extends string | null | undefined>(
   options?: GTTranslationOptions,
 ) => T extends string ? string : T;
 
-const GTContext = createContext<GTState>(getClientState());
+const GTContext = createContext<GTState | undefined>(undefined);
 
 export function GTProvider(props: GTProviderProps): FigNode {
-  const config = getGTConfig();
-  const state: GTState = {
-    catalog: props.translations[props.locale] ?? {},
-    defaultLocale: config.defaultLocale,
-    locale: props.locale,
-    locales: config.locales,
-  };
-  setClientState(state);
-  return createElement(GTContext, { value: state }, props.children);
+  return createElement(
+    GTContext,
+    {
+      value: {
+        catalog: props.translations[props.locale] ?? {},
+        locale: props.locale,
+      },
+    },
+    props.children,
+  );
 }
 
 export function createGTFunction(state: GTState): GTFunction {
+  const { defaultLocale } = getGTConfig();
   return (message, options = {}) => {
     const lookupOptions = {
       ...options,
@@ -50,13 +50,13 @@ export function createGTFunction(state: GTState): GTFunction {
       source: message,
       target: typeof target === "string" ? target : undefined,
       options: lookupOptions,
-      sourceLocale: state.defaultLocale,
+      sourceLocale: defaultLocale,
     });
   };
 }
 
 export function useGT(): GTFunction {
-  return createGTFunction(readContext(GTContext));
+  return createGTFunction(readGTContext());
 }
 
 export function useMessages(): MessageFunction {
@@ -71,26 +71,18 @@ export function useMessages(): MessageFunction {
 }
 
 export function useLocaleSelector(locales?: string[]) {
-  const state = readContext(GTContext);
+  const state = readGTContext();
+  const config = getGTConfig();
   return {
     locale: state.locale,
-    locales: locales ?? [...state.locales],
+    locales: locales ?? [...config.locales],
     setLocale(locale: string) {
       if (typeof window === "undefined") return;
-      const config = getGTConfig();
-      const nextLocale = resolveSupportedLocale(locale);
-      document.cookie = `${config.localeCookieName}=${encodeURIComponent(nextLocale)}; Path=/; Max-Age=31536000; SameSite=Lax`;
-      const segments = window.location.pathname.split("/");
-      const pathLocale = config.locales.includes(segments[1] ?? "")
-        ? segments[1]
-        : undefined;
-      if (pathLocale) segments.splice(1, 1);
-      const unlocalizedPath = segments.join("/") || "/";
-      window.location.assign(
-        nextLocale === config.defaultLocale
-          ? unlocalizedPath
-          : `/${nextLocale}${unlocalizedPath === "/" ? "" : unlocalizedPath}`,
-      );
+      const nextLocale = resolveSupportedLocale(config, locale);
+      document.cookie = serializeLocaleCookie(config, nextLocale);
+      const url = new URL(window.location.href);
+      url.pathname = localizePathname(config, url.pathname, nextLocale);
+      window.location.assign(url.href);
     },
   };
 }
@@ -100,7 +92,7 @@ export interface TProps extends JsxTranslationOptions {
 }
 
 function TComponent({ children, ...options }: TProps): FigNode {
-  const state = readContext(GTContext);
+  const state = readGTContext();
   return translateJsx(children, state.catalog, state.locale, options);
 }
 
@@ -123,9 +115,7 @@ export const Num = Object.assign(
     if (children == null) return null;
     const value =
       typeof children === "string" ? Number.parseFloat(children) : children;
-    return new Intl.NumberFormat(readContext(GTContext).locale, options).format(
-      value,
-    );
+    return new Intl.NumberFormat(readGTContext().locale, options).format(value);
   },
   { _gtt: "variable-number" },
 );
@@ -141,10 +131,9 @@ export const DateTime = Object.assign(
   }) => {
     if (children == null) return null;
     const value = children instanceof Date ? children : new Date(children);
-    return new Intl.DateTimeFormat(
-      readContext(GTContext).locale,
-      options,
-    ).format(value);
+    return new Intl.DateTimeFormat(readGTContext().locale, options).format(
+      value,
+    );
   },
   { _gtt: "variable-datetime" },
 );
@@ -165,3 +154,10 @@ function BranchComponent({ branch, children, ...branches }: BranchProps) {
 export const Branch = Object.assign(BranchComponent, { _gtt: "branch" });
 
 export { msg };
+
+function readGTContext(): GTState {
+  const state = readContext(GTContext);
+  if (!state)
+    throw new Error("GT components must be rendered inside GTProvider");
+  return state;
+}

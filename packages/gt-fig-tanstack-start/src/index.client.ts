@@ -1,23 +1,10 @@
-import {
-  Branch,
-  createGTFunction,
-  DateTime,
-  GTProvider,
-  msg,
-  Num,
-  T,
-  useGT,
-  useLocaleSelector,
-  useMessages,
-  Var,
-} from "./shared.ts";
+import { resolveRequestLocale } from "./locale-routing.ts";
+import { createGTFunction } from "./shared.ts";
 import {
   configureGT,
-  getClientState,
   getGTConfig,
   type InitializeGTParams,
-  resolveSupportedLocale,
-  type TranslationSnapshot,
+  loadGTState,
 } from "./state.ts";
 
 export {
@@ -31,30 +18,21 @@ export {
   useLocaleSelector,
   useMessages,
   Var,
-};
+} from "./shared.ts";
 export type { InitializeGTParams };
 
-export function initializeGT(config: InitializeGTParams): void {
-  configureGT(config);
-}
+export { configureGT as initializeGT };
 
 export function getLocale(): string {
   const config = getGTConfig();
-  const pathLocale = location.pathname.split("/")[1];
-  const cookieLocale = document.cookie
-    .split(";")
-    .map((part) => part.trim().split("="))
-    .find(([name]) => name === config.localeCookieName)?.[1];
-  return resolveSupportedLocale(pathLocale || cookieLocale);
+  return resolveRequestLocale(config, {
+    cookie: document.cookie,
+    pathname: location.pathname,
+  });
 }
 
 export async function getGT() {
-  return createGTFunction(getClientState());
+  return createGTFunction(await loadGTState(getLocale()));
 }
 
-export async function getTranslationsSnapshot(
-  locale: string,
-): Promise<TranslationSnapshot> {
-  const state = getClientState();
-  return { [locale]: locale === state.locale ? state.catalog : {} };
-}
+export { loadTranslationsSnapshot as getTranslationsSnapshot } from "./state.ts";
