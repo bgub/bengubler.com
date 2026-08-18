@@ -18,13 +18,14 @@
   },
   "dependencies": {
     "@generaltranslation/format": "0.1.4",
-    "@tanstack/start-server-core": "1.169.17",
+    "@tanstack/start-server-core": "1.169.25",
     "generaltranslation": "9.1.0",
     "gt-i18n": "1.0.10"
   },
   "devDependencies": {
-    "@bgub/fig": "0.1.0-alpha.7",
-    "@bgub/fig-server": "0.1.0-alpha.7",
-    "@bgub/fig-tanstack-start": "0.1.0-alpha.7"
+    "@bgub/fig": "0.1.2",
+    "@bgub/fig-server": "0.1.2",
+    "@bgub/fig-tanstack-router": "0.1.2",
+    "@bgub/fig-tanstack-start": "0.1.2"
   }
 }
