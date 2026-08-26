@@ -29,7 +29,7 @@ export function GTProvider(props: GTProviderProps): FigNode {
     GTContext,
     {
       value: {
-        catalog: props.translations[props.locale] ?? {},
+        catalog: props.translations,
         locale: props.locale,
       },
     },

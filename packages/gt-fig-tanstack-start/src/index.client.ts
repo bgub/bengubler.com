@@ -35,4 +35,4 @@ export async function getGT() {
   return createGTFunction(await loadGTState(getLocale()));
 }
 
-export { loadTranslationsSnapshot as getTranslationsSnapshot } from "./state.ts";
+export { loadCatalog as getTranslations } from "./state.ts";

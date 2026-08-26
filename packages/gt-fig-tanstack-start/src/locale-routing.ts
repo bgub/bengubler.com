@@ -1,3 +1,5 @@
+import { getCookieValue, parseAcceptLanguage } from "gt-i18n/internal";
+
 export interface LocaleRoutingConfig {
   defaultLocale: string;
   localeCookieName: string;
@@ -111,43 +113,4 @@ function findSupportedLocale(
   return locales.find(
     (locale) => locale.split("-")[0]?.toLowerCase() === language,
   );
-}
-
-function getCookieValue(
-  cookieHeader: string | null | undefined,
-  cookieName: string,
-): string | undefined {
-  const cookie = cookieHeader
-    ?.split(";")
-    .map((value) => value.trim())
-    .find((value) => value.startsWith(`${cookieName}=`));
-  if (!cookie) return;
-
-  const value = cookie.slice(cookieName.length + 1);
-  try {
-    return decodeURIComponent(value);
-  } catch {
-    return value;
-  }
-}
-
-function parseAcceptLanguage(header: string | null | undefined): string[] {
-  return (header?.split(",") ?? [])
-    .map((entry, index) => {
-      const [locale = "", ...parameters] = entry
-        .split(";")
-        .map((value) => value.trim());
-      const quality = Number(
-        parameters
-          .find((parameter) => parameter.toLowerCase().startsWith("q="))
-          ?.slice(2) ?? 1,
-      );
-      return { index, locale, quality };
-    })
-    .filter(
-      ({ locale, quality }) =>
-        locale !== "" && locale !== "*" && quality > 0 && quality <= 1,
-    )
-    .sort((a, b) => b.quality - a.quality || a.index - b.index)
-    .map(({ locale }) => locale);
 }

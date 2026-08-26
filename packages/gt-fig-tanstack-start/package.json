@@ -9,15 +9,13 @@
       "browser": "./src/index.client.ts",
       "import": "./src/index.server.ts",
       "default": "./src/index.server.ts"
-    },
-    "./server": "./src/server.ts"
+    }
   },
   "scripts": {
     "test": "node --experimental-strip-types --test tests/*.test.ts"
   },
   "peerDependencies": {
-    "@bgub/fig": "*",
-    "@bgub/fig-tanstack-start": "*"
+    "@bgub/fig": "*"
   },
   "dependencies": {
     "@generaltranslation/format": "0.1.4",
@@ -26,9 +24,6 @@
     "gt-i18n": "1.0.10"
   },
   "devDependencies": {
-    "@bgub/fig": "0.1.2",
-    "@bgub/fig-server": "0.1.2",
-    "@bgub/fig-tanstack-router": "0.1.2",
-    "@bgub/fig-tanstack-start": "0.1.2"
+    "@bgub/fig": "0.1.2"
   }
 }

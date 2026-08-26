@@ -4,7 +4,6 @@ import {
   createStart,
 } from "@bgub/fig-tanstack-start";
 import { getResponseHeaders } from "@tanstack/start-server-core";
-import { gtMiddleware } from "gt-fig-tanstack-start/server";
 import {
   prepareDirectContentRequest,
   removeLocaleCookie,
@@ -24,5 +23,5 @@ const directContentMiddleware = createMiddleware().server(
 );
 
 export const startInstance = createStart(() => ({
-  requestMiddleware: [csrfMiddleware, directContentMiddleware, gtMiddleware],
+  requestMiddleware: [csrfMiddleware, directContentMiddleware],
 }));

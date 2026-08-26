@@ -11,7 +11,7 @@ import piazzollaLatinUrl from "@fontsource-variable/piazzolla/files/piazzolla-la
 import notoNaskhArabicUrl from "@fontsource/noto-naskh-arabic/files/noto-naskh-arabic-arabic-400-normal.woff2?url";
 import {
   GTProvider,
-  getTranslationsSnapshot,
+  getTranslations,
   initializeGT,
   T,
 } from "gt-fig-tanstack-start";
@@ -33,7 +33,7 @@ initializeGT({
 
 const translationsResource = dataResource({
   key: (locale: Locale) => ["translations", locale],
-  load: (locale: Locale) => getTranslationsSnapshot(locale),
+  load: (locale: Locale) => getTranslations(locale),
 });
 
 export const Route = createRootRouteWithContext<StartDataContext>()({

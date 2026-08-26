@@ -9,7 +9,6 @@ import type { LocaleRoutingConfig } from "./locale-routing.ts";
 export type Translation = JsxChildren;
 export type TranslationElement = JsxElement & Partial<Variable>;
 export type TranslationCatalog = Record<string, Translation>;
-export type TranslationSnapshot = Record<string, TranslationCatalog>;
 
 export interface InitializeGTParams {
   defaultLocale?: string;
@@ -32,7 +31,7 @@ export interface GTState {
 export interface GTProviderProps {
   children?: FigNode;
   locale: string;
-  translations: TranslationSnapshot;
+  translations: TranslationCatalog;
 }
 
 const defaultConfig: GTConfig = {
@@ -69,10 +68,4 @@ export async function loadGTState(locale: string): Promise<GTState> {
     catalog: await loadCatalog(locale),
     locale,
   };
-}
-
-export async function loadTranslationsSnapshot(
-  locale: string,
-): Promise<TranslationSnapshot> {
-  return { [locale]: await loadCatalog(locale) };
 }

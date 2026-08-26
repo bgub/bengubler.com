@@ -169,15 +169,6 @@ importers:
       '@bgub/fig':
         specifier: 0.1.2
         version: 0.1.2
-      '@bgub/fig-server':
-        specifier: 0.1.2
-        version: 0.1.2(@bgub/fig@0.1.2)
-      '@bgub/fig-tanstack-router':
-        specifier: 0.1.2
-        version: 0.1.2(@bgub/fig-dom@0.1.2(@bgub/fig@0.1.2))(@bgub/fig@0.1.2)
-      '@bgub/fig-tanstack-start':
-        specifier: 0.1.2
-        version: 0.1.2(@bgub/fig-dom@0.1.2(@bgub/fig@0.1.2))(@bgub/fig-server@0.1.2(@bgub/fig@0.1.2))(@bgub/fig-tanstack-router@0.1.2(@bgub/fig-dom@0.1.2(@bgub/fig@0.1.2))(@bgub/fig@0.1.2))(@bgub/fig@0.1.2)(crossws@0.4.10(srvx@0.11.22))(esbuild@0.27.7)(rolldown@1.2.1)(vite@8.2.0(@types/node@26.1.2)(esbuild@0.27.7)(jiti@2.7.0)(yaml@2.9.0))
 
 packages:
 
