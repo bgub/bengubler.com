@@ -1354,6 +1354,16 @@ li:last-child > .project-list-row,
   border-top: 1px dashed color-mix(in srgb, var(--chrome-ink) 48%, transparent);
 }
 
+[data-theme-icon] {
+  display: none;
+}
+
+:root[data-theme="light"] [data-theme-icon="light"],
+:root[data-theme="dark"] [data-theme-icon="dark"],
+:root[data-theme="system"] [data-theme-icon="system"] {
+  display: inline-block;
+}
+
 .site-sidebar-footer {
   margin: 0 1rem 0.75rem;
   padding-top: 0.9rem;

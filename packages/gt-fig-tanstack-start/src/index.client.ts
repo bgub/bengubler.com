@@ -26,7 +26,9 @@ export { configureGT as initializeGT };
 export function getLocale(): string {
   const config = getGTConfig();
   return resolveRequestLocale(config, {
-    cookie: document.cookie,
+    // The server already canonicalizes the initial URL using the cookie.
+    // During client navigation, the URL must also work for Back/Forward to English.
+    cookie: config.localeRouting ? undefined : document.cookie,
     pathname: location.pathname,
   });
 }

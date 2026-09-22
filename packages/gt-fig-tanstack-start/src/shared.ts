@@ -22,7 +22,8 @@ type MessageFunction = <T extends string | null | undefined>(
   options?: GTTranslationOptions,
 ) => T extends string ? string : T;
 
-const GTContext = createContext<GTState | undefined>(undefined);
+type GTContextValue = GTState & Pick<GTProviderProps, "navigate">;
+const GTContext = createContext<GTContextValue | undefined>(undefined);
 
 export function GTProvider(props: GTProviderProps): FigNode {
   return createElement(
@@ -31,6 +32,7 @@ export function GTProvider(props: GTProviderProps): FigNode {
       value: {
         catalog: props.translations,
         locale: props.locale,
+        navigate: props.navigate,
       },
     },
     props.children,
@@ -82,6 +84,9 @@ export function useLocaleSelector(locales?: string[]) {
       document.cookie = serializeLocaleCookie(config, nextLocale);
       const url = new URL(window.location.href);
       url.pathname = localizePathname(config, url.pathname, nextLocale);
+      if (state.navigate) {
+        return state.navigate(`${url.pathname}${url.search}${url.hash}`);
+      }
       window.location.assign(url.href);
     },
   };
@@ -155,7 +160,7 @@ export const Branch = Object.assign(BranchComponent, { _gtt: "branch" });
 
 export { msg };
 
-function readGTContext(): GTState {
+function readGTContext(): GTContextValue {
   const state = readContext(GTContext);
   if (!state)
     throw new Error("GT components must be rendered inside GTProvider");

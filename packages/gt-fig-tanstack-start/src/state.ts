@@ -32,6 +32,7 @@ export interface GTProviderProps {
   children?: FigNode;
   locale: string;
   translations: TranslationCatalog;
+  navigate?: (href: string) => void | Promise<void>;
 }
 
 const defaultConfig: GTConfig = {

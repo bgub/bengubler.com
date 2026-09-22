@@ -3,6 +3,7 @@ import {
   createRootRouteWithContext,
   HeadContent,
   Outlet,
+  useRouter,
 } from "@bgub/fig-tanstack-router";
 import { StartScripts, type StartDataContext } from "@bgub/fig-tanstack-start";
 import piazzollaCyrillicUrl from "@fontsource-variable/piazzolla/files/piazzolla-cyrillic-wght-normal.woff2?url";
@@ -19,7 +20,7 @@ import { Link } from "@/components/link";
 import { NotFoundPanel } from "@/components/not-found-panel";
 import { SiteLayout } from "@/components/site-layout/site-layout";
 import { ThemeProvider } from "@/components/theme-provider";
-import { defaultLocale, localeCookieName, resolveLocale } from "@/lib/locales";
+import { defaultLocale, getPathLocale, localeCookieName } from "@/lib/locales";
 import type { Locale } from "@/lib/locales";
 import { getPageMetadata } from "@/lib/metadata";
 import { loadTranslations } from "@/loadTranslations";
@@ -38,11 +39,13 @@ const translationsResource = dataResource({
 });
 
 export const Route = createRootRouteWithContext<StartDataContext>()({
+  beforeLoad: ({ location }) => ({
+    locale: getPathLocale(location.pathname) ?? defaultLocale,
+  }),
   loader: async ({ context }) => {
-    const locale = resolveLocale();
-    await context.data.ensureData(translationsResource, locale);
+    await context.data.ensureData(translationsResource, context.locale);
   },
-  head: () => ({
+  head: ({ match }) => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -55,7 +58,7 @@ export const Route = createRootRouteWithContext<StartDataContext>()({
       { rel: "stylesheet", href: appCss },
       {
         rel: "preload",
-        href: getPrimaryFontUrl(resolveLocale()),
+        href: getPrimaryFontUrl(match.context.locale),
         as: "font",
         type: "font/woff2",
         crossOrigin: "anonymous" as const,
@@ -75,7 +78,8 @@ function getPrimaryFontUrl(locale: Locale | undefined): string {
 }
 
 function RootComponent(): FigNode {
-  const locale = resolveLocale();
+  const { locale } = Route.useRouteContext();
+  const router = useRouter();
   const translations = readData(translationsResource, locale);
 
   return (
@@ -88,7 +92,11 @@ function RootComponent(): FigNode {
         <HeadContent />
       </head>
       <body>
-        <GTProvider locale={locale} translations={translations}>
+        <GTProvider
+          locale={locale}
+          translations={translations}
+          navigate={(href) => router.navigate({ href })}
+        >
           <ThemeProvider>
             <Outlet />
           </ThemeProvider>

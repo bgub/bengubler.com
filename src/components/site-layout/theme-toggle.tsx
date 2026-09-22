@@ -23,10 +23,14 @@ export function ThemeToggle() {
         class="theme-picker-trigger inline-flex size-9 items-center justify-center border border-border text-foreground transition-colors hover:bg-muted"
         aria-label={gt("Theme")}
       >
-        <span
-          class={`${themeOptions.find((option) => option.value === theme)?.icon ?? "icon-[lucide--monitor]"} size-[1.05rem]`}
-          aria-hidden="true"
-        />
+        {themeOptions.map((option) => (
+          <span
+            key={option.value}
+            data-theme-icon={option.value}
+            class={`${option.icon} size-[1.05rem]`}
+            aria-hidden="true"
+          />
+        ))}
       </summary>
 
       <div class="theme-picker-menu absolute end-0 bottom-11 z-50 w-36 border border-border bg-background p-1 text-foreground shadow-lg">

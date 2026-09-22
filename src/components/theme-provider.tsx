@@ -4,6 +4,7 @@ import {
   readContext,
   useSyncExternalStore,
 } from "@bgub/fig";
+import { themeScript, themeStorageKey } from "@/lib/theme-bootstrap";
 
 export type Theme = "dark" | "light" | "system";
 type ResolvedTheme = Exclude<Theme, "system">;
@@ -15,10 +16,8 @@ type ThemeContextValue = {
   theme: Theme;
 };
 
-const storageKey = "theme";
 const themeChangeEvent = "theme-change";
 const serverSnapshot: ThemeSnapshot = "system-light";
-const themeScript = `(function(){var t='system';try{var s=localStorage.getItem('${storageKey}');if(s==='light'||s==='dark'||s==='system')t=s}catch(e){}var d=matchMedia('(prefers-color-scheme: dark)').matches;var r=t==='system'?(d?'dark':'light'):t;var e=document.documentElement;e.classList.add(r);e.style.colorScheme=r})();`;
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
@@ -28,7 +27,7 @@ export function isTheme(value: string): value is Theme {
 
 function getTheme(): Theme {
   try {
-    const stored = localStorage.getItem(storageKey);
+    const stored = localStorage.getItem(themeStorageKey);
     return stored && isTheme(stored) ? stored : "system";
   } catch {
     return "system";
@@ -51,6 +50,7 @@ function applyTheme(theme: Theme) {
   document.documentElement.classList.remove("light", "dark");
   document.documentElement.classList.add(resolvedTheme);
   document.documentElement.style.colorScheme = resolvedTheme;
+  document.documentElement.dataset.theme = theme;
 }
 
 function subscribe(onStoreChange: () => void) {
@@ -60,7 +60,7 @@ function subscribe(onStoreChange: () => void) {
     onStoreChange();
   };
   const handleStorageChange = (event: StorageEvent) => {
-    if (event.key !== storageKey) return;
+    if (event.key !== themeStorageKey) return;
     applyTheme(getTheme());
     onStoreChange();
   };
@@ -78,7 +78,7 @@ function subscribe(onStoreChange: () => void) {
 
 function setTheme(theme: Theme) {
   try {
-    localStorage.setItem(storageKey, theme);
+    localStorage.setItem(themeStorageKey, theme);
   } catch {
     // The current document can still change theme when storage is unavailable.
   }
