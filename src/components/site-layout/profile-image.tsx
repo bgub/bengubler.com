@@ -1,4 +1,5 @@
 import { useGT } from "gt-fig-tanstack-start";
+import profileImageUrl from "@/assets/profile.webp?no-inline";
 
 export function ProfileImage({
   class: classValue,
@@ -10,7 +11,7 @@ export function ProfileImage({
   const gt = useGT();
   return (
     <img
-      src="/bengubler-headshot-blue.jpg"
+      src={profileImageUrl}
       alt={gt("Profile photo")}
       width={size}
       height={size}
