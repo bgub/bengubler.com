@@ -48,8 +48,8 @@ function ContactPage() {
   ];
 
   return (
-    <div class="space-y-10">
-      <header class="space-y-3">
+    <div class="interior-wireframe contact-wireframe">
+      <header class="page-header">
         <T>
           <PageTitle
             subtitle={gt(
@@ -61,7 +61,7 @@ function ContactPage() {
         </T>
       </header>
 
-      <div>
+      <section class="contact-methods">
         {contactMethods.map((method) => {
           const Component = method.href ? "a" : "div";
           const linkProps = method.href
@@ -76,30 +76,26 @@ function ContactPage() {
             <Component
               key={method.name}
               {...linkProps}
-              class={`grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-x-4 gap-y-1 py-4 border-b border-dotted border-border group ${
-                method.href
-                  ? "hover:bg-rule-soft/30 -mx-2 px-2 rounded-sm cursor-pointer"
-                  : ""
-              } block no-underline`}
+              class={`contact-method group ${method.href ? "contact-method-link" : ""}`}
             >
-              <div class="font-serif text-base font-medium text-foreground group-hover:text-foreground/80 transition-colors">
-                {method.name}
-              </div>
+              <div class="contact-method-name">{method.name}</div>
               <div>
-                <div class="font-mono text-sm text-foreground">
+                <div class="contact-method-value" dir="ltr">
                   {method.value}
                   {method.href && (
-                    <span class="text-ink-faint ml-1">&#x25B8;</span>
+                    <span class="contact-method-arrow" aria-hidden="true">
+                      &#x25B8;
+                    </span>
                   )}
                 </div>
-                <div class="font-serif text-sm text-ink-soft font-light mt-0.5">
+                <div class="contact-method-description">
                   {method.description}
                 </div>
               </div>
             </Component>
           );
         })}
-      </div>
+      </section>
     </div>
   );
 }

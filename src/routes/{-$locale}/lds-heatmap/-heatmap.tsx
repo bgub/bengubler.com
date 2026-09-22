@@ -155,15 +155,10 @@ export function Heatmap({ worldTopology, usTopology }: HeatmapProps) {
           }
         }
       })}
-      class="relative flex flex-col overflow-hidden select-none"
-      style={{
-        background: "#f8f9fb",
-        color: "#1a1a2e",
-        height: "calc(100vh - 64px)",
-      }}
+      class="heatmap-panel relative flex flex-col overflow-hidden select-none"
     >
       <HeatmapHeader mode={mode} onModeChange={setMode} onFly={fly} />
-      <div class="flex flex-1 min-h-0">
+      <div class="heatmap-workspace flex flex-1 min-h-0">
         <HeatmapMap
           world={world}
           us={us}
@@ -198,52 +193,26 @@ function HeatmapHeader({
   const m = useMessages();
 
   return (
-    <div
-      class="flex flex-wrap items-end justify-between gap-2"
-      style={{ padding: "12px 18px 8px", borderBottom: "1px solid #e5e8ed" }}
-    >
+    <div class="heatmap-header flex flex-wrap items-end justify-between gap-2">
       <div>
-        <div
-          class="font-mono uppercase"
-          style={{ fontSize: "12px", letterSpacing: "0.5px", color: "#888" }}
-        >
+        <div class="heatmap-eyebrow">
           <T>Membership Heat Map &middot; 2024</T>
         </div>
-        <h1
-          style={{
-            fontSize: "20px",
-            fontWeight: "400",
-            margin: "2px 0 0",
-            color: "#1a1a2e",
-          }}
-        >
+        <h1>
           <T>
-            Latter-day Saints{" "}
-            <span
-              style={{ fontWeight: "400", color: "#888", fontSize: "15px" }}
-            >
-              Worldwide
-            </span>
+            Latter-day Saints <span>Worldwide</span>
           </T>
         </h1>
       </div>
       <div class="flex flex-wrap items-center gap-1 pb-0.5">
-        <div
-          class="flex mr-2"
-          style={{ background: "#eef1f5", borderRadius: "6px", padding: "2px" }}
-        >
+        <div class="heatmap-mode-switch flex">
           {MODE_LABELS.map(([key, label]) => (
             <button
               type="button"
               key={key}
               mix={on("click", () => onModeChange(key))}
-              class="rounded-[5px] border-0 px-3 py-1 font-mono text-xs cursor-pointer transition-[background,color,box-shadow] duration-150"
-              style={{
-                background: mode === key ? "#fff" : "transparent",
-                color: mode === key ? "#1a1a2e" : "#999",
-                fontWeight: "400",
-                boxShadow: mode === key ? "0 1px 3px rgba(0,0,0,0.1)" : "none",
-              }}
+              class="heatmap-control"
+              data-active={mode === key ? "true" : undefined}
             >
               {m(label)}
             </button>
@@ -254,7 +223,7 @@ function HeatmapHeader({
             type="button"
             key={label}
             mix={on("click", () => onFly(x, y, scale))}
-            class="rounded border border-[#dde1e7] bg-white px-2.25 py-0.75 font-mono text-xs text-[#666] cursor-pointer"
+            class="heatmap-control"
           >
             {m(label)}
           </button>
@@ -286,7 +255,7 @@ function HeatmapMap({
 
   return (
     <div
-      class="relative flex-1 overflow-hidden"
+      class="heatmap-map relative flex-1 overflow-hidden"
       style={{ background: "#eef2f6" }}
     >
       <svg
@@ -408,7 +377,7 @@ function MapLegend({ isPct }: { isPct: boolean }) {
         backdropFilter: "blur(6px)",
       }}
     >
-      <span class="font-mono" style={{ fontSize: "12px", color: "#999" }}>
+      <span class="font-serif" style={{ fontSize: "12px", color: "#999" }}>
         {isPct ? "0%" : gt("FEW")}
       </span>
       <div
@@ -419,7 +388,7 @@ function MapLegend({ isPct }: { isPct: boolean }) {
           background: `linear-gradient(90deg,${palette.join(",")})`,
         }}
       />
-      <span class="font-mono" style={{ fontSize: "12px", color: "#999" }}>
+      <span class="font-serif" style={{ fontSize: "12px", color: "#999" }}>
         {isPct ? "65%+" : gt("MILLIONS")}
       </span>
     </div>
@@ -429,7 +398,7 @@ function MapLegend({ isPct }: { isPct: boolean }) {
 function ZoomBadge({ zoom }: { zoom: number }) {
   return (
     <div
-      class="absolute bottom-2.5 right-2.5 font-mono"
+      class="absolute bottom-2.5 right-2.5 font-serif"
       style={{
         background: "rgba(255,255,255,0.92)",
         padding: "3px 8px",
@@ -453,15 +422,7 @@ function HeatmapSidebar({ mode }: { mode: Mode }) {
   const caRanked = rankItems(CA_PROVINCES, mode).slice(0, 8);
 
   return (
-    <div
-      class="shrink-0 overflow-y-auto"
-      style={{
-        width: "225px",
-        padding: "6px 14px 14px 10px",
-        borderLeft: "1px solid #e5e8ed",
-        background: "#fff",
-      }}
-    >
+    <div class="heatmap-rankings shrink-0 overflow-y-auto">
       <Rank title={gt("Countries")} items={ranked} mode={mode} />
       <Rank title={gt("US States")} items={stateRanked} mode={mode} hasBorder />
       <Rank
@@ -471,7 +432,7 @@ function HeatmapSidebar({ mode }: { mode: Mode }) {
         hasBorder
       />
       <div
-        class="font-mono"
+        class="font-serif"
         style={{
           marginTop: "12px",
           fontSize: "12px",
@@ -518,14 +479,14 @@ function HeatmapTooltip({
         <>
           <T>
             <div
-              class="font-mono"
+              class="font-serif"
               style={{ fontSize: "12px", color: "#2d7fc0" }}
             >
               <Num>{tip.m}</Num> members
             </div>
           </T>
           <T>
-            <div class="font-mono" style={{ fontSize: "12px", color: "#666" }}>
+            <div class="font-serif" style={{ fontSize: "12px", color: "#666" }}>
               <Var>{tip.pv?.toFixed(2)}</Var>% of population
             </div>
           </T>
@@ -586,7 +547,7 @@ function Rank({
       }
     >
       <div
-        class="font-mono uppercase"
+        class="font-serif uppercase"
         style={{
           fontSize: "12px",
           letterSpacing: "0.5px",
@@ -606,7 +567,7 @@ function Rank({
             style={{ padding: "2.5px 0" }}
           >
             <span
-              class="font-mono text-right"
+              class="font-serif text-right"
               style={{
                 fontSize: "12px",
                 color: index < 3 ? "#1d4e89" : "#ccc",
@@ -628,7 +589,7 @@ function Rank({
                   {item.n}
                 </span>
                 <span
-                  class="font-mono whitespace-nowrap"
+                  class="font-serif whitespace-nowrap"
                   style={{
                     fontSize: "12px",
                     color: "#1d4e89",
@@ -650,12 +611,7 @@ function Rank({
                   style={{
                     height: "100%",
                     width: `${barWidth}%`,
-                    background:
-                      index === 0
-                        ? "linear-gradient(90deg,#2d7fc0,#1d4e89)"
-                        : index < 5
-                          ? "#2d7fc0"
-                          : "#1d4e89",
+                    background: index < 5 ? "#2d7fc0" : "#1d4e89",
                     borderRadius: "2px",
                     opacity: index < 3 ? "1" : "0.6",
                   }}

@@ -28,7 +28,7 @@ export function RawMarkdown({ slug }: RawMarkdownProps) {
   return (
     <div class="space-y-2">
       <T>
-        <h3 class="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
+        <h3 class="font-serif text-[11px] tracking-widest uppercase text-muted-foreground">
           Raw (for LLMs)
         </h3>
       </T>
@@ -38,7 +38,7 @@ export function RawMarkdown({ slug }: RawMarkdownProps) {
             href={getLocalizedPath(`/posts/${slug}.md`, resolveLocale())}
             target="_blank"
             rel="noopener noreferrer"
-            class="block text-foreground no-underline border-b border-border w-fit hover:border-ink-mute transition-colors"
+            class="post-raw-action block text-foreground no-underline border-b border-border w-fit hover:border-ink-mute transition-colors"
           >
             View Markdown
           </a>
@@ -46,7 +46,7 @@ export function RawMarkdown({ slug }: RawMarkdownProps) {
         <button
           mix={on("click", copyToClipboard)}
           type="button"
-          class="block text-foreground no-underline border-b border-border hover:border-ink-mute transition-colors"
+          class="post-raw-action block text-foreground no-underline border-b border-border hover:border-ink-mute transition-colors"
         >
           <T>
             <Branch

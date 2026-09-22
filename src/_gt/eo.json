@@ -28,6 +28,7 @@
     "i": 1,
     "t": "PageTitle"
   },
+  "074b6f983e66a1fd": "Mi laboras pri alt-efikecaj TypeScript-sistemoj, malfermfonta infrastrukturo kaj bibliotekoj por krei per artefarita inteligenteco.",
   "07a5546c35e00b3b": "ekzerci la ĉeĥajn, slovakajn kaj rusajn deklinaciojn",
   "08dd3091faf0d1ce": "Skalado de monosemanteco",
   "08fe27fe9f06fee4": "Kebekio",
@@ -84,6 +85,7 @@
   "1947f94eeedb8b9c": "Kolekto de la projektoj de Ben Gubler, de elstaraj verkoj ĝis eksperimentaj versioj.",
   "1acba9df1061bebd": "Kenjo",
   "1b684898471c9e88": "Surinamo",
+  "1e43b6b3cb548fc3": "Pardonu, la afiŝo, kiun vi serĉas, ne ekzistas aŭ estis movita.",
   "1f1b4086cadac9b6": "Lingvolernado - Ben Gubler",
   "1f7052f11b6baa02": "Rakonto pri du urboj",
   "1fce2ea0cc5f056e": "La persona retejo de Ben Gubler. Pensoj pri reta programado, AI kaj konstruado de aferoj, kiuj gravas.",
@@ -154,6 +156,7 @@
     "i": 1,
     "t": "PageTitle"
   },
+  "3860ac0ef9e31a89": "Paĝo ne trovita",
   "38e4a3d50b9db8cd": "Studeldono de la greka Nova Testamento",
   "3966ae164fc4fb1f": "Mi kreis kazkartojn por la ĉeĥa, por ke vi ne bezonu.",
   "397ba28e12a728d0": "Armenio",
@@ -178,6 +181,7 @@
   "402715cd330d167a": "Komputiloj",
   "4088fbaddc00d228": "Rigardu miajn malfermfontajn projektojn kaj kontribuojn",
   "4156905e88354209": "Fahrenheit 451",
+  "41af307cbd14df15": "Afiŝo ne trovita",
   "41d2f4230d1d960e": {
     "c": "Czech kazkartoj",
     "i": 1,
@@ -277,6 +281,14 @@
   },
   "61213b3c0bb8433e": "Lernu X en Y minutoj",
   "6223c45811e4bc71": "Kanado",
+  "627f44322bfd634a": [
+    "Sanktuloj de la Lastaj Tagoj ",
+    {
+      "c": "tutmonde",
+      "i": 1,
+      "t": "span"
+    }
+  ],
   "631ee7e693a308c8": "Idaho",
   "638d933fb5975d0e": "Italio",
   "6455227309955661": "Pimsleur",
@@ -601,7 +613,9 @@
   "ac94723b2e9de669": "Beelinguapp",
   "acd3df01d58f5765": "La tasko de diverĝa asociado",
   "ade50401b1396de9": "Afiŝoj",
+  "af2ea6d7b11353b5": "En ĉi tiu afiŝo",
   "af3863609bbecf5b": "Retdisvolvado kaj React",
+  "af5f420da3d272dd": "Pardonu, la paĝo, kiun vi serĉas, ne ekzistas aŭ estis movita.",
   "b001897d730bf8b0": "Venezuelo",
   "b06fe500b9dcc919": "Salvadoro",
   "b09fa3fb65954f11": "Landoj",
@@ -637,14 +651,6 @@
   "c3b8cdf27ab3c87a": "Majno",
   "c3d75dccd88075f2": "Interstellar",
   "c416e456567fdf39": "mokka",
-  "c4d382a9f7bcbeb9": [
-    "Sanktuloj de la Lastaj Tagoj ",
-    {
-      "c": "tutmonde",
-      "i": 1,
-      "t": "span"
-    }
-  ],
   "c52ea2cc4ede7ada": "konverti datumaroĵn de Hugging Face al la formato MosaicML Streaming",
   "c59720248f69d5aa": "Rekomendoj",
   "c62378275dc5c4f6": "miaj propraj iloj",
@@ -719,23 +725,6 @@
   },
   "dc2756d11af8d057": "Les Misérables",
   "dc94ea51cf0b8c7a": "Filmoj",
-  "deb60b6c5c7c7e83": [
-    {
-      "c": "404",
-      "i": 1,
-      "t": "h1"
-    },
-    {
-      "c": "Paĝo ne trovita",
-      "i": 2,
-      "t": "h2"
-    },
-    {
-      "c": "Bedaŭrinde, la paĝo, kiun vi serĉas, ne ekzistas aŭ estis translokita.",
-      "i": 3,
-      "t": "p"
-    }
-  ],
   "df477c814cdcac4b": "Viskonsino",
   "e0ec8b1ac98ca1d6": "Wispr Flow",
   "e1753ab0ce7d5975": "LinkedIn",
@@ -788,39 +777,23 @@
     "i": 1,
     "t": "h2"
   },
-  "f419657c5760f465": [
-    "Nun ĉe ",
+  "f2f74f043fcae049": [
+    "Antaŭe mi staĝis ĉe ",
     {
       "c": "General Translation",
       "i": 1,
       "t": "span"
     },
-    ", antaŭe praktikanto ĉe ",
+    " kaj ",
     {
       "c": "Vercel",
       "i": 2,
       "t": "span"
-    }
+    },
+    "."
   ],
   "f41ea186c275b56e": "Pri mi",
   "f4a62bd4d2559581": "Lesoto",
-  "f4d07f6eb70aee90": [
-    {
-      "c": "404",
-      "i": 1,
-      "t": "h1"
-    },
-    {
-      "c": "Afiŝo ne trovita",
-      "i": 2,
-      "t": "h2"
-    },
-    {
-      "c": "Bedaŭrinde, la afiŝo, kiun vi serĉas, ne ekzistas aŭ estis translokita.",
-      "i": 3,
-      "t": "p"
-    }
-  ],
   "f4d35d2b79b7b4fe": "malgranda TypeScript-a interfaca rultempo por aplikaĵoj kaj metaframeworkoj",
   "f4f0914ef1d23a85": "Ontario",
   "f52129a3f95b5597": "Lernaj rimedoj",

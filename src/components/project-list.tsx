@@ -16,14 +16,19 @@ export function ProjectList({ projects }: { projects: Project[] }) {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              class="block py-2.5 border-b border-dotted border-border hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm text-inherit no-underline"
+              class="project-list-row block hover:bg-rule-soft/30 transition-colors text-inherit no-underline"
             >
-              <div class="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                <div class="font-serif text-lg font-medium text-foreground leading-tight">
+              <div class="project-row">
+                <div class="project-name font-serif text-lg font-medium text-foreground leading-tight">
                   {m(project.name)}
                 </div>
-                <div class="font-serif text-sm leading-relaxed text-ink-soft font-light">
-                  — {m(project.description)}
+                <div class="project-description font-serif text-sm leading-relaxed text-ink-soft font-light">
+                  <span class="project-description-mark" aria-hidden="true">
+                    —
+                  </span>
+                  <span class="project-description-text">
+                    {m(project.description)}
+                  </span>
                 </div>
               </div>
             </Link>

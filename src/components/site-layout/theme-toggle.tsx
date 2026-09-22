@@ -1,40 +1,52 @@
 import { on } from "@bgub/fig-dom";
-import { useGT } from "gt-fig-tanstack-start";
-import { isTheme, useTheme } from "@/components/theme-provider";
+import { msg, useGT, useMessages } from "gt-fig-tanstack-start";
+import { type Theme, useTheme } from "@/components/theme-provider";
+
+const themeOptions: Array<{
+  icon: string;
+  label: ReturnType<typeof msg>;
+  value: Theme;
+}> = [
+  { value: "light", label: msg("Light"), icon: "icon-[lucide--sun]" },
+  { value: "dark", label: msg("Dark"), icon: "icon-[lucide--moon]" },
+  { value: "system", label: msg("System"), icon: "icon-[lucide--monitor]" },
+];
 
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme();
   const gt = useGT();
+  const m = useMessages();
 
   return (
-    <div class="relative inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding transition-colors hover:bg-muted hover:text-foreground focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50">
-      <span
-        class="icon-[lucide--sun] pointer-events-none size-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-        aria-hidden="true"
-      />
-      <span
-        class="icon-[lucide--moon] pointer-events-none absolute size-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-        aria-hidden="true"
-      />
-      <select
-        class="absolute inset-0 size-full cursor-pointer appearance-none opacity-0"
+    <details class="theme-picker relative shrink-0">
+      <summary
+        class="theme-picker-trigger inline-flex size-9 items-center justify-center border border-border text-foreground transition-colors hover:bg-muted"
         aria-label={gt("Theme")}
-        value={theme}
-        mix={on("change", (event) => {
-          const value = (event.currentTarget as HTMLSelectElement).value;
-          if (isTheme(value)) setTheme(value);
-        })}
       >
-        <option value="light" selected={theme === "light"}>
-          {gt("Light")}
-        </option>
-        <option value="dark" selected={theme === "dark"}>
-          {gt("Dark")}
-        </option>
-        <option value="system" selected={theme === "system"}>
-          {gt("System")}
-        </option>
-      </select>
-    </div>
+        <span
+          class={`${themeOptions.find((option) => option.value === theme)?.icon ?? "icon-[lucide--monitor]"} size-[1.05rem]`}
+          aria-hidden="true"
+        />
+      </summary>
+
+      <div class="theme-picker-menu absolute end-0 bottom-11 z-50 w-36 border border-border bg-background p-1 text-foreground shadow-lg">
+        {themeOptions.map((option) => (
+          <button
+            key={option.value}
+            type="button"
+            class={`theme-picker-option flex w-full items-center gap-2 px-2.5 py-2 text-start font-serif text-xs transition-colors ${theme === option.value ? "theme-picker-option-active" : ""}`}
+            aria-pressed={theme === option.value}
+            mix={on("click", (event) => {
+              setTheme(option.value);
+              const details = event.currentTarget.closest("details");
+              if (details) details.open = false;
+            })}
+          >
+            <span class={`${option.icon} size-3.5`} aria-hidden="true" />
+            {m(option.label)}
+          </button>
+        ))}
+      </div>
+    </details>
   );
 }

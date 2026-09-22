@@ -24,8 +24,8 @@ function ProjectsPage() {
   const m = useMessages();
   const gt = useGT();
   return (
-    <div class="space-y-12">
-      <header class="space-y-3">
+    <div class="interior-wireframe projects-wireframe">
+      <header class="page-header">
         <T>
           <PageTitle
             subtitle={gt(
@@ -38,12 +38,11 @@ function ProjectsPage() {
       </header>
 
       {projectsData.map((section) => (
-        <section key={section.id} class="space-y-3">
-          <div class="flex items-baseline gap-3.5">
+        <section key={section.id} class="home-projects projects-section">
+          <div class="home-section-head">
             <h2 class="font-serif font-medium text-2xl tracking-tight text-foreground">
               {m(section.category)}
             </h2>
-            <div class="flex-1 border-t border-dotted border-ink-faint mt-1.5" />
           </div>
           <ProjectList projects={section.projects} />
         </section>

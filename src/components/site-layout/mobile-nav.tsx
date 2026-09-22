@@ -22,7 +22,7 @@ export function MobileNav(): FigNode {
     <>
       <button
         type="button"
-        class="inline-flex size-9 shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-sm font-medium transition-colors outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+        class="site-mobile-menu-button inline-flex size-9 shrink-0 items-center justify-center bg-clip-padding text-sm font-medium transition-colors outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         aria-expanded={isOpen}
         aria-controls="mobile-menu-popover"
         aria-label={isOpen ? gt("Close menu") : gt("Open menu")}
@@ -42,7 +42,7 @@ export function MobileNav(): FigNode {
           return undefined;
         }}
         id="mobile-menu-popover"
-        class="fixed inset-auto top-16 end-4 m-0 w-72 rounded-sm border border-border bg-shell p-4 text-foreground shadow-lg"
+        class="site-mobile-menu fixed inset-auto top-16 end-4 m-0 w-72 p-4 text-foreground"
         popover="auto"
         role="dialog"
         aria-label={gt("Navigation menu")}
@@ -62,7 +62,7 @@ export function MobileNav(): FigNode {
         <LocaleSwitcher />
 
         <div class="border-t border-dotted border-border mt-3 pt-3 flex items-center justify-between">
-          <span class="font-mono text-[11px] text-muted-foreground tracking-wider">
+          <span class="font-serif text-[11px] text-muted-foreground tracking-wider">
             &copy; Ben Gubler
           </span>
           <ThemeToggle />

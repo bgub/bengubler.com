@@ -38,7 +38,7 @@ export function Social({ title }: SocialProps) {
   return (
     <div class="space-y-2">
       <T>
-        <h3 class="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
+        <h3 class="font-serif text-[11px] tracking-widest uppercase text-muted-foreground">
           Pass along
         </h3>
       </T>

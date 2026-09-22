@@ -5,6 +5,7 @@ import { T } from "gt-fig-tanstack-start";
 import { cn } from "@/lib/utils";
 
 interface ClientTOCProps {
+  showHeading?: boolean;
   tree: TocNode;
   activeSection: string;
   onNavigate: (id: string) => void;
@@ -41,7 +42,7 @@ function TOCLink({
       mix={on("click", scrollToHeading)}
       class={cn(
         "block py-0.5 font-serif text-[13px] leading-relaxed transition-colors hover:text-foreground no-underline",
-        isSubHeading && "pl-2.5 text-ink-mute",
+        isSubHeading && "ps-2.5 text-ink-mute",
         isActive
           ? "text-foreground font-medium"
           : isSubHeading
@@ -49,7 +50,6 @@ function TOCLink({
             : "text-ink-soft font-light",
       )}
     >
-      {isSubHeading ? "\u203a " : "§ "}
       {node.title}
     </a>
   );
@@ -161,18 +161,25 @@ export function useTOCScrollspy(tree: TocNode) {
   };
 }
 
-export function ClientTOC({ tree, activeSection, onNavigate }: ClientTOCProps) {
+export function ClientTOC({
+  tree,
+  activeSection,
+  onNavigate,
+  showHeading = true,
+}: ClientTOCProps) {
   if (!tree.children.length) {
     return null;
   }
 
   return (
     <div class="space-y-2">
-      <T>
-        <h3 class="font-mono text-[11px] tracking-widest uppercase text-muted-foreground">
-          In this entry
-        </h3>
-      </T>
+      {showHeading && (
+        <T>
+          <h3 class="font-serif text-[11px] tracking-widest uppercase text-muted-foreground">
+            In this entry
+          </h3>
+        </T>
+      )}
       <TOCNodeList
         nodes={tree.children}
         activeSection={activeSection}

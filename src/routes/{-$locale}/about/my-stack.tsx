@@ -94,8 +94,8 @@ function MyStackPage() {
   const m = useMessages();
   const gt = useGT();
   return (
-    <div class="space-y-12">
-      <header class="space-y-3">
+    <div class="interior-wireframe about-catalog">
+      <header class="page-header">
         <T>
           <PageTitle
             subtitle={gt(
@@ -108,19 +108,15 @@ function MyStackPage() {
       </header>
 
       {stack.map((section) => (
-        <section key={m(section.category)} class="space-y-3">
-          <div class="flex items-baseline gap-3.5">
+        <section key={m(section.category)} class="about-catalog-section">
+          <div class="about-catalog-heading">
             <h2 class="font-serif font-medium text-2xl tracking-tight text-foreground">
               {m(section.category)}
             </h2>
-            <div class="flex-1 border-t border-dotted border-ink-faint mt-1.5" />
           </div>
-          <div class="space-y-2">
+          <div class="about-catalog-rows">
             {section.subsections.map((subsection) => (
-              <div
-                key={m(subsection.title)}
-                class="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-x-4 gap-y-0.5 py-2.5 border-b border-dotted border-border"
-              >
+              <div key={m(subsection.title)} class="about-catalog-row">
                 <span class="font-serif font-medium text-foreground">
                   {m(subsection.title)}
                 </span>

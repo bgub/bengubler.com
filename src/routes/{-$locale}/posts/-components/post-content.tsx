@@ -164,6 +164,18 @@ const contentComponents = {
   Tweet,
 } satisfies ContentComponents;
 
-export function PostContent({ body }: { body: string }) {
-  return <ContentRenderer body={body} components={contentComponents} />;
+export function PostContent({
+  body,
+  omitHeadingId,
+}: {
+  body: string;
+  omitHeadingId?: string;
+}) {
+  return (
+    <ContentRenderer
+      body={body}
+      components={contentComponents}
+      omitHeadingId={omitHeadingId}
+    />
+  );
 }

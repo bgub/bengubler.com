@@ -16,6 +16,7 @@ import {
   T,
 } from "gt-fig-tanstack-start";
 import { Link } from "@/components/link";
+import { NotFoundPanel } from "@/components/not-found-panel";
 import { SiteLayout } from "@/components/site-layout/site-layout";
 import { ThemeProvider } from "@/components/theme-provider";
 import { defaultLocale, localeCookieName, resolveLocale } from "@/lib/locales";
@@ -101,41 +102,32 @@ function RootComponent(): FigNode {
 function NotFound(): FigNode {
   return (
     <SiteLayout>
-      <div class="flex min-h-[60vh] flex-col items-center justify-center gap-y-6 text-center">
-        <div class="space-y-4">
+      <NotFoundPanel
+        title={<T>Page Not Found</T>}
+        description={
           <T>
-            <h1 class="font-serif text-6xl font-medium text-muted-foreground">
-              404
-            </h1>
-            <h2 class="font-serif text-3xl font-medium tracking-tight text-foreground">
-              Page Not Found
-            </h2>
-            <p class="mx-auto max-w-md font-serif text-lg font-light leading-relaxed text-ink-soft">
-              Sorry, the page you're looking for doesn't exist or has been
-              moved.
-            </p>
+            Sorry, the page you're looking for doesn't exist or has been moved.
           </T>
-        </div>
-        <div class="flex items-center gap-4 font-mono text-[11.5px]">
-          <T>
-            <Link
-              href="/"
-              class="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
-            >
-              Go Home
-            </Link>
-          </T>
-          <span class="text-ink-faint">&middot;</span>
-          <T>
-            <Link
-              href="/posts"
-              class="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
-            >
-              View Posts
-            </Link>
-          </T>
-        </div>
-      </div>
+        }
+      >
+        <T>
+          <Link
+            href="/"
+            class="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
+          >
+            Go Home
+          </Link>
+        </T>
+        <span class="text-ink-faint">&middot;</span>
+        <T>
+          <Link
+            href="/posts"
+            class="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
+          >
+            View Posts
+          </Link>
+        </T>
+      </NotFoundPanel>
     </SiteLayout>
   );
 }

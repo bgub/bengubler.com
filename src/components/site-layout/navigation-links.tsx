@@ -66,26 +66,27 @@ export function NavigationLinks({
         const isActive = isActivePath(pathname, item.href);
 
         return (
-          <li key={item.name} class="relative">
+          <li
+            key={item.name}
+            class={cn("relative", item.isSubItem && "site-nav-subitem")}
+          >
             {item.isSubItem && (
               <>
-                <div class="absolute inset-s-2 top-0 h-1/2 w-px bg-border/70" />
-                <div class="absolute inset-s-2 top-1/2 w-4 h-px bg-border/70" />
+                <div class="absolute inset-s-2 top-0 h-1/2 w-px" />
+                <div class="absolute inset-s-2 top-1/2 w-4 h-px" />
               </>
             )}
             <Link
               href={item.href}
               class={cn(
-                "group flex items-center gap-x-2.5 rounded-sm px-2.5 py-2 text-sm font-sans leading-tight transition-all duration-100",
+                "site-nav-link group flex items-center gap-x-2.5 py-2 leading-tight",
                 item.isSubItem && "ms-4",
-                isActive
-                  ? "bg-card text-foreground shadow-[inset_0_0_0_1px_var(--border)]"
-                  : "text-ink-soft hover:bg-rule-soft",
+                isActive ? "site-nav-link-active" : "text-ink-soft",
               )}
               mix={onNavigate ? on("click", onNavigate) : undefined}
             >
               <span
-                class={`${item.icon} size-3.75 shrink-0 opacity-75`}
+                class={`${item.icon} site-nav-icon shrink-0`}
                 aria-hidden="true"
               />
               {m(item.name)}

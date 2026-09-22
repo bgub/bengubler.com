@@ -43,14 +43,21 @@ function HomePage() {
     projectsData.find((section) => section.id === "featured")?.projects ?? [];
 
   return (
-    <div class="space-y-10">
+    <div class="home-wireframe">
       {/* Hero Section */}
-      <section>
-        <h1 class="font-serif font-normal text-4xl sm:text-5xl lg:text-[56px] leading-[1.02] tracking-tight text-foreground mb-4">
+      <section class="home-hero">
+        <h1 class="font-serif font-normal text-foreground">
           <T>Hey, I'm Ben</T>
         </h1>
 
-        <p class="font-serif text-lg sm:text-xl leading-relaxed text-ink-soft font-light mb-2.5">
+        <p class="text-ink-soft mb-2.5">
+          <T>
+            I work on high-performance TypeScript systems, open-source
+            infrastructure, and libraries for building with AI.
+          </T>
+        </p>
+
+        <p class="text-ink-soft mb-2.5">
           <T>
             I'm a student at BYU, where I'm majoring in CS/ML and
             double-minoring in Arabic + Math. I build open-source libraries, web
@@ -58,20 +65,15 @@ function HomePage() {
           </T>
         </p>
 
-        <p class="font-serif text-lg sm:text-xl leading-relaxed text-ink-soft font-light">
+        <p class="text-ink-soft">
           <T>
-            Currently @
-            <span class="bg-buttercream px-1.5 py-0.5 rounded-sm text-foreground font-normal">
-              General Translation
-            </span>
-            , prev intern @
-            <span class="bg-buttercream px-1.5 py-0.5 rounded-sm text-foreground font-normal">
-              Vercel
-            </span>
+            Previously interned at{" "}
+            <span class="font-normal">General Translation</span> and{" "}
+            <span class="font-normal">Vercel</span>.
           </T>
         </p>
 
-        <div class="flex flex-wrap items-center gap-x-1.5 font-mono text-[11.5px] text-muted-foreground mt-5">
+        <div class="home-links flex flex-wrap items-center gap-x-1.5 text-muted-foreground">
           <T>
             <Link
               href="/projects"
@@ -118,15 +120,12 @@ function HomePage() {
       </section>
 
       {/* Featured Projects Section */}
-      <section>
-        <div class="flex items-baseline justify-between mb-5">
-          <h2 class="font-serif font-medium text-[28px] tracking-tight text-foreground">
+      <section class="home-projects">
+        <div class="home-section-head flex justify-between">
+          <h2 class="text-foreground">
             <T>Projects</T>
           </h2>
-          <Link
-            href="/projects"
-            class="font-mono text-[11px] text-muted-foreground hover:text-foreground no-underline transition-colors"
-          >
+          <Link href="/projects" class="transition-colors">
             <T>See All &#x25B8;</T>
           </Link>
         </div>
@@ -134,16 +133,13 @@ function HomePage() {
       </section>
 
       {/* Recent Posts Section */}
-      <section>
-        <div class="flex items-baseline justify-between mb-5">
-          <h2 class="font-serif font-medium text-[28px] tracking-tight text-foreground">
+      <section class="home-posts">
+        <div class="home-section-head flex justify-between">
+          <h2 class="text-foreground">
             <T>Recent Posts</T>
           </h2>
           {hasMorePosts && (
-            <Link
-              href="/posts"
-              class="font-mono text-[11px] text-muted-foreground hover:text-foreground no-underline transition-colors"
-            >
+            <Link href="/posts" class="transition-colors">
               <T>See All &#x25B8;</T>
             </Link>
           )}

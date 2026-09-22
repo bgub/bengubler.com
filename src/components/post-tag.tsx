@@ -6,11 +6,8 @@ interface PostTagProps {
 export function PostTag({ selected = false, tag }: PostTagProps) {
   return (
     <span
-      class={`inline-flex rounded-sm border bg-card px-2 py-0.5 font-mono text-[11px] leading-normal ${
-        selected
-          ? "border-foreground text-foreground"
-          : "border-border text-ink-soft"
-      }`}
+      class="post-tag inline-flex leading-normal"
+      data-selected={selected ? "true" : undefined}
     >
       #{tag.toLowerCase()}
     </span>

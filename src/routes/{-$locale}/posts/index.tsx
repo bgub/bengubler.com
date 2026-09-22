@@ -66,15 +66,15 @@ function PostsPage() {
   const archivedPosts = sortedPosts.filter((post) => post.archived);
 
   return (
-    <div class="space-y-10">
-      <header class="space-y-3">
-        <div class="flex items-center justify-between">
+    <div class="interior-wireframe posts-index-wireframe">
+      <header class="page-header posts-index-header">
+        <div class="posts-index-title-row">
           <PageTitle>
             <T>Posts</T>
           </PageTitle>
           <Link
             href={getLocalizedPath("/rss.xml", resolveLocale())}
-            class="inline-flex items-center gap-2 px-2.5 py-1 font-mono text-[11px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-sm hover:bg-rule-soft"
+            class="posts-rss-link"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -82,44 +82,43 @@ function PostsPage() {
             <T>RSS</T>
           </Link>
         </div>
-        <p class="font-serif text-lg text-ink-soft leading-relaxed font-light">
+        <p class="posts-index-description">
           <T>Notes on software, language, and the overlap between them.</T>
         </p>
+
+        {/* Tag Filter */}
+        {allTags.length > 0 && (
+          <div class="posts-filter">
+            <span class="posts-filter-label">
+              <T>filter</T>
+            </span>
+            {allTags.map((tag) => {
+              const isActive = selectedTag === tag;
+              return (
+                <Link
+                  key={tag}
+                  href={
+                    isActive
+                      ? "/posts"
+                      : `/posts?tag=${encodeURIComponent(tag)}`
+                  }
+                  class="no-underline"
+                >
+                  <PostTag tag={tag} selected={isActive} />
+                </Link>
+              );
+            })}
+            {selectedTag && (
+              <Link href="/posts" class="posts-filter-clear">
+                <T>clear</T>
+              </Link>
+            )}
+          </div>
+        )}
       </header>
 
-      {/* Tag Filter */}
-      {allTags.length > 0 && (
-        <div class="flex flex-wrap items-baseline gap-2 py-2.5 border-y border-dotted border-border">
-          <span class="font-mono text-[11px] tracking-widest uppercase text-muted-foreground mr-1">
-            <T>filter</T>
-          </span>
-          {allTags.map((tag) => {
-            const isActive = selectedTag === tag;
-            return (
-              <Link
-                key={tag}
-                href={
-                  isActive ? "/posts" : `/posts?tag=${encodeURIComponent(tag)}`
-                }
-                class="no-underline"
-              >
-                <PostTag tag={tag} selected={isActive} />
-              </Link>
-            );
-          })}
-          {selectedTag && (
-            <Link
-              href="/posts"
-              class="font-mono text-[11px] text-muted-foreground underline ml-auto"
-            >
-              <T>clear</T>
-            </Link>
-          )}
-        </div>
-      )}
-
       {/* Posts - row layout */}
-      <section>
+      <section class="posts-list-section">
         <div>
           {filteredPosts.map((post) => (
             <PostRow key={post.slug} post={post} />
@@ -140,18 +139,12 @@ function PostsPage() {
 
       {/* Archived Posts */}
       {archivedPosts.length > 0 && !selectedTag && (
-        <section>
-          <div class="mb-4">
-            <div class="mb-2 flex items-center gap-3">
-              <h2 class="shrink-0 font-serif text-[28px] font-medium tracking-tight text-foreground">
-                <T>Archived</T>
-              </h2>
-              <div
-                class="flex-1 border-t border-dotted border-border"
-                aria-hidden="true"
-              />
-            </div>
-            <p class="font-serif text-sm text-ink-soft font-light italic">
+        <section class="posts-list-section posts-archive-section">
+          <div class="posts-archive-head">
+            <h2>
+              <T>Archived</T>
+            </h2>
+            <p>
               <T>
                 Older posts that might be outdated but still have some value.
               </T>

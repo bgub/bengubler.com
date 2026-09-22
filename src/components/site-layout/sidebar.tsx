@@ -6,34 +6,35 @@ import { ThemeToggle } from "./theme-toggle";
 
 export function Sidebar() {
   return (
-    <div class="hidden md:fixed md:inset-y-0 md:z-50 md:flex md:w-64 md:flex-col">
-      <div class="flex grow flex-col overflow-y-auto bg-shell border-r border-border">
-        <div class="flex grow flex-col gap-y-8 px-5 py-10">
+    <div class="site-sidebar hidden md:fixed md:inset-y-0 md:z-50 md:flex md:flex-col">
+      <div class="site-sidebar-panel flex grow flex-col overflow-y-auto">
+        <div class="site-sidebar-body flex grow flex-col gap-y-8 pb-10">
           {/* Profile Section */}
-          <Link href="/" class="flex items-center gap-3.5 group px-1">
-            <div class="relative size-13 rounded-full overflow-hidden shrink-0 border border-border">
-              <ProfileImage size={52} class="object-cover" />
+          <Link
+            href="/"
+            class="site-sidebar-profile flex items-center gap-3.5 group"
+          >
+            <div class="site-profile-photo relative overflow-hidden shrink-0">
+              <ProfileImage size={60} class="object-cover" />
             </div>
             <div>
-              <div class="font-serif text-xl font-medium text-foreground leading-tight tracking-tight group-hover:text-foreground/80 transition-colors">
+              <div class="site-profile-name leading-tight group-hover:text-foreground/80 transition-colors">
                 Ben Gubler
               </div>
-              <div class="font-mono text-[11px] leading-4 text-ink-mute">
-                @bgub
-              </div>
+              <div class="site-profile-handle">@bgub</div>
             </div>
           </Link>
 
           {/* Navigation */}
           <nav class="flex flex-1 flex-col">
-            <NavigationLinks class="flex flex-1 flex-col gap-y-0.5" />
+            <NavigationLinks class="site-sidebar-navigation flex flex-1 flex-col" />
           </nav>
         </div>
         {/* Theme Toggle & Locale Selector */}
-        <div class="px-5 pb-5 space-y-3">
+        <div class="site-sidebar-footer space-y-3">
           <LocaleSwitcher class="mx-auto" />
-          <div class="border-t border-dotted border-border pt-3 flex items-center justify-between">
-            <span class="font-mono text-[11px] text-muted-foreground tracking-wider">
+          <div class="site-sidebar-controls border-t border-dotted pt-3 flex items-center justify-between">
+            <span class="font-serif text-[11px] text-muted-foreground tracking-wider">
               &copy; Ben Gubler
             </span>
             <ThemeToggle />

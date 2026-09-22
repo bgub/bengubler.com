@@ -18,12 +18,12 @@ export function Typography({ children }: TypographyProps) {
         "[&_h5]:scroll-m-20 [&_h5]:text-base [&_h5]:font-medium [&_h5]:tracking-tight [&_h5]:mt-6 [&_h5]:mb-3",
         "[&_h6]:scroll-m-20 [&_h6]:text-sm [&_h6]:font-medium [&_h6]:tracking-tight [&_h6]:mt-6 [&_h6]:mb-3",
         // Paragraphs — lighter weight, relaxed reading
-        "[&_p]:leading-[1.7] [&_p]:mt-6 [&_p:first-child]:mt-0 [&_p]:text-ink-soft [&_p]:font-light",
+        "[&_p]:leading-[1.7] [&_p]:mt-6 [&_p:first-child]:mt-0 [&_p]:text-ink-soft [&_p]:font-normal",
         // Links
         "[&_a]:font-medium [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-foreground/80",
         // Lists
-        "[&_ul]:my-6 [&_ul]:ms-6 [&_ul]:list-disc [&_ul_li]:mt-2 [&_ul_li]:text-ink-soft [&_ul_li]:font-light",
-        "[&_ol]:my-6 [&_ol]:ms-6 [&_ol]:list-decimal [&_ol_li]:mt-2 [&_ol_li]:text-ink-soft [&_ol_li]:font-light",
+        "[&_ul]:my-6 [&_ul]:ms-6 [&_ul]:list-disc [&_ul_li]:mt-2 [&_ul_li]:text-ink-soft [&_ul_li]:font-normal",
+        "[&_ol]:my-6 [&_ol]:ms-6 [&_ol]:list-decimal [&_ol_li]:mt-2 [&_ol_li]:text-ink-soft [&_ol_li]:font-normal",
         // Blockquotes
         "[&_blockquote]:mt-6 [&_blockquote]:border-s-2 [&_blockquote]:border-peach-deep [&_blockquote]:ps-6 [&_blockquote]:italic [&_blockquote]:text-ink-soft",
         // Inline code

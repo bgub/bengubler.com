@@ -13,7 +13,7 @@ export function PostRow({ post, showTags = true }: PostRowProps) {
   const archived = post.archived;
   const date = (
     <PostViewTransition disabled={archived} kind="date" postUrl={post.url}>
-      <span class="font-mono text-[11px] text-muted-foreground tracking-wide">
+      <span class="text-muted-foreground">
         <DateTime options={{ timeZone: "UTC" }}>{post.date}</DateTime>
       </span>
     </PostViewTransition>
@@ -62,21 +62,20 @@ export function PostRow({ post, showTags = true }: PostRowProps) {
   );
 
   return (
-    <Link
-      href={post.url}
-      class="block border-b border-dotted border-border py-3 no-underline text-inherit hover:bg-rule-soft/30 transition-colors -mx-2 px-2 rounded-sm"
-    >
-      <div class="flex flex-col-reverse gap-y-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-5">
-        {title}
-        <div class="flex shrink-0 items-center gap-1.5 font-mono text-[11px] text-muted-foreground whitespace-nowrap">
-          {date}
-          <span aria-hidden="true">·</span>
-          {readingTime}
+    <Link href={post.url} class="post-list-row block no-underline text-inherit">
+      <div class="post-row-content">
+        <div class="flex flex-col-reverse gap-y-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-5">
+          {title}
+          <div class="post-row-meta flex shrink-0 items-center gap-1.5 font-serif text-muted-foreground whitespace-nowrap">
+            {date}
+            <span aria-hidden="true">·</span>
+            {readingTime}
+          </div>
         </div>
-      </div>
-      <div class="mt-0.5 flex flex-col gap-y-1 sm:flex-row sm:items-start sm:justify-between sm:gap-x-6">
-        {description}
-        {tags}
+        <div class="mt-0.5 flex flex-col gap-y-1 sm:flex-row sm:items-start sm:justify-between sm:gap-x-6">
+          {description}
+          {tags}
+        </div>
       </div>
     </Link>
   );

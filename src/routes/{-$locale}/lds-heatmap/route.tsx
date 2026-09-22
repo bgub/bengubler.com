@@ -36,7 +36,7 @@ export const Route = createFileRoute("/{-$locale}/lds-heatmap")({
 function LdsHeatmapPage() {
   const { worldTopology, usTopology } = readData(topologyResource);
   return (
-    <div class="-mx-4 sm:-mx-6 lg:-mx-8 -my-8 md:-my-12">
+    <div class="interior-wireframe heatmap-wireframe">
       <Heatmap worldTopology={worldTopology} usTopology={usTopology} />
     </div>
   );

@@ -11,7 +11,7 @@ export function LocaleSwitcher({ class: classValue }: LocaleSwitcherProps) {
   const gt = useGT();
 
   return (
-    <div class={cn("grid grid-cols-4 gap-1.5 w-full", classValue)}>
+    <div class={cn("site-locale-switcher grid grid-cols-6 w-full", classValue)}>
       {locales
         .toSorted((a, b) => a.localeCompare(b))
         .map((code) => {
@@ -21,12 +21,7 @@ export function LocaleSwitcher({ class: classValue }: LocaleSwitcherProps) {
               key={code}
               type="button"
               mix={on("click", () => setLocale(code))}
-              class={cn(
-                "font-mono text-[11px] tracking-wide py-1 rounded-sm border border-dashed transition-colors text-center",
-                active
-                  ? "border-foreground text-foreground bg-peach"
-                  : "border-ink-faint text-muted-foreground hover:border-ink-mute hover:text-foreground",
-              )}
+              class="site-locale-option"
               aria-pressed={active}
               aria-label={gt("Switch language to {code}", { code })}
             >

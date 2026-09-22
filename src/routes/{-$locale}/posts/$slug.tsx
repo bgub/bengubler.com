@@ -5,10 +5,10 @@ import type { TocNode } from "content-pipeline";
 import { DateTime, getGT, T, useGT } from "gt-fig-tanstack-start";
 import { Comments } from "@/components/comments";
 import { Link } from "@/components/link";
+import { NotFoundPanel } from "@/components/not-found-panel";
 import { PageTitle } from "@/components/page-title";
 import { PostTag } from "@/components/post-tag";
 import { PostViewTransition } from "@/components/post-view-transition";
-import { Squiggle } from "@/components/squiggle";
 import { type Locale, resolveLocale } from "@/lib/locales";
 import { getPageMetadata, getPostMetadata } from "@/lib/metadata";
 import { getPost } from "@/lib/post-data";
@@ -69,15 +69,35 @@ function PostPage() {
   if (!post) throw notFound();
   const gt = useGT();
 
-  const toc = useMemo<TocNode>(() => JSON.parse(post.toc), [post.toc]);
-  const hasTOC = toc.children.length > 0;
-  const { activeSection, onNavigate } = useTOCScrollspy(toc);
+  const { displayToc, omitHeadingId } = useMemo(() => {
+    const toc: TocNode = JSON.parse(post.toc);
+    const firstHeading = toc.children[0];
+    const isRepeatedTitle =
+      firstHeading?.depth === 1 &&
+      firstHeading.title?.trim().replace(/\s+/g, " ") ===
+        post.title.trim().replace(/\s+/g, " ");
+
+    return {
+      displayToc: isRepeatedTitle
+        ? {
+            ...toc,
+            children: [
+              ...(firstHeading.children ?? []),
+              ...toc.children.slice(1),
+            ],
+          }
+        : toc,
+      omitHeadingId: isRepeatedTitle ? firstHeading.id : undefined,
+    };
+  }, [post.toc, post.title]);
+  const hasTOC = displayToc.children.length > 0;
+  const { activeSection, onNavigate } = useTOCScrollspy(displayToc);
 
   return (
-    <div class="space-y-8">
-      <header class="space-y-4">
+    <div class="interior-wireframe post-article">
+      <header class="page-header post-article-header">
         {/* Breadcrumb */}
-        <nav class="font-mono text-[11px] text-muted-foreground tracking-wide">
+        <nav class="post-article-breadcrumb">
           <Link
             href="/posts"
             class="hover:text-foreground transition-colors no-underline"
@@ -87,7 +107,7 @@ function PostPage() {
         </nav>
 
         {/* Date + reading time */}
-        <div class="font-mono text-[11px] text-muted-foreground tracking-wide">
+        <div class="post-article-meta">
           <PostViewTransition kind="date" postUrl={post.url}>
             <time datetime={post.date.toISOString()}>
               <DateTime options={{ timeZone: "UTC" }}>{post.date}</DateTime>
@@ -113,16 +133,12 @@ function PostPage() {
         </PostViewTransition>
 
         <PostViewTransition kind="description" postUrl={post.url}>
-          <p class="font-serif text-lg leading-relaxed text-ink-soft font-light">
-            {post.description}
-          </p>
+          <p class="post-article-description">{post.description}</p>
         </PostViewTransition>
-
-        <Squiggle class="text-lavender w-24" height={6} />
 
         {/* Tags */}
         {post.tags.length > 0 && (
-          <div class="flex flex-wrap gap-1.5">
+          <div class="post-article-tags flex flex-wrap gap-3">
             {post.tags.map((tag) => (
               <PostViewTransition
                 key={tag}
@@ -143,47 +159,52 @@ function PostPage() {
       </header>
 
       {/* Mobile TOC and Raw Markdown */}
-      <div class="lg:hidden space-y-4">
+      <div class="post-article-mobile-tools lg:hidden">
         {hasTOC && (
-          <div class="border border-border rounded-sm p-4 bg-card">
+          <details class="post-article-mobile-toc">
+            <summary>
+              <T>In this entry</T>
+              <span class="icon-[lucide--chevron-down]" aria-hidden="true" />
+            </summary>
             <ClientTOC
-              tree={toc}
+              showHeading={false}
+              tree={displayToc}
               activeSection={activeSection}
               onNavigate={onNavigate}
             />
-          </div>
+          </details>
         )}
-        <div class="border border-border rounded-sm p-4 bg-card">
+        <div class="post-article-mobile-raw">
           <RawMarkdown slug={post.slug} />
         </div>
       </div>
 
       {/* Main Content */}
-      <div class="grid lg:grid-cols-[1fr_180px] gap-8">
-        <main class="min-w-0">
-          <Typography>
-            <PostContent body={post.body} />
-          </Typography>
+      <div class="post-article-body">
+        <main class="post-article-main min-w-0">
+          <div class="post-article-content">
+            <Typography>
+              <PostContent body={post.body} omitHeadingId={omitHeadingId} />
+            </Typography>
+          </div>
 
           {/* Mobile Social */}
-          <div class="lg:hidden mt-8">
-            <div class="border border-border rounded-sm p-4 bg-card">
-              <Social title={post.title} />
-            </div>
+          <div class="post-article-mobile-social lg:hidden">
+            <Social title={post.title} />
           </div>
 
           {/* Comments */}
-          <div class="mt-12 pt-8 border-t border-border">
+          <div class="post-article-comments">
             <Comments />
           </div>
         </main>
 
         {/* Desktop sidebar */}
-        <aside class="hidden lg:block">
-          <div class="sticky top-24 space-y-6 border-l border-dotted border-border pl-4">
+        <aside class="post-article-aside hidden lg:block">
+          <div class="sticky top-24 space-y-6">
             {hasTOC && (
               <ClientTOC
-                tree={toc}
+                tree={displayToc}
                 activeSection={activeSection}
                 onNavigate={onNavigate}
               />
@@ -199,39 +220,31 @@ function PostPage() {
 
 function PostNotFound() {
   return (
-    <div class="flex min-h-[60vh] flex-col items-center justify-center gap-y-6 text-center">
-      <div class="space-y-4">
+    <NotFoundPanel
+      title={<T>Post Not Found</T>}
+      description={
         <T>
-          <h1 class="font-serif text-6xl font-medium text-muted-foreground">
-            404
-          </h1>
-          <h2 class="font-serif text-3xl font-medium tracking-tight text-foreground">
-            Post Not Found
-          </h2>
-          <p class="mx-auto max-w-md font-serif text-lg font-light leading-relaxed text-ink-soft">
-            Sorry, the post you're looking for doesn't exist or has been moved.
-          </p>
+          Sorry, the post you're looking for doesn't exist or has been moved.
         </T>
-      </div>
-      <div class="flex items-center gap-4 font-mono text-[11.5px]">
-        <T>
-          <Link
-            href="/posts"
-            class="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
-          >
-            Browse All Posts
-          </Link>
-        </T>
-        <span class="text-ink-faint">&middot;</span>
-        <T>
-          <Link
-            href="/"
-            class="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
-          >
-            Go Home
-          </Link>
-        </T>
-      </div>
-    </div>
+      }
+    >
+      <T>
+        <Link
+          href="/posts"
+          class="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
+        >
+          Browse All Posts
+        </Link>
+      </T>
+      <span class="text-ink-faint">&middot;</span>
+      <T>
+        <Link
+          href="/"
+          class="border-b border-border pb-px text-ink-soft no-underline transition-colors hover:border-ink-mute hover:text-foreground"
+        >
+          Go Home
+        </Link>
+      </T>
+    </NotFoundPanel>
   );
 }

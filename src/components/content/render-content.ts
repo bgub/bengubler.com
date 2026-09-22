@@ -13,13 +13,15 @@ export type ContentComponents = Readonly<
 export function ContentRenderer({
   body,
   components,
+  omitHeadingId,
 }: {
   body: string;
   components: ContentComponents;
+  omitHeadingId?: string;
 }): FigNode {
   const tree = JSON.parse(body) as ContentTree;
   return tree.map((node, index) =>
-    renderNode(node, `content.${index}`, components),
+    renderNode(node, `content.${index}`, components, omitHeadingId),
   );
 }
 
@@ -27,12 +29,20 @@ function renderNode(
   node: ContentNode,
   key: string,
   components: ContentComponents,
+  omitHeadingId?: string,
 ): FigNode {
   if (typeof node === "string" || typeof node === "number") return node;
+  if (
+    omitHeadingId &&
+    node.name === "Heading" &&
+    node.attributes.id === omitHeadingId
+  ) {
+    return null;
+  }
 
   const Component = resolveComponent(node.name, components);
   const children = node.children.map((child, index) =>
-    renderNode(child, `${key}.${index}`, components),
+    renderNode(child, `${key}.${index}`, components, omitHeadingId),
   );
 
   return createElement(Component, { ...node.attributes, key }, ...children);

@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/solid-router";
 import { getGT, msg, T, useGT, useMessages } from "gt-fig-tanstack-start";
 import { Link } from "@/components/link";
 import { PageTitle } from "@/components/page-title";
-import { getStripeColorByIndex } from "@/lib/colors";
 import { getPageMetadata } from "@/lib/metadata";
 
 export const Route = createFileRoute("/{-$locale}/language-learning/")({
@@ -63,8 +62,8 @@ function LanguageLearningPage() {
   const m = useMessages();
   const gt = useGT();
   return (
-    <div class="space-y-10">
-      <header class="space-y-3">
+    <div class="interior-wireframe language-wireframe">
+      <header class="page-header">
         <T>
           <PageTitle
             subtitle={gt(
@@ -76,44 +75,32 @@ function LanguageLearningPage() {
         </T>
       </header>
 
-      <div class="grid gap-4 sm:grid-cols-2">
-        {languageTools.map((tool, index) => {
-          const stripeColor = getStripeColorByIndex(index);
-          return (
-            <Link
-              key={tool.id}
-              href={tool.href}
-              target={tool.isExternal ? "_blank" : undefined}
-              rel={tool.isExternal ? "noopener noreferrer" : undefined}
-              class="bg-card border border-border rounded-sm relative overflow-hidden transition-all duration-200 hover:shadow-md group block no-underline"
-            >
-              <div
-                class={`absolute top-0 left-0 right-0 h-1.5 ${stripeColor}`}
-              />
-              <div class="p-4 pt-5">
-                <div class="flex items-center justify-between mb-2">
-                  <h3 class="font-serif text-xl font-medium text-foreground group-hover:text-foreground/80 transition-colors">
-                    {m(tool.title)}
-                  </h3>
-                  {tool.isExternal ? (
-                    <span
-                      class="icon-[lucide--external-link] size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <span
-                      class="icon-[lucide--chevron-right] size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-                <p class="font-serif text-[14.5px] leading-relaxed text-ink-soft font-light">
-                  {m(tool.description)}
-                </p>
-              </div>
-            </Link>
-          );
-        })}
+      <div class="language-tools-grid">
+        {languageTools.map((tool) => (
+          <Link
+            key={tool.id}
+            href={tool.href}
+            target={tool.isExternal ? "_blank" : undefined}
+            rel={tool.isExternal ? "noopener noreferrer" : undefined}
+            class="language-tool-card group"
+          >
+            <div class="language-tool-head">
+              <h2>{m(tool.title)}</h2>
+              {tool.isExternal ? (
+                <span
+                  class="language-tool-icon icon-[lucide--external-link]"
+                  aria-hidden="true"
+                />
+              ) : (
+                <span
+                  class="language-tool-icon language-tool-icon-internal icon-[lucide--chevron-right]"
+                  aria-hidden="true"
+                />
+              )}
+            </div>
+            <p>{m(tool.description)}</p>
+          </Link>
+        ))}
       </div>
     </div>
   );

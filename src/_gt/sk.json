@@ -28,6 +28,7 @@
     "i": 1,
     "t": "PageTitle"
   },
+  "074b6f983e66a1fd": "Pracujem na vysokovýkonných systémoch v TypeScripte, open-source infraštruktúre a knižniciach na vývoj s AI.",
   "07a5546c35e00b3b": "precvičujte české, slovenské a ruské skloňovanie",
   "08dd3091faf0d1ce": "Scaling Monosemanticity",
   "08fe27fe9f06fee4": "Quebec",
@@ -84,6 +85,7 @@
   "1947f94eeedb8b9c": "Zbierka projektov Bena Gublera – od vybraných prác až po experimentálne zostavy.",
   "1acba9df1061bebd": "Keňa",
   "1b684898471c9e88": "Surinam",
+  "1e43b6b3cb548fc3": "Prepáčte, príspevok, ktorý hľadáte, neexistuje alebo bol presunutý.",
   "1f1b4086cadac9b6": "učenie jazykov - Ben Gubler",
   "1f7052f11b6baa02": "Príbeh dvoch miest",
   "1fce2ea0cc5f056e": "Osobná webová stránka Bena Gublera. Úvahy o webovom vývoji, AI a tvorbe vecí, na ktorých záleží.",
@@ -154,6 +156,7 @@
     "i": 1,
     "t": "PageTitle"
   },
+  "3860ac0ef9e31a89": "Stránka nenájdená",
   "38e4a3d50b9db8cd": "Študijné vydanie gréckeho Nového zákona",
   "3966ae164fc4fb1f": "Pripravil som kartičky pádov pre češtinu, aby ste nemuseli vy.",
   "397ba28e12a728d0": "Arménsko",
@@ -178,6 +181,7 @@
   "402715cd330d167a": "Počítače",
   "4088fbaddc00d228": "Pozrite si moje open-source projekty a príspevky",
   "4156905e88354209": "Fahrenheit 451",
+  "41af307cbd14df15": "Príspevok nenájdený",
   "41d2f4230d1d960e": {
     "c": "Czech Case Cards – kartičky českých pádov",
     "i": 1,
@@ -277,6 +281,14 @@
   },
   "61213b3c0bb8433e": "Learn X in Y Minutes",
   "6223c45811e4bc71": "Kanada",
+  "627f44322bfd634a": [
+    "Svätí neskorších dní ",
+    {
+      "c": "po celom svete",
+      "i": 1,
+      "t": "span"
+    }
+  ],
   "631ee7e693a308c8": "Idaho",
   "638d933fb5975d0e": "Taliansko",
   "6455227309955661": "Pimsleur",
@@ -601,7 +613,9 @@
   "ac94723b2e9de669": "Beelinguapp",
   "acd3df01d58f5765": "The Divergent Association Task",
   "ade50401b1396de9": "Príspevky",
+  "af2ea6d7b11353b5": "V tomto príspevku",
   "af3863609bbecf5b": "Webový vývoj a React",
+  "af5f420da3d272dd": "Prepáčte, stránka, ktorú hľadáte, neexistuje alebo bola presunutá.",
   "b001897d730bf8b0": "Venezuela",
   "b06fe500b9dcc919": "Salvádor",
   "b09fa3fb65954f11": "Krajiny",
@@ -637,14 +651,6 @@
   "c3b8cdf27ab3c87a": "Maine",
   "c3d75dccd88075f2": "Interstellar",
   "c416e456567fdf39": "mokka",
-  "c4d382a9f7bcbeb9": [
-    "Svätí neskorších dní ",
-    {
-      "c": "na celom svete",
-      "i": 1,
-      "t": "span"
-    }
-  ],
   "c52ea2cc4ede7ada": "konvertujte datasety Hugging Face do formátu MosaicML Streaming",
   "c59720248f69d5aa": "Odporúčané",
   "c62378275dc5c4f6": "moje vlastné nástroje",
@@ -719,23 +725,6 @@
   },
   "dc2756d11af8d057": "Bedári",
   "dc94ea51cf0b8c7a": "Filmy",
-  "deb60b6c5c7c7e83": [
-    {
-      "c": "404",
-      "i": 1,
-      "t": "h1"
-    },
-    {
-      "c": "Stránka nenájdená",
-      "i": 2,
-      "t": "h2"
-    },
-    {
-      "c": "Prepáčte, stránka, ktorú hľadáte, neexistuje alebo bola presunutá.",
-      "i": 3,
-      "t": "p"
-    }
-  ],
   "df477c814cdcac4b": "Wisconsin",
   "e0ec8b1ac98ca1d6": "Wispr Flow",
   "e1753ab0ce7d5975": "LinkedIn",
@@ -788,39 +777,23 @@
     "i": 1,
     "t": "h2"
   },
-  "f419657c5760f465": [
-    "Momentálne v @",
+  "f2f74f043fcae049": [
+    "Predtým som stážoval v ",
     {
       "c": "General Translation",
       "i": 1,
       "t": "span"
     },
-    ", predtým stážista vo @",
+    " a vo ",
     {
-      "c": "Vercel",
+      "c": "Verceli",
       "i": 2,
       "t": "span"
-    }
+    },
+    "."
   ],
   "f41ea186c275b56e": "O mne",
   "f4a62bd4d2559581": "Lesotho",
-  "f4d07f6eb70aee90": [
-    {
-      "c": "404",
-      "i": 1,
-      "t": "h1"
-    },
-    {
-      "c": "Príspevok nenájdený",
-      "i": 2,
-      "t": "h2"
-    },
-    {
-      "c": "Prepáčte, príspevok, ktorý hľadáte, neexistuje alebo bol presunutý.",
-      "i": 3,
-      "t": "p"
-    }
-  ],
   "f4d35d2b79b7b4fe": "malé UI behové prostredie v TypeScripte pre aplikácie a metarámce",
   "f4f0914ef1d23a85": "Ontário",
   "f52129a3f95b5597": "Študijné zdroje",

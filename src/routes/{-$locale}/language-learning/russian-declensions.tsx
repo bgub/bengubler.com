@@ -24,9 +24,9 @@ function RussianCaseCardsPage() {
   const gt = useGT();
 
   return (
-    <div class="space-y-8">
-      <header class="space-y-3">
-        <nav class="font-mono text-[11px] text-muted-foreground tracking-wide">
+    <div class="interior-wireframe case-cards-wireframe">
+      <header class="page-header case-cards-header">
+        <nav class="post-article-breadcrumb">
           <Link
             href="/language-learning"
             class="hover:text-foreground transition-colors no-underline"
@@ -37,41 +37,40 @@ function RussianCaseCardsPage() {
         <T>
           <PageTitle>Russian Case Cards</PageTitle>
         </T>
-        <p class="font-serif text-lg text-ink-soft font-light">
+        <p class="case-cards-subtitle">
           {gt("I built case cards for Russian so you don't have to.")}
         </p>
+        <div class="case-cards-intro">
+          <T>
+            <p>
+              I spent many hours creating this! Print it out and you'll memorize
+              the Russian declension patterns in no time.
+            </p>
+          </T>
+
+          <T>
+            <p>
+              You may also be interested in my{" "}
+              <Link
+                href="https://decline.vercel.app/"
+                class="text-foreground hover:underline font-medium"
+              >
+                website for practicing Czech/Russian declensions
+              </Link>{" "}
+              or my{" "}
+              <Link
+                href="/language-learning/czech-declensions"
+                class="text-foreground hover:underline font-medium"
+              >
+                Czech case cards
+              </Link>
+              .
+            </p>
+          </T>
+        </div>
       </header>
 
-      <div class="space-y-5 font-serif text-lg text-ink-soft leading-[1.7] font-light">
-        <T>
-          <p>
-            I spent many hours creating this! Print it out and you'll memorize
-            the Russian declension patterns in no time.
-          </p>
-        </T>
-
-        <T>
-          <p>
-            You may also be interested in my{" "}
-            <Link
-              href="https://decline.vercel.app/"
-              class="text-foreground hover:underline font-medium"
-            >
-              website for practicing Czech/Russian declensions
-            </Link>{" "}
-            or my{" "}
-            <Link
-              href="/language-learning/czech-declensions"
-              class="text-foreground hover:underline font-medium"
-            >
-              Czech case cards
-            </Link>
-            .
-          </p>
-        </T>
-      </div>
-
-      <section class="space-y-4">
+      <section class="case-cards-document">
         <T>
           <h2 class="font-serif font-medium text-2xl tracking-tight text-foreground">
             Case Card
@@ -91,7 +90,7 @@ function RussianCaseCardsPage() {
             to view and download the PDF in a new window.
           </p>
         </T>
-        <div class="w-full border border-border rounded-sm overflow-hidden">
+        <div class="case-cards-embed">
           <embed
             src="/declensions/russian-cases-card.pdf"
             width="100%"
@@ -102,7 +101,9 @@ function RussianCaseCardsPage() {
         </div>
       </section>
 
-      <Comments />
+      <section class="case-cards-comments">
+        <Comments />
+      </section>
     </div>
   );
 }

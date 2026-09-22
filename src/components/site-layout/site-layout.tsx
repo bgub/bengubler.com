@@ -9,24 +9,27 @@ import { Sidebar } from "./sidebar";
 export function SiteLayout({ children }: { children: FigNode }): FigNode {
   return (
     <>
-      <div class="w-full max-w-7xl mx-auto bg-background">
+      <div class="site-frame w-full max-w-7xl mx-auto bg-background">
         <div class="flex min-h-screen">
           <Sidebar />
-          <div class="flex-1 md:ms-64 flex flex-col bg-background">
-            <header class="sticky top-0 z-40 md:hidden border-b border-border bg-shell/95 backdrop-blur supports-backdrop-filter:bg-shell/60">
+          <div class="site-content flex-1 flex flex-col bg-background">
+            <header class="site-mobile-header sticky top-0 z-40 md:hidden backdrop-blur">
               <div class="flex h-14 items-center justify-between px-4 sm:px-6">
-                <Link href="/" class="flex items-center gap-3">
-                  <div class="relative size-9 rounded-full overflow-hidden border border-border shrink-0">
+                <Link
+                  href="/"
+                  class="site-mobile-profile flex items-center gap-3"
+                >
+                  <div class="site-mobile-photo relative size-9 overflow-hidden shrink-0">
                     <ProfileImage size={36} class="object-cover" />
                   </div>
-                  <span class="font-serif text-xl font-medium translate-y-px">
+                  <span class="site-mobile-name translate-y-px">
                     Ben Gubler
                   </span>
                 </Link>
                 <MobileNav />
               </div>
             </header>
-            <main class="flex-1 w-full px-4 sm:px-6 lg:px-8 py-10">
+            <main class="site-main flex-1 w-full px-4 sm:px-6 lg:px-8 py-10">
               <div class="mb-16">{children}</div>
             </main>
           </div>

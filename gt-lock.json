@@ -1027,32 +1027,32 @@
     },
     {
       "fileId": "879f3a5f954ee8b75bf1e91f4ea9916b41c933e5beba7eb6362647a637c9c66d",
-      "versionId": "7a0761606f57db4d02f1aceea86b617d221610ae8ea449e7ddf08516be6dfaf6",
+      "versionId": "7e4c8e285b4ac2a012f0fbe2dc8e68d136d8345e07101ae73c82e6cf3d364a46",
       "translations": {
-        "sk": {
-          "updatedAt": "2026-07-31T18:49:22.278Z",
-          "fileName": "src/_gt/sk.json",
-          "postProcessHash": "85df1906122199f8efb7846cfb75dbfc9e3ae4c8f11138ea906a31acc6a88d4e"
-        },
         "cs": {
-          "updatedAt": "2026-07-31T18:49:22.282Z",
+          "updatedAt": "2026-09-22T06:05:57.831Z",
           "fileName": "src/_gt/cs.json",
-          "postProcessHash": "799ac4b6e1bf4c5e85be61d0e69187d41f6ceec8b82f787a17c7d6d8a009b240"
-        },
-        "ar": {
-          "updatedAt": "2026-07-31T18:49:22.285Z",
-          "fileName": "src/_gt/ar.json",
-          "postProcessHash": "9b9d9a2404540f8647343d1a45701badf59f736260dbcc1c6e6c4672094b4b7e"
+          "postProcessHash": "be508d7b2512d96983708b93ca0d6209e363e93ace1bffa1318c9b1a638e894a"
         },
         "ru": {
-          "updatedAt": "2026-07-31T18:49:22.287Z",
+          "updatedAt": "2026-09-22T06:05:57.835Z",
           "fileName": "src/_gt/ru.json",
-          "postProcessHash": "b687a2844936865db63815f753fee5b59075937b9db4f19f79043511da18aa9a"
+          "postProcessHash": "99a253f55e98bf709c339340703c995fe14388f9f7af599bbeb165e9528373b2"
+        },
+        "sk": {
+          "updatedAt": "2026-09-22T06:05:57.837Z",
+          "fileName": "src/_gt/sk.json",
+          "postProcessHash": "4268bbea79f5fee09d0c09a7298679c8975b5d7185d6fb88a70db81ee2273091"
+        },
+        "ar": {
+          "updatedAt": "2026-09-22T06:05:57.838Z",
+          "fileName": "src/_gt/ar.json",
+          "postProcessHash": "4a00197794d906be72da8126d79b03d25f79b797d88721e7617fbc4ae7263a11"
         },
         "eo": {
-          "updatedAt": "2026-07-31T18:49:22.288Z",
+          "updatedAt": "2026-09-22T06:05:57.840Z",
           "fileName": "src/_gt/eo.json",
-          "postProcessHash": "ca65d4e02adb79f9912254f3987504aaf50f6042aba571adf94c13b271f74272"
+          "postProcessHash": "c9abeb7b71819ed006e0c86464dde1b4920692aca5624edaa26d83e6f0a06378"
         }
       },
       "fileName": "__INTERNAL_GT_TEMPLATE_NAME__"
