@@ -1,10 +1,8 @@
 import { type FigNode, useMemo, useState } from "@bgub/fig";
 import { on } from "@bgub/fig-dom";
 import { useGT } from "gt-fig-tanstack-start";
-import { Squiggle } from "@/components/squiggle";
-import { LocaleSwitcher } from "./locale-switcher";
+import { NavigationControls } from "./navigation-controls";
 import { NavigationLinks } from "./navigation-links";
-import { ThemeToggle } from "./theme-toggle";
 
 export function MobileNav(): FigNode {
   const popoverRef = useMemo<{ current: HTMLDivElement | null }>(
@@ -57,16 +55,7 @@ export function MobileNav(): FigNode {
           />
         </nav>
 
-        <Squiggle class="text-ink-faint my-3" />
-
-        <LocaleSwitcher />
-
-        <div class="border-t border-dotted border-border mt-3 pt-3 flex items-center justify-between">
-          <span class="font-serif text-[11px] text-muted-foreground tracking-wider">
-            &copy; Ben Gubler
-          </span>
-          <ThemeToggle />
-        </div>
+        <NavigationControls class="mt-3" />
       </div>
     </>
   );

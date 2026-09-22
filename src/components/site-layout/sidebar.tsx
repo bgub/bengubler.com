@@ -1,8 +1,7 @@
 import { Link } from "@/components/link";
-import { LocaleSwitcher } from "./locale-switcher";
+import { NavigationControls } from "./navigation-controls";
 import { NavigationLinks } from "./navigation-links";
 import { ProfileImage } from "./profile-image";
-import { ThemeToggle } from "./theme-toggle";
 
 export function Sidebar() {
   return (
@@ -31,15 +30,7 @@ export function Sidebar() {
           </nav>
         </div>
         {/* Theme Toggle & Locale Selector */}
-        <div class="site-sidebar-footer space-y-3">
-          <LocaleSwitcher class="mx-auto" />
-          <div class="site-sidebar-controls border-t border-dotted pt-3 flex items-center justify-between">
-            <span class="font-serif text-[11px] text-muted-foreground tracking-wider">
-              &copy; Ben Gubler
-            </span>
-            <ThemeToggle />
-          </div>
-        </div>
+        <NavigationControls class="site-sidebar-footer" />
       </div>
     </div>
   );

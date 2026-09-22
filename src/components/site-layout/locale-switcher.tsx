@@ -11,22 +11,31 @@ export function LocaleSwitcher({ class: classValue }: LocaleSwitcherProps) {
   const gt = useGT();
 
   return (
-    <div class={cn("site-locale-switcher grid grid-cols-6 w-full", classValue)}>
+    <div class={cn("site-locale-switcher flex items-center", classValue)}>
       {locales
         .toSorted((a, b) => a.localeCompare(b))
-        .map((code) => {
+        .map((code, index) => {
           const active = code === locale;
           return (
-            <button
-              key={code}
-              type="button"
-              mix={on("click", () => setLocale(code))}
-              class="site-locale-option"
-              aria-pressed={active}
-              aria-label={gt("Switch language to {code}", { code })}
-            >
-              {code.toUpperCase()}
-            </button>
+            <span key={code} class="inline-flex items-center gap-1">
+              {index > 0 && (
+                <span
+                  aria-hidden="true"
+                  class="text-xs text-muted-foreground/50"
+                >
+                  /
+                </span>
+              )}
+              <button
+                type="button"
+                mix={on("click", () => setLocale(code))}
+                class="site-locale-option"
+                aria-pressed={active}
+                aria-label={gt("Switch language to {code}", { code })}
+              >
+                {code.toUpperCase()}
+              </button>
+            </span>
           );
         })}
     </div>
